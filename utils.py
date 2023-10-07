@@ -29,3 +29,11 @@ class ElementType(Enum):
     ANEPMO = 4 # 风
     GEO = 5 # 岩
     DENDRO = 6 # 草
+    PHYSICAL = 7 # 物理
+
+class Status_Counting_Type(Enum):
+    TURNS = 0 # 回合开始时计数
+    ATTACKS = 1 # 攻击时计数
+    SUFFER = 2 # 被攻击时计数
+    DAMAGES = 3 # 基于伤害技术
+    
