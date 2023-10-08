@@ -1,4 +1,6 @@
 import card
+from utils import *
+from typing import List
 from zone import CardZone, Activezone
 import numpy as np
 
@@ -12,7 +14,7 @@ class GeniusPlayer:
         self.hand_zone = self.card_zone.get_card(num=5) # 手牌区
 
         # 环境中的基本状态
-        self.dice_zone: None
+        self.dice_zone: List = []
         self.support_zone: None
         self.summons_zone: None
         self.active_zone: None
@@ -27,4 +29,16 @@ class GeniusPlayer:
     def choose_character(self, action):
         idx = np.where(action==1)
         self.active_zone = Activezone(idx, self.character_card)
+
+    def choose_dice(self, action):
+        reroll_num = np.sum(action)
+        reroll_dice = self.roll_dice(num=reroll_num)
+        for idx in len(self.dice_zone):
+            if action[idx] == 0:
+                self.dice_zone.pop(idx)
+        self.dice_zone += reroll_dice
+
+    def roll_dice(self, num=8):
+        return np.random.randint(0, DICENUM, num)
+
 

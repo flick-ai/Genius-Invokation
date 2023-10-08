@@ -21,8 +21,6 @@ class WeaponType(Enum):
     POLEARM = 4 # 长柄武器
     OTHER = 5 # 其他武器
 
-
-
 class CostType(Enum):
     CRYO = 0 # 冰
     HYDRO = 1 # 水
@@ -34,6 +32,7 @@ class CostType(Enum):
     WHITE = 7 # 任意相同
     BLACK = 8 # 任意
 
+DICENUM = 8
 class DiceType(Enum):
     CRYO = 0 # 冰
     HYDRO = 1 # 水
