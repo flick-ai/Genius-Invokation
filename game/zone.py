@@ -36,7 +36,7 @@ class Character_Zone:
         self.artifact_card: None
         self.is_active: bool
         self.is_alive: bool
-        self.shield: int
+        self.shield: List
 
 class Active_zone:
     def __init__(self, active_idx, charater_list) -> None:
