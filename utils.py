@@ -44,9 +44,11 @@ class SkillType(Enum):
     PASSIVE_SKILL = 3
 
 class GamePhase(Enum):
-    ROLL_PHASE = 0
-    ACTION_PHASE = 1
-    END_PHASE = 2
+    SET_CARD = 0
+    SET_CHARACTER = 1
+    ROLL_PHASE = 2
+    ACTION_PHASE = 3
+    END_PHASE = 4
 
 class ActionChoice(Enum):
     HAND_CARD = 0
