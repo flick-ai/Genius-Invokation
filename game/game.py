@@ -12,8 +12,8 @@ class GeniusGame:
         self.num_players = 3
         self.seed = seed
         random.seed(seed)
-        self.first_player: bool
-        self.active_player: bool
+        self.first_player: int
+        self.active_player: int
         player0 = GeniusPlayer(player0_deck)
         player1 = GeniusPlayer(player1_deck)
         self.players = [player0, player1]
@@ -29,10 +29,9 @@ class GeniusGame:
         # 决定谁方先手
         first = random.choice([0, 1])
         self.first_player = first
-
-        # 初始化双方状态
-        self.set_hand_card()
-        self.set_active_character()
+        # 进入选择起始手牌阶段
+        self.game_phase = GamePhase.SET_CARD
+        self.active_player = first
 
     def resolve_action(self, action: Action):
         
@@ -52,20 +51,37 @@ class GeniusGame:
         '''
         回合轮次
         '''
-        self.resolve_action(action)
-        # self.roll_phase()
-        # self.action_phase()
-        # self.end_phase()
+        match self.game_phase:
+            case GamePhase.SET_CARD:
+                pass
+            case GamePhase.SET_CHARACTER:
+                pass
+            case _:
+                self.resolve_action(action)
         
-    def set_hand_card(self):
-        for player in self.players:
-            pass
+    def set_hand_card(self, action):
+        '''
+        选择手牌部分, action: [5,2]的one-hot
+        '''
+        active = self.active_player
+        self.players[active].choose_card(action)
+        if self.active_player == self.first_player:
+            self.active_player = not active
+        else:
+            self.game_phase = GamePhase.SET_CHARACTER
+            self.active_player = self.first_player
 
-    def set_active_character(self):
+    def set_active_character(self, action):
         '''
-        选择出战角色
+        选择出战角色, action: [3,1]的0/1
         '''
-        pass
+        active = self.active_player
+        self.players[active].choose_character(action)
+        if self.active_player == self.first_player:
+            self.active_player = not active
+        else:
+            self.game_phase = GamePhase.ROLL_PHASE
+            self.active_player = self.first_player
     
     def roll_phase(self, player, now_dice):
         '''
