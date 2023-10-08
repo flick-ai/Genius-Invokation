@@ -5,7 +5,7 @@ from card.character.base import CharacterCard
 from copy import deepcopy
 
 
-class Card_Zone:
+class CardZone:
     def __init__(self, card: List) -> None:
         self.card = []
         for card_name in card:
@@ -29,7 +29,7 @@ class Card_Zone:
         self.card_num = len(self.card)
 
 
-class Character_Zone:
+class CharacterZone:
     def __init__(self) -> None:
         self.character_card: CharacterCard
         self.weapon_card: None
@@ -38,7 +38,7 @@ class Character_Zone:
         self.is_alive: bool
         self.shield: List
 
-class Active_zone:
+class ActiveZone:
     def __init__(self, active_idx, charater_list) -> None:
         self.number_of_characters = len(charater_list) # int
         self.active_idx = active_idx # int, Should be 0,1,2,... from left to right.
