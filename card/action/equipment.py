@@ -15,5 +15,5 @@ class RavenBow(WeaponCard):
         damage.main_damage += 1
 
     @staticmethod
-    def on_played(game: GeniusGame, target) -> None:
-        pass
+    def on_played(game: GeniusGame, target: int) -> None:
+        game.players[game.active_player].active_zone.character_list[target].weapon_card = RavenBow

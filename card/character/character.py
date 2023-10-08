@@ -14,11 +14,33 @@ class Fischl(CharacterCard):
         id: int = 0
         name: str = 'Bolts of Downfall'
         type: SkillType = SkillType.NORMAL_ATTACK
-        demage: Damage = Damage(SkillType.NORMAL_ATTACK, ElementType.PHYSICAL, 2, 0)
 
-        @staticmethod
-        def on_call(game: GeniusGame, target):
-            pass
+        # damage
+        damage_type: SkillType = SkillType.NORMAL_ATTACK
+        main_damage_element: ElementType = ElementType.ELECTRO
+        main_damage: int = 2
+        piercing_damage: int = 0
+
+        # cost
+        cost = [
+            {
+                'cost_num': 1,
+                'cost_type': CostType.ELECTRO
+            },
+            {
+                'cost_num': 2,
+                'cost_type': CostType.BLACK
+            }
+        ]
+       
+        # @classmethod
+        # def on_call(cls, game: GeniusGame):
+
+        #     demage: Damage = Damage(cls.damage_type, cls.main_damage_element, cls.main_damage, cls.piercing_damage)
+
+        #     pass
+
+        
     
     class ElementalSkill(CharacterSkill):
         id: int = 1

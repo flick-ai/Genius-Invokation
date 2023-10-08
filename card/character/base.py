@@ -1,6 +1,7 @@
 from utils import *
 from typing import List
 from game.game import GeniusGame
+from game.action import Action
 
 class Damage:
     # 伤害基本类
@@ -22,7 +23,25 @@ class CharacterSkill:
     id: int
     name: str
     type: SkillType
-    demage: Damage
+    
+    # damage
+    damage_type: SkillType
+    main_damage_element: ElementType
+    main_damage: int
+    piercing_damage: int
+
+    # cost
+    cost: list({'cost_num': int, 'cost_type': CostType})
+
+    @classmethod
+    def on_call(cls, game: GeniusGame, action: Action):
+        
+        # 消耗骰子
+        # 降序排列以便于按索引pop
+        for dice_index in sorted(action.dice, reverse=True):
+            game.players[game.active_player].dice_zone.pop(dice_index)
+
+        demage = Damage(cls.damage_type, cls.main_damage_element, cls.main_damage, cls.piercing_damage)
         
 class CharacterCard:
     # 角色卡片基本类

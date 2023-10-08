@@ -1,5 +1,5 @@
 import card
-from zone import CardZone, Activezone
+from zone import CardZone, ActiveZone
 import numpy as np
 
 class GeniusPlayer:
@@ -15,7 +15,7 @@ class GeniusPlayer:
         self.dice_zone: None
         self.support_zone: None
         self.summons_zone: None
-        self.active_zone: None
+        self.active_zone: ActiveZone
     
     def choose_card(self, action):
         throw_card = []
@@ -26,5 +26,5 @@ class GeniusPlayer:
 
     def choose_character(self, action):
         idx = np.where(action==1)
-        self.active_zone = Activezone(idx, self.character_card)
+        self.active_zone = ActiveZone(idx, self.character_card)
 

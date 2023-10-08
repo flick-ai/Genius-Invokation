@@ -38,7 +38,7 @@ class Action:
     def __init__(self, choice, target, dice) -> None:
         self.choice: int = choice
         self.target: int = target
-        self.dice: tuple(int) = dice
+        self.dice: list(int) = dice
 
         self.choice_type: ActionChoice
         self.target_type: ActionTarget
@@ -68,6 +68,6 @@ class Action:
     @staticmethod
     def from_tuple(action: tuple):
         '''
-            (1, 1, tuple(n))
+            (1, 1, list(n))
         '''
         return Action(action[0], action[1], action[2])
