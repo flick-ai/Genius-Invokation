@@ -12,8 +12,8 @@ class GeniusGame:
         self.num_players = 3
         self.seed = seed
         random.seed(seed)
-        self.first_player: bool
-        self.active_player: bool
+        self.first_player: int
+        self.active_player: int
         player0 = GeniusPlayer(player0_deck)
         player1 = GeniusPlayer(player1_deck)
         self.players = [player0, player1]

@@ -4,10 +4,10 @@ from game.game import GeniusGame
 
 class Damage:
     # 伤害基本类
-    def __init__(self) -> None:
-        self.main_damage_type: ElementType
-        self.main_damage: int
-        self.piercing_damage: int 
+    def __init__(self, main_damage_type, main_damage, piercing_damage) -> None:
+        self.main_damage_type: ElementType = main_damage_type
+        self.main_damage: int = main_damage
+        self.piercing_damage: int = piercing_damage
     
 
 class Summon:
@@ -18,49 +18,27 @@ class Summon:
 
 class CharacterSkill:
     # 角色技能基本类
-    def __init__(self) -> None:
-        self.type: SkillType
-        self.name: str
-        self.demage: Damage
+    id: int
+    name: str
+    type: SkillType
+    demage: Damage
         
 class CharacterCard:
     # 角色卡片基本类
-    def __init__(self) -> None:
-        self.id: int
-        self.name: str
-        self.element: ElementType
-        self.weapon_type: WeaponType
-        self.country: CountryType
-        self.health_point: int
-        self.skills: {'Normal Attack':CharacterSkill, 'Elemental Skill':CharacterSkill, 'Elemental Burst':CharacterSkill, 'Passive Skill':CharacterSkill}
-        self.power: int
-        self.max_power: int
+    id: int
+    name: str
+    element: ElementType
+    weapon_type: WeaponType
+    country: CountryType
+    health_point: int
+    skills: {'Normal Attack':CharacterSkill, 'Elemental Skill':CharacterSkill, 'Elemental Burst':CharacterSkill, 'Passive Skill':CharacterSkill}
+    power: int
+    max_power: int
+    # def __init__(self) -> None:
+
     
     def use_skill(self):
         pass
 
-class ActionCard:
-    # 行动牌基本类
-    def __init__(self) -> None:
-        self.id: int
-        self.name: str
-
-    def on_played(self, game: GeniusGame) -> None:
-        raise NotImplementedError
-
-
-class EquipmentCard(ActionCard):
-    # 装备牌基本类
-    def __init__(self) -> None:
-        super().__init__()
-
-    def on_played(self, game: GeniusGame, target) -> None:
-        pass
-
-
-class SupportCard(ActionCard):
-    # 支援牌基本类
-    def __init__(self) -> None:
-        super().__init__()
 
         

@@ -1,6 +1,7 @@
 from typing import List
 import random
-from card.action import *
+# from card.action import *
+from card.character.base import CharacterCard
 
 class Card_Zone:
     def __init__(self, card: List) -> None:
@@ -18,3 +19,8 @@ class Card_Zone:
     def return_card(self, card_list: List):
         for card in card_list:
             self.card.append(card)
+
+
+class Character:
+    def __init__(self) -> None:
+        self.character_card: CharacterCard
