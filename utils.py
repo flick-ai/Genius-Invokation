@@ -37,3 +37,29 @@ class Status_Counting_Type(Enum):
     SUFFER = 2 # 被攻击时计数
     DAMAGES = 3 # 基于伤害技术
     
+class SkillType(Enum):
+    NORMAL_ATTACK = 0
+    ELEMENTAL_SKILL = 1
+    ELEMENTAl_BURST = 2
+    PASSIVE_SKILL = 3
+
+class GamePhase(Enum):
+    ROLL_PHASE = 0
+    ACTION_PHASE = 1
+    END_PHASE = 2
+
+class ActionChoice(Enum):
+    HAND_CARD = 0
+    CHARACTER_SKILL = 1
+    CHANGE_CHARACTER = 2
+    PASS = 3
+    NONE = 4
+
+class ActionTarget(Enum):
+    OPPONENT = 0
+    MYSELF = 1
+    MY_CHARACTER = 2
+    OPPONENT_SUMMON = 3
+    MY_SUPPORT_REGION = 4
+    DICE_REGION = 5
+    

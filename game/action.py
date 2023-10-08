@@ -4,6 +4,7 @@
 '''
 
 from enum import Enum
+from utils import *
 
 '''
     choice action (1 dim)
@@ -28,3 +29,45 @@ from enum import Enum
     dice action (n dim), for each dim
     0-16: the i th dice
 '''
+
+# class Action:
+#     def __init__(self) -> None:
+        
+
+class Action:
+    def __init__(self, choice, target, dice) -> None:
+        self.choice: int = choice
+        self.target: int = target
+        self.dice: tuple(int) = dice
+
+        self.choice_type: ActionChoice
+        self.target_type: ActionTarget
+
+        self.choice_idx: int
+        self.target_idx: int
+
+        self.set_type()
+
+    
+    def set_type(self) -> None:
+        '''
+            将Action从Tuple形式解码
+            TODO: ActionTarget and set index
+        '''
+        if 0 <= self.choice < 10:
+            self.choice_type = ActionChoice.HAND_CARD
+        elif 10 <= self.choice < 14:
+            self.choice_type = ActionChoice.CHARACTER_SKILL
+        elif self.choice == 14:
+            self.choice_type = ActionChoice.CHANGE_CHARACTER
+        elif self.choice == 15:
+            self.choice_type = ActionChoice.PASS
+        elif self.choice == 16:
+            self.choice_type = ActionChoice.NONE
+    
+    @staticmethod
+    def from_tuple(action: tuple):
+        '''
+            (1, 1, tuple(n))
+        '''
+        return Action(action[0], action[1], action[2])

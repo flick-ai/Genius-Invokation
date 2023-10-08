@@ -1,8 +1,13 @@
 from typing import List
 from player import GeniusPlayer
+from game.action import Action
 import random
+from utils import *
 
 class GeniusGame:
+    '''
+    主游戏
+    '''
     def __init__(self, seed, player0_deck, player1_deck) -> None:
         self.num_players = 3
         self.seed = seed
@@ -12,6 +17,10 @@ class GeniusGame:
         player0 = GeniusPlayer(player0_deck)
         player1 = GeniusPlayer(player1_deck)
         self.players = [player0, player1]
+        self.game_phase: GamePhase
+    
+    def reset(self):
+        pass
 
     def init_game(self):
         '''
@@ -25,13 +34,28 @@ class GeniusGame:
         self.set_hand_card()
         self.set_active_character()
 
-    def step(self):
+    def resolve_action(self, action: Action):
+        
+        match self.game_phase:
+            case GamePhase.ROLL_PHASE:
+                pass
+            case GamePhase.ACTION_PHASE:
+                if action.choice_type == ActionChoice.HAND_CARD:
+                    pass
+                elif action.choice_type == ActionChoice.CHARACTER_SKILL:
+                    pass
+                elif action.choice_type == ActionChoice.CHANGE_CHARACTER:
+                    pass
+
+
+    def step(self, action: Action):
         '''
         回合轮次
         '''
-        self.roll_phase()
-        self.action_phase()
-        self.end_phase()
+        self.resolve_action(action)
+        # self.roll_phase()
+        # self.action_phase()
+        # self.end_phase()
         
     def set_hand_card(self):
         for player in self.players:
