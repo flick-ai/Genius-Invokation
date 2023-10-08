@@ -19,11 +19,10 @@ class GeniusPlayer:
 
     def init_player(self):
         pass
-
-    def take_action(self, action):
-        '''
-        将action信号转化为环境信号
-        '''
+    
+    def choose_card(self):
+        initial_cards = self.card_zone.get_card(num=5)
+        self.card_zone.return_card()
     
     def generate_action_mask(self):
         '''
