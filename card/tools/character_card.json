@@ -1,0 +1,2038 @@
+{
+    "retcode": 0,
+    "message": "OK",
+    "data": {
+        "list": [
+            {
+                "entry_page_id": "4366",
+                "name": "Yaoyao",
+                "icon_url": "https://upload-static.hoyoverse.com/hoyolab-wiki/2023/09/25/35428890/9ae11dc0f2551b8b7f40e04339c04cf8_7148132234708599230.png",
+                "display_field": {
+                    "tcg_cost_icon_type": "",
+                    "tcg_hp": "10",
+                    "tcg_cost_icon_type_any": ""
+                },
+                "filter_values": {
+                    "card_character_element": {
+                        "values": [
+                            "Dendro"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2143",
+                                "value": "Dendro"
+                            }
+                        ]
+                    },
+                    "card_character_camp": {
+                        "values": [
+                            "Liyue"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2197",
+                                "value": "Liyue"
+                            }
+                        ]
+                    },
+                    "card_character_charging_point": {
+                        "values": [
+                            "2"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1827",
+                                "value": "2"
+                            }
+                        ]
+                    },
+                    "card_character_weapon_type": {
+                        "values": [
+                            "Polearm"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1953",
+                                "value": "Polearm"
+                            }
+                        ]
+                    },
+                    "card_character_obtaining_method": {
+                        "values": [
+                            "Character Invitations"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1732",
+                                "value": "Character Invitations"
+                            }
+                        ]
+                    }
+                },
+                "desc": ""
+            },
+            {
+                "entry_page_id": "4365",
+                "name": "Wanderer",
+                "icon_url": "https://upload-static.hoyoverse.com/hoyolab-wiki/2023/09/25/35428890/ce89cee858b7e18759cc60ce9eb7657b_1073946105460778740.png",
+                "display_field": {
+                    "tcg_hp": "10",
+                    "tcg_cost_icon_type_any": "",
+                    "tcg_cost_icon_type": ""
+                },
+                "filter_values": {
+                    "card_character_charging_point": {
+                        "values": [
+                            "3"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1850",
+                                "value": "3"
+                            }
+                        ]
+                    },
+                    "card_character_weapon_type": {
+                        "values": [
+                            "Catalyst"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1912",
+                                "value": "Catalyst"
+                            }
+                        ]
+                    },
+                    "card_character_obtaining_method": {
+                        "values": [
+                            "Character Invitations"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1732",
+                                "value": "Character Invitations"
+                            }
+                        ]
+                    },
+                    "card_character_element": {
+                        "values": [
+                            "Anemo"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2161",
+                                "value": "Anemo"
+                            }
+                        ]
+                    }
+                },
+                "desc": ""
+            },
+            {
+                "entry_page_id": "4364",
+                "name": "Dehya",
+                "icon_url": "https://upload-static.hoyoverse.com/hoyolab-wiki/2023/09/25/35428890/b40d49c80cc633d60f771fb8ddf755c4_5881462082921564282.png",
+                "display_field": {
+                    "tcg_hp": "10",
+                    "tcg_cost_icon_type_any": "",
+                    "tcg_cost_icon_type": ""
+                },
+                "filter_values": {
+                    "card_character_weapon_type": {
+                        "values": [
+                            "Claymore"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1914",
+                                "value": "Claymore"
+                            }
+                        ]
+                    },
+                    "card_character_obtaining_method": {
+                        "values": [
+                            "Character Invitations"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1732",
+                                "value": "Character Invitations"
+                            }
+                        ]
+                    },
+                    "card_character_element": {
+                        "values": [
+                            "Pyro"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2096",
+                                "value": "Pyro"
+                            }
+                        ]
+                    },
+                    "card_character_camp": {
+                        "values": [
+                            "Sumeru"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2221",
+                                "value": "Sumeru"
+                            }
+                        ]
+                    },
+                    "card_character_charging_point": {
+                        "values": [
+                            "2"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1827",
+                                "value": "2"
+                            }
+                        ]
+                    }
+                },
+                "desc": ""
+            },
+            {
+                "entry_page_id": "4015",
+                "name": "Qiqi",
+                "icon_url": "https://upload-static.hoyoverse.com/hoyolab-wiki/2023/08/14/35428890/0edf905560ff08d4b819cd5bb21578eb_1444940328250211968.png",
+                "display_field": {
+                    "tcg_hp": "10",
+                    "tcg_cost_icon_type_any": "",
+                    "tcg_cost_icon_type": ""
+                },
+                "filter_values": {
+                    "card_character_element": {
+                        "values": [
+                            "Cryo"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2065",
+                                "value": "Cryo"
+                            }
+                        ]
+                    },
+                    "card_character_camp": {
+                        "values": [
+                            "Liyue"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2197",
+                                "value": "Liyue"
+                            }
+                        ]
+                    },
+                    "card_character_charging_point": {
+                        "values": [
+                            "3"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1850",
+                                "value": "3"
+                            }
+                        ]
+                    },
+                    "card_character_weapon_type": {
+                        "values": [
+                            "Sword"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1888",
+                                "value": "Sword"
+                            }
+                        ]
+                    },
+                    "card_character_obtaining_method": {
+                        "values": [
+                            "Character Invitations"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1732",
+                                "value": "Character Invitations"
+                            }
+                        ]
+                    }
+                },
+                "desc": ""
+            },
+            {
+                "entry_page_id": "4013",
+                "name": "Albedo",
+                "icon_url": "https://upload-static.hoyoverse.com/hoyolab-wiki/2023/08/14/35428890/6d991f4917ed756cad5d44ab166cf5f7_7669117281211049983.png",
+                "display_field": {
+                    "tcg_hp": "10",
+                    "tcg_cost_icon_type_any": "",
+                    "tcg_cost_icon_type": ""
+                },
+                "filter_values": {
+                    "card_character_obtaining_method": {
+                        "values": [
+                            "Character Invitations"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1732",
+                                "value": "Character Invitations"
+                            }
+                        ]
+                    },
+                    "card_character_element": {
+                        "values": [
+                            "Geo"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2130",
+                                "value": "Geo"
+                            }
+                        ]
+                    },
+                    "card_character_camp": {
+                        "values": [
+                            "Mondstadt"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2180",
+                                "value": "Mondstadt"
+                            }
+                        ]
+                    },
+                    "card_character_charging_point": {
+                        "values": [
+                            "2"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1827",
+                                "value": "2"
+                            }
+                        ]
+                    },
+                    "card_character_weapon_type": {
+                        "values": [
+                            "Sword"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1888",
+                                "value": "Sword"
+                            }
+                        ]
+                    }
+                },
+                "desc": ""
+            },
+            {
+                "entry_page_id": "4011",
+                "name": "Lisa",
+                "icon_url": "https://upload-static.hoyoverse.com/hoyolab-wiki/2023/08/14/35428890/81211fd394258d684252bc7b66079637_3840330357066508243.png",
+                "display_field": {
+                    "tcg_cost_icon_type": "",
+                    "tcg_hp": "10",
+                    "tcg_cost_icon_type_any": ""
+                },
+                "filter_values": {
+                    "card_character_camp": {
+                        "values": [
+                            "Mondstadt"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2180",
+                                "value": "Mondstadt"
+                            }
+                        ]
+                    },
+                    "card_character_charging_point": {
+                        "values": [
+                            "2"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1827",
+                                "value": "2"
+                            }
+                        ]
+                    },
+                    "card_character_weapon_type": {
+                        "values": [
+                            "Catalyst"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1912",
+                                "value": "Catalyst"
+                            }
+                        ]
+                    },
+                    "card_character_obtaining_method": {
+                        "values": [
+                            "Character Invitations"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1732",
+                                "value": "Character Invitations"
+                            }
+                        ]
+                    },
+                    "card_character_element": {
+                        "values": [
+                            "Electro"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2110",
+                                "value": "Electro"
+                            }
+                        ]
+                    }
+                },
+                "desc": ""
+            },
+            {
+                "entry_page_id": "3961",
+                "name": "Kaedehara Kazuha",
+                "icon_url": "https://upload-static.hoyoverse.com/hoyolab-wiki/2023/07/15/35428890/86860a04df9541ce4306a533190e469b_5882281887450879321.png",
+                "display_field": {
+                    "tcg_cost_icon_type_any": "",
+                    "tcg_cost_icon_type": "",
+                    "tcg_hp": "10"
+                },
+                "filter_values": {
+                    "card_character_weapon_type": {
+                        "values": [
+                            "Sword"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1888",
+                                "value": "Sword"
+                            }
+                        ]
+                    },
+                    "card_character_obtaining_method": {
+                        "values": [
+                            "Character Invitations"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1732",
+                                "value": "Character Invitations"
+                            }
+                        ]
+                    },
+                    "card_character_element": {
+                        "values": [
+                            "Anemo"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2161",
+                                "value": "Anemo"
+                            }
+                        ]
+                    },
+                    "card_character_camp": {
+                        "values": [
+                            "Inazuma"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2209",
+                                "value": "Inazuma"
+                            }
+                        ]
+                    },
+                    "card_character_charging_point": {
+                        "values": [
+                            "2"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1827",
+                                "value": "2"
+                            }
+                        ]
+                    }
+                },
+                "desc": ""
+            },
+            {
+                "entry_page_id": "3960",
+                "name": "Yanfei",
+                "icon_url": "https://upload-static.hoyoverse.com/hoyolab-wiki/2023/07/12/35428890/96cf1ba5e8affb67f2427407e37f0e10_2129265012373908943.png",
+                "display_field": {
+                    "tcg_cost_icon_type": "",
+                    "tcg_hp": "10",
+                    "tcg_cost_icon_type_any": ""
+                },
+                "filter_values": {
+                    "card_character_element": {
+                        "values": [
+                            "Pyro"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2096",
+                                "value": "Pyro"
+                            }
+                        ]
+                    },
+                    "card_character_camp": {
+                        "values": [
+                            "Liyue"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2197",
+                                "value": "Liyue"
+                            }
+                        ]
+                    },
+                    "card_character_charging_point": {
+                        "values": [
+                            "2"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1827",
+                                "value": "2"
+                            }
+                        ]
+                    },
+                    "card_character_weapon_type": {
+                        "values": [
+                            "Catalyst"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1912",
+                                "value": "Catalyst"
+                            }
+                        ]
+                    },
+                    "card_character_obtaining_method": {
+                        "values": [
+                            "Character Invitations"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1732",
+                                "value": "Character Invitations"
+                            }
+                        ]
+                    }
+                },
+                "desc": ""
+            },
+            {
+                "entry_page_id": "3957",
+                "name": "Candace",
+                "icon_url": "https://upload-static.hoyoverse.com/hoyolab-wiki/2023/07/12/77454259/3bdee71bcb8a499d2f94bf25cb812e84_602718134922892016.png",
+                "display_field": {
+                    "tcg_cost_icon_type": "",
+                    "tcg_hp": "10",
+                    "tcg_cost_icon_type_any": ""
+                },
+                "filter_values": {
+                    "card_character_charging_point": {
+                        "values": [
+                            "2"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1827",
+                                "value": "2"
+                            }
+                        ]
+                    },
+                    "card_character_weapon_type": {
+                        "values": [
+                            "Polearm"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1953",
+                                "value": "Polearm"
+                            }
+                        ]
+                    },
+                    "card_character_obtaining_method": {
+                        "values": [
+                            "Character Invitations"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1732",
+                                "value": "Character Invitations"
+                            }
+                        ]
+                    },
+                    "card_character_element": {
+                        "values": [
+                            "Hydro"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2086",
+                                "value": "Hydro"
+                            }
+                        ]
+                    },
+                    "card_character_camp": {
+                        "values": [
+                            "Sumeru"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2221",
+                                "value": "Sumeru"
+                            }
+                        ]
+                    }
+                },
+                "desc": ""
+            },
+            {
+                "entry_page_id": "3844",
+                "name": "Electro Hypostasis",
+                "icon_url": "https://upload-static.hoyoverse.com/hoyolab-wiki/2023/05/21/35428890/a18a61786bc99b67ad9fde145786cbe3_7462426228164417551.png",
+                "display_field": {
+                    "tcg_cost_icon_type": "",
+                    "tcg_hp": "8",
+                    "tcg_cost_icon_type_any": ""
+                },
+                "filter_values": {
+                    "card_character_obtaining_method": {
+                        "values": [
+                            "Tavern Challenges"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1734",
+                                "value": "Tavern Challenges"
+                            }
+                        ]
+                    },
+                    "card_character_element": {
+                        "values": [
+                            "Electro"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2110",
+                                "value": "Electro"
+                            }
+                        ]
+                    },
+                    "card_character_camp": {
+                        "values": [
+                            "Monster"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2263",
+                                "value": "Monster"
+                            }
+                        ]
+                    },
+                    "card_character_charging_point": {
+                        "values": [
+                            "2"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1827",
+                                "value": "2"
+                            }
+                        ]
+                    },
+                    "card_character_weapon_type": {
+                        "values": [
+                            "Other Weapons"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1968",
+                                "value": "Other Weapons"
+                            }
+                        ]
+                    }
+                },
+                "desc": ""
+            },
+            {
+                "entry_page_id": "3843",
+                "name": "Abyss Lector: Fathomless Flames",
+                "icon_url": "https://upload-static.hoyoverse.com/hoyolab-wiki/2023/05/21/35428890/269b19028f15db0e54a4b0b36ee13627_8763341806207986302.png",
+                "display_field": {
+                    "tcg_cost_icon_type": "",
+                    "tcg_hp": "6",
+                    "tcg_cost_icon_type_any": ""
+                },
+                "filter_values": {
+                    "card_character_charging_point": {
+                        "values": [
+                            "2"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1827",
+                                "value": "2"
+                            }
+                        ]
+                    },
+                    "card_character_weapon_type": {
+                        "values": [
+                            "Other Weapons"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1968",
+                                "value": "Other Weapons"
+                            }
+                        ]
+                    },
+                    "card_character_obtaining_method": {
+                        "values": [
+                            "Tavern Challenges"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1734",
+                                "value": "Tavern Challenges"
+                            }
+                        ]
+                    },
+                    "card_character_element": {
+                        "values": [
+                            "Pyro"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2096",
+                                "value": "Pyro"
+                            }
+                        ]
+                    },
+                    "card_character_camp": {
+                        "values": [
+                            "Monster"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2263",
+                                "value": "Monster"
+                            }
+                        ]
+                    }
+                },
+                "desc": ""
+            },
+            {
+                "entry_page_id": "3842",
+                "name": "Fatui Cryo Cicin Mage",
+                "icon_url": "https://upload-static.hoyoverse.com/hoyolab-wiki/2023/05/21/35428890/cbcfb53b8523957d330a6f9396f03167_6553006868301593753.png",
+                "display_field": {
+                    "tcg_hp": "10",
+                    "tcg_cost_icon_type_any": "",
+                    "tcg_cost_icon_type": ""
+                },
+                "filter_values": {
+                    "card_character_weapon_type": {
+                        "values": [
+                            "Other Weapons"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1968",
+                                "value": "Other Weapons"
+                            }
+                        ]
+                    },
+                    "card_character_obtaining_method": {
+                        "values": [
+                            "Tavern Challenges"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1734",
+                                "value": "Tavern Challenges"
+                            }
+                        ]
+                    },
+                    "card_character_element": {
+                        "values": [
+                            "Cryo"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2065",
+                                "value": "Cryo"
+                            }
+                        ]
+                    },
+                    "card_character_camp": {
+                        "values": [
+                            "Fatui"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2231",
+                                "value": "Fatui"
+                            }
+                        ]
+                    },
+                    "card_character_charging_point": {
+                        "values": [
+                            "3"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1850",
+                                "value": "3"
+                            }
+                        ]
+                    }
+                },
+                "desc": ""
+            },
+            {
+                "entry_page_id": "3841",
+                "name": "Nahida",
+                "icon_url": "https://upload-static.hoyoverse.com/hoyolab-wiki/2023/05/20/35428890/d19f6f9f8ca5ebe5120a00ff4a5331e0_2104025894254574878.png",
+                "display_field": {
+                    "tcg_cost_icon_type": "",
+                    "tcg_hp": "10",
+                    "tcg_cost_icon_type_any": ""
+                },
+                "filter_values": {
+                    "card_character_obtaining_method": {
+                        "values": [
+                            "Character Invitations"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1732",
+                                "value": "Character Invitations"
+                            }
+                        ]
+                    },
+                    "card_character_element": {
+                        "values": [
+                            "Dendro"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2143",
+                                "value": "Dendro"
+                            }
+                        ]
+                    },
+                    "card_character_camp": {
+                        "values": [
+                            "Sumeru"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2221",
+                                "value": "Sumeru"
+                            }
+                        ]
+                    },
+                    "card_character_charging_point": {
+                        "values": [
+                            "2"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1827",
+                                "value": "2"
+                            }
+                        ]
+                    },
+                    "card_character_weapon_type": {
+                        "values": [
+                            "Catalyst"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1912",
+                                "value": "Catalyst"
+                            }
+                        ]
+                    }
+                },
+                "desc": ""
+            },
+            {
+                "entry_page_id": "3840",
+                "name": "Zhongli",
+                "icon_url": "https://upload-static.hoyoverse.com/hoyolab-wiki/2023/05/20/35428890/bd5bddc9ee14fd21cae9bf64fe758681_276792920547799734.png",
+                "display_field": {
+                    "tcg_cost_icon_type": "",
+                    "tcg_hp": "10",
+                    "tcg_cost_icon_type_any": ""
+                },
+                "filter_values": {
+                    "card_character_weapon_type": {
+                        "values": [
+                            "Polearm"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1953",
+                                "value": "Polearm"
+                            }
+                        ]
+                    },
+                    "card_character_obtaining_method": {
+                        "values": [
+                            "Character Invitations"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1732",
+                                "value": "Character Invitations"
+                            }
+                        ]
+                    },
+                    "card_character_element": {
+                        "values": [
+                            "Geo"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2130",
+                                "value": "Geo"
+                            }
+                        ]
+                    },
+                    "card_character_camp": {
+                        "values": [
+                            "Liyue"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2197",
+                                "value": "Liyue"
+                            }
+                        ]
+                    },
+                    "card_character_charging_point": {
+                        "values": [
+                            "3"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1850",
+                                "value": "3"
+                            }
+                        ]
+                    }
+                },
+                "desc": ""
+            },
+            {
+                "entry_page_id": "3839",
+                "name": "Xiao",
+                "icon_url": "https://upload-static.hoyoverse.com/hoyolab-wiki/2023/05/20/35428890/aa7d00c044c79bfda8713a50adac9906_7499109958479880573.png",
+                "display_field": {
+                    "tcg_cost_icon_type": "",
+                    "tcg_hp": "10",
+                    "tcg_cost_icon_type_any": ""
+                },
+                "filter_values": {
+                    "card_character_obtaining_method": {
+                        "values": [
+                            "Character Invitations"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1732",
+                                "value": "Character Invitations"
+                            }
+                        ]
+                    },
+                    "card_character_element": {
+                        "values": [
+                            "Anemo"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2161",
+                                "value": "Anemo"
+                            }
+                        ]
+                    },
+                    "card_character_camp": {
+                        "values": [
+                            "Liyue"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2197",
+                                "value": "Liyue"
+                            }
+                        ]
+                    },
+                    "card_character_charging_point": {
+                        "values": [
+                            "2"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1827",
+                                "value": "2"
+                            }
+                        ]
+                    },
+                    "card_character_weapon_type": {
+                        "values": [
+                            "Polearm"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1953",
+                                "value": "Polearm"
+                            }
+                        ]
+                    }
+                },
+                "desc": ""
+            },
+            {
+                "entry_page_id": "3838",
+                "name": "Venti",
+                "icon_url": "https://upload-static.hoyoverse.com/hoyolab-wiki/2023/05/20/35428890/622f184debdf3d8763a81f35bbd2da87_2380472328179573728.png",
+                "display_field": {
+                    "tcg_cost_icon_type_any": "",
+                    "tcg_cost_icon_type": "",
+                    "tcg_hp": "10"
+                },
+                "filter_values": {
+                    "card_character_charging_point": {
+                        "values": [
+                            "2"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1827",
+                                "value": "2"
+                            }
+                        ]
+                    },
+                    "card_character_weapon_type": {
+                        "values": [
+                            "Bow"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1941",
+                                "value": "Bow"
+                            }
+                        ]
+                    },
+                    "card_character_obtaining_method": {
+                        "values": [
+                            "Character Invitations"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1732",
+                                "value": "Character Invitations"
+                            }
+                        ]
+                    },
+                    "card_character_element": {
+                        "values": [
+                            "Anemo"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2161",
+                                "value": "Anemo"
+                            }
+                        ]
+                    },
+                    "card_character_camp": {
+                        "values": [
+                            "Mondstadt"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2180",
+                                "value": "Mondstadt"
+                            }
+                        ]
+                    }
+                },
+                "desc": ""
+            },
+            {
+                "entry_page_id": "3837",
+                "name": "Yae Miko",
+                "icon_url": "https://upload-static.hoyoverse.com/hoyolab-wiki/2023/05/20/35428890/343ab804c901e9d3c328c09a77c76b6f_6985951691803021998.png",
+                "display_field": {
+                    "tcg_cost_icon_type_any": "",
+                    "tcg_cost_icon_type": "",
+                    "tcg_hp": "10"
+                },
+                "filter_values": {
+                    "card_character_camp": {
+                        "values": [
+                            "Inazuma"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2209",
+                                "value": "Inazuma"
+                            }
+                        ]
+                    },
+                    "card_character_charging_point": {
+                        "values": [
+                            "2"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1827",
+                                "value": "2"
+                            }
+                        ]
+                    },
+                    "card_character_weapon_type": {
+                        "values": [
+                            "Catalyst"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1912",
+                                "value": "Catalyst"
+                            }
+                        ]
+                    },
+                    "card_character_obtaining_method": {
+                        "values": [
+                            "Character Invitations"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1732",
+                                "value": "Character Invitations"
+                            }
+                        ]
+                    },
+                    "card_character_element": {
+                        "values": [
+                            "Electro"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2110",
+                                "value": "Electro"
+                            }
+                        ]
+                    }
+                },
+                "desc": ""
+            },
+            {
+                "entry_page_id": "3836",
+                "name": "Raiden Shogun",
+                "icon_url": "https://upload-static.hoyoverse.com/hoyolab-wiki/2023/05/20/35428890/93d75f397cef4378db5407389f7ee3c9_4695623175509809364.png",
+                "display_field": {
+                    "tcg_cost_icon_type_any": "",
+                    "tcg_cost_icon_type": "",
+                    "tcg_hp": "10"
+                },
+                "filter_values": {
+                    "card_character_weapon_type": {
+                        "values": [
+                            "Polearm"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1953",
+                                "value": "Polearm"
+                            }
+                        ]
+                    },
+                    "card_character_obtaining_method": {
+                        "values": [
+                            "Character Invitations"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1732",
+                                "value": "Character Invitations"
+                            }
+                        ]
+                    },
+                    "card_character_element": {
+                        "values": [
+                            "Electro"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2110",
+                                "value": "Electro"
+                            }
+                        ]
+                    },
+                    "card_character_camp": {
+                        "values": [
+                            "Inazuma"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2209",
+                                "value": "Inazuma"
+                            }
+                        ]
+                    },
+                    "card_character_charging_point": {
+                        "values": [
+                            "2"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1827",
+                                "value": "2"
+                            }
+                        ]
+                    }
+                },
+                "desc": ""
+            },
+            {
+                "entry_page_id": "3835",
+                "name": "Amber",
+                "icon_url": "https://upload-static.hoyoverse.com/hoyolab-wiki/2023/05/20/35428890/6b0a16f307577d2a6903c70fb233c3c7_5941269204585412432.png",
+                "display_field": {
+                    "tcg_cost_icon_type_any": "",
+                    "tcg_cost_icon_type": "",
+                    "tcg_hp": "10"
+                },
+                "filter_values": {
+                    "card_character_charging_point": {
+                        "values": [
+                            "2"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1827",
+                                "value": "2"
+                            }
+                        ]
+                    },
+                    "card_character_weapon_type": {
+                        "values": [
+                            "Bow"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1941",
+                                "value": "Bow"
+                            }
+                        ]
+                    },
+                    "card_character_obtaining_method": {
+                        "values": [
+                            "Character Invitations"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1732",
+                                "value": "Character Invitations"
+                            }
+                        ]
+                    },
+                    "card_character_element": {
+                        "values": [
+                            "Pyro"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2096",
+                                "value": "Pyro"
+                            }
+                        ]
+                    },
+                    "card_character_camp": {
+                        "values": [
+                            "Mondstadt"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2180",
+                                "value": "Mondstadt"
+                            }
+                        ]
+                    }
+                },
+                "desc": ""
+            },
+            {
+                "entry_page_id": "3834",
+                "name": "Hu Tao",
+                "icon_url": "https://upload-static.hoyoverse.com/hoyolab-wiki/2023/05/20/35428890/60ba0a8d8ed5b184d24e6c8a6dc477c5_6078668326320119218.png",
+                "display_field": {
+                    "tcg_hp": "10",
+                    "tcg_cost_icon_type_any": "",
+                    "tcg_cost_icon_type": ""
+                },
+                "filter_values": {
+                    "card_character_weapon_type": {
+                        "values": [
+                            "Polearm"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1953",
+                                "value": "Polearm"
+                            }
+                        ]
+                    },
+                    "card_character_obtaining_method": {
+                        "values": [
+                            "Character Invitations"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1732",
+                                "value": "Character Invitations"
+                            }
+                        ]
+                    },
+                    "card_character_element": {
+                        "values": [
+                            "Pyro"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2096",
+                                "value": "Pyro"
+                            }
+                        ]
+                    },
+                    "card_character_camp": {
+                        "values": [
+                            "Liyue"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2197",
+                                "value": "Liyue"
+                            }
+                        ]
+                    },
+                    "card_character_charging_point": {
+                        "values": [
+                            "3"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1850",
+                                "value": "3"
+                            }
+                        ]
+                    }
+                },
+                "desc": ""
+            },
+            {
+                "entry_page_id": "3833",
+                "name": "Tartaglia",
+                "icon_url": "https://upload-static.hoyoverse.com/hoyolab-wiki/2023/05/20/35428890/2db46f62068c4f545f787ef481fe73c8_55304213627050678.png",
+                "display_field": {
+                    "tcg_cost_icon_type": "",
+                    "tcg_hp": "10",
+                    "tcg_cost_icon_type_any": ""
+                },
+                "filter_values": {
+                    "card_character_weapon_type": {
+                        "values": [
+                            "Bow"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1941",
+                                "value": "Bow"
+                            }
+                        ]
+                    },
+                    "card_character_obtaining_method": {
+                        "values": [
+                            "Character Invitations"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1732",
+                                "value": "Character Invitations"
+                            }
+                        ]
+                    },
+                    "card_character_element": {
+                        "values": [
+                            "Hydro"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2086",
+                                "value": "Hydro"
+                            }
+                        ]
+                    },
+                    "card_character_camp": {
+                        "values": [
+                            "Fatui"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2231",
+                                "value": "Fatui"
+                            }
+                        ]
+                    },
+                    "card_character_charging_point": {
+                        "values": [
+                            "3"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1850",
+                                "value": "3"
+                            }
+                        ]
+                    }
+                },
+                "desc": ""
+            },
+            {
+                "entry_page_id": "3832",
+                "name": "Shenhe",
+                "icon_url": "https://upload-static.hoyoverse.com/hoyolab-wiki/2023/05/20/35428890/9d4755dfcf7b10e16ef5cd965065bd8f_1018116693472307793.png",
+                "display_field": {
+                    "tcg_cost_icon_type": "",
+                    "tcg_hp": "10",
+                    "tcg_cost_icon_type_any": ""
+                },
+                "filter_values": {
+                    "card_character_element": {
+                        "values": [
+                            "Cryo"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2065",
+                                "value": "Cryo"
+                            }
+                        ]
+                    },
+                    "card_character_camp": {
+                        "values": [
+                            "Liyue"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2197",
+                                "value": "Liyue"
+                            }
+                        ]
+                    },
+                    "card_character_charging_point": {
+                        "values": [
+                            "2"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1827",
+                                "value": "2"
+                            }
+                        ]
+                    },
+                    "card_character_weapon_type": {
+                        "values": [
+                            "Polearm"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1953",
+                                "value": "Polearm"
+                            }
+                        ]
+                    },
+                    "card_character_obtaining_method": {
+                        "values": [
+                            "Character Invitations"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1732",
+                                "value": "Character Invitations"
+                            }
+                        ]
+                    }
+                },
+                "desc": ""
+            },
+            {
+                "entry_page_id": "3714",
+                "name": "Arataki Itto",
+                "icon_url": "https://upload-static.hoyoverse.com/hoyolab-wiki/2023/04/11/35428890/d84e70d6e7e547982240bbd1da5a0b64_956306770817516545.png",
+                "display_field": {
+                    "tcg_cost_icon_type_any": "",
+                    "tcg_cost_icon_type": "",
+                    "tcg_hp": "10"
+                },
+                "filter_values": {
+                    "card_character_weapon_type": {
+                        "values": [
+                            "Claymore"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1914",
+                                "value": "Claymore"
+                            }
+                        ]
+                    },
+                    "card_character_obtaining_method": {
+                        "values": [
+                            "Character Invitations"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1732",
+                                "value": "Character Invitations"
+                            }
+                        ]
+                    },
+                    "card_character_element": {
+                        "values": [
+                            "Geo"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2130",
+                                "value": "Geo"
+                            }
+                        ]
+                    },
+                    "card_character_camp": {
+                        "values": [
+                            "Inazuma"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2209",
+                                "value": "Inazuma"
+                            }
+                        ]
+                    },
+                    "card_character_charging_point": {
+                        "values": [
+                            "3"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1850",
+                                "value": "3"
+                            }
+                        ]
+                    }
+                },
+                "desc": ""
+            },
+            {
+                "entry_page_id": "3713",
+                "name": "Tighnari",
+                "icon_url": "https://upload-static.hoyoverse.com/hoyolab-wiki/2023/04/11/35428890/ca7de5d7b0c17e1ef2062f471b496c88_2762406819733589965.png",
+                "display_field": {
+                    "tcg_cost_icon_type": "",
+                    "tcg_hp": "10",
+                    "tcg_cost_icon_type_any": ""
+                },
+                "filter_values": {
+                    "card_character_weapon_type": {
+                        "values": [
+                            "Bow"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1941",
+                                "value": "Bow"
+                            }
+                        ]
+                    },
+                    "card_character_obtaining_method": {
+                        "values": [
+                            "Character Invitations"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1732",
+                                "value": "Character Invitations"
+                            }
+                        ]
+                    },
+                    "card_character_element": {
+                        "values": [
+                            "Dendro"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2143",
+                                "value": "Dendro"
+                            }
+                        ]
+                    },
+                    "card_character_camp": {
+                        "values": [
+                            "Sumeru"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2221",
+                                "value": "Sumeru"
+                            }
+                        ]
+                    },
+                    "card_character_charging_point": {
+                        "values": [
+                            "2"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1827",
+                                "value": "2"
+                            }
+                        ]
+                    }
+                },
+                "desc": ""
+            },
+            {
+                "entry_page_id": "3708",
+                "name": "Kamisato Ayato",
+                "icon_url": "https://upload-static.hoyoverse.com/hoyolab-wiki/2023/04/11/35428890/fecf89a6a9b22c356816fea1c2cae7f3_504260705340276879.png",
+                "display_field": {
+                    "tcg_cost_icon_type": "",
+                    "tcg_hp": "10",
+                    "tcg_cost_icon_type_any": ""
+                },
+                "filter_values": {
+                    "card_character_charging_point": {
+                        "values": [
+                            "3"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1850",
+                                "value": "3"
+                            }
+                        ]
+                    },
+                    "card_character_weapon_type": {
+                        "values": [
+                            "Sword"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1888",
+                                "value": "Sword"
+                            }
+                        ]
+                    },
+                    "card_character_obtaining_method": {
+                        "values": [
+                            "Character Invitations"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1732",
+                                "value": "Character Invitations"
+                            }
+                        ]
+                    },
+                    "card_character_element": {
+                        "values": [
+                            "Hydro"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2086",
+                                "value": "Hydro"
+                            }
+                        ]
+                    },
+                    "card_character_camp": {
+                        "values": [
+                            "Inazuma"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2209",
+                                "value": "Inazuma"
+                            }
+                        ]
+                    }
+                },
+                "desc": ""
+            },
+            {
+                "entry_page_id": "3604",
+                "name": "Eula",
+                "icon_url": "https://upload-static.hoyoverse.com/hoyolab-wiki/2023/02/25/35428890/6d68e14ae4fbc1799d2d64b671905f01_5333861560096152260.png",
+                "display_field": {
+                    "tcg_cost_icon_type_any": "",
+                    "tcg_cost_icon_type": "",
+                    "tcg_hp": "10"
+                },
+                "filter_values": {
+                    "card_character_camp": {
+                        "values": [
+                            "Mondstadt"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2180",
+                                "value": "Mondstadt"
+                            }
+                        ]
+                    },
+                    "card_character_charging_point": {
+                        "values": [
+                            "2"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1827",
+                                "value": "2"
+                            }
+                        ]
+                    },
+                    "card_character_weapon_type": {
+                        "values": [
+                            "Claymore"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1914",
+                                "value": "Claymore"
+                            }
+                        ]
+                    },
+                    "card_character_obtaining_method": {
+                        "values": [
+                            "Character Invitations"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1732",
+                                "value": "Character Invitations"
+                            }
+                        ]
+                    },
+                    "card_character_element": {
+                        "values": [
+                            "Cryo"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2065",
+                                "value": "Cryo"
+                            }
+                        ]
+                    }
+                },
+                "desc": ""
+            },
+            {
+                "entry_page_id": "3603",
+                "name": "Sangonomiya Kokomi",
+                "icon_url": "https://upload-static.hoyoverse.com/hoyolab-wiki/2023/02/25/35428890/b29a2e6be38663b3308b587eb20bc53c_4803803732348825359.png",
+                "display_field": {
+                    "tcg_cost_icon_type_any": "",
+                    "tcg_cost_icon_type": "",
+                    "tcg_hp": "10"
+                },
+                "filter_values": {
+                    "card_character_element": {
+                        "values": [
+                            "Hydro"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2086",
+                                "value": "Hydro"
+                            }
+                        ]
+                    },
+                    "card_character_camp": {
+                        "values": [
+                            "Inazuma"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2209",
+                                "value": "Inazuma"
+                            }
+                        ]
+                    },
+                    "card_character_charging_point": {
+                        "values": [
+                            "2"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1827",
+                                "value": "2"
+                            }
+                        ]
+                    },
+                    "card_character_weapon_type": {
+                        "values": [
+                            "Catalyst"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1912",
+                                "value": "Catalyst"
+                            }
+                        ]
+                    },
+                    "card_character_obtaining_method": {
+                        "values": [
+                            "Character Invitations"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1732",
+                                "value": "Character Invitations"
+                            }
+                        ]
+                    }
+                },
+                "desc": ""
+            },
+            {
+                "entry_page_id": "3602",
+                "name": "Kujou Sara",
+                "icon_url": "https://upload-static.hoyoverse.com/hoyolab-wiki/2023/02/25/35428890/6dec071fe64f8582da613abafb76e045_3778798367689292890.png",
+                "display_field": {
+                    "tcg_cost_icon_type_any": "",
+                    "tcg_cost_icon_type": "",
+                    "tcg_hp": "10"
+                },
+                "filter_values": {
+                    "card_character_weapon_type": {
+                        "values": [
+                            "Bow"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1941",
+                                "value": "Bow"
+                            }
+                        ]
+                    },
+                    "card_character_obtaining_method": {
+                        "values": [
+                            "Character Invitations"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1732",
+                                "value": "Character Invitations"
+                            }
+                        ]
+                    },
+                    "card_character_element": {
+                        "values": [
+                            "Electro"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2110",
+                                "value": "Electro"
+                            }
+                        ]
+                    },
+                    "card_character_camp": {
+                        "values": [
+                            "Inazuma"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2209",
+                                "value": "Inazuma"
+                            }
+                        ]
+                    },
+                    "card_character_charging_point": {
+                        "values": [
+                            "2"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1827",
+                                "value": "2"
+                            }
+                        ]
+                    }
+                },
+                "desc": ""
+            },
+            {
+                "entry_page_id": "3460",
+                "name": "Beidou",
+                "icon_url": "https://upload-static.hoyoverse.com/hoyolab-wiki/2023/01/16/35428890/1f931f6c3173e91dd29af995af8ded12_3636627422646025911.png",
+                "display_field": {
+                    "tcg_hp": "10",
+                    "tcg_cost_icon_type_any": "",
+                    "tcg_cost_icon_type": ""
+                },
+                "filter_values": {
+                    "card_character_camp": {
+                        "values": [
+                            "Liyue"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2197",
+                                "value": "Liyue"
+                            }
+                        ]
+                    },
+                    "card_character_charging_point": {
+                        "values": [
+                            "3"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1850",
+                                "value": "3"
+                            }
+                        ]
+                    },
+                    "card_character_weapon_type": {
+                        "values": [
+                            "Claymore"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1914",
+                                "value": "Claymore"
+                            }
+                        ]
+                    },
+                    "card_character_obtaining_method": {
+                        "values": [
+                            "Character Invitations"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1732",
+                                "value": "Character Invitations"
+                            }
+                        ]
+                    },
+                    "card_character_element": {
+                        "values": [
+                            "Electro"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2110",
+                                "value": "Electro"
+                            }
+                        ]
+                    }
+                },
+                "desc": ""
+            },
+            {
+                "entry_page_id": "3457",
+                "name": "Klee",
+                "icon_url": "https://upload-static.hoyoverse.com/hoyolab-wiki/2023/01/16/35428890/24190d55c500e2eae31705e6590b1302_8654915267348701782.png",
+                "display_field": {
+                    "tcg_hp": "10",
+                    "tcg_cost_icon_type_any": "",
+                    "tcg_cost_icon_type": ""
+                },
+                "filter_values": {
+                    "card_character_camp": {
+                        "values": [
+                            "Mondstadt"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2180",
+                                "value": "Mondstadt"
+                            }
+                        ]
+                    },
+                    "card_character_charging_point": {
+                        "values": [
+                            "3"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1850",
+                                "value": "3"
+                            }
+                        ]
+                    },
+                    "card_character_weapon_type": {
+                        "values": [
+                            "Catalyst"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1912",
+                                "value": "Catalyst"
+                            }
+                        ]
+                    },
+                    "card_character_obtaining_method": {
+                        "values": [
+                            "Character Invitations"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "1732",
+                                "value": "Character Invitations"
+                            }
+                        ]
+                    },
+                    "card_character_element": {
+                        "values": [
+                            "Pyro"
+                        ],
+                        "value_types": [
+                            {
+                                "id": "2096",
+                                "value": "Pyro"
+                            }
+                        ]
+                    }
+                },
+                "desc": ""
+            }
+        ],
+        "total": "57"
+    }
+}

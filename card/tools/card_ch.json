@@ -1,0 +1,4058 @@
+{
+    "response": 200,
+    "data": {
+        "types": {
+            "characterCard": "characterCard",
+            "actionCard": "actionCard"
+        },
+        "items": {
+            "1101": {
+                "id": 1101,
+                "name": "甘雨",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_CRYO": "冰元素",
+                    "GCG_TAG_WEAPON_BOW": "弓",
+                    "GCG_TAG_NATION_LIYUE": "璃月"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 3
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Ganyu",
+                "route": "Ganyu",
+                "sortOrder": 1101
+            },
+            "1102": {
+                "id": 1102,
+                "name": "迪奥娜",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_CRYO": "冰元素",
+                    "GCG_TAG_WEAPON_BOW": "弓",
+                    "GCG_TAG_NATION_MONDSTADT": "蒙德"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 3
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Diona",
+                "route": "Diona",
+                "sortOrder": 1102
+            },
+            "1103": {
+                "id": 1103,
+                "name": "凯亚",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_CRYO": "冰元素",
+                    "GCG_TAG_WEAPON_SWORD": "单手剑",
+                    "GCG_TAG_NATION_MONDSTADT": "蒙德"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Kaeya",
+                "route": "Kaeya",
+                "sortOrder": 1103
+            },
+            "1104": {
+                "id": 1104,
+                "name": "重云",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_CRYO": "冰元素",
+                    "GCG_TAG_WEAPON_CLAYMORE": "双手剑",
+                    "GCG_TAG_NATION_LIYUE": "璃月"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 3
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Chongyun",
+                "route": "Chongyun",
+                "sortOrder": 1104
+            },
+            "1105": {
+                "id": 1105,
+                "name": "神里绫华",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_CRYO": "冰元素",
+                    "GCG_TAG_WEAPON_SWORD": "单手剑",
+                    "GCG_TAG_NATION_INAZUMA": "稻妻"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 3
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Ayaka",
+                "route": "Kamisato Ayaka",
+                "sortOrder": 1105
+            },
+            "1106": {
+                "id": 1106,
+                "name": "优菈",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_CRYO": "冰元素",
+                    "GCG_TAG_WEAPON_CLAYMORE": "双手剑",
+                    "GCG_TAG_NATION_MONDSTADT": "蒙德"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Eula",
+                "route": "Eula",
+                "sortOrder": 1106
+            },
+            "1107": {
+                "id": 1107,
+                "name": "申鹤",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_CRYO": "冰元素",
+                    "GCG_TAG_WEAPON_POLE": "长柄武器",
+                    "GCG_TAG_NATION_LIYUE": "璃月"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Shenhe",
+                "route": "Shenhe",
+                "sortOrder": 1107
+            },
+            "1108": {
+                "id": 1108,
+                "name": "七七",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_CRYO": "冰元素",
+                    "GCG_TAG_WEAPON_SWORD": "单手剑",
+                    "GCG_TAG_NATION_LIYUE": "璃月"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 3
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Qiqi",
+                "route": "Qiqi",
+                "sortOrder": 1108
+            },
+            "1201": {
+                "id": 1201,
+                "name": "芭芭拉",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_HYDRO": "水元素",
+                    "GCG_TAG_WEAPON_CATALYST": "法器",
+                    "GCG_TAG_NATION_MONDSTADT": "蒙德"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 3
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Barbara",
+                "route": "Barbara",
+                "sortOrder": 1201
+            },
+            "1202": {
+                "id": 1202,
+                "name": "行秋",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_HYDRO": "水元素",
+                    "GCG_TAG_WEAPON_SWORD": "单手剑",
+                    "GCG_TAG_NATION_LIYUE": "璃月"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Xingqiu",
+                "route": "Xingqiu",
+                "sortOrder": 1202
+            },
+            "1203": {
+                "id": 1203,
+                "name": "莫娜",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_HYDRO": "水元素",
+                    "GCG_TAG_WEAPON_CATALYST": "法器",
+                    "GCG_TAG_NATION_MONDSTADT": "蒙德"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 3
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Mona",
+                "route": "Mona",
+                "sortOrder": 1203
+            },
+            "1204": {
+                "id": 1204,
+                "name": "达达利亚",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_HYDRO": "水元素",
+                    "GCG_TAG_WEAPON_BOW": "弓",
+                    "GCG_TAG_CAMP_FATUI": "愚人众"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 3
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Tartaglia",
+                "route": "Tartaglia",
+                "sortOrder": 1204
+            },
+            "1205": {
+                "id": 1205,
+                "name": "珊瑚宫心海",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_HYDRO": "水元素",
+                    "GCG_TAG_WEAPON_CATALYST": "法器",
+                    "GCG_TAG_NATION_INAZUMA": "稻妻"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Kokomi",
+                "route": "Sangonomiya Kokomi",
+                "sortOrder": 1205
+            },
+            "1206": {
+                "id": 1206,
+                "name": "神里绫人",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_HYDRO": "水元素",
+                    "GCG_TAG_WEAPON_SWORD": "单手剑",
+                    "GCG_TAG_NATION_INAZUMA": "稻妻"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Ayato",
+                "route": "Kamisato Ayato",
+                "sortOrder": 1206
+            },
+            "1207": {
+                "id": 1207,
+                "name": "坎蒂丝",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_HYDRO": "水元素",
+                    "GCG_TAG_WEAPON_POLE": "长柄武器",
+                    "GCG_TAG_NATION_SUMERU": "须弥"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Candace",
+                "route": "Candace",
+                "sortOrder": 1207
+            },
+            "1208": {
+                "id": 1208,
+                "name": "妮露",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_HYDRO": "水元素",
+                    "GCG_TAG_WEAPON_SWORD": "单手剑",
+                    "GCG_TAG_NATION_SUMERU": "须弥"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Nilou",
+                "route": "Nilou",
+                "beta": true,
+                "sortOrder": 1208
+            },
+            "1301": {
+                "id": 1301,
+                "name": "迪卢克",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_PYRO": "火元素",
+                    "GCG_TAG_WEAPON_CLAYMORE": "双手剑",
+                    "GCG_TAG_NATION_MONDSTADT": "蒙德"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 3
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Diluc",
+                "route": "Diluc",
+                "sortOrder": 1301
+            },
+            "1302": {
+                "id": 1302,
+                "name": "香菱",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_PYRO": "火元素",
+                    "GCG_TAG_WEAPON_POLE": "长柄武器",
+                    "GCG_TAG_NATION_LIYUE": "璃月"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Xiangling",
+                "route": "Xiangling",
+                "sortOrder": 1302
+            },
+            "1303": {
+                "id": 1303,
+                "name": "班尼特",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_PYRO": "火元素",
+                    "GCG_TAG_WEAPON_SWORD": "单手剑",
+                    "GCG_TAG_NATION_MONDSTADT": "蒙德"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Bennett",
+                "route": "Bennett",
+                "sortOrder": 1303
+            },
+            "1304": {
+                "id": 1304,
+                "name": "安柏",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_PYRO": "火元素",
+                    "GCG_TAG_WEAPON_BOW": "弓",
+                    "GCG_TAG_NATION_MONDSTADT": "蒙德"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Ambor",
+                "route": "Amber",
+                "sortOrder": 1304
+            },
+            "1305": {
+                "id": 1305,
+                "name": "宵宫",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_PYRO": "火元素",
+                    "GCG_TAG_WEAPON_BOW": "弓",
+                    "GCG_TAG_NATION_INAZUMA": "稻妻"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 3
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Yoimiya",
+                "route": "Yoimiya",
+                "sortOrder": 1305
+            },
+            "1306": {
+                "id": 1306,
+                "name": "可莉",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_PYRO": "火元素",
+                    "GCG_TAG_WEAPON_CATALYST": "法器",
+                    "GCG_TAG_NATION_MONDSTADT": "蒙德"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 3
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Klee",
+                "route": "Klee",
+                "sortOrder": 1306
+            },
+            "1307": {
+                "id": 1307,
+                "name": "胡桃",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_PYRO": "火元素",
+                    "GCG_TAG_WEAPON_POLE": "长柄武器",
+                    "GCG_TAG_NATION_LIYUE": "璃月"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 3
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Hutao",
+                "route": "Hu Tao",
+                "sortOrder": 1307
+            },
+            "1308": {
+                "id": 1308,
+                "name": "烟绯",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_PYRO": "火元素",
+                    "GCG_TAG_WEAPON_CATALYST": "法器",
+                    "GCG_TAG_NATION_LIYUE": "璃月"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Feiyan",
+                "route": "Yanfei",
+                "sortOrder": 1308
+            },
+            "1309": {
+                "id": 1309,
+                "name": "迪希雅",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_PYRO": "火元素",
+                    "GCG_TAG_WEAPON_CLAYMORE": "双手剑",
+                    "GCG_TAG_NATION_SUMERU": "须弥"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Dehya",
+                "route": "Dehya",
+                "sortOrder": 1309
+            },
+            "1401": {
+                "id": 1401,
+                "name": "菲谢尔",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_ELECTRO": "雷元素",
+                    "GCG_TAG_WEAPON_BOW": "弓",
+                    "GCG_TAG_NATION_MONDSTADT": "蒙德"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 3
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Fischl",
+                "route": "Fischl",
+                "sortOrder": 1401
+            },
+            "1402": {
+                "id": 1402,
+                "name": "雷泽",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_ELECTRO": "雷元素",
+                    "GCG_TAG_WEAPON_CLAYMORE": "双手剑",
+                    "GCG_TAG_NATION_MONDSTADT": "蒙德"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Razor",
+                "route": "Razor",
+                "sortOrder": 1402
+            },
+            "1403": {
+                "id": 1403,
+                "name": "刻晴",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_ELECTRO": "雷元素",
+                    "GCG_TAG_WEAPON_SWORD": "单手剑",
+                    "GCG_TAG_NATION_LIYUE": "璃月"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 3
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Keqing",
+                "route": "Keqing",
+                "sortOrder": 1403
+            },
+            "1404": {
+                "id": 1404,
+                "name": "赛诺",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_ELECTRO": "雷元素",
+                    "GCG_TAG_WEAPON_POLE": "长柄武器",
+                    "GCG_TAG_NATION_SUMERU": "须弥"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Cyno",
+                "route": "Cyno",
+                "sortOrder": 1404
+            },
+            "1405": {
+                "id": 1405,
+                "name": "北斗",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_ELECTRO": "雷元素",
+                    "GCG_TAG_WEAPON_CLAYMORE": "双手剑",
+                    "GCG_TAG_NATION_LIYUE": "璃月"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 3
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Beidou",
+                "route": "Beidou",
+                "sortOrder": 1405
+            },
+            "1406": {
+                "id": 1406,
+                "name": "九条裟罗",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_ELECTRO": "雷元素",
+                    "GCG_TAG_WEAPON_BOW": "弓",
+                    "GCG_TAG_NATION_INAZUMA": "稻妻"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Sara",
+                "route": "Kujou Sara",
+                "sortOrder": 1406
+            },
+            "1407": {
+                "id": 1407,
+                "name": "雷电将军",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_ELECTRO": "雷元素",
+                    "GCG_TAG_WEAPON_POLE": "长柄武器",
+                    "GCG_TAG_NATION_INAZUMA": "稻妻"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Shougun",
+                "route": "Raiden Shogun",
+                "sortOrder": 1407
+            },
+            "1408": {
+                "id": 1408,
+                "name": "八重神子",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_ELECTRO": "雷元素",
+                    "GCG_TAG_WEAPON_CATALYST": "法器",
+                    "GCG_TAG_NATION_INAZUMA": "稻妻"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Yae",
+                "route": "Yae Miko",
+                "sortOrder": 1408
+            },
+            "1409": {
+                "id": 1409,
+                "name": "丽莎",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_ELECTRO": "雷元素",
+                    "GCG_TAG_WEAPON_CATALYST": "法器",
+                    "GCG_TAG_NATION_MONDSTADT": "蒙德"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Lisa",
+                "route": "Lisa",
+                "sortOrder": 1409
+            },
+            "1410": {
+                "id": 1410,
+                "name": "多莉",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_ELECTRO": "雷元素",
+                    "GCG_TAG_WEAPON_CLAYMORE": "双手剑",
+                    "GCG_TAG_NATION_SUMERU": "须弥"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Dori",
+                "route": "Dori",
+                "beta": true,
+                "sortOrder": 1410
+            },
+            "1501": {
+                "id": 1501,
+                "name": "砂糖",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_ANEMO": "风元素",
+                    "GCG_TAG_WEAPON_CATALYST": "法器",
+                    "GCG_TAG_NATION_MONDSTADT": "蒙德"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Sucrose",
+                "route": "Sucrose",
+                "sortOrder": 1501
+            },
+            "1502": {
+                "id": 1502,
+                "name": "琴",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_ANEMO": "风元素",
+                    "GCG_TAG_WEAPON_SWORD": "单手剑",
+                    "GCG_TAG_NATION_MONDSTADT": "蒙德"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 3
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Qin",
+                "route": "Jean",
+                "sortOrder": 1502
+            },
+            "1503": {
+                "id": 1503,
+                "name": "温迪",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_ANEMO": "风元素",
+                    "GCG_TAG_WEAPON_BOW": "弓",
+                    "GCG_TAG_NATION_MONDSTADT": "蒙德"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Venti",
+                "route": "Venti",
+                "sortOrder": 1503
+            },
+            "1504": {
+                "id": 1504,
+                "name": "魈",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_ANEMO": "风元素",
+                    "GCG_TAG_WEAPON_POLE": "长柄武器",
+                    "GCG_TAG_NATION_LIYUE": "璃月"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Xiao",
+                "route": "Xiao",
+                "sortOrder": 1504
+            },
+            "1505": {
+                "id": 1505,
+                "name": "枫原万叶",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_ANEMO": "风元素",
+                    "GCG_TAG_WEAPON_SWORD": "单手剑",
+                    "GCG_TAG_NATION_INAZUMA": "稻妻"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Kazuha",
+                "route": "Kaedehara Kazuha",
+                "sortOrder": 1505
+            },
+            "1506": {
+                "id": 1506,
+                "name": "流浪者",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_ANEMO": "风元素",
+                    "GCG_TAG_WEAPON_CATALYST": "法器"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 3
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Wanderer",
+                "route": "Wanderer",
+                "sortOrder": 1506
+            },
+            "1601": {
+                "id": 1601,
+                "name": "凝光",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_GEO": "岩元素",
+                    "GCG_TAG_WEAPON_CATALYST": "法器",
+                    "GCG_TAG_NATION_LIYUE": "璃月"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 3
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Ningguang",
+                "route": "Ningguang",
+                "sortOrder": 1601
+            },
+            "1602": {
+                "id": 1602,
+                "name": "诺艾尔",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_GEO": "岩元素",
+                    "GCG_TAG_WEAPON_CLAYMORE": "双手剑",
+                    "GCG_TAG_NATION_MONDSTADT": "蒙德"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Noel",
+                "route": "Noelle",
+                "sortOrder": 1602
+            },
+            "1603": {
+                "id": 1603,
+                "name": "钟离",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_GEO": "岩元素",
+                    "GCG_TAG_WEAPON_POLE": "长柄武器",
+                    "GCG_TAG_NATION_LIYUE": "璃月"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 3
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Zhongli",
+                "route": "Zhongli",
+                "sortOrder": 1603
+            },
+            "1604": {
+                "id": 1604,
+                "name": "阿贝多",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_GEO": "岩元素",
+                    "GCG_TAG_WEAPON_SWORD": "单手剑",
+                    "GCG_TAG_NATION_MONDSTADT": "蒙德"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Albedo",
+                "route": "Albedo",
+                "sortOrder": 1604
+            },
+            "1605": {
+                "id": 1605,
+                "name": "荒泷一斗",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_GEO": "岩元素",
+                    "GCG_TAG_WEAPON_CLAYMORE": "双手剑",
+                    "GCG_TAG_NATION_INAZUMA": "稻妻"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 3
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Itto",
+                "route": "Arataki Itto",
+                "sortOrder": 1605
+            },
+            "1701": {
+                "id": 1701,
+                "name": "柯莱",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_DENDRO": "草元素",
+                    "GCG_TAG_WEAPON_BOW": "弓",
+                    "GCG_TAG_NATION_SUMERU": "须弥"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Collei",
+                "route": "Collei",
+                "sortOrder": 1701
+            },
+            "1702": {
+                "id": 1702,
+                "name": "提纳里",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_DENDRO": "草元素",
+                    "GCG_TAG_WEAPON_BOW": "弓",
+                    "GCG_TAG_NATION_SUMERU": "须弥"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Tighnari",
+                "route": "Tighnari",
+                "sortOrder": 1702
+            },
+            "1703": {
+                "id": 1703,
+                "name": "纳西妲",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_DENDRO": "草元素",
+                    "GCG_TAG_WEAPON_CATALYST": "法器",
+                    "GCG_TAG_NATION_SUMERU": "须弥"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Nahida",
+                "route": "Nahida",
+                "sortOrder": 1703
+            },
+            "1704": {
+                "id": 1704,
+                "name": "瑶瑶",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_DENDRO": "草元素",
+                    "GCG_TAG_WEAPON_POLE": "长柄武器",
+                    "GCG_TAG_NATION_LIYUE": "璃月"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Yaoyao",
+                "route": "Yaoyao",
+                "sortOrder": 1704
+            },
+            "1705": {
+                "id": 1705,
+                "name": "白术",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_DENDRO": "草元素",
+                    "GCG_TAG_WEAPON_CATALYST": "法器",
+                    "GCG_TAG_NATION_LIYUE": "璃月"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Char_Avatar_Baizhuer",
+                "route": "Baizhu",
+                "beta": true,
+                "sortOrder": 1705
+            },
+            "2101": {
+                "id": 2101,
+                "name": "愚人众·冰萤术士",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_CRYO": "冰元素",
+                    "GCG_TAG_WEAPON_NONE": "其他武器",
+                    "GCG_TAG_CAMP_FATUI": "愚人众"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 3
+                },
+                "icon": "UI_Gcg_CardFace_Char_Monster_FatuusMageice",
+                "route": "Fatui Cryo Cicin Mage",
+                "sortOrder": 2101
+            },
+            "2201": {
+                "id": 2201,
+                "name": "纯水精灵·洛蒂娅",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_HYDRO": "水元素",
+                    "GCG_TAG_WEAPON_NONE": "其他武器",
+                    "GCG_TAG_CAMP_MONSTER": "魔物"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 3
+                },
+                "icon": "UI_Gcg_CardFace_Char_Monster_Oceanid",
+                "route": "Rhodeia of Loch",
+                "sortOrder": 2201
+            },
+            "2202": {
+                "id": 2202,
+                "name": "愚人众·藏镜仕女",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_HYDRO": "水元素",
+                    "GCG_TAG_WEAPON_NONE": "其他武器",
+                    "GCG_TAG_CAMP_FATUI": "愚人众"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Char_Monster_Maidenwater",
+                "route": "Mirror Maiden",
+                "sortOrder": 2202
+            },
+            "2301": {
+                "id": 2301,
+                "name": "愚人众·火之债务处理人",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_PYRO": "火元素",
+                    "GCG_TAG_WEAPON_NONE": "其他武器",
+                    "GCG_TAG_CAMP_FATUI": "愚人众"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Char_Monster_Fatuus",
+                "route": "Fatui Pyro Agent",
+                "sortOrder": 2301
+            },
+            "2302": {
+                "id": 2302,
+                "name": "深渊咏者·渊火",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_PYRO": "火元素",
+                    "GCG_TAG_WEAPON_NONE": "其他武器",
+                    "GCG_TAG_CAMP_MONSTER": "魔物"
+                },
+                "props": {
+                    "GCG_PROP_HP": 6,
+                    "GCG_PROP_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Char_Monster_DeaconFire",
+                "route": "Abyss Lector: Fathomless Flames",
+                "sortOrder": 2302
+            },
+            "2401": {
+                "id": 2401,
+                "name": "无相之雷",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_ELECTRO": "雷元素",
+                    "GCG_TAG_WEAPON_NONE": "其他武器",
+                    "GCG_TAG_CAMP_MONSTER": "魔物"
+                },
+                "props": {
+                    "GCG_PROP_HP": 8,
+                    "GCG_PROP_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Char_Monster_Effigyelectric",
+                "route": "Electro Hypostasis",
+                "sortOrder": 2401
+            },
+            "2501": {
+                "id": 2501,
+                "name": "魔偶剑鬼",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_ANEMO": "风元素",
+                    "GCG_TAG_WEAPON_NONE": "其他武器",
+                    "GCG_TAG_CAMP_MONSTER": "魔物"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 3
+                },
+                "icon": "UI_Gcg_CardFace_Char_Monster_Ningyo",
+                "route": "Maguu Kenki",
+                "sortOrder": 2501
+            },
+            "2601": {
+                "id": 2601,
+                "name": "丘丘岩盔王",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_GEO": "岩元素",
+                    "GCG_TAG_WEAPON_NONE": "其他武器",
+                    "GCG_TAG_CAMP_MONSTER": "魔物",
+                    "GCG_TAG_CAMP_HILICHURL": "丘丘人"
+                },
+                "props": {
+                    "GCG_PROP_HP": 8,
+                    "GCG_PROP_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Char_Monster_Bruterock",
+                "route": "Stonehide Lawachurl",
+                "sortOrder": 2601
+            },
+            "2701": {
+                "id": 2701,
+                "name": "翠翎恐蕈",
+                "type": "characterCard",
+                "tags": {
+                    "GCG_TAG_ELEMENT_DENDRO": "草元素",
+                    "GCG_TAG_WEAPON_NONE": "其他武器",
+                    "GCG_TAG_CAMP_MONSTER": "魔物"
+                },
+                "props": {
+                    "GCG_PROP_HP": 10,
+                    "GCG_PROP_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Char_Monster_Fungusgrass",
+                "route": "Jadeplume Terrorshroom",
+                "sortOrder": 2701
+            },
+            "211011": {
+                "id": 211011,
+                "name": "唯此一心",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_CRYO": 5
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Talent_Ganyu",
+                "route": "Undivided Heart",
+                "sortOrder": 211011
+            },
+            "211021": {
+                "id": 211021,
+                "name": "猫爪冰摇",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_CRYO": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Constellation_Diona",
+                "route": "Shaken, Not Purred",
+                "sortOrder": 211021
+            },
+            "211031": {
+                "id": 211031,
+                "name": "冷血之剑",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_CRYO": 4
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Talent_Keaya",
+                "route": "Cold-Blooded Strike",
+                "sortOrder": 211031
+            },
+            "211041": {
+                "id": 211041,
+                "name": "吐纳真定",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_CRYO": 4
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Talent_Chongyun",
+                "route": "Steady Breathing",
+                "sortOrder": 211041
+            },
+            "211051": {
+                "id": 211051,
+                "name": "寒天宣命祝词",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋"
+                },
+                "props": {
+                    "GCG_COST_DICE_CRYO": 2
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Talent_Ayaka",
+                "route": "Kanten Senmyou Blessing",
+                "sortOrder": 211051
+            },
+            "211061": {
+                "id": 211061,
+                "name": "战欲涌现",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_CRYO": 3,
+                    "GCG_COST_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Talent_Eula",
+                "route": "Wellspring of War-Lust",
+                "sortOrder": 211061
+            },
+            "211071": {
+                "id": 211071,
+                "name": "忘玄",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_CRYO": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Constellation_Shenhe",
+                "route": "Mystical Abandon",
+                "sortOrder": 211071
+            },
+            "211081": {
+                "id": 211081,
+                "name": "起死回骸",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_CRYO": 5,
+                    "GCG_COST_ENERGY": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Constellation_Qiqi",
+                "route": "Rite of Resurrection",
+                "sortOrder": 211081
+            },
+            "212011": {
+                "id": 212011,
+                "name": "光辉的季节",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_HYDRO": 4
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Talent_Barbara",
+                "route": "Glorious Season",
+                "sortOrder": 212011
+            },
+            "212021": {
+                "id": 212021,
+                "name": "重帘留香",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_HYDRO": 4
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Constellation_Xingqiu",
+                "route": "The Scent Remained",
+                "sortOrder": 212021
+            },
+            "212031": {
+                "id": 212031,
+                "name": "沉没的预言",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_HYDRO": 3,
+                    "GCG_COST_ENERGY": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Constellation_Mona",
+                "route": "Prophecy of Submersion",
+                "sortOrder": 212031
+            },
+            "212041": {
+                "id": 212041,
+                "name": "深渊之灾·凝水盛放",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_HYDRO": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Constellation_Tartaglia",
+                "route": "Abyssal Mayhem: Hydrospout",
+                "sortOrder": 212041
+            },
+            "212051": {
+                "id": 212051,
+                "name": "匣中玉栉",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_HYDRO": 3,
+                    "GCG_COST_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Talent_Kokomi",
+                "route": "Tamakushi Casket",
+                "sortOrder": 212051
+            },
+            "212061": {
+                "id": 212061,
+                "name": "镜华风姿",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_HYDRO": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Constellation_Ayato",
+                "route": "Kyouka Fuushi",
+                "sortOrder": 212061
+            },
+            "212071": {
+                "id": 212071,
+                "name": "衍溢的汐潮",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_HYDRO": 4,
+                    "GCG_COST_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Constellation_Candace",
+                "route": "The Overflow",
+                "sortOrder": 212071
+            },
+            "212081": {
+                "id": 212081,
+                "name": "星天的花雨",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_HYDRO": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Constellation_Nilou",
+                "route": "The Starry Skies Their Flowers Rain",
+                "beta": true,
+                "sortOrder": 212081
+            },
+            "213011": {
+                "id": 213011,
+                "name": "流火焦灼",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_PYRO": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Constellation_Diluc",
+                "route": "Flowing Flame",
+                "sortOrder": 213011
+            },
+            "213021": {
+                "id": 213021,
+                "name": "交叉火力",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_PYRO": 4
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Talent_Xiangling",
+                "route": "Crossfire",
+                "sortOrder": 213021
+            },
+            "213031": {
+                "id": 213031,
+                "name": "冒险憧憬",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_PYRO": 4,
+                    "GCG_COST_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Constellation_Bennett",
+                "route": "Grand Expectation",
+                "sortOrder": 213031
+            },
+            "213041": {
+                "id": 213041,
+                "name": "一触即发",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_PYRO": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Constellation_Ambor",
+                "route": "Bunny Triggered",
+                "sortOrder": 213041
+            },
+            "213051": {
+                "id": 213051,
+                "name": "长野原龙势流星群",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_PYRO": 2
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Constellation_Yoyimiya",
+                "route": "Naganohara Meteor Swarm",
+                "sortOrder": 213051
+            },
+            "213061": {
+                "id": 213061,
+                "name": "砰砰礼物",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_PYRO": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Talent_Klee",
+                "route": "Pounding Surprise",
+                "sortOrder": 213061
+            },
+            "213071": {
+                "id": 213071,
+                "name": "血之灶火",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_PYRO": 2
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Talent_Hutao",
+                "route": "Sanguine Rouge",
+                "sortOrder": 213071
+            },
+            "213081": {
+                "id": 213081,
+                "name": "最终解释权",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_PYRO": 1,
+                    "GCG_COST_DICE_VOID": 2
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Constellation_Feiyan",
+                "route": "Right of Final Interpretation",
+                "sortOrder": 213081
+            },
+            "213091": {
+                "id": 213091,
+                "name": "崇诚之真",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_PYRO": 4
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Talent_Dehya",
+                "route": "Stalwart and True",
+                "sortOrder": 213091
+            },
+            "214011": {
+                "id": 214011,
+                "name": "噬星魔鸦",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_ELECTRO": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Talent_Fischl",
+                "route": "Stellar Predator",
+                "sortOrder": 214011
+            },
+            "214021": {
+                "id": 214021,
+                "name": "觉醒",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_ELECTRO": 4
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Talent_Razor",
+                "route": "Awakening",
+                "sortOrder": 214021
+            },
+            "214031": {
+                "id": 214031,
+                "name": "抵天雷罚",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_ELECTRO": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Talent_Keqing",
+                "route": "Thundering Penance",
+                "sortOrder": 214031
+            },
+            "214041": {
+                "id": 214041,
+                "name": "落羽的裁择",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_ELECTRO": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Talent_Cyno",
+                "route": "Featherfall Judgment",
+                "sortOrder": 214041
+            },
+            "214051": {
+                "id": 214051,
+                "name": "霹雳连霄",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_ELECTRO": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Talent_Beidou",
+                "route": "Lightning Storm",
+                "sortOrder": 214051
+            },
+            "214061": {
+                "id": 214061,
+                "name": "我界",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_ELECTRO": 4,
+                    "GCG_COST_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Constellation_Sara",
+                "route": "Sin of Pride",
+                "sortOrder": 214061
+            },
+            "214071": {
+                "id": 214071,
+                "name": "万千的愿望",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_ELECTRO": 4,
+                    "GCG_COST_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Talent_Shougun",
+                "route": "Wishes Unnumbered",
+                "sortOrder": 214071
+            },
+            "214081": {
+                "id": 214081,
+                "name": "神篱之御荫",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_ELECTRO": 3,
+                    "GCG_COST_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Talent_Yae",
+                "route": "The Shrine's Sacred Shade",
+                "sortOrder": 214081
+            },
+            "214091": {
+                "id": 214091,
+                "name": "脉冲的魔女",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋"
+                },
+                "props": {
+                    "GCG_COST_DICE_ELECTRO": 1
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Constellation_Lisa",
+                "route": "Pulsating Witch",
+                "sortOrder": 214091
+            },
+            "214101": {
+                "id": 214101,
+                "name": "酌盈剂虚",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_ELECTRO": 3,
+                    "GCG_COST_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Constellation_Dori",
+                "route": "Discretionary Supplement",
+                "beta": true,
+                "sortOrder": 214101
+            },
+            "215011": {
+                "id": 215011,
+                "name": "混元熵增论",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_ANEMO": 3,
+                    "GCG_COST_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Constellation_Sucrose",
+                "route": "Chaotic Entropy",
+                "sortOrder": 215011
+            },
+            "215021": {
+                "id": 215021,
+                "name": "蒲公英的国土",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_ANEMO": 4,
+                    "GCG_COST_ENERGY": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Constellation_Qin",
+                "route": "Lands of Dandelion",
+                "sortOrder": 215021
+            },
+            "215031": {
+                "id": 215031,
+                "name": "绪风之拥",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_ANEMO": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Talent_Venti",
+                "route": "Embrace of Winds",
+                "sortOrder": 215031
+            },
+            "215041": {
+                "id": 215041,
+                "name": "降魔·护法夜叉",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_ANEMO": 3,
+                    "GCG_COST_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Constellation_Xiao",
+                "route": "Conqueror of Evil: Guardian Yaksha",
+                "sortOrder": 215041
+            },
+            "215051": {
+                "id": 215051,
+                "name": "风物之诗咏",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_ANEMO": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Talent_Kazuha",
+                "route": "Poetics of Fuubutsu",
+                "sortOrder": 215051
+            },
+            "215061": {
+                "id": 215061,
+                "name": "梦迹一风",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_ANEMO": 4
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Talent_Wanderer",
+                "route": "Gales of Reverie",
+                "sortOrder": 215061
+            },
+            "216011": {
+                "id": 216011,
+                "name": "储之千日，用之一刻",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_GEO": 4
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Talent_Ningguang",
+                "route": "Strategic Reserve",
+                "sortOrder": 216011
+            },
+            "216021": {
+                "id": 216021,
+                "name": "支援就交给我吧",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_GEO": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Constellation_Noel",
+                "route": "I Got Your Back",
+                "sortOrder": 216021
+            },
+            "216031": {
+                "id": 216031,
+                "name": "炊金馔玉",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_GEO": 5
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Talent_Zhongli",
+                "route": "Dominance of Earth",
+                "sortOrder": 216031
+            },
+            "216041": {
+                "id": 216041,
+                "name": "神性之陨",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_GEO": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Constellation_Albedo",
+                "route": "Descent of Divinity",
+                "sortOrder": 216041
+            },
+            "216051": {
+                "id": 216051,
+                "name": "荒泷第一",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_GEO": 1,
+                    "GCG_COST_DICE_VOID": 2
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Talent_Itto",
+                "route": "Arataki Ichiban",
+                "sortOrder": 216051
+            },
+            "217011": {
+                "id": 217011,
+                "name": "飞叶迴斜",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_DENDRO": 4
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Talent_Collei",
+                "route": "Floral Sidewinder",
+                "sortOrder": 217011
+            },
+            "217021": {
+                "id": 217021,
+                "name": "眼识殊明",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_DENDRO": 4
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Talent_Tighnari",
+                "route": "Keen Sight",
+                "sortOrder": 217021
+            },
+            "217031": {
+                "id": 217031,
+                "name": "心识蕴藏之种",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_DENDRO": 3,
+                    "GCG_COST_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Constellation_Tighnari",
+                "route": "The Seed of Stored Knowledge",
+                "sortOrder": 217031
+            },
+            "217041": {
+                "id": 217041,
+                "name": "慈惠仁心",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_DENDRO": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Constellation_Yaoyao",
+                "route": "Beneficent",
+                "sortOrder": 217041
+            },
+            "217051": {
+                "id": 217051,
+                "name": "在地为化",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_DENDRO": 4,
+                    "GCG_COST_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Talent_Baizhuer",
+                "route": "All Things Are of the Earth",
+                "beta": true,
+                "sortOrder": 217051
+            },
+            "221011": {
+                "id": 221011,
+                "name": "冰萤寒光",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_CRYO": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Talent_MageIce",
+                "route": "Cicin's Cold Glare",
+                "sortOrder": 221011
+            },
+            "222011": {
+                "id": 222011,
+                "name": "百川奔流",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_HYDRO": 4,
+                    "GCG_COST_ENERGY": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Talent_Chunshui",
+                "route": "Streaming Surge",
+                "sortOrder": 222011
+            },
+            "222021": {
+                "id": 222021,
+                "name": "镜锢之笼",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_HYDRO": 4
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Talent_Maidenwater",
+                "route": "Mirror Cage",
+                "sortOrder": 222021
+            },
+            "223011": {
+                "id": 223011,
+                "name": "悉数讨回",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_PYRO": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Talent_FatuiPyroAgent",
+                "route": "Paid in Full",
+                "sortOrder": 223011
+            },
+            "223021": {
+                "id": 223021,
+                "name": "烬火重燃",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋"
+                },
+                "props": {
+                    "GCG_COST_DICE_PYRO": 2
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Talent_DeaconFire",
+                "route": "Embers Rekindled",
+                "sortOrder": 223021
+            },
+            "224011": {
+                "id": 224011,
+                "name": "汲能棱晶",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_ELECTRO": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Talent_Effigyelectric",
+                "route": "Absorbing Prism",
+                "sortOrder": 224011
+            },
+            "225011": {
+                "id": 225011,
+                "name": "机巧神通",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_ANEMO": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Talent_Ningyo",
+                "route": "Transcendent Automaton",
+                "sortOrder": 225011
+            },
+            "226011": {
+                "id": 226011,
+                "name": "重铸：岩盔",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_GEO": 4,
+                    "GCG_COST_ENERGY": 2
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Talent_Rockbrute",
+                "route": "Stonehide Reforged",
+                "sortOrder": 226011
+            },
+            "227011": {
+                "id": 227011,
+                "name": "孢子增殖",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_TALENT": "天赋",
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_DENDRO": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Talent_Fungusgrass",
+                "route": "Proliferating Spores",
+                "sortOrder": 227011
+            },
+            "311101": {
+                "id": 311101,
+                "name": "魔导绪论",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_WEAPON": "武器",
+                    "GCG_TAG_WEAPON_CATALYST": "法器"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 2
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Weapon_CatalystIntro",
+                "route": "Magic Guide",
+                "sortOrder": 311101
+            },
+            "311102": {
+                "id": 311102,
+                "name": "祭礼残章",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_WEAPON": "武器",
+                    "GCG_TAG_WEAPON_CATALYST": "法器"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Weapon_CatalystFossil",
+                "route": "Sacrificial Fragments",
+                "sortOrder": 311102
+            },
+            "311103": {
+                "id": 311103,
+                "name": "天空之卷",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_WEAPON": "武器",
+                    "GCG_TAG_WEAPON_CATALYST": "法器"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Weapon_CatalystDvalin",
+                "route": "Skyward Atlas",
+                "sortOrder": 311103
+            },
+            "311104": {
+                "id": 311104,
+                "name": "千夜浮梦",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_WEAPON": "武器",
+                    "GCG_TAG_WEAPON_CATALYST": "法器"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Weapon_Ayus",
+                "route": "A Thousand Floating Dreams",
+                "sortOrder": 311104
+            },
+            "311105": {
+                "id": 311105,
+                "name": "盈满之实",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_WEAPON": "武器",
+                    "GCG_TAG_WEAPON_CATALYST": "法器"
+                },
+                "props": {
+                    "GCG_COST_DICE_VOID": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Weapon_Arakalari",
+                "route": "Fruit of Fulfillment",
+                "sortOrder": 311105
+            },
+            "311201": {
+                "id": 311201,
+                "name": "鸦羽弓",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_WEAPON": "武器",
+                    "GCG_TAG_WEAPON_BOW": "弓"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 2
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Weapon_BowCrowfeather",
+                "route": "Raven Bow",
+                "sortOrder": 311201
+            },
+            "311202": {
+                "id": 311202,
+                "name": "祭礼弓",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_WEAPON": "武器",
+                    "GCG_TAG_WEAPON_BOW": "弓"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Weapon_BowFossil",
+                "route": "Sacrificial Bow",
+                "sortOrder": 311202
+            },
+            "311203": {
+                "id": 311203,
+                "name": "天空之翼",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_WEAPON": "武器",
+                    "GCG_TAG_WEAPON_BOW": "弓"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Weapon_BowDvalin",
+                "route": "Skyward Harp",
+                "sortOrder": 311203
+            },
+            "311204": {
+                "id": 311204,
+                "name": "阿莫斯之弓",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_WEAPON": "武器",
+                    "GCG_TAG_WEAPON_BOW": "弓"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Weapon_Amos",
+                "route": "Amos' Bow",
+                "sortOrder": 311204
+            },
+            "311205": {
+                "id": 311205,
+                "name": "终末嗟叹之诗",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_WEAPON": "武器",
+                    "GCG_TAG_WEAPON_BOW": "弓"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Weapon_Widsith",
+                "route": "Elegy for the End",
+                "sortOrder": 311205
+            },
+            "311206": {
+                "id": 311206,
+                "name": "王下近侍",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_WEAPON": "武器",
+                    "GCG_TAG_WEAPON_BOW": "弓"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Weapon_Wangxia",
+                "route": "King's Squire",
+                "sortOrder": 311206
+            },
+            "311301": {
+                "id": 311301,
+                "name": "白铁大剑",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_WEAPON": "武器",
+                    "GCG_TAG_WEAPON_CLAYMORE": "双手剑"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 2
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Weapon_ClaymoreTin",
+                "route": "White Iron Greatsword",
+                "sortOrder": 311301
+            },
+            "311302": {
+                "id": 311302,
+                "name": "祭礼大剑",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_WEAPON": "武器",
+                    "GCG_TAG_WEAPON_CLAYMORE": "双手剑"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Weapon_Fossil",
+                "route": "Sacrificial Greatsword",
+                "sortOrder": 311302
+            },
+            "311303": {
+                "id": 311303,
+                "name": "狼的末路",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_WEAPON": "武器",
+                    "GCG_TAG_WEAPON_CLAYMORE": "双手剑"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Weapon_ClaymoreWolfmound",
+                "route": "Wolf's Gravestone",
+                "sortOrder": 311303
+            },
+            "311304": {
+                "id": 311304,
+                "name": "天空之傲",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_WEAPON": "武器",
+                    "GCG_TAG_WEAPON_CLAYMORE": "双手剑"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Weapon_ClaymoreDvalin",
+                "route": "Skyward Pride",
+                "sortOrder": 311304
+            },
+            "311305": {
+                "id": 311305,
+                "name": "钟剑",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_WEAPON": "武器",
+                    "GCG_TAG_WEAPON_CLAYMORE": "双手剑"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Weapon_Troupe",
+                "route": "The Bell",
+                "sortOrder": 311305
+            },
+            "311401": {
+                "id": 311401,
+                "name": "白缨枪",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_WEAPON": "武器",
+                    "GCG_TAG_WEAPON_POLE": "长柄武器"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 2
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Weapon_PoleRuby",
+                "route": "White Tassel",
+                "sortOrder": 311401
+            },
+            "311402": {
+                "id": 311402,
+                "name": "千岩长枪",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_WEAPON": "武器",
+                    "GCG_TAG_WEAPON_POLE": "长柄武器"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Weapon_PoleLapis",
+                "route": "Lithic Spear",
+                "sortOrder": 311402
+            },
+            "311403": {
+                "id": 311403,
+                "name": "天空之脊",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_WEAPON": "武器",
+                    "GCG_TAG_WEAPON_POLE": "长柄武器"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Weapon_PoleDvalin",
+                "route": "Skyward Spine",
+                "sortOrder": 311403
+            },
+            "311404": {
+                "id": 311404,
+                "name": "贯虹之槊",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_WEAPON": "武器",
+                    "GCG_TAG_WEAPON_POLE": "长柄武器"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Weapon_Kunwu",
+                "route": "Vortex Vanquisher",
+                "sortOrder": 311404
+            },
+            "311405": {
+                "id": 311405,
+                "name": "薙草之稻光",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_WEAPON": "武器",
+                    "GCG_TAG_WEAPON_POLE": "长柄武器"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Weapon_Narukami",
+                "route": "Engulfing Lightning",
+                "sortOrder": 311405
+            },
+            "311406": {
+                "id": 311406,
+                "name": "贯月矢",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_WEAPON": "武器",
+                    "GCG_TAG_WEAPON_POLE": "长柄武器"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Weapon_Guanyue",
+                "route": "Moonpiercer",
+                "sortOrder": 311406
+            },
+            "311501": {
+                "id": 311501,
+                "name": "旅行剑",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_WEAPON": "武器",
+                    "GCG_TAG_WEAPON_SWORD": "单手剑"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 2
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Weapon_SwordDarker",
+                "route": "Traveler's Handy Sword",
+                "sortOrder": 311501
+            },
+            "311502": {
+                "id": 311502,
+                "name": "祭礼剑",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_WEAPON": "武器",
+                    "GCG_TAG_WEAPON_SWORD": "单手剑"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Weapon_SwordFossil",
+                "route": "Sacrificial Sword",
+                "sortOrder": 311502
+            },
+            "311503": {
+                "id": 311503,
+                "name": "风鹰剑",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_WEAPON": "武器",
+                    "GCG_TAG_WEAPON_SWORD": "单手剑"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Weapon_SwordFalcon",
+                "route": "Aquila Favonia",
+                "sortOrder": 311503
+            },
+            "311504": {
+                "id": 311504,
+                "name": "天空之刃",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_WEAPON": "武器",
+                    "GCG_TAG_WEAPON_SWORD": "单手剑"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Weapon_SwordDvalin",
+                "route": "Skyward Blade",
+                "sortOrder": 311504
+            },
+            "311505": {
+                "id": 311505,
+                "name": "西风剑",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_WEAPON": "武器",
+                    "GCG_TAG_WEAPON_SWORD": "单手剑"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Weapon_Xifengjian",
+                "route": "Favonius Sword",
+                "sortOrder": 311505
+            },
+            "312001": {
+                "id": 312001,
+                "name": "冒险家头带",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ARTIFACT": "圣遗物"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 1
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Artifact_MaoxianjiaDanjian",
+                "route": "Adventurer's Bandana",
+                "sortOrder": 312001
+            },
+            "312002": {
+                "id": 312002,
+                "name": "幸运儿银冠",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ARTIFACT": "圣遗物"
+                },
+                "props": {
+                    "GCG_COST_DICE_VOID": 2
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Artifact_XingyunerDanjian",
+                "route": "Lucky Dog's Silver Circlet",
+                "sortOrder": 312002
+            },
+            "312003": {
+                "id": 312003,
+                "name": "游医的方巾",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ARTIFACT": "圣遗物"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 1
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Artifact_YouyiDanjian",
+                "route": "Traveling Doctor's Handkerchief",
+                "sortOrder": 312003
+            },
+            "312004": {
+                "id": 312004,
+                "name": "赌徒的耳环",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ARTIFACT": "圣遗物"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 1
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Artifact_DutuDanjian",
+                "route": "Gambler's Earrings",
+                "sortOrder": 312004
+            },
+            "312005": {
+                "id": 312005,
+                "name": "教官的帽子",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ARTIFACT": "圣遗物"
+                },
+                "props": {
+                    "GCG_COST_DICE_VOID": 2
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Artifact_JiaoguanDanjian",
+                "route": "Instructor's Cap",
+                "sortOrder": 312005
+            },
+            "312006": {
+                "id": 312006,
+                "name": "流放者头冠",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ARTIFACT": "圣遗物"
+                },
+                "props": {
+                    "GCG_COST_DICE_VOID": 2
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Artifact_LiufangzheDanjian",
+                "route": "Exile's Circlet",
+                "sortOrder": 312006
+            },
+            "312007": {
+                "id": 312007,
+                "name": "华饰之兜",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ARTIFACT": "圣遗物"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 1
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Artifact_Huashi",
+                "route": "Ornate Kabuto",
+                "sortOrder": 312007
+            },
+            "312008": {
+                "id": 312008,
+                "name": "绝缘之旗印",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ARTIFACT": "圣遗物"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 2
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Artifact_JueyuanTaozhuang",
+                "route": "Emblem of Severed Fate",
+                "sortOrder": 312008
+            },
+            "312009": {
+                "id": 312009,
+                "name": "将帅兜鍪",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ARTIFACT": "圣遗物"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 2
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Artifact_Jiangshuai",
+                "route": "General's Ancient Helm",
+                "sortOrder": 312009
+            },
+            "312010": {
+                "id": 312010,
+                "name": "千岩牢固",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ARTIFACT": "圣遗物"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Artifact_QianyanTaozhuang",
+                "route": "Tenacity of the Millelith",
+                "sortOrder": 312010
+            },
+            "312011": {
+                "id": 312011,
+                "name": "虺雷之姿",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ARTIFACT": "圣遗物"
+                },
+                "props": {
+                    "GCG_COST_DICE_VOID": 2
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Artifact_ChenshaDanjian",
+                "route": "Thundering Poise",
+                "sortOrder": 312011
+            },
+            "312012": {
+                "id": 312012,
+                "name": "辰砂往生录",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ARTIFACT": "圣遗物"
+                },
+                "props": {
+                    "GCG_COST_DICE_VOID": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Artifact_ChenshaTaozhuang",
+                "route": "Vermillion Hereafter",
+                "sortOrder": 312012
+            },
+            "312013": {
+                "id": 312013,
+                "name": "无常之面",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ARTIFACT": "圣遗物"
+                },
+                "props": {
+                    "GCG_COST_DICE_VOID": 2
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Artifact_Zhuiyidanjian",
+                "route": "Capricious Visage",
+                "sortOrder": 312013
+            },
+            "312014": {
+                "id": 312014,
+                "name": "追忆之注连",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ARTIFACT": "圣遗物"
+                },
+                "props": {
+                    "GCG_COST_DICE_VOID": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Artifact_ZhuiyiTaozhuang",
+                "route": "Shimenawa's Reminiscence",
+                "sortOrder": 312014
+            },
+            "312015": {
+                "id": 312015,
+                "name": "海祇之冠",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ARTIFACT": "圣遗物"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 1
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Artifact_HaiRanDanJian",
+                "route": "Crown of Watatsumi",
+                "sortOrder": 312015
+            },
+            "312016": {
+                "id": 312016,
+                "name": "海染砗磲",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ARTIFACT": "圣遗物"
+                },
+                "props": {
+                    "GCG_COST_DICE_VOID": 3
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Artifact_Hairantaozhuang",
+                "route": "Ocean-Hued Clam",
+                "beta": true,
+                "sortOrder": 312016
+            },
+            "312017": {
+                "id": 312017,
+                "name": "沙王的投影",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ARTIFACT": "圣遗物"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 1
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Artifact_Chiwangdanjian",
+                "route": "Shadow of the Sand King",
+                "beta": true,
+                "sortOrder": 312017
+            },
+            "312101": {
+                "id": 312101,
+                "name": "破冰踏雪的回音",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ARTIFACT": "圣遗物"
+                },
+                "props": {
+                    "GCG_COST_DICE_VOID": 2
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Artifact_BinDanjian",
+                "route": "Broken Rime's Echo",
+                "sortOrder": 312101
+            },
+            "312102": {
+                "id": 312102,
+                "name": "冰风迷途的勇士",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ARTIFACT": "圣遗物"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 2
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Artifact_BinTaozhuang",
+                "route": "Blizzard Strayer",
+                "sortOrder": 312102
+            },
+            "312201": {
+                "id": 312201,
+                "name": "酒渍船帽",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ARTIFACT": "圣遗物"
+                },
+                "props": {
+                    "GCG_COST_DICE_VOID": 2
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Artifact_Shuidanjian",
+                "route": "Wine-Stained Tricorne",
+                "sortOrder": 312201
+            },
+            "312202": {
+                "id": 312202,
+                "name": "沉沦之心",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ARTIFACT": "圣遗物"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 2
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Artifact_Shuitaozhuang",
+                "route": "Heart of Depth",
+                "sortOrder": 312202
+            },
+            "312301": {
+                "id": 312301,
+                "name": "焦灼的魔女帽",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ARTIFACT": "圣遗物"
+                },
+                "props": {
+                    "GCG_COST_DICE_VOID": 2
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Artifact_Monvdanjian",
+                "route": "Witch's Scorching Hat",
+                "sortOrder": 312301
+            },
+            "312302": {
+                "id": 312302,
+                "name": "炽烈的炎之魔女",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ARTIFACT": "圣遗物"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 2
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Artifact_Monvtaozhuang",
+                "route": "Crimson Witch of Flames",
+                "sortOrder": 312302
+            },
+            "312401": {
+                "id": 312401,
+                "name": "唤雷的头冠",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ARTIFACT": "圣遗物"
+                },
+                "props": {
+                    "GCG_COST_DICE_VOID": 2
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Artifact_Leidanjia",
+                "route": "Thunder Summoner's Crown",
+                "sortOrder": 312401
+            },
+            "312402": {
+                "id": 312402,
+                "name": "如雷的盛怒",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ARTIFACT": "圣遗物"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 2
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Artifact_Leitaozhuang",
+                "route": "Thundering Fury",
+                "sortOrder": 312402
+            },
+            "312501": {
+                "id": 312501,
+                "name": "翠绿的猎人之冠",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ARTIFACT": "圣遗物"
+                },
+                "props": {
+                    "GCG_COST_DICE_VOID": 2
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Artifact_FengDanjian",
+                "route": "Viridescent Venerer's Diadem",
+                "sortOrder": 312501
+            },
+            "312502": {
+                "id": 312502,
+                "name": "翠绿之影",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ARTIFACT": "圣遗物"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 2
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Artifact_FengTaozhuang",
+                "route": "Viridescent Venerer",
+                "sortOrder": 312502
+            },
+            "312601": {
+                "id": 312601,
+                "name": "不动玄石之相",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ARTIFACT": "圣遗物"
+                },
+                "props": {
+                    "GCG_COST_DICE_VOID": 2
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Artifact_YanDanjian",
+                "route": "Mask of Solitude Basalt",
+                "sortOrder": 312601
+            },
+            "312602": {
+                "id": 312602,
+                "name": "悠古的磐岩",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ARTIFACT": "圣遗物"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 2
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Artifact_YanTaozhuang",
+                "route": "Archaic Petra",
+                "sortOrder": 312602
+            },
+            "312701": {
+                "id": 312701,
+                "name": "月桂的宝冠",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ARTIFACT": "圣遗物"
+                },
+                "props": {
+                    "GCG_COST_DICE_VOID": 2
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Artifact_CaoDanjian",
+                "route": "Laurel Coronet",
+                "sortOrder": 312701
+            },
+            "312702": {
+                "id": 312702,
+                "name": "深林的记忆",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ARTIFACT": "圣遗物"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 2
+                },
+                "icon": "UI_Gcg_CardFace_Modify_Artifact_CaoTaozhuang",
+                "route": "Deepwood Memories",
+                "sortOrder": 312702
+            },
+            "321001": {
+                "id": 321001,
+                "name": "璃月港口",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_PLACE": "场地"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 2
+                },
+                "icon": "UI_Gcg_CardFace_Assist_Location_LiyueHarbor",
+                "route": "Liyue Harbor Wharf",
+                "sortOrder": 321001
+            },
+            "321002": {
+                "id": 321002,
+                "name": "骑士团图书馆",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_PLACE": "场地"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 1
+                },
+                "icon": "UI_Gcg_CardFace_Assist_Location_MdLibrary",
+                "route": "Knights of Favonius Library",
+                "sortOrder": 321002
+            },
+            "321003": {
+                "id": 321003,
+                "name": "群玉阁",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_PLACE": "场地"
+                },
+                "props": null,
+                "icon": "UI_Gcg_CardFace_Assist_Location_Qunyuge",
+                "route": "Jade Chamber",
+                "sortOrder": 321003
+            },
+            "321004": {
+                "id": 321004,
+                "name": "晨曦酒庄",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_PLACE": "场地"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 2
+                },
+                "icon": "UI_Gcg_CardFace_Assist_Location_Chenxijiuzhuang",
+                "route": "Dawn Winery",
+                "sortOrder": 321004
+            },
+            "321005": {
+                "id": 321005,
+                "name": "望舒客栈",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_PLACE": "场地"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 2
+                },
+                "icon": "UI_Gcg_CardFace_Assist_Location_Wangshukezhan",
+                "route": "Wangshu Inn",
+                "sortOrder": 321005
+            },
+            "321006": {
+                "id": 321006,
+                "name": "西风大教堂",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_PLACE": "场地"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 2
+                },
+                "icon": "UI_Gcg_CardFace_Assist_Location_FavoniusChurch",
+                "route": "Favonius Cathedral",
+                "sortOrder": 321006
+            },
+            "321007": {
+                "id": 321007,
+                "name": "天守阁",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_PLACE": "场地"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 2
+                },
+                "icon": "UI_Gcg_CardFace_Assist_Location_Tianshou",
+                "route": "Tenshukaku",
+                "sortOrder": 321007
+            },
+            "321008": {
+                "id": 321008,
+                "name": "鸣神大社",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_PLACE": "场地"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 2
+                },
+                "icon": "UI_Gcg_CardFace_Assist_Location_Mingshendashe",
+                "route": "Grand Narukami Shrine",
+                "sortOrder": 321008
+            },
+            "321009": {
+                "id": 321009,
+                "name": "珊瑚宫",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_PLACE": "场地"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 2
+                },
+                "icon": "UI_Gcg_CardFace_Assist_Location_Shanhu",
+                "route": "Sangonomiya Shrine",
+                "sortOrder": 321009
+            },
+            "321010": {
+                "id": 321010,
+                "name": "须弥城",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_PLACE": "场地"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 2
+                },
+                "icon": "UI_Gcg_CardFace_Assist_Location_Xumi",
+                "route": "Sumeru City",
+                "sortOrder": 321010
+            },
+            "321011": {
+                "id": 321011,
+                "name": "桓那兰那",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_PLACE": "场地"
+                },
+                "props": null,
+                "icon": "UI_Gcg_CardFace_Assist_Location_Hengna",
+                "route": "Vanarana",
+                "sortOrder": 321011
+            },
+            "321012": {
+                "id": 321012,
+                "name": "镇守之森",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_PLACE": "场地"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 1
+                },
+                "icon": "UI_Gcg_CardFace_Assist_Location_Zhengshoui",
+                "route": "Chinju Forest",
+                "sortOrder": 321012
+            },
+            "321013": {
+                "id": 321013,
+                "name": "黄金屋",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_PLACE": "场地"
+                },
+                "props": null,
+                "icon": "UI_Gcg_CardFace_Assist_Location_Huangjinwu",
+                "route": "Golden House",
+                "sortOrder": 321013
+            },
+            "321014": {
+                "id": 321014,
+                "name": "化城郭",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_PLACE": "场地"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 1
+                },
+                "icon": "UI_Gcg_CardFace_Assist_Location_Gandharva",
+                "route": "Gandharva Ville",
+                "sortOrder": 321014
+            },
+            "321015": {
+                "id": 321015,
+                "name": "风龙废墟",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_PLACE": "场地"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 2
+                },
+                "icon": "UI_Gcg_CardFace_Assist_Location_Fenglong",
+                "route": "Stormterror's Lair",
+                "beta": true,
+                "sortOrder": 321015
+            },
+            "322001": {
+                "id": 322001,
+                "name": "派蒙",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ALLY": "伙伴"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 3
+                },
+                "icon": "UI_Gcg_CardFace_Assist_NPC_Paimon",
+                "route": "Paimon",
+                "sortOrder": 322001
+            },
+            "322002": {
+                "id": 322002,
+                "name": "凯瑟琳",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ALLY": "伙伴"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 1
+                },
+                "icon": "UI_Gcg_CardFace_Assist_NPC_Katheryne",
+                "route": "Katheryne",
+                "sortOrder": 322002
+            },
+            "322003": {
+                "id": 322003,
+                "name": "蒂玛乌斯",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ALLY": "伙伴"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 2
+                },
+                "icon": "UI_Gcg_CardFace_Assist_NPC_Timaeus",
+                "route": "Timaeus",
+                "sortOrder": 322003
+            },
+            "322004": {
+                "id": 322004,
+                "name": "瓦格纳",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ALLY": "伙伴"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 2
+                },
+                "icon": "UI_Gcg_CardFace_Assist_NPC_Wagner",
+                "route": "Wagner",
+                "sortOrder": 322004
+            },
+            "322005": {
+                "id": 322005,
+                "name": "卯师傅",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ALLY": "伙伴"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 1
+                },
+                "icon": "UI_Gcg_CardFace_Assist_NPC_Maoshifu",
+                "route": "Chef Mao",
+                "sortOrder": 322005
+            },
+            "322006": {
+                "id": 322006,
+                "name": "阿圆",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ALLY": "伙伴"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 2
+                },
+                "icon": "UI_Gcg_CardFace_Assist_NPC_AYuan",
+                "route": "Tubby",
+                "sortOrder": 322006
+            },
+            "322007": {
+                "id": 322007,
+                "name": "提米",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ALLY": "伙伴"
+                },
+                "props": null,
+                "icon": "UI_Gcg_CardFace_Assist_NPC_Timmy",
+                "route": "Timmie",
+                "sortOrder": 322007
+            },
+            "322008": {
+                "id": 322008,
+                "name": "立本",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ALLY": "伙伴"
+                },
+                "props": null,
+                "icon": "UI_Gcg_CardFace_Assist_NPC_LiBen",
+                "route": "Liben",
+                "sortOrder": 322008
+            },
+            "322009": {
+                "id": 322009,
+                "name": "常九爷",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ALLY": "伙伴"
+                },
+                "props": null,
+                "icon": "UI_Gcg_CardFace_Assist_NPC_Changjiuye",
+                "route": "Chang the Ninth",
+                "sortOrder": 322009
+            },
+            "322010": {
+                "id": 322010,
+                "name": "艾琳",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ALLY": "伙伴"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 2
+                },
+                "icon": "UI_Gcg_CardFace_Assist_NPC_Aileen",
+                "route": "Ellin",
+                "sortOrder": 322010
+            },
+            "322011": {
+                "id": 322011,
+                "name": "田铁嘴",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ALLY": "伙伴"
+                },
+                "props": {
+                    "GCG_COST_DICE_VOID": 2
+                },
+                "icon": "UI_Gcg_CardFace_Assist_NPC_Tiantiezui",
+                "route": "Iron Tongue Tian",
+                "sortOrder": 322011
+            },
+            "322012": {
+                "id": 322012,
+                "name": "刘苏",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ALLY": "伙伴"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 1
+                },
+                "icon": "UI_Gcg_CardFace_Assist_NPC_Liusu",
+                "route": "Liu Su",
+                "sortOrder": 322012
+            },
+            "322013": {
+                "id": 322013,
+                "name": "花散里",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ALLY": "伙伴"
+                },
+                "props": null,
+                "icon": "UI_Gcg_CardFace_Assist_NPC_Huasanli",
+                "route": "Hanachirusato",
+                "sortOrder": 322013
+            },
+            "322014": {
+                "id": 322014,
+                "name": "鲸井小弟",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ALLY": "伙伴"
+                },
+                "props": null,
+                "icon": "UI_Gcg_CardFace_Assist_NPC_Yingjin",
+                "route": "Kid Kujirai",
+                "sortOrder": 322014
+            },
+            "322015": {
+                "id": 322015,
+                "name": "旭东",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ALLY": "伙伴"
+                },
+                "props": {
+                    "GCG_COST_DICE_VOID": 2
+                },
+                "icon": "UI_Gcg_CardFace_Assist_NPC_Xudong",
+                "route": "Xudong",
+                "sortOrder": 322015
+            },
+            "322016": {
+                "id": 322016,
+                "name": "迪娜泽黛",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ALLY": "伙伴"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 1
+                },
+                "icon": "UI_Gcg_CardFace_Assist_NPC_Dina",
+                "route": "Dunyarzad",
+                "sortOrder": 322016
+            },
+            "322017": {
+                "id": 322017,
+                "name": "拉娜",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ALLY": "伙伴"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 2
+                },
+                "icon": "UI_Gcg_CardFace_Assist_NPC_Lana",
+                "route": "Rana",
+                "sortOrder": 322017
+            },
+            "322018": {
+                "id": 322018,
+                "name": "老章",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ALLY": "伙伴"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 1
+                },
+                "icon": "UI_Gcg_CardFace_Assist_NPC_Laozhang",
+                "route": "Master Zhang",
+                "sortOrder": 322018
+            },
+            "322019": {
+                "id": 322019,
+                "name": "塞塔蕾",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ALLY": "伙伴"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 1
+                },
+                "icon": "UI_Gcg_CardFace_Assist_NPC_Saileita",
+                "route": "Setaria",
+                "sortOrder": 322019
+            },
+            "322020": {
+                "id": 322020,
+                "name": "弥生七月",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ALLY": "伙伴"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 1
+                },
+                "icon": "UI_Gcg_CardFace_Assist_NPC_Yayoyi",
+                "route": "Yayoi Nanatsuki",
+                "sortOrder": 322020
+            },
+            "323001": {
+                "id": 323001,
+                "name": "参量质变仪",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ITEM": "道具"
+                },
+                "props": {
+                    "GCG_COST_DICE_VOID": 2
+                },
+                "icon": "UI_Gcg_CardFace_Assist_Prop_ParametricTransformer",
+                "route": "Parametric Transformer",
+                "sortOrder": 323001
+            },
+            "323002": {
+                "id": 323002,
+                "name": "便携营养袋",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ITEM": "道具"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 1
+                },
+                "icon": "UI_Gcg_CardFace_Assist_Prop_NREMenu",
+                "route": "NRE",
+                "sortOrder": 323002
+            },
+            "323003": {
+                "id": 323003,
+                "name": "红羽团扇",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ITEM": "道具"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 2
+                },
+                "icon": "UI_Gcg_CardFace_Assist_Prop_Hongye",
+                "route": "Red Feather Fan",
+                "sortOrder": 323003
+            },
+            "323004": {
+                "id": 323004,
+                "name": "寻宝仙灵",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_ITEM": "道具"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 1
+                },
+                "icon": "UI_Gcg_CardFace_Assist_Prop_Xunbao",
+                "route": "Treasure-Seeking Seelie",
+                "sortOrder": 323004
+            },
+            "330001": {
+                "id": 330001,
+                "name": "旧时庭园",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_LEGEND": "秘传"
+                },
+                "props": {
+                    "GCG_COST_DICE_LEGEND": 1
+                },
+                "icon": "UI_Gcg_CardFace_Event_Event_Jiangjun",
+                "route": "Ancient Courtyard",
+                "sortOrder": 330001
+            },
+            "330002": {
+                "id": 330002,
+                "name": "磐岩盟契",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_LEGEND": "秘传"
+                },
+                "props": {
+                    "GCG_COST_DICE_LEGEND": 1
+                },
+                "icon": "UI_Gcg_CardFace_Event_Event_Chuanglong",
+                "route": "Covenant of Rock",
+                "sortOrder": 330002
+            },
+            "330003": {
+                "id": 330003,
+                "name": "愉舞欢游",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_LEGEND": "秘传"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 1,
+                    "GCG_COST_DICE_LEGEND": 1
+                },
+                "icon": "UI_Gcg_CardFace_Event_Event_Qingdian",
+                "route": "Joyous Celebration",
+                "sortOrder": 330003
+            },
+            "330004": {
+                "id": 330004,
+                "name": "自由的新风",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_LEGEND": "秘传"
+                },
+                "props": {
+                    "GCG_COST_DICE_LEGEND": 1
+                },
+                "icon": "UI_Gcg_CardFace_Event_Event_Xinfeng",
+                "route": "Fresh Wind of Freedom",
+                "sortOrder": 330004
+            },
+            "330005": {
+                "id": 330005,
+                "name": "万家灶火",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_LEGEND": "秘传"
+                },
+                "props": {
+                    "GCG_COST_DICE_LEGEND": 1
+                },
+                "icon": "UI_Gcg_CardFace_Event_Event_Guobahelp",
+                "route": "In Every House a Stove",
+                "beta": true,
+                "sortOrder": 330005
+            },
+            "331101": {
+                "id": 331101,
+                "name": "元素共鸣：交织之冰",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_RESONANCE": "元素共鸣"
+                },
+                "props": null,
+                "icon": "UI_Gcg_CardFace_Event_ResonanceB_Ice",
+                "route": "Elemental Resonance: Woven Ice",
+                "sortOrder": 331101
+            },
+            "331102": {
+                "id": 331102,
+                "name": "元素共鸣：粉碎之冰",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_RESONANCE": "元素共鸣"
+                },
+                "props": {
+                    "GCG_COST_DICE_CRYO": 1
+                },
+                "icon": "UI_Gcg_CardFace_Event_ResonanceA_Ice",
+                "route": "Elemental Resonance: Shattering Ice",
+                "sortOrder": 331102
+            },
+            "331201": {
+                "id": 331201,
+                "name": "元素共鸣：交织之水",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_RESONANCE": "元素共鸣"
+                },
+                "props": null,
+                "icon": "UI_Gcg_CardFace_Event_ResonanceB_Water",
+                "route": "Elemental Resonance: Woven Waters",
+                "sortOrder": 331201
+            },
+            "331202": {
+                "id": 331202,
+                "name": "元素共鸣：愈疗之水",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_RESONANCE": "元素共鸣"
+                },
+                "props": {
+                    "GCG_COST_DICE_HYDRO": 1
+                },
+                "icon": "UI_Gcg_CardFace_Event_ResonanceA_Water",
+                "route": "Elemental Resonance: Soothing Water",
+                "sortOrder": 331202
+            },
+            "331301": {
+                "id": 331301,
+                "name": "元素共鸣：交织之火",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_RESONANCE": "元素共鸣"
+                },
+                "props": null,
+                "icon": "UI_Gcg_CardFace_Event_ResonanceB_Fire",
+                "route": "Elemental Resonance: Woven Flames",
+                "sortOrder": 331301
+            },
+            "331302": {
+                "id": 331302,
+                "name": "元素共鸣：热诚之火",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_RESONANCE": "元素共鸣"
+                },
+                "props": {
+                    "GCG_COST_DICE_PYRO": 1
+                },
+                "icon": "UI_Gcg_CardFace_Event_ResonanceA_Fire",
+                "route": "Elemental Resonance: Fervent Flames",
+                "sortOrder": 331302
+            },
+            "331401": {
+                "id": 331401,
+                "name": "元素共鸣：交织之雷",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_RESONANCE": "元素共鸣"
+                },
+                "props": null,
+                "icon": "UI_Gcg_CardFace_Event_ResonanceB_Electric",
+                "route": "Elemental Resonance: Woven Thunder",
+                "sortOrder": 331401
+            },
+            "331402": {
+                "id": 331402,
+                "name": "元素共鸣：强能之雷",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_RESONANCE": "元素共鸣"
+                },
+                "props": {
+                    "GCG_COST_DICE_ELECTRO": 1
+                },
+                "icon": "UI_Gcg_CardFace_Event_ResonanceA_Electric",
+                "route": "Elemental Resonance: High Voltage",
+                "sortOrder": 331402
+            },
+            "331501": {
+                "id": 331501,
+                "name": "元素共鸣：交织之风",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_RESONANCE": "元素共鸣"
+                },
+                "props": null,
+                "icon": "UI_Gcg_CardFace_Event_ResonanceB_Wind",
+                "route": "Elemental Resonance: Woven Winds",
+                "sortOrder": 331501
+            },
+            "331502": {
+                "id": 331502,
+                "name": "元素共鸣：迅捷之风",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_RESONANCE": "元素共鸣"
+                },
+                "props": {
+                    "GCG_COST_DICE_ANEMO": 1
+                },
+                "icon": "UI_Gcg_CardFace_Event_ResonanceA_Wind",
+                "route": "Elemental Resonance: Impetuous Winds",
+                "sortOrder": 331502
+            },
+            "331601": {
+                "id": 331601,
+                "name": "元素共鸣：交织之岩",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_RESONANCE": "元素共鸣"
+                },
+                "props": null,
+                "icon": "UI_Gcg_CardFace_Event_ResonanceB_Rock",
+                "route": "Elemental Resonance: Woven Stone",
+                "sortOrder": 331601
+            },
+            "331602": {
+                "id": 331602,
+                "name": "元素共鸣：坚定之岩",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_RESONANCE": "元素共鸣"
+                },
+                "props": {
+                    "GCG_COST_DICE_GEO": 1
+                },
+                "icon": "UI_Gcg_CardFace_Event_ResonanceA_Rock",
+                "route": "Elemental Resonance: Enduring Rock",
+                "sortOrder": 331602
+            },
+            "331701": {
+                "id": 331701,
+                "name": "元素共鸣：交织之草",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_RESONANCE": "元素共鸣"
+                },
+                "props": null,
+                "icon": "UI_Gcg_CardFace_Event_ResonanceB_Grass",
+                "route": "Elemental Resonance: Woven Weeds",
+                "sortOrder": 331701
+            },
+            "331702": {
+                "id": 331702,
+                "name": "元素共鸣：蔓生之草",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_RESONANCE": "元素共鸣"
+                },
+                "props": {
+                    "GCG_COST_DICE_DENDRO": 1
+                },
+                "icon": "UI_Gcg_CardFace_Event_ResonanceA_Grass",
+                "route": "Elemental Resonance: Sprawling Greenery",
+                "sortOrder": 331702
+            },
+            "331801": {
+                "id": 331801,
+                "name": "风与自由",
+                "type": "actionCard",
+                "tags": null,
+                "props": {
+                    "GCG_COST_DICE_SAME": 1
+                },
+                "icon": "UI_Gcg_CardFace_Event_Event_Fengyuziyou",
+                "route": "Wind and Freedom",
+                "sortOrder": 331801
+            },
+            "331802": {
+                "id": 331802,
+                "name": "岩与契约",
+                "type": "actionCard",
+                "tags": null,
+                "props": {
+                    "GCG_COST_DICE_VOID": 3
+                },
+                "icon": "UI_Gcg_CardFace_Event_Event_Yanyuqiyue",
+                "route": "Stone and Contracts",
+                "sortOrder": 331802
+            },
+            "331803": {
+                "id": 331803,
+                "name": "雷与永恒",
+                "type": "actionCard",
+                "tags": null,
+                "props": null,
+                "icon": "UI_Gcg_CardFace_Event_Event_Leiyuyongheng",
+                "route": "Thunder and Eternity",
+                "sortOrder": 331803
+            },
+            "331804": {
+                "id": 331804,
+                "name": "草与智慧",
+                "type": "actionCard",
+                "tags": null,
+                "props": {
+                    "GCG_COST_DICE_SAME": 1
+                },
+                "icon": "UI_Gcg_CardFace_Event_Event_Caoyuzhihui",
+                "route": "Nature and Wisdom",
+                "sortOrder": 331804
+            },
+            "332001": {
+                "id": 332001,
+                "name": "最好的伙伴！",
+                "type": "actionCard",
+                "tags": null,
+                "props": {
+                    "GCG_COST_DICE_VOID": 2
+                },
+                "icon": "UI_Gcg_CardFace_Event_Event_BestAibo",
+                "route": "The Bestest Travel Companion!",
+                "sortOrder": 332001
+            },
+            "332002": {
+                "id": 332002,
+                "name": "换班时间",
+                "type": "actionCard",
+                "tags": null,
+                "props": null,
+                "icon": "UI_Gcg_CardFace_Event_Event_Huanbanshijian",
+                "route": "Changing Shifts",
+                "sortOrder": 332002
+            },
+            "332003": {
+                "id": 332003,
+                "name": "一掷乾坤",
+                "type": "actionCard",
+                "tags": null,
+                "props": null,
+                "icon": "UI_Gcg_CardFace_Event_Event_Yizhiqiankun",
+                "route": "Toss-Up",
+                "sortOrder": 332003
+            },
+            "332004": {
+                "id": 332004,
+                "name": "运筹帷幄",
+                "type": "actionCard",
+                "tags": null,
+                "props": {
+                    "GCG_COST_DICE_SAME": 1
+                },
+                "icon": "UI_Gcg_CardFace_Event_Event_Yunchouweiwo",
+                "route": "Strategize",
+                "sortOrder": 332004
+            },
+            "332005": {
+                "id": 332005,
+                "name": "本大爷还没有输！",
+                "type": "actionCard",
+                "tags": null,
+                "props": null,
+                "icon": "UI_Gcg_CardFace_Event_Event_Bendayehaimeiyoushu",
+                "route": "I Haven't Lost Yet!",
+                "sortOrder": 332005
+            },
+            "332006": {
+                "id": 332006,
+                "name": "交给我吧！",
+                "type": "actionCard",
+                "tags": null,
+                "props": null,
+                "icon": "UI_Gcg_CardFace_Event_Event_Jiaogeiwoba",
+                "route": "Leave It to Me!",
+                "sortOrder": 332006
+            },
+            "332007": {
+                "id": 332007,
+                "name": "鹤归之时",
+                "type": "actionCard",
+                "tags": null,
+                "props": {
+                    "GCG_COST_DICE_SAME": 1
+                },
+                "icon": "UI_Gcg_CardFace_Event_Event_Heguizhishi",
+                "route": "When the Crane Returned",
+                "sortOrder": 332007
+            },
+            "332008": {
+                "id": 332008,
+                "name": "星天之兆",
+                "type": "actionCard",
+                "tags": null,
+                "props": {
+                    "GCG_COST_DICE_VOID": 2
+                },
+                "icon": "UI_Gcg_CardFace_Event_Event_Xingtian",
+                "route": "Starsigns",
+                "sortOrder": 332008
+            },
+            "332009": {
+                "id": 332009,
+                "name": "白垩之术",
+                "type": "actionCard",
+                "tags": null,
+                "props": {
+                    "GCG_COST_DICE_SAME": 1
+                },
+                "icon": "UI_Gcg_CardFace_Event_Event_Baiezhishu",
+                "route": "Calx's Arts",
+                "sortOrder": 332009
+            },
+            "332010": {
+                "id": 332010,
+                "name": "诸武精通",
+                "type": "actionCard",
+                "tags": null,
+                "props": null,
+                "icon": "UI_Gcg_CardFace_Event_Event_Zhuwujingtong",
+                "route": "Master of Weaponry",
+                "sortOrder": 332010
+            },
+            "332011": {
+                "id": 332011,
+                "name": "神宝迁宫祝词",
+                "type": "actionCard",
+                "tags": null,
+                "props": null,
+                "icon": "UI_Gcg_CardFace_Event_Event_Shenbaoqiangongzhuci",
+                "route": "Blessing of the Divine Relic's Installation",
+                "sortOrder": 332011
+            },
+            "332012": {
+                "id": 332012,
+                "name": "快快缝补术",
+                "type": "actionCard",
+                "tags": null,
+                "props": {
+                    "GCG_COST_DICE_SAME": 1
+                },
+                "icon": "UI_Gcg_CardFace_Event_Event_Kuaikuaifengbushu",
+                "route": "Quick Knit",
+                "sortOrder": 332012
+            },
+            "332013": {
+                "id": 332013,
+                "name": "送你一程",
+                "type": "actionCard",
+                "tags": null,
+                "props": {
+                    "GCG_COST_DICE_SAME": 2
+                },
+                "icon": "UI_Gcg_CardFace_Event_Event_Songniyicheng",
+                "route": "Send Off",
+                "sortOrder": 332013
+            },
+            "332014": {
+                "id": 332014,
+                "name": "护法之誓",
+                "type": "actionCard",
+                "tags": null,
+                "props": {
+                    "GCG_COST_DICE_SAME": 4
+                },
+                "icon": "UI_Gcg_CardFace_Event_Event_Hufazhishi",
+                "route": "Guardian's Oath",
+                "sortOrder": 332014
+            },
+            "332015": {
+                "id": 332015,
+                "name": "深渊的呼唤",
+                "type": "actionCard",
+                "tags": null,
+                "props": {
+                    "GCG_COST_DICE_SAME": 2
+                },
+                "icon": "UI_Gcg_CardFace_Event_Event_Abyssdehuhuan",
+                "route": "Abyssal Summons",
+                "sortOrder": 332015
+            },
+            "332016": {
+                "id": 332016,
+                "name": "愚人众的阴谋",
+                "type": "actionCard",
+                "tags": null,
+                "props": {
+                    "GCG_COST_DICE_SAME": 2
+                },
+                "icon": "UI_Gcg_CardFace_Event_Event_Yurenzhongi",
+                "route": "Fatui Conspiracy",
+                "sortOrder": 332016
+            },
+            "332017": {
+                "id": 332017,
+                "name": "下落斩",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_SLOWLY": "战斗行动"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 3
+                },
+                "icon": "UI_Gcg_CardFace_Event_Event_Xialuo",
+                "route": "Plunging Strike",
+                "sortOrder": 332017
+            },
+            "332018": {
+                "id": 332018,
+                "name": "重攻击",
+                "type": "actionCard",
+                "tags": null,
+                "props": {
+                    "GCG_COST_DICE_SAME": 1
+                },
+                "icon": "UI_Gcg_CardFace_Event_Event_Zhonggongji",
+                "route": "Heavy Strike",
+                "sortOrder": 332018
+            },
+            "332019": {
+                "id": 332019,
+                "name": "温妮莎传奇",
+                "type": "actionCard",
+                "tags": null,
+                "props": {
+                    "GCG_COST_DICE_SAME": 3
+                },
+                "icon": "UI_Gcg_CardFace_Event_Event_Wennisha",
+                "route": "The Legend of Vennessa",
+                "sortOrder": 332019
+            },
+            "332020": {
+                "id": 332020,
+                "name": "永远的友谊",
+                "type": "actionCard",
+                "tags": null,
+                "props": {
+                    "GCG_COST_DICE_SAME": 2
+                },
+                "icon": "UI_Gcg_CardFace_Event_Event_Yongyuandeyouyi",
+                "route": "Friendship Eternal",
+                "sortOrder": 332020
+            },
+            "332021": {
+                "id": 332021,
+                "name": "大梦的曲调",
+                "type": "actionCard",
+                "tags": null,
+                "props": null,
+                "icon": "UI_Gcg_CardFace_Event_Event_Dameng",
+                "route": "Rhythm of the Great Dream",
+                "sortOrder": 332021
+            },
+            "332022": {
+                "id": 332022,
+                "name": "藏锋何处",
+                "type": "actionCard",
+                "tags": null,
+                "props": null,
+                "icon": "UI_Gcg_CardFace_Event_Event_Cangfen",
+                "route": "Where Is the Unseen Razor?",
+                "sortOrder": 332022
+            },
+            "332023": {
+                "id": 332023,
+                "name": "拳力斗技！",
+                "type": "actionCard",
+                "tags": null,
+                "props": null,
+                "icon": "UI_Gcg_CardFace_Event_Event_Heiquan",
+                "route": "Pankration!",
+                "sortOrder": 332023
+            },
+            "332024": {
+                "id": 332024,
+                "name": "琴音之诗",
+                "type": "actionCard",
+                "tags": null,
+                "props": null,
+                "icon": "UI_Gcg_CardFace_Event_Event_Wangfu",
+                "route": "Lyresong",
+                "beta": true,
+                "sortOrder": 332024
+            },
+            "333001": {
+                "id": 333001,
+                "name": "绝云锅巴",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_FOOD": "料理"
+                },
+                "props": null,
+                "icon": "UI_Gcg_CardFace_Event_Food_Jueyunguoba",
+                "route": "Jueyun Guoba",
+                "sortOrder": 333001
+            },
+            "333002": {
+                "id": 333002,
+                "name": "仙跳墙",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_FOOD": "料理"
+                },
+                "props": {
+                    "GCG_COST_DICE_VOID": 2
+                },
+                "icon": "UI_Gcg_CardFace_Event_Food_XTQ",
+                "route": "Adeptus' Temptation",
+                "sortOrder": 333002
+            },
+            "333003": {
+                "id": 333003,
+                "name": "莲花酥",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_FOOD": "料理"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 1
+                },
+                "icon": "UI_Gcg_CardFace_Event_Food_Lianhuasu",
+                "route": "Lotus Flower Crisp",
+                "sortOrder": 333003
+            },
+            "333004": {
+                "id": 333004,
+                "name": "北地烟熏鸡",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_FOOD": "料理"
+                },
+                "props": null,
+                "icon": "UI_Gcg_CardFace_Event_Food_Beidiyanxunji",
+                "route": "Northern Smoked Chicken",
+                "sortOrder": 333004
+            },
+            "333005": {
+                "id": 333005,
+                "name": "甜甜花酿鸡",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_FOOD": "料理"
+                },
+                "props": null,
+                "icon": "UI_Gcg_CardFace_Event_Food_Huaniangji",
+                "route": "Sweet Madame",
+                "sortOrder": 333005
+            },
+            "333006": {
+                "id": 333006,
+                "name": "蒙德土豆饼",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_FOOD": "料理"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 1
+                },
+                "icon": "UI_Gcg_CardFace_Event_Food_Tudoubin",
+                "route": "Mondstadt Hash Brown",
+                "sortOrder": 333006
+            },
+            "333007": {
+                "id": 333007,
+                "name": "烤蘑菇披萨",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_FOOD": "料理"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 1
+                },
+                "icon": "UI_Gcg_CardFace_Event_Food_Kaomogupisa",
+                "route": "Mushroom Pizza",
+                "sortOrder": 333007
+            },
+            "333008": {
+                "id": 333008,
+                "name": "兽肉薄荷卷",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_FOOD": "料理"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 1
+                },
+                "icon": "UI_Gcg_CardFace_Event_Food_Bohejuan",
+                "route": "Minty Meat Rolls",
+                "sortOrder": 333008
+            },
+            "333009": {
+                "id": 333009,
+                "name": "提瓦特煎蛋",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_FOOD": "料理"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 2
+                },
+                "icon": "UI_Gcg_CardFace_Event_Food_Jiandan",
+                "route": "Teyvat Fried Egg",
+                "sortOrder": 333009
+            },
+            "333010": {
+                "id": 333010,
+                "name": "刺身拼盘",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_FOOD": "料理"
+                },
+                "props": {
+                    "GCG_COST_DICE_SAME": 1
+                },
+                "icon": "UI_Gcg_CardFace_Event_Food_Cishen",
+                "route": "Sashimi Platter",
+                "sortOrder": 333010
+            },
+            "333011": {
+                "id": 333011,
+                "name": "唐杜尔烤鸡",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_FOOD": "料理"
+                },
+                "props": {
+                    "GCG_COST_DICE_VOID": 2
+                },
+                "icon": "UI_Gcg_CardFace_Event_Food_Tangduer",
+                "route": "Tandoori Roast Chicken",
+                "sortOrder": 333011
+            },
+            "333012": {
+                "id": 333012,
+                "name": "黄油蟹蟹",
+                "type": "actionCard",
+                "tags": {
+                    "GCG_TAG_FOOD": "料理"
+                },
+                "props": {
+                    "GCG_COST_DICE_VOID": 2
+                },
+                "icon": "UI_Gcg_CardFace_Event_Food_Huangyou",
+                "route": "Butter Crab",
+                "sortOrder": 333012
+            }
+        }
+    }
+}

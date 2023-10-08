@@ -1,0 +1,92 @@
+{
+    "list": [
+        {
+            "attributes": [],
+            "materials": [],
+            "points": [
+                {
+                    "point_type": "anemo",
+                    "point_count": 1
+                },
+                {
+                    "point_type": "black",
+                    "point_count": 2
+                }
+            ],
+            "desc": "<p><span style=\"color: rgb(255, 215, 128)\">Normal Attack</span></p><p>Deals 1 <span style=\"color: rgb(128, 255, 215)\">Anemo DMG</span>.</p>",
+            "icon_url": "https://upload-static.hoyoverse.com/hoyolab-wiki/2023/09/25/35428890/95142c2955e1896817dc3d6ff9639ac5_1852139695498631941.png",
+            "key": "Yuuban Meigen",
+            "talent_img": "",
+            "title": "Yuuban Meigen",
+            "id": "talent99473"
+        },
+        {
+            "attributes": [],
+            "materials": [],
+            "points": [
+                {
+                    "point_type": "anemo",
+                    "point_count": 3
+                }
+            ],
+            "desc": "<p><span style=\"color: rgb(255, 215, 128)\">Elemental Skill</span></p><p>Deals 2 <span style=\"color: rgb(128, 255, 215)\">Anemo DMG</span>. This character gains <span style=\"color: rgb(255, 255, 255)\">Windfavored</span>.</p><p></p><p><strong><span style=\"color: #ECE5D8\">Windfavored</span></strong></p><p><span style=\"color: rgb(255, 215, 128)\">Status</span><br><span style=\"color: rgb(255, 255, 255)\">When the character to which this is attached performs a Normal Attack:</span> DMG dealt +2. If the opponent has characters on standby, then this Skill will deal damage to the next opposing character on standby instead.<br><span style=\"color: rgb(255, 255, 255)\">Usage(s): 2</span></p>",
+            "icon_url": "https://upload-static.hoyoverse.com/hoyolab-wiki/2023/09/25/35428890/052cd901b44cef8359f0bebb98404194_2746972486982835191.png",
+            "key": "Hanega: Song of the Wind",
+            "talent_img": "",
+            "title": "Hanega: Song of the Wind",
+            "id": "talent20336"
+        },
+        {
+            "attributes": [],
+            "materials": [],
+            "points": [
+                {
+                    "point_type": "recharge",
+                    "point_count": 3
+                },
+                {
+                    "point_type": "anemo",
+                    "point_count": 3
+                }
+            ],
+            "desc": "<p><span style=\"color: rgb(255, 215, 128)\">Elemental Burst</span></p><p>Deals 7 <span style=\"color: rgb(128, 255, 215)\">Anemo DMG</span>. If the character has <span style=\"color: rgb(255, 255, 255)\">Windfavored</span> attached, then remove it and increase DMG by 1.</p><p></p><p><strong><span style=\"color: rgb(236, 229, 216)\">Windfavored</span></strong></p><p><span style=\"color: rgb(255, 215, 128)\">Status</span><br><span style=\"color: rgb(255, 255, 255)\">When the character to which this is attached performs a Normal Attack:</span> DMG dealt +2. If the opponent has characters on standby, then this Skill will deal damage to the next opposing character on standby instead.<br><span style=\"color: rgb(255, 255, 255)\">Usage(s): 2</span></p>",
+            "icon_url": "https://upload-static.hoyoverse.com/hoyolab-wiki/2023/09/25/35428890/5a55e705974f27b8bb86c628019d5ad9_6705839974041238203.png",
+            "key": "Kyougen: Five Ceremonial Plays",
+            "talent_img": "",
+            "title": "Kyougen: Five Ceremonial Plays",
+            "id": "talent86691"
+        },
+        {
+            "attributes": [],
+            "materials": [],
+            "points": [
+                {
+                    "point_type": "",
+                    "point_count": 0
+                }
+            ],
+            "desc": "<p>Reacts with Elements if they are already applied:<br>[<span style=\"color: rgb(128, 255, 215)\">Anemo </span>+ <span style=\"color: rgb(153, 255, 255)\">Cryo</span>] <span style=\"color: rgb(255, 255, 255)\">Cryo Swirl</span>: Deals 1 Cryo DMG to all opposing chracters except the target<br>[<span style=\"color: rgb(128, 255, 215)\">Anemo </span>+ <span style=\"color: rgb(128, 192, 255)\">Hydro</span>] <span style=\"color: rgb(255, 255, 255)\">Hydro Swirl:</span> Deals 1 Hydro DMG to all opposing characters except the target<br>[<span style=\"color: rgb(128, 255, 215)\">Anemo </span>+ <span style=\"color: rgb(255, 153, 153)\">Pyro</span>] <span style=\"color: rgb(255, 255, 255)\">Pyro Swirl</span>: Deals 1 Pyro DMG to all opposing characters except the target<br>[<span style=\"color: rgb(128, 255, 215)\">Anemo </span>+ <span style=\"color: rgb(255, 172, 255)\">Electro</span>] <span style=\"color: rgb(255, 255, 255)\">Electro Swirl</span>: Deals 1 Electro DMG to all opposing characters except the target</p>",
+            "icon_url": "https://upload-static.hoyoverse.com/hoyolab-wiki/2023/09/25/35428890/c97292d96456bfe4abeca16bfce801e4_5272099292119580715.png",
+            "key": "Anemo DMG",
+            "talent_img": "",
+            "title": "Anemo DMG",
+            "id": "talent84491"
+        },
+        {
+            "attributes": [],
+            "materials": [],
+            "points": [
+                {
+                    "point_type": "",
+                    "point_count": 0
+                }
+            ],
+            "desc": "<p><strong><span style=\"color: rgb(236, 229, 216)\">Usage(s)</span></strong><br>After this card's effect is triggered, 1 <span style=\"color: rgb(255, 255, 255)\">Usage</span> of it will be consumed.<br>This card will be discarded immediately once it has 0 <span style=\"color: rgb(255, 255, 255)\">Usages</span> remaining.</p>",
+            "icon_url": "https://upload-static.hoyoverse.com/hoyolab-wiki/2023/09/25/35428890/245c229cf6f7364c7c9a7aea3db1a1ad_641114060896354791.png",
+            "key": "Detailed Rules",
+            "talent_img": "",
+            "title": "Detailed Rules",
+            "id": "talent3708"
+        }
+    ]
+}

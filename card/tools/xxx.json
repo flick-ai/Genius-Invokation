@@ -1,0 +1,228 @@
+{
+    "retcode": 0,
+    "message": "OK",
+    "data": {
+        "page": {
+            "id": "4365",
+            "name": "Wanderer",
+            "desc": "<p><span style=\"color: rgb(255, 255, 255)\">\"Eons Adrift\" Wanderer</span></p><p>Tribulations uncounted, trials unknowable.</p>",
+            "icon_url": "https://upload-static.hoyoverse.com/hoyolab-wiki/2023/09/25/35428890/ce89cee858b7e18759cc60ce9eb7657b_1073946105460778740.png",
+            "header_img_url": "",
+            "modules": [
+                {
+                    "name": "",
+                    "is_poped": false,
+                    "components": [
+                        {
+                            "component_id": "tcg",
+                            "layout": "",
+                            "data": "{\"cost_icon_type\":\"\",\"cost_icon_type_any\":\"\",\"header_imgs\":[{\"img_url\":\"https://upload-static.hoyoverse.com/hoyolab-wiki/2023/09/25/35428890/ce89cee858b7e18759cc60ce9eb7657b_1073946105460778740.png\",\"img_desc\":\"Normal Skin\"},{\"img_url\":\"https://upload-static.hoyoverse.com/hoyolab-wiki/2023/09/26/35428890/ec3e2e04f3a3af4db3ea9c29c9f1e146_4012120047093344866.gif\",\"img_desc\":\"Dynamic Skin\"}],\"hp\":10}",
+                            "style": ""
+                        }
+                    ],
+                    "id": "57",
+                    "is_customize_name": false,
+                    "is_abstract": true,
+                    "is_show_switch": false,
+                    "switch": false,
+                    "desc": "",
+                    "repeated": false,
+                    "is_submodule": false,
+                    "origin_module_id": "0"
+                },
+                {
+                    "name": "Description",
+                    "is_poped": false,
+                    "components": [
+                        {
+                            "component_id": "story",
+                            "layout": "",
+                            "data": "",
+                            "style": ""
+                        }
+                    ],
+                    "id": "45",
+                    "is_customize_name": false,
+                    "is_abstract": false,
+                    "is_show_switch": false,
+                    "switch": false,
+                    "desc": "",
+                    "repeated": false,
+                    "is_submodule": false,
+                    "origin_module_id": "0"
+                },
+                {
+                    "name": "Additional Information",
+                    "is_poped": false,
+                    "components": [
+                        {
+                            "component_id": "textual_research",
+                            "layout": "",
+                            "data": "",
+                            "style": ""
+                        }
+                    ],
+                    "id": "46",
+                    "is_customize_name": false,
+                    "is_abstract": false,
+                    "is_show_switch": false,
+                    "switch": false,
+                    "desc": "",
+                    "repeated": false,
+                    "is_submodule": false,
+                    "origin_module_id": "0"
+                },
+                {
+                    "name": "Attributes",
+                    "is_poped": false,
+                    "components": [
+                        {
+                            "component_id": "baseInfo",
+                            "layout": "",
+                            "data": "{\"list\":[{\"key\":\"Name\",\"value\":[\"<p>Wanderer</p>\"],\"id\":\"baseInfo10340\"},{\"key\":\"Type\",\"value\":[\"<p>Character Card</p>\"],\"id\":\"baseInfo76321\"},{\"key\":\"HP\",\"value\":[\"<p>10</p>\"],\"id\":\"baseInfo19721\"},{\"key\":\"Energy\",\"value\":[\"<p>3</p>\"],\"id\":\"baseInfo34311\"},{\"key\":\"Element\",\"value\":[\"<p>Anemo</p>\"],\"id\":\"baseInfo91639\"},{\"key\":\"Weapon\",\"value\":[\"<p>Catalyst</p>\"],\"id\":\"baseInfo66291\"},{\"key\":\"Faction\",\"value\":[\"<p>-</p>\"],\"id\":\"baseInfo56298\"},{\"key\":\"Talent Card\",\"value\":[\"$[{\\\"ep_id\\\":4368,\\\"icon\\\":\\\"\\\",\\\"amount\\\":0,\\\"name\\\":\\\"Gales of Reverie\\\",\\\"menuId\\\":\\\"18\\\"}]$\"],\"id\":\"baseInfo64797\",\"isMaterial\":true},{\"key\":\"Source\",\"value\":[\"<p>Reward for inviting Wanderer to a duel at The Cat's Tail and claiming victory in a Friendly Fracas with him</p>\"],\"id\":\"baseInfo19168\"},{\"key\":\"Character Entry\",\"value\":[\"$[{\\\"ep_id\\\":2968,\\\"icon\\\":\\\"https://upload-static.hoyoverse.com/hoyolab-wiki/2022/12/05/35428890/24d97a22be742fb732ea96f625d1faac_2495743636540582085.png\\\",\\\"amount\\\":0,\\\"name\\\":\\\"Wanderer\\\",\\\"menuId\\\":\\\"2\\\"}]$\"],\"id\":\"baseInfo83256\",\"isMaterial\":true}]}",
+                            "style": ""
+                        }
+                    ],
+                    "id": "47",
+                    "is_customize_name": false,
+                    "is_abstract": false,
+                    "is_show_switch": false,
+                    "switch": false,
+                    "desc": "",
+                    "repeated": false,
+                    "is_submodule": false,
+                    "origin_module_id": "0"
+                },
+                {
+                    "name": "Skills",
+                    "is_poped": false,
+                    "components": [
+                        {
+                            "component_id": "talent",
+                            "layout": "",
+                            "data": "{\"list\":[{\"attributes\":[],\"materials\":[],\"points\":[{\"point_type\":\"anemo\",\"point_count\":1},{\"point_type\":\"black\",\"point_count\":2}],\"desc\":\"<p><span style=\\\"color: rgb(255, 215, 128)\\\">Normal Attack</span></p><p>Deals 1 <span style=\\\"color: rgb(128, 255, 215)\\\">Anemo DMG</span>.</p>\",\"icon_url\":\"https://upload-static.hoyoverse.com/hoyolab-wiki/2023/09/25/35428890/95142c2955e1896817dc3d6ff9639ac5_1852139695498631941.png\",\"key\":\"Yuuban Meigen\",\"talent_img\":\"\",\"title\":\"Yuuban Meigen\",\"id\":\"talent99473\"},{\"attributes\":[],\"materials\":[],\"points\":[{\"point_type\":\"anemo\",\"point_count\":3}],\"desc\":\"<p><span style=\\\"color: rgb(255, 215, 128)\\\">Elemental Skill</span></p><p>Deals 2 <span style=\\\"color: rgb(128, 255, 215)\\\">Anemo DMG</span>. This character gains <span style=\\\"color: rgb(255, 255, 255)\\\">Windfavored</span>.</p><p></p><p><strong><span style=\\\"color: #ECE5D8\\\">Windfavored</span></strong></p><p><span style=\\\"color: rgb(255, 215, 128)\\\">Status</span><br><span style=\\\"color: rgb(255, 255, 255)\\\">When the character to which this is attached performs a Normal Attack:</span> DMG dealt +2. If the opponent has characters on standby, then this Skill will deal damage to the next opposing character on standby instead.<br><span style=\\\"color: rgb(255, 255, 255)\\\">Usage(s): 2</span></p>\",\"icon_url\":\"https://upload-static.hoyoverse.com/hoyolab-wiki/2023/09/25/35428890/052cd901b44cef8359f0bebb98404194_2746972486982835191.png\",\"key\":\"Hanega: Song of the Wind\",\"talent_img\":\"\",\"title\":\"Hanega: Song of the Wind\",\"id\":\"talent20336\"},{\"attributes\":[],\"materials\":[],\"points\":[{\"point_type\":\"recharge\",\"point_count\":3},{\"point_type\":\"anemo\",\"point_count\":3}],\"desc\":\"<p><span style=\\\"color: rgb(255, 215, 128)\\\">Elemental Burst</span></p><p>Deals 7 <span style=\\\"color: rgb(128, 255, 215)\\\">Anemo DMG</span>. If the character has <span style=\\\"color: rgb(255, 255, 255)\\\">Windfavored</span> attached, then remove it and increase DMG by 1.</p><p></p><p><strong><span style=\\\"color: rgb(236, 229, 216)\\\">Windfavored</span></strong></p><p><span style=\\\"color: rgb(255, 215, 128)\\\">Status</span><br><span style=\\\"color: rgb(255, 255, 255)\\\">When the character to which this is attached performs a Normal Attack:</span> DMG dealt +2. If the opponent has characters on standby, then this Skill will deal damage to the next opposing character on standby instead.<br><span style=\\\"color: rgb(255, 255, 255)\\\">Usage(s): 2</span></p>\",\"icon_url\":\"https://upload-static.hoyoverse.com/hoyolab-wiki/2023/09/25/35428890/5a55e705974f27b8bb86c628019d5ad9_6705839974041238203.png\",\"key\":\"Kyougen: Five Ceremonial Plays\",\"talent_img\":\"\",\"title\":\"Kyougen: Five Ceremonial Plays\",\"id\":\"talent86691\"},{\"attributes\":[],\"materials\":[],\"points\":[{\"point_type\":\"\",\"point_count\":0}],\"desc\":\"<p>Reacts with Elements if they are already applied:<br>[<span style=\\\"color: rgb(128, 255, 215)\\\">Anemo </span>+ <span style=\\\"color: rgb(153, 255, 255)\\\">Cryo</span>] <span style=\\\"color: rgb(255, 255, 255)\\\">Cryo Swirl</span>: Deals 1 Cryo DMG to all opposing chracters except the target<br>[<span style=\\\"color: rgb(128, 255, 215)\\\">Anemo </span>+ <span style=\\\"color: rgb(128, 192, 255)\\\">Hydro</span>] <span style=\\\"color: rgb(255, 255, 255)\\\">Hydro Swirl:</span> Deals 1 Hydro DMG to all opposing characters except the target<br>[<span style=\\\"color: rgb(128, 255, 215)\\\">Anemo </span>+ <span style=\\\"color: rgb(255, 153, 153)\\\">Pyro</span>] <span style=\\\"color: rgb(255, 255, 255)\\\">Pyro Swirl</span>: Deals 1 Pyro DMG to all opposing characters except the target<br>[<span style=\\\"color: rgb(128, 255, 215)\\\">Anemo </span>+ <span style=\\\"color: rgb(255, 172, 255)\\\">Electro</span>] <span style=\\\"color: rgb(255, 255, 255)\\\">Electro Swirl</span>: Deals 1 Electro DMG to all opposing characters except the target</p>\",\"icon_url\":\"https://upload-static.hoyoverse.com/hoyolab-wiki/2023/09/25/35428890/c97292d96456bfe4abeca16bfce801e4_5272099292119580715.png\",\"key\":\"Anemo DMG\",\"talent_img\":\"\",\"title\":\"Anemo DMG\",\"id\":\"talent84491\"},{\"attributes\":[],\"materials\":[],\"points\":[{\"point_type\":\"\",\"point_count\":0}],\"desc\":\"<p><strong><span style=\\\"color: rgb(236, 229, 216)\\\">Usage(s)</span></strong><br>After this card's effect is triggered, 1 <span style=\\\"color: rgb(255, 255, 255)\\\">Usage</span> of it will be consumed.<br>This card will be discarded immediately once it has 0 <span style=\\\"color: rgb(255, 255, 255)\\\">Usages</span> remaining.</p>\",\"icon_url\":\"https://upload-static.hoyoverse.com/hoyolab-wiki/2023/09/25/35428890/245c229cf6f7364c7c9a7aea3db1a1ad_641114060896354791.png\",\"key\":\"Detailed Rules\",\"talent_img\":\"\",\"title\":\"Detailed Rules\",\"id\":\"talent3708\"}]}",
+                            "style": ""
+                        }
+                    ],
+                    "id": "48",
+                    "is_customize_name": false,
+                    "is_abstract": false,
+                    "is_show_switch": false,
+                    "switch": false,
+                    "desc": "",
+                    "repeated": false,
+                    "is_submodule": false,
+                    "origin_module_id": "0"
+                },
+                {
+                    "name": "Gallery",
+                    "is_poped": false,
+                    "components": [
+                        {
+                            "component_id": "gallery_character",
+                            "layout": "",
+                            "data": "{\"list\":[{\"key\":\"Elemental Burst\",\"img\":\"https://upload-static.hoyoverse.com/hoyolab-wiki/2023/09/25/35428890/18bcf7227ec41f896e16e2a6db618c07_3557424248606105617.gif\",\"imgDesc\":\"<p><span style=\\\"color: rgb(255, 215, 128)\\\">Elemental Burst</span></p><p>Kyougen: Five Ceremonial Plays</p>\",\"id\":\"gallery_character50539\"},{\"key\":\"Avatar Icon\",\"img\":\"https://upload-static.hoyoverse.com/hoyolab-wiki/2023/09/26/35428890/a5eccf74fad32522f1216e04d4ecfced_3899613572254289742.png\",\"imgDesc\":\"\",\"id\":\"gallery_character37961\"}],\"pic\":\"\"}",
+                            "style": ""
+                        }
+                    ],
+                    "id": "49",
+                    "is_customize_name": false,
+                    "is_abstract": false,
+                    "is_show_switch": false,
+                    "switch": false,
+                    "desc": "",
+                    "repeated": false,
+                    "is_submodule": false,
+                    "origin_module_id": "0"
+                },
+                {
+                    "name": "Properties",
+                    "is_poped": false,
+                    "components": [
+                        {
+                            "component_id": "customize",
+                            "layout": "",
+                            "data": "{\"data\":\"<table><tbody><tr><td colspan=\\\"1\\\" rowspan=\\\"1\\\"><h1 style=\\\"text-align: center\\\"><strong><span style=\\\"color: rgb(255, 255, 255)\\\">Dynamic Skin</span></strong></h1></td></tr></tbody></table><h3><custom-image url=\\\"https://upload-static.hoyoverse.com/hoyolab-wiki/2023/09/26/35428890/299cc8e7c7427b396d4d26441cc86637_1804200067301330076.gif\\\" align=\\\"center\\\"></custom-image></h3><h3><strong><span style=\\\"color: rgb(255, 255, 255)\\\">Card Shop (</span></strong><custom-entry amount=\\\"1\\\" epid=\\\"3329\\\" icon=\\\"https://upload-static.hoyoverse.com/hoyolab-wiki/2022/12/07/194600931/8f56ac468f468070eedc3fe87c96e392_2661412714891318875.png\\\" name=\\\"Prince\\\" displaystyle=\\\"text\\\" menuid=\\\"\\\"></custom-entry><strong><span style=\\\"color: rgb(255, 255, 255)\\\">)</span></strong></h3><table><tbody><tr><td colspan=\\\"1\\\" rowspan=\\\"1\\\"><p style=\\\"text-align: center\\\"><strong><span style=\\\"color: rgb(255, 255, 255)\\\">Item</span></strong></p></td><td colspan=\\\"1\\\" rowspan=\\\"1\\\"><p style=\\\"text-align: center\\\"><strong><span style=\\\"color: rgb(255, 255, 255)\\\">Cost</span></strong></p></td><td colspan=\\\"1\\\" rowspan=\\\"1\\\"><p style=\\\"text-align: center\\\"><strong><span style=\\\"color: rgb(255, 255, 255)\\\">Stock</span></strong></p></td></tr><tr><td colspan=\\\"1\\\" rowspan=\\\"1\\\"><p style=\\\"text-align: center\\\"><custom-entry amount=\\\"0\\\" epid=\\\"4365\\\" icon=\\\"https://upload-static.hoyoverse.com/hoyolab-wiki/2023/09/25/35428890/ce89cee858b7e18759cc60ce9eb7657b_1073946105460778740.png\\\" name=\\\"Wanderer\\\" displaystyle=\\\"card\\\" menuid=\\\"17\\\"></custom-entry></p></td><td colspan=\\\"1\\\" rowspan=\\\"1\\\"><p style=\\\"text-align: center\\\"><custom-entry amount=\\\"4000\\\" epid=\\\"3333\\\" icon=\\\"https://upload-static.hoyoverse.com/hoyolab-wiki/2022/12/08/77454259/c85bfab46d8c95659ab6dfb2e1629a87_2572904672223728374.png\\\" name=\\\"Lucky Coin\\\" displaystyle=\\\"card\\\" menuid=\\\"\\\"></custom-entry></p></td><td colspan=\\\"1\\\" rowspan=\\\"1\\\"><p style=\\\"text-align: center\\\">1</p></td></tr></tbody></table><p>Can also be exchanged using a <custom-entry amount=\\\"1\\\" epid=\\\"3331\\\" icon=\\\"https://upload-static.hoyoverse.com/hoyolab-wiki/2022/12/08/77454259/03b60aec345461dae970832766ebacf8_7995216038721705213.png\\\" name=\\\"Blank Dynamic Card\\\" displaystyle=\\\"text\\\" menuid=\\\"\\\"></custom-entry>.</p><p></p><p></p><table><tbody><tr><td colspan=\\\"1\\\" rowspan=\\\"1\\\"><h1 style=\\\"text-align: center\\\"><strong><span style=\\\"color: rgb(255, 255, 255)\\\">Genius Invokation TCG Stage</span></strong></h1></td></tr></tbody></table><p></p><h2><strong><span style=\\\"color: rgb(255, 255, 255)\\\">Character Invitation Challenge: Friendly Fracas</span></strong></h2><table><tbody><tr><td colspan=\\\"2\\\" rowspan=\\\"1\\\"><p><span style=\\\"color: rgb(255, 215, 128)\\\">Stage Introduction</span></p><p>&#34;...Tch, fine, if you insist, I&#39;ll play with you for a bit...&#34;</p><p><span style=\\\"color: rgb(236, 229, 216)\\\">Hint: The Wanderer&#39;s deck uses synergy between Elemental Skills and Normal Attacks to unleash consistently high damage.</span></p></td></tr><tr><td colspan=\\\"1\\\" rowspan=\\\"1\\\"><p><span style=\\\"color: rgba(255, 255, 255, 0.85)\\\">Opposing Lineup</span></p></td><td colspan=\\\"1\\\" rowspan=\\\"1\\\"><p><custom-entry amount=\\\"0\\\" epid=\\\"4365\\\" icon=\\\"https://upload-static.hoyoverse.com/hoyolab-wiki/2023/09/25/35428890/ce89cee858b7e18759cc60ce9eb7657b_1073946105460778740.png\\\" name=\\\"Wanderer\\\" displaystyle=\\\"card\\\" menuid=\\\"17\\\"></custom-entry><custom-entry amount=\\\"0\\\" epid=\\\"3197\\\" icon=\\\"https://upload-static.hoyoverse.com/hoyolab-wiki/2022/12/01/35428890/2947e673f7bd07277456232818fd5a6d_2096183037815850037.png\\\" name=\\\"Maguu Kenki\\\" displaystyle=\\\"card\\\" menuid=\\\"17\\\"></custom-entry><custom-entry amount=\\\"0\\\" epid=\\\"3844\\\" icon=\\\"https://upload-static.hoyoverse.com/hoyolab-wiki/2023/05/21/35428890/a18a61786bc99b67ad9fde145786cbe3_7462426228164417551.png\\\" name=\\\"Electro Hypostasis\\\" displaystyle=\\\"card\\\" menuid=\\\"17\\\"></custom-entry></p></td></tr><tr><td colspan=\\\"1\\\" rowspan=\\\"1\\\"><p><span style=\\\"color: rgba(255, 255, 255, 0.85)\\\">Prerequisite</span></p></td><td colspan=\\\"1\\\" rowspan=\\\"1\\\"><p><custom-entry amount=\\\"0\\\" epid=\\\"3332\\\" icon=\\\"https://upload-static.hoyoverse.com/hoyolab-wiki/2022/12/08/77454259/8fbec79732d539893ff44c636483df50_4179933300861474383.png\\\" name=\\\"Match Invitation Letter\\\" displaystyle=\\\"card\\\" menuid=\\\"\\\"></custom-entry></p></td></tr></tbody></table><p></p><table><tbody><tr><td colspan=\\\"1\\\" rowspan=\\\"1\\\"><h3><strong><span style=\\\"color: rgb(255, 255, 255)\\\">Challenge Objective(s)</span></strong></h3></td><td colspan=\\\"1\\\" rowspan=\\\"1\\\"><h3><strong><span style=\\\"color: rgb(255, 255, 255)\\\">Reward</span></strong></h3></td></tr><tr><td colspan=\\\"1\\\" rowspan=\\\"1\\\"><p><span style=\\\"color: rgba(255, 255, 255, 0.85)\\\">Achieve victory</span></p></td><td colspan=\\\"1\\\" rowspan=\\\"1\\\"><p><custom-entry amount=\\\"0\\\" epid=\\\"4365\\\" icon=\\\"https://upload-static.hoyoverse.com/hoyolab-wiki/2023/09/25/35428890/ce89cee858b7e18759cc60ce9eb7657b_1073946105460778740.png\\\" name=\\\"Wanderer\\\" displaystyle=\\\"card\\\" menuid=\\\"17\\\"></custom-entry></p></td></tr><tr><td colspan=\\\"1\\\" rowspan=\\\"1\\\"><p><span style=\\\"color: rgba(255, 255, 255, 0.85)\\\">Achieve victory within 6 Rounds</span></p></td><td colspan=\\\"1\\\" rowspan=\\\"1\\\"><p><custom-entry amount=\\\"0\\\" epid=\\\"4368\\\" icon=\\\"\\\" name=\\\"Gales of Reverie\\\" displaystyle=\\\"card\\\" menuid=\\\"18\\\"></custom-entry></p></td></tr><tr><td colspan=\\\"1\\\" rowspan=\\\"1\\\"><p><span style=\\\"color: rgba(255, 255, 255, 0.85)\\\">Achieve victory with characters defeated less than twice during the battle</span></p></td><td colspan=\\\"1\\\" rowspan=\\\"1\\\"><p><custom-entry amount=\\\"0\\\" epid=\\\"4368\\\" icon=\\\"\\\" name=\\\"Gales of Reverie\\\" displaystyle=\\\"card\\\" menuid=\\\"18\\\"></custom-entry></p></td></tr></tbody></table><p></p><h2><strong><span style=\\\"color: rgb(255, 255, 255)\\\">Character Invitation Challenge: Serious Showdown</span></strong></h2><table><tbody><tr><td colspan=\\\"2\\\" rowspan=\\\"1\\\"><p><span style=\\\"color: rgb(255, 215, 128)\\\">Stage Introduction</span></p><p>&#34;Can a game like this really make you so happy? Childish... If you want to play, then be quick about it.&#34;</p><p><span style=\\\"color: rgb(236, 229, 216)\\\">Special Rule: &#34;Wanderer&#34; starts with the Talent Card &#34;Gales of Reverie&#34; equipped.</span></p></td></tr><tr><td colspan=\\\"1\\\" rowspan=\\\"1\\\"><p><span style=\\\"color: rgba(255, 255, 255, 0.85)\\\">Opposing Lineup</span></p></td><td colspan=\\\"1\\\" rowspan=\\\"1\\\"><p><custom-entry amount=\\\"0\\\" epid=\\\"4365\\\" icon=\\\"https://upload-static.hoyoverse.com/hoyolab-wiki/2023/09/25/35428890/ce89cee858b7e18759cc60ce9eb7657b_1073946105460778740.png\\\" name=\\\"Wanderer\\\" displaystyle=\\\"card\\\" menuid=\\\"17\\\"></custom-entry><custom-entry amount=\\\"0\\\" epid=\\\"3197\\\" icon=\\\"https://upload-static.hoyoverse.com/hoyolab-wiki/2022/12/01/35428890/2947e673f7bd07277456232818fd5a6d_2096183037815850037.png\\\" name=\\\"Maguu Kenki\\\" displaystyle=\\\"card\\\" menuid=\\\"17\\\"></custom-entry><custom-entry amount=\\\"0\\\" epid=\\\"3844\\\" icon=\\\"https://upload-static.hoyoverse.com/hoyolab-wiki/2023/05/21/35428890/a18a61786bc99b67ad9fde145786cbe3_7462426228164417551.png\\\" name=\\\"Electro Hypostasis\\\" displaystyle=\\\"card\\\" menuid=\\\"17\\\"></custom-entry></p></td></tr><tr><td colspan=\\\"1\\\" rowspan=\\\"1\\\"><p><span style=\\\"color: rgba(255, 255, 255, 0.85)\\\">Prerequisite</span></p></td><td colspan=\\\"1\\\" rowspan=\\\"1\\\"><ul><li><p>Reach Player Level 7</p></li><li><p>Complete 3 challenge objective(s) in Wanderer: Friendly</p></li></ul></td></tr></tbody></table><p></p><table><tbody><tr><td colspan=\\\"1\\\" rowspan=\\\"1\\\"><h3><strong><span style=\\\"color: rgb(255, 255, 255)\\\">Challenge Objective(s)</span></strong></h3></td><td colspan=\\\"1\\\" rowspan=\\\"1\\\"><h3><strong><span style=\\\"color: rgb(255, 255, 255)\\\">Reward</span></strong></h3></td></tr><tr><td colspan=\\\"1\\\" rowspan=\\\"1\\\"><p><span style=\\\"color: rgba(255, 255, 255, 0.85)\\\">Achieve victory</span></p></td><td colspan=\\\"1\\\" rowspan=\\\"1\\\"><p><custom-entry amount=\\\"1000\\\" epid=\\\"3333\\\" icon=\\\"https://upload-static.hoyoverse.com/hoyolab-wiki/2022/12/08/77454259/c85bfab46d8c95659ab6dfb2e1629a87_2572904672223728374.png\\\" name=\\\"Lucky Coin\\\" displaystyle=\\\"card\\\" menuid=\\\"\\\"></custom-entry></p></td></tr></tbody></table><p></p><h2><strong><span style=\\\"color: rgb(255, 255, 255)\\\">Guest Challenge: Wanderer</span></strong></h2><table><tbody><tr><td colspan=\\\"2\\\" rowspan=\\\"1\\\"><p><span style=\\\"color: rgb(255, 215, 128)\\\">Stage Introduction</span></p><p>&#34;...Tch, fine, if you insist, I&#39;ll play with you for a bit...&#34;</p><p><span style=\\\"color: rgb(236, 229, 216)\\\">Hint: The Wanderer&#39;s deck uses synergy between Elemental Skills and Normal Attacks to unleash consistently high damage.</span></p></td></tr><tr><td colspan=\\\"1\\\" rowspan=\\\"1\\\"><p><span style=\\\"color: rgba(255, 255, 255, 0.85)\\\">Opposing Lineup</span></p></td><td colspan=\\\"1\\\" rowspan=\\\"1\\\"><p><custom-entry amount=\\\"0\\\" epid=\\\"4365\\\" icon=\\\"https://upload-static.hoyoverse.com/hoyolab-wiki/2023/09/25/35428890/ce89cee858b7e18759cc60ce9eb7657b_1073946105460778740.png\\\" name=\\\"Wanderer\\\" displaystyle=\\\"card\\\" menuid=\\\"17\\\"></custom-entry><custom-entry amount=\\\"0\\\" epid=\\\"3197\\\" icon=\\\"https://upload-static.hoyoverse.com/hoyolab-wiki/2022/12/01/35428890/2947e673f7bd07277456232818fd5a6d_2096183037815850037.png\\\" name=\\\"Maguu Kenki\\\" displaystyle=\\\"card\\\" menuid=\\\"17\\\"></custom-entry><custom-entry amount=\\\"0\\\" epid=\\\"3844\\\" icon=\\\"https://upload-static.hoyoverse.com/hoyolab-wiki/2023/05/21/35428890/a18a61786bc99b67ad9fde145786cbe3_7462426228164417551.png\\\" name=\\\"Electro Hypostasis\\\" displaystyle=\\\"card\\\" menuid=\\\"17\\\"></custom-entry></p></td></tr></tbody></table><p></p><table><tbody><tr><td colspan=\\\"1\\\" rowspan=\\\"1\\\"><h3 style=\\\"text-align: center\\\"><strong><span style=\\\"color: rgb(255, 255, 255)\\\">Player Level</span></strong></h3></td><td colspan=\\\"1\\\" rowspan=\\\"1\\\"><h3 style=\\\"text-align: center\\\"><strong><span style=\\\"color: rgb(255, 255, 255)\\\">Reward</span></strong></h3></td></tr><tr><td colspan=\\\"1\\\" rowspan=\\\"1\\\"><p style=\\\"text-align: center\\\"></p><p style=\\\"text-align: center\\\"><span style=\\\"color: rgb(236, 229, 216)\\\">2</span></p></td><td colspan=\\\"1\\\" rowspan=\\\"1\\\"><p style=\\\"text-align: center\\\"><custom-entry amount=\\\"200\\\" epid=\\\"3816\\\" icon=\\\"https://upload-static.hoyoverse.com/hoyolab-wiki/2023/05/27/77454259/a3dfc591cecc908ea00f31c9a3de083f_9193765536653033097.png\\\" name=\\\"Player EXP\\\" displaystyle=\\\"card\\\" menuid=\\\"\\\"></custom-entry><custom-entry amount=\\\"300\\\" epid=\\\"3333\\\" icon=\\\"https://upload-static.hoyoverse.com/hoyolab-wiki/2022/12/08/77454259/c85bfab46d8c95659ab6dfb2e1629a87_2572904672223728374.png\\\" name=\\\"Lucky Coin\\\" displaystyle=\\\"card\\\" menuid=\\\"\\\"></custom-entry></p></td></tr><tr><td colspan=\\\"1\\\" rowspan=\\\"1\\\"><p style=\\\"text-align: center\\\"></p><p style=\\\"text-align: center\\\"><span style=\\\"color: rgb(236, 229, 216)\\\">3 - 4</span></p></td><td colspan=\\\"1\\\" rowspan=\\\"1\\\"><p style=\\\"text-align: center\\\"><custom-entry amount=\\\"200\\\" epid=\\\"3816\\\" icon=\\\"https://upload-static.hoyoverse.com/hoyolab-wiki/2023/05/27/77454259/a3dfc591cecc908ea00f31c9a3de083f_9193765536653033097.png\\\" name=\\\"Player EXP\\\" displaystyle=\\\"card\\\" menuid=\\\"\\\"></custom-entry><custom-entry amount=\\\"600\\\" epid=\\\"3333\\\" icon=\\\"https://upload-static.hoyoverse.com/hoyolab-wiki/2022/12/08/77454259/c85bfab46d8c95659ab6dfb2e1629a87_2572904672223728374.png\\\" name=\\\"Lucky Coin\\\" displaystyle=\\\"card\\\" menuid=\\\"\\\"></custom-entry></p></td></tr><tr><td colspan=\\\"1\\\" rowspan=\\\"1\\\"><p style=\\\"text-align: center\\\"></p><p style=\\\"text-align: center\\\"><span style=\\\"color: rgb(236, 229, 216)\\\">5 - 6</span></p></td><td colspan=\\\"1\\\" rowspan=\\\"1\\\"><p style=\\\"text-align: center\\\"><custom-entry amount=\\\"200\\\" epid=\\\"3816\\\" icon=\\\"https://upload-static.hoyoverse.com/hoyolab-wiki/2023/05/27/77454259/a3dfc591cecc908ea00f31c9a3de083f_9193765536653033097.png\\\" name=\\\"Player EXP\\\" displaystyle=\\\"card\\\" menuid=\\\"\\\"></custom-entry><custom-entry amount=\\\"900\\\" epid=\\\"3333\\\" icon=\\\"https://upload-static.hoyoverse.com/hoyolab-wiki/2022/12/08/77454259/c85bfab46d8c95659ab6dfb2e1629a87_2572904672223728374.png\\\" name=\\\"Lucky Coin\\\" displaystyle=\\\"card\\\" menuid=\\\"\\\"></custom-entry></p></td></tr><tr><td colspan=\\\"1\\\" rowspan=\\\"1\\\"><p style=\\\"text-align: center\\\"></p><p style=\\\"text-align: center\\\"><span style=\\\"color: rgb(236, 229, 216)\\\">7 - 9</span></p></td><td colspan=\\\"1\\\" rowspan=\\\"1\\\"><p style=\\\"text-align: center\\\"><custom-entry amount=\\\"200\\\" epid=\\\"3816\\\" icon=\\\"https://upload-static.hoyoverse.com/hoyolab-wiki/2023/05/27/77454259/a3dfc591cecc908ea00f31c9a3de083f_9193765536653033097.png\\\" name=\\\"Player EXP\\\" displaystyle=\\\"card\\\" menuid=\\\"\\\"></custom-entry><custom-entry amount=\\\"1200\\\" epid=\\\"3333\\\" icon=\\\"https://upload-static.hoyoverse.com/hoyolab-wiki/2022/12/08/77454259/c85bfab46d8c95659ab6dfb2e1629a87_2572904672223728374.png\\\" name=\\\"Lucky Coin\\\" displaystyle=\\\"card\\\" menuid=\\\"\\\"></custom-entry></p></td></tr><tr><td colspan=\\\"1\\\" rowspan=\\\"1\\\"><p style=\\\"text-align: center\\\"></p><p style=\\\"text-align: center\\\"><span style=\\\"color: rgb(236, 229, 216)\\\">10</span></p></td><td colspan=\\\"1\\\" rowspan=\\\"1\\\"><p style=\\\"text-align: center\\\"><custom-entry amount=\\\"200\\\" epid=\\\"3816\\\" icon=\\\"https://upload-static.hoyoverse.com/hoyolab-wiki/2023/05/27/77454259/a3dfc591cecc908ea00f31c9a3de083f_9193765536653033097.png\\\" name=\\\"Player EXP\\\" displaystyle=\\\"card\\\" menuid=\\\"\\\"></custom-entry><custom-entry amount=\\\"1500\\\" epid=\\\"3333\\\" icon=\\\"https://upload-static.hoyoverse.com/hoyolab-wiki/2022/12/08/77454259/c85bfab46d8c95659ab6dfb2e1629a87_2572904672223728374.png\\\" name=\\\"Lucky Coin\\\" displaystyle=\\\"card\\\" menuid=\\\"\\\"></custom-entry></p></td></tr></tbody></table>\"}\n",
+                            "style": ""
+                        }
+                    ],
+                    "id": "50",
+                    "is_customize_name": true,
+                    "is_abstract": false,
+                    "is_show_switch": false,
+                    "switch": false,
+                    "desc": "",
+                    "repeated": false,
+                    "is_submodule": false,
+                    "origin_module_id": "0"
+                }
+            ],
+            "filter_values": {
+                "card_character_weapon_type": {
+                    "values": [
+                        "Catalyst"
+                    ],
+                    "value_types": [
+                        {
+                            "id": "1912",
+                            "value": "Catalyst"
+                        }
+                    ]
+                },
+                "card_character_camp": {
+                    "values": [],
+                    "value_types": []
+                },
+                "card_character_obtaining_method": {
+                    "values": [
+                        "Character Invitations"
+                    ],
+                    "value_types": [
+                        {
+                            "id": "1732",
+                            "value": "Character Invitations"
+                        }
+                    ]
+                },
+                "card_character_element": {
+                    "values": [
+                        "Anemo"
+                    ],
+                    "value_types": [
+                        {
+                            "id": "2161",
+                            "value": "Anemo"
+                        }
+                    ]
+                },
+                "card_character_charging_point": {
+                    "values": [
+                        "3"
+                    ],
+                    "value_types": [
+                        {
+                            "id": "1850",
+                            "value": "3"
+                        }
+                    ]
+                }
+            },
+            "menu_id": "17",
+            "menu_name": "Character Cards",
+            "version": "1696226615",
+            "langs": [],
+            "template_layout": null,
+            "edit_lock_status": "Unlock",
+            "correct_lock_status": "Unlock",
+            "menus": [],
+            "template_id": "6385a6fb259f9a7961ca705d",
+            "ext": {
+                "fe_ext": "",
+                "post_ext": null
+            },
+            "alias_name": "",
+            "lang": "",
+            "beta": false
+        }
+    }
+}
