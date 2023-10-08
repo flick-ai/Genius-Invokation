@@ -53,15 +53,15 @@ class GeniusGame:
         '''
         match self.game_phase:
             case GamePhase.SET_CARD:
-                pass
+                self.set_hand_card()
             case GamePhase.SET_CHARACTER:
-                pass
+                self.set_active_character
             case _:
                 self.resolve_action(action)
         
     def set_hand_card(self, action):
         '''
-        选择手牌部分, action: [5,2]的one-hot
+        选择手牌部分, action: [5,1]的0/1
         '''
         active = self.active_player
         self.players[active].choose_card(action)
@@ -73,7 +73,7 @@ class GeniusGame:
 
     def set_active_character(self, action):
         '''
-        选择出战角色, action: [3,1]的0/1
+        选择出战角色, action: [3,1]的one-hot
         '''
         active = self.active_player
         self.players[active].choose_character(action)

@@ -1,6 +1,6 @@
 import card
-from zone import Card_Zone
-
+from zone import Card_Zone, Active_zone
+import numpy as np
 
 class GeniusPlayer:
     def __init__(self, deck) -> None:
@@ -16,7 +16,6 @@ class GeniusPlayer:
         self.support_zone: None
         self.summons_zone: None
         self.character_zone: None
-        self.activate_satets: None
     
     def choose_card(self, action):
         throw_card = []
@@ -25,5 +24,7 @@ class GeniusPlayer:
                 throw_card.append(self.hand_zone.pop(idx))
         self.card_zone.return_card(throw_card)
 
-    def choose_character(self):
-        pass
+    def choose_character(self, action):
+        idx = np.where(action==1)
+        self.character_zone = Active_zone(idx, self.character_card)
+

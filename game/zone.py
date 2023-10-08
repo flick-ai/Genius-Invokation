@@ -2,6 +2,8 @@ from typing import List
 import random
 # from card.action import *
 from card.character.base import CharacterCard
+from copy import deepcopy
+
 
 class Card_Zone:
     def __init__(self, card: List) -> None:
@@ -27,7 +29,41 @@ class Card_Zone:
         self.card_num = len(self.card)
 
 
-class Character:
+class Character_Zone:
     def __init__(self) -> None:
         self.character_card: CharacterCard
+        self.weapon_card: None
+        self.artifact_card: None
+        self.is_active: bool
+        self.is_alive: bool
+        self.shield: int
+
+class Active_zone:
+    def __init__(self, active_idx, charater_list) -> None:
+        self.number_of_characters = len(charater_list) # int
+        self.active_idx = active_idx # int, Should be 0,1,2,... from left to right.
+        self.character_list= deepcopy(charater_list)
+        self.states_list = []
+
+    def change_to_previous_character(self):
+        ix = self.active_idx-1
+        if ix < 0:
+            ix = self.number_of_characters-1
+        while self.character_list[ix].states.alive == False:
+            ix -= 1
+            if ix < 0:
+                ix = self.number_of_characters-1
+        self.active_idx = ix
+        return ix
+    
+    def change_to_next_character(self):
+        ix = self.active_idx+1
+        if ix >= self.number_of_characters:
+            ix = 0
+        while self.character_list[ix].states.alive == False:
+            ix += 1
+            if ix >= self.number_of_characters:
+                ix = 0
+        self.active_idx = ix
+        return ix
         

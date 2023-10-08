@@ -8,6 +8,7 @@ class STATES_Entity():
         
 
 class ACTIVE_STATES():
+        # 该功能已废弃，修改到game/zone.py下的active_zone
     def __init__(self, active_idx, charater_list) -> None:
         self.number_of_characters = len(charater_list) # int
         self.active_idx = active_idx # int, Should be 0,1,2,... from left to right.
@@ -39,5 +40,6 @@ class ACTIVE_STATES():
     
 
 class CHARACTER_STATES():
+    # 该功能已废弃，修改到game/zone.py下的character_zone
     def __init__(self):
         self.alive = True # bool, alive for True, death for False
