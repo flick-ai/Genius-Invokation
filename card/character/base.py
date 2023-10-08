@@ -4,8 +4,9 @@ from game.game import GeniusGame
 
 class Damage:
     # 伤害基本类
-    def __init__(self, main_damage_type, main_damage, piercing_damage) -> None:
-        self.main_damage_type: ElementType = main_damage_type
+    def __init__(self, damage_type, main_damage_element, main_damage, piercing_damage) -> None:
+        self.damage_type: SkillType
+        self.main_damage_element: ElementType = main_damage_element
         self.main_damage: int = main_damage
         self.piercing_damage: int = piercing_damage
     

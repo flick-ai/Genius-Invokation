@@ -21,6 +21,30 @@ class WeaponType(Enum):
     POLEARM = 4 # 长柄武器
     OTHER = 5 # 其他武器
 
+
+
+class CostType(Enum):
+    CRYO = 0 # 冰
+    HYDRO = 1 # 水
+    PYRO = 2 # 火
+    ELECTRO = 3 # 雷
+    ANEPMO = 4 # 风
+    GEO = 5 # 岩
+    DENDRO = 6 # 草
+    WHITE = 7 # 任意相同
+    BLACK = 8 # 任意
+
+class DiceType(Enum):
+    CRYO = 0 # 冰
+    HYDRO = 1 # 水
+    PYRO = 2 # 火
+    ELECTRO = 3 # 雷
+    ANEPMO = 4 # 风
+    GEO = 5 # 岩
+    DENDRO = 6 # 草
+    OMNI = 7 # 万能
+
+
 class ElementType(Enum):
     CRYO = 0 # 冰
     HYDRO = 1 # 水
@@ -64,4 +88,20 @@ class ActionTarget(Enum):
     OPPONENT_SUMMON = 3
     MY_SUPPORT_REGION = 4
     DICE_REGION = 5
-    
+
+
+DiceToElement = {
+    DiceType(i): ElementType(i) for i in range(7)
+}
+
+ElementToDice = {
+    ElementType(i): DiceType(i) for i in range(7)
+}
+
+DiceToCost = {
+    DiceType(i): CostType(i) for i in range(7)
+}
+
+CostToDice = {
+    CostType(i): DiceType(i) for i in range(7)
+}
