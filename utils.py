@@ -65,6 +65,7 @@ class SkillType(Enum):
     ELEMENTAL_SKILL = 1
     ELEMENTAl_BURST = 2
     PASSIVE_SKILL = 3
+    OTHER = 4
 
 class GamePhase(Enum):
     SET_CARD = 0
