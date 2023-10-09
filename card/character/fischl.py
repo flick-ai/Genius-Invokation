@@ -2,12 +2,30 @@ from card.character.base import *
 
 
 class Oz(Summon):
+    '''奥兹'''
     id: int = 0
     name: str = 'Oz'
     element: ElementType = ElementType.ELECTRO
+    usage: int = 2
+    max_usage: int = 2
+    # skills =
+
+    def __init__(self) -> None:
+        super().__init__()
+        self.cur_usage = self.usage
+
+    class SummonSkill(Settle):
+        # damage
+        damage_type: SkillType
+        main_damage_element: ElementType
+        main_damage: int
+        piercing_damage: int
+
+        # heal
+        heal: int
 
 class Fischl(CharacterCard):
-    ''' 菲谢尔 '''
+    '''菲谢尔'''
     id: int = 0
     name: str = 'Fischl'
     element: ElementType = ElementType.ELECTRO
