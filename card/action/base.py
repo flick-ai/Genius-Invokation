@@ -26,7 +26,7 @@ class WeaponCard(EquipmentCard):
     # 武器牌
     weapon_type: WeaponType
     
-    def effect(game: GeniusGame) -> None:
+    def effect(self, game: GeniusGame) -> None:
         pass 
     
     def on_played(self, game: GeniusGame, target) -> None:

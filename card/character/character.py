@@ -1,13 +1,20 @@
 from card.character.base import *
 
+
+class Oz(Summon):
+    id: int = 0
+    name: str = 'Oz'
+    element: ElementType = ElementType.ELECTRO
+
 class Fischl(CharacterCard):
     ''' 菲谢尔 '''
     id: int = 0
     name: str = 'Fischl'
     element: ElementType = ElementType.ELECTRO
-    weapon_tpye: WeaponType = WeaponType.BOW
+    weapon_type: WeaponType = WeaponType.BOW
     country: CountryType = CountryType.MONDSTADT
     health_point: int = 10
+    max_power: int = 3
 
 
     class NormalAttack(CharacterSkill):
@@ -17,7 +24,7 @@ class Fischl(CharacterCard):
 
         # damage
         damage_type: SkillType = SkillType.NORMAL_ATTACK
-        main_damage_element: ElementType = ElementType.ELECTRO
+        main_damage_element: ElementType = ElementType.PHYSICAL
         main_damage: int = 2
         piercing_damage: int = 0
 
@@ -40,13 +47,29 @@ class Fischl(CharacterCard):
 
         #     pass
 
+
         
     
     class ElementalSkill(CharacterSkill):
         id: int = 1
         name: str = 'Nightrider'
         type: SkillType = SkillType.ELEMENTAL_SKILL
-        demage: Damage = Damage(SkillType.ELEMENTAL_SKILL, ElementType.ELECTRO, 1, 0)
+
+        # damage
+        damage_type: SkillType
+        main_damage_element: ElementType
+        main_damage: int
+        piercing_damage: int
+
+        # cost
+        cost = [
+            {
+                'cost_num': 3,
+                'cost_type': CostType.ELECTRO
+            }
+        ]
+
+
 
     class ElementalBrust(CharacterSkill):
         id: int = 2
