@@ -29,6 +29,20 @@ class CardZone:
             self.card.append(card)
         self.card_num = len(self.card)
 
+class FourZone:
+    '''
+    一个用于维护召唤物区和支援区的区域
+    '''
+    def __init__(self) -> None:
+        self.space = [None, None, None, None]
+
+    def destroy(self, idx):
+        assert idx>=0 and idx<4
+        assert self.space[idx] == None
+        self.space[idx] = None
+
+    def put(self, card, idx):
+        self.space[idx] = card
 
 class CharacterZone:
     def __init__(self, name) -> None:

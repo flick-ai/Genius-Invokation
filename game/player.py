@@ -1,7 +1,7 @@
 import card
 from utils import *
 from typing import List
-from zone import CardZone, ActiveZone
+from zone import CardZone, ActiveZone, FourZone
 import numpy as np
 
 class GeniusPlayer:
@@ -15,8 +15,8 @@ class GeniusPlayer:
 
         # 环境中的基本状态
         self.dice_zone: List = []
-        self.support_zone: None
-        self.summons_zone: None
+        self.support_zone: FourZone
+        self.summons_zone: FourZone
         self.active_zone: ActiveZone
     
     def choose_card(self, action):
