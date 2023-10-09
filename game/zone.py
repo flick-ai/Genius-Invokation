@@ -51,11 +51,16 @@ class CharacterZone:
         self.artifact_card: None
         self.talent_card: None
 
-        self.is_active = False
-        self.is_alive = True
-        self.power: int
-        self.hp = self.character_card.health_point
-        self.shield: List
+        self.is_active: bool = False
+        self.is_alive: bool = True
+        self.is_satisfied: bool = False
+        self.special_state: List = []
+        self.shield_list: List = []
+        self.power: int = 0
+        self.hp: int 
+    
+    def on_game_start(self):
+        self.power, self.hp, self.special_state = self.character_card.on_game_start()
 
 class ActiveZone:
     def __init__(self, active_idx, character_list) -> None:
@@ -65,10 +70,20 @@ class ActiveZone:
         self.states_list = []
     
     def generate_character_zone(self, character_list):
-        character_zone_list = []
+        character_zone_list: List[CharacterCard] = []
         for name in character_list:
             character_zone_list.append(CharacterZone(name))
         return character_zone_list
+    
+    def change_character(self, Game, action):
+        ##### TODO: 一个需要判断如何切人的接口
+        ix: int
+        #####
+        self.character_list[ix].on_switched(Game)
+        ##### TODO: 一个需要判断这次切人是否是快速行动的接口
+        is_quick_action: bool
+        #####
+        return is_quick_action
 
     def change_to_previous_character(self):
         ix = self.active_idx-1
