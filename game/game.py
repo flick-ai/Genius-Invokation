@@ -19,6 +19,7 @@ class GeniusGame:
         self.players = [player0, player1]
         self.game_phase: GamePhase
         self.round: int
+        self.current_action: Action
     
     def reset(self):
         pass
@@ -35,12 +36,21 @@ class GeniusGame:
         self.active_player = first
 
     def resolve_action(self, action: Action):
+        '''
+        解码行动编码
+        '''
+        self.current_action = Action
         if action.choice_type == ActionChoice.HAND_CARD:
             pass
         elif action.choice_type == ActionChoice.CHARACTER_SKILL:
             pass
         elif action.choice_type == ActionChoice.CHANGE_CHARACTER:
+            is_quick_action = self.players[self.active_player].active_zone.change_character(self)
+            if not is_quick_action:
+                self.active_player = not self.active_player
+        elif action.choice_type == ActionChoice.PASS:
             pass
+
 
     def step(self, action: Action):
         '''
@@ -105,3 +115,5 @@ class GeniusGame:
     
     def action_phase(self):
         self.game_phase = GamePhase.ACTION_PHASE
+
+   
