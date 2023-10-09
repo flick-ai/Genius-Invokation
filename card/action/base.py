@@ -10,6 +10,22 @@ class ActionCard:
     cost_num: int
     cost_type: CostType
 
+    def play(self, game: GeniusGame) -> None:
+        '''
+        pre played
+        on played
+        post played
+        '''
+        self.pre_played(game)
+        self.on_played(game)
+        self.post_played(game)
+
+    def pre_played(self, game: GeniusGame) -> None:
+        pass 
+
+    def post_played(self, game: GeniusGame) -> None:
+        pass
+
     def on_played(self, game: GeniusGame) -> None:
         raise NotImplementedError
 
@@ -19,8 +35,8 @@ class EquipmentCard(ActionCard):
     def __init__(self) -> None:
         super().__init__()
 
-    def on_played(self, game: GeniusGame, target) -> None:
-        pass
+    def on_played(self, game: GeniusGame) -> None:
+        raise NotImplementedError
 
 class WeaponCard(EquipmentCard):
     # 武器牌
@@ -28,9 +44,10 @@ class WeaponCard(EquipmentCard):
     
     def effect(self, game: GeniusGame) -> None:
         pass 
-    
-    def on_played(self, game: GeniusGame, target) -> None:
-        return super().on_played(game, target)
+
+    def on_played(self, game: GeniusGame) -> None:
+        target = game.current_action.choice_idx
+        game.players[game.active_player].active_zone.character_list[target].weapon_card = self
 
 
 class SupportCard(ActionCard):
