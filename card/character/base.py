@@ -148,7 +148,10 @@ class CharacterCard:
         pass
 
     
-    def use_skill(self):
+    def use_skill(self, game: GeniusGame):
+        '''
+            执行使用什么技能的接口
+        '''
         pass
 
 
