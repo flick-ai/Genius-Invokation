@@ -3,8 +3,8 @@ from typing import List
 from game.game import GeniusGame
 from game.action import Action
 
-class DamageSkill:
-    # 伤害结算类
+class Settle:
+    # 结算类
     def cal_damage(self, game: GeniusGame, action: Action):
         '''
             1. 元素转化
@@ -35,7 +35,7 @@ class Summon:
 
     
 
-class CharacterSkill(DamageSkill):
+class CharacterSkill(Settle):
     # 角色技能基本类
     id: int
     name: str
@@ -79,11 +79,24 @@ class CharacterCard:
     max_power: int
     # def __init__(self) -> None:
 
+    def on_game_start(self, game: GeniusGame):
+        '''
+            讨债人被动 潜行
+        '''
+        pass
+
+    def on_round_start(self, game: GeniusGame):
+        '''
+            预留
+        '''
+        pass
+
     def on_switched(self, game: GeniusGame):
         '''
-            passive skill
+            passive skill 被动技能 神里绫华
             
         '''
+        pass
 
     
     def use_skill(self):
