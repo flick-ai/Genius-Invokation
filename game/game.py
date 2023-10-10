@@ -1,5 +1,5 @@
 from typing import List
-from player import GeniusPlayer
+from .player import GeniusPlayer
 from game.action import Action
 import numpy as np
 from utils import *
@@ -39,7 +39,7 @@ class GeniusGame:
         '''
         解码行动编码
         '''
-        self.current_action = Action
+        self.current_action = action
         oppenent_player = self.players[not self.active_player]
         active_player = self.players[self.active_player]
         if action.choice_type == ActionChoice.HAND_CARD:

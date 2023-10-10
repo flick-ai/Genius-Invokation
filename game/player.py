@@ -1,8 +1,10 @@
-from card.action.base import ActionCard
 from utils import *
-from typing import List
-from zone import CardZone, ActiveZone, FourZone
+from typing import List, TYPE_CHECKING
+from .zone import CardZone, ActiveZone, FourZone
 import numpy as np
+
+if TYPE_CHECKING:
+    from card.action import ActionCard
 
 class GeniusPlayer:
     def __init__(self, deck) -> None:
