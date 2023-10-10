@@ -7,9 +7,13 @@ if TYPE_CHECKING:
 
 class Entity:
     def __init__(self):
+        self.entity_type: 
+        self.events: dict[str, EventNode] = {}
         self.registered_events: list(EventNode) = []
 
     def register_all_events(self, game: GeniusGame):
+        for event in self.events:
+            self.registered_events.append(game.manager.register(event, self.events[event]))
         game.manager.register('before_skill', 'on_damage', 'after_skill')
 
     def on_distroy(self):

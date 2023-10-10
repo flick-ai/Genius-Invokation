@@ -1,4 +1,4 @@
-from card.character.base import SkillType
+
 from utils import *
 from game.game import GeniusGame
 
@@ -13,14 +13,36 @@ class Damage:
         self.is_plunging_attack: bool
         self.is_charged_attack: bool
 
-    @staticmethod
+    @classmethod
     def create_damage(cls, game: GeniusGame,
                       damage_type: SkillType, main_damage_element: ElementType, 
-                      main_damage: int, piercing_damage: int):
-        if damage_type == SkillType.NORMAL_ATTACK:
-            # TODO: 判断当前角色是否为切换后的第一个战斗行动
-            # is_plunging_attack = game.players.
-            
-            is_charged_attack = len(game.players[game.active_player].dice_zone) % 2 
-        else:
-            return cls(damage_type, main_damage_element, main_damage, piercing_damage)
+                      main_damage: int, piercing_damage: int, 
+                      is_plunging_attack: bool=False, is_charged_attack: bool=False):
+        game.current_damage = cls(damage_type, main_damage_element, main_damage, piercing_damage, is_plunging_attack, is_charged_attack)
+
+    @staticmethod
+    def resolve_damage(game: GeniusGame,
+                    damage_type: SkillType, main_damage_element: ElementType, 
+                    main_damage: int, piercing_damage: int, 
+                    is_plunging_attack: bool=False, is_charged_attack: bool=False):    
+        Damage.create_damage(game, damage_type, main_damage_element, main_damage, piercing_damage, is_plunging_attack, is_charged_attack)
+        Damage.cal_damage(game)
+        Damage.execute_damage(game)
+        Damage.after_damage(game)
+    
+    def after_damage(self, game: GeniusGame):
+        pass
+    def execute_damage(self, game: GeniusGame):
+        # 打出伤害
+
+        # TODO: 盾
+        pass
+    def cal_damage(self, game: GeniusGame):
+        # 元素类型转化
+
+        # 元素反应
+        # TODO: 可能产生新的独立伤害（扩散), 这一部分需要在当前伤害结算完毕后再进行
+
+        # 伤害加算
+
+        pass

@@ -1,5 +1,6 @@
 from utils import *
 from typing import List, TYPE_CHECKING
+from event.damage.damage import Damage
 
 if TYPE_CHECKING:
     from game.game import GeniusGame
@@ -11,6 +12,7 @@ class CharacterSkill:
     id: int
     name: str
     type: SkillType
+    # character: CharacterCard
 
     # damage
     damage_type: SkillType
@@ -61,7 +63,38 @@ class CharacterSkill:
     #         game.players[game.active_player].dice_zone.pop(dice_index)
 
     #     damage = Damage(self.damage_type, self.main_damage_element, self.main_damage, self.piercing_damage)
-        
+
+class NormalAttackSkill(CharacterSkill):
+
+    def on_call(self, game: GeniusGame):
+        is_plunging_attack = False
+        is_charged_attack = False
+        game.manager.invoke('before_skill', game)
+
+        # TODO: 消耗骰子
+        # TODO: 判断技能是否有伤害
+        # 生成伤害
+        game.current_damage = Damage.create_damage(self.damage_type, self.main_damage_element, self.main_damage, self.piercing_damage, is_plunging_attack, is_charged_attack)
+
+        # 伤害计算
+        game.manager.invoke('on_damage', game)
+
+        # 伤害执行
+        game.current_damage.execute()
+
+        # 治疗执行
+
+        # 召唤物/状态生成
+
+        # TODO: 获得能量
+
+        game.manager.invoke('after_skill', game)
+
+
+
+
+
+
 class CharacterCard:
     # 角色卡片基本类
     id: int
