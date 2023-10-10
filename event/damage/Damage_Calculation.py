@@ -6,9 +6,10 @@ from game.zone import ActiveZone
 from event.damage.damage import Damage
 
 #TODO Not Implement Yet, maybe can be unify with Class Settle.
-def Enhance_Damage(damage: Damage, myActiveZone: ActiveZone, targetActiveZone: ActiveZone, targetId=-1):
-    pass
 def settleDamage(damage: Damage, myActiveZone: ActiveZone, targetActiveZone: ActiveZone, targetId=-1):
+    pass
+def updateDamageAndZone(damage: Damage, myActiveZone: ActiveZone, targetActiveZone: ActiveZone, targetId=-1):
+    #BOTH damage, myActiveZone, targetActiveZone should be changed.
     pass
 
 def elemental_reactions(damage: Damage, myActiveZone: ActiveZone, targetActiveZone: ActiveZone, targetId=-1):
@@ -17,6 +18,7 @@ def elemental_reactions(damage: Damage, myActiveZone: ActiveZone, targetActiveZo
     if targetId == -1:
         targetId = targetActiveZone.active_idx
     targetElementTypes = targetActiveZone.character_list[targetId].element_attach
+    Extra_Damage_list = []
     reaction = "None"
     match damage.main_damage_type:
         case ElementType.CRYO:
@@ -146,7 +148,7 @@ def elemental_reactions(damage: Damage, myActiveZone: ActiveZone, targetActiveZo
                         
                         for id in targetlist:
                             if targetActiveZone.character_list[id].is_alive:
-                                elemental_reactions(Enhance_Damage(Swirl_Damage, myActiveZone, targetActiveZone, id), myActiveZone, targetActiveZone, id)
+                                Extra_Damage_list.append((Swirl_Damage, id))
                         reaction = "Swirl"
                         break
                     case _:
@@ -188,6 +190,10 @@ def elemental_reactions(damage: Damage, myActiveZone: ActiveZone, targetActiveZo
             pass
     
     settleDamage(damage, myActiveZone, targetActiveZone, targetId)
+    for Extra_Damage, Extra_TargetId in Extra_Damage_list:
+        updateDamageAndZone(Extra_Damage, myActiveZone, targetActiveZone, Extra_TargetId)
+        elemental_reactions(Extra_Damage, myActiveZone, targetActiveZone, Extra_TargetId)
+        
     if reaction is "None":
         match damage.main_damage_element:
             case ElementType.CRYO | ElementType.HYDRO | ElementType.PYRO | ElementType.ELECTRO:
