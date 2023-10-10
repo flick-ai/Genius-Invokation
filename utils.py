@@ -131,6 +131,19 @@ class EventType(Enum):
     AFTER_PLAY_CARD = 7
     END_PHASE = 8
 
+class ElementalReactionType(Enum):
+    Frozen = 0
+    Melt = 1
+    Super_Conduct = 2
+    Vaporize = 3
+    Electro_Charged = 4
+    Bloom = 5
+    Overload = 6
+    Burning = 7
+    Quicken = 8
+    Swirl = 9
+    Crystalize = 10
+
 DiceToElement = {
     DiceType(i): ElementType(i) for i in range(7)
 }

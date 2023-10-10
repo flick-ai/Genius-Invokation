@@ -25,7 +25,7 @@ class GeniusPlayer:
 
         self.is_pass = False
         # self.
-    
+
     def choose_card(self, action):
         throw_card = []
         for idx in len(self.hand_zone):

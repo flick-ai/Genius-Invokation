@@ -80,6 +80,9 @@ class FourZone:
     def put(self, card, idx):
         self.space[idx] = card
 
+    def add_entity(self, entity):
+        pass
+
 class CharacterZone:
     def __init__(self, name) -> None:
         self.character_card: CharacterCard = eval(name)
@@ -111,6 +114,9 @@ class ActiveZone:
         self.support_zone: FourZone = FourZone()
         self.is_after_change_character = True
         self.states_list = []
+
+    def add_state_entity(self, entity):
+        pass
 
     def use_skill(self, Game, action):
         self.character_list[self.active_idx].use_skill(Game)
