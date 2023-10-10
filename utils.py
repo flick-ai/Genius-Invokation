@@ -1,5 +1,9 @@
 from enum import Enum
 
+DICENUM = 8
+MAX_HANDCARD = 10
+MAX_DICE = 16
+
 class CountryType(Enum):
     MONDSTADT = 0 # 蒙德
     LIYUE = 1 # 璃月
@@ -11,7 +15,6 @@ class CountryType(Enum):
     FATUI = 7 # 愚人众
     HILICHURL = 8 # 丘丘人
     MONSTER = 9 # 怪物
-
 
 class WeaponType(Enum):
     SWORD = 0 # 单手剑
@@ -32,7 +35,6 @@ class CostType(Enum):
     WHITE = 7 # 任意相同
     BLACK = 8 # 任意
 
-DICENUM = 8
 class DiceType(Enum):
     CRYO = 0 # 冰
     HYDRO = 1 # 水
@@ -42,7 +44,6 @@ class DiceType(Enum):
     GEO = 5 # 岩
     DENDRO = 6 # 草
     OMNI = 7 # 万能
-
 
 class ElementType(Enum):
     CRYO = 0 # 冰

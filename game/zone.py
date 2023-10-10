@@ -54,6 +54,7 @@ class CharacterZone:
         self.is_active: bool = False
         self.is_alive: bool = True
         self.is_satisfied: bool = False
+        self.is_frozen: bool = False
         self.special_state: List = []
         self.shield_list: List = []
         self.power: int = 0
@@ -66,8 +67,13 @@ class ActiveZone:
     def __init__(self, active_idx, character_list) -> None:
         self.number_of_characters = len(character_list)
         self.active_idx = active_idx
-        self.character_list = self.generate_character_zone(character_list)
+        self.character_list: List[CharacterZone] = self.generate_character_zone(character_list)
+        self.is_after_change_character = True
         self.states_list = []
+
+    def use_skill(self, Game, action):
+        self.character_list[self.active_idx].use_skill(Game)
+        self.is_after_change_character = False
     
     def generate_character_zone(self, character_list):
         character_zone_list: List[CharacterCard] = []
@@ -93,7 +99,11 @@ class ActiveZone:
             ix -= 1
             if ix < 0:
                 ix = self.number_of_characters-1
+
+        self.character_list[self.active_idx].is_active = False
         self.active_idx = ix
+        self.character_list[self.active_idx].is_active = True
+        self.is_after_change_character = True
         return ix
     
     def change_to_next_character(self):
@@ -104,6 +114,9 @@ class ActiveZone:
             ix += 1
             if ix >= self.number_of_characters:
                 ix = 0
+        self.character_list[self.active_idx].is_active = False
         self.active_idx = ix
+        self.character_list[self.active_idx].is_active = True
+        self.is_after_change_character = True
         return ix
         

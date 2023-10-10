@@ -18,7 +18,7 @@ class GeniusGame:
         player1 = GeniusPlayer(player1_deck)
         self.players = [player0, player1]
         self.game_phase: GamePhase
-        self.round: int
+        self.round: int = 0
         self.current_action: Action
     
     def reset(self):
@@ -40,17 +40,21 @@ class GeniusGame:
         解码行动编码
         '''
         self.current_action = Action
+        oppenent_player = self.players[not self.active_player]
+        active_player = self.players[self.active_player]
         if action.choice_type == ActionChoice.HAND_CARD:
-            pass
+            active_player.play_card(self, action)
         elif action.choice_type == ActionChoice.CHARACTER_SKILL:
-            pass
+            active_player.active_zone.use_skill(self, action)
+            self.active_player = not active_player
         elif action.choice_type == ActionChoice.CHANGE_CHARACTER:
-            is_quick_action = self.players[self.active_player].active_zone.change_character(self)
-            if not is_quick_action:
-                self.active_player = not self.active_player
+            is_quick_action = self.players[self.active_player].active_zone.change_character(self, action)
+            if (not is_quick_action) and (not oppenent_player.is_pass):
+                self.active_player = not active_player
         elif action.choice_type == ActionChoice.PASS:
-            pass
-
+            active_player.is_pass = True
+            if oppenent_player.is_pass:
+                self.end_phase()
 
     def step(self, action: Action):
         '''
@@ -58,11 +62,11 @@ class GeniusGame:
         '''
         match self.game_phase:
             case GamePhase.SET_CARD:
-                self.set_hand_card()
+                self.set_hand_card(action)
             case GamePhase.SET_CHARACTER:
-                self.set_active_character()
+                self.set_active_character(action)
             case GamePhase.ROLL_PHASE:
-                self.set_reroll_dice()
+                self.set_reroll_dice(action)
             case GamePhase.ACTION_PHASE:
                 self.resolve_action(action)
         
@@ -107,13 +111,23 @@ class GeniusGame:
     
     def roll_phase(self):
         '''
-        进入投掷骰子的阶段
+        进入投掷骰子的阶段, 回合开始
         '''
+        self.round += 1
         self.game_phase = GamePhase.ROLL_PHASE
         for player in self.players:
             player.dice_zone = player.roll_dice()
     
     def action_phase(self):
+        self.players[self.active_player].begin_round(self)
+        self.players[not self.active_player].begin_round(self)
         self.game_phase = GamePhase.ACTION_PHASE
+
+    def end_phase(self):
+        self.game_phase = GamePhase.END_PHASE
+        self.players[self.active_player].end_round(self)
+        self.players[not self.active_player].end_round(self)
+        self.roll_phase()
+        
 
    

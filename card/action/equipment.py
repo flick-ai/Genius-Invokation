@@ -18,5 +18,5 @@ class RavenBow(WeaponCard):
     def effect(self, game: GeniusGame, damage: Damage) -> None:
         damage.main_damage += 1
 
-    def on_played(self, game: GeniusGame, target: int) -> None:
-        game.players[game.active_player].active_zone.character_list[target].weapon_card = RavenBow
+    # def on_played(self, game: GeniusGame, target: int) -> None:
+    #     game.players[game.active_player].active_zone.character_list[target].weapon_card = RavenBow
