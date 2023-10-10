@@ -31,6 +31,7 @@ class Damage:
         Damage.after_damage(game)
     
     def after_damage(self, game: GeniusGame):
+        # TODO: 扩散伤害
         pass
     def execute_damage(self, game: GeniusGame):
         # 打出伤害

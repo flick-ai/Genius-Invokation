@@ -19,7 +19,7 @@ def elemental_reactions(damage: Damage, myActiveZone: ActiveZone, targetActiveZo
     targetElementTypes = targetActiveZone.character_list[targetId].element_attach
     reaction = "None"
     match damage.main_damage_type:
-        case ElementType.CRYO:
+        case ElementType.CRYO: # 冰
             for targetElement in targetElementTypes:
                 match targetElement:
                     case ElementType.HYDRO:
@@ -45,7 +45,7 @@ def elemental_reactions(damage: Damage, myActiveZone: ActiveZone, targetActiveZo
                     case _:
                         continue
             
-        case ElementType.HYDRO:
+        case ElementType.HYDRO: # 水
             targetElement = targetElementTypes[0] #Always have a reaction
             match targetElement:
                 case ElementType.CRYO:
@@ -74,7 +74,7 @@ def elemental_reactions(damage: Damage, myActiveZone: ActiveZone, targetActiveZo
                     myActiveZone.add_status("Bloom") #TODO: Add bloom status， No implement state sequence yet.
                     reaction = "Bloom"
 
-        case ElementType.PYRO:
+        case ElementType.PYRO: # 火
             targetElement = targetElementTypes[0] #Always have a reaction
             match targetElement:
                 case ElementType.CRYO:
@@ -103,7 +103,7 @@ def elemental_reactions(damage: Damage, myActiveZone: ActiveZone, targetActiveZo
                     myActiveZone.summons_zone.insert("Buring") #TODO: Add burning summon, summon shuold be checked whether exists first. The function is not implemented.
                     reaction = "Burning"
 
-        case ElementType.ELECTRO:
+        case ElementType.ELECTRO: # 雷
             targetElement = targetElementTypes[0] #Always have a reaction
             match targetElement:
                 case ElementType.CRYO:
@@ -133,7 +133,7 @@ def elemental_reactions(damage: Damage, myActiveZone: ActiveZone, targetActiveZo
                     myActiveZone.add_status("Quicken") # TODO: Not implement yet.
                     reaction = "Quicken"
 
-        case ElementType.ANEPMO:
+        case ElementType.ANEPMO: # 风
             for targetElement in targetElementTypes:
                 match targetElement:
                     case ElementType.CRYO | ElementType.HYDRO | ElementType.PYRO | ElementType.ELECTRO:
@@ -152,7 +152,7 @@ def elemental_reactions(damage: Damage, myActiveZone: ActiveZone, targetActiveZo
                     case _:
                         continue
 
-        case ElementType.GEO:
+        case ElementType.GEO: # 岩
             for targetElement in targetElementTypes:
                 match targetElement:
                     case ElementType.CRYO | ElementType.HYDRO | ElementType.PYRO | ElementType.ELECTRO:
@@ -162,7 +162,7 @@ def elemental_reactions(damage: Damage, myActiveZone: ActiveZone, targetActiveZo
                         myActiveZone.add_status("Crystallize") # TODO: Not implement yet.
                         reaction = "Crystallize"
                         break
-        case ElementType.DENDRO:
+        case ElementType.DENDRO: # 草
             # the only two element case is CRYO & DEBDRO, No reaction. Only consider the first element.
             targetElement = targetElementTypes[0]
             match targetElement:
