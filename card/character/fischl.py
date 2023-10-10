@@ -59,6 +59,8 @@ class Fischl(CharacterCard):
                 'cost_type': CostType.BLACK
             }
         ]
+        energy_cost: int = 0
+        energy_gain: int = 1
        
         # @classmethod
         # def on_call(cls, game: GeniusGame):
@@ -95,7 +97,7 @@ class Fischl(CharacterCard):
         id: int = 2
         name: str
         type: SkillType = SkillType.ELEMENTAl_BURST
-        demage: Damage = Damage(SkillType.ELEMENTAl_BURST, ElementType.ELECTRO, 4, 2)
+        damage: Damage = Damage(SkillType.ELEMENTAl_BURST, ElementType.ELECTRO, 4, 2)
         
 
     # def __init__(self) -> None:
