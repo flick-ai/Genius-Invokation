@@ -11,7 +11,7 @@ def settleDamage(damage: Damage, myActiveZone: ActiveZone, targetActiveZone: Act
     pass
 
 def elemental_reactions(damage: Damage, myActiveZone: ActiveZone, targetActiveZone: ActiveZone, targetId=-1):
-    #During the process, myActiveZone, targetActiveZone may be changed.
+    #During the process, myActiveZone, targetActiveZone may be changed. Return the Reaction Type.
     damage = deepcopy(damage)
     if targetId == -1:
         targetId = targetActiveZone.active_idx
@@ -22,19 +22,22 @@ def elemental_reactions(damage: Damage, myActiveZone: ActiveZone, targetActiveZo
             for targetElement in targetElementTypes:
                 match targetElement:
                     case ElementType.HYDRO:
-                        damage.main_damage += 1
+                        if damage.main_damage >0:
+                            damage.main_damage += 1
                         targetActiveZone.character_list[targetId].element_attach.remove(ElementType.HYDRO)
                         targetActiveZone.character_list[targetId].is_frozen = True
                         reaction = "Frozen"
                         break
                     case ElementType.PYRO:
-                        damage.main_damage += 2
+                        if damage.main_damage >0:
+                            damage.main_damage += 2
                         targetActiveZone.character_list[targetId].element_attach.remove(ElementType.PYRO)
                         reaction = "Melt"
                         break
                     case ElementType.ELECTRO:
-                        damage.main_damage += 1
-                        damage.piercing_damage += 1
+                        if damage.main_damage >0:
+                            damage.main_damage += 1
+                            damage.piercing_damage += 1
                         targetActiveZone.character_list[targetId].element_attach.remove(ElementType.ELECTRO)
                         reaction = "Super-Conduct"
                         break
@@ -45,23 +48,27 @@ def elemental_reactions(damage: Damage, myActiveZone: ActiveZone, targetActiveZo
             targetElement = targetElementTypes[0] #Always have a reaction
             match targetElement:
                 case ElementType.CRYO:
-                    damage.main_damage += 1
+                    if damage.main_damage >0:
+                        damage.main_damage += 1
                     targetActiveZone.character_list[targetId].element_attach.remove(ElementType.CRYO)
                     targetActiveZone.character_list[targetId].is_frozen = True # TODO: Should add frozen status， No implement state sequence yet.
                     reaction = "Frozen"
                 case ElementType.PYRO:
-                    damage.main_damage += 2
+                    if damage.main_damage >0:
+                        damage.main_damage += 2
                     targetActiveZone.character_list[targetId].element_attach.remove(ElementType.PYRO)
                     reaction = "Vaporize"
             
                 case ElementType.ELECTRO:
-                    damage.main_damage += 1
-                    damage.piercing_damage += 1
+                    if damage.main_damage >0:
+                        damage.main_damage += 1
+                        damage.piercing_damage += 1
                     targetActiveZone.character_list[targetId].element_attach.remove(ElementType.ELECTRO)
                     reaction = "Electro-Charged"
                 
                 case ElementType.DENDRO:
-                    damage.main_damage += 1
+                    if damage.main_damage >0:
+                        damage.main_damage += 1
                     targetActiveZone.character_list[targetId].element_attach.remove(ElementType.DENDRO)
                     myActiveZone.add_status("Bloom") #TODO: Add bloom status， No implement state sequence yet.
                     reaction = "Bloom"
@@ -70,23 +77,27 @@ def elemental_reactions(damage: Damage, myActiveZone: ActiveZone, targetActiveZo
             targetElement = targetElementTypes[0] #Always have a reaction
             match targetElement:
                 case ElementType.CRYO:
-                    damage.main_damage += 2
+                    if damage.main_damage >0:
+                        damage.main_damage += 2
                     targetActiveZone.character_list[targetId].element_attach.remove(ElementType.CRYO)
                     reaction = "Melt"
                 case ElementType.HYDRO:
-                    damage.main_damage += 2
+                    if damage.main_damage >0:
+                        damage.main_damage += 2
                     targetActiveZone.character_list[targetId].element_attach.remove(ElementType.HYDRO)
                     reaction = "Vaporize"
             
                 case ElementType.ELECTRO:
-                    damage.piercing_damage += 2
+                    if damage.main_damage >0:
+                        damage.piercing_damage += 2
                     targetActiveZone.character_list[targetId].element_attach.remove(ElementType.ELECTRO)
                     if targetId == targetActiveZone.active_idx:
                         targetActiveZone.change_to_next_character() #TODO: Check here whether such an easy implement is correct, when some status exists.
                     reaction = "Overload"
                 
                 case ElementType.DENDRO:
-                    damage.main_damage += 1
+                    if damage.main_damage >0:
+                        damage.main_damage += 1
                     targetActiveZone.character_list[targetId].element_attach.remove(ElementType.DENDRO)
                     myActiveZone.summons_zone.insert("Buring") #TODO: Add burning summon, summon shuold be checked whether exists first. The function is not implemented.
                     reaction = "Burning"
@@ -95,24 +106,28 @@ def elemental_reactions(damage: Damage, myActiveZone: ActiveZone, targetActiveZo
             targetElement = targetElementTypes[0] #Always have a reaction
             match targetElement:
                 case ElementType.CRYO:
-                    damage.main_damage += 1
-                    damage.piercing_damage += 1
+                    if damage.main_damage >0:
+                        damage.main_damage += 1
+                        damage.piercing_damage += 1
                     targetActiveZone.character_list[targetId].element_attach.remove(ElementType.CRYO)
                     reaction = "Super-Conduct"
                 case ElementType.HYDRO:
-                    damage.main_damage += 1
-                    damage.piercing_damage += 1
+                    if damage.main_damage >0:
+                        damage.main_damage += 1
+                        damage.piercing_damage += 1
                     targetActiveZone.character_list[targetId].element_attach.remove(ElementType.HYDRO)
                     reaction = "Electro-Charged"
                 case ElementType.PYRO:
-                    damage.piercing_damage += 2
+                    if damage.main_damage >0:
+                        damage.piercing_damage += 2
                     targetActiveZone.character_list[targetId].element_attach.remove(ElementType.PYRO)
                     if targetId == targetActiveZone.active_idx:
                         targetActiveZone.change_to_next_character() #TODO: Check here whether such an easy implement is correct, when some status exists.
                     reaction = "Overload"
                 
                 case ElementType.DENDRO:
-                    damage.main_damage += 1
+                    if damage.main_damage >0:
+                        damage.main_damage += 1
                     targetActiveZone.character_list[targetId].element_attach.remove(ElementType.DENDRO)
                     myActiveZone.add_status("Quicken") # TODO: Not implement yet.
                     reaction = "Quicken"
@@ -122,9 +137,12 @@ def elemental_reactions(damage: Damage, myActiveZone: ActiveZone, targetActiveZo
                 match targetElement:
                     case ElementType.CRYO | ElementType.HYDRO | ElementType.PYRO | ElementType.ELECTRO:
                         targetActiveZone.character_list[targetId].element_attach.remove(ElementType.CRYO)
-                        targetlist = [0,1,2]
+                        targetlist = []
+                        for id in range(3):
+                            targetlist.append((id + targetActiveZone.active_idx)%3)
                         targetlist.remove(targetId)
                         Swirl_Damage = Damage("OTHER", ElementType.CRYO, 1, 0)
+                        
                         for id in targetlist:
                             if targetActiveZone.character_list[id].is_alive:
                                 elemental_reactions(Enhance_Damage(Swirl_Damage, myActiveZone, targetActiveZone, id), myActiveZone, targetActiveZone, id)
@@ -137,7 +155,8 @@ def elemental_reactions(damage: Damage, myActiveZone: ActiveZone, targetActiveZo
             for targetElement in targetElementTypes:
                 match targetElement:
                     case ElementType.CRYO | ElementType.HYDRO | ElementType.PYRO | ElementType.ELECTRO:
-                        damage.main_damage += 1
+                        if damage.main_damage >0:
+                            damage.main_damage += 1
                         targetActiveZone.character_list[targetId].element_attach.remove(targetElement)
                         myActiveZone.add_status("Crystallize") # TODO: Not implement yet.
                         reaction = "Crystallize"
@@ -147,17 +166,20 @@ def elemental_reactions(damage: Damage, myActiveZone: ActiveZone, targetActiveZo
             targetElement = targetElementTypes[0]
             match targetElement:
                 case ElementType.HYDRO:
-                    damage.main_damage += 1
+                    if damage.main_damage >0:
+                        damage.main_damage += 1
                     targetActiveZone.character_list[targetId].element_attach.remove(ElementType.HYDRO)
                     myActiveZone.add_status("Bloom") #TODO: Add bloom status， No implement state sequence yet.
                     reaction = "Bloom"
                 case ElementType.PYRO:
-                    damage.main_damage += 1
+                    if damage.main_damage >0:
+                        damage.main_damage += 1
                     targetActiveZone.character_list[targetId].element_attach.remove(ElementType.PYRO)
                     myActiveZone.summons_zone.insert("Buring") #TODO: Add burning summon, summon shuold be checked whether exists first. The function is not implemented.
                     reaction = "Burning"
                 case ElementType.ELECTRO:
-                    damage.main_damage += 1
+                    if damage.main_damage >0:
+                        damage.main_damage += 1
                     targetActiveZone.character_list[targetId].element_attach.remove(ElementType.ELECTRO)
                     myActiveZone.add_status("Quicken") # TODO: Not implement yet.
                     reaction = "Quicken"
