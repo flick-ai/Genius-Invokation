@@ -4,7 +4,7 @@ from utils import *
 from collections import defaultdict
 from game.action import Action
 from .player import GeniusPlayer
-from game.events import EventManager
+from entity.events import EventManager
 from card.character.base import Damage
 
 class GeniusGame:

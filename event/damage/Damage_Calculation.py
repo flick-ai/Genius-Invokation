@@ -3,6 +3,7 @@ from utils import *
 from card.character.base import *
 from copy import deepcopy
 from game.zone import ActiveZone
+from event.damage.damage import Damage
 
 #TODO Not Implement Yet, maybe can be unify with Class Settle.
 def Enhance_Damage(damage: Damage, myActiveZone: ActiveZone, targetActiveZone: ActiveZone, targetId=-1):
