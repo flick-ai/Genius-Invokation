@@ -59,7 +59,7 @@ class Status_Counting_Type(Enum):
     TURNS = 0 # 回合开始时计数
     ATTACKS = 1 # 攻击时计数
     SUFFER = 2 # 被攻击时计数
-    DAMAGES = 3 # 基于伤害技术
+    DAMAGES = 3 # 基于伤害计数
     
 class SkillType(Enum):
     NORMAL_ATTACK = 0
