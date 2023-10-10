@@ -128,9 +128,8 @@ class EventType(Enum):
     AFTER_CHANGE_CHARACTER = 4
     AFTER_USE_SKILL = 5
     AFTER_TAKES_DMG = 6
-    AFTER_REACTION = 7
-    AFTER_PLAY_CARD = 8
-    END_PHASE = 9
+    AFTER_PLAY_CARD = 7
+    END_PHASE = 8
 
 DiceToElement = {
     DiceType(i): ElementType(i) for i in range(7)
