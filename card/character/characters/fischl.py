@@ -14,7 +14,7 @@ class Oz(Summon):
         super().__init__()
         self.cur_usage = self.usage
 
-    class SummonSkill(Settle):
+    class SummonSkill:
         # damage
         damage_type: SkillType
         main_damage_element: ElementType

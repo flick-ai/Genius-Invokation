@@ -1,129 +1,18 @@
 from utils import *
-from typing import List
-from game.game import GeniusGame
-from game.action import Action
+from typing import List, TYPE_CHECKING
+from event.damage.damage import Damage
 
+if TYPE_CHECKING:
+    from game.game import GeniusGame
+    from game.action import Action
+    from event.events import EventNode
 
-class Damage:
-
-    # 伤害基本类
-    def __init__(self, damage_type: SkillType, main_damage_element: ElementType, main_damage: int, piercing_damage: int, is_plunging_attack: bool=False, is_charged_attack: bool=False) -> None:
-        self.damage_type: SkillType = damage_type
-        self.main_damage_element: ElementType = main_damage_element
-        self.main_damage: int = main_damage
-        self.piercing_damage: int = piercing_damage
-
-        self.is_plunging_attack: bool
-        self.is_charged_attack: bool
-
-    @staticmethod
-    def create_damage(cls, game: GeniusGame,
-                      damage_type: SkillType, main_damage_element: ElementType, 
-                      main_damage: int, piercing_damage: int):
-        if damage_type == SkillType.NORMAL_ATTACK:
-            # TODO: 判断当前角色是否为切换后的第一个战斗行动
-            # is_plunging_attack = game.players.
-            
-            is_charged_attack = len(game.players[game.active_player].dice_zone) % 2 
-        else:
-            return cls(damage_type, main_damage_element, main_damage, piercing_damage)
-        
-
-
-
-
-class DamageModify:
-    '''
-    '''
-    pass
-
-class DamageChange(DamageModify):
-    '''
-    元素转化
-    '''
-    pass
-
-class DamageAdd(DamageModify):
-    '''
-    加算区
-    '''
-    pass
-    def effect(game: GeniusGame, damage: Damage):
-        pass
-
-class DamageMultiply(DamageModify):
-    '''
-    乘算区
-    '''
-    pass
-
-
-
-class Settle:
-    # 血量结算类
-
-    # damage
-    damage_type: SkillType
-    main_damage_element: ElementType
-    main_damage: int
-    piercing_damage: int
-
-    # heal
-    heal: int
-
-
-    def cal_damage(self, game: GeniusGame, action: Action):
-        '''
-            1. 元素转化
-            2. 加算区
-            3. 乘算区
-        '''
-        pass
-    
-    def build_damage_queue(self, game: GeniusGame) -> list:
-        damage_queue = []
-
-    def pre_settle():
-        pass
-
-    def on_settle():
-        pass
-    
-    def post_settle():
-        pass
-
-    def on_call(self, game: GeniusGame):
-        
-        damage = Damage.create_damage(self.damage_type, self.main_damage_element, self.main_damage, self.piercing_damage)
-        self.pre_settle(game)
-        self.on_settle(game, damage)
-        self.post_settle(game)
-        
-        # demage = Damage(self.damage_type, self.main_damage_element, self.main_damage, self.piercing_damage)
-
-
-
-class Summon:
-    # 召唤物基本类
-    id: int
-    name: str
-    element: ElementType
-    usage: int
-    max_usage: int
-    skills: list
-
-    def __init__(self) -> None:
-        self.usages: int # 此处是否需要区分青蛙和花鼠？
-        # self.effect_text: str
-
-
-    
-
-class CharacterSkill(Settle):
+class CharacterSkill:
     # 角色技能基本类
     id: int
     name: str
     type: SkillType
+    # character: CharacterCard
 
     # damage
     damage_type: SkillType
@@ -143,15 +32,69 @@ class CharacterSkill(Settle):
         pass
 
     def on_call(self, game: GeniusGame):
-        
-        action = game.current_action
-        # 消耗骰子
-        # 降序排列以便于按索引pop
-        for dice_index in sorted(action.dice, reverse=True):
-            game.players[game.active_player].dice_zone.pop(dice_index)
+        game.manager.invoke('before_skill', game)
 
-        damage = Damage(self.damage_type, self.main_damage_element, self.main_damage, self.piercing_damage)
+        # TODO: 消耗骰子
+        # TODO: 消耗能量
+        # TODO: 判断技能是否有伤害
+        # 生成伤害
+        game.current_damage = Damage.create_damage(self.damage_type, self.main_damage_element, self.main_damage, self.piercing_damage)
+
+        # 伤害计算
+        game.manager.invoke('on_damage', game)
+
+        # 伤害执行
+        game.current_damage.execute()
+
+        # 治疗执行
+
+        # 召唤物/状态生成
+
+        # TODO: 获得能量
+
+        game.manager.invoke('after_skill', game)
+
+    # def on_call(self, game: GeniusGame):
         
+    #     action = game.current_action
+    #     # 消耗骰子
+    #     # 降序排列以便于按索引pop
+    #     for dice_index in sorted(action.dice, reverse=True):
+    #         game.players[game.active_player].dice_zone.pop(dice_index)
+
+    #     damage = Damage(self.damage_type, self.main_damage_element, self.main_damage, self.piercing_damage)
+
+class NormalAttackSkill(CharacterSkill):
+
+    def on_call(self, game: GeniusGame):
+        is_plunging_attack = False
+        is_charged_attack = False
+        game.manager.invoke('before_skill', game)
+
+        # TODO: 消耗骰子
+        # TODO: 判断技能是否有伤害
+        # 生成伤害
+        game.current_damage = Damage.create_damage(self.damage_type, self.main_damage_element, self.main_damage, self.piercing_damage, is_plunging_attack, is_charged_attack)
+
+        # 伤害计算
+        game.manager.invoke('on_damage', game)
+
+        # 伤害执行
+        game.current_damage.execute()
+
+        # 治疗执行
+
+        # 召唤物/状态生成
+
+        # TODO: 获得能量
+
+        game.manager.invoke('after_skill', game)
+
+
+
+
+
+
 class CharacterCard:
     # 角色卡片基本类
     id: int

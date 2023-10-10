@@ -8,23 +8,10 @@ class ActionCard:
     name: str
     cost_num: int
     cost_type: CostType
+    card_type: ActionCardType
 
-    def play(self, game: GeniusGame) -> None:
+    def effect(self, game: GeniusGame) -> None:
         '''
-        pre played
-        on played
-        post played
+            效果执行函数
         '''
-        self.pre_played(game)
-        self.on_played(game)
-        self.post_played(game)
-
-    def pre_played(self, game: GeniusGame) -> None:
-        pass 
-
-    def post_played(self, game: GeniusGame) -> None:
         pass
-
-    def on_played(self, game: GeniusGame) -> None:
-        raise NotImplementedError
-

@@ -1,8 +1,11 @@
-from typing import List
-from .player import GeniusPlayer
-from game.action import Action
+from typing import List, TYPE_CHECKING
 import numpy as np
 from utils import *
+from collections import defaultdict
+from game.action import Action
+from .player import GeniusPlayer
+from event.events import EventManager
+from card.character.base import Damage
 
 class GeniusGame:
     '''
@@ -19,14 +22,17 @@ class GeniusGame:
         self.players = [player0, player1]
         self.game_phase: GamePhase
         self.round: int = 0
+
+        self.manager = EventManager()
         self.current_action: Action
+        self.current_damage: Damage
     
     def reset(self):
         pass
 
     def init_game(self):
         '''
-        初始化阶段,包括选择起始手牌,选择出战角色
+            初始化阶段,包括选择起始手牌,选择出战角色
         '''
         # 决定谁方先手
         first = np.random.choice([0, 1], 1)[0]
@@ -37,18 +43,20 @@ class GeniusGame:
 
     def resolve_action(self, action: Action):
         '''
-        解码行动编码
+            处理行动信息
         '''
         self.current_action = action
         oppenent_player = self.players[not self.active_player]
         active_player = self.players[self.active_player]
+        # 处理骰子信息：
+        active_player.e
         if action.choice_type == ActionChoice.HAND_CARD:
             active_player.play_card(self, action)
         elif action.choice_type == ActionChoice.CHARACTER_SKILL:
-            active_player.active_zone.use_skill(self, action)
+            active_player.use_skill(self, action)
             self.active_player = not active_player
         elif action.choice_type == ActionChoice.CHANGE_CHARACTER:
-            is_quick_action = self.players[self.active_player].active_zone.change_character(self, action)
+            is_quick_action = active_player.change_character(self, action)
             if (not is_quick_action) and (not oppenent_player.is_pass):
                 self.active_player = not active_player
         elif action.choice_type == ActionChoice.PASS:
@@ -72,8 +80,8 @@ class GeniusGame:
         
     def set_hand_card(self, action):
         '''
-        选择手牌部分
-        action: [5,1] 0/1
+            选择手牌部分
+            action: [5,1] 0/1
         '''
         active = self.active_player
         self.players[active].choose_card(action)
@@ -85,8 +93,8 @@ class GeniusGame:
 
     def set_active_character(self, action):
         '''
-        选择出战角色
-        action: [3,1] one-hot
+            选择出战角色
+            action: [3,1] one-hot
         '''
         active = self.active_player
         self.players[active].choose_character(action)
@@ -98,8 +106,8 @@ class GeniusGame:
 
     def set_reroll_dice(self, action):
         '''
-        选择重新投掷的骰子
-        action: [num_dice, 1] 0/1
+            选择重新投掷的骰子
+            action: [num_dice, 1] 0/1
         '''
         active = self.active_player
         self.players[active].choose_dice(action)
@@ -111,7 +119,7 @@ class GeniusGame:
     
     def roll_phase(self):
         '''
-        进入投掷骰子的阶段, 回合开始
+            进入投掷骰子的阶段, 回合开始
         '''
         self.round += 1
         self.game_phase = GamePhase.ROLL_PHASE
@@ -119,11 +127,17 @@ class GeniusGame:
             player.dice_zone = player.roll_dice()
     
     def action_phase(self):
+        '''
+            进入交替行动阶段
+        '''
         self.players[self.active_player].begin_round(self)
         self.players[not self.active_player].begin_round(self)
         self.game_phase = GamePhase.ACTION_PHASE
 
     def end_phase(self):
+        '''
+            
+        '''
         self.game_phase = GamePhase.END_PHASE
         self.players[self.active_player].end_round(self)
         self.players[not self.active_player].end_round(self)

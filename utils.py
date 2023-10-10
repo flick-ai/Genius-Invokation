@@ -90,6 +90,59 @@ class ActionTarget(Enum):
     MY_SUPPORT_REGION = 4
     DICE_REGION = 5
 
+class ActionCardType(Enum):
+    EQUIPMENT_TALENT = 0 
+    EQUIPMENT_WEAPON = 1
+    EQUIPMENT_ARTIFACT = 2
+    SUPPORT_LOCATION = 3
+    SUPPORT_ITEM = 4
+    SUPPORT_COMPANION = 5
+    EVENT = 6
+    EVENT_FOOD = 7
+    EVENT_ELEMENTAL_RESONANCE = 8
+    EVENT_ARCANE_LEGEND = 9
+
+class ActionCardType(Enum):
+    EQUIPMENT_TALENT = 0 
+    EQUIPMENT_WEAPON = 1
+    EQUIPMENT_ARTIFACT = 2
+    SUPPORT_LOCATION = 3
+    SUPPORT_ITEM = 4
+    SUPPORT_COMPANION = 5
+    EVENT = 6
+    EVENT_FOOD = 7
+    EVENT_ELEMENTAL_RESONANCE = 8
+    EVENT_ARCANE_LEGEND = 9
+
+class ZoneType(Enum):
+    CHARACTER_ZONE = 0
+    ACTIVE_ZONE = 1
+    SUMMON_ZONE = 2
+    SUPPORT_ZONE = 3
+
+class EventType(Enum):
+    BEGIN_ACTION_PHASE = 0
+    CALCULATE_DAMAGE = 1
+    CALCULATE_DICE = 2
+    BEFORE_CHANGE_CHARACTER = 3
+    AFTER_CHANGE_CHARACTER = 4
+    AFTER_USE_SKILL = 5
+    AFTER_TAKES_DMG = 6
+    AFTER_PLAY_CARD = 7
+    END_PHASE = 8
+
+class ElementalReactionType(Enum):
+    Frozen = 0
+    Melt = 1
+    Super_Conduct = 2
+    Vaporize = 3
+    Electro_Charged = 4
+    Bloom = 5
+    Overload = 6
+    Burning = 7
+    Quicken = 8
+    Swirl = 9
+    Crystalize = 10
 
 DiceToElement = {
     DiceType(i): ElementType(i) for i in range(7)
