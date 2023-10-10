@@ -30,6 +30,8 @@ class WeaponCard(EquipmentCard):
         pass 
     
     def on_played(self, game: GeniusGame, target) -> None:
+
+        target = game.current_action.choice_idx
         return super().on_played(game, target)
 
 

@@ -3,6 +3,35 @@ from typing import List
 from game.game import GeniusGame
 from game.action import Action
 
+
+class Damage:
+
+    # 伤害基本类
+    def __init__(self, damage_type: SkillType, main_damage_element: ElementType, main_damage: int, piercing_damage: int, is_plunging_attack: bool=False, is_charged_attack: bool=False) -> None:
+        self.damage_type: SkillType = damage_type
+        self.main_damage_element: ElementType = main_damage_element
+        self.main_damage: int = main_damage
+        self.piercing_damage: int = piercing_damage
+
+        self.is_plunging_attack: bool
+        self.is_charged_attack: bool
+
+    @staticmethod
+    def create_damage(cls, game: GeniusGame,
+                      damage_type: SkillType, main_damage_element: ElementType, 
+                      main_damage: int, piercing_damage: int):
+        if damage_type == SkillType.NORMAL_ATTACK:
+            # TODO: 判断当前角色是否为切换后的第一个战斗行动
+            # is_plunging_attack = game.players.
+            
+            is_charged_attack = len(game.players[game.active_player].dice_zone) % 2 
+        else:
+            return cls(damage_type, main_damage_element, main_damage, piercing_damage)
+        
+
+
+
+
 class DamageModify:
     '''
     '''
@@ -19,6 +48,8 @@ class DamageAdd(DamageModify):
     加算区
     '''
     pass
+    def effect(game: GeniusGame, damage: Damage):
+        pass
 
 class DamageMultiply(DamageModify):
     '''
@@ -29,7 +60,7 @@ class DamageMultiply(DamageModify):
 
 
 class Settle:
-    # 结算类
+    # 血量结算类
 
     # damage
     damage_type: SkillType
@@ -52,18 +83,23 @@ class Settle:
     def build_damage_queue(self, game: GeniusGame) -> list:
         damage_queue = []
 
+    def pre_settle():
+        pass
+
+    def on_settle():
+        pass
+    
+    def post_settle():
+        pass
+
     def on_call(self, game: GeniusGame):
-
-        demage = Damage(self.damage_type, self.main_damage_element, self.main_damage, self.piercing_damage)
-
-class Damage:
-
-    # 伤害基本类
-    def __init__(self, damage_type: SkillType, main_damage_element: ElementType, main_damage: int, piercing_damage: int) -> None:
-        self.damage_type: SkillType = damage_type
-        self.main_damage_element: ElementType = main_damage_element
-        self.main_damage: int = main_damage
-        self.piercing_damage: int = piercing_damage
+        
+        damage = Damage.create_damage(self.damage_type, self.main_damage_element, self.main_damage, self.piercing_damage)
+        self.pre_settle(game)
+        self.on_settle(game, damage)
+        self.post_settle(game)
+        
+        # demage = Damage(self.damage_type, self.main_damage_element, self.main_damage, self.piercing_damage)
 
 
 
@@ -89,15 +125,22 @@ class CharacterSkill(Settle):
     name: str
     type: SkillType
 
+    # damage
+    damage_type: SkillType
+    main_damage_element: ElementType
+    main_damage: int
+    piercing_damage: int
+
+    # heal
+    heal: int
+
     # cost
     cost: list({'cost_num': int, 'cost_type': CostType})
+    energy_cost: int
+    energy_gain: int
 
     def __init__(self) -> None:
         pass
-
-
-
-        
 
     def on_call(self, game: GeniusGame):
         
@@ -107,7 +150,7 @@ class CharacterSkill(Settle):
         for dice_index in sorted(action.dice, reverse=True):
             game.players[game.active_player].dice_zone.pop(dice_index)
 
-        demage = Damage(self.damage_type, self.main_damage_element, self.main_damage, self.piercing_damage)
+        damage = Damage(self.damage_type, self.main_damage_element, self.main_damage, self.piercing_damage)
         
 class CharacterCard:
     # 角色卡片基本类
