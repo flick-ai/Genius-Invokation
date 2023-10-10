@@ -48,13 +48,15 @@ class GeniusGame:
         self.current_action = action
         oppenent_player = self.players[not self.active_player]
         active_player = self.players[self.active_player]
+        # 处理骰子信息：
+        active_player.e
         if action.choice_type == ActionChoice.HAND_CARD:
             active_player.play_card(self, action)
         elif action.choice_type == ActionChoice.CHARACTER_SKILL:
-            active_player.active_zone.use_skill(self, action)
+            active_player.use_skill(self, action)
             self.active_player = not active_player
         elif action.choice_type == ActionChoice.CHANGE_CHARACTER:
-            is_quick_action = self.players[self.active_player].active_zone.change_character(self, action)
+            is_quick_action = active_player.change_character(self, action)
             if (not is_quick_action) and (not oppenent_player.is_pass):
                 self.active_player = not active_player
         elif action.choice_type == ActionChoice.PASS:
@@ -78,8 +80,8 @@ class GeniusGame:
         
     def set_hand_card(self, action):
         '''
-        选择手牌部分
-        action: [5,1] 0/1
+            选择手牌部分
+            action: [5,1] 0/1
         '''
         active = self.active_player
         self.players[active].choose_card(action)

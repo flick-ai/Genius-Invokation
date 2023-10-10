@@ -9,17 +9,12 @@ if TYPE_CHECKING:
 
 class EquipmentCard(ActionCard):
     # 装备牌基本类
-    character: "CharacterZone"
-    player: "GeniusPlayer"
-
+    player: GeniusPlayer
+    character: CharacterZone
     def __init__(self) -> None:
         super().__init__()
 
     def effect(self, game: GeniusGame) -> None:
-        ### TODO:
-        pass
-        
-    # def on_played(self, game: GeniusGame) -> None:
-    #     target = game.current_action.target_idx
-    #     self.character = game.players[game.active_player].active_zone.character_list[target]
-    #     self.player = game.players[game.active_player]
+        target = game.current_action.target_idx
+        self.player = game.players[game.active_player]
+        self.character = self.player.active_zone.character_list[target]

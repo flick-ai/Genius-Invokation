@@ -14,14 +14,8 @@ class RavenBow(WeaponCard):
 
     def __init__(self) -> None:
         super().__init__()
-        # self.usages = defaultdict(int)
     
-    def post_played(self, game: GeniusGame) -> None:
-        pass 
-        # register on_player_activated DamageAdd
-        # register on_player_deactivated remove DamageAdd
-        
-        
-
-    # def on_played(self, game: GeniusGame, target: int) -> None:
-    #     game.players[game.active_player].active_zone.character_list[target].weapon_card = RavenBow
+    def effect(self, game: GeniusGame) -> None:
+        ##### TODO:
+        pass
+    

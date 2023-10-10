@@ -4,6 +4,8 @@ from .zone import CardZone, ActiveZone, FourZone
 import numpy as np
 
 if TYPE_CHECKING:
+    from game.game import GeniusGame
+    from game.action import Action
     from card.action import ActionCard
 
 class GeniusPlayer:
@@ -48,25 +50,32 @@ class GeniusPlayer:
     def roll_dice(self, num=8):
         return np.random.randint(0, DICENUM, num)
     
-    def play_card(self, Game, action):
-        ##### TODO: 从action获取操作目标
-        idx: int
-        #####
-        card = self.hand_zone.pop(idx)
-        card.on_played(Game)
-    
     def get_card(self, num):
+        '''
+            当获取到牌时
+        '''
         get_cards = self.card_zone.get_card(num=num)
-        if len(self.hand_zone) + num <= MAX_HANDCARD:
-            self.hand_zone += get_cards
-        else:
-            ##### TODO: 处理爆牌
-            pass
-            #####
+        for card in get_cards:
+            if len(self.hand_zone) >= MAX_HANDCARD:
+                break
+            self.hand_zone.append(card)
+            sorted(self.hand_zone, key=lambda card: card.id)
+    
+    def get_dice(self, dices):
+        '''
+            当获取到骰子时
+        ''' 
+
+    def play_card(self, game: GeniusGame, action:Action):
+        card = self.hand_zone.pop(action.choice_idx)
+        card.effect(game)
+
+    def change_character(self, game: GeniusGame, action:Action):
+        self.active_zone.change_character(game, action)
     
     def begin_round(self, Game):
         '''
-            进行回合开始时的内容结算, 主要是Support Zone
+            进行回合开始时的内容结算
         '''
         # 遍历所有对象状态
 
@@ -75,7 +84,7 @@ class GeniusPlayer:
 
     def end_round(self, Game):
         '''
-            进行回合结束阶段的内容阶段, 三个区都需要结算, 分先后顺序
+            进行回合结束阶段的内容阶段
         '''
         # 摸牌
         self.get_card(num=2)

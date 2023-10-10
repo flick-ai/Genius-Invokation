@@ -1,4 +1,5 @@
 from typing import TYPE_CHECKING
+from utils import *
 if TYPE_CHECKING:
     from game.game import GeniusGame
     from game.action import Action
@@ -7,7 +8,7 @@ if TYPE_CHECKING:
 
 class Entity:
     def __init__(self):
-        self.entity_type: 
+        self.entity_type: ZoneType
         self.events: dict[str, EventNode] = {}
         self.registered_events: list(EventNode) = []
 

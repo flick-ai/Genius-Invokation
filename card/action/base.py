@@ -8,8 +8,10 @@ class ActionCard:
     name: str
     cost_num: int
     cost_type: CostType
+    card_type: ActionCardType
 
     def effect(self, game: GeniusGame) -> None:
         '''
             效果执行函数
         '''
+        pass
