@@ -4,7 +4,7 @@ from utils import *
 from collections import defaultdict
 from game.action import Action
 from .player import GeniusPlayer
-from entity.events import EventManager
+from event.events import EventManager
 from card.character.base import Damage
 
 class GeniusGame:
@@ -91,8 +91,8 @@ class GeniusGame:
 
     def set_active_character(self, action):
         '''
-        选择出战角色
-        action: [3,1] one-hot
+            选择出战角色
+            action: [3,1] one-hot
         '''
         active = self.active_player
         self.players[active].choose_character(action)
@@ -104,8 +104,8 @@ class GeniusGame:
 
     def set_reroll_dice(self, action):
         '''
-        选择重新投掷的骰子
-        action: [num_dice, 1] 0/1
+            选择重新投掷的骰子
+            action: [num_dice, 1] 0/1
         '''
         active = self.active_player
         self.players[active].choose_dice(action)
