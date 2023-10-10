@@ -59,15 +59,20 @@ class CharacterZone:
         self.shield_list: List = []
         self.power: int = 0
         self.hp: int 
-    
+        self.max_hp: int
+        self.element_attach: List = []
+
     def on_game_start(self):
         self.power, self.hp, self.special_state = self.character_card.on_game_start()
+        self.max_hp = self.hp
 
 class ActiveZone:
     def __init__(self, active_idx, character_list) -> None:
         self.number_of_characters = len(character_list)
         self.active_idx = active_idx
         self.character_list: List[CharacterZone] = self.generate_character_zone(character_list)
+        self.summons_zone: FourZone = FourZone()
+        self.support_zone: FourZone = FourZone()
         self.is_after_change_character = True
         self.states_list = []
 
@@ -120,3 +125,11 @@ class ActiveZone:
         self.is_after_change_character = True
         return ix
         
+    def change_to_id(self, id):
+        assert id >= 0 and id < self.number_of_characters
+        assert self.character_list[id].is_alive == True
+        self.character_list[self.active_idx].is_active = False
+        self.active_idx = id
+        self.character_list[self.active_idx].is_active = True
+        self.is_after_change_character = True
+        return id

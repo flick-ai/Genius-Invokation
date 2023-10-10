@@ -130,6 +130,7 @@ class CharacterCard:
             角色区初始化
             讨债人被动 潜行
             雷电将军被动 诸愿百眼之轮
+            无相雷、丘丘等上限修改
         '''
         return self.power, self.health_point, self.init_state
         
