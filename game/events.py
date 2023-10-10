@@ -1,10 +1,9 @@
 from card.character.base import Damage
 from game.game import GeniusGame
+from collections import defaultdict
 
 
-class Events:
-    def __init__(self) -> None:
-        pass
+
 
 class EventNode:
     '''事件节点'''
@@ -19,28 +18,60 @@ class EventNode:
         if self.next:
             self.next.before = self.before
 
+    def on_call(self, game: GeniusGame) -> None:
+        self.event(game)
+
 
 class EventListDict:
     def __init__(self) -> None:
-        pass
+        self.event_lists: dict(EventList) = {
+            'equipment': EventList([]),
+            'artifact': EventList([]),
+            'support': EventList([]),
+            'summon': EventList([]),
+            'active': EventList([]),
+            'character': EventList([]),
+        }
 
 
 class EventList:
-    def __init__(self, events: list) -> None:
+    def __init__(self, actions: list) -> None:
         self.head = EventNode(None)
         self.tail = self.head
-        for event in events:
-            self.append(event)
+        for action in actions:
+            self.append(action)
     
-    def append(self, event):
-        self.tail.next = EventNode(event, self.tail)
+    def append(self, action) -> EventNode:
+        self.tail.next = EventNode(action, self.tail)
         self.tail = self.tail.next
+        return self.tail
+
+    def on_call(self, game: GeniusGame) -> None:
+        node = self.head.next
+        while node:
+            node.on_call(game)
+            node = node.next
 
 
 
 '''
 事件种类
 '''
+
+class EventManager:
+    def __init__(self) -> None:
+        self.events = defaultdict(EventListDict)
+    
+    def register(self, event_name, event_type, action) -> EventNode:
+        return self.events[event_name][event_type].append(action)
+    
+    def invoke(self, event_name, game: GeniusGame) -> None:
+        for event_type in self.events[event_name]:
+            self.events[event_name][event_type].on_call(game)
+
+
+
+
 # class OnDealDamageEvent(EventNode):
 
 

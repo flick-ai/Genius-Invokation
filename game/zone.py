@@ -1,9 +1,11 @@
-from typing import List
+from typing import List, TYPE_CHECKING
 import numpy as np
 # from card.action import *
-from card.character.base import CharacterCard
-from card.action.base import WeaponCard
 from copy import deepcopy
+
+if TYPE_CHECKING:
+    from card.character.base import CharacterCard
+    from card.action import WeaponCard
 
 
 class CardZone:

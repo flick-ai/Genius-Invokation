@@ -1,8 +1,11 @@
 from typing import List
-from player import GeniusPlayer
+from .player import GeniusPlayer
 from game.action import Action
 import numpy as np
 from utils import *
+from card.character.base import Damage
+from collections import defaultdict
+from game.events import EventManager
 
 class GeniusGame:
     '''
@@ -19,7 +22,11 @@ class GeniusGame:
         self.players = [player0, player1]
         self.game_phase: GamePhase
         self.round: int = 0
+
+        self.manager = EventManager()
         self.current_action: Action
+
+        self.current_damage: Damage
     
     def reset(self):
         pass
@@ -39,7 +46,7 @@ class GeniusGame:
         '''
         解码行动编码
         '''
-        self.current_action = Action
+        self.current_action = action
         oppenent_player = self.players[not self.active_player]
         active_player = self.players[self.active_player]
         if action.choice_type == ActionChoice.HAND_CARD:
