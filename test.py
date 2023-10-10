@@ -1,26 +1,6 @@
-from typing import Type
+import numpy as np
 
-class A:
-    a = 2
-    @staticmethod
-    def d():
-        return 5
-
-    @classmethod
-    def aa(cls):
-        print(cls.a)
-
-class B(A):
-    a = 1
-    @staticmethod
-    def d():
-        return B.a
-    # @classmethod
-    # def aa(cls):
-    #     print(4)
-
-B.aa()
-
-a: Type[A] = B
-
+a = [1,2,3,4,5]
+# np.random.shuffle(a)
+a.insert(5,6)
 print(a)

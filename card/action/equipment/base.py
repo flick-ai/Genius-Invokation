@@ -15,7 +15,11 @@ class EquipmentCard(ActionCard):
     def __init__(self) -> None:
         super().__init__()
 
-    def on_played(self, game: GeniusGame) -> None:
-        target = game.current_action.target_idx
-        self.character = game.players[game.active_player].active_zone.character_list[target]
-        self.player = game.players[game.active_player]
+    def effect(self, game: GeniusGame) -> None:
+        ### TODO:
+        pass
+        
+    # def on_played(self, game: GeniusGame) -> None:
+    #     target = game.current_action.target_idx
+    #     self.character = game.players[game.active_player].active_zone.character_list[target]
+    #     self.player = game.players[game.active_player]

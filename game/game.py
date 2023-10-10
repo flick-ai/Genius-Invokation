@@ -1,11 +1,11 @@
-from typing import List
-from .player import GeniusPlayer
-from game.action import Action
+from typing import List, TYPE_CHECKING
 import numpy as np
 from utils import *
-from card.character.base import Damage
 from collections import defaultdict
+from game.action import Action
+from .player import GeniusPlayer
 from game.events import EventManager
+from card.character.base import Damage
 
 class GeniusGame:
     '''
@@ -25,7 +25,6 @@ class GeniusGame:
 
         self.manager = EventManager()
         self.current_action: Action
-
         self.current_damage: Damage
     
     def reset(self):
@@ -33,7 +32,7 @@ class GeniusGame:
 
     def init_game(self):
         '''
-        初始化阶段,包括选择起始手牌,选择出战角色
+            初始化阶段,包括选择起始手牌,选择出战角色
         '''
         # 决定谁方先手
         first = np.random.choice([0, 1], 1)[0]
@@ -44,7 +43,7 @@ class GeniusGame:
 
     def resolve_action(self, action: Action):
         '''
-        解码行动编码
+            处理行动信息
         '''
         self.current_action = action
         oppenent_player = self.players[not self.active_player]
@@ -118,7 +117,7 @@ class GeniusGame:
     
     def roll_phase(self):
         '''
-        进入投掷骰子的阶段, 回合开始
+            进入投掷骰子的阶段, 回合开始
         '''
         self.round += 1
         self.game_phase = GamePhase.ROLL_PHASE
@@ -126,11 +125,17 @@ class GeniusGame:
             player.dice_zone = player.roll_dice()
     
     def action_phase(self):
+        '''
+            进入交替行动阶段
+        '''
         self.players[self.active_player].begin_round(self)
         self.players[not self.active_player].begin_round(self)
         self.game_phase = GamePhase.ACTION_PHASE
 
     def end_phase(self):
+        '''
+            
+        '''
         self.game_phase = GamePhase.END_PHASE
         self.players[self.active_player].end_round(self)
         self.players[not self.active_player].end_round(self)

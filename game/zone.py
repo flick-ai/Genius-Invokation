@@ -1,39 +1,72 @@
 from typing import List, TYPE_CHECKING
 import numpy as np
-# from card.action import *
+from utils import *
 from copy import deepcopy
 
 if TYPE_CHECKING:
+    from card.action.base import ActionCard
     from card.character.base import CharacterCard
     from card.action import WeaponCard
 
 
 class CardZone:
+    '''
+        牌堆区, 一共支持三种操作:
+        1. 检索并获取特定类型的牌
+        2. 随机获取牌
+        3. 将牌放回牌堆
+    '''
     def __init__(self, card: List) -> None:
+        '''
+            牌堆结构为一个随机过的固定顺序列表
+        '''
         self.card = []
         for card_name in card:
             self.card.append(eval(card_name)())
         self.card_num = len(self.card)
+        # 随机固定牌序
+        np.random.shuffle(self.card)
+
+    def find_card(self, card_type: ActionCardType, num=1):
+        '''
+            检索并获取特定类型的牌
+        '''
+        get_list = []
+        for card in reversed(self.card):
+            if card.type == card_type:
+                get_list.append(card)
+                if len(get_list) == num:
+                    break
+
+        # 按照id顺序排序返回的牌
+        get_list = sorted(get_list, key=lambda card:card.id)
+        return get_list
 
     def get_card(self, num):
         '''
-        从牌堆中获取牌
+            随机获取牌
         '''
-        idx_list = np.random.choice(range(self.card_num), num)
         get_list = []
-        for i in idx_list:
-            get_list.append(self.card.pop(i))
+        for i in range(num):
+            get_list.append(self.card.pop())
         self.card_num = len(self.card)
+
+        # 按照id顺序排序返回的牌
+        get_list = sorted(get_list, key=lambda card:card.id)
         return get_list
 
     def return_card(self, card_list: List):
+        '''
+            将牌放回牌堆
+        '''
         for card in card_list:
-            self.card.append(card)
-        self.card_num = len(self.card)
+            idx = np.random.randint(0, self.card_num+1)
+            self.card.insert(idx, card)
+            self.card_num = len(self.card)
 
 class FourZone:
     '''
-    一个用于维护召唤物区和支援区的区域
+        召唤物区和支援区的区域
     '''
     def __init__(self) -> None:
         self.space = [None, None, None, None]
