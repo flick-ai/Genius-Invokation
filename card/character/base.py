@@ -4,6 +4,20 @@ from typing import List, TYPE_CHECKING
 if TYPE_CHECKING:
     from game.game import GeniusGame
     from game.action import Action
+    from game.events import EventNode
+
+
+class Entity:
+
+    def __init__(self):
+        self.registered_events: list(EventNode) = []
+
+    def register_all_events(self, game: GeniusGame):
+        game.manager.register('before_skill', 'on_damage', 'after_skill')
+
+    def on_distroy(self):
+        for event in self.registered_events:
+            event.del_node()
 
 
 class Damage:
@@ -31,80 +45,6 @@ class Damage:
             return cls(damage_type, main_damage_element, main_damage, piercing_damage)
         
 
-
-
-
-class DamageModify:
-    '''
-    '''
-    pass
-
-class DamageChange(DamageModify):
-    '''
-    元素转化
-    '''
-    pass
-
-class DamageAdd(DamageModify):
-    '''
-    加算区
-    '''
-    pass
-    def effect(game: GeniusGame, damage: Damage):
-        pass
-
-class DamageMultiply(DamageModify):
-    '''
-    乘算区
-    '''
-    pass
-
-
-
-class Settle:
-    # 血量结算类
-
-    # damage
-    damage_type: SkillType
-    main_damage_element: ElementType
-    main_damage: int
-    piercing_damage: int
-
-    # heal
-    heal: int
-
-
-    def cal_damage(self, game: GeniusGame, action: Action):
-        '''
-            1. 元素转化
-            2. 加算区
-            3. 乘算区
-        '''
-        pass
-    
-    def build_damage_queue(self, game: GeniusGame) -> list:
-        damage_queue = []
-
-    def pre_settle():
-        pass
-
-    def on_settle():
-        pass
-    
-    def post_settle():
-        pass
-
-    def on_call(self, game: GeniusGame):
-        
-        damage = Damage.create_damage(self.damage_type, self.main_damage_element, self.main_damage, self.piercing_damage)
-        self.pre_settle(game)
-        self.on_settle(game, damage)
-        self.post_settle(game)
-        
-        # demage = Damage(self.damage_type, self.main_damage_element, self.main_damage, self.piercing_damage)
-
-
-
 class Summon:
     # 召唤物基本类
     id: int
@@ -121,7 +61,7 @@ class Summon:
 
     
 
-class CharacterSkill(Settle):
+class CharacterSkill:
     # 角色技能基本类
     id: int
     name: str
@@ -147,6 +87,8 @@ class CharacterSkill(Settle):
     def on_call(self, game: GeniusGame):
         game.manager.invoke('before_skill', game)
 
+        # TODO: 消耗骰子
+        # TODO: 消耗能量
         # TODO: 判断技能是否有伤害
         # 生成伤害
         game.current_damage = Damage.create_damage(self.damage_type, self.main_damage_element, self.main_damage, self.piercing_damage)
@@ -156,6 +98,12 @@ class CharacterSkill(Settle):
 
         # 伤害执行
         game.current_damage.execute()
+
+        # 治疗执行
+
+        # 召唤物/状态生成
+
+        # TODO: 获得能量
 
         game.manager.invoke('after_skill', game)
 
