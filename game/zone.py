@@ -4,6 +4,7 @@ from utils import *
 from copy import deepcopy
 
 if TYPE_CHECKING:
+    from entity.entity import Entity
     from card.action.base import ActionCard
     from card.character.base import CharacterCard
     from card.action import WeaponCard
@@ -69,7 +70,7 @@ class FourZone:
         召唤物区和支援区的区域
     '''
     def __init__(self) -> None:
-        self.space = [None, None, None, None]
+        self.space: List[Entity] = [None, None, None, None]
 
     def destroy(self, idx):
         assert idx>=0 and idx<4
@@ -102,9 +103,9 @@ class CharacterZone:
         self.max_hp = self.hp
 
 class ActiveZone:
-    def __init__(self, active_idx, character_list) -> None:
+    def __init__(self, character_list) -> None:
         self.number_of_characters = len(character_list)
-        self.active_idx = active_idx
+        self.active_idx: int = -1
         self.character_list: List[CharacterZone] = self.generate_character_zone(character_list)
         self.summons_zone: FourZone = FourZone()
         self.support_zone: FourZone = FourZone()
