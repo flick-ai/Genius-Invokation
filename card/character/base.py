@@ -1,7 +1,9 @@
 from utils import *
-from typing import List
-from game.game import GeniusGame
-from game.action import Action
+from typing import List, TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from game.game import GeniusGame
+    from game.action import Action
 
 
 class Damage:
@@ -143,14 +145,29 @@ class CharacterSkill(Settle):
         pass
 
     def on_call(self, game: GeniusGame):
-        
-        action = game.current_action
-        # 消耗骰子
-        # 降序排列以便于按索引pop
-        for dice_index in sorted(action.dice, reverse=True):
-            game.players[game.active_player].dice_zone.pop(dice_index)
+        game.manager.invoke('before_skill', game)
 
-        damage = Damage(self.damage_type, self.main_damage_element, self.main_damage, self.piercing_damage)
+        # TODO: 判断技能是否有伤害
+        # 生成伤害
+        game.current_damage = Damage.create_damage(self.damage_type, self.main_damage_element, self.main_damage, self.piercing_damage)
+
+        # 伤害计算
+        game.manager.invoke('on_damage', game)
+
+        # 伤害执行
+        game.current_damage.execute()
+
+        game.manager.invoke('after_skill', game)
+
+    # def on_call(self, game: GeniusGame):
+        
+    #     action = game.current_action
+    #     # 消耗骰子
+    #     # 降序排列以便于按索引pop
+    #     for dice_index in sorted(action.dice, reverse=True):
+    #         game.players[game.active_player].dice_zone.pop(dice_index)
+
+    #     damage = Damage(self.damage_type, self.main_damage_element, self.main_damage, self.piercing_damage)
         
 class CharacterCard:
     # 角色卡片基本类

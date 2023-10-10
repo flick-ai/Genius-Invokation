@@ -61,6 +61,9 @@ class Fischl(CharacterCard):
         ]
         energy_cost: int = 0
         energy_gain: int = 1
+
+        def on_call(self, game: GeniusGame):
+            pass
        
         # @classmethod
         # def on_call(cls, game: GeniusGame):
