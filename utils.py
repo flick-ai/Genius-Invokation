@@ -119,7 +119,19 @@ class ZoneType(Enum):
     ACTIVE_ZONE = 1
     SUMMON_ZONE = 2
     SUPPORT_ZONE = 3
-    
+
+class EventType(Enum):
+    BEGIN_ACTION_PHASE = 0
+    CALCULATE_DAMAGE = 1
+    CALCULATE_DICE = 2
+    BEFORE_CHANGE_CHARACTER = 3
+    AFTER_CHANGE_CHARACTER = 4
+    AFTER_USE_SKILL = 5
+    AFTER_TAKES_DMG = 6
+    AFTER_REACTION = 7
+    AFTER_PLAY_CARD = 8
+    END_PHASE = 9
+
 DiceToElement = {
     DiceType(i): ElementType(i) for i in range(7)
 }
