@@ -9,7 +9,7 @@ if TYPE_CHECKING:
     from entity.support import Support
     from card.action.base import ActionCard
     from entity.character import Character
-    from card.action import WeaponCard
+    from card.action import WeaponCard, ArtifactCard
 
 class DiceZone:
     '''
@@ -116,7 +116,7 @@ class CharacterZone:
     def __init__(self, name) -> None:
         self.character_card: Character = eval(name)
         self.weapon_card: WeaponCard
-        self.artifact_card: A
+        self.artifact_card: ArtifactCard
         self.talent_card: None
 
         self.is_active: bool = False

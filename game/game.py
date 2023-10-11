@@ -26,6 +26,10 @@ class GeniusGame:
         self.manager = EventManager()
         self.current_action: Action
         self.current_damage: Damage
+
+        self.is_change_player: bool
+        self.is_quick_change: bool
+        self.change_num: int
     
     def reset(self):
         pass
