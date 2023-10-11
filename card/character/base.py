@@ -12,7 +12,9 @@ if TYPE_CHECKING:
     from game.action import Action
     from event.events import ListenerNode
     from entity.character import CharacterCard
+    from entity.status import Status
 
+    
 class CharacterSkill:
     # 角色技能基本类
     id: int
@@ -37,6 +39,20 @@ class CharacterSkill:
         self.from_character: CharacterCard = from_character
     
     def generate_summon(self, game: GeniusGame):
+        pass
+
+    def calculate_dice_request(self, game: GeniusGame):
+        # Equipment, Status, Talent(Yae Miko for e.g.) may save dice.
+        pass
+
+    def resolve_damage(self, game: GeniusGame, is_plunging_attack: bool=False, is_charged_attack: bool=False):
+        Damage.resolve_damage(game, self.damage_type, self.main_damage_element, 
+                              self.main_damage, self.piercing_damage, 
+                              # TODO: 可能需要改一下调用的接口
+                              self.from_character, get_opponent_active_character(game),
+                              is_plunging_attack, is_charged_attack)
+
+    def add_status(self, game: GeniusGame, status: Status):
         pass
 
     def on_call(self, game: GeniusGame):
@@ -72,7 +88,7 @@ class ElementalSkill(CharacterSkill):
     def on_call(self, game: GeniusGame):
 
         game.manager.invoke('before_skill', game)
-
+        # TODO: Prepares for another Elemental Skill
         # TODO: 消耗骰子
         # TODO: 判断技能是否有伤害
         # 伤害执行
@@ -112,7 +128,7 @@ class ElementalBurst(CharacterSkill):
         # 召唤物/状态生成
         self.generate_summon(game)
         
-        game.manager.invoke('after_skill', game)
+        game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 
 

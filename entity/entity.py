@@ -5,10 +5,10 @@ if TYPE_CHECKING:
     from game.action import Action
     from event.events import ListenerNode
     from game.player import GeniusPlayer
-
+    from entity.character import CharacterCard
 
 class Entity:
-    def __init__(self, game: GeniusGame, from_player: GeniusPlayer, from_character = None):
+    def __init__(self, game: GeniusGame, from_player: GeniusPlayer, from_character: "CharacterCard"= None):
         self.entity_type: ZoneType
         self.listeners: List(Tuple(EventType, ZoneType, function)) = [] # list of (event_type, event_zone, action) tuples
         self.registered_events: list(ListenerNode) = []
@@ -24,6 +24,6 @@ class Entity:
         for event_name, event_type, action in self.listeners:
             self.registered_events.append(game.manager.listen(event_name, event_type, action))
 
-    def on_distroy(self):
+    def on_destroy(self):
         for action in self.registered_events:
             action.remove()

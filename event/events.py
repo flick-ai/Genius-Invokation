@@ -2,7 +2,7 @@ from card.character.base import Damage
 from game.game import GeniusGame
 from collections import defaultdict
 from typing import List
-
+from utils import *
 
 
 
@@ -26,17 +26,17 @@ class ListenerNode:
 class Event:
     def __init__(self, name: str) -> None:
         self.name: str = name
-        self.event_types = [
-            'equipment', 
-            'artifact',
-            'support',
-            'summon',
-            'active',
-            'character',
-        ]
+        # self.event_types = [
+        #     'equipment', 
+        #     'artifact',
+        #     'support',
+        #     'summon',
+        #     'active',
+        #     'character',
+        # ]
         self.listeners: dict(ListenerList) = {}
-        for event_type in self.event_types:
-            self.listeners[event_type] = ListenerList([])
+        for zone_type in ZoneType:
+            self.listeners[zone_type] = ListenerList([])
 
 
 class ListenerList(object):
@@ -71,20 +71,19 @@ class EventManager:
     def __init__(self) -> None:
         self.events = defaultdict(Event)
     
-    def listen(self, event_name: str, event_type: str, action: function) -> ListenerNode:
+    def listen(self, event_type: EventType, zone_type: ZoneType, action: function) -> ListenerNode:
         '''
         监听事件
-        event_name: 事件名称
-        event_type: 事件类型，即zone类型
+        event_type: 事件类型
+        zone_type: zone类型
         action: 监听动作
         '''
-        return self.events[event_name][event_type].append_action(action)
-    
-    def invoke(self, event_name, game: GeniusGame) -> None:
-        for event_type in self.events[event_name].event_types:
-            self.events[event_name].listeners[event_type](game)
+        return self.events[event_type][zone_type].append_action(action)
 
-s
+    def invoke(self, event_type, game: GeniusGame) -> None:
+        for zone_type in ZoneType:
+            self.events[event_type][zone_type](game)
+
 
 
 
