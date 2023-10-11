@@ -99,7 +99,7 @@ class CharacterZone:
         self.power: int = 0
         self.hp: int 
         self.max_hp: int
-        self.element_attach: List = []
+        self.elemental_application: List = []
 
     def on_game_start(self):
         self.power, self.hp, self.special_state = self.character_card.on_game_start()
