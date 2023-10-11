@@ -46,7 +46,7 @@ class Damage:
         game.current_damage.after_damage(game)
     
     def after_damage(self, game: GeniusGame):
-    #     # TODO: 扩散伤害
+    #     # 扩散伤害
         if self.reaction is Swirl:
             Damage.resolve_damage(game, SkillType.OTHER, self.swirl_crystalize_type, 1, 0)
     #     pass
