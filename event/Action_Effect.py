@@ -17,7 +17,7 @@ class GainEnergyForActive(Action):
         self.energy_gain = energy_gain
     
     def __call__(self, game: GeniusGame) -> None:
-        ix = game.players[game.active_player].active_zone.active_idx
-        target = game.players[game.active_player].active_zone.character_list[ix]
+        ix = game.players[game.active_player].active_idx
+        target = game.players[game.active_player].character_list[ix]
         cur_power = target.power + self.energy_gain
         target.power = cur_power if cur_power <= target.max_power else target.max_power

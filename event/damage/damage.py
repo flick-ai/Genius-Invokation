@@ -82,7 +82,7 @@ class Damage:
         '''
         damage = game.current_damage
         targetplay_id = 1 - game.active_player
-        defenderActiveZone = game.players[targetplay_id].active_zone
+        defenderActiveZone = game.players[targetplay_id].team_combat_status
         Reaction = None
         Swirl_Crystallize_type = None
         target_index = defenderActiveZone.active_idx + damage.target_idx_bias

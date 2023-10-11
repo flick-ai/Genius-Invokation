@@ -12,72 +12,73 @@ def Frozen(game:GeniusGame, player_id: int, target_idx: int):
     '''
     game.players[player_id].active_zone.character_list[target_idx]
     '''
-    game.players[player_id].active_zone.character_list[target_idx].is_frozen = True
-    game.players[player_id].active_zone.character_list[target_idx].elemental_application.pop(0)
+    game.players[player_id].character_list[target_idx].is_frozen = True
+    game.players[player_id].character_list[target_idx].elemental_application.pop(0)
 
 
 def Melt(game:GeniusGame, player_id: int, target_idx: int):
     '''
     game.players[player_id].active_zone.character_list[target_idx] .
     '''
-    game.players[player_id].active_zone.character_list[target_idx].elemental_application.pop(0)
+    game.players[player_id].character_list[target_idx].elemental_application.pop(0)
 
 def Vaporize(game:GeniusGame, player_id: int, target_idx: int):
     '''
     game.players[player_id].active_zone.character_list[target_idx] .
     '''
-    game.players[player_id].active_zone.character_list[target_idx].elemental_application.pop(0)
+    game.players[player_id].character_list[target_idx].elemental_application.pop(0)
 
 def Superconduct(game:GeniusGame, player_id: int, target_idx: int):
     '''
     game.players[player_id].active_zone.character_list[target_idx] .
     '''
-    game.players[player_id].active_zone.character_list[target_idx].elemental_application.pop(0)
+    game.players[player_id].character_list[target_idx].elemental_application.pop(0)
     
 def Electro_Charged(game:GeniusGame, player_id: int, target_idx: int):
     '''
     game.players[player_id].active_zone.character_list[target_idx] .
     '''
-    game.players[player_id].active_zone.character_list[target_idx].elemental_application.pop(0)
+    game.players[player_id].character_list[target_idx].elemental_application.pop(0)
     
 def Bloom(game:GeniusGame, player_id: int, target_idx: int):
     '''
     game.players[player_id].active_zone.character_list[target_idx] .
     '''
-    game.players[player_id].active_zone.character_list[target_idx].elemental_application.pop(0)
-    game.players[1-player_id].active_zone.add_state_entity(Dendro_Core())
+    game.players[player_id].character_list[target_idx].elemental_application.pop(0)
+    game.players[1-player_id].team_combat_status.add_entity(Dendro_Core())
+
 def Overloaded(game:GeniusGame, player_id: int, target_idx: int):
     '''
     game.players[player_id].active_zone.character_list[target_idx] .
     '''
-    game.players[player_id].active_zone.character_list[target_idx].elemental_application.pop(0)
-    game.players[player_id].active_zone.change_to_next_character()
+    game.players[player_id].character_list[target_idx].elemental_application.pop(0)
+    game.players[player_id].change_to_next_character()
 
 def Burning(game:GeniusGame, player_id: int, target_idx: int):
     '''
     game.players[player_id].active_zone.character_list[target_idx] .
     '''
-    game.players[player_id].active_zone.character_list[target_idx].elemental_application.pop(0)
-    game.players[1-player_id].active_zone.summons_zone.add_entity(Burning())
+    game.players[player_id].character_list[target_idx].elemental_application.pop(0)
+    game.players[1-player_id].summons_zone.add_entity(Burning())
 
 def Quicken(game:GeniusGame, player_id: int, target_idx: int):
     '''
     game.players[player_id].active_zone.character_list[target_idx] .
     '''
-    game.players[player_id].active_zone.character_list[target_idx].elemental_application.pop(0)
-    game.players[1-player_id].active_zone.add_state_entity(Catalyzing_Feild())
+    game.players[player_id].character_list[target_idx].elemental_application.pop(0)
+    game.players[1-player_id].team_combat_status.add_entity(Catalyzing_Feild())
 
 
 def Swirl(game:GeniusGame, player_id: int, target_idx: int):
     '''
     game.players[player_id].active_zone.character_list[target_idx] .
     '''
-    game.players[player_id].active_zone.character_list[target_idx].elemental_application.pop(0)
+    game.players[player_id].character_list[target_idx].elemental_application.pop(0)
 
 
 def Crystallize(game:GeniusGame, player_id: int, target_idx: int):
     '''
     game.players[player_id].active_zone.character_list[target_idx] .
     '''
-    game.players[player_id].active_zone.character_list[target_idx].elemental_application.pop(0)
-    game.players[player_id].active_zone.add_state_entity(Crystallize_Shield())
+    game.players[player_id].character_list[target_idx].elemental_application.pop(0)
+    game.players[player_id].team_combat_status.add_entity(Crystallize_Shield())

@@ -1,1 +1,1 @@
-from .base import EquipmentCard
+from .base import TalentCard

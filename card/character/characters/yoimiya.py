@@ -82,7 +82,7 @@ class Niwabi_FireDance(ElementalSkill):
     def on_call(self, game: GeniusGame):
         # TODO: dice cost calculation. #Invoke(CALCULATE_DICE)
         # self.from_character.from_player.
-        game.players[game.active_player].active_zone.character_list[game.players[game.active_player].active_zone.active_idx].add_status(Niwabi_Enshou(game, game.players[game.active_player], game.players[game.active_player].active_zone.character_list[0]))
+        game.players[game.active_player].character_list[game.players[game.active_player].active_idx].add_entity(Niwabi_Enshou(game, game.players[game.active_player], game.players[game.active_player].character_list[0]))
         
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
@@ -115,7 +115,7 @@ class Ryuukin_Saxifrage(ElementalBurst):
     
     def on_call(self, game: GeniusGame):
         super().on_call(game)
-        game.players[game.active_player].active_zone.character_list[game.players[game.active_player].active_zone.active_idx].add_status(Aurous_Blaze(game, game.players[game.active_player], game.players[game.active_player].active_zone.character_list[0]))
+        game.players[game.active_player].team_combat_status.character_list[game.players[game.active_player].team_combat_status.active_idx].add_status(Aurous_Blaze(game, game.players[game.active_player], game.players[game.active_player].team_combat_status.character_list[0]))
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Yoimiya(Character):

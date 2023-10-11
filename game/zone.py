@@ -7,9 +7,10 @@ if TYPE_CHECKING:
     from entity.entity import Entity
     from entity.summon import Summon
     from entity.support import Support
+    from entity.status import Status, Shield
     from card.action.base import ActionCard
     from entity.character import Character
-    from card.action import WeaponCard, ArtifactCard
+    from card.action import WeaponCard, ArtifactCard, TalentCard
 
 class DiceZone:
     '''
@@ -73,6 +74,9 @@ class CardZone:
             self.card.insert(idx, card)
             self.card_num = len(self.card)
 
+    def num(self):
+        return len(self.card)
+
 class SummonZone:
     '''
         召唤物区
@@ -85,13 +89,18 @@ class SummonZone:
         for idx, exist in enumerate(self.space):
             if entity.name == exist.name:
                 self.space.pop(idx)
+                return
 
     def add_entity(self, entity: Summon):
         for idx, exist in enumerate(self.space):
             if entity.name == exist.name:
                 self.space[idx].update()
+                return
         if len(self.space) < self.max_num:
             self.space.append(entity)
+
+    def num(self):
+        return len(self.space)
 
 class SupportZone:
     '''
@@ -104,111 +113,89 @@ class SupportZone:
         for idx, exist in enumerate(self.space):
             if entity.name == exist.name:
                 self.space.pop(idx)
+                return
 
     def add_entity(self, entity, idx):
         if len(self.space) == self.max_num:
             # 如果支援区已经满了
             self.space[idx].destroy()
         self.space.append(entity)
+    
+    def num(self):
+        return len(self.space)
 
 
 class CharacterZone:
+    '''
+        单个角色状态区, 包括角色牌、装备区、角色状态
+    '''
     def __init__(self, name) -> None:
-        self.character_card: Character = eval(name)
+        self.character: Character = eval(name)
+        self.character.init_state()
         self.weapon_card: WeaponCard
         self.artifact_card: ArtifactCard
-        self.talent_card: None
+        self.talent_card: TalentCard
 
         self.is_active: bool = False
         self.is_alive: bool = True
-        self.is_satisfied: bool = False
-        self.is_frozen: bool = False
         self.special_state: List = []
-        self.shield_list: List = []
-        self.power: int = 0
-        self.hp: int 
-        self.max_hp: int
         self.elemental_application: List = []
-
-    def on_game_start(self):
-        self.power, self.hp, self.special_state = self.character_card.on_game_start()
-        self.max_hp = self.hp
 
     def heal(self, heal):
         self.hp += heal
         if self.hp > self.max_hp:
             self.hp = self.max_hp
 
-    def add_status(self, status: Status):
+    def add_entity(self, entity: Status):
         pass
+
+    def skill(self, skill, game: GeniusGame):
+        self.character.characacter_skill_list[skill].on_call(game)
 
 class ActiveZone:
-    def __init__(self, character_list) -> None:
-        self.number_of_characters = len(character_list)
-        self.active_idx: int = -1
-        self.character_list: List[CharacterZone] = self.generate_character_zone(character_list)
-        self.summons_zone: SummonZone = SummonZone()
-        self.support_zone: SupportZone = SupportZone()
-        self.is_after_change_character = True
-        self.states_list = []
+    '''
+        全队战斗状态区
+    '''
+    def __init__(self) -> None:
+        self.space: List[Status] = []
+        self.shield: List[Shield] = []
 
-    def add_state_entity(self, entity):
-        pass
+    def destroy(self, entity):
+        for idx, exist in enumerate(self.space):
+            if entity.name == exist.name:
+                self.space.pop(idx)
 
-    def use_skill(self, Game, action):
-        self.character_list[self.active_idx].use_skill(Game)
-        self.is_after_change_character = False
-    
-    def generate_character_zone(self, character_list):
-        character_zone_list: List[Character] = []
-        for name in character_list:
-            character_zone_list.append(CharacterZone(name))
-        return character_zone_list
-    
-    def change_character(self, Game, action):
-        ##### TODO: 一个需要判断如何切人的接口
-        ix: int
-        #####
-        self.character_list[ix].on_switched(Game)
-        ##### TODO: 一个需要判断这次切人是否是快速行动的接口
-        is_quick_action: bool
-        #####
-        return is_quick_action
+    def add_entity(self, entity):
+        if type(entity) == Shield:
+            for idx, exist in enumerate(self.space):
+                if entity.name == exist.name:
+                    self.shield[idx].update()
+                    return
+            self.shield.append(entity)
+        else:
+            for idx, exist in enumerate(self.space):
+                if entity.name == exist.name:
+                    self.space[idx].update()
+            self.space.append(entity)
 
-    def change_to_previous_character(self):
-        ix = self.active_idx-1
-        if ix < 0:
-            ix = self.number_of_characters-1
-        while self.character_list[ix].is_alive == False:
-            ix -= 1
-            if ix < 0:
-                ix = self.number_of_characters-1
+class HandZone:
+    '''
+        手牌区
+    '''
+    def __init__(self) -> None:
+        self.card = []
 
-        self.character_list[self.active_idx].is_active = False
-        self.active_idx = ix
-        self.character_list[self.active_idx].is_active = True
-        self.is_after_change_character = True
-        return ix
-    
-    def change_to_next_character(self):
-        ix = self.active_idx+1
-        if ix >= self.number_of_characters:
-            ix = 0
-        while self.character_list[ix].is_alive == False:
-            ix += 1
-            if ix >= self.number_of_characters:
-                ix = 0
-        self.character_list[self.active_idx].is_active = False
-        self.active_idx = ix
-        self.character_list[self.active_idx].is_active = True
-        self.is_after_change_character = True
-        return ix
-        
-    def change_to_id(self, id):
-        assert id >= 0 and id < self.number_of_characters
-        assert self.character_list[id].is_alive == True
-        self.character_list[self.active_idx].is_active = False
-        self.active_idx = id
-        self.character_list[self.active_idx].is_active = True
-        self.is_after_change_character = True
-        return id
+    def remove(self, idx):
+        self.card.pop(idx)
+
+    def add(self, cards):
+        for card in cards:
+            if len(self.card)>= MAX_HANDCARD:
+                break
+            self.hand_zone.append(card)
+            sorted(self.hand_zone, key=lambda card: card.id)
+
+    def num(self):
+        return len(self.card)
+
+
