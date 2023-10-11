@@ -10,7 +10,7 @@ class ActionCard:
     cost_type: CostType
     card_type: ActionCardType
 
-    def effect(self, game: GeniusGame) -> None:
+    def on_played(self, game: GeniusGame) -> None:
         '''
             效果执行函数
         '''

@@ -3,6 +3,7 @@ from enum import Enum
 DICENUM = 8
 MAX_HANDCARD = 10
 MAX_DICE = 16
+MAX_ROUND = 15
 
 class CountryType(Enum):
     MONDSTADT = 0 # 蒙德

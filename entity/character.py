@@ -8,8 +8,8 @@ if TYPE_CHECKING:
     from game.player import GeniusPlayer
     from event.events import ListenerNode
 
-class CharacterCard(Entity):
-    # 角色卡片基本类
+class Character(Entity):
+    # 角色基本类
     id: int
     name: str
     element: ElementType

@@ -11,7 +11,7 @@ if TYPE_CHECKING:
     from game.game import GeniusGame
     from game.action import Action
     from event.events import ListenerNode
-    from entity.character import CharacterCard
+    from entity.character import Character
     from entity.status import Status
 
     
@@ -35,8 +35,8 @@ class CharacterSkill:
     energy_cost: int
     energy_gain: int
 
-    def __init__(self, from_character: CharacterCard) -> None:
-        self.from_character: CharacterCard = from_character
+    def __init__(self, from_character: Character) -> None:
+        self.from_character: Character = from_character
     
     def generate_summon(self, game: GeniusGame):
         pass

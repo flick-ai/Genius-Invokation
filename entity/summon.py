@@ -19,12 +19,15 @@ class Summon(Entity):
     skills: list
 
     def __init__(self, game: GeniusGame, from_player: GeniusPlayer, from_character=None):
-        super().__init__(game, from_player, from_character) # 此处是否需要区分青蛙和花鼠？
+        super().__init__(game, from_player, from_character)
         self.current_usage: int = self.usage
 
     def on_destroy(self):
         super().on_destroy()
-        # TODO: 调用移除召唤物的接口
+        self.from_player.summons_zone.destroy(self)
+    
+    def update(self):
+        pass
 
 class Burning(Summon):
     # Name Maybe Wrong.

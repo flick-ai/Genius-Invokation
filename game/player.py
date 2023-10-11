@@ -1,6 +1,6 @@
 from utils import *
 from typing import List, TYPE_CHECKING
-from .zone import CardZone, ActiveZone, FourZone
+from .zone import CardZone, ActiveZone, SummonZone, SupportZone
 import numpy as np
 
 if TYPE_CHECKING:
@@ -19,8 +19,8 @@ class GeniusPlayer:
 
         # 环境中的基本状态
         self.dice_zone: List = []
-        self.support_zone: FourZone
-        self.summons_zone: FourZone
+        self.support_zone: SupportZone
+        self.summons_zone: SummonZone
         self.active_zone: ActiveZone
 
         self.is_pass = False
