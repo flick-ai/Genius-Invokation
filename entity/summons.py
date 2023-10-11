@@ -1,6 +1,8 @@
 from utils import *
+from entity.entity import Entity
 
-class Summon:
+
+class Summon(Entity):
     # 召唤物基本类
     id: int
     name: str

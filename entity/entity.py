@@ -6,16 +6,17 @@ if TYPE_CHECKING:
     from event.events import EventNode
 
 
+
 class Entity:
+    id: int
     def __init__(self):
         self.entity_type: ZoneType
-        self.events: dict[str, EventNode] = {}
+        self.events = {}
         self.registered_events: list(EventNode) = []
 
     def register_all_events(self, game: GeniusGame):
         for event in self.events:
-            self.registered_events.append(game.manager.register(event, self.events[event]))
-        game.manager.register('before_skill', 'on_damage', 'after_skill')
+            self.registered_events.append(game.manager.register(event, self.entity_type, self.events[event]))
 
     def on_distroy(self):
         for event in self.registered_events:

@@ -62,8 +62,8 @@ class EventManager:
     def __init__(self) -> None:
         self.events = defaultdict(EventListDict)
     
-    def register(self, event_name, event_type, action) -> EventNode:
-        return self.events[event_name][event_type].append(action)
+    def register(self, event_type, event_zone, action) -> EventNode:
+        return self.events[event_type][event_zone].append(action)
     
     def invoke(self, event_name, game: GeniusGame) -> None:
         for event_type in self.events[event_name]:
