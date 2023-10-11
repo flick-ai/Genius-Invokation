@@ -35,9 +35,10 @@ class Damage:
         Damage.after_damage(game)
     
     def after_damage(self, game: GeniusGame):
-    #     # TODO: 扩散伤害
+    #     # 扩散伤害
         if self.reaction is Swirl:
-            Damage.resove_damage(game, SkillType.OTHER, self.swirl_crystalize_type, 1, 0)
+            #TODO: THE UTILIZATION OF RESOVE_DAMAGE IS WRONG!
+            self.resolve_damage(game, SkillType.OTHER, self.swirl_crystalize_type, 1, 0)
     #     pass
     def execute_damage(self, game: GeniusGame):
         # 打出伤害
