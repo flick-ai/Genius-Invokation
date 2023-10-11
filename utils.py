@@ -66,7 +66,8 @@ class SkillType(Enum):
     ELEMENTAL_SKILL = 1
     ELEMENTAl_BURST = 2
     PASSIVE_SKILL = 3
-    OTHER = 4
+    SUMMON = 4
+    OTHER = 5
 
 class GamePhase(Enum):
     SET_CARD = 0
@@ -122,7 +123,7 @@ class ZoneType(Enum):
 
 class EventType(Enum):
     BEGIN_ACTION_PHASE = 0
-    CALCULATE_DAMAGE = 1
+    DAMAGE_ADD = 1
     CALCULATE_DICE = 2
     BEFORE_CHANGE_CHARACTER = 3
     AFTER_CHANGE_CHARACTER = 4
@@ -130,6 +131,10 @@ class EventType(Enum):
     AFTER_TAKES_DMG = 6
     AFTER_PLAY_CARD = 7
     END_PHASE = 8
+    DAMAGE_MULTIPLY = 9
+
+
+
 
 class ElementalReactionType(Enum):
     Frozen = 0

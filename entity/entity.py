@@ -7,10 +7,15 @@ if TYPE_CHECKING:
 
 
 class Entity:
-    def __init__(self):
+    def __init__(self, game: GeniusGame):
         self.entity_type: ZoneType
         self.listeners: List(Tuple(str, str, function)) = [] # list of (event_name, event_type, action) tuples
         self.registered_events: list(ListenerNode) = []
+        self.update_listener_list(game)
+        self.listen_all(game)
+
+    def update_listener_list(self, game: GeniusGame):
+        pass
 
     def listen_all(self, game: GeniusGame):
         for event_name, event_type, action in self.listeners:
