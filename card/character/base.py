@@ -6,17 +6,18 @@ from event.heal import Heal
 from entity.entity import Entity
 from utils import GeniusGame
 
+
 if TYPE_CHECKING:
     from game.game import GeniusGame
     from game.action import Action
     from event.events import ListenerNode
+    from entity.character import CharacterCard
 
 class CharacterSkill:
     # 角色技能基本类
     id: int
     name: str
     type: SkillType
-    # character: CharacterCard
 
     # damage
     damage_type: SkillType
@@ -32,23 +33,16 @@ class CharacterSkill:
     energy_cost: int
     energy_gain: int
 
-    def __init__(self) -> None:
+    def __init__(self, from_character: CharacterCard) -> None:
+        self.from_character: CharacterCard = from_character
+    
+    def generate_summon(self, game: GeniusGame):
         pass
 
     def on_call(self, game: GeniusGame):
         pass
 
-    # def on_call(self, game: GeniusGame):
-        
-    #     action = game.current_action
-    #     # 消耗骰子
-    #     # 降序排列以便于按索引pop
-    #     for dice_index in sorted(action.dice, reverse=True):
-    #         game.players[game.active_player].dice_zone.pop(dice_index)
-
-    #     damage = Damage(self.damage_type, self.main_damage_element, self.main_damage, self.piercing_damage)
-
-class NormalAttackSkill(CharacterSkill):
+class NormalAttack(CharacterSkill):
 
     def on_call(self, game: GeniusGame):
 
@@ -60,66 +54,65 @@ class NormalAttackSkill(CharacterSkill):
         # TODO: 消耗骰子
         # TODO: 判断技能是否有伤害
         # 伤害执行
-        Damage.resolve_damage(game, self.damage_type, self.main_damage_element, self.main_damage, self.piercing_damage, is_plunging_attack, is_charged_attack)
+        Damage.resolve_damage(game, self.damage_type, self.main_damage_element, 
+                              self.main_damage, self.piercing_damage, 
+                              # TODO: 可能需要改一下调用的接口
+                              self.from_character, get_opponent_active_character(game),
+                              is_plunging_attack, is_charged_attack)
 
         # 治疗执行
 
-        # 召唤物/状态生成
-
         # TODO: 获得能量
-        # 大概吧，叹气，不确定是不是“active”类中，我觉得应该是的
-        # TODO: 这里不需要增加事件监听，请直接执行函数
-        # game.manager.listen('after_skill', 'active', GainEnergyForActive(self.energy_gain))
         
         game.manager.invoke('after_skill', game)
 
 
+class ElementalSkill(CharacterSkill):
 
+    def on_call(self, game: GeniusGame):
 
+        game.manager.invoke('before_skill', game)
 
+        # TODO: 消耗骰子
+        # TODO: 判断技能是否有伤害
+        # 伤害执行
+        Damage.resolve_damage(game, self.damage_type, self.main_damage_element, 
+                              self.main_damage, self.piercing_damage,
+                              # TODO: 可能需要改一下调用的接口
+                              self.from_character, get_opponent_active_character(game),)
 
-class CharacterCard(Entity):
-    # 角色卡片基本类
-    id: int
-    name: str
-    element: ElementType
-    weapon_type: WeaponType
-    country: CountryType
-    health_point: int
-    max_health_point: int
-    skills: {'Normal Attack':CharacterSkill, 'Elemental Skill':CharacterSkill, 'Elemental Burst':CharacterSkill, 'Passive Skill':CharacterSkill}
-    power: int
-    max_power: int
+        # 治疗执行
 
-    init_state: list() # 初始状态
+        # 召唤物/状态生成
+        self.generate_summon(game)
 
-    def __init__(self, game: GeniusGame):
-        super().__init__(game)
-
-
-    def on_game_start(self):
-        '''
-            角色区初始化
-            讨债人被动 潜行
-            雷电将军被动 诸愿百眼之轮
-            无相雷、丘丘等上限修改
-        '''
-        return self.power, self.health_point, self.init_state
+        # TODO: 获得能量
         
+        game.manager.invoke('after_skill', game)
 
-    def on_round_start(self, game: GeniusGame):
-        '''
-            预留
-        '''
-        pass
 
-    def on_switched(self, game: GeniusGame):
-        '''
-            passive skill 被动技能 神里绫华
-            
-        '''
-        pass
+class ElementalBurst(CharacterSkill):
 
+    def on_call(self, game: GeniusGame):
+
+        game.manager.invoke('before_skill', game)
+
+        # TODO: 消耗骰子
+        # TODO: 消耗能量
+
+        # TODO: 判断技能是否有伤害
+        # 伤害执行
+        Damage.resolve_damage(game, self.damage_type, self.main_damage_element, 
+                              self.main_damage, self.piercing_damage,
+                              # TODO: 可能需要改一下调用的接口
+                              self.from_character, get_opponent_active_character(game),)
+
+        # 治疗执行
+
+        # 召唤物/状态生成
+        self.generate_summon(game)
+        
+        game.manager.invoke('after_skill', game)
 
 
 

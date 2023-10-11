@@ -6,7 +6,7 @@ from copy import deepcopy
 if TYPE_CHECKING:
     from entity.entity import Entity
     from card.action.base import ActionCard
-    from card.character.base import CharacterCard
+    from entity.character import CharacterCard
     from card.action import WeaponCard
 
 
