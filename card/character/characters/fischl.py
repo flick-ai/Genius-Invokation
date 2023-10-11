@@ -1,5 +1,8 @@
 from card.character.base import *
 
+from entity.summon import Summon
+from event.damage import Damage
+
 
 class Oz(Summon):
     '''奥兹'''
@@ -10,19 +13,16 @@ class Oz(Summon):
     max_usage: int = 2
     # skills =
 
+    def on_phase_end(self, game: GeniusGame):
+        '''
+            结束阶段: 造成1点雷元素伤害
+        '''
+        Damage.resolve_damage(game, SkillType.SUMMON, ElementType.ELECTRO, 1, 0, False, False)
+
     def __init__(self) -> None:
         super().__init__()
-        self.cur_usage = self.usage
 
-    class SummonSkill:
-        # damage
-        damage_type: SkillType
-        main_damage_element: ElementType
-        main_damage: int
-        piercing_damage: int
-
-        # heal
-        heal: int
+    
 
 class Fischl(CharacterCard):
     '''菲谢尔'''

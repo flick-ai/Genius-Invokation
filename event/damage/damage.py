@@ -4,14 +4,20 @@ from game.game import GeniusGame
 from event.Elemental_Reaction import *
 class Damage:
     # 伤害基本类
-    def __init__(self, damage_type: SkillType, main_damage_element: ElementType, main_damage: int, piercing_damage: int, is_plunging_attack: bool=False, is_charged_attack: bool=False) -> None:
+    def __init__(self, damage_type: SkillType, main_damage_element: ElementType, 
+                 main_damage: int, piercing_damage: int, 
+                 damage_from: Entity, damage_to: Entity,
+                 is_plunging_attack: bool=False, is_charged_attack: bool=False) -> None:
         self.damage_type: SkillType = damage_type
         self.main_damage_element: ElementType = main_damage_element
         self.main_damage: int = main_damage
         self.piercing_damage: int = piercing_damage
 
-        self.is_plunging_attack: bool
-        self.is_charged_attack: bool
+        self.damage_from: Entity = damage_from
+        self.damage_to: Entity = damage_to
+
+        self.is_plunging_attack: bool = is_plunging_attack
+        self.is_charged_attack: bool = is_charged_attack
         self.reaction: ElementalReactionType = None
         self.swirl_crystalize_type: ElementType = None
         self.target_idx_bias: int = 0  # The target index is active_idx + target_idx_bias, which therefore, can be defaultly 0.
@@ -21,24 +27,28 @@ class Damage:
     def create_damage(cls, game: GeniusGame,
                       damage_type: SkillType, main_damage_element: ElementType, 
                       main_damage: int, piercing_damage: int, 
+                      damage_from: Entity, damage_to: Entity,
                       is_plunging_attack: bool=False, is_charged_attack: bool=False):
         game.current_damage = cls(damage_type, main_damage_element, main_damage, piercing_damage, is_plunging_attack, is_charged_attack)
 
-    @staticmethod
+    # @staticmethod
     def resolve_damage(game: GeniusGame,
                     damage_type: SkillType, main_damage_element: ElementType, 
-                    main_damage: int, piercing_damage: int, 
+                    main_damage: int, piercing_damage: int,
+                    damage_from: Entity, damage_to: Entity,
                     is_plunging_attack: bool=False, is_charged_attack: bool=False):    
-        Damage.create_damage(game, damage_type, main_damage_element, main_damage, piercing_damage, is_plunging_attack, is_charged_attack)
-        Damage.cal_damage(game)
-        Damage.execute_damage(game)
-        Damage.after_damage(game)
+        Damage.create_damage(game, damage_type, main_damage_element, 
+                             main_damage, piercing_damage, 
+                             damage_from, damage_to, 
+                             is_plunging_attack, is_charged_attack)
+        game.current_damage.cal_damage(game)
+        game.current_damage.execute_damage(game)
+        game.current_damage.after_damage(game)
     
     def after_damage(self, game: GeniusGame):
     #     # 扩散伤害
         if self.reaction is Swirl:
-            #TODO: THE UTILIZATION OF RESOVE_DAMAGE IS WRONG!
-            self.resolve_damage(game, SkillType.OTHER, self.swirl_crystalize_type, 1, 0)
+            Damage.resolve_damage(game, SkillType.OTHER, self.swirl_crystalize_type, 1, 0)
     #     pass
     def execute_damage(self, game: GeniusGame):
         # 打出伤害
