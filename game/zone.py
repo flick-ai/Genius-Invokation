@@ -6,8 +6,9 @@ from copy import deepcopy
 if TYPE_CHECKING:
     from entity.entity import Entity
     from entity.summon import Summon
+    from entity.support import Support
     from card.action.base import ActionCard
-    from entity.character import CharacterCard
+    from entity.character import Character
     from card.action import WeaponCard
 
 class DiceZone:
@@ -78,15 +79,17 @@ class SummonZone:
     '''
     def __init__(self) -> None:
         self.max_num = 4
-        self.space: List[Entity] = []
+        self.space: List[Summon] = []
 
-    def destroy(self, idx):
-        self.space.pop(idx)
+    def destroy(self, entity):
+        for idx, exist in enumerate(self.space):
+            if entity.name == exist.name:
+                self.space.pop(idx)
 
     def add_entity(self, entity: Summon):
         for idx, exist in enumerate(self.space):
             if entity.name == exist.name:
-                self.space[idx] = entity
+                self.space[idx].update()
         if len(self.space) < self.max_num:
             self.space.append(entity)
 
@@ -95,23 +98,25 @@ class SupportZone:
         支援区
     '''
     def __init__(self) -> None:
-        self.space: List[Entity] = []
+        self.space: List[Support] = []
 
-    def destroy(self, idx):
-        self.space.pop(idx)
+    def destroy(self, entity: Support):
+        for idx, exist in enumerate(self.space):
+            if entity.name == exist.name:
+                self.space.pop(idx)
 
     def add_entity(self, entity, idx):
         if len(self.space) == self.max_num:
             # 如果支援区已经满了
-            self.destroy(idx)
+            self.space[idx].destroy()
         self.space.append(entity)
 
 
 class CharacterZone:
     def __init__(self, name) -> None:
-        self.character_card: CharacterCard = eval(name)
+        self.character_card: Character = eval(name)
         self.weapon_card: WeaponCard
-        self.artifact_card: None
+        self.artifact_card: A
         self.talent_card: None
 
         self.is_active: bool = False
@@ -155,7 +160,7 @@ class ActiveZone:
         self.is_after_change_character = False
     
     def generate_character_zone(self, character_list):
-        character_zone_list: List[CharacterCard] = []
+        character_zone_list: List[Character] = []
         for name in character_list:
             character_zone_list.append(CharacterZone(name))
         return character_zone_list

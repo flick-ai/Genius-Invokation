@@ -9,7 +9,7 @@ if TYPE_CHECKING:
     from event.events import ListenerNode
     from game.player import GeniusPlayer
 
-from entity.character import CharacterCard
+from entity.character import Character
 from entity.status import Status
 
 

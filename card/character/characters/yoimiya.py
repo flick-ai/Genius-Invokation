@@ -1,5 +1,5 @@
 from card.character.base import NormalAttack, ElementalSkill, ElementalBurst
-from entity.character import CharacterCard
+from entity.character import Character
 from entity.entity import Entity
 from utils import *
 from game.game import GeniusGame
@@ -43,7 +43,7 @@ class Firework_FlareUp(NormalAttack):
     energy_cost: int = 0
     energy_gain: int = 1
 
-    def __init__(self, from_character: CharacterCard):
+    def __init__(self, from_character: Character):
         super().__init__(from_character)
 
 class Niwabi_FireDance(ElementalSkill):
@@ -70,7 +70,7 @@ class Niwabi_FireDance(ElementalSkill):
     energy_cost: int = 0
     energy_gain: int = 0
 
-    def __init__(self, from_character: CharacterCard):
+    def __init__(self, from_character: Character):
         super().__init__(from_character)
 
     def on_call(self, game: GeniusGame):
@@ -103,7 +103,7 @@ class Ryuukin_Saxifrage(ElementalBurst):
     energy_cost: int = 3
     energy_gain: int = 0
 
-    def __init__(self, from_character: CharacterCard):
+    def __init__(self, from_character: Character):
         super().__init__(from_character)
     
     def on_call(self, game: GeniusGame):
@@ -111,7 +111,7 @@ class Ryuukin_Saxifrage(ElementalBurst):
         game.players[game.active_player].active_zone.character_list[game.players[game.active_player].active_zone.active_idx].add_status(Aurous_Blaze(game, game.players[game.active_player], game.players[game.active_player].active_zone.character_list[0]))
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
-class Yoimiya(CharacterCard):
+class Yoimiya(Character):
     '''宵宫'''
     id: int = 1
     name: str = 'Yoimiya'
@@ -132,7 +132,7 @@ class Yoimiya(CharacterCard):
 
 class Niwabi_Enshou(Status):
 
-    def __init__(self, game, from_player: GeniusPlayer, from_character: CharacterCard=None):
+    def __init__(self, game, from_player: GeniusPlayer, from_character: Character=None):
         super().__init__(game, from_player, from_character)
         self.usage = 2
         self.max_usage = 2
@@ -178,7 +178,7 @@ class Niwabi_Enshou(Status):
         ]
 
 class Aurous_Blaze(Status):
-    def __init__(self, game, from_player: GeniusPlayer, from_character: CharacterCard=None):
+    def __init__(self, game, from_player: GeniusPlayer, from_character: Character=None):
         super().__init__(game, from_player, from_character)
         self.usage = 2
         self.max_usage = 2

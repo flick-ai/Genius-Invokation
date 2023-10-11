@@ -1,5 +1,5 @@
 from card.character.base import NormalAttack, ElementalSkill, ElementalBurst
-from entity.character import CharacterCard
+from entity.character import Character
 from utils import *
 
 from entity.summon import Summon
@@ -150,7 +150,7 @@ class MidnightPhantasmagoria(ElementalBurst):
 
     
 
-class Fischl(CharacterCard):
+class Fischl(Character):
     '''菲谢尔'''
     id: int = 0
     name: str = 'Fischl'
