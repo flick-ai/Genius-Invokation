@@ -1,6 +1,7 @@
 from card.character.base import Damage
 from game.game import GeniusGame
 from collections import defaultdict
+from typing import List
 
 
 
@@ -39,14 +40,19 @@ class Event:
 
 
 class ListenerList(object):
-    def __init__(self, actions: list) -> None:
+    def __init__(self, actions: List(function)) -> None:
         self.head = ListenerNode(None)
         self.tail = self.head
         for action in actions:
             self.append(action)
     
-    def append(self, action) -> ListenerNode:
+    def append_action(self, action: function) -> ListenerNode:
         self.tail.next = ListenerNode(action, self.tail)
+        self.tail = self.tail.next
+        return self.tail
+    
+    def append(self, listener: ListenerNode) -> ListenerNode:
+        self.tail.next = listener
         self.tail = self.tail.next
         return self.tail
 
@@ -72,8 +78,7 @@ class EventManager:
         event_type: 事件类型，即zone类型
         action: 监听动作
         '''
-        listener = ListenerNode(action)
-        return self.events[event_name][event_type].append(listener)
+        return self.events[event_name][event_type].append_action(action)
     
     def invoke(self, event_name, game: GeniusGame) -> None:
         for event_type in self.events[event_name].event_types:
