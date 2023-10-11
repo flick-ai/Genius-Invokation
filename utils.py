@@ -159,3 +159,34 @@ DiceToCost = {
 CostToDice = {
     CostType(i): DiceType(i) for i in range(7)
 }
+
+'''
+utility functions
+'''
+# get characters
+def get_active_character(game, player):
+    return game.players[player].active_zone.active_idx
+
+def get_my_active_character(game):
+    return get_active_character(game, game.active_player)
+
+def get_opponent_active_character(game):
+    return get_active_character(game, not game.active_player)
+
+def get_standby_character(game, player):
+    active_zone = game.players[player].active_zone
+    active_idx = active_zone.active_idx
+    standby_charas = []
+    for idx in range(active_zone.number_of_characters):
+        if idx == active_idx:
+            continue
+        if active_zone.character_list[idx].states.alive:
+            standby_charas.append(idx)
+
+    return standby_charas
+
+def get_my_standby_character(game):
+    return get_standby_character(game, game.active_player)
+
+def get_opponent_standby_character(game):
+    return get_standby_character(game, not game.active_player)
