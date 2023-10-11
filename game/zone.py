@@ -105,6 +105,11 @@ class CharacterZone:
         self.power, self.hp, self.special_state = self.character_card.on_game_start()
         self.max_hp = self.hp
 
+    def heal(self, heal):
+        self.hp += heal
+        if self.hp > self.max_hp:
+            self.hp = self.max_hp
+
 class ActiveZone:
     def __init__(self, character_list) -> None:
         self.number_of_characters = len(character_list)
