@@ -19,7 +19,7 @@ class Damage:
         self.is_plunging_attack: bool = is_plunging_attack
         self.is_charged_attack: bool = is_charged_attack
         self.reaction: ElementalReactionType = None
-        self.swirl_crystalize_type: ElementType = None
+        self.swirl_crystallize_type: ElementType = None
         self.target_idx_bias: int = 0  # The target index is active_idx + target_idx_bias, which therefore, can be defaultly 0.
     
 
@@ -41,14 +41,18 @@ class Damage:
                              main_damage, piercing_damage, 
                              damage_from, damage_to, 
                              is_plunging_attack, is_charged_attack)
+        game.current_damage.elemental_infusion(game)
         game.current_damage.cal_damage(game)
         game.current_damage.execute_damage(game)
         game.current_damage.after_damage(game)
     
+    def elemental_infusion(self, game: GeniusGame):
+        game.manager.invoke(EventType.INFUSION, game)
+
     def after_damage(self, game: GeniusGame):
     #     # 扩散伤害
         if self.reaction is Swirl:
-            Damage.resolve_damage(game, SkillType.OTHER, self.swirl_crystalize_type, 1, 0)
+            Damage.resolve_damage(game, SkillType.OTHER, self.swirl_crystallize_type, 1, 0)
     #     pass
     def execute_damage(self, game: GeniusGame):
         # 打出伤害
@@ -80,24 +84,24 @@ class Damage:
         targetplay_id = 1 - game.active_player
         defenderActiveZone = game.players[targetplay_id].active_zone
         Reaction = None
-        Swirl_Crystalize_type = None
+        Swirl_Crystallize_type = None
         target_index = defenderActiveZone.active_idx + damage.target_idx_bias
         if target_index > defenderActiveZone.number_of_characters:
             target_index -= defenderActiveZone.number_of_characters
 
         # No attachment on Target
-        if len(defenderActiveZone.character_list[target_index].element_attach) == 0:
+        if len(defenderActiveZone.character_list[target_index].elemental_application) == 0:
             match damage.main_damage_element:
                 case ElementType.CRYO | ElementType.HYDRO | ElementType.PYRO | ElementType.ELECTRO:
-                    defenderActiveZone.character_list[target_index].element_attach.insert(0, damage.main_damage_element)
+                    defenderActiveZone.character_list[target_index].elemental_application.insert(0, damage.main_damage_element)
                 case ElementType.DENDRO:
-                    defenderActiveZone.character_list[target_index].element_attach.append(damage.main_damage_element)
+                    defenderActiveZone.character_list[target_index].elemental_application.append(damage.main_damage_element)
             self.reaction = None
-            self.swirl_crystalize_type = None
+            self.swirl_crystallize_type = None
             return
 
 
-        targetAttachElement = defenderActiveZone.character_list[target_index].element_attach[0]
+        targetAttachElement = defenderActiveZone.character_list[target_index].elemental_application[0]
     
         match damage.main_damage_element:
             case ElementType.CRYO: # 冰
@@ -113,8 +117,8 @@ class Damage:
                     case ElementType.ELECTRO:
                         game.current_damage.main_damage += 1
                         game.current_damage.piercing_damage += 1
-                        Super_Conduct(game, targetplay_id, target_index)
-                        Reaction = ElementalReactionType.Super_Conduct
+                        Superconduct(game, targetplay_id, target_index)
+                        Reaction = ElementalReactionType.Superconduct
             case ElementType.HYDRO: # 水
                 match targetAttachElement:
                     case ElementType.CRYO:
@@ -146,8 +150,8 @@ class Damage:
                         Reaction = ElementalReactionType.Vaporize
                     case ElementType.ELECTRO:
                         game.current_damage.main_damage += 2
-                        Overload(game, targetplay_id, target_index)
-                        Reaction = ElementalReactionType.Overload
+                        Overloaded(game, targetplay_id, target_index)
+                        Reaction = ElementalReactionType.Overloaded
                     case ElementType.DENDRO:
                         game.current_damage.main_damage += 1
                         Burning(game, targetplay_id, target_index)
@@ -158,8 +162,8 @@ class Damage:
                     case ElementType.CRYO:
                         game.current_damage.main_damage += 1
                         game.current_damage.piercing_damage += 1
-                        Super_Conduct(game, targetplay_id, target_index)
-                        Reaction = ElementalReactionType.Super_Conduct
+                        Superconduct(game, targetplay_id, target_index)
+                        Reaction = ElementalReactionType.Superconduct
                     case ElementType.HYDRO:
                         game.current_damage.main_damage += 1
                         game.current_damage.piercing_damage += 1
@@ -167,8 +171,8 @@ class Damage:
                         Reaction = ElementalReactionType.Electro_Charged
                     case ElementType.PYRO:
                         game.current_damage.main_damage += 2
-                        Overload(game, targetplay_id, target_index)
-                        Reaction = ElementalReactionType.Overload
+                        Overloaded(game, targetplay_id, target_index)
+                        Reaction = ElementalReactionType.Overloaded
                     case ElementType.DENDRO:
                         game.current_damage.main_damage += 1
                         Quicken(game, targetplay_id, target_index)
@@ -194,23 +198,23 @@ class Damage:
                     case ElementType.CRYO | ElementType.HYDRO | ElementType.PYRO | ElementType.ELECTRO:
                         Swirl(game, targetplay_id, target_index)
                         Reaction = ElementalReactionType.Swirl
-                        Swirl_Crystalize_type = targetAttachElement
+                        Swirl_Crystallize_type = targetAttachElement
 
             case ElementType.GEO: # 岩
                 match targetAttachElement:
                     case ElementType.CRYO | ElementType.HYDRO | ElementType.PYRO | ElementType.ELECTRO:
                         game.current_damage.main_damage += 1
-                        Crystalize(game, targetplay_id, target_index)
-                        Reaction = ElementalReactionType.Crystalize
-                        Swirl_Crystalize_type = targetAttachElement
+                        Crystallize(game, targetplay_id, target_index)
+                        Reaction = ElementalReactionType.Crystallize
+                        Swirl_Crystallize_type = targetAttachElement
         if Reaction is None:
             match damage.main_damage_element:
                 case ElementType.CRYO | ElementType.HYDRO | ElementType.PYRO | ElementType.ELECTRO:
-                    if not damage.main_damage_element in defenderActiveZone.character_list[target_index].element_attach:
-                        defenderActiveZone.character_list[target_index].element_attach.insert(0, damage.main_damage_element)
+                    if not damage.main_damage_element in defenderActiveZone.character_list[target_index].elemental_application:
+                        defenderActiveZone.character_list[target_index].elemental_application.insert(0, damage.main_damage_element)
                 case ElementType.DENDRO:
-                    if not damage.main_damage_element in defenderActiveZone.character_list[target_index].element_attach:
-                        defenderActiveZone.character_list[target_index].element_attach.append(damage.main_damage_element)
+                    if not damage.main_damage_element in defenderActiveZone.character_list[target_index].elemental_application:
+                        defenderActiveZone.character_list[target_index].elemental_application.append(damage.main_damage_element)
 
         self.reaction = Reaction
-        self.swirl_crystalize_type = Swirl_Crystalize_type 
+        self.swirl_crystallize_type = Swirl_Crystallize_type 

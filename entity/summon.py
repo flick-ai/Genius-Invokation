@@ -22,8 +22,8 @@ class Summon(Entity):
         super().__init__(game, from_player, from_character) # 此处是否需要区分青蛙和花鼠？
         self.current_usage: int = self.usage
 
-    def on_distroy(self):
-        super().on_distroy()
+    def on_destroy(self):
+        super().on_destroy()
         # TODO: 调用移除召唤物的接口
 
 class Burning(Summon):

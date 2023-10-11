@@ -37,6 +37,7 @@ class CharacterCard(Entity):
     def __init__(self, game: GeniusGame, from_player: GeniusPlayer, from_character = None):
         super().__init__(game, from_character, from_player)
         self.init_skill()
+        self.talent: bool
 
 
 

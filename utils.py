@@ -131,7 +131,8 @@ class EventType(Enum):
     AFTER_TAKES_DMG = 6
     AFTER_PLAY_CARD = 7
     END_PHASE = 8
-    DAMAGE_MULTIPLY = 9
+    DEALING_DAMAGE = 9 # Mona only right now
+    INFUSION = 10
 
 
 
@@ -139,15 +140,15 @@ class EventType(Enum):
 class ElementalReactionType(Enum):
     Frozen = 0
     Melt = 1
-    Super_Conduct = 2
+    Superconduct = 2
     Vaporize = 3
     Electro_Charged = 4
     Bloom = 5
-    Overload = 6
+    Overloaded = 6
     Burning = 7
     Quicken = 8
     Swirl = 9
-    Crystalize = 10
+    Crystallize = 10
 
 DiceToElement = {
     DiceType(i): ElementType(i) for i in range(7)

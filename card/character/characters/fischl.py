@@ -1,4 +1,4 @@
-from card.character.base import CharacterCard, NormalAttack, ElementalSkill, ElementalBurst
+from card.character.base import NormalAttack, ElementalSkill, ElementalBurst
 from entity.character import CharacterCard
 from utils import *
 
@@ -6,7 +6,13 @@ from entity.summon import Summon
 from event.damage import Damage
 from game.game import GeniusGame
 from utils import GeniusGame
-
+from game.player import GeniusPlayer
+from typing import TYPE_CHECKING, List, Tuple
+if TYPE_CHECKING:
+    from game.game import GeniusGame
+    from game.action import Action
+    from event.events import ListenerNode
+    from game.player import GeniusPlayer
 
 class Oz(Summon):
     '''奥兹'''
@@ -36,9 +42,9 @@ class Oz(Summon):
             self.current_usage -= 1
         if(self.current_usage <= 0):
             '''
-                Entity在被移除时, 调用on_distroy移除监听并执行对应的移除操作(在对应区域中移除此entity等)
+                Entity在被移除时, 调用on_destroy移除监听并执行对应的移除操作(在对应区域中移除此entity等)
             '''
-            self.on_distroy(game)
+            self.on_destroy(game)
 
 
     def update_listener_list(self):
@@ -49,7 +55,7 @@ class Oz(Summon):
             (EventType.END_PHASE, ZoneType.SUMMON_ZONE, self.on_end_phase)
         ]
 
-    def __init__(self, game: GeniusGame, from_player: GeniusGame, from_character=None):
+    def __init__(self, game: GeniusGame, from_player: GeniusPlayer, from_character=None):
         super().__init__(game, from_player, from_character)
 
 
