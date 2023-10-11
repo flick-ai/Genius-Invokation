@@ -13,8 +13,8 @@ class Damage:
         self.main_damage: int = main_damage
         self.piercing_damage: int = piercing_damage
 
-        self.damage_from: Entity = None
-        self.damage_to: Entity = None
+        self.damage_from: Entity = damage_from
+        self.damage_to: Entity = damage_to
 
         self.is_plunging_attack: bool = is_plunging_attack
         self.is_charged_attack: bool = is_charged_attack
