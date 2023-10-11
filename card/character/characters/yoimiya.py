@@ -120,7 +120,7 @@ class Yoimiya(CharacterCard):
     country: CountryType = CountryType.INAZUMA
     health_point: int = 10
     max_health_point: int = 10
-    skill_list: [BoltsOfDownfall, Nightrider, MidnightPhantasmagoria]
+    skill_list: [Firework_FlareUp, Niwabi_FireDance, Ryuukin_Saxifrage]
 
     power: int = 0
     max_power: int = 3
