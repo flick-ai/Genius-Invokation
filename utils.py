@@ -64,7 +64,7 @@ class Status_Counting_Type(Enum):
 class SkillType(Enum):
     NORMAL_ATTACK = 0
     ELEMENTAL_SKILL = 1
-    ELEMENTAl_BURST = 2
+    ELEMENTAL_BURST = 2
     PASSIVE_SKILL = 3
     SUMMON = 4
     OTHER = 5

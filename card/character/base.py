@@ -51,23 +51,25 @@ class CharacterSkill:
                               # TODO: 可能需要改一下调用的接口
                               self.from_character, get_opponent_active_character(game),
                               is_plunging_attack, is_charged_attack)
+    def gain_energy(self, game: GeniusGame):
+        pass
 
     def add_status(self, game: GeniusGame, status: Status):
         pass
 
     def on_call(self, game: GeniusGame):
-        pass
+        game.current_skill = self.type
 
 class NormalAttack(CharacterSkill):
 
     def on_call(self, game: GeniusGame):
-
+        super().on_call(game)
         # TODO: 判断是否为重击
-        is_plunging_attack = False
-        is_charged_attack = False
-        game.manager.invoke('before_skill', game)
+        self.is_plunging_attack = False
+        self.is_charged_attack = False
 
         # TODO: 消耗骰子
+        self.calculate_dice_request(game)
         # TODO: 判断技能是否有伤害
         # 伤害执行
         Damage.resolve_damage(game, self.damage_type, self.main_damage_element, 
@@ -86,8 +88,7 @@ class NormalAttack(CharacterSkill):
 class ElementalSkill(CharacterSkill):
 
     def on_call(self, game: GeniusGame):
-
-        game.manager.invoke('before_skill', game)
+        super().on_call(game)
         # TODO: Prepares for another Elemental Skill
         # TODO: 消耗骰子
         # TODO: 判断技能是否有伤害
@@ -110,9 +111,7 @@ class ElementalSkill(CharacterSkill):
 class ElementalBurst(CharacterSkill):
 
     def on_call(self, game: GeniusGame):
-
-        game.manager.invoke('before_skill', game)
-
+        super().on_call(game)
         # TODO: 消耗骰子
         # TODO: 消耗能量
 

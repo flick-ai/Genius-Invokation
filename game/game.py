@@ -26,6 +26,7 @@ class GeniusGame:
         self.manager = EventManager()
         self.current_action: Action
         self.current_damage: Damage
+        self.current_skill: SkillType
     
     def reset(self):
         pass

@@ -122,9 +122,9 @@ class MidnightPhantasmagoria(ElementalBurst):
         至夜幻现
     '''
     id: int = 2
-    type: SkillType = SkillType.ELEMENTAl_BURST
+    type: SkillType = SkillType.ELEMENTAL_BURST
     
-    damage_type: SkillType = SkillType.ELEMENTAl_BURST
+    damage_type: SkillType = SkillType.ELEMENTAL_BURST
     main_damage_element: ElementType = ElementType.ELECTRO
     main_damage: int = 4
     piercing_damage: int = 2

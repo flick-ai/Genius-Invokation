@@ -45,6 +45,12 @@ class Firework_FlareUp(NormalAttack):
 
     def __init__(self, from_character: CharacterCard):
         super().__init__(from_character)
+    
+    def on_call(self, game: GeniusGame):
+        self.calculate_dice_request(game)
+        self.resolve_damage(game, is_plunging_attack=self.is_plunging_attack, is_charged_attack=self.is_charged_attack)
+        self.gain_energy(game)
+        game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Niwabi_FireDance(ElementalSkill):
     '''
@@ -75,6 +81,7 @@ class Niwabi_FireDance(ElementalSkill):
 
     def on_call(self, game: GeniusGame):
         # TODO: dice cost calculation. #Invoke(CALCULATE_DICE)
+        # self.from_character.from_player.
         game.players[game.active_player].active_zone.character_list[game.players[game.active_player].active_zone.active_idx].add_status(Niwabi_Enshou(game, game.players[game.active_player], game.players[game.active_player].active_zone.character_list[0]))
         
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
@@ -140,17 +147,17 @@ class Niwabi_Enshou(Status):
     
     def infuse(self, game: GeniusGame):
         if game.current_damage.damage_from == self.from_character:
-            if game.current_damage.main_damage_element == ElementType.PHYSICAL:
+            if game.current_skill == ElementType.PHYSICAL:
                 game.current_damage.main_damage_element = ElementType.ELECTRO
 
     def on_execute_damage(self, game:GeniusGame):
         if game.current_damage.damage_from == self.from_character:
-            if game.current_damage.damage_type == SkillType.NORMAL_ATTACK:
+            if game.current_skill == SkillType.NORMAL_ATTACK:
                 game.current_damage.main_damage += 1
     
     def after_skill(self, game: GeniusGame):
         if game.current_damage.damage_from == self.from_character:
-            if game.current_damage.damage_type == SkillType.NORMAL_ATTACK:
+            if game.current_skill == SkillType.NORMAL_ATTACK:
                 if self.from_character.talent:
                     Damage.resolve_damage(
                         game, 

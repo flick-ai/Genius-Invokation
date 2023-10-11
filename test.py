@@ -9,11 +9,12 @@ a = []
 
 class A:
     def __init__(self):
-        self.a = 1
+        self.a = []
         self.b = 2
     
     def aaa(self):
-        a.append(A())
+        self.a.append(A())
 
-A().aaa()
-print(a)
+alist = A()
+alist.aaa()
+print(alist.a[0].aaa)
