@@ -6,9 +6,9 @@ from copy import deepcopy
 if TYPE_CHECKING:
     from entity.entity import Entity
     from card.action.base import ActionCard
-    from card.character.base import CharacterCard
+    from entity.character import CharacterCard
     from card.action import WeaponCard
-
+    from entity.status import Status
 
 class CardZone:
     '''
@@ -109,6 +109,9 @@ class CharacterZone:
         self.hp += heal
         if self.hp > self.max_hp:
             self.hp = self.max_hp
+
+    def add_status(self, status: Status):
+        pass
 
 class ActiveZone:
     def __init__(self, character_list) -> None:

@@ -5,7 +5,7 @@ All the player_id here is the player who has reaction on his character.
 '''
 from card.character.base import *
 from game.game import GeniusGame
-from entity.state import *
+from entity.status import *
 from entity.summon import *
 #The Elemental Reaction always with the first attached element.
 def Frozen(game:GeniusGame, player_id: int, target_idx: int):

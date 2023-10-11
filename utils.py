@@ -131,7 +131,7 @@ class EventType(Enum):
     AFTER_TAKES_DMG = 6
     AFTER_PLAY_CARD = 7
     END_PHASE = 8
-    DEALING_DAMAGE = 9
+    DEALING_DAMAGE = 9 # Mona only right now
     INFUSION = 10
 
 

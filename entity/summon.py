@@ -1,5 +1,13 @@
+from game.game import GeniusGame
 from utils import *
 from entity.entity import Entity
+from typing import TYPE_CHECKING, List, Tuple
+
+if TYPE_CHECKING:
+    from game.game import GeniusGame
+    from game.action import Action
+    from event.events import ListenerNode
+    from game.player import GeniusPlayer
 
 class Summon(Entity):
     # 召唤物基本类
@@ -10,10 +18,13 @@ class Summon(Entity):
     max_usage: int
     skills: list
 
-    def __init__(self) -> None:
-        super().__init__()
-        self.current_usage: int = self.usage # 此处是否需要区分青蛙和花鼠？
-        # self.effect_text: str
+    def __init__(self, game: GeniusGame, from_player: GeniusPlayer, from_character=None):
+        super().__init__(game, from_player, from_character) # 此处是否需要区分青蛙和花鼠？
+        self.current_usage: int = self.usage
+
+    def on_destroy(self):
+        super().on_destroy()
+        # TODO: 调用移除召唤物的接口
 
 class Burning(Summon):
     # Name Maybe Wrong.
