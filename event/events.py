@@ -75,7 +75,7 @@ class EventManager:
         '''
         监听事件
         event_name: 事件名称
-        event_type: 事件类型，即zone类型
+        event_type: 事件类型, 即zone类型
         action: 监听动作
         '''
         return self.events[event_name][event_type].append_action(action)
@@ -84,7 +84,7 @@ class EventManager:
         for event_type in self.events[event_name].event_types:
             self.events[event_name].listeners[event_type](game)
 
-s
+
 
 
 

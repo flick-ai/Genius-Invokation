@@ -5,11 +5,18 @@ from copy import deepcopy
 
 if TYPE_CHECKING:
     from entity.entity import Entity
+    from entity.summon import Summon
     from card.action.base import ActionCard
     from entity.character import CharacterCard
     from card.action import WeaponCard
 
-
+class DiceZone:
+    '''
+        骰子区
+    '''
+    def __init__(self) -> None:
+        pass
+    
 class CardZone:
     '''
         牌堆区, 一共支持三种操作:
@@ -65,23 +72,40 @@ class CardZone:
             self.card.insert(idx, card)
             self.card_num = len(self.card)
 
-class FourZone:
+class SummonZone:
     '''
-        召唤物区和支援区的区域
+        召唤物区
     '''
     def __init__(self) -> None:
-        self.space: List[Entity] = [None, None, None, None]
+        self.max_num = 4
+        self.space: List[Entity] = []
 
     def destroy(self, idx):
-        assert idx>=0 and idx<4
-        assert self.space[idx] == None
-        self.space[idx] = None
+        self.space.pop(idx)
 
-    def put(self, card, idx):
-        self.space[idx] = card
+    def add_entity(self, entity: Summon):
+        for idx, exist in enumerate(self.space):
+            if entity.name == exist.name:
+                self.space[idx] = entity
+        if len(self.space) < self.max_num:
+            self.space.append(entity)
 
-    def add_entity(self, entity):
-        pass
+class SupportZone:
+    '''
+        支援区
+    '''
+    def __init__(self) -> None:
+        self.space: List[Entity] = []
+
+    def destroy(self, idx):
+        self.space.pop(idx)
+
+    def add_entity(self, entity, idx):
+        if len(self.space) == self.max_num:
+            # 如果支援区已经满了
+            self.destroy(idx)
+        self.space.append(entity)
+
 
 class CharacterZone:
     def __init__(self, name) -> None:
@@ -115,8 +139,8 @@ class ActiveZone:
         self.number_of_characters = len(character_list)
         self.active_idx: int = -1
         self.character_list: List[CharacterZone] = self.generate_character_zone(character_list)
-        self.summons_zone: FourZone = FourZone()
-        self.support_zone: FourZone = FourZone()
+        self.summons_zone: SummonZone = SummonZone()
+        self.support_zone: SupportZone = SupportZone()
         self.is_after_change_character = True
         self.states_list = []
 
