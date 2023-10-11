@@ -29,7 +29,7 @@ class Heal:
         game: GeniusGame, 
         heal: int, 
         target_fn: function):
-        game.current_heal = cls(heal, target_fn)
+        return cls(heal, target_fn)
 
     @staticmethod
     def resolve_heal(game: GeniusGame, heal: int, target_fn):    

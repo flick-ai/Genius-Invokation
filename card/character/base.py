@@ -1,6 +1,7 @@
 from utils import *
 from typing import List, TYPE_CHECKING
-from event.damage.damage import Damage
+from event.damage import Damage
+from event.heal import Heal
 
 if TYPE_CHECKING:
     from game.game import GeniusGame
@@ -39,6 +40,7 @@ class CharacterSkill:
         # TODO: 判断技能是否有伤害
         # 生成伤害
         game.current_damage = Damage.create_damage(self.damage_type, self.main_damage_element, self.main_damage, self.piercing_damage)
+        # 生成治疗
 
         # 伤害计算
         game.manager.invoke('on_damage', game)
@@ -46,7 +48,10 @@ class CharacterSkill:
         # 伤害执行
         game.current_damage.execute()
 
-        # 治疗执行
+        # 治疗
+        game.current_heal = Heal.create_heal(self.heal, self.heal_target_fn)
+        game.current_heal.cal(game)
+        game.current_heal.execute(game)
 
         # 召唤物/状态生成
 
