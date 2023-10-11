@@ -14,7 +14,7 @@ class GeniusPlayer:
         self.card_zone = CardZone(deck['action_card']) # 牌库区
         self.hand_zone: HandZone = HandZone() # 手牌区
         self.hand_zone.add(self.card_zone.get_card(num=5))
-        self.dice_zone: DiceZone
+        self.dice_zone: DiceZone(self)
 
         # 初始化角色状态区
         self.active_idx = -1

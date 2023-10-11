@@ -178,8 +178,8 @@ def get_active_character(
         player_idx: int, 
         require_player_idx: bool=False):
     if require_player_idx:
-        return (player_idx, game.players[player_idx].team_combat_status.active_idx)
-    return game.players[player_idx].team_combat_status.active_idx
+        return (player_idx, game.players[player_idx].active_idx)
+    return game.players[player_idx].active_idx
 
 def get_my_active_character(
         game: GeniusGame,
@@ -195,13 +195,13 @@ def get_standby_character(
         game: GeniusGame, 
         player_idx: int,
         require_player_idx: bool=False):
-    active_zone = game.players[player_idx].team_combat_status
-    active_idx = active_zone.active_idx
+    player = game.players[player_idx]
+    active_idx = game.players[player_idx].active_idx
     standby_charas = []
-    for idx in range(active_zone.number_of_characters):
+    for idx in range(player.character_num):
         if idx == active_idx:
             continue
-        if active_zone.character_list[idx].states.alive:
+        if player.character_list[idx].is_alive:
             if require_player_idx:
                 standby_charas.append((player_idx, idx))
             else:

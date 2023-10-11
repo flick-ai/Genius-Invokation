@@ -16,15 +16,33 @@ class DiceZone:
     '''
         骰子区
     '''
-    def __init__(self) -> None:
-        pass
+    def __init__(self, player) -> None:
+        self.player = player
+
+    def get_dice(self):
+        '''
+            获取骰子
+        '''
+    
+    def use_dice(self):
+        '''
+            使用骰子
+        '''
+
+    def calculate_dice(self):
+        '''
+            计算骰子
+        '''
+
+    def sort_dice(self):
+        ''''
+            对骰子进行排序
+        '''
+        # 默认骰子排序
     
 class CardZone:
     '''
-        牌堆区, 一共支持三种操作:
-        1. 检索并获取特定类型的牌
-        2. 随机获取牌
-        3. 将牌放回牌堆
+        牌堆区,
     '''
     def __init__(self, card: List) -> None:
         '''
