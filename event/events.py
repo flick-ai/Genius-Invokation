@@ -5,53 +5,56 @@ from collections import defaultdict
 
 
 
-class EventNode:
-    '''事件节点'''
+class ListenerNode:
+    '''监听者节点'''
     def __init__(self, action, before=None, next=None):
-        self.event = action
+        self.action = action
         self.before = before
         self.next = next
     
-    def del_node(self):
+    def remove(self):
         if self.before:
             self.before.next = self.next
         if self.next:
             self.next.before = self.before
 
-    def on_call(self, game: GeniusGame) -> None:
-        self.event(game)
+    def __call__(self, game: GeniusGame) -> None:
+        self.action(game)
 
 
-class EventListDict:
-    def __init__(self) -> None:
-        self.event_lists: dict(EventList) = {
-            'equipment': EventList([]),
-            'artifact': EventList([]),
-            'support': EventList([]),
-            'summon': EventList([]),
-            'active': EventList([]),
-            'character': EventList([]),
-        }
+class Event:
+    def __init__(self, name: str) -> None:
+        self.name: str = name
+        self.event_types = [
+            'equipment', 
+            'artifact',
+            'support',
+            'summon',
+            'active',
+            'character',
+        ]
+        self.listeners: dict(ListenerList) = {}
+        for event_type in self.event_types:
+            self.listeners[event_type] = ListenerList([])
 
 
-class EventList:
+class ListenerList(object):
     def __init__(self, actions: list) -> None:
-        self.head = EventNode(None)
+        self.head = ListenerNode(None)
         self.tail = self.head
         for action in actions:
             self.append(action)
     
-    def append(self, action) -> EventNode:
-        self.tail.next = EventNode(action, self.tail)
+    def append(self, action) -> ListenerNode:
+        self.tail.next = ListenerNode(action, self.tail)
         self.tail = self.tail.next
         return self.tail
 
     def on_call(self, game: GeniusGame) -> None:
-        node = self.head.next
-        while node:
-            node.on_call(game)
-            node = node.next
-
+        action = self.head.next
+        while action:
+            action(game)
+            action = action.next
 
 
 '''
@@ -60,20 +63,27 @@ class EventList:
 
 class EventManager:
     def __init__(self) -> None:
-        self.events = defaultdict(EventListDict)
+        self.events = defaultdict(Event)
     
-    def register(self, event_name, event_type, action) -> EventNode:
-        return self.events[event_name][event_type].append(action)
+    def listen(self, event_name: str, event_type: str, action: function) -> ListenerNode:
+        '''
+        监听事件
+        event_name: 事件名称
+        event_type: 事件类型，即zone类型
+        action: 监听动作
+        '''
+        listener = ListenerNode(action)
+        return self.events[event_name][event_type].append(listener)
     
     def invoke(self, event_name, game: GeniusGame) -> None:
-        for event_type in self.events[event_name]:
-            self.events[event_name][event_type].on_call(game)
+        for event_type in self.events[event_name].event_types:
+            self.events[event_name].listeners[event_type](game)
 
 
 
 
 
-# class OnDealDamageEvent(EventNode):
+# class OnDealDamageEvent(ListenerNode):
 
 
 # class Event:

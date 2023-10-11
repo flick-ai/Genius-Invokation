@@ -1,22 +1,21 @@
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, List, Tuple
 from utils import *
 if TYPE_CHECKING:
     from game.game import GeniusGame
     from game.action import Action
-    from event.events import EventNode
+    from event.events import ListenerNode
 
 
 class Entity:
     def __init__(self):
         self.entity_type: ZoneType
-        self.events: dict[str, EventNode] = {}
-        self.registered_events: list(EventNode) = []
+        self.listeners: List(Tuple(str, str, function)) = [] # list of (event_name, event_type, action) tuples
+        self.registered_events: list(ListenerNode) = []
 
-    def register_all_events(self, game: GeniusGame):
-        for event in self.events:
-            self.registered_events.append(game.manager.register(event, self.events[event]))
-        game.manager.register('before_skill', 'on_damage', 'after_skill')
+    def listen_all(self, game: GeniusGame):
+        for event_name, event_type, action in self.listeners:
+            self.registered_events.append(game.manager.listen(event_name, event_type, action))
 
     def on_distroy(self):
-        for event in self.registered_events:
-            event.del_node()
+        for action in self.registered_events:
+            action.remove()

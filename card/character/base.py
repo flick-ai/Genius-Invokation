@@ -6,7 +6,7 @@ from event.heal import Heal
 if TYPE_CHECKING:
     from game.game import GeniusGame
     from game.action import Action
-    from event.events import EventNode
+    from event.events import ListenerNode
 
 class CharacterSkill:
     # 角色技能基本类
@@ -93,7 +93,8 @@ class NormalAttackSkill(CharacterSkill):
 
         # TODO: 获得能量
         # 大概吧，叹气，不确定是不是“active”类中，我觉得应该是的
-        game.manager.register('after_skill', 'active', GainEnergyForActive(self.energy_gain))
+        # TODO: 这里不需要增加事件监听，请直接执行函数
+        # game.manager.listen('after_skill', 'active', GainEnergyForActive(self.energy_gain))
         
         game.manager.invoke('after_skill', game)
 
