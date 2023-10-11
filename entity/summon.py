@@ -1,7 +1,6 @@
 from utils import *
 from entity.entity import Entity
 
-
 class Summon(Entity):
     # 召唤物基本类
     id: int
@@ -12,5 +11,10 @@ class Summon(Entity):
     skills: list
 
     def __init__(self) -> None:
-        self.usages: int # 此处是否需要区分青蛙和花鼠？
+        super().__init__()
+        self.current_usage: int = self.usage # 此处是否需要区分青蛙和花鼠？
         # self.effect_text: str
+
+class Burning(Summon):
+    # Name Maybe Wrong.
+    pass

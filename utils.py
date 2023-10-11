@@ -59,14 +59,15 @@ class Status_Counting_Type(Enum):
     TURNS = 0 # 回合开始时计数
     ATTACKS = 1 # 攻击时计数
     SUFFER = 2 # 被攻击时计数
-    DAMAGES = 3 # 基于伤害技术
+    DAMAGES = 3 # 基于伤害计数
     
 class SkillType(Enum):
     NORMAL_ATTACK = 0
     ELEMENTAL_SKILL = 1
     ELEMENTAl_BURST = 2
     PASSIVE_SKILL = 3
-    OTHER = 4
+    SUMMON = 4
+    OTHER = 5
 
 class GamePhase(Enum):
     SET_CARD = 0
@@ -122,7 +123,7 @@ class ZoneType(Enum):
 
 class EventType(Enum):
     BEGIN_ACTION_PHASE = 0
-    CALCULATE_DAMAGE = 1
+    DAMAGE_ADD = 1
     CALCULATE_DICE = 2
     BEFORE_CHANGE_CHARACTER = 3
     AFTER_CHANGE_CHARACTER = 4
@@ -130,6 +131,23 @@ class EventType(Enum):
     AFTER_TAKES_DMG = 6
     AFTER_PLAY_CARD = 7
     END_PHASE = 8
+    DAMAGE_MULTIPLY = 9
+
+
+
+
+class ElementalReactionType(Enum):
+    Frozen = 0
+    Melt = 1
+    Super_Conduct = 2
+    Vaporize = 3
+    Electro_Charged = 4
+    Bloom = 5
+    Overload = 6
+    Burning = 7
+    Quicken = 8
+    Swirl = 9
+    Crystalize = 10
 
 DiceToElement = {
     DiceType(i): ElementType(i) for i in range(7)
@@ -146,3 +164,54 @@ DiceToCost = {
 CostToDice = {
     CostType(i): DiceType(i) for i in range(7)
 }
+
+'''
+utility functions
+'''
+from game.game import GeniusGame
+
+# get characters
+def get_active_character(
+        game: GeniusGame, 
+        player_idx: int, 
+        require_player_idx: bool=False):
+    if require_player_idx:
+        return (player_idx, game.players[player_idx].active_zone.active_idx)
+    return game.players[player_idx].active_zone.active_idx
+
+def get_my_active_character(
+        game: GeniusGame,
+        require_player_idx: bool=False):
+    return get_active_character(game, game.active_player, require_player_idx)
+
+def get_opponent_active_character(
+        game: GeniusGame,
+        require_player_idx: bool=False):
+    return get_active_character(game, not game.active_player, require_player_idx)
+
+def get_standby_character(
+        game: GeniusGame, 
+        player_idx: int,
+        require_player_idx: bool=False):
+    active_zone = game.players[player_idx].active_zone
+    active_idx = active_zone.active_idx
+    standby_charas = []
+    for idx in range(active_zone.number_of_characters):
+        if idx == active_idx:
+            continue
+        if active_zone.character_list[idx].states.alive:
+            if require_player_idx:
+                standby_charas.append((player_idx, idx))
+            else:
+                standby_charas.append(idx)
+    return standby_charas
+
+def get_my_standby_character(
+        game: GeniusGame,
+        require_player_idx: bool=False):
+    return get_standby_character(game, game.active_player, require_player_idx)
+
+def get_opponent_standby_character(
+        game: GeniusGame,
+        require_player_idx: bool=False):
+    return get_standby_character(game, not game.active_player, require_player_idx)

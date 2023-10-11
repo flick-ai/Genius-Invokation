@@ -1,11 +1,15 @@
+from game.game import GeniusGame
 from utils import *
 from typing import List, TYPE_CHECKING
-from event.damage.damage import Damage
+from event.damage import Damage
+from event.heal import Heal
+from entity.entity import Entity
+from utils import GeniusGame
 
 if TYPE_CHECKING:
     from game.game import GeniusGame
     from game.action import Action
-    from event.events import EventNode
+    from event.events import ListenerNode
 
 class CharacterSkill:
     # 角色技能基本类
@@ -32,27 +36,7 @@ class CharacterSkill:
         pass
 
     def on_call(self, game: GeniusGame):
-        game.manager.invoke('before_skill', game)
-
-        # TODO: 消耗骰子
-        # TODO: 消耗能量
-        # TODO: 判断技能是否有伤害
-        # 生成伤害
-        game.current_damage = Damage.create_damage(self.damage_type, self.main_damage_element, self.main_damage, self.piercing_damage)
-
-        # 伤害计算
-        game.manager.invoke('on_damage', game)
-
-        # 伤害执行
-        game.current_damage.execute()
-
-        # 治疗执行
-
-        # 召唤物/状态生成
-
-        # TODO: 获得能量
-
-        game.manager.invoke('after_skill', game)
+        pass
 
     # def on_call(self, game: GeniusGame):
         
@@ -67,27 +51,26 @@ class CharacterSkill:
 class NormalAttackSkill(CharacterSkill):
 
     def on_call(self, game: GeniusGame):
+
+        # TODO: 判断是否为重击
         is_plunging_attack = False
         is_charged_attack = False
         game.manager.invoke('before_skill', game)
 
         # TODO: 消耗骰子
         # TODO: 判断技能是否有伤害
-        # 生成伤害
-        game.current_damage = Damage.create_damage(self.damage_type, self.main_damage_element, self.main_damage, self.piercing_damage, is_plunging_attack, is_charged_attack)
-
-        # 伤害计算
-        game.manager.invoke('on_damage', game)
-
         # 伤害执行
-        game.current_damage.execute()
+        Damage.resolve_damage(game, self.damage_type, self.main_damage_element, self.main_damage, self.piercing_damage, is_plunging_attack, is_charged_attack)
 
         # 治疗执行
 
         # 召唤物/状态生成
 
         # TODO: 获得能量
-
+        # 大概吧，叹气，不确定是不是“active”类中，我觉得应该是的
+        # TODO: 这里不需要增加事件监听，请直接执行函数
+        # game.manager.listen('after_skill', 'active', GainEnergyForActive(self.energy_gain))
+        
         game.manager.invoke('after_skill', game)
 
 
@@ -95,7 +78,7 @@ class NormalAttackSkill(CharacterSkill):
 
 
 
-class CharacterCard:
+class CharacterCard(Entity):
     # 角色卡片基本类
     id: int
     name: str
@@ -109,7 +92,10 @@ class CharacterCard:
     max_power: int
 
     init_state: list() # 初始状态
-    # def __init__(self) -> None:
+
+    def __init__(self, game: GeniusGame):
+        super().__init__(game)
+
 
     def on_game_start(self):
         '''
@@ -134,12 +120,8 @@ class CharacterCard:
         '''
         pass
 
-    
-    def use_skill(self, game: GeniusGame):
-        '''
-            执行使用什么技能的接口
-        '''
-        pass
+
+
 
 
         
