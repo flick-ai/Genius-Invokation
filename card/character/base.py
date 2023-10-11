@@ -1,6 +1,7 @@
 from utils import *
 from typing import List, TYPE_CHECKING
 from event.damage.damage import Damage
+from event.Action_Effect import *
 
 if TYPE_CHECKING:
     from game.game import GeniusGame
@@ -87,7 +88,9 @@ class NormalAttackSkill(CharacterSkill):
         # 召唤物/状态生成
 
         # TODO: 获得能量
-
+        # 大概吧，叹气，不确定是不是“active”类中，我觉得应该是的
+        game.manager.register('after_skill', 'active', GainEnergyForActive(self.energy_gain))
+        
         game.manager.invoke('after_skill', game)
 
 
