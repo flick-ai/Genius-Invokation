@@ -44,7 +44,7 @@ class ListenerList(object):
         self.head = ListenerNode(None)
         self.tail = self.head
         for action in actions:
-            self.append(action)
+            self.append_action(action)
     
     def append_action(self, action: function) -> ListenerNode:
         self.tail.next = ListenerNode(action, self.tail)
@@ -56,11 +56,11 @@ class ListenerList(object):
         self.tail = self.tail.next
         return self.tail
 
-    def on_call(self, game: GeniusGame) -> None:
-        action = self.head.next
-        while action:
-            action(game)
-            action = action.next
+    def __call__(self, game: GeniusGame) -> None:
+        listener = self.head.next
+        while listener:
+            listener(game)
+            listener = listener.next
 
 
 '''
@@ -84,7 +84,7 @@ class EventManager:
         for event_type in self.events[event_name].event_types:
             self.events[event_name].listeners[event_type](game)
 
-
+s
 
 
 
