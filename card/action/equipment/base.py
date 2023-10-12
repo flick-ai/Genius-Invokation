@@ -15,8 +15,6 @@ class Equipment(Entity):
 
 class EquipmentCard(ActionCard):
     # 装备牌基本类
-    # player: GeniusPlayer
-    # character: CharacterZone
     equipment_entity: Equipment
     def __init__(self) -> None:
         super().__init__()
@@ -25,7 +23,3 @@ class EquipmentCard(ActionCard):
         character = get_my_active_character(game)
         equipment = self.equipment_entity()
 
-    def effect(self, game: GeniusGame) -> None:
-        target = game.current_action.target_idx
-        self.player = game.players[game.active_player]
-        self.character = self.player.active_zone.character_list[target]

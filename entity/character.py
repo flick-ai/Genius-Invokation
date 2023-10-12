@@ -1,4 +1,4 @@
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, List
 from utils import *
 from entity.entity import Entity
 
@@ -7,6 +7,7 @@ if TYPE_CHECKING:
     from game.action import Action
     from game.player import GeniusPlayer
     from event.events import ListenerNode
+    from card.character import CharacterSkill
 
 class Character(Entity):
     # 角色基本类
@@ -23,7 +24,7 @@ class Character(Entity):
 
         后续调用时请调用skills中的实例
     '''
-    characacter_skill_list: list()
+    characacter_skill_list: List[CharacterSkill]
     power: int
     max_power: int
 

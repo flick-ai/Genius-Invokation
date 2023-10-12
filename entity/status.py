@@ -1,7 +1,10 @@
 from entity.entity import Entity
+from game.player import GeniusPlayer
 from utils import *
 from game.game import GeniusGame
 from typing import TYPE_CHECKING, List, Tuple
+
+from utils import GeniusGame
 
 if TYPE_CHECKING:
     from game.game import GeniusGame
@@ -30,6 +33,12 @@ class Status(Entity):
     def update(self):
         # All states can be update
         pass
+
+
+class Shield(Status):
+    def __init__(self, game: GeniusGame, from_player: GeniusPlayer, from_character=None):
+        super().__init__(game, from_player, from_character)
+
 
 class Dendro_Core(Status):
     def __init__(self, game):

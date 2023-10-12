@@ -29,8 +29,7 @@ class GeniusGame:
         self.current_skill: SkillType
 
         self.is_change_player: bool
-        self.is_quick_change: bool
-        self.change_num: int
+
     
     def reset(self):
         pass
@@ -53,21 +52,23 @@ class GeniusGame:
         self.current_action = action
         oppenent_player = self.players[not self.active_player]
         active_player = self.players[self.active_player]
-        # 处理骰子信息：
-        active_player.e
+
         if action.choice_type == ActionChoice.HAND_CARD:
-            active_player.play_card(self, action)
+            self.is_change_player = False
+            active_player.play_card(self)
         elif action.choice_type == ActionChoice.CHARACTER_SKILL:
-            active_player.use_skill(self, action)
-            self.active_player = not active_player
+            self.is_change_player = True
+            active_player.use_skill(self)
         elif action.choice_type == ActionChoice.CHANGE_CHARACTER:
-            is_quick_action = active_player.change_character(self, action)
-            if (not is_quick_action) and (not oppenent_player.is_pass):
-                self.active_player = not active_player
+            self.is_change_player = True
+            active_player.change_character(self)
         elif action.choice_type == ActionChoice.PASS:
             active_player.is_pass = True
             if oppenent_player.is_pass:
                 self.end_phase()
+
+        if self.is_change_player and (not oppenent_player.is_pass):
+            self.active_player = not active_player
 
     def step(self, action: Action):
         '''

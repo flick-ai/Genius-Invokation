@@ -14,4 +14,4 @@ class TalentCard(EquipmentCard):
         
     def on_played(self, game: GeniusGame) -> None:
         super().on_played(game)
-        if 
+        pass

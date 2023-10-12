@@ -25,4 +25,4 @@ class Support(Entity):
 
     def on_destroy(self):
         super().on_destroy()
-        self.from_player.summons_zone.destroy(self)
+        self.from_player.support_zone.destroy(self)

@@ -76,7 +76,7 @@ class NormalAttack(CharacterSkill):
                               self.main_damage, self.piercing_damage, 
                               # TODO: 可能需要改一下调用的接口
                               self.from_character, get_opponent_active_character(game),
-                              is_plunging_attack, is_charged_attack)
+                              self.is_plunging_attack, self.is_charged_attack)
 
         # 治疗执行
 
