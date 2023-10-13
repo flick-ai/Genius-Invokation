@@ -26,8 +26,8 @@ class Status(Entity):
         self.max_usage: int #Maybe changed by Talent.
         self.current_usage: int
 
-    def on_destroy(self):
-        return super().on_destroy()
+    def on_destroy(self, game):
+        return super().on_destroy(game)
         #TODO
 
     def update(self):

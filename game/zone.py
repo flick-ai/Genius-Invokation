@@ -157,7 +157,7 @@ class CharacterZone:
     '''
     def __init__(self, game: 'GeniusGame', player: 'GeniusPlayer', name) -> None:
         self.character: Character = eval(name)(game, player)
-        self.character.init_state()
+        self.character.init_state(game)
         self.player = player
         self.weapon_card: WeaponCard
         self.artifact_card: ArtifactCard

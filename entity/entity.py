@@ -24,6 +24,6 @@ class Entity:
         for event_name, event_type, action in self.listeners:
             self.registered_events.append(game.manager.listen(event_name, event_type, action))
 
-    def on_destroy(self):
+    def on_destroy(self, game):
         for action in self.registered_events:
             action.remove()

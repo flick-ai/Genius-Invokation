@@ -81,46 +81,15 @@ class ElementalSkill(CharacterSkill):
     def on_call(self, game: GeniusGame):
         super().on_call(game)
         # TODO: Prepares for another Elemental Skill
-        # TODO: 消耗骰子
-        # TODO: 判断技能是否有伤害
-        # 伤害执行
-        Damage.resolve_damage(game, self.damage_type, self.main_damage_element, 
-                              self.main_damage, self.piercing_damage,
-                              # TODO: 可能需要改一下调用的接口
-                              self.from_character, get_opponent_active_character(game),)
-
-        # 治疗执行
-
-        # 召唤物/状态生成
-        self.generate_summon(game)
-
-        # TODO: 获得能量
-        
-        game.manager.invoke('after_skill', game)
 
 
 class ElementalBurst(CharacterSkill):
 
     def on_call(self, game: GeniusGame):
         super().on_call(game)
-        # TODO: 消耗骰子
-        # TODO: 消耗能量
-
-        # TODO: 判断技能是否有伤害
-        # 伤害执行
-        Damage.resolve_damage(game, self.damage_type, self.main_damage_element, 
-                              self.main_damage, self.piercing_damage,
-                              # TODO: 可能需要改一下调用的接口
-                              self.from_character, get_opponent_active_character(game),)
-
-        # 治疗执行
-
-        # 召唤物/状态生成
-        self.generate_summon(game)
-        
-        game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 
 
+# class PassiveSkill(CharacterSkill):
 
         

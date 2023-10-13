@@ -23,6 +23,6 @@ class Support(Entity):
         super().__init__(game, from_player, from_character)
         self.current_usage: int = self.usage
 
-    def on_destroy(self):
-        super().on_destroy()
+    def on_destroy(self, game):
+        super().on_destroy(game)
         self.from_player.support_zone.destroy(self)

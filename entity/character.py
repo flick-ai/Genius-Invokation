@@ -29,7 +29,12 @@ class Character(Entity):
     power: int
     max_power: int
 
-    init_state: list() # 初始状态
+    # init_state: list() # 初始状态
+    def init_state(self, game: GeniusGame):
+        '''
+            游戏开始时的被动技能触发
+        '''
+        pass
 
     def init_skill(self):
         self.skills = []

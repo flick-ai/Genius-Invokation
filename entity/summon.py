@@ -22,7 +22,7 @@ class Summon(Entity):
         super().__init__(game, from_player, from_character)
         self.current_usage: int = self.usage
 
-    def on_destroy(self):
+    def on_destroy(self, game):
         super().on_destroy()
         self.from_player.summons_zone.destroy(self)
     
