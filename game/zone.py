@@ -55,7 +55,7 @@ class CardZone:
         # 随机固定牌序
         np.random.shuffle(self.card)
 
-    def find_card(self, card_type: ActionCardType, num=1):
+    def find_card(self, card_type: 'ActionCardType', num=1):
         '''
             检索并获取特定类型的牌
         '''
@@ -109,7 +109,7 @@ class SummonZone:
                 self.space.pop(idx)
                 return
 
-    def add_entity(self, entity: Summon):
+    def add_entity(self, entity: 'Summon'):
         for idx, exist in enumerate(self.space):
             if entity.name == exist.name:
                 self.space[idx].update()
@@ -127,7 +127,7 @@ class SupportZone:
     def __init__(self) -> None:
         self.space: List[Support] = []
 
-    def destroy(self, entity: Support):
+    def destroy(self, entity: 'Support'):
         for idx, exist in enumerate(self.space):
             if entity.name == exist.name:
                 self.space.pop(idx)
@@ -164,10 +164,10 @@ class CharacterZone:
         if self.hp > self.max_hp:
             self.hp = self.max_hp
 
-    def add_entity(self, entity: Status):
+    def add_entity(self, entity: 'Status'):
         pass
 
-    def skill(self, skill, game: GeniusGame):
+    def skill(self, skill, game: 'GeniusGame'):
         self.character.characacter_skill_list[skill].on_call(game)
 
 class ActiveZone:
