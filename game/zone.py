@@ -5,6 +5,7 @@ from copy import deepcopy
 
 if TYPE_CHECKING:
     from entity.entity import Entity
+    from game.player import GeniusPlayer
     from entity.summon import Summon
     from entity.support import Support
     from entity.status import Status, Shield
@@ -16,7 +17,7 @@ class DiceZone:
     '''
         骰子区
     '''
-    def __init__(self, player) -> None:
+    def __init__(self, game: 'GeniusGame', player: 'GeniusPlayer') -> None:
         self.player = player
 
     def get_dice(self):
@@ -51,7 +52,7 @@ class CardZone:
     '''
         牌堆区,
     '''
-    def __init__(self, card: List) -> None:
+    def __init__(self, game: 'GeniusGame', player: 'GeniusPlayer', card: List) -> None:
         '''
             牌堆结构为一个随机过的固定顺序列表
         '''
@@ -106,7 +107,7 @@ class SummonZone:
     '''
         召唤物区
     '''
-    def __init__(self) -> None:
+    def __init__(self, game: 'GeniusGame', player: 'GeniusPlayer') -> None:
         self.max_num = 4
         self.space: List[Summon] = []
 
@@ -131,7 +132,7 @@ class SupportZone:
     '''
         支援区
     '''
-    def __init__(self) -> None:
+    def __init__(self, game: 'GeniusGame', player: 'GeniusPlayer') -> None:
         self.space: List[Support] = []
 
     def destroy(self, entity: 'Support'):
@@ -154,9 +155,10 @@ class CharacterZone:
     '''
         单个角色状态区, 包括角色牌、装备区、角色状态
     '''
-    def __init__(self, name) -> None:
-        self.character: Character = eval(name)
+    def __init__(self, game: 'GeniusGame', player: 'GeniusPlayer', name) -> None:
+        self.character: Character = eval(name)(game, player)
         self.character.init_state()
+        self.player = player
         self.weapon_card: WeaponCard
         self.artifact_card: ArtifactCard
         self.talent_card: TalentCard
@@ -165,6 +167,7 @@ class CharacterZone:
         self.is_alive: bool = True
         self.special_state: List = []
         self.elemental_application: List = []
+
 
     def heal(self, heal):
         self.hp += heal
@@ -181,7 +184,8 @@ class ActiveZone:
     '''
         全队战斗状态区
     '''
-    def __init__(self) -> None:
+    def __init__(self, game: 'GeniusGame', player: 'GeniusPlayer') -> None:
+        self.player = player
         self.space: List[Status] = []
         self.shield: List[Shield] = []
 
@@ -207,7 +211,7 @@ class HandZone:
     '''
         手牌区
     '''
-    def __init__(self) -> None:
+    def __init__(self, game: 'GeniusGame', player: 'GeniusPlayer') -> None:
         self.card = []
 
     def remove(self, idx):

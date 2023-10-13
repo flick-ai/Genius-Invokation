@@ -4,6 +4,7 @@ from entity.entity import Entity
 
 if TYPE_CHECKING:
     from game.game import GeniusGame
+    from game.zone import CharacterZone
     from game.action import Action
     from game.player import GeniusPlayer
     from event.events import ListenerNode
@@ -35,10 +36,13 @@ class Character(Entity):
         for skill in self.characacter_skill_list:
             self.skills.append(skill(self))
 
-    def __init__(self, game: GeniusGame, from_player: GeniusPlayer, from_character = None):
-        super().__init__(game, from_character, from_player)
+    def __init__(self, game: 'GeniusGame', character_zone:'CharacterZone', from_player: GeniusPlayer, from_character = None):
+        self.character_zone = character_zone
         self.init_skill()
-        self.talent: bool
+        self.talent: bool = False
+        super().__init__(game, from_character, from_player)
+        
+        
 
 
 

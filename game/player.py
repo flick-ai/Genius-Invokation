@@ -9,24 +9,24 @@ if TYPE_CHECKING:
     from card.action import ActionCard
 
 class GeniusPlayer:
-    def __init__(self, deck) -> None:
+    def __init__(self, game: GeniusGame, deck) -> None:
         # 初始化牌库、起始5张手牌、骰子区
-        self.card_zone = CardZone(deck['action_card']) # 牌库区
-        self.hand_zone: HandZone = HandZone() # 手牌区
+        self.card_zone = CardZone(game, self, deck['action_card']) # 牌库区
+        self.hand_zone: HandZone = HandZone(game, self) # 手牌区
         self.hand_zone.add(self.card_zone.get_card(num=5))
-        self.dice_zone: DiceZone(self)
+        self.dice_zone: DiceZone(game, self)
 
         # 初始化角色状态区
         self.active_idx = -1
         self.character_list: List[CharacterZone] = []
         for name in deck['character']:
-            self.character_list.append(CharacterZone(name))
+            self.character_list.append(CharacterZone(game, self, name))
         self.character_num = len(self.character_list)
 
         # 环境中的基本状态
-        self.support_zone: SupportZone = SupportZone()
-        self.summons_zone: SummonZone = SummonZone()
-        self.team_combat_status: ActiveZone = ActiveZone()
+        self.support_zone: SupportZone = SupportZone(game, self)
+        self.summons_zone: SummonZone = SummonZone(game, self)
+        self.team_combat_status: ActiveZone = ActiveZone(game, self)
 
         # 其他基本信息
         self.is_pass: bool

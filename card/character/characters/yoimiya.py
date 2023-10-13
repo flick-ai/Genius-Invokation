@@ -90,10 +90,10 @@ class Niwabi_FireDance(ElementalSkill):
                                from_player=self.from_character.from_player, 
                                from_character=self.from_character)
         # 放到状态区
-        self.from_character.from_player.change_character
+        self.from_character.character_zone.add_entity(status)
 
     def on_call(self, game: GeniusGame):
-        super().__init__(game)
+        super().on_call(game)
         # 消耗骰子
         self.on_dice(game)
         # 不造成伤害
@@ -102,7 +102,6 @@ class Niwabi_FireDance(ElementalSkill):
         self.add_status(game)
         # 获得能量
         self.gain_energy(game)
-        game.players[game.active_player].character_list[game.players[game.active_player].active_idx].add_entity(Niwabi_Enshou(game, game.players[game.active_player], game.players[game.active_player].character_list[0]))
         
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
@@ -133,9 +132,21 @@ class Ryuukin_Saxifrage(ElementalBurst):
     def __init__(self, from_character: Character):
         super().__init__(from_character)
     
+    def add_status(self, game: GeniusGame):
+        status = Aurous_Blaze(game=game, 
+                              from_player=self.from_character.from_player, 
+                              from_character=self.from_character)
+        # 放到状态区
+        self.from_character.from_player.team_combat_status.add_entity(status)
+    
     def on_call(self, game: GeniusGame):
         super().on_call(game)
-        game.players[game.active_player].team_combat_status.character_list[game.players[game.active_player].team_combat_status.active_idx].add_status(Aurous_Blaze(game, game.players[game.active_player], game.players[game.active_player].team_combat_status.character_list[0]))
+        # 消耗骰子
+        self.on_dice(game)
+        # 处理伤害
+        self.resolve_damage(game)
+        # 召唤物/状态生成
+        self.add_status(game)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Yoimiya(Character):

@@ -49,6 +49,9 @@ class CharacterSkill:
         dice_zone.calculate_dice(game)
         dice_zone.use_dice()
 
+    def consume_energy(self, game: GeniusGame):
+        pass
+
     def resolve_damage(self, game: GeniusGame):
         Damage.resolve_damage(game, self.damage_type, self.main_damage_element, 
                               self.main_damage, self.piercing_damage, 
