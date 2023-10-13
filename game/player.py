@@ -51,6 +51,7 @@ class GeniusPlayer:
             非标准行动: 选择出战角色
         '''
         idx = np.where(action==1)
+        self.change_to_id(idx)
         
 
     def choose_dice(self, action):
@@ -91,9 +92,11 @@ class GeniusPlayer:
         '''
             基本行动: 切换到指定人
         '''
-        self.character_list[self.active_idx].is_active = False
+        if self.active_idx > 0:
+            self.character_list[self.active_idx].is_active = False
         self.active_idx = idx
         self.character_list[self.active_idx].is_active = True
+        self.is_after_change = True
 
     def change_to_previous_character(self):
         '''
@@ -113,7 +116,7 @@ class GeniusPlayer:
             idx = (idx - 1) % self.character_num
         self.change_to_id(idx)
 
-    def use_skill(self, game: GeniusGame):
+    def use_skill(self, game: 'GeniusGame'):
         '''
             标准行动: 使用技能
         '''
@@ -123,7 +126,7 @@ class GeniusPlayer:
         self.character_list[self.active_idx].skill(skill, game)
         self.is_after_change = False
     
-    def play_card(self, game: GeniusGame):
+    def play_card(self, game: 'GeniusGame'):
         '''
             标准行动: 打出手牌
         '''
@@ -133,7 +136,7 @@ class GeniusPlayer:
         card: ActionCard = self.hand_zone.remove(idx)
         card.on_played(game)
 
-    def change_character(self, game: GeniusGame):
+    def change_character(self, game: 'GeniusGame'):
         '''
             标准行动: 切换角色
         '''
@@ -141,7 +144,6 @@ class GeniusPlayer:
         idx = None
         ###
         self.change_to_id(idx)
-        self.is_after_change = True
         
     
     def begin_round(self, Game):

@@ -135,9 +135,6 @@ class EventType(Enum):
     DEALING_DAMAGE = 9 # Mona only right now
     INFUSION = 10
 
-
-
-
 class ElementalReactionType(Enum):
     Frozen = 0
     Melt = 1
@@ -170,11 +167,13 @@ CostToDice = {
 '''
 utility functions
 '''
-from game.game import GeniusGame
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from game.game import GeniusGame
 
 # get characters
 def get_active_character(
-        game: GeniusGame, 
+        game: 'GeniusGame', 
         player_idx: int, 
         require_player_idx: bool=False):
     if require_player_idx:
@@ -182,17 +181,17 @@ def get_active_character(
     return game.players[player_idx].active_idx
 
 def get_my_active_character(
-        game: GeniusGame,
+        game: 'GeniusGame',
         require_player_idx: bool=False):
     return get_active_character(game, game.active_player, require_player_idx)
 
 def get_opponent_active_character(
-        game: GeniusGame,
+        game: 'GeniusGame',
         require_player_idx: bool=False):
     return get_active_character(game, not game.active_player, require_player_idx)
 
 def get_standby_character(
-        game: GeniusGame, 
+        game: 'GeniusGame', 
         player_idx: int,
         require_player_idx: bool=False):
     player = game.players[player_idx]
@@ -209,11 +208,11 @@ def get_standby_character(
     return standby_charas
 
 def get_my_standby_character(
-        game: GeniusGame,
+        game: 'GeniusGame',
         require_player_idx: bool=False):
     return get_standby_character(game, game.active_player, require_player_idx)
 
 def get_opponent_standby_character(
-        game: GeniusGame,
+        game: 'GeniusGame',
         require_player_idx: bool=False):
     return get_standby_character(game, not game.active_player, require_player_idx)
