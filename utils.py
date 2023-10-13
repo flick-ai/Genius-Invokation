@@ -173,6 +173,8 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from game.game import GeniusGame
     from entity.character import Character
+    from game.player import GeniusPlayer
+
 # get characters
 def get_active_character(
         game: 'GeniusGame', 
@@ -223,3 +225,13 @@ def get_opponent(
         game: 'GeniusGame'
     ):
     return game.players[not game.active_player]
+
+def get_character_with_name(
+        player: 'GeniusPlayer',
+        character
+):
+    # character here is the class name, return an instance.
+    for i in range(player.character_num):
+        if isinstance(player.character_list[i].character, character):
+            return player.character_list[i].character
+    return None

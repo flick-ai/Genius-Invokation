@@ -306,6 +306,7 @@ class Shrine_of_Maya(Combat_Status):
         ]
 
 class Seed_of_Skandha(Status):
+    # 蕴种印， from_player: 附属一方， from_character: 附属的角色
     def __init__(self, game: GeniusGame, from_player: GeniusPlayer, from_character=None):
         super().__init__(game, from_player, from_character)
         self.usage = 2
@@ -336,10 +337,7 @@ class Seed_of_Skandha(Status):
                 Nahida_Player = game.players[1]
             else:
                 Nahida_Player = game.players[0]
-            for i in range(len(Nahida_Player.character_num)):
-                if isinstance(Nahida_Player.character_list[i].character, Nahida):
-                    Nahida_Char = Nahida_Player.character_list[i].character
-                    break
+            Nahida_Char = get_character_with_name(Nahida_Player, Nahida)
             if Nahida_Char.talent:
                 elemental_list = [Nahida_Player.character_list[i].character.element for i in range(Nahida_Player.character_num)]
                 if ElementType.PYRO in elemental_list:
