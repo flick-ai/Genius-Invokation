@@ -6,7 +6,7 @@ class Damage:
     # 伤害基本类
     def __init__(self, damage_type: SkillType, main_damage_element: ElementType, 
                  main_damage: int, piercing_damage: int, 
-                 damage_from: Entity, damage_to: Entity,
+                 damage_from: Entity, damage_to: Character,
                  is_plunging_attack: bool=False, is_charged_attack: bool=False) -> None:
         self.damage_type: SkillType = damage_type
         self.main_damage_element: ElementType = main_damage_element
@@ -14,7 +14,7 @@ class Damage:
         self.piercing_damage: int = piercing_damage
 
         self.damage_from: Entity = damage_from
-        self.damage_to: Entity = damage_to
+        self.damage_to: Character = damage_to
 
         self.is_plunging_attack: bool = is_plunging_attack
         self.is_charged_attack: bool = is_charged_attack

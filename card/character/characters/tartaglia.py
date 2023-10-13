@@ -58,7 +58,11 @@ class Riptide(Status):
         '''
             近战状态下的达达利亚对附属有断流的角色造成的伤害+1
         '''
-        tartaglia = 
+        if game.players[0] == self.from_player:
+            tartaglia_player = game.players[1]
+        else:
+            tartaglia_player = game.players[0]
+        tartaglia = get_character_with_name(tartaglia_player, Tartaglia)
         if game.current_damage.damage_from == tartaglia:
             game.current_damage.main_damage += 1
 
@@ -72,12 +76,18 @@ class Riptide(Status):
     def on_switch_character(self, game: GeniusGame):
         if not self.attached:
             # 附着到新的出战角色上
-            self.from_player.change_character[self.from_player.active_idx].status.append(self)
+            new_character = self.from_player.character_list[self.from_player.active_idx]
+            new_character.add_entity(self)
+            self.from_character = new_character
             self.attached = True
     
     def on_end_phase(self, game: GeniusGame):
-        # tartaglia = self.from_player.player_id
-        if tartaglia.talent:
+        if game.players[0] == self.from_player:
+            tartaglia_player = game.players[1]
+        else:
+            tartaglia_player = game.players[0]
+        tartaglia = get_character_with_name(tartaglia_player, Tartaglia)
+        if tartaglia.talent and tartaglia.character_zone.is_alive:
             Damage.resolve_damage(game,
                 damage_type=SkillType.OTHER,
                 main_damage_element=ElementType.PIERCING,
@@ -126,7 +136,15 @@ class CuttingTorrent(NormalAttack):
         self.resolve_damage(game)
 
         # 如果达达利亚的攻击为重击：对目标角色附属断流
-        
+        if self.is_charged_attack:
+
+            # 如果目标角色没有附属断流，则附属断流
+            status = game.current_damage.damage_to.character_zone.has_entity(Riptide)
+            if not status:
+                riptide = Riptide(game=game,
+                                  from_player=game.current_damage.damage_to.from_player,
+                                  from_character=game.current_damage.damage_to)
+                game.current_damage.damage_to.character_zone.add_entity(riptide)
 
         # 获得能量
         self.gain_energy(game)
@@ -187,6 +205,9 @@ class FlashOfHavoc(ElementalBurst):
     ]
     energy_cost: int = 3
     energy_gain: int = 2
+
+    def on_call(self, game: GeniusGame):
+        pass
     
 class LightOfHavoc(ElementalBurst):
     '''
@@ -211,6 +232,9 @@ class LightOfHavoc(ElementalBurst):
     ]
     energy_cost: int = 3
     energy_gain: int = 0
+
+    def on_call(self, game: GeniusGame):
+        pass
 
 class Havoc_Obliteration(ElementalBurst):
     '''
