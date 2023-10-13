@@ -1,5 +1,5 @@
 from enum import Enum
-
+from typing import List
 DICENUM = 8
 MAX_HANDCARD = 10
 MAX_DICE = 16
@@ -55,6 +55,7 @@ class ElementType(Enum):
     GEO = 5 # 岩
     DENDRO = 6 # 草
     PHYSICAL = 7 # 物理
+    PIERCING = 8 # 穿透
 
 class Status_Counting_Type(Enum):
     TURNS = 0 # 回合开始时计数
@@ -134,6 +135,7 @@ class EventType(Enum):
     END_PHASE = 8
     DEALING_DAMAGE = 9 # Mona only right now
     INFUSION = 10
+    ON_REACTION = 11 # Elemental Reaction based event. Maybe trigger sth, or just add DMG.
 
 class ElementalReactionType(Enum):
     Frozen = 0
@@ -170,7 +172,7 @@ utility functions
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from game.game import GeniusGame
-
+    from entity.character import Character
 # get characters
 def get_active_character(
         game: 'GeniusGame', 
@@ -187,7 +189,7 @@ def get_my_active_character(
 
 def get_opponent_active_character(
         game: 'GeniusGame',
-        require_player_idx: bool=False):
+        require_player_idx: bool=False) -> 'Character':
     return get_active_character(game, not game.active_player, require_player_idx)
 
 def get_standby_character(
@@ -214,5 +216,5 @@ def get_my_standby_character(
 
 def get_opponent_standby_character(
         game: 'GeniusGame',
-        require_player_idx: bool=False):
+        require_player_idx: bool=False)->List["Character"]:
     return get_standby_character(game, not game.active_player, require_player_idx)

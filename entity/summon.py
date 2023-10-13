@@ -29,6 +29,6 @@ class Summon(Entity):
     def update(self):
         pass
 
-class Burning(Summon):
+class Burning_Flame(Summon):
     # Name Maybe Wrong.
     pass
