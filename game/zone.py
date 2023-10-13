@@ -29,7 +29,7 @@ class DiceZone:
             使用骰子
         '''
 
-    def calculate_dice(self):
+    def calculate_dice(self, game):
         '''
             计算骰子
         '''
@@ -39,6 +39,13 @@ class DiceZone:
             对骰子进行排序
         '''
         # 默认骰子排序
+
+    
+    def num(self):
+        '''
+            计算骰子区数量
+        '''
+        pass
     
 class CardZone:
     '''

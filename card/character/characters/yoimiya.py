@@ -47,9 +47,14 @@ class Firework_FlareUp(NormalAttack):
         super().__init__(from_character)
     
     def on_call(self, game: GeniusGame):
-        self.calculate_dice_request(game)
-        self.resolve_damage(game, is_plunging_attack=self.is_plunging_attack, is_charged_attack=self.is_charged_attack)
+        super().on_call(game)
+        # 消耗骰子
+        self.on_dice(game)
+        # 处理伤害
+        self.resolve_damage(game)
+        # 获得能量
         self.gain_energy(game)
+        # after skill
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Niwabi_FireDance(ElementalSkill):
@@ -79,9 +84,24 @@ class Niwabi_FireDance(ElementalSkill):
     def __init__(self, from_character: Character):
         super().__init__(from_character)
 
+    
+    def add_status(self, game: GeniusGame):
+        status = Niwabi_Enshou(game=game, 
+                               from_player=self.from_character.from_player, 
+                               from_character=self.from_character)
+        # 放到状态区
+        self.from_character.from_player.change_character
+
     def on_call(self, game: GeniusGame):
-        # TODO: dice cost calculation. #Invoke(CALCULATE_DICE)
-        # self.from_character.from_player.
+        super().__init__(game)
+        # 消耗骰子
+        self.on_dice(game)
+        # 不造成伤害
+        
+        # 召唤物/状态生成
+        self.add_status(game)
+        # 获得能量
+        self.gain_energy(game)
         game.players[game.active_player].character_list[game.players[game.active_player].active_idx].add_entity(Niwabi_Enshou(game, game.players[game.active_player], game.players[game.active_player].character_list[0]))
         
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)

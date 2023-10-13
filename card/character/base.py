@@ -37,20 +37,24 @@ class CharacterSkill:
 
     def __init__(self, from_character: Character) -> None:
         self.from_character: Character = from_character
+        self.is_plunging_attack: bool = False
+        self.is_charged_attack: bool = False
     
     def generate_summon(self, game: GeniusGame):
         pass
 
-    def calculate_dice_request(self, game: GeniusGame):
+    def on_dice(self, game: GeniusGame):
         # Equipment, Status, Talent(Yae Miko for e.g.) may save dice.
-        pass
+        dice_zone = self.from_character.from_player.dice_zone
+        dice_zone.calculate_dice(game)
+        dice_zone.use_dice()
 
-    def resolve_damage(self, game: GeniusGame, is_plunging_attack: bool=False, is_charged_attack: bool=False):
+    def resolve_damage(self, game: GeniusGame):
         Damage.resolve_damage(game, self.damage_type, self.main_damage_element, 
                               self.main_damage, self.piercing_damage, 
                               # TODO: 可能需要改一下调用的接口
                               self.from_character, get_opponent_active_character(game),
-                              is_plunging_attack, is_charged_attack)
+                              self.is_plunging_attack, self.is_charged_attack)
     def gain_energy(self, game: GeniusGame):
         pass
 
@@ -65,24 +69,8 @@ class NormalAttack(CharacterSkill):
     def on_call(self, game: GeniusGame):
         super().on_call(game)
         # TODO: 判断是否为重击
-        self.is_plunging_attack = False
-        self.is_charged_attack = False
-
-        # TODO: 消耗骰子
-        self.calculate_dice_request(game)
-        # TODO: 判断技能是否有伤害
-        # 伤害执行
-        Damage.resolve_damage(game, self.damage_type, self.main_damage_element, 
-                              self.main_damage, self.piercing_damage, 
-                              # TODO: 可能需要改一下调用的接口
-                              self.from_character, get_opponent_active_character(game),
-                              self.is_plunging_attack, self.is_charged_attack)
-
-        # 治疗执行
-
-        # TODO: 获得能量
-        
-        game.manager.invoke('after_skill', game)
+        self.is_plunging_attack = self.from_character.from_player.is_after_change
+        self.is_charged_attack = self.from_character.from_player.dice_zone.num() % 2 == 0
 
 
 class ElementalSkill(CharacterSkill):
