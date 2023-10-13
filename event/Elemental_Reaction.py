@@ -45,7 +45,12 @@ def Bloom(game:GeniusGame, player_id: int, target_idx: int):
     game.players[player_id].active_zone.character_list[target_idx] .
     '''
     game.players[player_id].character_list[target_idx].elemental_application.pop(0)
-    game.players[1-player_id].team_combat_status.add_entity(Dendro_Core())
+    
+    status = game.players[1-player_id].team_combat_status.has_status(Dendro_Core)
+    if status is not None:
+        status.update()
+    else:
+        game.players[1-player_id].team_combat_status.add_entity(Dendro_Core())
 
 def Overloaded(game:GeniusGame, player_id: int, target_idx: int):
     '''
@@ -59,14 +64,23 @@ def Burning(game:GeniusGame, player_id: int, target_idx: int):
     game.players[player_id].active_zone.character_list[target_idx] .
     '''
     game.players[player_id].character_list[target_idx].elemental_application.pop(0)
-    game.players[1-player_id].summons_zone.add_entity(Burning())
+    summon = game.players[1-player_id].summons_zone.has_entity(Burning_Flame)
+    if summon is not None:
+        summon.update()
+    else:
+        game.players[1-player_id].summons_zone.add_entity(Burning_Flame())
 
 def Quicken(game:GeniusGame, player_id: int, target_idx: int):
     '''
     game.players[player_id].active_zone.character_list[target_idx] .
     '''
     game.players[player_id].character_list[target_idx].elemental_application.pop(0)
-    game.players[1-player_id].team_combat_status.add_entity(Catalyzing_Feild())
+    
+    status = game.players[1-player_id].team_combat_status.has_status(Catalyzing_Feild)
+    if status is None:
+        game.players[1-player_id].team_combat_status.add_entity(Catalyzing_Feild())
+    else:
+        status.update()
 
 
 def Swirl(game:GeniusGame, player_id: int, target_idx: int):
@@ -81,4 +95,8 @@ def Crystallize(game:GeniusGame, player_id: int, target_idx: int):
     game.players[player_id].active_zone.character_list[target_idx] .
     '''
     game.players[player_id].character_list[target_idx].elemental_application.pop(0)
-    game.players[player_id].team_combat_status.add_entity(Crystallize_Shield())
+    status = game.players[1-player_id].team_combat_status.has_shield(Crystallize_Shield)
+    if status is not None:
+        status.update()
+    else:
+        game.players[1-player_id].team_combat_status.add_entity(Crystallize_Shield())

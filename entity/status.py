@@ -34,8 +34,17 @@ class Status(Entity):
         # All states can be update
         pass
 
+class Combat_Status(Status):
+    def __init__(self, game:GeniusGame, from_player: GeniusPlayer, from_character=None):
+        super().__init__(game, from_player, from_character)
 
 class Shield(Status):
+    # Status of shield (Only for single character)
+    def __init__(self, game: GeniusGame, from_player: GeniusPlayer, from_character=None):
+        super().__init__(game, from_player, from_character)
+
+class Combat_Shield(Combat_Status):
+    # Combat_Status of shield.
     def __init__(self, game: GeniusGame, from_player: GeniusPlayer, from_character=None):
         super().__init__(game, from_player, from_character)
 
@@ -44,18 +53,14 @@ class Dendro_Core(Status):
     def __init__(self, game):
         super().__init__(game)
         pass
-    
     pass
         
 class Catalyzing_Feild(Status):
     # Name Maybe Wrong
     pass
 
-class Crystallize_Shield(Status):
+class Crystallize_Shield(Shield):
     # Name Maybe Wrong
     pass
 
 
-class Combat_Status(Status):
-    def __init__(self, game:GeniusGame, from_player: GeniusPlayer, from_character=None):
-        super().__init__(game, from_player, from_character)
