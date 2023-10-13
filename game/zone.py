@@ -116,14 +116,28 @@ class SummonZone:
             if entity.name == exist.name:
                 self.space.pop(idx)
                 return
+    def has_entity(self, entity):
+        # entity here is the class, not the instace
+        # Check whether a kind of entity already exists in self.character_zone.status_list.
+        # If exists, return the status instance in the list to let the caller know and just use entity.update.
+        # If not, return None to let the caller know and use add_entity.
+        for summon in self.space:
+            if isinstance(summon, entity):
+                return summon
+        return None
+
+    def check_full(self):
+        return len(self.space) == self.max_num
 
     def add_entity(self, entity: 'Summon'):
-        for idx, exist in enumerate(self.space):
-            if entity.name == exist.name:
-                self.space[idx].update()
-                return
-        if len(self.space) < self.max_num:
+        if not self.check_full():
             self.space.append(entity)
+        # for idx, exist in enumerate(self.space):
+        #     if entity.name == exist.name:
+        #         self.space[idx].update()
+        #         return
+        # if len(self.space) < self.max_num:
+        #     self.space.append(entity)
 
     def num(self):
         return len(self.space)
@@ -165,7 +179,7 @@ class CharacterZone:
 
         self.is_active: bool = False
         self.is_alive: bool = True
-        self.special_state: List = []
+        self.status_list: List['Status'] = []
         self.elemental_application: List = []
 
 
@@ -174,8 +188,19 @@ class CharacterZone:
         if self.hp > self.max_hp:
             self.hp = self.max_hp
 
+    def has_entity(self, entity):
+        # entity here is the class, not the instace
+        # Check whether a kind of entity already exists in self.character_zone.status_list.
+        # If exists, return the status instance in the list to let the caller know and just use entity.update.
+        # If not, return None to let the caller know and use add_entity.
+
+        for status in self.status_list:
+            if isinstance(status, entity):
+                return status
+        return None
+
     def add_entity(self, entity: 'Status'):
-        pass
+        self.status_list.append(entity)
 
     def skill(self, skill, game: 'GeniusGame'):
         self.character.characacter_skill_list[skill].on_call(game)
@@ -194,17 +219,31 @@ class ActiveZone:
             if entity.name == exist.name:
                 self.space.pop(idx)
 
+    def has_status(self, entity):  
+        # entity here is the class, not the instace
+        # Check whether a kind of entity already exists in self.character_zone.status_list.
+        # If exists, return the status instance in the list to let the caller know and just use entity.update.
+        # If not, return None to let the caller know and use add_entity.
+        for exist in self.space:
+            if isinstance(exist, entity):
+                return exist
+        return None
+
+    def has_shield(self, entity):
+        # entity here is the class, not the instace
+        # Check whether a kind of entity already exists in self.character_zone.status_list.
+        # If exists, return the status instance in the list to let the caller know and just use entity.update.
+        # If not, return None to let the caller know and use add_entity.
+        for exist in self.shield:
+            if isinstance(exist, entity):
+                return exist
+        return None
+
     def add_entity(self, entity):
-        if type(entity) == Shield:
-            for idx, exist in enumerate(self.space):
-                if entity.name == exist.name:
-                    self.shield[idx].update()
-                    return
+        # When using add_entity, please make sure that the same kind of entity is not exisits in the list.
+        if isinstance(entity, Shield):
             self.shield.append(entity)
         else:
-            for idx, exist in enumerate(self.space):
-                if entity.name == exist.name:
-                    self.space[idx].update()
             self.space.append(entity)
 
 class HandZone:

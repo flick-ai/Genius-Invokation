@@ -86,11 +86,16 @@ class Niwabi_FireDance(ElementalSkill):
 
     
     def add_status(self, game: GeniusGame):
-        status = Niwabi_Enshou(game=game, 
-                               from_player=self.from_character.from_player, 
-                               from_character=self.from_character)
-        # 放到状态区
-        self.from_character.character_zone.add_entity(status)
+
+        status = self.from_character.character_zone.has_entity(Niwabi_Enshou)
+        if status is not None:
+            status.update()
+        else:
+            status = Niwabi_Enshou(game=game, 
+                                from_player=self.from_character.from_player, 
+                                from_character=self.from_character)
+            # 放到状态区
+            self.from_character.character_zone.add_entity(status)
 
     def on_call(self, game: GeniusGame):
         super().on_call(game)
@@ -133,11 +138,17 @@ class Ryuukin_Saxifrage(ElementalBurst):
         super().__init__(from_character)
     
     def add_status(self, game: GeniusGame):
-        status = Aurous_Blaze(game=game, 
-                              from_player=self.from_character.from_player, 
-                              from_character=self.from_character)
-        # 放到状态区
-        self.from_character.from_player.team_combat_status.add_entity(status)
+
+        status = self.from_character.from_player.team_combat_status.has_status(Aurous_Blaze)
+        if status is not None:
+            status.update()
+        else:
+            status = Aurous_Blaze(game=game, 
+                                from_player=self.from_character.from_player, 
+                                from_character=self.from_character)
+            # 放到状态区
+
+            self.from_character.from_player.team_combat_status.add_entity(status)
     
     def on_call(self, game: GeniusGame):
         super().on_call(game)

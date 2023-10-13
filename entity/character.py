@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     from game.player import GeniusPlayer
     from event.events import ListenerNode
     from card.character import CharacterSkill
+    from entity.status import Status
 
 class Character(Entity):
     # 角色基本类
