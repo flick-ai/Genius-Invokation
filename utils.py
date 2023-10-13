@@ -218,3 +218,8 @@ def get_opponent_standby_character(
         game: 'GeniusGame',
         require_player_idx: bool=False)->List["Character"]:
     return get_standby_character(game, not game.active_player, require_player_idx)
+
+def get_opponent(
+        game: 'GeniusGame'
+    ):
+    return game.players[not game.active_player]
