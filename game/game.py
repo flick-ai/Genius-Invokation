@@ -45,7 +45,7 @@ class GeniusGame:
         self.game_phase = GamePhase.SET_CARD
         self.active_player = first
 
-    def resolve_action(self, action: Action):
+    def resolve_action(self, action: 'Action'):
         '''
             处理行动信息
         '''
@@ -70,7 +70,7 @@ class GeniusGame:
         if self.is_change_player and (not oppenent_player.is_pass):
             self.active_player = not active_player
 
-    def step(self, action: Action):
+    def step(self, action: 'Action'):
         '''
         回合轮次
         '''
@@ -149,5 +149,12 @@ class GeniusGame:
         self.players[not self.active_player].end_round(self)
         self.roll_phase()
         
-
-   
+    def encode_message(self):
+        '''
+            尝试将Game的信息编码成str呈现给使用者
+        '''
+        message = {0:{}, 1:{}}
+        for player in message.keys():
+            message[player]['card_zone'] = {'num':self.players[player].card_zone.num()} 
+            message[player]['hand_zone'] = {}
+            message[player]['support_zone'] = {}
