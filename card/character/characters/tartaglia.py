@@ -128,7 +128,7 @@ class CuttingTorrent(NormalAttack):
     energy_cost: int = 0
     energy_gain: int = 1
 
-    def on_call(self, game: GeniusGame):
+    def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         # 消耗骰子
         self.on_dice(game)
