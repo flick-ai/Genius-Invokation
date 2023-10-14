@@ -15,7 +15,7 @@ class RavenBow(WeaponCard):
     def __init__(self) -> None:
         super().__init__()
     
-    def effect(self, game: GeniusGame) -> None:
+    def effect(self, game: 'GeniusGame') -> None:
         ##### TODO:
         pass
     

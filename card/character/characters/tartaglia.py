@@ -1,12 +1,8 @@
 from card.character.base import NormalAttack, ElementalSkill, ElementalBurst
 from entity.character import Character
 from entity.entity import Entity
-from game.player import GeniusPlayer
 from utils import *
-from game.game import GeniusGame
 from typing import TYPE_CHECKING, List, Tuple
-
-from utils import GeniusGame
 
 if TYPE_CHECKING:
     from game.game import GeniusGame
@@ -26,7 +22,7 @@ class MeleeStance(Status):
     '''
         近战状态
     '''
-    def on_after_skill(self, game: GeniusGame):
+    def on_after_skill(self, game: 'GeniusGame'):
         '''
             近战状态的达达利亚对已附属有断流的角色使用技能后: 
             对下一个敌方后台角色造成1点穿透伤害
@@ -42,7 +38,7 @@ class Riptide(Status):
         实现逻辑:
         当角色死亡时, 会调用on_distroy, 这时候先建一个新的断流
     '''
-    def __init__(self, game: GeniusGame, from_player: GeniusPlayer, from_character=None):
+    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.attached = False # 是否附着
 
@@ -54,7 +50,7 @@ class Riptide(Status):
             (EventType.AFTER_CHANGE_CHARACTER, ZoneType.CHARACTER_ZONE, self.on_switch_character)
         ]
 
-    def on_damage_add(self, game: GeniusGame):
+    def on_damage_add(self, game: 'GeniusGame'):
         '''
             近战状态下的达达利亚对附属有断流的角色造成的伤害+1
         '''
@@ -73,7 +69,7 @@ class Riptide(Status):
                           from_player=self.from_player,
                           from_character=None)
 
-    def on_switch_character(self, game: GeniusGame):
+    def on_switch_character(self, game: 'GeniusGame'):
         if not self.attached:
             # 附着到新的出战角色上
             new_character = self.from_player.character_list[self.from_player.active_idx]
@@ -81,7 +77,7 @@ class Riptide(Status):
             self.from_character = new_character
             self.attached = True
     
-    def on_end_phase(self, game: GeniusGame):
+    def on_end_phase(self, game: 'GeniusGame'):
         if game.players[0] == self.from_player:
             tartaglia_player = game.players[1]
         else:
@@ -128,7 +124,7 @@ class CuttingTorrent(NormalAttack):
     energy_cost: int = 0
     energy_gain: int = 1
 
-    def on_call(self, game: GeniusGame):
+    def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         # 消耗骰子
         self.on_dice(game)
@@ -206,7 +202,7 @@ class FlashOfHavoc(ElementalBurst):
     energy_cost: int = 3
     energy_gain: int = 2
 
-    def on_call(self, game: GeniusGame):
+    def on_call(self, game: 'GeniusGame'):
         pass
     
 class LightOfHavoc(ElementalBurst):
@@ -233,19 +229,19 @@ class LightOfHavoc(ElementalBurst):
     energy_cost: int = 3
     energy_gain: int = 0
 
-    def on_call(self, game: GeniusGame):
+    def on_call(self, game: 'GeniusGame'):
         pass
 
 class Havoc_Obliteration(ElementalBurst):
     '''
     '''
     id: int = 2
-    def __init__(self, from_character: Character) -> None:
+    def __init__(self, from_character: 'Character') -> None:
         self.from_character = from_character
         self.flash_of_havoc = FlashOfHavoc(from_character)
         self.light_of_havoc = LightOfHavoc(from_character)
 
-    def on_call(self, game: GeniusGame):
+    def on_call(self, game: 'GeniusGame'):
         if self.from_character.is_melee_stance:
             self.light_of_havoc.on_call(game)
         else:
@@ -266,7 +262,7 @@ class Tartaglia(Character):
     power: int = 0
     max_power: int = 3
 
-    def init_state(self, game: GeniusGame):
+    def init_state(self, game: 'GeniusGame'):
         '''
             被动技能：战斗开始时, 附属远程状态
         '''
@@ -276,7 +272,7 @@ class Tartaglia(Character):
         self.character_zone.append()
 
 
-    def __init__(self, game: GeniusGame, from_player: GeniusPlayer, from_character = None, talent = False):
+    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, talent = False):
         super().__init__(game, from_character, from_player)
         self.talent = talent
         self.is_melee_stance = False # 是否为近战状态

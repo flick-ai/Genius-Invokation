@@ -1,10 +1,10 @@
 from card.character.base import Damage
-from game.game import GeniusGame
 from collections import defaultdict
-from typing import List
+from typing import List, TYPE_CHECKING
 from utils import *
 
-
+if TYPE_CHECKING:
+    from game.game import GeniusGame
 
 class ListenerNode:
     '''监听者节点'''
@@ -19,7 +19,7 @@ class ListenerNode:
         if self.next:
             self.next.before = self.before
 
-    def __call__(self, game: GeniusGame) -> None:
+    def __call__(self, game: 'GeniusGame') -> None:
         self.action(game)
 
 
@@ -40,13 +40,13 @@ class Event:
 
 
 class ListenerList(object):
-    def __init__(self, actions: List(function)) -> None:
+    def __init__(self, actions) -> None:
         self.head = ListenerNode(None)
         self.tail = self.head
         for action in actions:
             self.append_action(action)
     
-    def append_action(self, action: function) -> ListenerNode:
+    def append_action(self, action) -> ListenerNode:
         self.tail.next = ListenerNode(action, self.tail)
         self.tail = self.tail.next
         return self.tail
@@ -56,7 +56,7 @@ class ListenerList(object):
         self.tail = self.tail.next
         return self.tail
 
-    def __call__(self, game: GeniusGame) -> None:
+    def __call__(self, game: 'GeniusGame') -> None:
         listener = self.head.next
         while listener:
             listener(game)
@@ -71,7 +71,7 @@ class EventManager:
     def __init__(self) -> None:
         self.events = defaultdict(Event)
     
-    def listen(self, event_type: EventType, zone_type: ZoneType, action: function) -> ListenerNode:
+    def listen(self, event_type: EventType, zone_type: ZoneType, action) -> ListenerNode:
         '''
         监听事件
         event_type: 事件类型
@@ -80,7 +80,7 @@ class EventManager:
         '''
         return self.events[event_type][zone_type].append_action(action)
 
-    def invoke(self, event_type, game: GeniusGame) -> None:
+    def invoke(self, event_type, game: 'GeniusGame') -> None:
         for zone_type in ZoneType:
             self.events[event_type][zone_type](game)
 

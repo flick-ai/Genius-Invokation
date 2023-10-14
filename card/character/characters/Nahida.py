@@ -1,12 +1,8 @@
 from card.character.base import NormalAttack, ElementalSkill, ElementalBurst
 from entity.character import Character
 from entity.entity import Entity
-from game.player import GeniusPlayer
 from utils import *
-from game.game import GeniusGame
 from typing import TYPE_CHECKING, List, Tuple
-
-from utils import GeniusGame
 
 if TYPE_CHECKING:
     from game.game import GeniusGame
@@ -47,7 +43,7 @@ class Akara(NormalAttack):
     def __init__(self, from_character: Character):
         super().__init__(from_character)
     
-    def on_call(self, game: GeniusGame):
+    def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         # 消耗骰子
         self.on_dice(game)
@@ -82,11 +78,11 @@ class All_Schemes_to_Know(ElementalSkill):
     energy_cost: int = 0
     energy_gain: int = 1
 
-    def __init__(self, from_character: Character):
+    def __init__(self, from_character: 'Character'):
         super().__init__(from_character)
 
     
-    def add_status(self, game: GeniusGame):
+    def add_status(self, game: 'GeniusGame'):
         status = get_opponent_active_character(game).character_zone.has_entity(Seed_of_Skandha)
         if status is None:
             get_opponent_active_character(game).character_zone.add_entity(
@@ -105,7 +101,7 @@ class All_Schemes_to_Know(ElementalSkill):
                         Seed_of_Skandha(game, get_opponent(game), char)
                     )
 
-    def on_call(self, game: GeniusGame):
+    def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         # 消耗骰子
         self.on_dice(game)
@@ -147,7 +143,7 @@ class All_Schemes_to_Know_Tathata(ElementalSkill):
         super().__init__(from_character)
 
     
-    def add_status(self, game: GeniusGame):
+    def add_status(self, game: 'GeniusGame'):
 
         active_char = get_opponent_active_character(game)
         status = active_char.character_zone.has_entity(Seed_of_Skandha)
@@ -168,7 +164,7 @@ class All_Schemes_to_Know_Tathata(ElementalSkill):
             else:
                 sta.update()
 
-    def on_call(self, game: GeniusGame):
+    def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         # 消耗骰子
         self.on_dice(game)
@@ -209,7 +205,7 @@ class Illusory_Heart(ElementalBurst):
     def __init__(self, from_character: Character):
         super().__init__(from_character)
     
-    def add_status(self, game: GeniusGame):
+    def add_status(self, game: 'GeniusGame'):
         status = self.from_character.from_player.team_combat_status.has_status(Shrine_of_Maya)
 
         if status is None:
@@ -218,7 +214,7 @@ class Illusory_Heart(ElementalBurst):
         else:
             status.update(game)
 
-    def on_call(self, game: GeniusGame):
+    def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         # 消耗骰子
         self.on_dice(game)
@@ -243,12 +239,12 @@ class Nahida(Character):
     power: int = 0
     max_power: int = 2
 
-    def __init__(self, game: GeniusGame, from_player: GeniusPlayer, from_character = None, talent = False):
+    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, talent = False):
         super().__init__(game, from_character, from_player)
         self.talent = talent
 
 class Shrine_of_Maya(Combat_Status):
-    def __init__(self, game, from_player: GeniusPlayer, from_character: Character=None):
+    def __init__(self, game, from_player: 'GeniusPlayer', from_character: Character=None):
         super().__init__(game, from_player, from_character)
         self.usage = 2
         self.max_usage = 2
@@ -271,15 +267,15 @@ class Shrine_of_Maya(Combat_Status):
                     if sta is not None:
                         sta.add_one_usage()
     
-    def on_reaction(self, game:GeniusGame):
+    def on_reaction(self, game: 'GeniusGame'):
         game.current_damage.main_damage += 1
     
-    def end_phase(self, game: GeniusGame):
+    def end_phase(self, game: 'GeniusGame'):
         self.current_usage -= 1
         if self.current_usage <= 0:
             self.on_destroy(game)
     
-    def update(self, game: GeniusGame):
+    def update(self, game: 'GeniusGame'):
         if not self.from_character.talent:
             self.current_usage = self.max_usage
         else:
@@ -307,7 +303,7 @@ class Shrine_of_Maya(Combat_Status):
 
 class Seed_of_Skandha(Status):
     # 蕴种印， from_player: 附属一方， from_character: 附属的角色
-    def __init__(self, game: GeniusGame, from_player: GeniusPlayer, from_character=None):
+    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.usage = 2
         self.max_usage = 2
@@ -319,7 +315,7 @@ class Seed_of_Skandha(Status):
     def update(self):
         self.current_usage = max(self.max_usage, self.current_usage)
     
-    def on_reaction(self, game: GeniusGame):
+    def on_reaction(self, game: 'GeniusGame'):
 
         reaction_target = game.current_damage.damage_to # Character
         if reaction_target!=self.from_character:

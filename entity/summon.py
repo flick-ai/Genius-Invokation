@@ -1,4 +1,3 @@
-from game.game import GeniusGame
 from utils import *
 from entity.entity import Entity
 from typing import TYPE_CHECKING, List, Tuple
@@ -18,7 +17,7 @@ class Summon(Entity):
     max_usage: int
     skills: list
 
-    def __init__(self, game: GeniusGame, from_player: GeniusPlayer, from_character=None):
+    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.current_usage: int = self.usage
 

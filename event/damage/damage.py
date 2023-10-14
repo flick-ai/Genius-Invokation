@@ -1,12 +1,16 @@
-
+from typing import TYPE_CHECKING
 from utils import *
-from game.game import GeniusGame
 from event.Elemental_Reaction import *
+
+if TYPE_CHECKING:
+    from game.game import GeniusGame
+
+    
 class Damage:
     # 伤害基本类
-    def __init__(self, damage_type: SkillType, main_damage_element: ElementType, 
+    def __init__(self, damage_type: 'SkillType', main_damage_element: 'ElementType', 
                  main_damage: int, piercing_damage: int, 
-                 damage_from: Entity, damage_to: Character,
+                 damage_from: 'Entity', damage_to: 'Character',
                  is_plunging_attack: bool=False, is_charged_attack: bool=False) -> None:
         self.damage_type: SkillType = damage_type
         self.main_damage_element: ElementType = main_damage_element
@@ -24,18 +28,18 @@ class Damage:
     
 
     @classmethod
-    def create_damage(cls, game: GeniusGame,
-                      damage_type: SkillType, main_damage_element: ElementType, 
+    def create_damage(cls, game: 'GeniusGame',
+                      damage_type: 'SkillType', main_damage_element: 'ElementType', 
                       main_damage: int, piercing_damage: int, 
-                      damage_from: Entity, damage_to: Entity,
+                      damage_from: 'Entity', damage_to: 'Entity',
                       is_plunging_attack: bool=False, is_charged_attack: bool=False):
         game.current_damage = cls(damage_type, main_damage_element, main_damage, piercing_damage, is_plunging_attack, is_charged_attack)
 
     # @staticmethod
-    def resolve_damage(game: GeniusGame,
-                    damage_type: SkillType, main_damage_element: ElementType, 
+    def resolve_damage(game: 'GeniusGame',
+                    damage_type: 'SkillType', main_damage_element: 'ElementType', 
                     main_damage: int, piercing_damage: int,
-                    damage_from: Entity, damage_to: Entity,
+                    damage_from: 'Entity', damage_to: 'Entity',
                     is_plunging_attack: bool=False, is_charged_attack: bool=False):    
         Damage.create_damage(game, damage_type, main_damage_element, 
                              main_damage, piercing_damage, 
@@ -46,20 +50,20 @@ class Damage:
         game.current_damage.execute_damage(game)
         game.current_damage.after_damage(game)
     
-    def elemental_infusion(self, game: GeniusGame):
+    def elemental_infusion(self, game: 'GeniusGame'):
         game.manager.invoke(EventType.INFUSION, game)
 
-    def after_damage(self, game: GeniusGame):
+    def after_damage(self, game: 'GeniusGame'):
     #     # 扩散伤害
         if self.reaction is Swirl:
             Damage.resolve_damage(game, SkillType.OTHER, self.swirl_crystallize_type, 1, 0)
     #     pass
-    def execute_damage(self, game: GeniusGame):
+    def execute_damage(self, game: 'GeniusGame'):
         # 打出伤害
 
         # TODO: 盾
         pass
-    def cal_damage(self, game: GeniusGame):
+    def cal_damage(self, game: 'GeniusGame'):
         # 元素类型转化
         '''
         Based on my activeZone.
@@ -76,7 +80,7 @@ class Damage:
         '''
         pass
 
-    def Elemental_Reaction(self, game:GeniusGame):
+    def Elemental_Reaction(self, game: 'GeniusGame'):
         '''
         It will update game.current_damage, .
         '''

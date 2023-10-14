@@ -10,5 +10,5 @@ class WeaponCard(EquipmentCard):
         super().__init__()
         self.card_type = ActionCardType.EQUIPMENT_WEAPON
 
-    def effect(self, game: GeniusGame) -> None:
+    def effect(self, game: 'GeniusGame') -> None:
         super().effect(game)

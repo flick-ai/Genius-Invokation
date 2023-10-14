@@ -9,7 +9,7 @@ if TYPE_CHECKING:
     from card.action import ActionCard
 
 class GeniusPlayer:
-    def __init__(self, game: GeniusGame, deck) -> None:
+    def __init__(self, game: 'GeniusGame', deck) -> None:
         # 初始化牌库、起始5张手牌、骰子区
         self.card_zone = CardZone(game, self, deck['action_card']) # 牌库区
         self.hand_zone: HandZone = HandZone(game, self) # 手牌区

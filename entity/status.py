@@ -1,10 +1,7 @@
 from entity.entity import Entity
 from game.player import GeniusPlayer
 from utils import *
-from game.game import GeniusGame
 from typing import TYPE_CHECKING, List, Tuple
-
-from utils import GeniusGame
 
 if TYPE_CHECKING:
     from game.game import GeniusGame
@@ -20,7 +17,7 @@ class Status(Entity):
     name: str
    
 
-    def __init__(self, game:GeniusGame, from_player: GeniusPlayer, from_character=None):
+    def __init__(self, game: 'GeniusGame', from_player:'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.usage: int #生成时的可用次数
         self.max_usage: int #Maybe changed by Talent.
@@ -35,17 +32,17 @@ class Status(Entity):
         pass
 
 class Combat_Status(Status):
-    def __init__(self, game:GeniusGame, from_player: GeniusPlayer, from_character=None):
+    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
 
 class Shield(Status):
     # Status of shield (Only for single character)
-    def __init__(self, game: GeniusGame, from_player: GeniusPlayer, from_character=None):
+    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
 
 class Combat_Shield(Combat_Status):
     # Combat_Status of shield.
-    def __init__(self, game: GeniusGame, from_player: GeniusPlayer, from_character=None):
+    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
 
 

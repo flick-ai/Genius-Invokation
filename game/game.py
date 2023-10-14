@@ -17,8 +17,8 @@ class GeniusGame:
         np.random.seed(seed)
         self.first_player: int
         self.active_player: int
-        player0 = GeniusPlayer(player0_deck)
-        player1 = GeniusPlayer(player1_deck)
+        player0 = GeniusPlayer(self, player0_deck)
+        player1 = GeniusPlayer(self, player1_deck)
         self.players = [player0, player1]
         self.game_phase: GamePhase
         self.round: int = 0
