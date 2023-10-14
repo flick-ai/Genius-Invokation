@@ -1,6 +1,10 @@
 from entity.entity import Entity
+from game.game import GeniusGame
+from game.player import GeniusPlayer
 from utils import *
 from typing import TYPE_CHECKING, List, Tuple
+
+from utils import GeniusGame, GeniusPlayer
 
 if TYPE_CHECKING:
     from game.game import GeniusGame
@@ -45,9 +49,15 @@ class Combat_Shield(Combat_Status):
         super().__init__(game, from_player, from_character)
 
 
+class Frozen_Status(Status):
+    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
+        super().__init__(game, from_player, from_character)
+        pass
+    pass
+
 class Dendro_Core(Status):
-    def __init__(self, game):
-        super().__init__(game)
+    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
+        super().__init__(game, from_player, from_character)
         pass
     pass
         

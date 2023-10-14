@@ -232,6 +232,6 @@ def get_character_with_name(
 ):
     # character here is the class name, return an instance.
     for i in range(player.character_num):
-        if isinstance(player.character_list[i].character, character):
-            return player.character_list[i].character
+        if isinstance(player.character_list[i], character):
+            return player.character_list[i]
     return None
