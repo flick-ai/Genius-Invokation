@@ -53,12 +53,12 @@ class DiceZone:
         dices = sorted(dices, key=lambda x:self.sort_map[x])
         for idx, dice in enumerate(dices):
             if dice != 7:
-                self.space[idx][-1] = dice
-                self.space[idx][dice] = 1
+                self.space[self.num][-1] = dice
+                self.space[self.num][dice] = 1
             else:
-                self.space[idx][-1] = dice
+                self.space[self.num][-1] = dice
                 for i in range(DICENUM-1):
-                    self.space[idx][i] = 1
+                    self.space[self.num][i] = 1
             self.num += 1
             if self.num == MAX_DICE:
                 break
@@ -76,6 +76,7 @@ class DiceZone:
         dices.sort(reverse=True)
         for dice in dices:
             self.delete(dice)
+            self.num -= 1
 
     def calculate_dice(self, game):
         '''
