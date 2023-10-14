@@ -29,6 +29,7 @@ class GeniusGame:
         self.current_skill: SkillType
 
         self.is_change_player: bool
+        self.is_end: bool = False
 
         self.init_game()
 
@@ -167,5 +168,4 @@ class GeniusGame:
                 message[player][character.name]['alive'] = character.character_zone.is_alive
             # message[player]['support_zone'] = [support.name for support in self.players[player].summons_zone.space]
             # message[player]['summon_zone'] = [summon.name for summon in self.players[player].summons_zone.space]
-
         return message
