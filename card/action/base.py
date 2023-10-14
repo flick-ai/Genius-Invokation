@@ -1,5 +1,8 @@
+from typing import TYPE_CHECKING
 from utils import *
-from game.game import GeniusGame
+
+if TYPE_CHECKING:
+    from game.game import GeniusGame
 
 
 class ActionCard:
@@ -10,7 +13,7 @@ class ActionCard:
     cost_type: CostType
     card_type: ActionCardType
 
-    def on_played(self, game: GeniusGame) -> None:
+    def on_played(self, game: 'GeniusGame') -> None:
         '''
             效果执行函数
         '''

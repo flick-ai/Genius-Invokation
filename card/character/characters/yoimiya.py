@@ -2,10 +2,7 @@ from card.character.base import NormalAttack, ElementalSkill, ElementalBurst
 from entity.character import Character
 from entity.entity import Entity
 from utils import *
-from game.game import GeniusGame
 from typing import TYPE_CHECKING, List, Tuple
-
-from utils import GeniusGame
 
 if TYPE_CHECKING:
     from game.game import GeniusGame
@@ -43,10 +40,10 @@ class Firework_FlareUp(NormalAttack):
     energy_cost: int = 0
     energy_gain: int = 1
 
-    def __init__(self, from_character: Character):
+    def __init__(self, from_character: 'Character'):
         super().__init__(from_character)
     
-    def on_call(self, game: GeniusGame):
+    def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         # 消耗骰子
         self.on_dice(game)
@@ -81,11 +78,11 @@ class Niwabi_FireDance(ElementalSkill):
     energy_cost: int = 0
     energy_gain: int = 0
 
-    def __init__(self, from_character: Character):
+    def __init__(self, from_character: 'Character'):
         super().__init__(from_character)
 
     
-    def add_status(self, game: GeniusGame):
+    def add_status(self, game: 'GeniusGame'):
 
         status = self.from_character.character_zone.has_entity(Niwabi_Enshou)
         if status is not None:
@@ -97,7 +94,7 @@ class Niwabi_FireDance(ElementalSkill):
             # 放到状态区
             self.from_character.character_zone.add_entity(status)
 
-    def on_call(self, game: GeniusGame):
+    def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         # 消耗骰子
         self.on_dice(game)
@@ -134,10 +131,10 @@ class Ryuukin_Saxifrage(ElementalBurst):
     energy_cost: int = 3
     energy_gain: int = 0
 
-    def __init__(self, from_character: Character):
+    def __init__(self, from_character: 'Character'):
         super().__init__(from_character)
     
-    def add_status(self, game: GeniusGame):
+    def add_status(self, game: 'GeniusGame'):
 
         status = self.from_character.from_player.team_combat_status.has_status(Aurous_Blaze)
         if status is not None:
@@ -150,7 +147,7 @@ class Ryuukin_Saxifrage(ElementalBurst):
 
             self.from_character.from_player.team_combat_status.add_entity(status)
     
-    def on_call(self, game: GeniusGame):
+    def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         # 消耗骰子
         self.on_dice(game)
@@ -169,35 +166,35 @@ class Yoimiya(Character):
     country: CountryType = CountryType.INAZUMA
     health_point: int = 10
     max_health_point: int = 10
-    skill_list: [Firework_FlareUp, Niwabi_FireDance, Ryuukin_Saxifrage]
+    skill_list = [Firework_FlareUp, Niwabi_FireDance, Ryuukin_Saxifrage]
 
     power: int = 0
     max_power: int = 3
 
-    def __init__(self, game: GeniusGame, from_player: GeniusPlayer, from_character = None, talent = False):
-        super().__init__(game, from_character, from_player)
+    def __init__(self, game: 'GeniusGame', zone, from_player: 'GeniusPlayer', from_character = None, talent = False):
+        super().__init__(game, zone, from_character, from_player)
         self.talent = talent
 
 
 class Niwabi_Enshou(Status):
 
-    def __init__(self, game, from_player: GeniusPlayer, from_character: Character=None):
+    def __init__(self, game, from_player: 'GeniusPlayer', from_character: Character=None):
         super().__init__(game, from_player, from_character)
         self.usage = 2
         self.max_usage = 2
         self.current_usage = 2
     
-    def infuse(self, game: GeniusGame):
+    def infuse(self, game: 'GeniusGame'):
         if game.current_damage.damage_from == self.from_character:
             if game.current_skill == ElementType.PHYSICAL:
                 game.current_damage.main_damage_element = ElementType.ELECTRO
 
-    def on_execute_damage(self, game:GeniusGame):
+    def on_execute_damage(self, game: 'GeniusGame'):
         if game.current_damage.damage_from == self.from_character:
             if game.current_skill == SkillType.NORMAL_ATTACK:
                 game.current_damage.main_damage += 1
     
-    def after_skill(self, game: GeniusGame):
+    def after_skill(self, game:'GeniusGame'):
         if game.current_damage.damage_from == self.from_character:
             if game.current_skill == SkillType.NORMAL_ATTACK:
                 if self.from_character.talent:
@@ -227,7 +224,7 @@ class Niwabi_Enshou(Status):
         ]
 
 class Aurous_Blaze(Status):
-    def __init__(self, game, from_player: GeniusPlayer, from_character: Character=None):
+    def __init__(self, game, from_player: 'GeniusPlayer', from_character: 'Character'=None):
         super().__init__(game, from_player, from_character)
         self.usage = 2
         self.max_usage = 2
@@ -236,7 +233,7 @@ class Aurous_Blaze(Status):
     def update(self):
         self.current_usage = self.usage
     
-    def after_skill(self, game: GeniusGame):
+    def after_skill(self, game: 'GeniusGame'):
         if game.current_damage.damage_from != self.from_character:
             Damage.resolve_damage(
                 game, 
@@ -250,7 +247,7 @@ class Aurous_Blaze(Status):
                 is_charged_attack=False
             )
 
-    def on_end_phase(self, game: GeniusGame):
+    def on_end_phase(self, game: 'GeniusGame'):
         self.current_usage -= 1
         if self.current_usage <= 0:
             self.on_destroy(game)

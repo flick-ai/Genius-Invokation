@@ -1,10 +1,10 @@
 from ..base import ActionCard
-from game.game import GeniusGame
 from typing import TYPE_CHECKING
 from entity.entity import Entity
 from utils import *
 
 if TYPE_CHECKING:
+    from game.game import GeniusGame
     from game.zone import CharacterZone
     from game.player import GeniusPlayer
 
@@ -19,7 +19,7 @@ class EquipmentCard(ActionCard):
     def __init__(self) -> None:
         super().__init__()
 
-    def on_played(self, game: GeniusGame) -> None:
+    def on_played(self, game: 'GeniusGame') -> None:
         character = get_my_active_character(game)
         equipment = self.equipment_entity()
 

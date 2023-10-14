@@ -11,14 +11,14 @@ class GeniusGame:
     '''
     主游戏
     '''
-    def __init__(self, seed, player0_deck, player1_deck) -> None:
+    def __init__(self,player0_deck, player1_deck) -> None:
         self.num_players = 3
-        self.seed = seed
-        np.random.seed(seed)
+        # self.seed = seed
+        # np.random.seed(seed)
         self.first_player: int
         self.active_player: int
-        player0 = GeniusPlayer(player0_deck)
-        player1 = GeniusPlayer(player1_deck)
+        player0 = GeniusPlayer(self, player0_deck)
+        player1 = GeniusPlayer(self, player1_deck)
         self.players = [player0, player1]
         self.game_phase: GamePhase
         self.round: int = 0
@@ -29,6 +29,8 @@ class GeniusGame:
         self.current_skill: SkillType
 
         self.is_change_player: bool
+
+        self.init_game()
 
     
     def reset(self):
@@ -87,12 +89,11 @@ class GeniusGame:
     def set_hand_card(self, action):
         '''
             选择手牌部分
-            action: [5,1] 0/1
         '''
         active = self.active_player
         self.players[active].choose_card(action)
         if self.active_player == self.first_player:
-            self.active_player = not active
+            self.active_player = int(not active)
         else:
             self.game_phase = GamePhase.SET_CHARACTER
             self.active_player = self.first_player
@@ -100,20 +101,18 @@ class GeniusGame:
     def set_active_character(self, action):
         '''
             选择出战角色
-            action: [3,1] one-hot
         '''
         active = self.active_player
         self.players[active].choose_character(action)
         if self.active_player == self.first_player:
-            self.active_player = not active
+            self.active_player = int(not active)
         else:
             self.roll_phase()
             self.active_player = self.first_player
 
-    def set_reroll_dice(self, action):
+    def set_reroll_dice(self, action, ):
         '''
             选择重新投掷的骰子
-            action: [num_dice, 1] 0/1
         '''
         active = self.active_player
         self.players[active].choose_dice(action)
@@ -130,7 +129,7 @@ class GeniusGame:
         self.round += 1
         self.game_phase = GamePhase.ROLL_PHASE
         for player in self.players:
-            player.dice_zone = player.roll_dice()
+            player.dice_zone.add(player.roll_dice())
     
     def action_phase(self):
         '''
@@ -146,15 +145,27 @@ class GeniusGame:
         '''
         self.game_phase = GamePhase.END_PHASE
         self.players[self.active_player].end_round(self)
-        self.players[not self.active_player].end_round(self)
+        self.players[int(not self.active_player)].end_round(self)
         self.roll_phase()
         
     def encode_message(self):
         '''
             尝试将Game的信息编码成str呈现给使用者
         '''
-        message = {0:{}, 1:{}}
-        for player in message.keys():
-            message[player]['card_zone'] = {'num':self.players[player].card_zone.num()} 
-            message[player]['hand_zone'] = {}
-            message[player]['support_zone'] = {}
+        message = {'game':{}, 0:{}, 1:{}}
+        message['game']['round'] = self.round
+        message['game']['round_phase'] = self.game_phase
+        message['game']['active_player'] = self.active_player
+        for player in [0, 1]:
+            # message[player]['card_zone'] = {'num':self.players[player].card_zone.num()} 
+            # message[player]['hand_zone'] = [card.name for card in self.players[player].hand_zone.card]
+            message[player]['active_idx'] = self.players[player].active_idx
+            message[player]['dice_zone'] = None
+            for character in self.players[player].character_list:
+                message[player][character.name] = {}
+                message[player][character.name]['active'] = character.character_zone.is_active
+                message[player][character.name]['alive'] = character.character_zone.is_alive
+            # message[player]['support_zone'] = [support.name for support in self.players[player].summons_zone.space]
+            # message[player]['summon_zone'] = [summon.name for summon in self.players[player].summons_zone.space]
+
+        return message

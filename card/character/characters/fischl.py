@@ -1,13 +1,10 @@
 from card.character.base import NormalAttack, ElementalSkill, ElementalBurst
 from entity.character import Character
 from utils import *
-
 from entity.summon import Summon
 from event.damage import Damage
-from game.game import GeniusGame
-from utils import GeniusGame
-from game.player import GeniusPlayer
 from typing import TYPE_CHECKING, List, Tuple
+
 if TYPE_CHECKING:
     from game.game import GeniusGame
     from game.action import Action
@@ -22,7 +19,7 @@ class Oz(Summon):
     usage: int = 2
     max_usage: int = 2
 
-    def on_end_phase(self, game: GeniusGame):
+    def on_end_phase(self, game: 'GeniusGame'):
         '''
             结束阶段: 造成1点雷元素伤害
             结束阶段分先后手两次调用on_end_phase, 所以需要判断
@@ -55,7 +52,7 @@ class Oz(Summon):
             (EventType.END_PHASE, ZoneType.SUMMON_ZONE, self.on_end_phase)
         ]
 
-    def __init__(self, game: GeniusGame, from_player: GeniusPlayer, from_character=None):
+    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
 
 
@@ -139,7 +136,7 @@ class MidnightPhantasmagoria(ElementalBurst):
     energy_cost: int = 3
     energy_gain: int = 0
 
-    def generate_summon(self, game: GeniusGame):
+    def generate_summon(self, game: 'GeniusGame'):
         '''
             生成奥兹召唤物
         '''
@@ -159,7 +156,7 @@ class Fischl(Character):
     country: CountryType = CountryType.MONDSTADT
     health_point: int = 10
     max_health_point: int = 10
-    skill_list: [BoltsOfDownfall, Nightrider, MidnightPhantasmagoria]
+    skill_list = [BoltsOfDownfall, Nightrider, MidnightPhantasmagoria]
 
     power: int = 0
     max_power: int = 3

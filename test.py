@@ -22,10 +22,10 @@ if TYPE_CHECKING:
     from test2 import B
 
 
-def testf(a: 'B'):
-    print(a.a)
+# def testf(a: 'B'):
+#     print(a.a)
 
-testf(1.44)
+# testf(1.44)
 class person:
     def __init__(self) -> None:
         pass
@@ -39,4 +39,5 @@ I = me()
 # print(isinstance(I, me), isinstance(I, person))
 # print(-1%3)
 
-from game.zone import DiceZone
+from utils import DiceType
+print(DiceType(0).value)

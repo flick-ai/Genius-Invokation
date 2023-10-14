@@ -1,6 +1,9 @@
 from utils import *
 from ..base import ArtifactCard
-from game.game import GeniusGame
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from game.game import GeniusGame
 
 
 # artifacts
@@ -16,15 +19,15 @@ class AdventurerBandana(ArtifactCard):
         super().__init__()
         # self.usages = defaultdict(int)
     
-    def post_played(self, game: GeniusGame) -> None:
+    def post_played(self, game: 'GeniusGame') -> None:
         pass
         # TODO: register event on_round_start
         # TODO: register event on_attack_end
 
-    def on_round_start(self, game: GeniusGame) -> None:
+    def on_round_start(self, game: 'GeniusGame') -> None:
         self.max_usage = 3
     
-    def on_skill_end(self, game: GeniusGame) -> None:
+    def on_skill_end(self, game: 'GeniusGame') -> None:
         # check if is active player
         if game.active_player != self.player:
             return

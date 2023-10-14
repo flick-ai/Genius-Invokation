@@ -1,6 +1,10 @@
 from utils import *
-from game.game import GeniusGame
 from ..base import ActionCard
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from game.game import GeniusGame
+
 
 
 class SupportCard(ActionCard):

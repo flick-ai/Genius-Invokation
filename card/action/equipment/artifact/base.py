@@ -1,6 +1,9 @@
 from utils import *
-from game.game import GeniusGame
 from ..base import EquipmentCard
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from game.game import GeniusGame
 
 
 class ArtifactCard(EquipmentCard):
@@ -9,6 +12,6 @@ class ArtifactCard(EquipmentCard):
     def __init__(self) -> None:
         super().__init__()
 
-    def on_played(self, game: GeniusGame) -> None:
+    def on_played(self, game: 'GeniusGame') -> None:
         super().on_played(game)
         self.character.artifact_card = self
