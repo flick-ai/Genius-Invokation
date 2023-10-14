@@ -156,7 +156,7 @@ class Fischl(Character):
     country: CountryType = CountryType.MONDSTADT
     health_point: int = 10
     max_health_point: int = 10
-    skill_list: [BoltsOfDownfall, Nightrider, MidnightPhantasmagoria]
+    skill_list = [BoltsOfDownfall, Nightrider, MidnightPhantasmagoria]
 
     power: int = 0
     max_power: int = 3

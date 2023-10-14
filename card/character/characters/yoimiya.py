@@ -166,13 +166,13 @@ class Yoimiya(Character):
     country: CountryType = CountryType.INAZUMA
     health_point: int = 10
     max_health_point: int = 10
-    skill_list: [Firework_FlareUp, Niwabi_FireDance, Ryuukin_Saxifrage]
+    skill_list = [Firework_FlareUp, Niwabi_FireDance, Ryuukin_Saxifrage]
 
     power: int = 0
     max_power: int = 3
 
-    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, talent = False):
-        super().__init__(game, from_character, from_player)
+    def __init__(self, game: 'GeniusGame', zone, from_player: 'GeniusPlayer', from_character = None, talent = False):
+        super().__init__(game, zone, from_character, from_player)
         self.talent = talent
 
 

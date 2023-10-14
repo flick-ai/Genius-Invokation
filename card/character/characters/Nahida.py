@@ -234,13 +234,13 @@ class Nahida(Character):
 
     health_point: int = 10
     max_health_point: int = 10
-    skill_list: [Akara, All_Schemes_to_Know, All_Schemes_to_Know_Tathata, Illusory_Heart]
+    skill_list = [Akara, All_Schemes_to_Know, All_Schemes_to_Know_Tathata, Illusory_Heart]
 
     power: int = 0
     max_power: int = 2
 
-    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, talent = False):
-        super().__init__(game, from_character, from_player)
+    def __init__(self, game: 'GeniusGame', zone, from_player: 'GeniusPlayer', from_character = None, talent = False):
+        super().__init__(game, zone, from_character, from_player)
         self.talent = talent
 
 class Shrine_of_Maya(Combat_Status):

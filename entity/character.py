@@ -26,7 +26,7 @@ class Character(Entity):
 
         后续调用时请调用skills中的实例
     '''
-    characacter_skill_list: List['CharacterSkill']
+    skill_list: List['CharacterSkill']
     power: int
     max_power: int
 
@@ -39,7 +39,7 @@ class Character(Entity):
 
     def init_skill(self):
         self.skills = []
-        for skill in self.characacter_skill_list:
+        for skill in self.skill_list:
             self.skills.append(skill(self))
 
     def __init__(self, game: 'GeniusGame', character_zone:'CharacterZone', from_player: 'GeniusPlayer', from_character = None):

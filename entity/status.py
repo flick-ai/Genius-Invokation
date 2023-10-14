@@ -1,5 +1,4 @@
 from entity.entity import Entity
-from game.player import GeniusPlayer
 from utils import *
 from typing import TYPE_CHECKING, List, Tuple
 

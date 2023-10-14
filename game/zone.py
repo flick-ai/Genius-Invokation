@@ -5,6 +5,7 @@ from copy import deepcopy
 from card.action import *
 from card.action.Equipment.weapon.weapons.raven_bow import RavenBow
 
+
 if TYPE_CHECKING:
     from entity.entity import Entity
     from game.player import GeniusPlayer
@@ -19,21 +20,62 @@ class DiceZone:
     '''
     def __init__(self, game: 'GeniusGame', player: 'GeniusPlayer') -> None:
         self.player = player
+        '''
+            我们用一个[16, 9]的数组来维护骰子
+        '''
+        self.space = np.zeros((MAX_DICE, DICENUM)).astype(np.int16)
+        self.sort_map = self.get_sort_map(player)
+        self.num = 0
+        for i in range(MAX_DICE):
+            self.space[i][-1] = -1
 
-    def get_dice(self):
+    def get_sort_map(player: 'GeniusPlayer'):
+        alive_list = []
+        for character in player.character_list:
+            if character.character_zone.is_alive:
+                alive_list.append(ElementToDice[character.element].value)
+                
+
+    def add(self, dices: List):
         '''
             获取骰子
         '''
-    
-    def use_dice(self):
+        dices = [7, 0, 1, 2, 3, 4, 5, 6]
+        dices = sorted(key=lambda x:self.sort_map[x])
+        import ipdb
+        ipdb.set_trace()
+        for idx, dice in enumerate(dices):
+            if dice != 7:
+                self.space[idx][-1] = dice
+                self.space[idx][dice] = 1
+            else: 
+                self.space[idx][-1] = dice
+                for i in range(DICENUM-1):
+                    self.space[idx][i] = 1
+            self.num += 1
+            if self.num == MAX_DICE:
+                break
+        import ipdb
+        ipdb.set_trace()
+
+    def delete(self, idx):
+        self.space[idx][-1] = -1
+        for i in range(DICENUM-1):
+            self.space[idx][i] = 0
+
+    def remove(self, dices: List):
         '''
             使用骰子
         '''
+        dices.sort(reverse=True)
+        for dice in dices:
+            self.delete(dice)
 
     def calculate_dice(self, game):
         '''
-            计算骰子
+            计算是否有满足某种要求的骰子
         '''
+
 
     def sort_dice(self):
         ''''
@@ -41,12 +83,17 @@ class DiceZone:
         '''
         # 默认骰子排序
 
-    
+    def show(self):
+        '''
+            展示骰子区状况
+        '''
+        return self.space[0:self.num][-1]
+
     def num(self):
         '''
             计算骰子区数量
         '''
-        pass
+        return self.num
     
 class CardZone:
     '''
@@ -169,10 +216,7 @@ class CharacterZone:
     '''
         单个角色状态区, 包括角色牌、装备区、角色状态
     '''
-    def __init__(self, game: 'GeniusGame', player: 'GeniusPlayer', name) -> None:
-        self.character: Character = eval(name)(game, player)
-        self.character.init_state(game)
-        self.player = player
+    def __init__(self, game: 'GeniusGame', player: 'GeniusPlayer') -> None:
         self.weapon_card: WeaponCard
         self.artifact_card: ArtifactCard
         self.talent_card: TalentCard
@@ -253,8 +297,12 @@ class HandZone:
     def __init__(self, game: 'GeniusGame', player: 'GeniusPlayer') -> None:
         self.card = []
 
-    def remove(self, idx):
-        self.card.pop(idx)
+    def remove(self, idx: List):
+        if type(idx) == int:
+            idx = [idx]
+        idx.sort(reverse=True)
+        return [self.card.pop(i) for i in idx]
+
 
     def add(self, cards):
         for card in cards:
