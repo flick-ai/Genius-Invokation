@@ -73,7 +73,7 @@ class Riptide(Status):
         if not self.attached:
             # 附着到新的出战角色上
             new_character = self.from_player.character_list[self.from_player.active_idx]
-            new_character.add_entity(self)
+            new_character.character_zone.add_entity(self)
             self.from_character = new_character
             self.attached = True
     

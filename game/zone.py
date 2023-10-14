@@ -11,7 +11,7 @@ if TYPE_CHECKING:
     from game.player import GeniusPlayer
     from entity.summon import Summon
     from entity.support import Support
-    from entity.status import Status, Shield
+    from entity.status import Status, Shield, Combat_Shield
     from entity.character import Character
 
 class DiceZone:
@@ -297,7 +297,7 @@ class ActiveZone:
 
     def add_entity(self, entity):
         # When using add_entity, please make sure that the same kind of entity is not exisits in the list.
-        if isinstance(entity, Shield):
+        if isinstance(entity, Combat_Shield):
             self.shield.append(entity)
         else:
             self.space.append(entity)
