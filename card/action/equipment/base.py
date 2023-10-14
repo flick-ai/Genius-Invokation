@@ -1,10 +1,10 @@
 from ..base import ActionCard
-from game.game import GeniusGame
 from typing import TYPE_CHECKING
 from entity.entity import Entity
 from utils import *
 
 if TYPE_CHECKING:
+    from game.game import GeniusGame
     from game.zone import CharacterZone
     from game.player import GeniusPlayer
 

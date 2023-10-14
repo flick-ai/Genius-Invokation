@@ -71,3 +71,4 @@ class Action:
             (1, 1, list(n))
         '''
         return Action(action[0], action[1], action[2])
+    

@@ -156,5 +156,7 @@ class GeniusGame:
         message = {0:{}, 1:{}}
         for player in message.keys():
             message[player]['card_zone'] = {'num':self.players[player].card_zone.num()} 
-            message[player]['hand_zone'] = {}
-            message[player]['support_zone'] = {}
+            message[player]['hand_zone'] = [card.name for card in self.players[player].hand_zone.card]
+            message[player]['support_zone'] = [support.name for support in self.players[player].summons_zone.space]
+            message[player]['summon_zone'] = [summon.name for summon in self.players[player].summons_zone.space]
+        return message

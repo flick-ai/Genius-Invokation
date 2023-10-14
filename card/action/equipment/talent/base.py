@@ -1,6 +1,11 @@
 from utils import *
-from game.game import GeniusGame
 from ..base import EquipmentCard
+
+if TYPE_CHECKING:
+    from game.game import GeniusGame
+    from game.zone import CharacterZone
+    from game.player import GeniusPlayer
+
 
 
 class TalentCard(EquipmentCard):

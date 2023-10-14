@@ -1,6 +1,9 @@
 from utils import *
-from game.game import GeniusGame
 from ..base import EquipmentCard
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from game.game import GeniusGame
 
 
 class ArtifactCard(EquipmentCard):

@@ -2,6 +2,8 @@ from typing import List, TYPE_CHECKING
 import numpy as np
 from utils import *
 from copy import deepcopy
+from card.action import *
+from card.action.Equipment.weapon.weapons.raven_bow import RavenBow
 
 if TYPE_CHECKING:
     from entity.entity import Entity
@@ -9,9 +11,7 @@ if TYPE_CHECKING:
     from entity.summon import Summon
     from entity.support import Support
     from entity.status import Status, Shield
-    from card.action.base import ActionCard
     from entity.character import Character
-    from card.action import WeaponCard, ArtifactCard, TalentCard
 
 class DiceZone:
     '''
@@ -260,8 +260,8 @@ class HandZone:
         for card in cards:
             if len(self.card)>= MAX_HANDCARD:
                 break
-            self.hand_zone.append(card)
-            sorted(self.hand_zone, key=lambda card: card.id)
+            self.card.append(card)
+            sorted(self.card, key=lambda card: card.id)
 
     def num(self):
         return len(self.card)

@@ -1,6 +1,9 @@
 from utils import *
 from ..base import WeaponCard
-from game.game import GeniusGame
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from game.game import GeniusGame
 
 
 # weapons
@@ -18,4 +21,3 @@ class RavenBow(WeaponCard):
     def effect(self, game: 'GeniusGame') -> None:
         ##### TODO:
         pass
-    
