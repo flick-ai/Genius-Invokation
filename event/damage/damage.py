@@ -64,7 +64,7 @@ class Damage:
         # TODO: 盾
         pass
     def cal_damage(self, game: 'GeniusGame'):
-        # 元素类型转化
+        # 元素类型转化 On_Infusion
         '''
         Based on my activeZone.
         '''

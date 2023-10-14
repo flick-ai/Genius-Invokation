@@ -135,8 +135,8 @@ class EventType(Enum):
     END_PHASE = 8
     DEALING_DAMAGE = 9 # Mona only right now
     INFUSION = 10
-    ON_REACTION = 11 # Elemental Reaction based event. Maybe trigger sth, or just add DMG.
-
+    # ON_REACTION = 11 # Elemental Reaction based event. Maybe trigger sth, or just add DMG.
+    EXCUTE_DAMAGE = 11
 class ElementalReactionType(Enum):
     Frozen = 0
     Melt = 1
