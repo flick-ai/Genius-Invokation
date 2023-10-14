@@ -62,7 +62,7 @@ class Status_Counting_Type(Enum):
     ATTACKS = 1 # 攻击时计数
     SUFFER = 2 # 被攻击时计数
     DAMAGES = 3 # 基于伤害计数
-    
+
 class SkillType(Enum):
     NORMAL_ATTACK = 0
     ELEMENTAL_SKILL = 1
@@ -94,7 +94,7 @@ class ActionTarget(Enum):
     DICE_REGION = 5
 
 class ActionCardType(Enum):
-    EQUIPMENT_TALENT = 0 
+    EQUIPMENT_TALENT = 0
     EQUIPMENT_WEAPON = 1
     EQUIPMENT_ARTIFACT = 2
     SUPPORT_LOCATION = 3
@@ -106,7 +106,7 @@ class ActionCardType(Enum):
     EVENT_ARCANE_LEGEND = 9
 
 class ActionCardType(Enum):
-    EQUIPMENT_TALENT = 0 
+    EQUIPMENT_TALENT = 0
     EQUIPMENT_WEAPON = 1
     EQUIPMENT_ARTIFACT = 2
     SUPPORT_LOCATION = 3
@@ -177,8 +177,8 @@ if TYPE_CHECKING:
 
 # get characters
 def get_active_character(
-        game: 'GeniusGame', 
-        player_idx: int, 
+        game: 'GeniusGame',
+        player_idx: int,
         require_player_idx: bool=False):
     if require_player_idx:
         return (player_idx, game.players[player_idx].active_idx)
@@ -195,7 +195,7 @@ def get_opponent_active_character(
     return get_active_character(game, not game.active_player, require_player_idx)
 
 def get_standby_character(
-        game: 'GeniusGame', 
+        game: 'GeniusGame',
         player_idx: int,
         require_player_idx: bool=False):
     player = game.players[player_idx]
