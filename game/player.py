@@ -13,12 +13,6 @@ if TYPE_CHECKING:
 
 class GeniusPlayer:
     def __init__(self, game: 'GeniusGame', deck) -> None:
-        # 初始化牌库、起始5张手牌、骰子区
-        self.card_zone: CardZone = CardZone(game, self, deck['action_card']) # 牌库区
-        self.hand_zone: HandZone = HandZone(game, self) # 手牌区
-        self.hand_zone.add(self.card_zone.get_card(num=5))
-        self.dice_zone: DiceZone = DiceZone(game, self)
-
         # 初始化角色状态区
         self.active_idx = -1
         self.character_list: List[Character] = []
@@ -26,6 +20,12 @@ class GeniusPlayer:
             zone = CharacterZone(game, self)
             self.character_list.append(eval(name)(game, zone, self))
         self.character_num = len(self.character_list)
+
+        # 初始化牌库、起始5张手牌、骰子区
+        self.card_zone: CardZone = CardZone(game, self, deck['action_card']) # 牌库区
+        self.hand_zone: HandZone = HandZone(game, self) # 手牌区
+        self.hand_zone.add(self.card_zone.get_card(num=5))
+        self.dice_zone: DiceZone = DiceZone(game, self)
 
         # 环境中的基本状态
         self.support_zone: SupportZone = SupportZone(game, self)
@@ -37,7 +37,7 @@ class GeniusPlayer:
         self.is_after_change: bool
         self.is_quick_change: bool
         self.change_num: int
-    
+
     def choose_card(self, action: 'Action'):
         '''
             非标准行动: 制衡手牌
@@ -46,14 +46,14 @@ class GeniusPlayer:
         reget_card = self.card_zone.get_card(num=len(throw_card))
         self.card_zone.return_card(throw_card)
         self.hand_zone.add(reget_card)
-        
+
     def choose_character(self, action: 'Action'):
         '''
             非标准行动: 选择出战角色
         '''
         idx = action.target_idx
         self.change_to_id(idx)
-        
+
 
     def choose_dice(self, action: 'Action'):
         '''
@@ -69,7 +69,7 @@ class GeniusPlayer:
             基本行动: 投掷骰子
         '''
         return np.random.randint(0, DICENUM, num)
-    
+
 
     def get_card(self, num):
         '''
@@ -77,7 +77,7 @@ class GeniusPlayer:
         '''
         get_cards = self.card_zone.get_card(num=num)
         self.hand_zone.add(get_cards)
-    
+
     def change_to_id(self, idx):
         '''
             基本行动: 切换到指定人
@@ -96,7 +96,7 @@ class GeniusPlayer:
         while self.character_list[idx].character_zone.is_alive == False:
             idx = (idx - 1) % self.character_num
         self.change_to_id(idx)
-    
+
     def change_to_next_character(self):
         '''
             基本行动: 切换到下一个人
@@ -115,7 +115,7 @@ class GeniusPlayer:
         ###
         # self.character_list[self.active_idx].skill(skill, game)
         self.is_after_change = False
-    
+
     def play_card(self, game: 'GeniusGame'):
         '''
             标准行动: 打出手牌
@@ -134,8 +134,8 @@ class GeniusPlayer:
         idx = None
         ###
         self.change_to_id(idx)
-        
-    
+
+
     def begin_round(self, Game):
         '''
             结算时刻: 回合开始时

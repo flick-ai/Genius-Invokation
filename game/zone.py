@@ -3,7 +3,7 @@ import numpy as np
 from utils import *
 from copy import deepcopy
 from card.action import *
-from card.action.Equipment.weapon.weapons.raven_bow import RavenBow
+from card.action.equipment.weapon.weapons.raven_bow import RavenBow
 
 
 if TYPE_CHECKING:
@@ -23,40 +23,46 @@ class DiceZone:
         '''
             我们用一个[16, 9]的数组来维护骰子
         '''
-        self.space = np.zeros((MAX_DICE, DICENUM)).astype(np.int16)
-        self.sort_map = self.get_sort_map(player)
         self.num = 0
+        self.space = np.zeros((MAX_DICE, DICENUM)).astype(np.int16)
         for i in range(MAX_DICE):
             self.space[i][-1] = -1
+        self.sort_map = self.get_sort_map()
 
-    def get_sort_map(player: 'GeniusPlayer'):
-        alive_list = []
-        for character in player.character_list:
+
+    def get_sort_map(self):
+        sort_map = {i:DICENUM-i for i in range(DICENUM)}
+        sort_map[-1] = -1
+        sort_map[DiceType.OMNI.value] = 4000 # 万能最优先
+
+        # 有效骰子优先
+        for character in self.player.character_list:
             if character.character_zone.is_alive:
-                alive_list.append(ElementToDice[character.element].value)
-                
+                sort_map[ElementToDice[character.element].value] += 200
+
+        # 数量多优先
+        sum_dice = self.space.sum(axis=0)[:-1]
+        for i in range(DICENUM-1):
+            sort_map[i] += 10 * sum_dice[i]
+        return sort_map
 
     def add(self, dices: List):
         '''
             获取骰子
         '''
-        dices = [7, 0, 1, 2, 3, 4, 5, 6]
-        dices = sorted(key=lambda x:self.sort_map[x])
-        import ipdb
-        ipdb.set_trace()
+        dices = sorted(dices, key=lambda x:self.sort_map[x])
         for idx, dice in enumerate(dices):
             if dice != 7:
                 self.space[idx][-1] = dice
                 self.space[idx][dice] = 1
-            else: 
+            else:
                 self.space[idx][-1] = dice
                 for i in range(DICENUM-1):
                     self.space[idx][i] = 1
             self.num += 1
             if self.num == MAX_DICE:
                 break
-        import ipdb
-        ipdb.set_trace()
+        self.sort_dice()
 
     def delete(self, idx):
         self.space[idx][-1] = -1
@@ -75,26 +81,31 @@ class DiceZone:
         '''
             计算是否有满足某种要求的骰子
         '''
+        # TODO
 
 
     def sort_dice(self):
         ''''
             对骰子进行排序
         '''
-        # 默认骰子排序
+        self.sort_map = self.get_sort_map()
+        self.space = np.array(sorted(self.space, key=lambda x:self.sort_map[x[-1]], reverse=True))
 
     def show(self):
         '''
             展示骰子区状况
         '''
-        return self.space[0:self.num][-1]
+        if self.num == 0:
+            return None
+        else:
+            return self.space[0:self.num, -1]
 
     def num(self):
         '''
             计算骰子区数量
         '''
         return self.num
-    
+
 class CardZone:
     '''
         牌堆区,
@@ -207,7 +218,7 @@ class SupportZone:
             # 如果支援区已经满了
             self.space[idx].destroy()
         self.space.append(entity)
-    
+
     def num(self):
         return len(self.space)
 
@@ -263,7 +274,7 @@ class ActiveZone:
             if entity.name == exist.name:
                 self.space.pop(idx)
 
-    def has_status(self, entity):  
+    def has_status(self, entity):
         # entity here is the class, not the instace
         # Check whether a kind of entity already exists in self.character_zone.status_list.
         # If exists, return the status instance in the list to let the caller know and just use entity.update.

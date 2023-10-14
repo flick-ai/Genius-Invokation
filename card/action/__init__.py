@@ -1,4 +1,4 @@
 from .base import ActionCard
-from .Equipment import *
-from .Support import *
+from .equipment import *
+from .support import *
 

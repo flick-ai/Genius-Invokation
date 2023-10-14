@@ -11,7 +11,7 @@ class GeniusGame:
     '''
     主游戏
     '''
-    def __init__(self,player0_deck, player1_deck) -> None:
+    def __init__(self, player0_deck, player1_deck) -> None:
         self.num_players = 3
         # self.seed = seed
         # np.random.seed(seed)
@@ -32,7 +32,7 @@ class GeniusGame:
 
         self.init_game()
 
-    
+
     def reset(self):
         pass
 
@@ -85,7 +85,7 @@ class GeniusGame:
                 self.set_reroll_dice(action)
             case GamePhase.ACTION_PHASE:
                 self.resolve_action(action)
-        
+
     def set_hand_card(self, action):
         '''
             选择手牌部分
@@ -121,7 +121,7 @@ class GeniusGame:
         else:
             self.action_phase()
             self.active_player = self.first_player
-    
+
     def roll_phase(self):
         '''
             进入投掷骰子的阶段, 回合开始
@@ -130,7 +130,7 @@ class GeniusGame:
         self.game_phase = GamePhase.ROLL_PHASE
         for player in self.players:
             player.dice_zone.add(player.roll_dice())
-    
+
     def action_phase(self):
         '''
             进入交替行动阶段
@@ -141,13 +141,13 @@ class GeniusGame:
 
     def end_phase(self):
         '''
-            
+
         '''
         self.game_phase = GamePhase.END_PHASE
         self.players[self.active_player].end_round(self)
         self.players[int(not self.active_player)].end_round(self)
         self.roll_phase()
-        
+
     def encode_message(self):
         '''
             尝试将Game的信息编码成str呈现给使用者
@@ -157,10 +157,10 @@ class GeniusGame:
         message['game']['round_phase'] = self.game_phase
         message['game']['active_player'] = self.active_player
         for player in [0, 1]:
-            # message[player]['card_zone'] = {'num':self.players[player].card_zone.num()} 
+            # message[player]['card_zone'] = {'num':self.players[player].card_zone.num()}
             # message[player]['hand_zone'] = [card.name for card in self.players[player].hand_zone.card]
             message[player]['active_idx'] = self.players[player].active_idx
-            message[player]['dice_zone'] = None
+            message[player]['dice_zone'] = self.players[player].dice_zone.show()
             for character in self.players[player].character_list:
                 message[player][character.name] = {}
                 message[player][character.name]['active'] = character.character_zone.is_active
