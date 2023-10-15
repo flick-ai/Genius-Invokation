@@ -16,9 +16,9 @@ class GeniusPlayer:
         # 初始化角色状态区
         self.active_idx = -1
         self.character_list: List[Character] = []
-        for name in deck['character']:
+        for id, name in enumerate(deck['character']):
             zone = CharacterZone(game, self)
-            self.character_list.append(eval(name)(game, zone, self))
+            self.character_list.append(eval(name)(game, zone, id, self))
         self.character_num = len(self.character_list)
 
         # 初始化牌库、起始5张手牌、骰子区
@@ -37,6 +37,7 @@ class GeniusPlayer:
         self.is_after_change: bool
         self.is_quick_change: bool
         self.change_num: int
+        self.action_mask = None
 
     def choose_card(self, action: 'Action'):
         '''
@@ -78,14 +79,14 @@ class GeniusPlayer:
         get_cards = self.card_zone.get_card(num=num)
         self.hand_zone.add(get_cards)
 
-    def change_to_id(self, idx):
+    def change_to_id(self, idx: int):
         '''
             基本行动: 切换到指定人
         '''
         if self.active_idx > 0:
-            self.character_list[self.active_idx].character_zone.is_active = False
+            self.character_list[self.active_idx].is_active = False
         self.active_idx = idx
-        self.character_list[self.active_idx].character_zone.is_active = True
+        self.character_list[self.active_idx].is_active = True
         self.is_after_change = True
 
     def change_to_previous_character(self):
@@ -93,7 +94,7 @@ class GeniusPlayer:
             基本行动: 切换到前一个人
         '''
         idx = (self.active_idx - 1) % self.character_num
-        while self.character_list[idx].character_zone.is_alive == False:
+        while self.character_list[idx].is_alive == False:
             idx = (idx - 1) % self.character_num
         self.change_to_id(idx)
 
@@ -102,7 +103,7 @@ class GeniusPlayer:
             基本行动: 切换到下一个人
         '''
         idx = (self.active_idx + 1) % self.character_num
-        while self.character_list[idx].character_zone.is_alive == False:
+        while self.character_list[idx].is_alive == False:
             idx = (idx - 1) % self.character_num
         self.change_to_id(idx)
 
@@ -130,10 +131,36 @@ class GeniusPlayer:
         '''
             标准行动: 切换角色
         '''
-        ### TODO: 判断切换到哪个角色
-        idx = None
-        ###
+        idx = game.current_action.target_idx
         self.change_to_id(idx)
+
+    def use_dice(self, game: 'GeniusGame'):
+        '''
+            基本行动: 消耗骰子
+        '''
+        dices = game.current_action.choice_list
+        self.dice_zone.remove(dices)
+
+    def generate_mask(self, game: 'GeniusGame'):
+        '''
+            基本行动: 为每个行动生成Mask
+            如何判断一个行动是否合法？
+            1. 行动目标是否存在？
+            2. 行动所需骰子是否足够？
+        '''
+        # 计算打出手牌的骰子消耗
+        for action_card in self.hand_zone.card:
+            action_card: 'ActionCard'
+            has_target = action_card.find_target()
+            has_dice = None
+
+    def calculate(self, gamae: 'GeniusGame', card: 'ActionCard', ):
+        '''
+            结算时刻: 计算骰子时
+        '''
+
+
+
 
 
     def begin_round(self, Game):

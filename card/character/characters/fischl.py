@@ -154,7 +154,7 @@ class Fischl(Character):
     element: ElementType = ElementType.ELECTRO
     weapon_type: WeaponType = WeaponType.BOW
     country: CountryType = CountryType.MONDSTADT
-    health_point: int = 10
+    init_health_point: int = 10
     max_health_point: int = 10
     skill_list = [BoltsOfDownfall, Nightrider, MidnightPhantasmagoria]
 

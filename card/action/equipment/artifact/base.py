@@ -13,5 +13,4 @@ class ArtifactCard(EquipmentCard):
         super().__init__()
 
     def on_played(self, game: 'GeniusGame') -> None:
-        super().on_played(game)
-        self.character.artifact_card = self
+        pass

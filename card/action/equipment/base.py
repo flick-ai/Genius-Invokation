@@ -7,19 +7,12 @@ if TYPE_CHECKING:
     from game.game import GeniusGame
     from game.zone import CharacterZone
     from game.player import GeniusPlayer
-
-class Equipment(Entity):
-    # 装备
-    pass
-
-
+    from entity.status import Status, Equipment
 class EquipmentCard(ActionCard):
     # 装备牌基本类
-    equipment_entity: Equipment
+    equipment_entity: 'Equipment'
     def __init__(self) -> None:
         super().__init__()
 
     def on_played(self, game: 'GeniusGame') -> None:
-        character = get_my_active_character(game)
-        equipment = self.equipment_entity()
-
+        pass

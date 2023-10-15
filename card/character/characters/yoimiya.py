@@ -42,11 +42,9 @@ class Firework_FlareUp(NormalAttack):
 
     def __init__(self, from_character: 'Character'):
         super().__init__(from_character)
-    
+
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
-        # 消耗骰子
-        self.on_dice(game)
         # 处理伤害
         self.resolve_damage(game)
         # 获得能量
@@ -81,30 +79,28 @@ class Niwabi_FireDance(ElementalSkill):
     def __init__(self, from_character: 'Character'):
         super().__init__(from_character)
 
-    
+
     def add_status(self, game: 'GeniusGame'):
 
         status = self.from_character.character_zone.has_entity(Niwabi_Enshou)
         if status is not None:
             status.update()
         else:
-            status = Niwabi_Enshou(game=game, 
-                                from_player=self.from_character.from_player, 
+            status = Niwabi_Enshou(game=game,
+                                from_player=self.from_character.from_player,
                                 from_character=self.from_character)
             # 放到状态区
             self.from_character.character_zone.add_entity(status)
 
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
-        # 消耗骰子
-        self.on_dice(game)
         # 不造成伤害
-        
+
         # 召唤物/状态生成
         self.add_status(game)
         # 获得能量
         self.gain_energy(game)
-        
+
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Ryuukin_Saxifrage(ElementalBurst):
@@ -133,24 +129,22 @@ class Ryuukin_Saxifrage(ElementalBurst):
 
     def __init__(self, from_character: 'Character'):
         super().__init__(from_character)
-    
+
     def add_status(self, game: 'GeniusGame'):
 
         status = self.from_character.from_player.team_combat_status.has_status(Aurous_Blaze)
         if status is not None:
             status.update()
         else:
-            status = Aurous_Blaze(game=game, 
-                                from_player=self.from_character.from_player, 
+            status = Aurous_Blaze(game=game,
+                                from_player=self.from_character.from_player,
                                 from_character=self.from_character)
             # 放到状态区
 
             self.from_character.from_player.team_combat_status.add_entity(status)
-    
+
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
-        # 消耗骰子
-        self.on_dice(game)
         # 处理伤害
         self.resolve_damage(game)
         # 召唤物/状态生成
@@ -164,7 +158,7 @@ class Yoimiya(Character):
     element: ElementType = ElementType.PYRO
     weapon_type: WeaponType = WeaponType.BOW
     country: CountryType = CountryType.INAZUMA
-    health_point: int = 10
+    init_health_point: int = 10
     max_health_point: int = 10
     skill_list = [Firework_FlareUp, Niwabi_FireDance, Ryuukin_Saxifrage]
 
@@ -183,7 +177,7 @@ class Niwabi_Enshou(Status):
         self.usage = 2
         self.max_usage = 2
         self.current_usage = 2
-    
+
     def infuse(self, game: 'GeniusGame'):
         if game.current_damage.damage_from == self.from_character:
             if game.current_skill == ElementType.PHYSICAL:
@@ -193,13 +187,13 @@ class Niwabi_Enshou(Status):
         if game.current_damage.damage_from == self.from_character:
             if game.current_skill == SkillType.NORMAL_ATTACK:
                 game.current_damage.main_damage += 1
-    
+
     def after_skill(self, game:'GeniusGame'):
         if game.current_damage.damage_from == self.from_character:
             if game.current_skill == SkillType.NORMAL_ATTACK:
                 if self.from_character.talent:
                     Damage.resolve_damage(
-                        game, 
+                        game,
                         damage_type=SkillType.OTHER,
                         main_damage_element=ElementType.PYRO,
                         main_damage=1,
@@ -212,10 +206,10 @@ class Niwabi_Enshou(Status):
                 self.current_usage -= 1
                 if self.current_usage <= 0:
                     self.on_destroy(game)
-    
+
     def udpate(self):
         self.current_usage = self.usage
-    
+
     def update_listener_list(self):
         self.listeners = [
             (EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, self.on_execute_damage),
@@ -232,11 +226,11 @@ class Aurous_Blaze(Status):
 
     def update(self):
         self.current_usage = self.usage
-    
+
     def after_skill(self, game: 'GeniusGame'):
         if game.current_damage.damage_from != self.from_character:
             Damage.resolve_damage(
-                game, 
+                game,
                 damage_type=SkillType.OTHER,
                 main_damage_element=ElementType.PYRO,
                 main_damage=1,
@@ -251,7 +245,7 @@ class Aurous_Blaze(Status):
         self.current_usage -= 1
         if self.current_usage <= 0:
             self.on_destroy(game)
-        
+
     def update_listener_list(self):
         self.listeners = [
             (EventType.END_PHASE, ZoneType.CHARACTER_ZONE, self.on_end_phase),

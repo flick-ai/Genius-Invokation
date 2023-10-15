@@ -3,7 +3,6 @@
     consist of three stage of actions: choice, target and dice
 '''
 
-from enum import Enum
 from utils import *
 
 '''
@@ -33,7 +32,7 @@ from utils import *
 
 # class Action:
 #     def __init__(self) -> None:
-        
+
 
 class Action:
     def __init__(self, choice, target, dice) -> None:
@@ -49,7 +48,7 @@ class Action:
 
         self.set_type()
 
-    
+
     def set_type(self) -> None:
         '''
             将Action从Tuple形式解码
@@ -66,14 +65,25 @@ class Action:
             self.choice_type = ActionChoice.PASS
         elif self.choice == 16:
             self.choice_type = ActionChoice.NONE
-    
+
     @staticmethod
     def from_tuple(action: tuple):
         '''
             (1, 1, list(n))
         '''
         return Action(action[0], action[1], action[2])
-    
+
+    @staticmethod
+    def from_input():
+        choose_prompt = "请输入一个数字表示你的行动选择:\n打出手牌请选择0-9;\n使用技能请选择10-13;\n切换角色请选择14;\n回合结束请选择15;\n其他行动请选择16\n"
+        choose = int(input(choose_prompt))
+        target_prompt = "请输入一个数字表示你的行动目标:\n选择对方请选择0;\n选择本方请选择1;\n选择角色请选择2-4;\n对手召唤请选择5-8;\n本方支援请选择9-12\n;本方骰子请选择13\n;本方手牌请选择14\n"
+        target = int(input(target_prompt))
+        list_prompt = "请输入一个形如0 1 2的列表列表表征你选择的位置,主要用于选择骰子,特殊情况表示手牌:\n"
+        dice = input(list_prompt)
+        dice = [int(i) for i in dice.split(' ')]
+        return Action(choose, target, dice)
+
 def choose_card(card: List[int]):
     return Action(16, 14, card)
 

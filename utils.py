@@ -138,6 +138,8 @@ class EventType(Enum):
     ON_REACTION = 11 # Elemental Reaction based event. Maybe trigger sth, or just add DMG.
     ON_USE_SKill = 12 # Only for tartaglia now
 
+    # ON_REACTION = 11 # Elemental Reaction based event. Maybe trigger sth, or just add DMG.
+    EXCUTE_DAMAGE = 13
 class ElementalReactionType(Enum):
     Frozen = 0
     Melt = 1
