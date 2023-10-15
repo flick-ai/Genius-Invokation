@@ -54,12 +54,12 @@ class Character(Entity):
         self.elemental_application: List['ElementType'] = []
         self.index: int = index
         super().__init__(game, from_character, from_player)
-    
+
     def heal(self, heal):
         self.health_point += heal
         if self.hp > self.max_health_point:
             self.hp = self.max_health_point
-        
+
 
 
 
@@ -76,7 +76,7 @@ class Character(Entity):
     #         无相雷、丘丘等上限修改
     #     '''
     #     return self.power, self.health_point, self.init_state
-        
+
 
     # def on_round_start(self, game: GeniusGame):
     #     '''
@@ -87,6 +87,6 @@ class Character(Entity):
     # def on_switched(self, game: GeniusGame):
     #     '''
     #         passive skill 被动技能 神里绫华
-            
+
     #     '''
     #     pass

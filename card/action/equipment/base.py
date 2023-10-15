@@ -10,7 +10,7 @@ if TYPE_CHECKING:
     from entity.status import Status, Equipment
 class EquipmentCard(ActionCard):
     # 装备牌基本类
-    equipment_entity: Equipment
+    equipment_entity: 'Equipment'
     def __init__(self) -> None:
         super().__init__()
 

@@ -37,7 +37,7 @@ class DiceZone:
 
         # 有效骰子优先
         for character in self.player.character_list:
-            if character.character_zone.is_alive:
+            if character.is_alive:
                 sort_map[ElementToDice[character.element].value] += 200
 
         # 数量多优先
@@ -229,14 +229,14 @@ class CharacterZone:
         单个角色状态区, 包括角色牌、装备区、角色状态
     '''
     def __init__(self, game: 'GeniusGame', player: 'GeniusPlayer') -> None:
-        
+
         self.weapon_card: Weapon
         self.artifact_card: Artifact
         # self.talent_card: Talent
         self.status_list: List['Status'] = [] # Including status from weapon and artifact
 
 
-    def has_entity(self, entity):
+    def has_entity(self, entity: 'Entity'):
         # entity here is the class, not the instace
         # Check whether a kind of entity already exists in self.character_zone.status_list.
         # If exists, return the status instance in the list to let the caller know and just use entity.update.
@@ -262,12 +262,12 @@ class ActiveZone:
         self.space: List[Status] = []
         self.shield: List[Shield] = []
 
-    def destroy(self, entity):
+    def destroy(self, entity: 'Entity'):
         for idx, exist in enumerate(self.space):
             if entity.name == exist.name:
                 self.space.pop(idx)
 
-    def has_status(self, entity):
+    def has_status(self, entity: 'Entity'):
         # entity here is the class, not the instace
         # Check whether a kind of entity already exists in self.character_zone.status_list.
         # If exists, return the status instance in the list to let the caller know and just use entity.update.
@@ -277,7 +277,7 @@ class ActiveZone:
                 return exist
         return None
 
-    def has_shield(self, entity):
+    def has_shield(self, entity: 'Entity'):
         # entity here is the class, not the instace
         # Check whether a kind of entity already exists in self.character_zone.status_list.
         # If exists, return the status instance in the list to let the caller know and just use entity.update.
@@ -287,7 +287,7 @@ class ActiveZone:
                 return exist
         return None
 
-    def add_entity(self, entity):
+    def add_entity(self, entity: 'Entity'):
         # When using add_entity, please make sure that the same kind of entity is not exisits in the list.
         if isinstance(entity, Combat_Shield):
             self.shield.append(entity)
@@ -308,7 +308,7 @@ class HandZone:
         return [self.card.pop(i) for i in idx]
 
 
-    def add(self, cards):
+    def add(self, cards: List['ActionCard']):
         for card in cards:
             if len(self.card)>= MAX_HANDCARD:
                 break

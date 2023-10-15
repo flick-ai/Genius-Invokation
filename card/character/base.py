@@ -12,7 +12,7 @@ if TYPE_CHECKING:
     from entity.character import Character
     from entity.status import Status
 
-    
+
 class CharacterSkill:
     # 角色技能基本类
     id: int
@@ -37,22 +37,16 @@ class CharacterSkill:
         self.from_character: Character = from_character
         self.is_plunging_attack: bool = False
         self.is_charged_attack: bool = False
-    
+
     def generate_summon(self, game: 'GeniusGame'):
         pass
-
-    def on_dice(self, game: 'GeniusGame'):
-        # Equipment, Status, Talent(Yae Miko for e.g.) may save dice.
-        dice_zone = self.from_character.from_player.dice_zone
-        dice_zone.calculate_dice(game)
-        dice_zone.use_dice()
 
     def consume_energy(self, game: 'GeniusGame'):
         pass
 
     def resolve_damage(self, game: 'GeniusGame'):
-        Damage.resolve_damage(game, self.damage_type, self.main_damage_element, 
-                              self.main_damage, self.piercing_damage, 
+        Damage.resolve_damage(game, self.damage_type, self.main_damage_element,
+                              self.main_damage, self.piercing_damage,
                               # TODO: 可能需要改一下调用的接口
                               self.from_character, get_opponent_active_character(game),
                               self.is_plunging_attack, self.is_charged_attack)
@@ -90,4 +84,4 @@ class ElementalBurst(CharacterSkill):
 
 # class PassiveSkill(CharacterSkill):
 
-        
+

@@ -57,6 +57,7 @@ class GeniusGame:
         self.current_action = action
         oppenent_player = self.players[not self.active_player_index]
         active_player = self.active_player
+        active_player.use_dice(self)
 
         if action.choice_type == ActionChoice.HAND_CARD:
             self.is_change_player = False
@@ -111,7 +112,7 @@ class GeniusGame:
             选择手牌部分
         '''
         active_idx = self.active_player_index
-        self.acitve_player.choose_card(action)
+        self.active_player.choose_card(action)
         if active_idx == self.first_player:
             self.active_player_index = 1 - active_idx
             self.acitve_player = self.players[self.active_player_index]
@@ -135,14 +136,14 @@ class GeniusGame:
             self.roll_phase()
 
 
-    def set_reroll_dice(self, action, ):
+    def set_reroll_dice(self, action):
         '''
             选择重新投掷的骰子
         '''
         active = self.active_player_index
         self.active_player.choose_dice(action)
         if active == self.first_player:
-            self.active_player_index = not active
+            self.active_player_index = int(not active)
             self.acitve_player = self.players[self.active_player_index]
         else:
             self.active_player_index = self.first_player

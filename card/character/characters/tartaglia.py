@@ -24,13 +24,13 @@ class MeleeStance(Status):
     '''
     def on_after_skill(self, game: 'GeniusGame'):
         '''
-            近战状态的达达利亚对已附属有断流的角色使用技能后: 
+            近战状态的达达利亚对已附属有断流的角色使用技能后:
             对下一个敌方后台角色造成1点穿透伤害
         '''
 
     def update_listener_list(self):
         return super().update_listener_list()
-    
+
 
 class Riptide(Status):
     '''
@@ -76,7 +76,7 @@ class Riptide(Status):
             new_character.character_zone.add_entity(self)
             self.from_character = new_character
             self.attached = True
-    
+
     def on_end_phase(self, game: 'GeniusGame'):
         if game.players[0] == self.from_player:
             tartaglia_player = game.players[1]
@@ -126,8 +126,6 @@ class CuttingTorrent(NormalAttack):
 
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
-        # 消耗骰子
-        self.on_dice(game)
         # 处理伤害
         self.resolve_damage(game)
 
@@ -204,7 +202,7 @@ class FlashOfHavoc(ElementalBurst):
 
     def on_call(self, game: 'GeniusGame'):
         pass
-    
+
 class LightOfHavoc(ElementalBurst):
     '''
         达达利亚
@@ -246,7 +244,7 @@ class Havoc_Obliteration(ElementalBurst):
             self.light_of_havoc.on_call(game)
         else:
             self.flash_of_havoc.on_call(game)
-        
+
 
 class Tartaglia(Character):
     '''达达利亚'''
@@ -255,7 +253,7 @@ class Tartaglia(Character):
     element: ElementType = ElementType.HYDRO
     weapon_type: WeaponType = WeaponType.BOW
     country: CountryType = CountryType.FATUI
-    health_point: int = 10
+    init_health_point: int = 10
     max_health_point: int = 10
     skill_list = [CuttingTorrent, FoulLegacy_RagingTide, Havoc_Obliteration]
 

@@ -1,10 +1,7 @@
 from entity.entity import Entity
-from game.game import GeniusGame
-from game.player import GeniusPlayer
 from utils import *
 from typing import TYPE_CHECKING, List, Tuple
 
-from utils import GeniusGame, GeniusPlayer
 
 if TYPE_CHECKING:
     from game.game import GeniusGame
@@ -18,7 +15,7 @@ class Status(Entity):
     # 状态基本类
     id: int
     name: str
-   
+
 
     def __init__(self, game: 'GeniusGame', from_player:'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
@@ -69,7 +66,7 @@ class Dendro_Core(Status):
         super().__init__(game, from_player, from_character)
         pass
     pass
-        
+
 class Catalyzing_Feild(Status):
     # Name Maybe Wrong
     pass
