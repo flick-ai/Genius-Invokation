@@ -13,12 +13,13 @@ if TYPE_CHECKING:
 
 class Character(Entity):
     # 角色基本类
-    id: int
+    id: int #Identity document, 卡牌的编号，可能用来喂给state for RL。
     name: str
     element: ElementType
     weapon_type: WeaponType
     country: CountryType
-    health_point: int
+    init_health_point: int
+    # health_point: int
     max_health_point: int
 
     '''
@@ -42,12 +43,22 @@ class Character(Entity):
         for skill in self.skill_list:
             self.skills.append(skill(self))
 
-    def __init__(self, game: 'GeniusGame', character_zone:'CharacterZone', from_player: 'GeniusPlayer', from_character = None):
+    def __init__(self, game: 'GeniusGame', character_zone:'CharacterZone', index:int, from_player: 'GeniusPlayer', from_character = None):
         self.character_zone = character_zone
         self.init_skill()
         self.talent: bool = False
+        self.is_active: bool = False
+        self.is_alive: bool = True
+        self.health_point = self.init_health_point
+        self.power: int = 0 # 初始充能
+        self.elemental_application: List['ElementType'] = []
+        self.index: int = index
         super().__init__(game, from_character, from_player)
-        
+    
+    def heal(self, heal):
+        self.health_point += heal
+        if self.hp > self.max_health_point:
+            self.hp = self.max_health_point
         
 
 

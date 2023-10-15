@@ -16,9 +16,9 @@ class GeniusPlayer:
         # 初始化角色状态区
         self.active_idx = -1
         self.character_list: List[Character] = []
-        for name in deck['character']:
+        for id, name in enumerate(deck['character']):
             zone = CharacterZone(game, self)
-            self.character_list.append(eval(name)(game, zone, self))
+            self.character_list.append(eval(name)(game, zone, id, self))
         self.character_num = len(self.character_list)
 
         # 初始化牌库、起始5张手牌、骰子区
@@ -78,7 +78,7 @@ class GeniusPlayer:
         get_cards = self.card_zone.get_card(num=num)
         self.hand_zone.add(get_cards)
 
-    def change_to_id(self, idx):
+    def change_to_id(self, idx: int):
         '''
             基本行动: 切换到指定人
         '''

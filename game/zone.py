@@ -11,7 +11,7 @@ if TYPE_CHECKING:
     from game.player import GeniusPlayer
     from entity.summon import Summon
     from entity.support import Support
-    from entity.status import Status, Shield, Combat_Shield
+    from entity.status import Status, Shield, Combat_Shield, Weapon, Artifact
     from entity.character import Character
 
 class DiceZone:
@@ -229,20 +229,12 @@ class CharacterZone:
         单个角色状态区, 包括角色牌、装备区、角色状态
     '''
     def __init__(self, game: 'GeniusGame', player: 'GeniusPlayer') -> None:
-        self.weapon_card: WeaponCard
-        self.artifact_card: ArtifactCard
-        self.talent_card: TalentCard
+        
+        self.weapon_card: Weapon
+        self.artifact_card: Artifact
+        # self.talent_card: Talent
+        self.status_list: List['Status'] = [] # Including status from weapon and artifact
 
-        self.is_active: bool = False
-        self.is_alive: bool = True
-        self.status_list: List['Status'] = []
-        self.elemental_application: List = []
-
-
-    def heal(self, heal):
-        self.hp += heal
-        if self.hp > self.max_hp:
-            self.hp = self.max_hp
 
     def has_entity(self, entity):
         # entity here is the class, not the instace

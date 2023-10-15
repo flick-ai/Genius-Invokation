@@ -48,7 +48,16 @@ class Combat_Shield(Combat_Status):
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
 
+class Equipment(Status):
+    pass
 
+class Weapon(Equipment):
+    pass
+
+class Artifact(Equipment):
+    pass
+
+# TODO: Need to move to other places in future
 class Frozen_Status(Status):
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)

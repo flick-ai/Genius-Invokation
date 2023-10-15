@@ -164,7 +164,7 @@ class Yoimiya(Character):
     element: ElementType = ElementType.PYRO
     weapon_type: WeaponType = WeaponType.BOW
     country: CountryType = CountryType.INAZUMA
-    health_point: int = 10
+    init_health_point: int = 10
     max_health_point: int = 10
     skill_list = [Firework_FlareUp, Niwabi_FireDance, Ryuukin_Saxifrage]
 
