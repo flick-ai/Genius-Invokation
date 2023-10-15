@@ -1,8 +1,12 @@
 from card.character.base import NormalAttack, ElementalSkill, ElementalBurst
 from entity.character import Character
 from entity.entity import Entity
+from game.game import GeniusGame
+from game.player import GeniusPlayer
 from utils import *
 from typing import TYPE_CHECKING, List, Tuple
+
+from utils import GeniusGame, GeniusPlayer
 
 if TYPE_CHECKING:
     from game.game import GeniusGame
@@ -22,11 +26,63 @@ class MeleeStance(Status):
     '''
         近战状态
     '''
-    def on_after_skill(self, game: 'GeniusGame'):
+    def __init__(self, game: GeniusGame, from_player: GeniusPlayer, from_character=None):
+        super().__init__(game, from_player, from_character)
+        self.opponent = None
+
+    def find_next_alive_character(self, game:'GeniusGame', current_character: 'Character'):
+        '''
+            找到下一个活着的角色
+        '''
+        current_idx = current_character.index
+    
+    def on_damage_add(self, game: 'GeniusGame'):
+        '''
+            近战状态下的达达利亚对附属有断流的角色造成的伤害+1
+        '''
+        if game.players[0] == self.from_player:
+            tartaglia_player = game.players[1]
+        else:
+            tartaglia_player = game.players[0]
+        tartaglia = get_character_with_name(tartaglia_player, Tartaglia)
+        if game.current_damage.damage_from == tartaglia:
+            game.current_damage.main_damage += 1
+
+    def on_after_use_skill(self, game: 'GeniusGame'):
         '''
             近战状态的达达利亚对已附属有断流的角色使用技能后: 
             对下一个敌方后台角色造成1点穿透伤害
         '''
+        if self.opponent:
+            next_character_index = 
+            Damage.resolve_damage(game,
+                damage_type=SkillType.OTHER,
+                main_damage_element=ElementType.PIERCING,
+                main_damage=1,
+                piercing_damage=0,
+                damage_from=None,
+                damage_to=self.opponent,
+                is_plunging_attack=False,
+                is_charged_attack=False)
+            self.opponent = None
+
+    
+    def on_use_skill(self, game: 'GeniusGame'):
+        '''
+            用于在使用技能后，判断角色是否有断流
+            目前on_use_skill仅用于达达利亚
+        '''
+        active_index = game.players[game.active_player].active_idx
+        if self.from_character == game.players[game.active_player].character_list[active_index]:
+            opponent = get_opponent_active_character(game)
+            if opponent.character_zone.has_entity(Riptide):
+                '''
+                    当前攻击的角色具有断流
+                '''
+                self.opponent = opponent
+                
+
+
 
     def update_listener_list(self):
         return super().update_listener_list()
@@ -189,7 +245,7 @@ class FlashOfHavoc(ElementalBurst):
     # No damage
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
     main_damage_element: ElementType = ElementType.HYDRO
-    main_damage: int = 4
+    main_damage: int = 5
     piercing_damage: int = 0
 
     # cost

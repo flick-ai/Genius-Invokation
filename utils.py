@@ -136,6 +136,7 @@ class EventType(Enum):
     DEALING_DAMAGE = 9 # Mona only right now
     INFUSION = 10
     ON_REACTION = 11 # Elemental Reaction based event. Maybe trigger sth, or just add DMG.
+    ON_USE_SKill = 12 # Only for tartaglia now
 
 class ElementalReactionType(Enum):
     Frozen = 0
@@ -179,47 +180,51 @@ if TYPE_CHECKING:
 def get_active_character(
         game: 'GeniusGame',
         player_idx: int,
-        require_player_idx: bool=False):
+        require_player_idx: bool=False) -> 'Character':
+    active_idx = game.players[player_idx].active_idx
+    character = game.players[player_idx].character_list[active_idx]
     if require_player_idx:
-        return (player_idx, game.players[player_idx].active_idx)
-    return game.players[player_idx].active_idx
+        return (player_idx, character)
+    return character
 
 def get_my_active_character(
         game: 'GeniusGame',
-        require_player_idx: bool=False):
-    return get_active_character(game, game.active_player, require_player_idx)
+        require_player_idx: bool=False) -> 'Character':
+    return get_active_character(game, game.active_player_idx, require_player_idx)
 
 def get_opponent_active_character(
         game: 'GeniusGame',
         require_player_idx: bool=False) -> 'Character':
-    return get_active_character(game, not game.active_player, require_player_idx)
+    return get_active_character(game, 1 - game.active_player_idx, require_player_idx)
 
 def get_standby_character(
         game: 'GeniusGame',
         player_idx: int,
-        require_player_idx: bool=False):
+        require_player_idx: bool=False) -> List['Character']:
     player = game.players[player_idx]
     active_idx = game.players[player_idx].active_idx
     standby_charas = []
-    for idx in range(player.character_num):
+    idx = game.players[player_idx].active_idx
+    while True:
+        idx = (idx + 1) % player.character_num
         if idx == active_idx:
-            continue
+            break
         if player.character_list[idx].is_alive:
             if require_player_idx:
-                standby_charas.append((player_idx, idx))
+                standby_charas.append((player_idx, game.players[player_idx].character_list[idx]))
             else:
-                standby_charas.append(idx)
+                standby_charas.append(game.players[player_idx].character_list[idx])
     return standby_charas
 
 def get_my_standby_character(
         game: 'GeniusGame',
-        require_player_idx: bool=False):
-    return get_standby_character(game, game.active_player, require_player_idx)
+        require_player_idx: bool=False)->List["Character"]:
+    return get_standby_character(game, game.active_player_idx, require_player_idx)
 
 def get_opponent_standby_character(
         game: 'GeniusGame',
         require_player_idx: bool=False)->List["Character"]:
-    return get_standby_character(game, not game.active_player, require_player_idx)
+    return get_standby_character(game, 1 - game.active_player_idx, require_player_idx)
 
 def get_opponent(
         game: 'GeniusGame'
