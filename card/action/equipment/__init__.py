@@ -5,5 +5,5 @@ from .talent import *
 
 
 
-    
+
 

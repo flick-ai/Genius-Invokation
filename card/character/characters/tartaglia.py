@@ -1,12 +1,8 @@
 from card.character.base import NormalAttack, ElementalSkill, ElementalBurst
 from entity.character import Character
 from entity.entity import Entity
-from game.game import GeniusGame
-from game.player import GeniusPlayer
 from utils import *
 from typing import TYPE_CHECKING, List, Tuple
-
-from utils import GeniusGame, GeniusPlayer
 
 if TYPE_CHECKING:
     from game.game import GeniusGame
@@ -28,7 +24,7 @@ class MeleeStance(Status):
     '''
         近战状态
     '''
-    def __init__(self, game: GeniusGame, from_player: GeniusPlayer, from_character=None):
+    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.opponent = None
         self.usage = 2
@@ -376,6 +372,13 @@ class Havoc_Obliteration(ElementalBurst):
     '''
     '''
     id: int = 2
+    type: SkillType = SkillType.ELEMENTAL_SKILL
+    cost = [
+        {
+            'cost_num': 3,
+            'cost_type': CostType.HYDRO
+        }
+    ]
     def __init__(self, from_character: 'Character') -> None:
         self.from_character = from_character
         self.flash_of_havoc = FlashOfHavoc(from_character)

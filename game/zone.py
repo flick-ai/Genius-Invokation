@@ -3,7 +3,7 @@ import numpy as np
 from utils import *
 from copy import deepcopy
 from card.action import *
-from card.action.equipment.weapon.weapons.raven_bow import RavenBow
+from card.action import RavenBow
 
 
 if TYPE_CHECKING:
@@ -34,8 +34,8 @@ class DiceZone:
         '''
             我们用一个[16, 9]的数组来维护骰子
         '''
-        self.num = 0
-        self.space = np.zeros((MAX_DICE, DICENUM)).astype(np.int16)
+        self.dice_num = 0
+        self.space = np.zeros((MAX_DICE, DICENUM+1)).astype(np.int16)
         for i in range(MAX_DICE):
             self.space[i][-1] = -1
         self.sort_map = self.get_sort_map()
@@ -64,14 +64,14 @@ class DiceZone:
         dices = sorted(dices, key=lambda x:self.sort_map[x])
         for idx, dice in enumerate(dices):
             if dice != 7:
-                self.space[self.num][-1] = dice
-                self.space[self.num][dice] = 1
+                self.space[self.dice_num][-1] = dice
+                self.space[self.dice_num][dice] = 1
             else:
-                self.space[self.num][-1] = dice
+                self.space[self.dice_num][-1] = dice
                 for i in range(DICENUM-1):
-                    self.space[self.num][i] = 1
-            self.num += 1
-            if self.num == MAX_DICE:
+                    self.space[self.dice_num][i] = 1
+            self.dice_num += 1
+            if self.dice_num == MAX_DICE:
                 break
         self.sort_dice()
 
@@ -87,13 +87,40 @@ class DiceZone:
         dices.sort(reverse=True)
         for dice in dices:
             self.delete(dice)
-            self.num -= 1
+            self.dice_num -= 1
+        self.sort_dice()
+
+    def remove_all(self):
+        '''
+            清空
+        '''
+        for dice in range(self.dice_num):
+            self.delete(dice)
+            self.dice_num -= 1
+        self.sort_dice()
 
     def calculate_dice(self, dice: Dice):
         '''
             计算是否有满足某种要求的骰子
         '''
-        # TODO
+        if dice.use_type == 'elemental tuning':
+            return self.dice_num - self.space[:, dice.cost[0]['cost_type'].value].sum() >= 0
+        is_cost = 0
+        for cost in dice.cost:
+            if cost['cost_type'] == CostType.WHITE:
+                if self.space.sum(axis=1).max() >= cost['cost_num']:
+                    is_cost += cost['cost_num']
+                else:
+                    return False
+            elif cost['cost_type'] == CostType.BLACK:
+                if self.dice_num < cost['cost_num'] + is_cost:
+                    return False
+            else:
+                dice_type = CostToDice[cost['cost_type']].value
+                if self.space[:, dice_type].sum() >= cost['cost_num']:
+                    is_cost += cost['cost_num']
+                else:
+                    return False
 
 
     def sort_dice(self):
@@ -107,16 +134,16 @@ class DiceZone:
         '''
             展示骰子区状况
         '''
-        if self.num == 0:
+        if self.dice_num == 0:
             return None
         else:
-            return self.space[0:self.num, -1]
+            return self.space[0:self.dice_num, -1].tolist()
 
     def num(self):
         '''
             计算骰子区数量
         '''
-        return self.num
+        return self.dice_num
 
 class CardZone:
     '''
@@ -143,9 +170,6 @@ class CardZone:
                 get_list.append(card)
                 if len(get_list) == num:
                     break
-
-        # 按照id顺序排序返回的牌
-        get_list = sorted(get_list, key=lambda card:card.id)
         return get_list
 
     def get_card(self, num):
@@ -156,9 +180,6 @@ class CardZone:
         for i in range(num):
             get_list.append(self.card.pop())
         self.card_num = len(self.card)
-
-        # 按照id顺序排序返回的牌
-        get_list = sorted(get_list, key=lambda card:card.id)
         return get_list
 
     def return_card(self, card_list: List):
@@ -178,7 +199,6 @@ class SummonZone:
         召唤物区
     '''
     def __init__(self, game: 'GeniusGame', player: 'GeniusPlayer') -> None:
-        self.max_num = 4
         self.space: List[Summon] = []
 
     def destroy(self, entity):
@@ -186,6 +206,7 @@ class SummonZone:
             if entity.name == exist.name:
                 self.space.pop(idx)
                 return
+
     def has_entity(self, entity):
         # entity here is the class, not the instace
         # Check whether a kind of entity already exists in self.character_zone.status_list.
@@ -197,17 +218,11 @@ class SummonZone:
         return None
 
     def check_full(self):
-        return len(self.space) == self.max_num
+        return len(self.space) == MAX_SUMMON
 
     def add_entity(self, entity: 'Summon'):
         if not self.check_full():
             self.space.append(entity)
-        # for idx, exist in enumerate(self.space):
-        #     if entity.name == exist.name:
-        #         self.space[idx].update()
-        #         return
-        # if len(self.space) < self.max_num:
-        #     self.space.append(entity)
 
     def num(self):
         return len(self.space)
@@ -226,7 +241,7 @@ class SupportZone:
                 return
 
     def add_entity(self, entity, idx):
-        if len(self.space) == self.max_num:
+        if len(self.space) == MAX_SUPPORT:
             # 如果支援区已经满了
             self.space[idx].destroy()
         self.space.append(entity)
@@ -321,13 +336,15 @@ class HandZone:
         idx.sort(reverse=True)
         return [self.card.pop(i) for i in idx]
 
+    def use(self, idx: int):
+        return self.card.pop(idx)
 
     def add(self, cards: List['ActionCard']):
         for card in cards:
             if len(self.card)>= MAX_HANDCARD:
                 break
             self.card.append(card)
-            sorted(self.card, key=lambda card: card.id)
+            self.card = sorted(self.card, key=lambda card: card.id)
 
     def num(self):
         return len(self.card)
