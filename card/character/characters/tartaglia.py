@@ -1,12 +1,8 @@
 from card.character.base import NormalAttack, ElementalSkill, ElementalBurst
 from entity.character import Character
 from entity.entity import Entity
-from game.game import GeniusGame
-from game.player import GeniusPlayer
 from utils import *
 from typing import TYPE_CHECKING, List, Tuple
-
-from utils import GeniusGame, GeniusPlayer
 
 if TYPE_CHECKING:
     from game.game import GeniusGame
@@ -26,7 +22,7 @@ class MeleeStance(Status):
     '''
         近战状态
     '''
-    def __init__(self, game: GeniusGame, from_player: GeniusPlayer, from_character=None):
+    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.opponent = None
 

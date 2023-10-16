@@ -24,8 +24,8 @@ class ListenerNode:
 
 
 class Event:
-    def __init__(self, name: str) -> None:
-        self.name: str = name
+    def __init__(self) -> None:
+        # self.name: str = name
         # self.event_types = [
         #     'equipment', 
         #     'artifact',

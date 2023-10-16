@@ -150,7 +150,7 @@ class GeniusPlayer:
             1. 行动目标是否存在？
             2. 行动所需骰子是否足够？
         '''
-        self.action_mask = np.zeors(18,5)
+        self.action_mask = np.zeros((18,5))
         # 计算能否打出手牌
         for idx, action_card in enumerate(self.hand_zone.card):
             action_card: 'ActionCard'

@@ -18,3 +18,6 @@ class ActionCard:
             效果执行函数
         '''
         pass
+
+    def find_target(self, game: 'GeniusGame'):
+        pass
