@@ -132,9 +132,6 @@ class CardZone:
                 get_list.append(card)
                 if len(get_list) == num:
                     break
-
-        # 按照id顺序排序返回的牌
-        get_list = sorted(get_list, key=lambda card:card.id)
         return get_list
 
     def get_card(self, num):
@@ -145,9 +142,6 @@ class CardZone:
         for i in range(num):
             get_list.append(self.card.pop())
         self.card_num = len(self.card)
-
-        # 按照id顺序排序返回的牌
-        get_list = sorted(get_list, key=lambda card:card.id)
         return get_list
 
     def return_card(self, card_list: List):

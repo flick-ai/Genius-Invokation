@@ -6,10 +6,14 @@ from card.character.characters.tartaglia import Tartaglia
 from card.character.characters.Nahida import Nahida
 from card.character.characters.yoimiya import Yoimiya
 
+from card.action import ActionCard
+from card.character import CharacterSkill
+
 if TYPE_CHECKING:
     from game.game import GeniusGame
     from game.action import Action
     from card.action import ActionCard
+    from card.character import CharacterSkill
 
 class GeniusPlayer:
     def __init__(self, game: 'GeniusGame', deck) -> None:
@@ -37,7 +41,7 @@ class GeniusPlayer:
         self.is_after_change: bool
         self.is_quick_change: bool
         self.change_num: int
-        self.action_mask = None
+        self.action_mask = {}
 
     def choose_card(self, action: 'Action'):
         '''
@@ -151,13 +155,22 @@ class GeniusPlayer:
         # 计算打出手牌的骰子消耗
         for action_card in self.hand_zone.card:
             action_card: 'ActionCard'
-            has_target = action_card.find_target()
-            has_dice = None
+            has_target = action_card.find_target(game)
+            has_dice = self.calculate_dice(game, operation=action_card)
 
-    def calculate(self, gamae: 'GeniusGame', card: 'ActionCard', ):
+
+    def calculate_dice(self, gamae: 'GeniusGame', operation):
         '''
             结算时刻: 计算骰子时
         '''
+        if isinstance(operation, ActionCard):
+            operation_type = operation.card_type
+            cost_num = operation.cost_num
+            cost_type = operation.cost_type
+        elif isinstance(operation, CharacterSkill):
+            operation_type = operation
+
+
 
 
 

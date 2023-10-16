@@ -11,7 +11,7 @@ from typing import TYPE_CHECKING
 #     def __init__(self):
 #         self.a = []
 #         self.b = 2
-    
+
 #     def aaa(self):
 #         self.a.append(A())
 
@@ -33,11 +33,11 @@ class person:
 class me(person):
     def __init__(self) -> None:
         super().__init__()
-    
+
 I = me()
 # print(type(I), type(I)==me, type(I)==person)
-# print(isinstance(I, me), isinstance(I, person))
+print(isinstance(I, 'me'), isinstance(I, person))
 # print(-1%3)
 
-from utils import DiceType
-print(DiceType(0).value)
+# from utils import DiceType
+# print(DiceType(0).value)

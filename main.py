@@ -36,5 +36,12 @@ print(game.encode_message())
 
 action = choose_dice([2,3,4,5,6,7])
 game.step(action)
+action = choose_dice([2,3,4,5,6,7])
+game.step(action)
 print(game.encode_message())
 
+action = choose_character(1)
+game.step(action)
+action = choose_character(2)
+game.step(action)
+print(game.encode_message())
