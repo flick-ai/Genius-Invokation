@@ -3,9 +3,7 @@ from typing import List, TYPE_CHECKING
 from .zone import CardZone, ActiveZone, SummonZone, SupportZone, DiceZone, CharacterZone, HandZone, Dice
 import numpy as np
 from card.character import CharacterSkill
-from card.character.characters.tartaglia import Tartaglia
-from card.character.characters.Nahida import Nahida
-from card.character.characters.yoimiya import Yoimiya
+from card.character.characters import *
 
 from card.action import ActionCard
 from card.character import CharacterSkill
@@ -44,6 +42,7 @@ class GeniusPlayer:
         self.is_quick_change: bool
         self.change_num: int
         self.action_mask: np.array
+        self.action_dice: np.array
 
     def choose_card(self, action: 'Action'):
         '''
@@ -117,21 +116,20 @@ class GeniusPlayer:
         '''
             标准行动: 使用技能
         '''
-        ### TODO: 判断使用哪个技能
-        skill = None
-        ###
-        # self.character_list[self.active_idx].skill(skill, game)
+        idx = game.current_action.choice_idx
+        self.character_list[self.active_idx].skills[idx]()
         self.is_after_change = False
 
     def play_card(self, game: 'GeniusGame'):
         '''
-            标准行动: 打出手牌
+            标准行动: 打出手牌/调和手牌
         '''
-        ### TODO: 判断打出哪张手牌
-        idx = None
-        ###
+        idx = game.current_action.choice_idx
         card: ActionCard = self.hand_zone.remove(idx)
-        card.on_played(game)
+        if game.current_action.target_type == ActionTarget.DICE_REGION:
+            card.on_tuning(game)
+        else:
+            card.on_played(game)
 
     def change_character(self, game: 'GeniusGame'):
         '''
@@ -154,8 +152,9 @@ class GeniusPlayer:
             1. 行动目标是否存在？
             2. 行动所需骰子是否足够？
         '''
-        self.action_mask = np.zeros((18,5))
-        # 计算能否打出手牌
+        self.action_mask = np.zeros((18, 15))
+        self.action_dice = np.zeros((18, 4))
+        # 计算能否打出手牌和烧牌
         for idx, action_card in enumerate(self.hand_zone.card):
             action_card: 'ActionCard'
             has_target = action_card.find_target(game)
@@ -163,45 +162,60 @@ class GeniusPlayer:
                                                       from_character=None,
                                                       use_type=action_card.card_type,
                                                       cost = [{'cost_num':action_card.cost_num, 'cost_type':action_card.cost_type}]))
-            if has_target and has_dice:
-                self.action_mask[idx][0] = 1
+            if has_target is not None and has_dice:
+                for target in has_target:
+                    self.action_mask[idx][target] = 1
                 for i, cost in enumerate(game.current_dice.cost):
-                    self.action_mask[idx][i+1] = cost['cost_num']
-                    self.action_mask[idx][i+2] = cost['cost_type']
+                    self.action_dice[idx][i] = cost['cost_num']
+                    self.action_dice[idx][i+1] = cost['cost_type']
+
+            active_dice = DiceToCost[ElementToDice[self.character_list[self.active_idx].element]]
+            can_tune = self.dice_zone.calculate_dice(Dice(from_player=self,
+                                                     from_character=None,
+                                                     use_type='elemental tuning',
+                                                     cost = [{'cost_num':1, 'cost_type':active_dice}]))
+            if can_tune:
+                self.action_mask[idx][13] = 1
+                self.action_dice[idx][i] = 1
+                self.action_dice[idx][i+1] = - active_dice
+
 
         # 计算能否使用技能
         for idx, skill in enumerate(self.character_list[self.active_idx].skills):
             skill: CharacterSkill
             has_dice = self.calculate_dice(game, Dice(from_player=self,
                                                       from_character=self.character_list[self.active_idx],
-                                                      use_type=str(type(skill)),
+                                                      use_type=skill.type,
                                                       cost=skill.cost))
             if has_dice:
                 self.action_mask[idx+10][0] = 1
                 for i, cost in enumerate(game.current_dice.cost):
-                    self.action_mask[idx+10][i+1] = cost['cost_num']
-                    self.action_mask[idx+10][i+2] = cost['cost_type']
+                    self.action_dice[idx+10][i] = cost['cost_num']
+                    self.action_dice[idx+10][i+1] = cost['cost_type']
 
         # 计算能否切换角色
         has_dice = self.calculate_dice(game, Dice(from_player=self,
                                                   from_character=None,
-                                                  type='change_character'),
-                                                  cost=[{'cost_num':1, 'cost_type':CostType.BLACK}])
+                                                  use_type='change_character',
+                                                  cost=[{'cost_num':1, 'cost_type':CostType.BLACK}]))
         if has_dice:
-            self.action_mask[14][0] = 1
+            for idx, character in self.character_list:
+                character: Character
+                if character.is_alive and not character.is_active:
+                    self.action_mask[14][idx+2] = 1
             for i, cost in enumerate(game.current_dice.cost):
-                    self.action_mask[idx+10][i+1] = cost['cost_num']
-                    self.action_mask[idx+10][i+2] = cost['cost_type']
+                    self.action_dice[idx+10][i] = cost['cost_num']
+                    self.action_dice[idx+10][i+1] = cost['cost_type']
 
         # 其余非标准行动的 Mask
         if game.game_phase == GamePhase.ACTION_PHASE:
-            self.action_mask[15][0] = 1
+            self.action_mask[15][1] = 1
         if game.game_phase == GamePhase.ROLL_PHASE:
-            self.action_mask[16][0] = 1
-            self.action_mask[16][1] = self.dice_zone.num()
+            self.action_mask[16][13] = 1
+            self.action_dice[16][0] = self.dice_zone.num()
         if game.game_phase == GamePhase.SET_CARD:
-            self.action_mask[17][0] = 1
-            self.action_mask[17][1] = self.hand_zone.num()
+            self.action_mask[17][14] = 1
+            self.action_dice[17][0] = self.hand_zone.num()
 
     def calculate_dice(self, game: 'GeniusGame', dice: Dice):
         '''

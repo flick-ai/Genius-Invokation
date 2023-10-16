@@ -177,7 +177,7 @@ class GeniusGame:
 
     def end_phase(self):
         '''
-
+            进入回合结束阶段
         '''
         self.game_phase = GamePhase.END_PHASE
         self.players[self.active_player_index].end_round(self)
@@ -195,8 +195,8 @@ class GeniusGame:
         for player in [0, 1]:
             # message[player]['card_zone'] = {'num':self.players[player].card_zone.num()}
             # message[player]['hand_zone'] = [card.name for card in self.players[player].hand_zone.card]
-            message[player]['active_character_idx'] = self.players[player].active_idx
-            message[player]['dice_zone'] = self.players[player].dice_zone.show()
+            # message[player]['active_character_idx'] = self.players[player].active_idx
+            # message[player]['dice_zone'] = self.players[player].dice_zone.show()
             for character in self.players[player].character_list:
                 message[player][character.name] = {}
                 message[player][character.name]['active'] = character.is_active

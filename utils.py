@@ -92,6 +92,7 @@ class ActionTarget(Enum):
     OPPONENT_SUMMON = 3
     MY_SUPPORT_REGION = 4
     DICE_REGION = 5
+    CARD_REGION = 6
 
 class ActionCardType(Enum):
     EQUIPMENT_TALENT = 0

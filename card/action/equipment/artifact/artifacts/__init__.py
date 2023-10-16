@@ -7,6 +7,7 @@ module_files = [
 ]
 
 for module_name in module_files:
-    importlib.import_module(f"{__package__}.{module_name}")
+    import_cmd = f"from .{module_name} import *"
+    exec(import_cmd)
 
 __all__ = module_files

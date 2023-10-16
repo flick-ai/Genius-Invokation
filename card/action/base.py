@@ -21,3 +21,6 @@ class ActionCard:
 
     def find_target(self, game: 'GeniusGame'):
         pass
+
+    def on_tuning(self, game: 'GeniusGame'):
+        pass

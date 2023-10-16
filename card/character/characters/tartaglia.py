@@ -306,6 +306,12 @@ class Havoc_Obliteration(ElementalBurst):
     '''
     '''
     id: int = 2
+    cost = [
+        {
+            'cost_num': 3,
+            'cost_type': CostType.HYDRO
+        }
+    ]
     def __init__(self, from_character: 'Character') -> None:
         self.from_character = from_character
         self.flash_of_havoc = FlashOfHavoc(from_character)
