@@ -6,6 +6,7 @@ from game.action import Action
 from .player import GeniusPlayer
 from event.events import EventManager
 from card.character.base import Damage
+from game.zone import Dice
 
 class GeniusGame:
     '''
@@ -18,13 +19,14 @@ class GeniusGame:
         self.first_player: int
         self.active_player_index: int
         self.acitve_player: GeniusPlayer # should be ref of player0 or player1
-        player0 = GeniusPlayer(self, player0_deck)
-        player1 = GeniusPlayer(self, player1_deck)
+        player0 = GeniusPlayer(self, player0_deck, 0)
+        player1 = GeniusPlayer(self, player1_deck, 1)
         self.players: List[GeniusPlayer] = [player0, player1]
         self.game_phase: GamePhase
         self.round: int = 0
 
         self.manager = EventManager()
+        self.current_dice: Dice
         self.current_action: Action
         self.current_damage: Damage
         self.current_skill: SkillType
@@ -49,6 +51,8 @@ class GeniusGame:
         self.game_phase = GamePhase.SET_CARD
         self.active_player_index = first
         self.active_player = self.players[first]
+        for player in self.players:
+            player.generate_mask(self)
 
     def resolve_action(self, action: 'Action'):
         '''
@@ -106,6 +110,9 @@ class GeniusGame:
                 self.set_reroll_dice(action)
             case GamePhase.ACTION_PHASE:
                 self.resolve_action(action)
+
+        for player in self.players:
+            player.generate_mask(self)
 
     def set_hand_card(self, action):
         '''
