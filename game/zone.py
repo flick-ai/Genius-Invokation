@@ -3,7 +3,7 @@ import numpy as np
 from utils import *
 from copy import deepcopy
 from card.action import *
-from card.action.equipment.weapon.weapons.raven_bow import RavenBow
+from card.action import RavenBow
 
 
 if TYPE_CHECKING:

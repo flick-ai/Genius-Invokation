@@ -38,7 +38,7 @@ class MeleeStance(Status):
             if current_character.from_player.character_list[current_idx].is_alive:
                 return current_character.from_player.character_list[current_idx]
         return None
-            
+
 
     def on_after_use_skill(self, game: 'GeniusGame'):
         '''
@@ -59,7 +59,7 @@ class MeleeStance(Status):
                     is_charged_attack=False)
             self.opponent = None
 
-    
+
     def on_use_skill(self, game: 'GeniusGame'):
         '''
             用于在使用技能后，判断角色是否有断流
@@ -73,7 +73,7 @@ class MeleeStance(Status):
                     当前攻击的角色具有断流
                 '''
                 self.opponent = opponent
-                
+
     def update_listener_list(self):
         '''
             更新需要监听的事件, 在init时会调用并自动监听
@@ -132,7 +132,7 @@ class Riptide(Status):
         '''
             角色死亡时，先结算未结算的事件
         '''
-        
+
 
     # def on_distroy(self, game: 'GeniusGame'):
     #     super().on_destroy()

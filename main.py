@@ -1,7 +1,6 @@
 '''
     预计进行运行的接口
 '''
-
 from game.game import GeniusGame
 from game.action import *
 
