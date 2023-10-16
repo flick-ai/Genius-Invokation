@@ -59,7 +59,7 @@ class GeniusGame:
             处理行动信息
         '''
         self.current_action = action
-        oppenent_player = self.players[not self.active_player_index]
+        oppenent_player = self.players[1 - self.active_player_index]
         active_player = self.active_player
         active_player.use_dice(self)
 
@@ -132,10 +132,10 @@ class GeniusGame:
         '''
             选择出战角色
         '''
-        active = self.active_player_index
+        active_idx = self.active_player_index
         self.acitve_player.choose_character(action)
-        if active == self.first_player:
-            self.active_player_index = int(not active)
+        if active_idx == self.first_player:
+            self.active_player_index = 1 - active_idx
             self.acitve_player = self.players[self.active_player_index]
         else:
             self.active_player_index = self.first_player
@@ -147,10 +147,10 @@ class GeniusGame:
         '''
             选择重新投掷的骰子
         '''
-        active = self.active_player_index
+        active_idx = self.active_player_index
         self.active_player.choose_dice(action)
-        if active == self.first_player:
-            self.active_player_index = int(not active)
+        if active_idx == self.first_player:
+            self.active_player_index = 1 -active_idx
             self.acitve_player = self.players[self.active_player_index]
         else:
             self.active_player_index = self.first_player

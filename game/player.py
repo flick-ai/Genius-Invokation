@@ -7,10 +7,14 @@ from card.character.characters.tartaglia import Tartaglia
 from card.character.characters.Nahida import Nahida
 from card.character.characters.yoimiya import Yoimiya
 
+from card.action import ActionCard
+from card.character import CharacterSkill
+
 if TYPE_CHECKING:
     from game.game import GeniusGame
     from game.action import Action
     from card.action import ActionCard
+    from card.character import CharacterSkill
 
 class GeniusPlayer:
     def __init__(self, game: 'GeniusGame', deck, idx) -> None:
@@ -155,7 +159,7 @@ class GeniusPlayer:
         for idx, action_card in enumerate(self.hand_zone.card):
             action_card: 'ActionCard'
             has_target = action_card.find_target(game)
-            has_dice = self.calculate_dice(game, Dice(from_player=self, 
+            has_dice = self.calculate_dice(game, Dice(from_player=self,
                                                       from_character=None,
                                                       use_type=action_card.card_type,
                                                       cost = [{'cost_num':action_card.cost_num, 'cost_type':action_card.cost_type}]))
@@ -164,11 +168,11 @@ class GeniusPlayer:
                 for i, cost in enumerate(game.current_dice.cost):
                     self.action_mask[idx][i+1] = cost['cost_num']
                     self.action_mask[idx][i+2] = cost['cost_type']
-        
+
         # 计算能否使用技能
         for idx, skill in enumerate(self.character_list[self.active_idx].skills):
             skill: CharacterSkill
-            has_dice = self.calculate_dice(game, Dice(from_player=self, 
+            has_dice = self.calculate_dice(game, Dice(from_player=self,
                                                       from_character=self.character_list[self.active_idx],
                                                       use_type=str(type(skill)),
                                                       cost=skill.cost))
@@ -177,9 +181,9 @@ class GeniusPlayer:
                 for i, cost in enumerate(game.current_dice.cost):
                     self.action_mask[idx+10][i+1] = cost['cost_num']
                     self.action_mask[idx+10][i+2] = cost['cost_type']
-                
+
         # 计算能否切换角色
-        has_dice = self.calculate_dice(game, Dice(from_player=self, 
+        has_dice = self.calculate_dice(game, Dice(from_player=self,
                                                   from_character=None,
                                                   type='change_character'),
                                                   cost=[{'cost_num':1, 'cost_type':CostType.BLACK}])
@@ -219,7 +223,7 @@ class GeniusPlayer:
 
         # 事件
         game.manager.invoke(EventType.BEGIN_ACTION_PHASE, game)
-        
+
     def end_round(self, game: 'GeniusGame'):
         '''
             结算时刻: 回合结束时
