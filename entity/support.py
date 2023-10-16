@@ -1,4 +1,3 @@
-from game.game import GeniusGame
 from utils import *
 from entity.entity import Entity
 from typing import TYPE_CHECKING, List, Tuple
@@ -13,15 +12,11 @@ class Support(Entity):
     # 支援基本类
     id: int
     name: str
-    element: ElementType
-    remain_use: int
-    usage: int
     max_usage: int
-    skills: list
+    max_count: int
 
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
-        self.current_usage: int = self.usage
 
     def on_destroy(self, game):
         super().on_destroy(game)

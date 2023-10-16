@@ -18,7 +18,7 @@ class GeniusGame:
         # np.random.seed(seed)
         self.first_player: int
         self.active_player_index: int
-        self.acitve_player: GeniusPlayer # should be ref of player0 or player1
+        self.active_player: GeniusPlayer # should be ref of player0 or player1
         player0 = GeniusPlayer(self, player0_deck, 0)
         player1 = GeniusPlayer(self, player1_deck, 1)
         self.players: List[GeniusPlayer] = [player0, player1]
@@ -73,6 +73,7 @@ class GeniusGame:
             self.is_change_player = True
             active_player.change_character(self)
         elif action.choice_type == ActionChoice.PASS:
+            self.is_change_player = True
             active_player.is_pass = True
             if oppenent_player.is_pass:
                 self.end_phase()
@@ -122,21 +123,21 @@ class GeniusGame:
         self.active_player.choose_card(action)
         if active_idx == self.first_player:
             self.active_player_index = 1 - active_idx
-            self.acitve_player = self.players[self.active_player_index]
+            self.active_player = self.players[self.active_player_index]
         else:
             self.game_phase = GamePhase.SET_CHARACTER
             self.active_player_index = self.first_player
-            self.acitve_player = self.players[self.first_player]
+            self.active_player = self.players[self.first_player]
 
     def set_active_character(self, action):
         '''
             选择出战角色
         '''
         active_idx = self.active_player_index
-        self.acitve_player.choose_character(action)
+        self.active_player.choose_character(action)
         if active_idx == self.first_player:
             self.active_player_index = 1 - active_idx
-            self.acitve_player = self.players[self.active_player_index]
+            self.active_player = self.players[self.active_player_index]
         else:
             self.active_player_index = self.first_player
             self.active_player = self.players[self.active_player_index]
@@ -151,7 +152,7 @@ class GeniusGame:
         self.active_player.choose_dice(action)
         if active_idx == self.first_player:
             self.active_player_index = 1 -active_idx
-            self.acitve_player = self.players[self.active_player_index]
+            self.active_player = self.players[self.active_player_index]
         else:
             self.active_player_index = self.first_player
             self.active_player = self.players[self.active_player_index]
@@ -172,7 +173,13 @@ class GeniusGame:
             进入交替行动阶段
         '''
         self.players[self.active_player_index].begin_round(self)
-        self.players[1-self.active_player_index].begin_round(self)
+        self.active_player_index = 1 - self.active_player_index
+        self.active_player = self.players[self.active_player_index]
+
+        self.players[self.active_player_index].begin_round(self)
+        self.active_player_index = 1 - self.active_player_index
+        self.active_player = self.players[self.active_player_index]
+
         self.game_phase = GamePhase.ACTION_PHASE
 
     def end_phase(self):
@@ -180,8 +187,15 @@ class GeniusGame:
             进入回合结束阶段
         '''
         self.game_phase = GamePhase.END_PHASE
+
         self.players[self.active_player_index].end_round(self)
-        self.players[1-self.active_player_index].end_round(self)
+        self.active_player_index = 1 - self.active_player_index
+        self.active_player = self.players[self.active_player_index]
+
+        self.players[self.active_player_index].end_round(self)
+        self.active_player_index = 1 - self.active_player_index
+        self.active_player = self.players[self.active_player_index]
+
         self.roll_phase()
 
     def encode_message(self):
@@ -190,17 +204,17 @@ class GeniusGame:
         '''
         message = {'game':{}, 0:{}, 1:{}}
         message['game']['round'] = self.round
-        message['game']['round_phase'] = self.game_phase
-        message['game']['active_player'] = self.active_player_index
+        message['game']['round_phase'] = self.game_phase.name
+        message['game']['active_player'] = int(self.active_player_index)
         for player in [0, 1]:
-            # message[player]['card_zone'] = {'num':self.players[player].card_zone.num()}
-            # message[player]['hand_zone'] = [card.name for card in self.players[player].hand_zone.card]
-            # message[player]['active_character_idx'] = self.players[player].active_idx
-            # message[player]['dice_zone'] = self.players[player].dice_zone.show()
+            message[player]['card_zone'] = {'num':self.players[player].card_zone.num()}
+            message[player]['hand_zone'] = [card.name for card in self.players[player].hand_zone.card]
+            message[player]['active_character_idx'] = self.players[player].active_idx
+            message[player]['dice_zone'] = self.players[player].dice_zone.show()
             for character in self.players[player].character_list:
                 message[player][character.name] = {}
                 message[player][character.name]['active'] = character.is_active
                 message[player][character.name]['alive'] = character.is_alive
-            # message[player]['support_zone'] = [support.name for support in self.players[player].summons_zone.space]
+                message[player]['support_zone'] = [support.name for support in self.players[player].support_zone.space]
             # message[player]['summon_zone'] = [summon.name for summon in self.players[player].summons_zone.space]
         return message

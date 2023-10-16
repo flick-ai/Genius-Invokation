@@ -109,7 +109,7 @@ class GeniusPlayer:
         '''
         idx = (self.active_idx + 1) % self.character_num
         while self.character_list[idx].is_alive == False:
-            idx = (idx - 1) % self.character_num
+            idx = (idx + 1) % self.character_num
         self.change_to_id(idx)
 
     def use_skill(self, game: 'GeniusGame'):
@@ -125,7 +125,7 @@ class GeniusPlayer:
             标准行动: 打出手牌/调和手牌
         '''
         idx = game.current_action.choice_idx
-        card: ActionCard = self.hand_zone.remove(idx)
+        card: ActionCard = self.hand_zone.use(idx)
         if game.current_action.target_type == ActionTarget.DICE_REGION:
             card.on_tuning(game)
         else:
@@ -245,6 +245,7 @@ class GeniusPlayer:
         # 事件
         game.manager.invoke(EventType.END_PHASE, game)
 
+        self.dice_zone.remove_all()
         # 摸牌
         self.get_card(num=2)
 

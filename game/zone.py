@@ -88,6 +88,16 @@ class DiceZone:
         for dice in dices:
             self.delete(dice)
             self.dice_num -= 1
+        self.sort_dice()
+
+    def remove_all(self):
+        '''
+            清空
+        '''
+        for dice in range(self.dice_num):
+            self.delete(dice)
+            self.dice_num -= 1
+        self.sort_dice()
 
     def calculate_dice(self, dice: Dice):
         '''
@@ -127,7 +137,7 @@ class DiceZone:
         if self.dice_num == 0:
             return None
         else:
-            return self.space[0:self.dice_num, -1]
+            return self.space[0:self.dice_num, -1].tolist()
 
     def num(self):
         '''
@@ -189,7 +199,6 @@ class SummonZone:
         召唤物区
     '''
     def __init__(self, game: 'GeniusGame', player: 'GeniusPlayer') -> None:
-        self.max_num = 4
         self.space: List[Summon] = []
 
     def destroy(self, entity):
@@ -197,6 +206,7 @@ class SummonZone:
             if entity.name == exist.name:
                 self.space.pop(idx)
                 return
+
     def has_entity(self, entity):
         # entity here is the class, not the instace
         # Check whether a kind of entity already exists in self.character_zone.status_list.
@@ -208,17 +218,11 @@ class SummonZone:
         return None
 
     def check_full(self):
-        return len(self.space) == self.max_num
+        return len(self.space) == MAX_SUMMON
 
     def add_entity(self, entity: 'Summon'):
         if not self.check_full():
             self.space.append(entity)
-        # for idx, exist in enumerate(self.space):
-        #     if entity.name == exist.name:
-        #         self.space[idx].update()
-        #         return
-        # if len(self.space) < self.max_num:
-        #     self.space.append(entity)
 
     def num(self):
         return len(self.space)
@@ -237,7 +241,7 @@ class SupportZone:
                 return
 
     def add_entity(self, entity, idx):
-        if len(self.space) == self.max_num:
+        if len(self.space) == MAX_SUPPORT:
             # 如果支援区已经满了
             self.space[idx].destroy()
         self.space.append(entity)
@@ -329,13 +333,15 @@ class HandZone:
         idx.sort(reverse=True)
         return [self.card.pop(i) for i in idx]
 
+    def use(self, idx: int):
+        return self.card.pop(idx)
 
     def add(self, cards: List['ActionCard']):
         for card in cards:
             if len(self.card)>= MAX_HANDCARD:
                 break
             self.card.append(card)
-            sorted(self.card, key=lambda card: card.id)
+            self.card = sorted(self.card, key=lambda card: card.id)
 
     def num(self):
         return len(self.card)

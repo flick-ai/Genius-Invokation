@@ -1,0 +1,233 @@
+[
+    {
+        "game": {
+            "round": 1,
+            "round_phase": "ROLL_PHASE",
+            "active_player": 1
+        },
+        "0": {
+            "card_zone": {
+                "num": 25
+            },
+            "hand_zone": [
+                "Paimon",
+                "Paimon",
+                "Paimon",
+                "Paimon",
+                "Paimon"
+            ],
+            "active_character_idx": 1,
+            "dice_zone": [
+                7,
+                1,
+                2,
+                6,
+                3,
+                3,
+                3,
+                4
+            ],
+            "Tartaglia": {
+                "active": false,
+                "alive": true
+            },
+            "Nahida": {
+                "active": true,
+                "alive": true
+            },
+            "Yoimiya": {
+                "active": false,
+                "alive": true
+            }
+        },
+        "1": {
+            "card_zone": {
+                "num": 25
+            },
+            "hand_zone": [
+                "Raven Bow",
+                "Raven Bow",
+                "Raven Bow",
+                "Raven Bow",
+                "Paimon"
+            ],
+            "active_character_idx": 0,
+            "dice_zone": [
+                7,
+                7,
+                2,
+                3,
+                3,
+                0,
+                4,
+                5
+            ],
+            "Tartaglia": {
+                "active": true,
+                "alive": true
+            },
+            "Nahida": {
+                "active": false,
+                "alive": true
+            },
+            "Yoimiya": {
+                "active": false,
+                "alive": true
+            }
+        }
+    },
+    {
+        "game": {
+            "round": 1,
+            "round_phase": "ROLL_PHASE",
+            "active_player": 0
+        },
+        "0": {
+            "card_zone": {
+                "num": 25
+            },
+            "hand_zone": [
+                "Paimon",
+                "Paimon",
+                "Paimon",
+                "Paimon",
+                "Paimon"
+            ],
+            "active_character_idx": 1,
+            "dice_zone": [
+                7,
+                1,
+                2,
+                6,
+                3,
+                3,
+                3,
+                4
+            ],
+            "Tartaglia": {
+                "active": false,
+                "alive": true
+            },
+            "Nahida": {
+                "active": true,
+                "alive": true
+            },
+            "Yoimiya": {
+                "active": false,
+                "alive": true
+            }
+        },
+        "1": {
+            "card_zone": {
+                "num": 25
+            },
+            "hand_zone": [
+                "Raven Bow",
+                "Raven Bow",
+                "Raven Bow",
+                "Raven Bow",
+                "Paimon"
+            ],
+            "active_character_idx": 0,
+            "dice_zone": [
+                7,
+                7,
+                7,
+                1,
+                5,
+                5,
+                5,
+                4
+            ],
+            "Tartaglia": {
+                "active": true,
+                "alive": true
+            },
+            "Nahida": {
+                "active": false,
+                "alive": true
+            },
+            "Yoimiya": {
+                "active": false,
+                "alive": true
+            }
+        }
+    },
+    {
+        "game": {
+            "round": 1,
+            "round_phase": "ACTION_PHASE",
+            "active_player": 1
+        },
+        "0": {
+            "card_zone": {
+                "num": 25
+            },
+            "hand_zone": [
+                "Paimon",
+                "Paimon",
+                "Paimon",
+                "Paimon",
+                "Paimon"
+            ],
+            "active_character_idx": 1,
+            "dice_zone": [
+                7,
+                7,
+                1,
+                1,
+                2,
+                0,
+                0,
+                5
+            ],
+            "Tartaglia": {
+                "active": false,
+                "alive": true
+            },
+            "Nahida": {
+                "active": true,
+                "alive": true
+            },
+            "Yoimiya": {
+                "active": false,
+                "alive": true
+            }
+        },
+        "1": {
+            "card_zone": {
+                "num": 25
+            },
+            "hand_zone": [
+                "Raven Bow",
+                "Raven Bow",
+                "Raven Bow",
+                "Raven Bow",
+                "Paimon"
+            ],
+            "active_character_idx": 0,
+            "dice_zone": [
+                7,
+                7,
+                7,
+                1,
+                5,
+                5,
+                5,
+                4
+            ],
+            "Tartaglia": {
+                "active": true,
+                "alive": true
+            },
+            "Nahida": {
+                "active": false,
+                "alive": true
+            },
+            "Yoimiya": {
+                "active": false,
+                "alive": true
+            }
+        }
+    }
+]

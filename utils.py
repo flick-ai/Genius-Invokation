@@ -1,6 +1,8 @@
 from enum import Enum
 from typing import List
 DICENUM = 8
+MAX_SUMMON = 4
+MAX_SUPPORT = 4
 MAX_HANDCARD = 10
 MAX_DICE = 16
 MAX_ROUND = 15
@@ -233,7 +235,7 @@ def get_opponent_standby_character(
 def get_opponent(
         game: 'GeniusGame'
     ):
-    return game.players[not game.active_player]
+    return game.players[not game.active_player_index]
 
 def get_character_with_name(
         player: 'GeniusPlayer',
@@ -244,3 +246,8 @@ def get_character_with_name(
         if isinstance(player.character_list[i], character):
             return player.character_list[i]
     return None
+
+import json
+def print_information(log_info, log_file='./debug.json'):
+    with open(log_file, 'w') as Fout:
+        json.dump(log_info, Fout, indent=4)
