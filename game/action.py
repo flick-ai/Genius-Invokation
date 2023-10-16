@@ -11,8 +11,10 @@ from utils import *
     10-13: 4 character skills
     14: change character
     15: pass this turn
-    16: none (to solve problem caused by "Toss-up" and "Nature and Wisdom" and so on)
+    16: Toss_up
+    17: Reget Card
 '''
+# 16: none (to solve problem caused by "Toss-up" and "Nature and Wisdom" and so on)
 
 '''
     target action (1 dim)
@@ -63,7 +65,7 @@ class Action:
             self.target_idx = self.target - 2
         elif self.choice == 15:
             self.choice_type = ActionChoice.PASS
-        elif self.choice == 16:
+        elif self.choice == 16 or self.choice == 17: 
             self.choice_type = ActionChoice.NONE
 
     @staticmethod
@@ -85,7 +87,7 @@ class Action:
         return Action(choose, target, dice)
 
 def choose_card(card: List[int]):
-    return Action(16, 14, card)
+    return Action(17, 14, card)
 
 def choose_dice(dice: List[int]):
     return Action(16, 13, dice)
