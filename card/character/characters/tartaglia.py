@@ -30,23 +30,19 @@ class MeleeStance(Status):
         super().__init__(game, from_player, from_character)
         self.opponent = None
 
-    def find_next_alive_character(self, game:'GeniusGame', current_character: 'Character'):
+    def find_next_alive_character(self, current_character: 'Character'):
         '''
             找到下一个活着的角色
         '''
         current_idx = current_character.index
-    
-    def on_damage_add(self, game: 'GeniusGame'):
-        '''
-            近战状态下的达达利亚对附属有断流的角色造成的伤害+1
-        '''
-        if game.players[0] == self.from_player:
-            tartaglia_player = game.players[1]
-        else:
-            tartaglia_player = game.players[0]
-        tartaglia = get_character_with_name(tartaglia_player, Tartaglia)
-        if game.current_damage.damage_from == tartaglia:
-            game.current_damage.main_damage += 1
+        while True:
+            current_idx = (current_idx + 1) % current_character.from_player.character_num
+            if current_idx == current_character.index:
+                break
+            if current_character.from_player.character_list[current_idx].is_alive:
+                return current_character.from_player.character_list[current_idx]
+        return None
+            
 
     def on_after_use_skill(self, game: 'GeniusGame'):
         '''
@@ -54,16 +50,17 @@ class MeleeStance(Status):
             对下一个敌方后台角色造成1点穿透伤害
         '''
         if self.opponent:
-            next_character_index = 
-            Damage.resolve_damage(game,
-                damage_type=SkillType.OTHER,
-                main_damage_element=ElementType.PIERCING,
-                main_damage=1,
-                piercing_damage=0,
-                damage_from=None,
-                damage_to=self.opponent,
-                is_plunging_attack=False,
-                is_charged_attack=False)
+            next_character = self.find_next_alive_character(self.opponent)
+            if next_character:
+                Damage.resolve_damage(game,
+                    damage_type=SkillType.OTHER,
+                    main_damage_element=ElementType.PIERCING,
+                    main_damage=1,
+                    piercing_damage=0,
+                    damage_from=self.from_character,
+                    damage_to=next_character,
+                    is_plunging_attack=False,
+                    is_charged_attack=False)
             self.opponent = None
 
     
@@ -81,11 +78,15 @@ class MeleeStance(Status):
                 '''
                 self.opponent = opponent
                 
-
-
-
     def update_listener_list(self):
-        return super().update_listener_list()
+        '''
+            更新需要监听的事件, 在init时会调用并自动监听
+        '''
+        self.listeners = [
+            (EventType.AFTER_USE_SKILL, ZoneType.CHARACTER_ZONE, self.on_after_use_skill),
+            (EventType.ON_USE_SKILL, ZoneType.CHARACTER_ZONE, self.on_use_skill),
+            (EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, self.on_damage_add)
+        ]
 
 
 class Riptide(Status):
@@ -115,23 +116,42 @@ class Riptide(Status):
         else:
             tartaglia_player = game.players[0]
         tartaglia = get_character_with_name(tartaglia_player, Tartaglia)
-        if game.current_damage.damage_from == tartaglia:
+        if game.current_damage.damage_from == tartaglia and tartaglia.is_melee_stance:
             game.current_damage.main_damage += 1
 
-    def on_distroy(self, game):
-        super().on_destroy()
-        # 新的断流
-        new_riptide = Riptide(game=game,
-                          from_player=self.from_player,
-                          from_character=None)
+    def find_next_alive_character(self, current_character: 'Character'):
+        '''
+            找到下一个活着的角色
+        '''
+        current_idx = current_character.index
+        while True:
+            current_idx = (current_idx + 1) % current_character.from_player.character_num
+            if current_idx == current_character.index:
+                break
+            if current_character.from_player.character_list[current_idx].is_alive:
+                return current_character.from_player.character_list[current_idx]
+        return None
 
-    def on_switch_character(self, game: 'GeniusGame'):
-        if not self.attached:
-            # 附着到新的出战角色上
-            new_character = self.from_player.character_list[self.from_player.active_idx]
-            new_character.character_zone.add_entity(self)
-            self.from_character = new_character
-            self.attached = True
+    def on_character_die(self, game: 'GeniusGame'):
+        '''
+            角色死亡时，先结算未结算的事件
+        '''
+        
+
+    # def on_distroy(self, game: 'GeniusGame'):
+    #     super().on_destroy()
+    #     # 新的断流
+    #     new_riptide = Riptide(game=game,
+    #                       from_player=self.from_player,
+    #                       from_character=None)
+
+    # def on_switch_character(self, game: 'GeniusGame'):
+    #     if not self.attached:
+    #         # 附着到新的出战角色上
+    #         new_character = self.from_player.character_list[self.from_player.active_idx]
+    #         new_character.character_zone.add_entity(self)
+    #         self.from_character = new_character
+    #         self.attached = True
 
     def on_end_phase(self, game: 'GeniusGame'):
         if game.players[0] == self.from_player:
