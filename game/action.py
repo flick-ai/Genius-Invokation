@@ -67,7 +67,7 @@ class Action:
             self.choice_idx = -1
         elif self.choice == 15:
             self.choice_type = ActionChoice.PASS
-            self.target_idx = -1
+            self.choice_idx = -1
         elif self.choice == 16 or self.choice == 17:
             self.choice_type = ActionChoice.NONE
             self.choice_idx = -1
@@ -102,17 +102,99 @@ class Action:
         return Action(action[0], action[1], action[2])
 
     @staticmethod
-    def from_input():
-        choose_prompt = "请输入一个数字表示你的行动选择:\n打出手牌请选择0-9;\n使用技能请选择10-13;\n切换角色请选择14;\n回合结束请选择15;\n其他行动请选择16\n"
-        choose = int(input(choose_prompt))
-        if choose == 15:
-            return Action(15, 1, [])
-        target_prompt = "请输入一个数字表示你的行动目标:\n选择对方请选择0;\n选择本方请选择1;\n选择角色请选择2-4;\n对手召唤请选择5-8;\n本方支援请选择9-12\n;本方骰子请选择13\n;本方手牌请选择14\n"
-        target = int(input(target_prompt))
-        list_prompt = "请输入一个形如0 1 2的列表列表表征你选择的位置,主要用于选择骰子,特殊情况表示手牌:\n"
-        dice = input(list_prompt)
-        dice = [int(i) for i in dice.split(' ')]
-        return Action(choose, target, dice)
+    def from_input(game: 'GeniusGame'):
+        mask, use_dice = game.active_player.action_mask[:,:,0], game.active_player.action_mask[:,:,1:]
+        choice_dict = {0:'打出本方第1张手牌',
+                       1:'打出本方第2张手牌',
+                       2:'打出本方第3张手牌',
+                       3:'打出本方第4张手牌',
+                       4:'打出本方第5张手牌',
+                       5:'打出本方第6张手牌',
+                       6:'打出本方第7张手牌',
+                       7:'打出本方第8张手牌',
+                       8:'打出本方第9张手牌',
+                       9:'打出本方第10张手牌',
+                       10:'使用出战角色第1个技能',
+                       11:'使用出战角色第2个技能',
+                       12:'使用出战角色第3个技能',
+                       13:'使用出战角色第4个技能',
+                       14:'切换角色',
+                       15:'结束回合',
+                       16:'选择操作本方骰子',
+                       17:'选择操作本方手牌'}
+
+        choose_prompt = f"您是{game.active_player_index}号玩家,以下是你可以选择的行动,请输入一个数字表示你的行动选择:\n"
+        choose_num = 0
+        last_choice = -1
+        mask_sum = mask.sum(axis=1)
+        for i in range(18):
+            if mask_sum[i] >= 1:
+                choose_prompt = choose_prompt+str(i)+'.'+choice_dict[i]+'\n'
+                choose_num += 1
+                last_choice = i
+
+        if choose_num == 1:
+            choice = last_choice
+            print(choose_prompt+'您目前只能选择如下行动:'+str(last_choice)+'.'+choice_dict[last_choice]+'\n')
+        else:
+            choice = int(input(choose_prompt))
+
+        target_dict = {0:'选择对方',
+                       1:'选择本方',
+                       2:'选择角色0',
+                       3:'选择角色1',
+                       4:'选择角色2',
+                       5:'选择对手0号召唤',
+                       6:'选择对手1号召唤',
+                       7:'选择对手2号召唤',
+                       8:'选择对手3号召唤',
+                       9:'选择本方0号支援',
+                       10:'选择本方1号支援',
+                       11:'选择本方2号支援',
+                       12:'选择本方3号支援',
+                       13:'选择操作本方骰子',
+                       14:'选择操作本方手牌'}
+        target_prompt = '根据您选择的行动，您可以选择以下目标:\n'
+        target_num = 0
+        last_target = -1
+        for i in range(15):
+            if mask[choice][i] == 1:
+                target_prompt = target_prompt+str(i)+'.'+target_dict[i]+'\n'
+                target_num += 1
+                last_target = i
+
+        if target_num == 1:
+            target = last_target
+            print(choose_prompt+'您目前只能选择如下行动:'+str(last_target)+'.'+target_dict[last_target]+'\n')
+        else:
+            target = int(input(target_prompt))
+
+        if choice == 16:
+            list_prompt = f'您需要选择重新投掷的骰子的位置,形式如0 1 2所示,数值应该在{0}-{use_dice[choice][target][0]-1}之间:'
+            dice = input(list_prompt)
+            if dice == '':
+                dice = []
+            else:
+                dice = [int(i) for i in dice.split(' ')]
+        elif choice == 17:
+            list_prompt = f'您需要选择重新获取的手牌的位置,形式如0 1 2所示,数值应该在{0}-{use_dice[choice][target][0]-1}之间:'
+            dice = input(list_prompt)
+            if dice == '':
+                dice = []
+            else:
+                dice = [int(i) for i in dice.split(' ')]
+        elif use_dice.sum() == 0:
+            dice = []
+        else:
+            for i in range(2):
+                if use_dice[choice][target][i*2] != 0:
+                    if use_dice[choice][target][i*2+1] < 0:
+                        list_prompt = f'您需要选择使用的{use_dice[choice][target][i*2]}个非{CostType(-use_dice[choice][target][1])}骰子的位置,形式如0 1 2所示:'
+                    else:
+                        list_prompt = f'您需要选择使用的{use_dice[choice][target][i*2]}个{CostType(use_dice[choice][target][1])}骰子的位置,形式如0 1 2所示:'
+                    dice = input(list_prompt)
+                    dice = [int(i) for i in dice.split(' ')]
+        return Action(choice, target, dice)
 
 def choose_card(card: List[int]):
     return Action(17, 14, card)

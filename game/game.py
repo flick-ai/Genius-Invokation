@@ -80,6 +80,8 @@ class GeniusGame:
             active_player.is_pass = True
             if oppenent_player.is_pass:
                 self.end_phase()
+            else:
+                self.first_player = self.active_player_index
 
         if self.is_change_player and (not oppenent_player.is_pass):
             self.active_player_index = not self.active_player_index
@@ -167,6 +169,7 @@ class GeniusGame:
             进入投掷骰子的阶段, 回合开始
         '''
         self.round += 1
+        self.active_player_index = self.first_player
         self.game_phase = GamePhase.ROLL_PHASE
         for player in self.players:
             player.dice_zone.add(player.roll_dice())
@@ -209,15 +212,17 @@ class GeniusGame:
         message['game']['round'] = self.round
         message['game']['round_phase'] = self.game_phase.name
         message['game']['active_player'] = int(self.active_player_index)
+        message['game']['first_player'] = int(self.first_player)
         for player in [0, 1]:
+            message[player]['active_character_idx'] = self.players[player].active_idx
             message[player]['card_zone'] = {'num':self.players[player].card_zone.num()}
             message[player]['hand_zone'] = [card.name for card in self.players[player].hand_zone.card]
-            message[player]['active_character_idx'] = self.players[player].active_idx
+            message[player]['support_zone'] = [support.name for support in self.players[player].support_zone.space]
             message[player]['dice_zone'] = self.players[player].dice_zone.show()
             for character in self.players[player].character_list:
                 message[player][character.name] = {}
                 message[player][character.name]['active'] = character.is_active
                 message[player][character.name]['alive'] = character.is_alive
-                message[player]['support_zone'] = [support.name for support in self.players[player].support_zone.space]
+
             # message[player]['summon_zone'] = [summon.name for summon in self.players[player].summons_zone.space]
         return message

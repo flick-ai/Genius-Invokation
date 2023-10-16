@@ -42,3 +42,6 @@ class Paimon(SupportCard):
         self.entity = Paimon_Entity(game, from_player=game.active_player)
         target_idx = game.current_action.target_idx
         game.active_player.support_zone.add_entity(self.entity, target_idx)
+
+    def find_target(self, game: 'GeniusGame'):
+        return [1]

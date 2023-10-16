@@ -84,6 +84,8 @@ class DiceZone:
         '''
             使用骰子
         '''
+        if dices == []:
+            return
         dices.sort(reverse=True)
         for dice in dices:
             self.delete(dice)
@@ -121,6 +123,7 @@ class DiceZone:
                     is_cost += cost['cost_num']
                 else:
                     return False
+        return True
 
 
     def sort_dice(self):
@@ -260,7 +263,7 @@ class CharacterZone:
         self.artifact_card: Artifact
         # self.talent_card: Talent
         self.status_list: List['Status'] = [] # Including status from weapon and artifact
-    
+
     def remove_entity(self, entity: 'Entity'):
         idx = self.status_list.index(entity)
         self.status_list.pop(idx)
@@ -331,6 +334,8 @@ class HandZone:
         self.card = []
 
     def remove(self, idx: List):
+        if idx == []:
+            return []
         if type(idx) == int:
             idx = [idx]
         idx.sort(reverse=True)

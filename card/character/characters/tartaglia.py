@@ -16,7 +16,7 @@ class RangedStance(Status):
     '''
         远程状态
     '''
-    def __init__(self, game: GeniusGame, from_player: GeniusPlayer, from_character=None):
+    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
 
 
@@ -30,7 +30,7 @@ class MeleeStance(Status):
         self.usage = 2
         self.max_usage = 2
         self.current_usage = 2
-    
+
     def update(self):
         self.current_usage = self.usage
 
@@ -47,7 +47,7 @@ class MeleeStance(Status):
                 return current_character.from_player.character_list[current_idx]
         return None
 
-        
+
     def on_use_skill(self, game: 'GeniusGame'):
         '''
             用于在使用技能后，判断角色是否有断流
@@ -61,7 +61,7 @@ class MeleeStance(Status):
                     当前攻击的角色具有断流
                 '''
                 self.opponent = opponent
-            
+
 
     def on_after_use_skill(self, game: 'GeniusGame'):
         '''
@@ -99,7 +99,7 @@ class MeleeStance(Status):
                                         from_character=self.from_character)
             self.from_character.character_zone.add_entity(ranged_stance)
 
-                
+
     def update_listener_list(self):
         '''
             更新需要监听的事件, 在init时会调用并自动监听
@@ -261,7 +261,7 @@ class FoulLegacy_RagingTide(ElementalSkill):
     energy_cost: int = 0
     energy_gain: int = 1
 
-    def add_status(self, game: GeniusGame):
+    def add_status(self, game: 'GeniusGame'):
         status = self.from_character.character_zone.has_entity(MeleeStance)
         if status is not None:
             status.update()
@@ -388,7 +388,7 @@ class Havoc_Obliteration(ElementalBurst):
         if self.from_character.is_melee_stance:
             self.light_of_havoc.on_call(game)
         else:
-            self.flash_of_havoc.on_call(game) 
+            self.flash_of_havoc.on_call(game)
 
 
 class Tartaglia(Character):

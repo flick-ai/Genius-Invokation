@@ -23,7 +23,7 @@ class ActionCard:
         '''
             寻找目标函数
         '''
-        pass
+        return [1]
 
     def on_tuning(self, game: 'GeniusGame'):
         '''
