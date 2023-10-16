@@ -14,6 +14,17 @@ if TYPE_CHECKING:
     from entity.status import Status, Shield, Combat_Shield, Weapon, Artifact
     from entity.character import Character
 
+
+class Dice:
+    '''
+        计算骰子的维护类
+    '''
+    def __init__(self, from_player, from_character, use_type, cost) -> None:
+        self.cost: list({'cost_num': int, 'cost_type': CostType}) = cost
+        self.from_player = from_player
+        self.from_character: Character = from_character
+        self.use_type = use_type
+
 class DiceZone:
     '''
         骰子区
@@ -78,7 +89,7 @@ class DiceZone:
             self.delete(dice)
             self.num -= 1
 
-    def calculate_dice(self, game):
+    def calculate_dice(self, dice: Dice):
         '''
             计算是否有满足某种要求的骰子
         '''
@@ -317,5 +328,3 @@ class HandZone:
 
     def num(self):
         return len(self.card)
-
-
