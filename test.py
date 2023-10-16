@@ -18,26 +18,32 @@ from typing import TYPE_CHECKING
 # alist = A()
 # alist.aaa()
 # print(alist.a[0].aaa)
-if TYPE_CHECKING:
-    from test2 import B
+# if TYPE_CHECKING:
+#     from test2 import B
 
 
-# def testf(a: 'B'):
-#     print(a.a)
+# # def testf(a: 'B'):
+# #     print(a.a)
 
-# testf(1.44)
-class person:
-    def __init__(self) -> None:
-        pass
+# # testf(1.44)
+# class person:
+#     def __init__(self) -> None:
+#         pass
 
-class me(person):
-    def __init__(self) -> None:
-        super().__init__()
+# class me(person):
+#     def __init__(self) -> None:
+#         super().__init__()
     
-I = me()
-# print(type(I), type(I)==me, type(I)==person)
-# print(isinstance(I, me), isinstance(I, person))
-# print(-1%3)
+# I = me()
+# # print(type(I), type(I)==me, type(I)==person)
+# # print(isinstance(I, me), isinstance(I, person))
+# # print(-1%3)
 
-from utils import DiceType
-print(DiceType(0).value)
+# from utils import DiceType
+# print(DiceType(0).value)
+
+class A:
+    def __init__(self) -> None:
+        pass 
+a = [A(), A()]
+b = a

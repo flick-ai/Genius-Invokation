@@ -53,11 +53,11 @@ class CharacterSkill:
     def gain_energy(self, game: 'GeniusGame'):
         pass
 
-    def add_status(self, game: 'GeniusGame', status: 'Status'):
+    def add_status(self, game: 'GeniusGame'):
         pass
 
     def on_call(self, game: 'GeniusGame'):
-        game.current_skill = self.type
+        game.current_skill = self
 
 class NormalAttack(CharacterSkill):
 

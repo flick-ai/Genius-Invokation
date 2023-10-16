@@ -245,7 +245,10 @@ class CharacterZone:
         self.artifact_card: Artifact
         # self.talent_card: Talent
         self.status_list: List['Status'] = [] # Including status from weapon and artifact
-
+    
+    def remove_entity(self, entity: 'Entity'):
+        idx = self.status_list.index(entity)
+        self.status_list.pop(idx)
 
     def has_entity(self, entity: 'Entity'):
         # entity here is the class, not the instace

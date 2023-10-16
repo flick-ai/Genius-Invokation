@@ -20,6 +20,8 @@ class RangedStance(Status):
     '''
         远程状态
     '''
+    def __init__(self, game: GeniusGame, from_player: GeniusPlayer, from_character=None):
+        super().__init__(game, from_player, from_character)
 
 
 class MeleeStance(Status):
@@ -29,6 +31,12 @@ class MeleeStance(Status):
     def __init__(self, game: GeniusGame, from_player: GeniusPlayer, from_character=None):
         super().__init__(game, from_player, from_character)
         self.opponent = None
+        self.usage = 2
+        self.max_usage = 2
+        self.current_usage = 2
+    
+    def update(self):
+        self.current_usage = self.usage
 
     def find_next_alive_character(self, current_character: 'Character'):
         '''
@@ -42,6 +50,21 @@ class MeleeStance(Status):
             if current_character.from_player.character_list[current_idx].is_alive:
                 return current_character.from_player.character_list[current_idx]
         return None
+
+        
+    def on_use_skill(self, game: 'GeniusGame'):
+        '''
+            用于在使用技能后，判断角色是否有断流
+            目前on_use_skill仅用于达达利亚
+        '''
+        active_index = game.players[game.active_player].active_idx
+        if self.from_character == game.players[game.active_player].character_list[active_index]:
+            opponent = get_opponent_active_character(game)
+            if opponent.character_zone.has_entity(Riptide):
+                '''
+                    当前攻击的角色具有断流
+                '''
+                self.opponent = opponent
             
 
     def on_after_use_skill(self, game: 'GeniusGame'):
@@ -63,20 +86,23 @@ class MeleeStance(Status):
                     is_charged_attack=False)
             self.opponent = None
 
-    
-    def on_use_skill(self, game: 'GeniusGame'):
+
+
+    def on_end_phase(self, game: 'GeniusGame'):
         '''
-            用于在使用技能后，判断角色是否有断流
-            目前on_use_skill仅用于达达利亚
+            结束阶段, 可用次数减1
         '''
-        active_index = game.players[game.active_player].active_idx
-        if self.from_character == game.players[game.active_player].character_list[active_index]:
-            opponent = get_opponent_active_character(game)
-            if opponent.character_zone.has_entity(Riptide):
-                '''
-                    当前攻击的角色具有断流
-                '''
-                self.opponent = opponent
+        self.current_usage -= 1
+        if self.current_usage <= 0:
+            self.on_destroy(game)
+            self.from_character.character_zone.remove_entity(self)
+            self.from_character.is_melee_stance = False
+            # 切换成远程模式
+            ranged_stance = RangedStance(game=game,
+                                        from_player=self.from_player,
+                                        from_character=self.from_character)
+            self.from_character.character_zone.add_entity(ranged_stance)
+
                 
     def update_listener_list(self):
         '''
@@ -97,7 +123,6 @@ class Riptide(Status):
     '''
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
-        self.attached = False # 是否附着
 
     def update_listener_list(self):
         '''
@@ -136,22 +161,15 @@ class Riptide(Status):
         '''
             角色死亡时，先结算未结算的事件
         '''
-        
-
-    # def on_distroy(self, game: 'GeniusGame'):
-    #     super().on_destroy()
-    #     # 新的断流
-    #     new_riptide = Riptide(game=game,
-    #                       from_player=self.from_player,
-    #                       from_character=None)
-
-    # def on_switch_character(self, game: 'GeniusGame'):
-    #     if not self.attached:
-    #         # 附着到新的出战角色上
-    #         new_character = self.from_player.character_list[self.from_player.active_idx]
-    #         new_character.character_zone.add_entity(self)
-    #         self.from_character = new_character
-    #         self.attached = True
+        if not self.from_character.is_alive:
+            next_character = self.find_next_alive_character(self.from_character)
+            if next_character:
+                new_riptide = Riptide(game=game,
+                                    from_player=self.from_player,
+                                    from_character=next_character)
+                next_character.character_zone.add_entity(new_riptide)
+            self.on_destroy(game)
+            self.from_character.character_zone.remove_entity(self)
 
     def on_end_phase(self, game: 'GeniusGame'):
         if game.players[0] == self.from_player:
@@ -232,7 +250,6 @@ class FoulLegacy_RagingTide(ElementalSkill):
     id: int = 1
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
-    # No damage
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
     main_damage_element: ElementType = ElementType.HYDRO
     main_damage: int = 2
@@ -248,8 +265,29 @@ class FoulLegacy_RagingTide(ElementalSkill):
     energy_cost: int = 0
     energy_gain: int = 1
 
-    def on_call():
-        pass
+    def add_status(self, game: GeniusGame):
+        status = self.from_character.character_zone.has_entity(MeleeStance)
+        if status is not None:
+            status.update()
+        else:
+            melee_stance = MeleeStance(game=game,
+                                 from_player=self.from_character.from_player,
+                                 from_character=self.from_character)
+            self.from_character.character_zone.add_entity(melee_stance)
+            self.from_character.is_melee_stance = True
+
+    def on_call(self, game: 'GeniusGame'):
+        super().on_call(game)
+        game.manager.invoke(EventType.ON_USE_SKILL, game)
+        # 切换为近战状态,在主伤害打出前
+        self.add_status(game)
+        # 处理伤害
+        self.resolve_damage(game)
+        # 获得能量
+        self.gain_energy(game)
+        # after skill
+        game.manager.invoke(EventType.AFTER_USE_SKILL, game)
+
 
 
 class FlashOfHavoc(ElementalBurst):
@@ -277,7 +315,28 @@ class FlashOfHavoc(ElementalBurst):
     energy_gain: int = 2
 
     def on_call(self, game: 'GeniusGame'):
-        pass
+        super().on_call(game)
+        game.manager.invoke(EventType.ON_USE_SKILL, game)
+        # 消耗能量
+        self.consume_energy(game)
+
+        # 记录一下target
+        target = get_opponent_active_character(game)
+        # 处理伤害
+        self.resolve_damage(game)
+        # 返还2点能量
+        self.gain_energy(game)
+
+        # target附属断流
+        if target.is_alive:
+            status = target.character_zone.has_entity(Riptide)
+            if not status:
+                riptide = Riptide(game=game,
+                                  from_player=target.from_player,
+                                  from_character=target)
+                target.character_zone.add_entity(riptide)
+        game.manager.invoke(EventType.AFTER_USE_SKILL, game)
+
 
 class LightOfHavoc(ElementalBurst):
     '''
@@ -304,7 +363,14 @@ class LightOfHavoc(ElementalBurst):
     energy_gain: int = 0
 
     def on_call(self, game: 'GeniusGame'):
-        pass
+        super().on_call(game)
+        game.manager.invoke(EventType.ON_USE_SKILL, game)
+        # 消耗能量
+        self.consume_energy(game)
+
+        # 处理伤害
+        self.resolve_damage(game)
+        game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Havoc_Obliteration(ElementalBurst):
     '''
@@ -319,7 +385,7 @@ class Havoc_Obliteration(ElementalBurst):
         if self.from_character.is_melee_stance:
             self.light_of_havoc.on_call(game)
         else:
-            self.flash_of_havoc.on_call(game)
+            self.flash_of_havoc.on_call(game) 
 
 
 class Tartaglia(Character):
@@ -343,8 +409,7 @@ class Tartaglia(Character):
         range_stance = RangedStance(game=game,
                                     from_player=self.from_player,
                                     from_character=self)
-        self.character_zone.append()
-
+        self.character_zone.add_entity(range_stance)
 
     def __init__(self, game: 'GeniusGame', zone, from_player: 'GeniusPlayer', from_character = None, talent = False):
         super().__init__(game, zone, from_character, from_player)

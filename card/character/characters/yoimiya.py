@@ -145,6 +145,8 @@ class Ryuukin_Saxifrage(ElementalBurst):
 
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
+        game.manager.invoke(EventType.ON_USE_SKILL, game)
+        self.consume_energy(game)
         # 处理伤害
         self.resolve_damage(game)
         # 召唤物/状态生成
@@ -180,17 +182,17 @@ class Niwabi_Enshou(Status):
 
     def infuse(self, game: 'GeniusGame'):
         if game.current_damage.damage_from == self.from_character:
-            if game.current_skill == ElementType.PHYSICAL:
+            if game.current_damage.main_damage_element == ElementType.PHYSICAL:
                 game.current_damage.main_damage_element = ElementType.ELECTRO
 
     def on_execute_damage(self, game: 'GeniusGame'):
         if game.current_damage.damage_from == self.from_character:
-            if game.current_skill == SkillType.NORMAL_ATTACK:
+            if game.current_damage.damage_type == SkillType.NORMAL_ATTACK:
                 game.current_damage.main_damage += 1
 
     def after_skill(self, game:'GeniusGame'):
         if game.current_damage.damage_from == self.from_character:
-            if game.current_skill == SkillType.NORMAL_ATTACK:
+            if game.current_skill.type == SkillType.NORMAL_ATTACK:
                 if self.from_character.talent:
                     Damage.resolve_damage(
                         game,

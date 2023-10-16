@@ -8,6 +8,9 @@ from event.events import EventManager
 from card.character.base import Damage
 from game.zone import Dice
 
+if TYPE_CHECKING:
+    from card.character.base import CharacterSkill
+
 class GeniusGame:
     '''
     主游戏
@@ -29,7 +32,7 @@ class GeniusGame:
         self.current_dice: Dice
         self.current_action: Action
         self.current_damage: Damage
-        self.current_skill: SkillType
+        self.current_skill: CharacterSkill
         self.damage_list: List[Damage]
         self.is_change_player: bool
         self.is_end: bool = False
