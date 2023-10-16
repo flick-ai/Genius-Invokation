@@ -306,6 +306,7 @@ class Havoc_Obliteration(ElementalBurst):
     '''
     '''
     id: int = 2
+    type: SkillType = SkillType.ELEMENTAL_SKILL
     cost = [
         {
             'cost_num': 3,

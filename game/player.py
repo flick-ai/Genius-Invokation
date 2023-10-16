@@ -176,8 +176,8 @@ class GeniusPlayer:
                                                      cost = [{'cost_num':1, 'cost_type':active_dice}]))
             if can_tune:
                 self.action_mask[idx][13] = 1
-                self.action_dice[idx][i] = 1
-                self.action_dice[idx][i+1] = - active_dice
+                self.action_dice[idx][0] = 1
+                self.action_dice[idx][1] = - active_dice.value
 
 
         # 计算能否使用技能

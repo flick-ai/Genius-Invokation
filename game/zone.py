@@ -35,7 +35,7 @@ class DiceZone:
             我们用一个[16, 9]的数组来维护骰子
         '''
         self.dice_num = 0
-        self.space = np.zeros((MAX_DICE, DICENUM)).astype(np.int16)
+        self.space = np.zeros((MAX_DICE, DICENUM+1)).astype(np.int16)
         for i in range(MAX_DICE):
             self.space[i][-1] = -1
         self.sort_map = self.get_sort_map()
@@ -89,21 +89,21 @@ class DiceZone:
             self.delete(dice)
             self.dice_num -= 1
 
-    def calculate_dice(self, game: 'GeniusGame', dice: Dice):
+    def calculate_dice(self, dice: Dice):
         '''
             计算是否有满足某种要求的骰子
         '''
         if dice.use_type == 'elemental tuning':
-            
+            return self.dice_num - self.space[:, dice.cost[0]['cost_type'].value].sum() >= 0
         is_cost = 0
         for cost in dice.cost:
             if cost['cost_type'] == CostType.WHITE:
-                if self.space.sum(dim=1).max() >= cost['cost_num']:
+                if self.space.sum(axis=1).max() >= cost['cost_num']:
                     is_cost += cost['cost_num']
                 else:
                     return False
             elif cost['cost_type'] == CostType.BLACK:
-                if self.num < cost['cost_num'] + is_cost:
+                if self.dice_num < cost['cost_num'] + is_cost:
                     return False
             else:
                 dice_type = CostToDice[cost['cost_type']].value

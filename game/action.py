@@ -52,7 +52,7 @@ class Action:
         self.set_type()
 
 
-    def set_type_and_idx(self) -> None:
+    def set_type(self) -> None:
         '''
             将Action从Tuple形式解码
         '''
