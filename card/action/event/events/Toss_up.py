@@ -13,9 +13,15 @@ class Toss_up(ActionCard):
 
     def __init__(self) -> None:
         super().__init__()
+        self.now_phase: GamePhase
 
     def on_played(self, game: 'GeniusGame'):
-        now_phase = game.game_phase
+        self.now_phase = game.game_phase
         game.game_phase = GamePhase.ROLL_PHASE
-        game.is_special_phase = True
+        game.active_player.roll_time = 2
+        game.special_phase = self
+
+    def on_finished(self, game: 'GeniusGame'):
+        game.game_phase = self.now_phase
+        game.special_phase = None
         

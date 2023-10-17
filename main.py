@@ -7,11 +7,11 @@ from utils import *
 
 deck1 = {
     'character': ['Tartaglia', 'Nahida', 'Yoimiya'],
-    'action_card': ['RavenBow' for i in range(15)] + ['Paimon' for i in range(15)]
+    'action_card': ['Paimon' for i in range(30)]
 }
 deck2 = {
     'character': ['Tartaglia', 'Nahida', 'Yoimiya'],
-    'action_card': ['RavenBow' for i in range(15)] + ['Paimon' for i in range(15)]
+    'action_card': ['Paimon' for i in range(30)]
 }
 
 game = GeniusGame(player0_deck=deck1, player1_deck=deck2)

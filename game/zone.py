@@ -3,7 +3,6 @@ import numpy as np
 from utils import *
 from copy import deepcopy
 from card.action import *
-from card.action import RavenBow
 
 
 if TYPE_CHECKING:
@@ -105,6 +104,13 @@ class DiceZone:
         '''
             计算是否有满足某种要求的骰子
         '''
+        is_zero = True
+        for cost in dice.cost:
+            if cost['cost_num'] != 0:
+                is_zero = False
+        if is_zero == True:
+            return True
+        
         if dice.use_type == 'elemental tuning':
             return self.dice_num - self.space[:, dice.cost[0]['cost_type'].value].sum() >= 0
         is_cost = 0
@@ -135,7 +141,7 @@ class DiceZone:
         if cost_type < 0:
             cost = CostType(-cost_type)
             for dice in choose_dice:
-                if DiceToCost(DiceType(dice)) == cost:
+                if DiceToCost[DiceType(dice)] == cost:
                     return False
         else:
             cost = CostType(cost_type)
@@ -264,7 +270,7 @@ class SupportZone:
 
     def destroy(self, entity: 'Support'):
         for idx, exist in enumerate(self.space):
-            if entity.name == exist.name:
+            if entity == exist:
                 self.space.pop(idx)
                 return
 

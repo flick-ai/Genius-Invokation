@@ -166,7 +166,7 @@ class Action:
 
         if len(target_list) == 1:
             target = last_target
-            print(choose_prompt+'您目前只能选择如下行动:'+str(last_target)+'.'+target_dict[last_target]+'\n')
+            print(target_prompt+'您目前只能选择如下目标:'+str(last_target)+'.'+target_dict[last_target]+'\n')
         else:
             target = int(input(target_prompt))
             assert target in target_list

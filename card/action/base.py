@@ -29,5 +29,5 @@ class ActionCard:
         '''
             元素调和函数
         '''
-        active_dice = ElementToDice(get_my_active_character(game).element).value
+        active_dice = ElementToDice[get_my_active_character(game).element].value
         game.active_player.dice_zone.add([active_dice])

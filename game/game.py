@@ -26,7 +26,7 @@ class GeniusGame:
         player1 = GeniusPlayer(self, player1_deck, 1)
         self.players: List[GeniusPlayer] = [player0, player1]
         self.game_phase: GamePhase
-        self.is_special_phase = False
+        self.special_phase = None
         self.round: int = 0
 
         self.manager = EventManager()
@@ -85,8 +85,7 @@ class GeniusGame:
                 self.first_player = self.active_player_index
 
         if self.is_change_player and (not oppenent_player.is_pass):
-            self.active_player_index = 1 - self.active_player_index
-            self.active_player = self.players[self.active_player_index]
+            self.change_active_player()
 
     def add_damage(self, damage: Damage):
         self.damage_list.append(damage)
@@ -99,6 +98,7 @@ class GeniusGame:
             self.current_damage = None
 
         self.check_dying() # TODO: Not Implement yet.
+
     def suffer_current_damage(self):
         target = self.current_damage.damage_to
         main_dmg = self.current_damage.main_damage
@@ -149,73 +149,66 @@ class GeniusGame:
         '''
             选择手牌部分
         '''
-        active_idx = self.active_player_index
         self.active_player.choose_card(action)
-        if self.is_special_phase:
-            return
-        if active_idx == self.first_player:
-            self.active_player_index = 1 - active_idx
-            self.active_player = self.players[self.active_player_index]
+        if self.special_phase is None:
+            self.change_active_player()
+            if self.active_player_index == self.first_player:
+                self.game_phase = GamePhase.SET_CHARACTER
         else:
-            self.game_phase = GamePhase.SET_CHARACTER
-            self.active_player_index = self.first_player
-            self.active_player = self.players[self.first_player]
+            self.special_phase.on_finished(self)
 
     def set_active_character(self, action):
         '''
             选择出战角色
         '''
-        active_idx = self.active_player_index
         self.active_player.choose_character(action)
-        if self.is_special_phase:
-            return
-        if active_idx == self.first_player:
-            self.active_player_index = 1 - active_idx
-            self.active_player = self.players[self.active_player_index]
+        
+        if self.special_phase is None:
+            self.change_active_player()
+            if self.active_player_index == self.first_player:
+                self.roll_phase()
         else:
-            self.active_player_index = self.first_player
-            self.active_player = self.players[self.active_player_index]
-            self.roll_phase()
+            self.special_phase.on_finished(self)
 
 
     def set_reroll_dice(self, action):
         '''
             选择重新投掷的骰子
         '''
-        active_idx = self.active_player_index
+        
         self.active_player.choose_dice(action)
-        if self.active_player.roll_num:
-            return
-        if active_idx == self.first_player:
-            self.active_player_index = 1 -active_idx
-            self.active_player = self.players[self.active_player_index]
-        else:
-            self.active_player_index = self.first_player
-            self.active_player = self.players[self.active_player_index]
-            self.action_phase()
-
+        self.active_player.roll_time -= 1
+        if self.active_player.roll_time == 0:
+            if self.special_phase is None:
+                self.change_active_player()
+                if self.active_player_index == self.first_player:
+                    self.action_phase()
+            else:
+                self.special_phase.on_finished(self)
 
     def roll_phase(self):
         '''
-            进入投掷骰子的阶段, 回合开始
+            进入投掷骰子的阶段
         '''
         self.round += 1
         self.active_player_index = self.first_player
+        self.active_player = self.players[self.active_player_index]
         self.game_phase = GamePhase.ROLL_PHASE
-        for player in self.players:
-            player.dice_zone.add(player.roll_dice())
+        
+        self.active_player.begin_roll_phase(self)
+        self.change_active_player()
+        self.active_player.begin_roll_phase(self)
+        self.change_active_player()
+        
 
     def action_phase(self):
         '''
             进入交替行动阶段
         '''
-        self.players[self.active_player_index].begin_round(self)
-        self.active_player_index = 1 - self.active_player_index
-        self.active_player = self.players[self.active_player_index]
-
-        self.players[self.active_player_index].begin_round(self)
-        self.active_player_index = 1 - self.active_player_index
-        self.active_player = self.players[self.active_player_index]
+        self.players[self.active_player_index].begin_action_phase(self)
+        self.change_active_player()
+        self.players[self.active_player_index].begin_action_phase(self)
+        self.change_active_player()
 
         self.game_phase = GamePhase.ACTION_PHASE
 
@@ -224,15 +217,16 @@ class GeniusGame:
             进入回合结束阶段
         '''
         self.game_phase = GamePhase.END_PHASE
-
-        self.players[self.active_player_index].end_round(self)
-        self.active_player_index = 1 - self.active_player_index
+        # 谁先pass谁先结算
+        self.active_player_index = self.first_player
         self.active_player = self.players[self.active_player_index]
 
-        self.players[self.active_player_index].end_round(self)
-        self.active_player_index = 1 - self.active_player_index
-        self.active_player = self.players[self.active_player_index]
+        self.active_player.end_phase(self)
+        self.change_active_player()
+        self.active_player.end_phase(self)
+        self.change_active_player()
 
+        # 进入下一个回合
         self.roll_phase()
 
     def encode_message(self):
@@ -257,3 +251,8 @@ class GeniusGame:
 
             # message[player]['summon_zone'] = [summon.name for summon in self.players[player].summons_zone.space]
         return message
+    
+    def change_active_player(self):
+        self.active_player_index = 1 - self.active_player_index
+        self.active_player = self.players[self.active_player_index]
+    

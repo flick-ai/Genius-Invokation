@@ -47,12 +47,18 @@ class GeniusPlayer:
         self.summons_zone: SummonZone = SummonZone(game, self)
         self.team_combat_status: ActiveZone = ActiveZone(game, self)
 
-        # 其他基本信息
+        # 切换角色基本信息
         self.is_pass: bool
         self.is_after_change: bool
         self.is_quick_change: bool
         self.change_num: int
-        self.roll_num: int = 1
+
+        # 扔骰子基本信息
+        self.roll_num: int = 8
+        self.roll_time: int = 1
+        self.fix_dice = []
+
+        # Mask
         self.action_mask: np.array
 
     def choose_card(self, action: 'Action'):
@@ -85,7 +91,7 @@ class GeniusPlayer:
         '''
             基本行动: 投掷骰子
         '''
-        return np.random.randint(0, DICENUM, num)
+        return np.random.randint(0, DICENUM, num).tolist()
 
 
     def get_card(self, num):
@@ -198,7 +204,7 @@ class GeniusPlayer:
                     self.action_mask[idx][target][0] = 1
                 for i, cost in enumerate(game.current_dice.cost):
                     self.action_mask[idx][target][i*2+1] = cost['cost_num']
-                    self.action_mask[idx][target][i*2+2] = cost['cost_type'].value
+                    self.action_mask[idx][target][i*2+2] = cost['cost_type'].value if cost['cost_type'] is not None else 0
 
             active_dice = DiceToCost[ElementToDice[self.character_list[self.active_idx].element]]
             can_tune = self.dice_zone.calculate_dice(Dice(from_player=self,
@@ -249,9 +255,24 @@ class GeniusPlayer:
         game.manager.invoke(EventType.CALCULATE_DICE, game)
         return self.dice_zone.calculate_dice(game.current_dice)
 
-    def begin_round(self, game: 'GeniusGame'):
+    def begin_roll_phase(self, game: 'GeniusGame'):
         '''
-            结算时刻: 回合开始时
+            结算时刻: 行动阶段开始时
+        '''
+        # 维护状态结算
+        self.roll_num = 8
+        self.roll_time = 1
+        self.fix_dice = []
+        # 事件
+        game.manager.invoke(EventType.BEGIN_ROLL_PHASE, game)
+        self.roll_num = self.roll_num - len(self.fix_dice)
+        dices = self.fix_dice + self.roll_dice(num=self.roll_num)
+        self.dice_zone.add(dices)
+
+
+    def begin_action_phase(self, game: 'GeniusGame'):
+        '''
+            结算时刻: 行动阶段开始时
         '''
         # 维护状态结算
         self.is_pass = False
@@ -262,14 +283,14 @@ class GeniusPlayer:
         # 事件
         game.manager.invoke(EventType.BEGIN_ACTION_PHASE, game)
 
-    def end_round(self, game: 'GeniusGame'):
+    def end_phase(self, game: 'GeniusGame'):
         '''
-            结算时刻: 回合结束时
+            结算时刻: 结束阶段时
         '''
         # 事件
         game.manager.invoke(EventType.END_PHASE, game)
 
-        self.roll_num = 2
+        self.roll_time = 2
         self.dice_zone.remove_all()
         self.get_card(num=2)
 
