@@ -47,8 +47,10 @@ class GeniusPlayer:
         self.summons_zone: SummonZone = SummonZone(game, self)
         self.team_combat_status: ActiveZone = ActiveZone(game, self)
 
-        # 切换角色基本信息
+        # 回合pass
         self.is_pass: bool
+
+        # 切换角色基本信息
         self.is_after_change: bool
         self.is_quick_change: bool
         self.change_num: int
@@ -152,8 +154,14 @@ class GeniusPlayer:
         '''
             标准行动: 切换角色
         '''
+        self.change_num += 1
+        self.is_quick_change = False
+        game.manager.invoke(EventType.BEFORE_CHANGE_CHARACTER, game)
         idx = game.current_action.target_idx
         self.change_to_id(idx)
+        if self.is_quick_change:
+            game.is_change_player = False
+        
 
     def use_dice(self, game: 'GeniusGame'):
         '''

@@ -59,7 +59,7 @@ class Character(Entity):
         self.index: int = index
         super().__init__(game, from_player, from_character)
 
-    def heal(self, heal):
+    def heal(self, heal: int):
         self.health_point += heal
         if self.hp > self.max_health_point:
             self.hp = self.max_health_point

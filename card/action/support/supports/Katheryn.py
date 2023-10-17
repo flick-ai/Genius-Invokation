@@ -8,45 +8,44 @@ if TYPE_CHECKING:
     from game.player import GeniusPlayer
 
 
-class Dawn_Winery_Entity(Support):
-    id: int = 321004
-    name = 'Dawn Wineryr'
+class Katheryn_Entity(Support):
+    id: int = 322002
+    name = 'Katheryn'
     max_usage = 1
     max_count = -1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.usage = self.max_usage
 
-    def on_calculate(self, game:'GeniusGame'):
+    def on_change(self, game:'GeniusGame'):
         if game.active_player_index == self.from_player.idx:
-            if game.current_dice.use_type == 'change_character':
+            if self.from_player.is_quick_change == False:
                 if self.usage > 0:
-                    if game.current_dice.cost[0] > 0:
-                        game.current_dice.cost[0]['cost_num'] -= 1
-                        self.usage -= 1
-    
+                    self.from_player.is_quick_change == True
+
     def on_begin(self, game:'GeniusGame'):
         if game.active_player_index == self.from_player.idx:
             self.usage = self.max_usage
 
+
     def update_listener_list(self):
         self.listeners = [
-            (EventType.CALCULATE_DICE, ZoneType.SUPPORT_ZONE, self.on_calculate),
+            (EventType.BEFORE_CHANGE_CHARACTER, ZoneType.SUPPORT_ZONE, self.on_change),
             (EventType.BEGIN_ACTION_PHASE, ZoneType.SUPPORT_ZONE, self.on_begin),
         ]
 
 
-class Dawn_Winery(SupportCard):
-    id: int = 321004
-    name: str = 'Dawn Winery'
-    cost_num = 2
+class Katheryn(SupportCard):
+    id: int = 322002
+    name: str = 'Katheryn'
+    cost_num = 1
     cost_type = CostType.WHITE
-    card_type = ActionCardType.SUPPORT_LOCATION
+    card_type = ActionCardType.SUPPORT_COMPANION
 
     def __init__(self) -> None:
         super().__init__()
         self.entity = None
 
     def on_played(self, game: 'GeniusGame') -> None:
-        self.entity = Dawn_Winery_Entity(game, from_player=game.active_player)
+        self.entity = Katheryn_Entity(game, from_player=game.active_player)
         super().on_played

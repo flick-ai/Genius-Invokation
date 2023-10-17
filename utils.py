@@ -234,7 +234,7 @@ def get_opponent_standby_character(
 def get_opponent(
         game: 'GeniusGame'
     ):
-    return game.players[not game.active_player_index]
+    return game.players[ - game.active_player_index]
 
 def get_character_with_name(
         player: 'GeniusPlayer',
