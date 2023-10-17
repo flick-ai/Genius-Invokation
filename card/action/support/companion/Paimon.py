@@ -8,17 +8,18 @@ if TYPE_CHECKING:
     from game.player import GeniusPlayer
 
 
-class Liyue_Harbor_Wharf_Entity(Support):
+class Paimon_Entity(Support):
     id: int = 322001
-    name = 'Liyue Haroboe Wharf'
+    name = 'Paimon'
     max_usage = 2
     max_count = -1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
+        self.usage = self.max_usage
 
     def on_begin(self, game:'GeniusGame'):
         if game.active_player_index == self.from_player.idx:
-            self.from_player.get_card(num=2)
+            self.from_player.dice_zone.add([DiceType.OMNI.value, DiceType.OMNI.value,])
             self.usage -= 1
             if self.usage == 0:
                 self.on_destroy(game)
@@ -29,17 +30,20 @@ class Liyue_Harbor_Wharf_Entity(Support):
         ]
 
 
-class Liyue_Harbor_Wharf(SupportCard):
-    id: int = 321001
-    name: str = 'Liyue Harbor Wharf'
-    cost_num = 2
+class Paimon(SupportCard):
+    '''
+        派蒙
+    '''
+    id: int = 322001
+    name: str = 'Paimon'
+    cost_num = 3
     cost_type = CostType.WHITE
-    card_type = ActionCardType.SUPPORT_LOCATION
+    card_type = ActionCardType.SUPPORT_COMPANION
 
     def __init__(self) -> None:
         super().__init__()
         self.entity = None
 
     def on_played(self, game: 'GeniusGame') -> None:
-        self.entity = Liyue_Harbor_Wharf_Entity(game, from_player=game.active_player)
-        super().on_played
+        self.entity = Paimon_Entity(game, from_player=game.active_player)
+        super().on_played(game)

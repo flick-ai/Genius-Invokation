@@ -1,0 +1,50 @@
+from utils import *
+from ..base import SupportCard
+from typing import TYPE_CHECKING
+from entity.support import Support
+
+if TYPE_CHECKING:
+    from game.game import GeniusGame
+    from game.player import GeniusPlayer
+
+
+class Chinju_Forest_Entity(Support):
+    id: int = 321012
+    name = 'Chinju Forest'
+    max_usage = 3
+    max_count = -1
+    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
+        super().__init__(game, from_player, from_character)
+        self.usage = self.max_usage
+
+    def on_begin(self, game: 'GeniusGame'):
+        if game.active_player_index == self.from_player.idx:
+            if game.first_player != self.from_player.idx:
+                dice_type = ElementToDice[get_my_active_character(game).element]
+                self.from_player.dice_zone.add([dice_type.value])
+
+    def update_listener_list(self):
+        self.listeners = [
+            (EventType.ON_PLAY_CARD, ZoneType.SUPPORT_ZONE, self.on_play),
+            (EventType.CALCULATE_DICE, ZoneType.SUPPORT_ZONE, self.on_calculate),
+            (EventType.BEGIN_ACTION_PHASE, ZoneType.SUPPORT_ZONE, self.on_begin),
+        ]
+
+
+class Chinju_Forest(SupportCard):
+    '''
+        镇守之森
+    '''
+    id: int = 321013
+    name: str = 'Chinju Forest'
+    cost_num = 1
+    cost_type = CostType.WHITE
+    card_type = ActionCardType.SUPPORT_LOCATION
+
+    def __init__(self) -> None:
+        super().__init__()
+        self.entity = None
+
+    def on_played(self, game: 'GeniusGame') -> None:
+        self.entity = Chinju_Forest_Entity(game, from_player=game.active_player)
+        super().on_played(game)

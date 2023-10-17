@@ -36,8 +36,8 @@ class me(person):
 
 I = me()
 # print(type(I), type(I)==me, type(I)==person)
-print(isinstance(I, 'me'), isinstance(I, person))
+# print(isinstance(I, 'me'), isinstance(I, person))
 # print(-1%3)
 
-# from utils import DiceType
-# print(DiceType(0).value)
+from utils import DiceType
+print(DiceType(0) in DiceType)

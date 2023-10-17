@@ -23,6 +23,7 @@ class Dice:
         self.from_player = from_player
         self.from_character: Character = from_character
         self.use_type = use_type
+        self.origin_cost = cost
 
 class DiceZone:
     '''
@@ -60,7 +61,9 @@ class DiceZone:
         '''
             获取骰子
         '''
-        dices = sorted(dices, key=lambda x:self.sort_map[x])
+        if dices == []:
+            return
+        dices = sorted(dices, key=lambda x:self.sort_map[x], reverse=True)
         for idx, dice in enumerate(dices):
             if dice != 7:
                 self.space[self.dice_num][-1] = dice
@@ -110,13 +113,13 @@ class DiceZone:
                 is_zero = False
         if is_zero == True:
             return True
-        
+
         if dice.use_type == 'elemental tuning':
             return self.dice_num - self.space[:, dice.cost[0]['cost_type'].value].sum() >= 0
         is_cost = 0
         for cost in dice.cost:
             if cost['cost_type'] == CostType.WHITE:
-                if self.space.sum(axis=0).max() >= cost['cost_num']:
+                if self.space[:,:-1].sum(axis=0).max() >= cost['cost_num']:
                     is_cost += cost['cost_num']
                 else:
                     return False
@@ -154,8 +157,8 @@ class DiceZone:
                 for dice in choose_dice:
                     if dice != CostToDice(cost).value:
                         return False
-        return True 
-            
+        return True
+
 
     def sort_dice(self):
         ''''

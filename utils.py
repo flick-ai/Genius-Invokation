@@ -146,6 +146,9 @@ class EventType(Enum):
     EXCUTE_DAMAGE = 15
     CHARACTER_DIE = 16
 
+    BEFORE_ANY_ACTION = 17
+    AFTER_ANY_ACTION = 18
+
 class ElementalReactionType(Enum):
     Frozen = 0
     Melt = 1

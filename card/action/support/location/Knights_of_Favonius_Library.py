@@ -8,9 +8,9 @@ if TYPE_CHECKING:
     from game.player import GeniusPlayer
 
 
-class Jade_Chamber_Entity(Support):
-    id: int = 321003
-    name = 'Jade Chamber'
+class Knights_of_Favonius_Library_Entity(Support):
+    id: int = 321002
+    name = 'Knights of Favonius Library'
     max_usage = -1
     max_count = -1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
@@ -18,8 +18,7 @@ class Jade_Chamber_Entity(Support):
 
     def on_begin(self, game:'GeniusGame'):
         if game.active_player_index == self.from_player.idx:
-            dice_type = ElementToDice[get_my_active_character(game).element]
-            self.from_player.roll_dice.append([dice_type.value, dice_type.value,])
+            self.from_character.roll_time += 1
 
     def update_listener_list(self):
         self.listeners = [
@@ -27,17 +26,29 @@ class Jade_Chamber_Entity(Support):
         ]
 
 
-class Jade_Chamber(SupportCard):
-    id: int = 321003
-    name: str = 'Jade Chamber'
-    cost_num = 0
-    cost_type = None
+class Knights_of_Favonius_Library(SupportCard):
+    '''
+        骑士团图书馆
+    '''
+    id: int = 321002
+    name: str = 'Knights of Favonius Library'
+    cost_num = 1
+    cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_LOCATION
 
     def __init__(self) -> None:
         super().__init__()
         self.entity = None
+        self.now_phase: GamePhase
 
     def on_played(self, game: 'GeniusGame') -> None:
-        self.entity = Jade_Chamber_Entity(game, from_player=game.active_player)
-        super().on_played
+        self.entity = Knights_of_Favonius_Library_Entity(game, from_player=game.active_player)
+        super().on_played(game)
+        self.now_phase = game.game_phase
+        game.game_phase = GamePhase.ROLL_PHASE
+        game.active_player.roll_time = 1
+        game.special_phase = self
+
+    def on_finished(self, game: 'GeniusGame'):
+        game.game_phase = self.now_phase
+        game.special_phase = None

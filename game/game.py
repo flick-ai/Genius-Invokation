@@ -66,6 +66,8 @@ class GeniusGame:
         oppenent_player = self.players[1 - self.active_player_index]
         active_player = self.active_player
 
+        self.manager.invoke(EventType.BEFORE_ANY_ACTION, self)
+
         if action.choice_type == ActionChoice.HAND_CARD:
             self.is_change_player = False
             active_player.play_card(self)
@@ -82,6 +84,8 @@ class GeniusGame:
                 self.end_phase()
             else:
                 self.first_player = self.active_player_index
+
+        self.manager.invoke(EventType.AFTER_ANY_ACTION, self)
 
         if self.is_change_player and (not oppenent_player.is_pass):
             self.change_active_player()

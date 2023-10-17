@@ -1,2 +1,3 @@
 from .base import SupportCard
-from .supports import *
+from .location import *
+from .companion import *
