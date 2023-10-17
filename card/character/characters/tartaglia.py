@@ -10,6 +10,8 @@ if TYPE_CHECKING:
     from event.events import ListenerNode
     from game.player import GeniusPlayer
     from event.damage import Damage
+    from game.zone import CharacterZone
+
 from entity.status import Status
 
 class RangedStance(Status):
@@ -56,7 +58,7 @@ class MeleeStance(Status):
         active_index = game.players[game.active_player].active_idx
         if self.from_character == game.players[game.active_player].character_list[active_index]:
             opponent = get_opponent_active_character(game)
-            if opponent.character_zone.has_entity(Riptide):
+            if opponent.character_zone.has_entity(Riptide) is not None:
                 '''
                     当前攻击的角色具有断流
                 '''
@@ -414,7 +416,7 @@ class Tartaglia(Character):
                                     from_character=self)
         self.character_zone.add_entity(range_stance)
 
-    def __init__(self, game: 'GeniusGame', zone, from_player: 'GeniusPlayer', from_character = None, talent = False):
-        super().__init__(game, zone, from_character, from_player)
+    def __init__(self, game: 'GeniusGame', zone:'CharacterZone', from_player: 'GeniusPlayer', index:int, from_character = None, talent = False):
+        super().__init__(game, zone, from_player, index, from_character)
         self.talent = talent
         self.is_melee_stance = False # 是否为近战状态

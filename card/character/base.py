@@ -65,7 +65,7 @@ class NormalAttack(CharacterSkill):
         super().on_call(game)
         # TODO: 判断是否为重击
         self.is_plunging_attack = self.from_character.from_player.is_after_change
-        self.is_charged_attack = self.from_character.from_player.dice_zone.dice_num() % 2 == 0
+        self.is_charged_attack = self.from_character.from_player.dice_zone.dice_num % 2 == 0
 
 
 class ElementalSkill(CharacterSkill):

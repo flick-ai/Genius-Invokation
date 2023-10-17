@@ -7,7 +7,7 @@ from .player import GeniusPlayer
 from event.events import EventManager
 from card.character.base import Damage
 from game.zone import Dice
-
+from loguru import logger
 if TYPE_CHECKING:
     from card.character.base import CharacterSkill
 
@@ -98,10 +98,34 @@ class GeniusGame:
             self.current_damage = None
 
         self.check_dying() # TODO: Not Implement yet.
+    def suffer_current_damage(self):
+        target = self.current_damage.damage_to
+        main_dmg = self.current_damage.main_damage
+        main_dmg_ele = self.current_damage.main_damage_element
+        logger.info("Target {} suffers {} {} damage".format(target.name, main_dmg, main_dmg_ele.name))
+        main_dmg = min(target.health_point, main_dmg)
 
+        target.health_point -= self.current_damage.main_damage
+
+        if self.current_damage.piercing_damage > 0:
+            target_player = target.from_player
+            for char in target_player.character_list:
+                if char==target: continue
+                if char.is_alive:
+                    logger.info("Target {} suffers {} piercing damage".format(char.name, self.current_damage.piercing_damage))
+                    char.health_point -= self.current_damage.piercing_damage
+            
     def check_dying(self):
+        for player in self.players:
+            for char in player.character_list:
+                if char.health_point <= 0:
+                    char.is_alive = False
+                    self.manager.invoke("CHARACTER_DIE", self)
+                    if not char.is_alive:
+                        char.character_zone.clear() # TODO: Not Implement Yet.
+
         #TODO: Not Implement yet.
-        pass
+        # pass
 
     def step(self, action: 'Action'):
         '''

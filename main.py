@@ -43,6 +43,7 @@ information = []
 
 while not game.is_end:
     print(game.encode_message())
+    # import pdb; pdb.set_trace()
     action = Action.from_input(game)
     game.step(action)
 

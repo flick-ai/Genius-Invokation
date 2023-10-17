@@ -3,7 +3,12 @@ from typing import List, TYPE_CHECKING
 from .zone import CardZone, ActiveZone, SummonZone, SupportZone, DiceZone, CharacterZone, HandZone, Dice
 import numpy as np
 from card.character import CharacterSkill
-from card.character.characters import *
+# from card.character.characters import *
+import card.character.characters as chars
+# You may use chars like following print examples: 
+# print(chars.tartaglia) The python file(If the name of file is same as charater, it will not return the file)
+# print(chars.Tartaglia) The character class
+# print(chars.Akara) The status 
 
 from card.action import ActionCard
 from card.character import CharacterSkill
@@ -22,7 +27,13 @@ class GeniusPlayer:
         self.character_list: List[Character] = []
         for id, name in enumerate(deck['character']):
             zone = CharacterZone(game, self)
-            self.character_list.append(eval(name)(game, zone, id, self))
+            self.character_list.append(eval("chars."+name)(
+                game = game,
+                zone = zone,
+                from_player = self,
+                index = id, 
+                from_character = None,
+                talent = False))
         self.character_num = len(self.character_list)
 
         # 初始化牌库、起始5张手牌、骰子区
@@ -116,7 +127,7 @@ class GeniusPlayer:
             标准行动: 使用技能
         '''
         idx = game.current_action.choice_idx
-        self.character_list[self.active_idx].skills[idx]()
+        self.character_list[self.active_idx].skill(idx, game)
         self.is_after_change = False
 
     def play_card(self, game: 'GeniusGame'):

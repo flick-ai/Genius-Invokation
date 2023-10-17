@@ -282,9 +282,12 @@ class CharacterZone:
     def add_entity(self, entity: 'Status'):
         self.status_list.append(entity)
 
-    def skill(self, skill, game: 'GeniusGame'):
-        self.character.characacter_skill_list[skill].on_call(game)
-
+    def clear(self):
+        self.weapon_card = None
+        self.artifact_card = None
+        for status in self.status_list:
+            del(status)
+        self.status_list = []
 class ActiveZone:
     '''
         全队战斗状态区

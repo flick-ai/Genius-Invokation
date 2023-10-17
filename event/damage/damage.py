@@ -54,20 +54,28 @@ class Damage:
     
     def on_damage(self, game):
         self.elemental_infusion(game)
-        self.Elemental_Reaction(game)
+        self.elemental_reaction(game)
+        self.damage_add(game)
+        self.damage_dealing(game)
+        self.damage_excute(game)
+        game.suffer_current_damage(game)
+        self.after_damage(game)
+
 
     def elemental_infusion(self, game: 'GeniusGame'):
         game.manager.invoke(EventType.INFUSION, game)
+    def damage_add(self, game: 'GeniusGame'):
+        game.manager.invoke(EventType.DAMAGE_ADD, game)
+    def damage_dealing(self, game: 'GeniusGame'):
+        game.manager.invoke(EventType.DEALING_DAMAGE, game)
+
+    def damage_excute(self, game: 'GeniusGame'):
+        game.manager.invoke(EventType.EXCUTE_DAMAGE, game)
 
     def after_damage(self, game: 'GeniusGame'):
-        # if self.reaction is Swirl:
-        #     Damage.resolve_damage(game, SkillType.OTHER, self.swirl_crystallize_type, 1, 0)
+        game.manager.invoke(EventType.AFTER_TAKES_DMG, game)
         pass
-    def execute_damage(self, game: 'GeniusGame'):
-        # 打出伤害
 
-        # TODO: 盾
-        pass
     def cal_damage(self, game: 'GeniusGame'):
         # 元素类型转化 On_Infusion
         '''
@@ -77,7 +85,7 @@ class Damage:
         '''
         Based on elemental Reation.
         '''
-        self.Elemental_Reaction(game)
+        self.elemental_reaction(game)
         # TODO: 可能产生新的独立伤害（扩散), 这一部分需要在当前伤害结算完毕后再进行
         
         # 伤害加算
@@ -85,7 +93,7 @@ class Damage:
         '''
         pass
 
-    def Elemental_Reaction(self, game: 'GeniusGame'):
+    def elemental_reaction(self, game: 'GeniusGame'):
         '''
         It will update game.current_damage, .
         '''

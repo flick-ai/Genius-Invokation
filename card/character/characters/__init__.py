@@ -7,7 +7,10 @@ module_files = [
 ]
 
 for module_name in module_files:
-    import_cmd = f"from {__package__}.{module_name} import *"
+    # import_cmd = f"from {__package__}.{module_name} import *"
+    # print(module_name)
+    import_cmd = f"from .{module_name} import *"
+    print(import_cmd)
     exec(import_cmd)
 
 __all__ = module_files

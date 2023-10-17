@@ -27,7 +27,8 @@ class Character(Entity):
 
         后续调用时请调用skills中的实例
     '''
-    skill_list: List['CharacterSkill']
+    # skill_list: List['CharacterSkill'] 这么写怪怪的
+    skill_list: List
     power: int
     max_power: int
 
@@ -43,7 +44,10 @@ class Character(Entity):
         for skill in self.skill_list:
             self.skills.append(skill(self))
 
-    def __init__(self, game: 'GeniusGame', character_zone:'CharacterZone', index:int, from_player: 'GeniusPlayer', from_character = None):
+    def skill(self, skill, game: 'GeniusGame'):
+        self.skills[skill].on_call(game)
+
+    def __init__(self, game: 'GeniusGame', character_zone:'CharacterZone', from_player: 'GeniusPlayer', index:int, from_character = None):
         self.character_zone = character_zone
         self.init_skill()
         self.talent: bool = False
@@ -53,7 +57,7 @@ class Character(Entity):
         self.power: int = 0 # 初始充能
         self.elemental_application: List['ElementType'] = []
         self.index: int = index
-        super().__init__(game, from_character, from_player)
+        super().__init__(game, from_player, from_character)
 
     def heal(self, heal):
         self.health_point += heal

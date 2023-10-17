@@ -160,3 +160,7 @@ class Fischl(Character):
 
     power: int = 0
     max_power: int = 3
+
+    def __init__(self, game: 'GeniusGame', zone, from_player: 'GeniusPlayer', index:int, from_character = None, talent = False):
+        super().__init__(game, zone, from_player, index, from_character)
+        self.talent = talent

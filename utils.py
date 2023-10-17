@@ -140,8 +140,6 @@ class EventType(Enum):
     INFUSION = 10
     ON_REACTION = 11 # Elemental Reaction based event. Maybe trigger sth, or just add DMG.
     ON_USE_SKILL = 12 # Only for tartaglia now
-
-    # ON_REACTION = 11 # Elemental Reaction based event. Maybe trigger sth, or just add DMG.
     EXCUTE_DAMAGE = 13
     CHARACTER_DIE = 14
 class ElementalReactionType(Enum):
@@ -246,6 +244,12 @@ def get_character_with_name(
         if isinstance(player.character_list[i], character):
             return player.character_list[i]
     return None
+
+def get_player_from_character(
+    character: 'Character'
+)->'GeniusPlayer':
+    return character.from_player
+
 
 import json
 def print_information(log_info, log_file='./debug.json'):
