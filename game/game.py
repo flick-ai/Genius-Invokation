@@ -84,7 +84,7 @@ class GeniusGame:
                 self.first_player = self.active_player_index
 
         if self.is_change_player and (not oppenent_player.is_pass):
-            self.active_player_index = not self.active_player_index
+            self.active_player_index = 1 - self.active_player_index
             self.active_player = self.players[self.active_player_index]
 
     def add_damage(self, damage: Damage):

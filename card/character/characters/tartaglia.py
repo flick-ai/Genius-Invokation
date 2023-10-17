@@ -342,10 +342,10 @@ class LightOfHavoc(ElementalBurst):
         近战状态元素爆发
     '''
     id: int = 4
-    type: SkillType = SkillType.ELEMENTAL_SKILL
+    type: SkillType = SkillType.ELEMENTAL_BURST
 
     # No damage
-    damage_type: SkillType = SkillType.ELEMENTAL_SKILL
+    damage_type: SkillType = SkillType.ELEMENTAL_BURST
     main_damage_element: ElementType = ElementType.HYDRO
     main_damage: int = 7
     piercing_damage: int = 0
@@ -374,7 +374,7 @@ class Havoc_Obliteration(ElementalBurst):
     '''
     '''
     id: int = 2
-    type: SkillType = SkillType.ELEMENTAL_SKILL
+    type: SkillType = SkillType.ELEMENTAL_BURST
     cost = [
         {
             'cost_num': 3,

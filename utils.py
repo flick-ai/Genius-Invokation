@@ -194,12 +194,12 @@ def get_active_character(
 def get_my_active_character(
         game: 'GeniusGame',
         require_player_idx: bool=False) -> 'Character':
-    return get_active_character(game, game.active_player_idx, require_player_idx)
+    return get_active_character(game, game.active_player_index, require_player_idx)
 
 def get_opponent_active_character(
         game: 'GeniusGame',
         require_player_idx: bool=False) -> 'Character':
-    return get_active_character(game, 1 - game.active_player_idx, require_player_idx)
+    return get_active_character(game, 1 - game.active_player_index, require_player_idx)
 
 def get_standby_character(
         game: 'GeniusGame',
@@ -255,3 +255,10 @@ import json
 def print_information(log_info, log_file='./debug.json'):
     with open(log_file, 'w') as Fout:
         json.dump(log_info, Fout, indent=4)
+
+def check_duplicate_dice(dice):
+    dice_set = set(dice)
+    if len(dice) != len(dice_set):
+        return True
+    return False
+    

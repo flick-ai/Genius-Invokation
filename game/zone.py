@@ -110,7 +110,7 @@ class DiceZone:
         is_cost = 0
         for cost in dice.cost:
             if cost['cost_type'] == CostType.WHITE:
-                if self.space.sum(axis=1).max() >= cost['cost_num']:
+                if self.space.sum(axis=0).max() >= cost['cost_num']:
                     is_cost += cost['cost_num']
                 else:
                     return False
@@ -125,6 +125,31 @@ class DiceZone:
                     return False
         return True
 
+    def check_dice(self, dices_idx, cost_num, cost_type):
+        '''
+            判断某次选择是否合法
+        '''
+        choose_dice = self.space[dices_idx,-1].tolist()
+        if not len(choose_dice) == cost_num:
+            return False
+        if cost_type < 0:
+            cost = CostType(-cost_type)
+            for dice in choose_dice:
+                if DiceToCost(DiceType(dice)) == cost:
+                    return False
+        else:
+            cost = CostType(cost_type)
+            if cost == CostType.WHITE:
+                if self.space[dices_idx,:-1].sum(axis=0).max() != cost_num:
+                    return False
+            elif cost == CostType.BLACK:
+                return True
+            else:
+                for dice in choose_dice:
+                    if dice != CostToDice(cost).value:
+                        return False
+        return True 
+            
 
     def sort_dice(self):
         ''''

@@ -124,20 +124,21 @@ class Action:
                        17:'选择操作本方手牌'}
 
         choose_prompt = f"您是{game.active_player_index}号玩家,以下是你可以选择的行动,请输入一个数字表示你的行动选择:\n"
-        choose_num = 0
+        choose_list = []
         last_choice = -1
         mask_sum = mask.sum(axis=1)
         for i in range(18):
             if mask_sum[i] >= 1:
                 choose_prompt = choose_prompt+str(i)+'.'+choice_dict[i]+'\n'
-                choose_num += 1
+                choose_list.append(i)
                 last_choice = i
 
-        if choose_num == 1:
+        if len(choose_list) == 1:
             choice = last_choice
             print(choose_prompt+'您目前只能选择如下行动:'+str(last_choice)+'.'+choice_dict[last_choice]+'\n')
         else:
             choice = int(input(choose_prompt))
+            assert choice in choose_list
 
         target_dict = {0:'选择对方',
                        1:'选择本方',
@@ -155,19 +156,20 @@ class Action:
                        13:'选择操作本方骰子',
                        14:'选择操作本方手牌'}
         target_prompt = '根据您选择的行动，您可以选择以下目标:\n'
-        target_num = 0
+        target_list = []
         last_target = -1
         for i in range(15):
             if mask[choice][i] == 1:
                 target_prompt = target_prompt+str(i)+'.'+target_dict[i]+'\n'
-                target_num += 1
+                target_list.append(i)
                 last_target = i
 
-        if target_num == 1:
+        if len(target_list) == 1:
             target = last_target
             print(choose_prompt+'您目前只能选择如下行动:'+str(last_target)+'.'+target_dict[last_target]+'\n')
         else:
             target = int(input(target_prompt))
+            assert target in target_list
 
         if choice == 16:
             list_prompt = f'您需要选择重新投掷的骰子的位置,形式如0 1 2所示,数值应该在{0}-{use_dice[choice][target][0]-1}之间:'
@@ -176,6 +178,9 @@ class Action:
                 dice = []
             else:
                 dice = [int(i) for i in dice.split(' ')]
+            if check_duplicate_dice(dice):
+                print("您选择的骰子包含重复位置,非法,默认您选择[]")
+                dice = []
         elif choice == 17:
             list_prompt = f'您需要选择重新获取的手牌的位置,形式如0 1 2所示,数值应该在{0}-{use_dice[choice][target][0]-1}之间:'
             dice = input(list_prompt)
@@ -183,17 +188,31 @@ class Action:
                 dice = []
             else:
                 dice = [int(i) for i in dice.split(' ')]
+            if check_duplicate_dice(dice):
+                print("您选择的手牌包含重复位置,非法,默认您选择[]")
+                dice = []
         elif use_dice.sum() == 0:
             dice = []
         else:
+            dice = []
             for i in range(2):
-                if use_dice[choice][target][i*2] != 0:
+                cost_num = use_dice[choice][target][i*2]
+                if cost_num != 0:
                     if use_dice[choice][target][i*2+1] < 0:
-                        list_prompt = f'您需要选择使用的{use_dice[choice][target][i*2]}个非{CostType(-use_dice[choice][target][1])}骰子的位置,形式如0 1 2所示:'
+                        cost_type = CostType(-use_dice[choice][target][1])
+                        list_prompt = f'您需要选择使用的{cost_num}个非{cost_type}骰子的位置,形式如0 1 2所示:'
                     else:
-                        list_prompt = f'您需要选择使用的{use_dice[choice][target][i*2]}个{CostType(use_dice[choice][target][1])}骰子的位置,形式如0 1 2所示:'
-                    dice = input(list_prompt)
-                    dice = [int(i) for i in dice.split(' ')]
+                        cost_type = CostType(use_dice[choice][target][1])
+                        list_prompt = f'您需要选择使用的{cost_num}个{cost_type}骰子的位置,形式如0 1 2所示:'
+                    sub_dice = input(list_prompt)
+                    sub_dice = [int(i) for i in sub_dice.split(' ')]
+                    dice = dice + sub_dice
+                    if not game.active_player.dice_zone.check_dice(sub_dice, cost_num, use_dice[choice][target][1]):
+                        print("您的骰子选择不符合要求,默认您pass该Action阶段")
+                        return Action(15, 1, [])
+            if check_duplicate_dice(dice):
+                print("您选择的骰子包含重复位置,非法,默认您pass该Action阶段")
+                return Action(15, 1, [])
         return Action(choice, target, dice)
 
 def choose_card(card: List[int]):
