@@ -132,7 +132,7 @@ class GeniusPlayer:
 
     def play_card(self, game: 'GeniusGame'):
         '''
-            标准行动: 打出手牌/调和手牌
+            标准行动: 打出手牌/调和手牌 
         '''
         idx = game.current_action.choice_idx
         card: ActionCard = self.hand_zone.use(idx)
