@@ -5,10 +5,10 @@ import numpy as np
 from card.character import CharacterSkill
 # from card.character.characters import *
 import card.character.characters as chars
-# You may use chars like following print examples: 
+# You may use chars like following print examples:
 # print(chars.tartaglia) The python file(If the name of file is same as charater, it will not return the file)
 # print(chars.Tartaglia) The character class
-# print(chars.Akara) The status 
+# print(chars.Akara) The status
 
 from card.action import ActionCard
 from card.character import CharacterSkill
@@ -31,7 +31,7 @@ class GeniusPlayer:
                 game = game,
                 zone = zone,
                 from_player = self,
-                index = id, 
+                index = id,
                 from_character = None,
                 talent = False))
         self.character_num = len(self.character_list)
@@ -52,6 +52,7 @@ class GeniusPlayer:
         self.is_after_change: bool
         self.is_quick_change: bool
         self.change_num: int
+        self.roll_num: int = 1
         self.action_mask: np.array
 
     def choose_card(self, action: 'Action'):
@@ -132,7 +133,7 @@ class GeniusPlayer:
 
     def play_card(self, game: 'GeniusGame'):
         '''
-            标准行动: 打出手牌/调和手牌 
+            标准行动: 打出手牌/调和手牌
         '''
         idx = game.current_action.choice_idx
         card: ActionCard = self.hand_zone.use(idx)
@@ -268,8 +269,8 @@ class GeniusPlayer:
         # 事件
         game.manager.invoke(EventType.END_PHASE, game)
 
+        self.roll_num = 2
         self.dice_zone.remove_all()
-        # 摸牌
         self.get_card(num=2)
 
 

@@ -26,6 +26,7 @@ class GeniusGame:
         player1 = GeniusPlayer(self, player1_deck, 1)
         self.players: List[GeniusPlayer] = [player0, player1]
         self.game_phase: GamePhase
+        self.is_special_phase = False
         self.round: int = 0
 
         self.manager = EventManager()
@@ -114,7 +115,7 @@ class GeniusGame:
                 if char.is_alive:
                     logger.info("Target {} suffers {} piercing damage".format(char.name, self.current_damage.piercing_damage))
                     char.health_point -= self.current_damage.piercing_damage
-            
+
     def check_dying(self):
         for player in self.players:
             for char in player.character_list:
@@ -150,6 +151,8 @@ class GeniusGame:
         '''
         active_idx = self.active_player_index
         self.active_player.choose_card(action)
+        if self.is_special_phase:
+            return
         if active_idx == self.first_player:
             self.active_player_index = 1 - active_idx
             self.active_player = self.players[self.active_player_index]
@@ -164,6 +167,8 @@ class GeniusGame:
         '''
         active_idx = self.active_player_index
         self.active_player.choose_character(action)
+        if self.is_special_phase:
+            return
         if active_idx == self.first_player:
             self.active_player_index = 1 - active_idx
             self.active_player = self.players[self.active_player_index]
@@ -179,6 +184,8 @@ class GeniusGame:
         '''
         active_idx = self.active_player_index
         self.active_player.choose_dice(action)
+        if self.active_player.roll_num:
+            return
         if active_idx == self.first_player:
             self.active_player_index = 1 -active_idx
             self.active_player = self.players[self.active_player_index]

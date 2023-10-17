@@ -142,6 +142,7 @@ class EventType(Enum):
     ON_USE_SKILL = 12 # Only for tartaglia now
     EXCUTE_DAMAGE = 13
     CHARACTER_DIE = 14
+    BEGIN_ROLL_PHASE = 15
 class ElementalReactionType(Enum):
     Frozen = 0
     Melt = 1
@@ -261,4 +262,3 @@ def check_duplicate_dice(dice):
     if len(dice) != len(dice_set):
         return True
     return False
-    
