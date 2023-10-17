@@ -26,9 +26,9 @@ from typing import TYPE_CHECKING
 # #     print(a.a)
 
 # # testf(1.44)
-# class person:
-#     def __init__(self) -> None:
-#         pass
+class person:
+    def __init__(self) -> None:
+        pass
 
 class me(person):
     def __init__(self) -> None:
