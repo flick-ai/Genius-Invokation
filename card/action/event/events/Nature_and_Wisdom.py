@@ -5,7 +5,7 @@ if TYPE_CHECKING:
     from game.player import GeniusPlayer
 
 class Nature_and_Wisdom(ActionCard):
-    id: int = 5320033 # TODO: 还不知道,随手写的
+    id: int = 331804
     name: str = 'Nature and Wisdom'
     cost_num = 1
     cost_type = CostType.WHITE

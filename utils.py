@@ -127,22 +127,25 @@ class ZoneType(Enum):
     SUPPORT_ZONE = 3
 
 class EventType(Enum):
-    BEGIN_ACTION_PHASE = 0
-    DAMAGE_ADD = 1
+    BEGIN_ROLL_PHASE = 0
+    BEGIN_ACTION_PHASE = 1
     CALCULATE_DICE = 2
-    BEFORE_CHANGE_CHARACTER = 3
-    AFTER_CHANGE_CHARACTER = 4
-    AFTER_USE_SKILL = 5
-    AFTER_TAKES_DMG = 6
-    AFTER_PLAY_CARD = 7
-    END_PHASE = 8
-    DEALING_DAMAGE = 9 # Mona only right now
-    INFUSION = 10
-    ON_REACTION = 11 # Elemental Reaction based event. Maybe trigger sth, or just add DMG.
-    ON_USE_SKILL = 12 # Only for tartaglia now
-    EXCUTE_DAMAGE = 13
-    CHARACTER_DIE = 14
-    BEGIN_ROLL_PHASE = 15
+    ON_PLAY_CARD= 3
+    AFTER_PLAY_CARD = 4
+    ON_USE_SKILL = 5
+    AFTER_USE_SKILL = 6
+    ON_CHANGE_CHARACTER = 7
+    AFTER_CHANGE_CHARACTER = 8
+    END_PHASE = 9
+
+    AFTER_TAKES_DMG = 10
+    DAMAGE_ADD = 11
+    DEALING_DAMAGE = 12 # Mona only right now
+    INFUSION = 13
+    ON_REACTION = 14 # Elemental Reaction based event. Maybe trigger sth, or just add DMG.
+    EXCUTE_DAMAGE = 15
+    CHARACTER_DIE = 16
+
 class ElementalReactionType(Enum):
     Frozen = 0
     Melt = 1

@@ -30,7 +30,7 @@ class Katheryn_Entity(Support):
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.BEFORE_CHANGE_CHARACTER, ZoneType.SUPPORT_ZONE, self.on_change),
+            (EventType.ON_CHANGE_CHARACTER, ZoneType.SUPPORT_ZONE, self.on_change),
             (EventType.BEGIN_ACTION_PHASE, ZoneType.SUPPORT_ZONE, self.on_begin),
         ]
 

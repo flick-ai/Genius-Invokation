@@ -65,7 +65,6 @@ class GeniusGame:
         self.current_action = action
         oppenent_player = self.players[1 - self.active_player_index]
         active_player = self.active_player
-        active_player.use_dice(self)
 
         if action.choice_type == ActionChoice.HAND_CARD:
             self.is_change_player = False
@@ -162,7 +161,7 @@ class GeniusGame:
             选择出战角色
         '''
         self.active_player.choose_character(action)
-        
+
         if self.special_phase is None:
             self.change_active_player()
             if self.active_player_index == self.first_player:
@@ -175,7 +174,7 @@ class GeniusGame:
         '''
             选择重新投掷的骰子
         '''
-        
+
         self.active_player.choose_dice(action)
         self.active_player.roll_time -= 1
         if self.active_player.roll_time == 0:
@@ -194,12 +193,12 @@ class GeniusGame:
         self.active_player_index = self.first_player
         self.active_player = self.players[self.active_player_index]
         self.game_phase = GamePhase.ROLL_PHASE
-        
+
         self.active_player.begin_roll_phase(self)
         self.change_active_player()
         self.active_player.begin_roll_phase(self)
         self.change_active_player()
-        
+
 
     def action_phase(self):
         '''
@@ -251,8 +250,7 @@ class GeniusGame:
 
             # message[player]['summon_zone'] = [summon.name for summon in self.players[player].summons_zone.space]
         return message
-    
+
     def change_active_player(self):
         self.active_player_index = 1 - self.active_player_index
         self.active_player = self.players[self.active_player_index]
-    

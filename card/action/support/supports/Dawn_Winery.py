@@ -23,8 +23,13 @@ class Dawn_Winery_Entity(Support):
                 if self.usage > 0:
                     if game.current_dice.cost[0] > 0:
                         game.current_dice.cost[0]['cost_num'] -= 1
-                        self.usage -= 1
-    
+                        return True
+        return False
+
+    def on_use(self, game:'GeniusGame'):
+        if self.on_calculate(game):
+            self.usage -= 1
+
     def on_begin(self, game:'GeniusGame'):
         if game.active_player_index == self.from_player.idx:
             self.usage = self.max_usage
@@ -33,6 +38,7 @@ class Dawn_Winery_Entity(Support):
         self.listeners = [
             (EventType.CALCULATE_DICE, ZoneType.SUPPORT_ZONE, self.on_calculate),
             (EventType.BEGIN_ACTION_PHASE, ZoneType.SUPPORT_ZONE, self.on_begin),
+            (EventType.ON_CHANGE_CHARACTER, ZoneType.SUPPORT_ZONE, self.on_use),
         ]
 
 

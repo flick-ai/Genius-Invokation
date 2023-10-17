@@ -135,7 +135,13 @@ class GeniusPlayer:
         '''
             标准行动: 使用技能
         '''
+        self.use_dice(game)
         idx = game.current_action.choice_idx
+        skill =  self.character_list[self.active_idx].skills[idx]
+        game.current_dice = Dice(from_player=self,
+                                 from_character=self.character_list[self.active_idx],
+                                 use_type=skill.type,
+                                 cost=skill.cost)
         self.character_list[self.active_idx].skill(idx, game)
         self.is_after_change = False
 
@@ -143,25 +149,36 @@ class GeniusPlayer:
         '''
             标准行动: 打出手牌/调和手牌
         '''
+        self.use_dice(game)
         idx = game.current_action.choice_idx
         card: ActionCard = self.hand_zone.use(idx)
         if game.current_action.target_type == ActionTarget.DICE_REGION:
             card.on_tuning(game)
         else:
+            game.current_dice = Dice(from_player=self,
+                                from_character=None,
+                                use_type=card.card_type,
+                                cost = [{'cost_num':card.cost_num, 'cost_type':card.cost_type}])
+            game.manager.invoke(EventType.ON_PLAY_CARD, game)
             card.on_played(game)
 
     def change_character(self, game: 'GeniusGame'):
         '''
             标准行动: 切换角色
         '''
+        self.use_dice(game)
+        game.current_dice = Dice(from_player=self,
+                                 from_character=None,
+                                 use_type='change_character',
+                                 cost=[{'cost_num':1, 'cost_type':CostType.BLACK}])
         self.change_num += 1
         self.is_quick_change = False
-        game.manager.invoke(EventType.BEFORE_CHANGE_CHARACTER, game)
+        game.manager.invoke(EventType.ON_CHANGE_CHARACTER, game)
         idx = game.current_action.target_idx
         self.change_to_id(idx)
         if self.is_quick_change:
             game.is_change_player = False
-        
+
 
     def use_dice(self, game: 'GeniusGame'):
         '''

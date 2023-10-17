@@ -8,37 +8,51 @@ if TYPE_CHECKING:
     from game.player import GeniusPlayer
 
 
-class Katheryn_Entity(Support):
+class Timaeus_Entity(Support):
     id: int = 322003
-    name = 'Katheryn'
+    name = 'Timaeus'
     max_usage = 1
     max_count = -1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.usage = self.max_usage
+        self.transmutation_material = 2
 
-    def on_change(self, game:'GeniusGame'):
+    def on_calculate(self, game:'GeniusGame'):
         if game.active_player_index == self.from_player.idx:
-            if self.from_player.is_quick_change == False:
+            if game.current_dice.use_type == ActionCardType.EQUIPMENT_ARTIFACT:
                 if self.usage > 0:
-                    self.from_player.is_quick_change == True
+                    if game.current_dice.cost[0] > 0 and game.current_dice.cost[0] <= self.transmutation_material:
+                        game.current_dice.cost[0]['cost_num'] = 0
+                        return game.current_dice.cost[0]
+        return False
+
+    def on_use(self, game:'GeniusGame'):
+        use = self.on_calculate(game)
+        if use != False:
+            self.usage -= 1
+            self.transmutation_material -= use
 
     def on_begin(self, game:'GeniusGame'):
         if game.active_player_index == self.from_player.idx:
             self.usage = self.max_usage
 
+    def on_end(self, game:'GeniusGame'):
+        if game.active_player_index == self.from_player.idx:
+            self.transmutation_material += 1
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.BEFORE_CHANGE_CHARACTER, ZoneType.SUPPORT_ZONE, self.on_change),
-            (EventType.BEGIN_ACTION_PHASE, ZoneType.SUPPORT_ZONE, self.on_begin),
+            (EventType.CALCULATE_DICE, ZoneType.SUPPORT_ZONE, self.on_calculate),
+            (EventType.END_PHASE, ZoneType.SUPPORT_ZONE, self.on_end),
+            (EventType.ON_CHANGE_CHARACTER, ZoneType.SUPPORT_ZONE, self.on_use),
+            (EventType.BEGIN_ACTION_PHASE, ZoneType.SUPPORT_ZONE, self.on_begin)
         ]
 
-
-class Katheryn(SupportCard):
-    id: int = 322002
-    name: str = 'Katheryn'
-    cost_num = 1
+class Timaeus(SupportCard):
+    id: int = 322003
+    name: str = 'Timaeus'
+    cost_num = 2
     cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_COMPANION
 
@@ -47,5 +61,5 @@ class Katheryn(SupportCard):
         self.entity = None
 
     def on_played(self, game: 'GeniusGame') -> None:
-        self.entity = Katheryn_Entity(game, from_player=game.active_player)
+        self.entity = Timaeus_Entity(game, from_player=game.active_player)
         super().on_played
