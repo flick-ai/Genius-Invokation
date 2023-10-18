@@ -8,48 +8,48 @@ if TYPE_CHECKING:
     from game.player import GeniusPlayer
 
 
-class Hanachirusato_Entity(Support):
-    id: int = 322013
-    name = 'Hanachirusato'
-    max_usage = -1
-    max_count = 3
+class Xudong_Entity(Support):
+    id: int = 322015
+    name = 'Xudong'
+    max_usage = 1
+    max_count = -1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
-        self.cleansing_ritual_progress = 0
+        self.usage = self.max_usage
 
-    def on_remove(self, game:'GeniusGame'):
-        if self.cleansing_ritual_progress < self.max_count:
-            self.cleansing_ritual_progress += 1
+    def on_begin(self, game:'GeniusGame'):
+        if game.active_player_index == self.from_player.index:
+            self.usage = self.max_usage
 
     def on_calculate(self, game:'GeniusGame'):
         if game.active_player_index == self.from_player.index:
-            if game.current_dice.use_type == ActionCardType.EQUIPMENT_WEAPON or game.current_dice.use_type == ActionCardType.EQUIPMENT_ARTIFACT:
-                if self.cleansing_ritual_progress == self.max_count:
+            if self.usage > 0:
+                if game.current_dice.use_type == ActionCardType.EVENT_FOOD:
                     if game.current_dice.cost[0]['cost_num'] > 0:
-                        game.current_dice.cost[0]['cost_num'] = max(0, game.current_dice.cost[0]['cost_num']-2)
+                        game.current_dice.cost[0]['cost_num'] = max(0,  game.current_dice.cost[0]['cost_num']-2)
                         return True
         return False
 
     def on_play(self, game:'GeniusGame'):
         if self.on_calculate(game):
-            self.on_destroy(game)
+            self.usage -= 1
 
     def update_listener_list(self):
         self.listeners = [
+            (EventType.BEGIN_ACTION_PHASE, ZoneType.SUPPORT_ZONE, self.on_begin),
             (EventType.CALCULATE_DICE, ZoneType.SUPPORT_ZONE, self.on_calculate),
             (EventType.ON_PLAY_CARD, ZoneType.SUPPORT_ZONE, self.on_play),
-            (EventType.ON_SUMMON_REMOVE, ZoneType.SUPPORT_ZONE, self.on_remove)
         ]
 
 
-class Hanachirusato(SupportCard):
+class Xudong(SupportCard):
     '''
-        花散里
+        旭东
     '''
-    id: int = 322013
-    name: str = 'Hanachirusato'
-    cost_num = 0
-    cost_type = None
+    id: int = 322015
+    name: str = 'Xudong'
+    cost_num = 2
+    cost_type = CostType.BLACK
     card_type = ActionCardType.SUPPORT_COMPANION
 
     def __init__(self) -> None:
@@ -57,5 +57,5 @@ class Hanachirusato(SupportCard):
         self.entity = None
 
     def on_played(self, game: 'GeniusGame') -> None:
-        self.entity = Hanachirusato_Entity(game, from_player=game.active_player)
+        self.entity = Xudong_Entity(game, from_player=game.active_player)
         super().on_played(game)
