@@ -10,7 +10,7 @@ deck1 = {
     'action_card': ['Liyue_Harbor_Wharf' for i in range(30)]
 }
 deck2 = {
-    'character': ['Fischl', 'Nahida', 'Yoimiya'],
+    'character': ['Shenhe', 'Wanderer', 'Yoimiya'],
     'action_card': ['Paimon' for i in range(30)]
 }
 

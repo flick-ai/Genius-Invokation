@@ -233,12 +233,12 @@ def get_standby_character(
 def get_my_standby_character(
         game: 'GeniusGame',
         require_player_idx: bool=False)->List["Character"]:
-    return get_standby_character(game, game.active_player_idx, require_player_idx)
+    return get_standby_character(game, game.active_player_index, require_player_idx)
 
 def get_opponent_standby_character(
         game: 'GeniusGame',
         require_player_idx: bool=False)->List["Character"]:
-    return get_standby_character(game, 1 - game.active_player_idx, require_player_idx)
+    return get_standby_character(game, 1 - game.active_player_index, require_player_idx)
 
 def get_opponent(
         game: 'GeniusGame'

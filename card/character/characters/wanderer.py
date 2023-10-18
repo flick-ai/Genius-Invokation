@@ -3,15 +3,15 @@ from entity.character import Character
 from entity.entity import Entity
 from utils import *
 from typing import TYPE_CHECKING, List, Tuple
+from event.damage import Damage
 
 if TYPE_CHECKING:
     from game.game import GeniusGame
     from game.action import Action
     from event.events import ListenerNode
     from game.player import GeniusPlayer
-    from event.damage import Damage
 from entity.status import Status, Combat_Status
-
+from loguru import logger
 class Yuuban_Meigen(NormalAttack):
     id: int = 0
     name = "Yuuban Meigen"
@@ -40,7 +40,28 @@ class Yuuban_Meigen(NormalAttack):
     
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
-        self.resolve_damage(game)
+        
+        if self.from_character.character_zone.has_entity(Windfavored):
+            target = get_opponent_active_character(game)
+            ls = get_opponent_standby_character(game)
+            if len(ls)>0:
+                target = ls[0]
+            dmg = Damage.create_damage(
+                game,
+                damage_type=SkillType.NORMAL_ATTACK,
+                damage_from=self.from_character,
+                damage_to=target,
+                main_damage=1,
+                main_damage_element=ElementType.ANEPMO,
+                piercing_damage=0,
+                is_charged_attack=self.is_charged_attack,
+                is_plunging_attack=self.is_plunging_attack
+            )
+            game.add_damage(dmg)
+            game.resolve_damage()
+        else:
+            self.resolve_damage(game)
+
         self.gain_energy(game)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
@@ -144,14 +165,13 @@ class Windfavored(Status):
         self.current_usage = self.usage
     
     def on_dmg_add(self, game: 'GeniusGame') :
+        logger.debug(game.current_damage.damage_from.name)
+        logger.debug(self.from_character.name)
         if game.current_damage.damage_from != self.from_character:
             return
         if game.current_damage.damage_type == SkillType.NORMAL_ATTACK:
             game.current_damage.main_damage += 2
-            ls = get_opponent_standby_character(game)
-            if len(ls)>0:
-                game.current_damage.damage_to = ls[0]
-
+            
             if self.from_character.talent and game.current_damage.is_charged_attack:
                 status = self.from_character.character_zone.has_entity(Switch)
                 if status is None:
@@ -168,7 +188,7 @@ class Windfavored(Status):
         if self.current_usage <= 0:
             self.on_destroy(game)
     def update_listener_list(self):
-        self.listener_list = [
+        self.listeners = [
             (EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, self.on_dmg_add)
         ]
 
@@ -210,7 +230,7 @@ class Switch(Status):
             if self.current_usage <= 0:
                 self.on_destroy(game)
     def update_listener_list(self):
-        self.listener_list = [
+        self.listeners = [
             (EventType.ON_CHANGE_CHARACTER, ZoneType.CHARACTER_ZONE, self.on_switch)
         ]
 

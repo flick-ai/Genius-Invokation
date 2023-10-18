@@ -161,7 +161,7 @@ class Icy_Quill(Combat_Status):
     id: int = -1
     name: str = "Icy Quill"
     def __init__(self, game: 'GeniusGame', from_character: 'Character', from_player: 'GeniusPlayer'):
-        super().__init__(game, from_character, from_player)
+        super().__init__(game, from_player, from_character)
         self.usage = 3
         self.current_usage = 3
         self.max_usage = 3
@@ -174,7 +174,7 @@ class Icy_Quill(Combat_Status):
         if not isinstance(game.current_damage.damage_from, Character): return
         if game.current_damage.main_damage_element == ElementType.CRYO:
             if game.current_damage.damage_from.from_player == self.from_player:
-                game.current_damage.main_damage_element += 1
+                game.current_damage.main_damage += 1
                 if self.from_character.talent and game.current_damage.damage_type==SkillType.NORMAL_ATTACK and self.last_use_round!= game.round:
                     self.last_use_round = game.round
                 else:
@@ -183,7 +183,7 @@ class Icy_Quill(Combat_Status):
                         self.on_destroy(game)
 
     def update_listener_list(self):
-        self.listener_list = [
+        self.listeners = [
            (EventType.DAMAGE_ADD, ZoneType.ACTIVE_ZONE, self.on_dmg_add)
         ]
 
@@ -222,10 +222,10 @@ class Talisman_Spirit(Summon):
         self.current_usage = self.usage
 
     def update_listener_list(self):
-        self.listener_list = [
+        self.listeners = [
             (EventType.END_PHASE, ZoneType.SUMMON_ZONE, self.on_end_phase),
             (EventType.DAMAGE_ADD, ZoneType.SUMMON_ZONE, self.on_dmg_add)
         ]
 
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
-        super().__init__(game, from_player, from_character)
+        super().__init__(game, from_player=from_player, from_character=from_character)

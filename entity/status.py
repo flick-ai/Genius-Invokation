@@ -159,8 +159,6 @@ class Crystallize_Shield(Combat_Shield):
             self.current_usage += 1
 
     def on_excuete_dmg(self,game: 'GeniusGame'):
-        import ipdb
-        ipdb.set_trace()
         if game.current_damage.damage_to.from_player == self.from_player:
             if game.current_damage.main_damage >= self.current_usage:
                 game.current_damage.main_damage -= self.current_usage

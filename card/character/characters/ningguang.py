@@ -188,7 +188,7 @@ class Jade_Screen_Status(Combat_Status):
                 game.current_damage.main_damage += 1
 
     def update_listener_list(self):
-        self.listener_list = [
+        self.listeners = [
             (EventType.DAMAGE_ADD, ZoneType.ACTIVE_ZONE, self.on_damage_add),
             (EventType.EXCUTE_DAMAGE, ZoneType.ACTIVE_ZONE, self.on_excute_dmg),
         ]
