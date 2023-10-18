@@ -3,7 +3,7 @@ import numpy as np
 from utils import *
 from copy import deepcopy
 from card.action import *
-from entity.status import Status, Shield, Combat_Shield, Weapon, Artifact
+from entity.status import Status, Shield, Combat_Shield, Weapon, Artifact, Combat_Status
 from card.character.characters.keqing import Lightning_Stiletto
 
 if TYPE_CHECKING:
@@ -335,8 +335,17 @@ class ActiveZone:
     '''
     def __init__(self, game: 'GeniusGame', player: 'GeniusPlayer') -> None:
         self.player = player
-        self.space: List[Status] = []
-        self.shield: List[Shield] = []
+        self.space: List[Combat_Status] = []
+        self.shield: List[Combat_Shield] = []
+
+
+    def remove_entity(self, entity: 'Entity'):
+        if isinstance(entity, Combat_Shield):
+            idx = self.shield.index(entity)
+            self.shield.pop(idx)
+        else:
+            idx = self.space.index(entity)
+            self.space.pop(idx)
 
     def destroy(self, entity: 'Entity'):
         for idx, exist in enumerate(self.space):

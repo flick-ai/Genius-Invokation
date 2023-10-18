@@ -166,7 +166,9 @@ class Jade_Screen_Status(Combat_Status):
         self.current_usage = self.usage
 
     def on_excute_dmg(self, game: 'GeniusGame'):
-        if game.current_damage.damage_to == get_active_character(game, self.from_player):
+        if game.current_damage.damage_to.from_player == self.from_player:
+            if game.current_damage.main_damage_element == ElementType.PIERCING:
+                return
             if game.current_damage.main_damage >=2:
                 game.current_damage.main_damage -= 1
                 self.current_usage -=1
@@ -178,7 +180,7 @@ class Jade_Screen_Status(Combat_Status):
             if game.current_damage.damage_type == SkillType.ELEMENTAL_BURST:
                 game.current_damage += 2
 
-        if self.from_character.is_alive:
+        if self.from_character.is_alive and game.current_damage.damage_from.from_player == self.from_player:
             if game.current_damage.main_damage_element == ElementType.GEO:
                 game.current_damage.main_damage += 1
 

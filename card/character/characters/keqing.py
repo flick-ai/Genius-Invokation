@@ -217,9 +217,10 @@ class Electro_Elemental_Infusion(Status):
                     game.current_damage.main_damage += 1
 
     def on_begin(self, game: 'GeniusGame'):
-        self.current_usage -= 1
-        if self.current_usage <= 0:
-            self.on_destroy(game)
+        if game.active_player == self.from_character.from_player:
+            self.current_usage -= 1
+            if self.current_usage <= 0:
+                self.on_destroy(game)
 
     def update_listener_list(self):
         self.listeners = [

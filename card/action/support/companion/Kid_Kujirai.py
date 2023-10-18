@@ -15,16 +15,18 @@ class Kid_Kujirai_Entity(Support):
     max_count = -1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
-        self.cleansing_ritual_progress = 0
+        self.use_round = -1
 
     def on_begin(self, game:'GeniusGame'):
         if game.active_player_index == self.from_player.index:
-            self.from_player.dice_zone.add([DiceType.OMNI.value])
-            opponent = get_opponent(game)
-            if not opponent.support_zone.check_full():
-                self.from_player.support_zone.destroy(self)
-                opponent.support_zone.add_entity(self, -1)
-                self.from_player = opponent
+            if self.use_round != game.round:
+                self.use_round == game.round
+                self.from_player.dice_zone.add([DiceType.OMNI.value])
+                opponent = get_opponent(game)
+                if not opponent.support_zone.check_full():
+                    self.from_player.support_zone.destroy(self)
+                    opponent.support_zone.add_entity(self, -1)
+                    self.from_player = opponent
 
     def update_listener_list(self):
         self.listeners = [

@@ -122,9 +122,10 @@ class ActionCardType(Enum):
 
 class ZoneType(Enum):
     CHARACTER_ZONE = 0
-    ACTIVE_ZONE = 1
-    SUMMON_ZONE = 2
-    SUPPORT_ZONE = 3
+    ACTIVE_ZONE_SHIELD = 1
+    ACTIVE_ZONE = 2
+    SUMMON_ZONE = 3
+    SUPPORT_ZONE = 4
 
 class EventType(Enum):
     BEGIN_ROLL_PHASE = 0

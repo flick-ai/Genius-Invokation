@@ -246,6 +246,8 @@ class GeniusGame:
         message['game']['active_player'] = int(self.active_player_index)
         message['game']['first_player'] = int(self.first_player)
         for player in [0, 1]:
+            message[player]['active_zone_shiled'] = self.players[player].team_combat_status.shield
+            message[player]['active_zone_status'] = self.players[player].team_combat_status.space
             message[player]['active_character_idx'] = self.players[player].active_idx
             message[player]['card_zone'] = {'num':self.players[player].card_zone.num()}
             message[player]['hand_zone'] = [card.name for card in self.players[player].hand_zone.card]
