@@ -111,7 +111,7 @@ class GeniusPlayer:
         '''
             基本行动: 切换到指定人
         '''
-        if self.active_idx > 0:
+        if self.active_idx >= 0:
             self.character_list[self.active_idx].is_active = False
         self.active_idx = idx
         self.character_list[self.active_idx].is_active = True
@@ -158,6 +158,7 @@ class GeniusPlayer:
         self.use_dice(game)
         idx = game.current_action.choice_idx
         card: ActionCard = self.hand_zone.use(idx)
+        game.current_card = card
         if game.current_action.target_type == ActionTarget.DICE_REGION:
             card.on_tuning(game)
         else:
@@ -167,6 +168,7 @@ class GeniusPlayer:
                                 cost = [{'cost_num':card.cost_num, 'cost_type':card.cost_type}])
             game.manager.invoke(EventType.ON_PLAY_CARD, game)
             card.on_played(game)
+        game.current_card = None #Finish use the card.
 
     def change_character(self, game: 'GeniusGame'):
         '''

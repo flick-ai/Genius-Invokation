@@ -6,6 +6,7 @@ from game.action import Action
 from .player import GeniusPlayer
 from event.events import EventManager
 from card.character.base import Damage
+from card.action.base import ActionCard
 from game.zone import Dice
 from loguru import logger
 if TYPE_CHECKING:
@@ -35,6 +36,7 @@ class GeniusGame:
         self.current_action: Action = None
         self.current_damage: Damage = None
         self.current_skill: CharacterSkill = None
+        self.current_card: ActionCard = None
         self.damage_list: List[Damage] = []
         self.is_change_player: bool
         self.is_end: bool = False

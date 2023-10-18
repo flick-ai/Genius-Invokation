@@ -399,3 +399,15 @@ class HandZone:
 
     def num(self):
         return len(self.card)
+    
+    def has_card(self, card_class): # Check card_class
+        for card in self.card:
+            if isinstance(card, card_class):
+                return card
+        return None
+
+    def remove(self, card_class):
+        for card in self.card:
+            if isinstance(card, card_class):
+                self.card.remove(card)
+    

@@ -193,7 +193,7 @@ class Illusory_Heart(ElementalBurst):
             'cost_type': CostType.DENDRO
         },
     ]
-    energy_cost: int = 3
+    energy_cost: int = 2
     energy_gain: int = 0
 
     def __init__(self, from_character: Character):
@@ -212,6 +212,7 @@ class Illusory_Heart(ElementalBurst):
         super().on_call(game)
         # 处理伤害
         self.resolve_damage(game)
+        self.consume_energy(game)
         # 召唤物/状态生成
         self.add_status(game)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
@@ -228,11 +229,11 @@ class Nahida(Character):
     max_health_point: int = 10
     skill_list = [Akara, All_Schemes_to_Know, All_Schemes_to_Know_Tathata, Illusory_Heart]
 
-    power: int = 0
     max_power: int = 2
 
     def __init__(self, game: 'GeniusGame', zone, from_player: 'GeniusPlayer', index:int, from_character = None, talent = False):
         super().__init__(game, zone, from_player, index, from_character)
+        self.power = 0
         self.talent = talent
 
 class Shrine_of_Maya(Combat_Status):
