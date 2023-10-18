@@ -87,20 +87,21 @@ class MeleeStance(Status):
 
 
 
-    def on_end_phase(self, game: 'GeniusGame'):
+    def on_begin_phase(self, game: 'GeniusGame'):
         '''
-            结束阶段, 可用次数减1
+            开始阶段, 可用次数减1
         '''
-        self.current_usage -= 1
-        if self.current_usage <= 0:
-            self.on_destroy(game)
-            self.from_character.character_zone.remove_entity(self)
-            self.from_character.is_melee_stance = False
-            # 切换成远程模式
-            ranged_stance = RangedStance(game=game,
-                                        from_player=self.from_player,
-                                        from_character=self.from_character)
-            self.from_character.character_zone.add_entity(ranged_stance)
+        if game.active_player == self.from_character.from_player:
+            self.current_usage -= 1
+            if self.current_usage <= 0:
+                self.on_destroy(game)
+                self.from_character.character_zone.remove_entity(self)
+                self.from_character.is_melee_stance = False
+                # 切换成远程模式
+                ranged_stance = RangedStance(game=game,
+                                            from_player=self.from_player,
+                                            from_character=self.from_character)
+                self.from_character.character_zone.add_entity(ranged_stance)
 
 
     def update_listener_list(self):
@@ -110,7 +111,7 @@ class MeleeStance(Status):
         self.listeners = [
             (EventType.AFTER_USE_SKILL, ZoneType.CHARACTER_ZONE, self.on_after_use_skill),
             (EventType.ON_USE_SKILL, ZoneType.CHARACTER_ZONE, self.on_use_skill),
-            (EventType.END_PHASE, ZoneType.CHARACTER_ZONE, self.on_end_phase),
+            (EventType.BEGIN_ACTION_PHASE, ZoneType.CHARACTER_ZONE, self.on_begin_phase),
         ]
 
 
