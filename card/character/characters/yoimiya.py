@@ -98,8 +98,8 @@ class Niwabi_FireDance(ElementalSkill):
 
         # 召唤物/状态生成
         self.add_status(game)
-        # 获得能量
-        self.gain_energy(game)
+        # 获得能量 gain 不了一点！
+        # self.gain_energy(game)
 
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
@@ -183,7 +183,7 @@ class Niwabi_Enshou(Status):
     def infuse(self, game: 'GeniusGame'):
         if game.current_damage.damage_from == self.from_character:
             if game.current_damage.main_damage_element == ElementType.PHYSICAL:
-                game.current_damage.main_damage_element = ElementType.ELECTRO
+                game.current_damage.main_damage_element = ElementType.PYRO
 
     def on_execute_damage(self, game: 'GeniusGame'):
         if game.current_damage.damage_from == self.from_character:
@@ -194,7 +194,7 @@ class Niwabi_Enshou(Status):
         if game.current_damage.damage_from == self.from_character:
             if game.current_skill.type == SkillType.NORMAL_ATTACK:
                 if self.from_character.talent:
-                    Damage.resolve_damage(
+                    dmg = Damage.create_damage(
                         game,
                         damage_type=SkillType.OTHER,
                         main_damage_element=ElementType.PYRO,
@@ -205,6 +205,8 @@ class Niwabi_Enshou(Status):
                         is_plunging_attack=False,
                         is_charged_attack=False
                     )
+                    game.add_damage(dmg)
+                    game.resolve_damage()
                 self.current_usage -= 1
                 if self.current_usage <= 0:
                     self.on_destroy(game)
@@ -231,7 +233,7 @@ class Aurous_Blaze(Status):
 
     def after_skill(self, game: 'GeniusGame'):
         if game.current_damage.damage_from != self.from_character:
-            Damage.resolve_damage(
+            dmg = Damage.create_damage(
                 game,
                 damage_type=SkillType.OTHER,
                 main_damage_element=ElementType.PYRO,
@@ -242,6 +244,8 @@ class Aurous_Blaze(Status):
                 is_plunging_attack=False,
                 is_charged_attack=False
             )
+            game.add_damage(dmg)
+            game.resolve_damage()
 
     def on_end_phase(self, game: 'GeniusGame'):
         self.current_usage -= 1

@@ -1,9 +1,12 @@
 from card.character.base import NormalAttack, ElementalSkill, ElementalBurst
 from entity.character import Character
+from game.game import GeniusGame
 from utils import *
 from entity.summon import Summon
 from event.damage import Damage
 from typing import TYPE_CHECKING, List, Tuple
+
+from utils import GeniusGame
 
 if TYPE_CHECKING:
     from game.game import GeniusGame
@@ -25,24 +28,26 @@ class Oz(Summon):
             结束阶段分先后手两次调用on_end_phase, 所以需要判断
         '''
         if game.active_player == self.from_player:
-            Damage.resolve_damage(game, 
-                damage_type=SkillType.SUMMON, 
-                main_damage_element=self.element, 
-                main_damage=1, 
-                piercing_damage=0, 
+            dmg = Damage.create_damage(
+                game,
+                damage_type=SkillType.SUMMON,
+                main_damage_element=self.element,
+                main_damage=1,
+                piercing_damage=0,
                 damage_from=self,
-                # TODO: 可能需要改一下调用的接口
                 damage_to=get_opponent_active_character(game),
-                is_plunging_attack=False, 
-                is_charged_attack=False
             )
+            game.add_damage(dmg)
+            game.resolve_damage()
             self.current_usage -= 1
         if(self.current_usage <= 0):
             '''
                 Entity在被移除时, 调用on_destroy移除监听并执行对应的移除操作(在对应区域中移除此entity等)
             '''
             self.on_destroy(game)
-
+    
+    def update(self):
+        self.current_usage = self.usage
 
     def update_listener_list(self):
         '''
@@ -85,6 +90,28 @@ class BoltsOfDownfall(NormalAttack):
     energy_cost: int = 0
     energy_gain: int = 1
 
+    def on_call(self, game: 'GeniusGame'):
+        super().on_call(game)
+        self.resolve_damage(game)
+        if self.from_character.talent:
+            oz = self.from_character.from_player.summons_zone.has_entity(Oz)
+            if oz is not None:
+                oz.current_usage -= 1
+                dmg = Damage.create_damage(
+                    game,
+                    damage_type=SkillType.SUMMON,
+                    main_damage_element=oz.element,
+                    main_damage=1,
+                    piercing_damage=0,
+                    damage_from=oz,
+                    damage_to=get_opponent_active_character(game),
+                )
+                game.add_damage(dmg)
+                game.resolve_damage()
+                if oz.current_usage <= 0:
+                    oz.on_destroy(game)
+        self.gain_energy(game)
+        game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Nightrider(ElementalSkill):
     '''
@@ -111,6 +138,26 @@ class Nightrider(ElementalSkill):
     energy_cost: int = 0
     energy_gain: int = 1
 
+    def generate_summon(self, game: 'GeniusGame'):
+        '''
+            生成奥兹召唤物
+        '''
+        summon = self.from_character.from_player.summons_zone.has_entity(Oz)
+        if summon is None:
+            summon = Oz(game=game, 
+                    from_player=self.from_character.from_player, 
+                    from_character=self.from_character)
+            self.from_character.from_player.summons_zone.add_entity(summon)
+        else:
+            summon.update()
+        
+    def on_call(self, game: GeniusGame):
+        super().on_call(game)
+        self.resolve_damage(game)
+        self.generate_summon(game)
+        self.gain_energy(game)
+        game.manager.invoke(EventType.AFTER_USE_SKILL, game)
+
 
 class MidnightPhantasmagoria(ElementalBurst):
     '''
@@ -136,15 +183,11 @@ class MidnightPhantasmagoria(ElementalBurst):
     energy_cost: int = 3
     energy_gain: int = 0
 
-    def generate_summon(self, game: 'GeniusGame'):
-        '''
-            生成奥兹召唤物
-        '''
-        summon = Oz(game=game, 
-                    from_player=self.from_character.from_player, 
-                    from_character=self.from_character)
-        # TODO: 把召唤物放到召唤物区
-
+    def on_call(self, game: GeniusGame):
+        super().on_call(game)
+        self.consume_energy(game)
+        self.resolve_damage(game)
+        game.manager.invoke(EventType.AFTER_USE_SKILL, game)
     
 
 class Fischl(Character):
