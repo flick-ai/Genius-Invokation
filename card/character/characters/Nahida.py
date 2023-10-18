@@ -265,9 +265,10 @@ class Shrine_of_Maya(Combat_Status):
         game.current_damage.main_damage += 1
 
     def on_begin_phase(self, game: 'GeniusGame'):
-        self.current_usage -= 1
-        if self.current_usage <= 0:
-            self.on_destroy(game)
+        if game.active_player == self.from_character.from_player:
+            self.current_usage -= 1
+            if self.current_usage <= 0:
+                self.on_destroy(game)
 
     def update(self, game: 'GeniusGame'):
         if not self.from_character.talent:
