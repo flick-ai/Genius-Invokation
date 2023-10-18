@@ -31,10 +31,18 @@ class Status(Entity):
         # All states can be update
         pass
 
-class Combat_Status(Status):
+class Combat_Status(Entity):
+    id: int
+    name: str
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
+        self.usage: int #生成时的可用次数
+        self.max_usage: int #Maybe changed by Talent.
+        self.current_usage: int
 
+    def on_destroy(self, game):
+        super().on_destroy(game)
+        self.from_player.team_combat_status.remove_entity(self)
 class Shield(Status):
     # Status of shield (Only for single character)
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
@@ -132,6 +140,8 @@ class Catalyzing_Feild(Combat_Status):
             (EventType.DAMAGE_ADD, ZoneType.ACTIVE_ZONE, self.on_damage_add)
         ]
 class Crystallize_Shield(Combat_Shield):
+    id = 12345
+    name = "Crystallize_Shield"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.usage = 1
@@ -143,7 +153,9 @@ class Crystallize_Shield(Combat_Shield):
             self.current_usage += 1
 
     def on_excuete_dmg(self,game: 'GeniusGame'):
-        if game.current_damage.damage_to == self.from_character:
+        import ipdb
+        ipdb.set_trace()
+        if game.current_damage.damage_to.from_player == self.from_player:
             if game.current_damage.main_damage >= self.current_usage:
                 game.current_damage.main_damage -= self.current_usage
                 self.current_usage = 0

@@ -4,7 +4,7 @@ from event.Elemental_Reaction import *
 
 if TYPE_CHECKING:
     from game.game import GeniusGame
-
+from loguru import logger
 
 class Damage:
     # 伤害基本类
@@ -70,28 +70,31 @@ class Damage:
         game.manager.invoke(EventType.DEALING_DAMAGE, game)
 
     def damage_excute(self, game: 'GeniusGame'):
+        logger.info(f"Before Damage Excute: {game.current_damage.main_damage}")
         game.manager.invoke(EventType.EXCUTE_DAMAGE, game)
+        logger.info(f"After Damage Excute: {game.current_damage.main_damage}")
+
 
     def after_damage(self, game: 'GeniusGame'):
         game.manager.invoke(EventType.AFTER_TAKES_DMG, game)
         pass
 
-    def cal_damage(self, game: 'GeniusGame'):
-        # 元素类型转化 On_Infusion
-        '''
-        Based on my activeZone.
-        '''
-        # 元素反应
-        '''
-        Based on elemental Reation.
-        '''
-        self.elemental_reaction(game)
-        # TODO: 可能产生新的独立伤害（扩散), 这一部分需要在当前伤害结算完毕后再进行
+    # def cal_damage(self, game: 'GeniusGame'): NO USE
+    #     # 元素类型转化 On_Infusion
+    #     '''
+    #     Based on my activeZone.
+    #     '''
+    #     # 元素反应
+    #     '''
+    #     Based on elemental Reation.
+    #     '''
+    #     self.elemental_reaction(game)
+    #     # 可能产生新的独立伤害（扩散), 这一部分需要在当前伤害结算完毕后再进行
 
-        # 伤害加算
-        '''
-        '''
-        pass
+    #     # 伤害加算
+    #     '''
+    #     '''
+    #     pass
 
     def elemental_reaction(self, game: 'GeniusGame'):
         '''
