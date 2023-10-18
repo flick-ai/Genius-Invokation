@@ -3,6 +3,7 @@ import numpy as np
 from utils import *
 from copy import deepcopy
 from card.action import *
+from entity.status import Status, Shield, Combat_Shield, Weapon, Artifact
 
 
 if TYPE_CHECKING:
@@ -10,7 +11,7 @@ if TYPE_CHECKING:
     from game.player import GeniusPlayer
     from entity.summon import Summon
     from entity.support import Support
-    from entity.status import Status, Shield, Combat_Shield, Weapon, Artifact
+
     from entity.character import Character
 
 
@@ -236,13 +237,18 @@ class SummonZone:
         召唤物区
     '''
     def __init__(self, game: 'GeniusGame', player: 'GeniusPlayer') -> None:
+        self.game = game
         self.space: List[Summon] = []
 
-    def destroy(self, entity):
-        for idx, exist in enumerate(self.space):
-            if entity.name == exist.name:
-                self.space.pop(idx)
-                return
+    def remove(self, entity):
+        idx = self.space.index(entity)
+        self.space.pop(idx)
+        self.game.manager.invoke(EventType.ON_SUMMON_REMOVE, self.game)
+
+    def destroy(self, idx):
+        self.space[idx].on_destroy(self.game)
+        self.space.pop(idx)
+        self.game.manager.invoke(EventType.ON_SUMMON_REMOVE, self.game)
 
     def has_entity(self, entity):
         # entity here is the class, not the instace

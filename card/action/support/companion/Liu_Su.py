@@ -18,9 +18,25 @@ class Liu_Su_Entity(Support):
         self.usage = self.max_usage
         self.usage_round = 1
 
+    def on_begin(self, game:'GeniusGame'):
+        if game.active_player_index == self.from_player.index:
+            self.usage_round = 1
+
+    def on_change(self, game:'GeniusGame'):
+        if game.active_player_index == self.from_player.index:
+            if self.usage_round > 0:
+                character = self.from_player.character_list[self.from_player.active_idx]
+                if character.power == 0:
+                    character.power += 1
+                    self.usage_round -= 1
+                    self.usage -= 1
+                    if self.usage == 0:
+                        self.on_destroy(game)
+
     def update_listener_list(self):
         self.listeners = [
-            (EventType.END_PHASE, ZoneType.SUPPORT_ZONE, self.on_end),
+            (EventType.AFTER_CHANGE_CHARACTER, ZoneType.SUPPORT_ZONE, self.on_change),
+            (EventType.BEGIN_ACTION_PHASE, ZoneType.SUPPORT_ZONE, self.on_begin)
         ]
 
 

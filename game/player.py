@@ -182,6 +182,7 @@ class GeniusPlayer:
         game.manager.invoke(EventType.ON_CHANGE_CHARACTER, game)
         idx = game.current_action.target_idx
         self.change_to_id(idx)
+        game.manager.invoke(EventType.AFTER_CHANGE_CHARACTER, game)
         if self.is_quick_change:
             game.is_change_player = False
 

@@ -148,6 +148,7 @@ class EventType(Enum):
 
     BEFORE_ANY_ACTION = 17
     AFTER_ANY_ACTION = 18
+    ON_SUMMON_REMOVE = 19
 
 class ElementalReactionType(Enum):
     Frozen = 0

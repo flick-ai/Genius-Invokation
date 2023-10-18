@@ -23,8 +23,8 @@ class Summon(Entity):
 
     def on_destroy(self, game):
         super().on_destroy()
-        self.from_player.summons_zone.destroy(self)
-    
+        self.from_player.summons_zone.remove(self)
+
     def update(self):
         pass
 
