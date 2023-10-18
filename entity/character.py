@@ -77,6 +77,7 @@ class Character(Entity):
         self.elemental_application: List['ElementType'] = []
         self.index: int = index
         super().__init__(game, from_player, from_character)
+        self.init_skill()
 
     def heal(self, heal: int):
         self.health_point += heal
