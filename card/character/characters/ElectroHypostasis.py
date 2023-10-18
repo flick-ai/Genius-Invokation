@@ -155,7 +155,25 @@ class ChainsOfWardingThunder(Summon):
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.current_usage = self.usage
-        self.used_this_round = True
+        self.used_this_round = 1
+
+    def on_calculate(self, game:'GeniusGame'):
+        if game.active_player_index == 1 - self.from_player.index:
+            if self.used_this_round > 0:
+                if game.current_dice.use_type == 'change character':
+                    game.current_dice.cost[0]['cost_num'] += 1
+
+    def on_change(self, game:'GeniusGame'):
+        if self.on_calculate(game):
+            self.used_this_round -= 1
+
+    def update_listener_list(self):
+        self.listeners = [
+            (EventType.ON_CHANGE_CHARACTER, ZoneType.SUMMON_ZONE, self.on_change)
+            (EventType.CALCULATE_DICE, ZoneType.SUMMON_ZONE, self.on_calculate)
+        ]
+
+
 
 class LightningLockdown(ElementalBurst):
     '''
@@ -201,7 +219,7 @@ class ElectroCrystalCore(Status):
             self.from_character.is_alive = True
             self.from_character.health_point = 1
             self.on_destroy(game)
-        
+
     def update_listener_list(self):
         self.listeners = [
             (EventType.CHARACTER_DIE, ZoneType.CHARACTER_ZONE, self.on_character_die)
