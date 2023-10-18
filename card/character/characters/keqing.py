@@ -105,7 +105,8 @@ class StellarRestoration(ElementalSkill):
                 or self.from_character.from_player.hand_zone.has_card(Lightning_Stiletto) is not None:
             self.add_status(game)
             self.from_character.from_player.hand_zone.remove(Lightning_Stiletto)
-         
+        else:
+            self.from_character.from_player.hand_zone.add([Lightning_Stiletto()])
         # after skill
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 class StarwardSword(ElementalBurst):
@@ -160,7 +161,7 @@ class Keqing(Character):
         super().__init__(game, zone, from_player, index, from_character)
         self.talent = talent
         self.power = 0
-        
+
 class Lightning_Stiletto(ActionCard):
     id: int = -1 #TODO: CHECK THE ID
     name: str = 'Lightning Stiletto'
