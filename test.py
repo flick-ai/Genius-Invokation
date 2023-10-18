@@ -42,10 +42,13 @@ I = me()
 from utils import *
 # print(DiceType(0) in DiceType)
 
-dice = [7,5,5,0,1,2,3,4]
-sort_map = {i:DICENUM-i for i in range(DICENUM)}
-print(sort_map)
-so = sorted(dice, key=lambda x:sort_map[x])
-print(dice)
-idx = sorted(range(len(dice)), key=lambda x:sort_map[dice[x]])
-print(idx)
+# dice = [7,5,5,0,1,2,3,4]
+# sort_map = {i:DICENUM-i for i in range(DICENUM)}
+# print(sort_map)
+# so = sorted(dice, key=lambda x:sort_map[x], reverse=True)
+# print(so)
+# idx = sorted(range(len(dice)), key=lambda x:sort_map[dice[x]], reverse=True)
+# print(idx)
+so = [7]
+dice = [7,7,1]
+print(dice.count(7))

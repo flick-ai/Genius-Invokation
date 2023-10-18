@@ -24,9 +24,10 @@ class Vanarana_Entity(Support):
                 return
             else:
                 sort_map = self.sort_dice(self.from_player.dice_zone.space)
-                sorted_dices = sorted(dices, key=lambda x:sort_map[x], reverse=True)
-            for dice in dices:
-                self.dice.append(dice)
+                dices_idx = sorted(range(len(dices)), key=lambda x:sort_map[dices[x]], reverse=True)
+            for idx in dices_idx:
+                self.from_player.dice_zone.remove([idx])
+                self.dice.append(dices[idx])
                 if len(self.dice) == self.max_count:
                     return
 
