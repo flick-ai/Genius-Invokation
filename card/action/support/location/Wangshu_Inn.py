@@ -21,12 +21,12 @@ class Wangshu_Inn_Entity(Support):
     def on_end(self, game:'GeniusGame'):
         if game.active_player_index == self.from_player.index:
             injured = np.zeros(2)
-            standby_charcater = get_my_standby_character(game)
+            standby_character = get_my_standby_character(game)
             for idx, character in enumerate():
                 injured[idx] = character.max_health_point - character.health_point
             max_injured = injured.argmax()
             if injured.max() > 0:
-                standby_charcater[max_injured].heal(heal=2)
+                standby_character[max_injured].heal(heal=2)
                 self.usage -= 1
                 if self.usage == 0:
                     self.on_destroy(game)

@@ -1,12 +1,9 @@
 from card.character.base import NormalAttack, ElementalSkill, ElementalBurst
 from entity.character import Character
-from game.game import GeniusGame
 from utils import *
 from entity.summon import Summon
 from event.damage import Damage
 from typing import TYPE_CHECKING, List, Tuple
-
-from utils import GeniusGame
 
 if TYPE_CHECKING:
     from game.game import GeniusGame
@@ -45,7 +42,7 @@ class Oz(Summon):
                 Entity在被移除时, 调用on_destroy移除监听并执行对应的移除操作(在对应区域中移除此entity等)
             '''
             self.on_destroy(game)
-    
+
     def update(self):
         self.current_usage = self.usage
 
@@ -144,14 +141,14 @@ class Nightrider(ElementalSkill):
         '''
         summon = self.from_character.from_player.summons_zone.has_entity(Oz)
         if summon is None:
-            summon = Oz(game=game, 
-                    from_player=self.from_character.from_player, 
+            summon = Oz(game=game,
+                    from_player=self.from_character.from_player,
                     from_character=self.from_character)
             self.from_character.from_player.summons_zone.add_entity(summon)
         else:
             summon.update()
-        
-    def on_call(self, game: GeniusGame):
+
+    def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         self.resolve_damage(game)
         self.generate_summon(game)
@@ -167,7 +164,7 @@ class MidnightPhantasmagoria(ElementalBurst):
     '''
     id: int = 2
     type: SkillType = SkillType.ELEMENTAL_BURST
-    
+
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
     main_damage_element: ElementType = ElementType.ELECTRO
     main_damage: int = 4
@@ -183,12 +180,12 @@ class MidnightPhantasmagoria(ElementalBurst):
     energy_cost: int = 3
     energy_gain: int = 0
 
-    def on_call(self, game: GeniusGame):
+    def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         self.consume_energy(game)
         self.resolve_damage(game)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
-    
+
 
 class Fischl(Character):
     '''菲谢尔'''
