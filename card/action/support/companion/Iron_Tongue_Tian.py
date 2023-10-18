@@ -24,8 +24,8 @@ class Iron_Tongue_Tian_Entity(Support):
                character.power += 1
                self.usage -= 1
             else:
-                for charater in get_my_standby_character(game):
-                    if character.powe != character.max_power:
+                for character in get_my_standby_character(game):
+                    if character.power != character.max_power:
                         character.power += 1
                         self.usage -= 1
                         break
