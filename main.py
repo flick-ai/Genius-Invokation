@@ -7,7 +7,7 @@ from utils import *
 
 deck1 = {
     'character': ['Ningguang', 'Nahida', 'Keqing'],
-    'action_card': ['Lightning_Stiletto' for i in range(30)]
+    'action_card': ['Liyue_Harbor_Wharf' for i in range(30)]
 }
 deck2 = {
     'character': ['Fischl', 'Nahida', 'Yoimiya'],

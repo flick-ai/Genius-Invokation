@@ -2,7 +2,7 @@ from utils import *
 from ..base import SupportCard
 from typing import TYPE_CHECKING
 from entity.support import Support
-
+from loguru import logger
 if TYPE_CHECKING:
     from game.game import GeniusGame
     from game.player import GeniusPlayer
@@ -21,7 +21,9 @@ class Paimon_Entity(Support):
         if game.active_player_index == self.from_player.index:
             self.from_player.dice_zone.add([DiceType.OMNI.value, DiceType.OMNI.value,])
             self.usage -= 1
+            logger.info(f"Paimon:{self.from_player.dice_zone.num()},剩余使用次数{self.usage}")
             if self.usage == 0:
+                logger.info(f"Paimon Destroy")
                 self.on_destroy(game)
 
     def update_listener_list(self):

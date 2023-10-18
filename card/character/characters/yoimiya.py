@@ -149,7 +149,6 @@ class Ryuukin_Saxifrage(ElementalBurst):
 
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
-        game.manager.invoke(EventType.ON_USE_SKILL, game)
         self.consume_energy(game)
         # 处理伤害
         self.resolve_damage(game)
