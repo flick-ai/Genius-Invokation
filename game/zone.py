@@ -277,14 +277,15 @@ class SupportZone:
     def __init__(self, game: 'GeniusGame', player: 'GeniusPlayer') -> None:
         self.space: List[Support] = []
 
+    def check_full(self):
+        return len(self.space) == MAX_SUPPORT
+
     def destroy(self, entity: 'Support'):
-        for idx, exist in enumerate(self.space):
-            if entity == exist:
-                self.space.pop(idx)
-                return
+        idx = self.space.index(entity)
+        self.space.pop(idx)
 
     def add_entity(self, entity, idx):
-        if len(self.space) == MAX_SUPPORT:
+        if self.check_full():
             # 如果支援区已经满了
             self.space[idx].destroy()
         self.space.append(entity)

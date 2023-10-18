@@ -8,42 +8,33 @@ if TYPE_CHECKING:
     from game.player import GeniusPlayer
 
 
-class Hanachirusato_Entity(Support):
-    id: int = 322013
-    name = 'Hanachirusato'
+class Kid_Kujirai_Entity(Support):
+    id: int = 322014
+    name = 'Kid Kujirai'
     max_usage = -1
-    max_count = 3
+    max_count = -1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.cleansing_ritual_progress = 0
 
-    def on_remove(self, game:'GeniusGame'):
-        self.cleansing_ritual_progress += 1
-
-    def on_calculate(self, game:'GeniusGame'):
+    def on_begin(self, game:'GeniusGame'):
         if game.active_player_index == self.from_player.index:
-            if game.current_dice.use_type == ActionCardType.EQUIPMENT_WEAPON or game.current_dice.use_type == ActionCardType.EQUIPMENT_ARTIFACT:
-                if self.cleansing_ritual_progress == self.max_count:
-                    if game.current_dice.cost[0]['cost_num'] > 0:
-                        game.current_dice.cost[0]['cost_num'] = max(0, game.current_dice.cost[0]['cost_num']-2)
-                        return True
-        return False
-
-    def on_play(self, game:'GeniusGame'):
-        if self.on_calculate(game):
-            self.on_destroy(game)
+            self.from_player.dice_zone.add([DiceType.OMNI.value])
+            opponent = get_opponent(game)
+            if not opponent.support_zone.check_full():
+                self.from_player.support_zone.destroy(self)
+                opponent.support_zone.add_entity(self, -1)
+                self.from_player = opponent
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.CALCULATE_DICE, ZoneType.SUPPORT_ZONE, self.on_calculate),
-            (EventType.ON_PLAY_CARD, ZoneType.SUPPORT_ZONE, self.on_play),
-            (EventType.ON_SUMMON_REMOVE, ZoneType.SUPPORT_ZONE, self.on_remove)
+            (EventType.BEGIN_ACTION_PHASE, ZoneType.SUPPORT_ZONE, self.on_begin),
         ]
 
 
 class Kid_Kujirai(SupportCard):
     '''
-        花散里
+        鲸井小弟
     '''
     id: int = 322014
     name: str = 'Kid Kujirai'
@@ -56,5 +47,5 @@ class Kid_Kujirai(SupportCard):
         self.entity = None
 
     def on_played(self, game: 'GeniusGame') -> None:
-        self.entity = Hanachirusato_Entity(game, from_player=game.active_player)
+        self.entity = Kid_Kujirai_Entity(game, from_player=game.active_player)
         super().on_played(game)

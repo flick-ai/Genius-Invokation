@@ -33,7 +33,8 @@ class Chef_Mao_Entity(Support):
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.BEGIN_ACTION_PHASE, ZoneType.SUPPORT_ZONE, self.on_begin)
+            (EventType.BEGIN_ACTION_PHASE, ZoneType.SUPPORT_ZONE, self.on_begin),
+            (EventType.AFTER_PLAY_CARD, ZoneType.SUPPORT_ZONE, self.on_after)
         ]
 
 class Chef_Mao(SupportCard):
