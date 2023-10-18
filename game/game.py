@@ -103,7 +103,7 @@ class GeniusGame:
 
         self.check_dying() # TODO: Not Implement yet.
 
-    def suffer_current_damage(self):
+    def suffer_current_damage(self, game:'GeniusGame'):
         target = self.current_damage.damage_to
         main_dmg = self.current_damage.main_damage
         main_dmg_ele = self.current_damage.main_damage_element
@@ -252,6 +252,7 @@ class GeniusGame:
                 message[player][character.name] = {}
                 message[player][character.name]['active'] = character.is_active
                 message[player][character.name]['alive'] = character.is_alive
+                message[player][character.name]['character_zone'] = character.character_zone.status_list
 
             # message[player]['summon_zone'] = [summon.name for summon in self.players[player].summons_zone.space]
         return message

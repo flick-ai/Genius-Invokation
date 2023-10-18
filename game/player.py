@@ -115,7 +115,8 @@ class GeniusPlayer:
             self.character_list[self.active_idx].is_active = False
         self.active_idx = idx
         self.character_list[self.active_idx].is_active = True
-        self.is_after_change = True
+        # self.is_after_change = True
+        self.character_list[self.active_idx].on_switched_to()
 
     def change_to_previous_character(self):
         '''
@@ -139,9 +140,10 @@ class GeniusPlayer:
         '''
             标准行动: 使用技能
         '''
-        self.use_dice(game)
         idx = game.current_action.choice_idx
-        skill =  self.character_list[self.active_idx].skills[idx]
+        skill = self.character_list[self.active_idx].skills[idx]
+        skill.before_use_skill(game)
+        self.use_dice(game)
         game.current_dice = Dice(from_player=self,
                                  from_character=self.character_list[self.active_idx],
                                  use_type=skill.type,

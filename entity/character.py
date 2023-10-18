@@ -35,7 +35,7 @@ class Character(Entity):
     # init_state: list() # 初始状态
     def init_state(self, game: 'GeniusGame'):
         '''
-            游戏开始时的被动技能触发
+            游戏开始时的被动技能
         '''
         pass
 
@@ -50,6 +50,13 @@ class Character(Entity):
         '''
         for skill in self.skills:
             skill.usage_this_round = 0
+
+    def on_switched_to(self):
+        '''
+            被切换到时调用
+        '''
+        self.from_player.is_after_change = True
+        
 
     def update_listener_list(self):
         self.listeners = [
