@@ -97,8 +97,8 @@ class GeniusPlayer:
             if is_different:
                 return np.random.choice(DICENUM-1, num, replace=False).tolist()
             return np.random.randint(0, DICENUM-1, num).tolist()
-        return np.random.randint(0, DICENUM, num).tolist()
-
+        # return np.random.randint(0, DICENUM, num).tolist()
+        return  [7 for i in range(num)]
 
     def get_card(self, num):
         '''
