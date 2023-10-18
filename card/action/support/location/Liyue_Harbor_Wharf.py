@@ -2,6 +2,7 @@ from utils import *
 from ..base import SupportCard
 from typing import TYPE_CHECKING
 from entity.support import Support
+from loguru import logger
 
 if TYPE_CHECKING:
     from game.game import GeniusGame
@@ -15,12 +16,15 @@ class Liyue_Harbor_Wharf_Entity(Support):
     max_count = -1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
+        self.usage = self.max_usage
 
     def on_begin(self, game:'GeniusGame'):
         if game.active_player_index == self.from_player.index:
             self.from_player.get_card(num=2)
             self.usage -= 1
+            logger.info(f"Liyue_Harbor_Wharf:{self.from_player.hand_zone.num()},剩余使用次数{self.usage}")
             if self.usage == 0:
+                logger.info(f"Liyue_Harbor_Wharf Destroy")
                 self.on_destroy(game)
 
     def update_listener_list(self):

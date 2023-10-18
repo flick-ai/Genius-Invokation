@@ -116,7 +116,7 @@ class DiceZone:
             return True
 
         if dice.use_type == 'elemental tuning':
-            return self.dice_num - self.space[:, dice.cost[0]['cost_type'].value].sum() >= 0
+            return self.dice_num - self.space[:, dice.cost[0]['cost_type'].value].sum() > 0
         is_cost = 0
         for cost in dice.cost:
             if cost['cost_type'] == CostType.WHITE:
@@ -145,7 +145,7 @@ class DiceZone:
         if cost_type < 0:
             cost = CostType(-cost_type)
             for dice in choose_dice:
-                if DiceToCost[DiceType(dice)] == cost:
+                if DiceType(dice) == CostToDice[cost]:
                     return False
         else:
             cost = CostType(cost_type)

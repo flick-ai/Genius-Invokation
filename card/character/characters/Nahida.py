@@ -19,7 +19,7 @@ class Akara(NormalAttack):
     '''
     id: int = 0
     type: SkillType = SkillType.NORMAL_ATTACK
-
+    name = "Akara"
     # damage
     damage_type: SkillType = SkillType.NORMAL_ATTACK
     main_damage_element: ElementType = ElementType.DENDRO
@@ -58,6 +58,7 @@ class All_Schemes_to_Know(ElementalSkill):
         元素战技 1 小e
     '''
     id: int = 1
+    name='All Schemes to Know'
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
     #damage
@@ -117,6 +118,7 @@ class All_Schemes_to_Know_Tathata(ElementalSkill):
         元素战技 2 大e
     '''
     id: int = 2
+    name='All Schemes to Know: Tathata'
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
     # No damage
@@ -178,6 +180,7 @@ class Illusory_Heart(ElementalBurst):
         元素爆发
     '''
     id: int = 3
+    name='Illusory Heart'
     type: SkillType = SkillType.ELEMENTAL_BURST
 
     # damage
@@ -219,7 +222,7 @@ class Illusory_Heart(ElementalBurst):
 
 class Nahida(Character):
     '''纳西妲'''
-    id: int = 3
+    id: int = 1703
     name: str = 'Nahida'
     element: ElementType = ElementType.DENDRO
     weapon_type: WeaponType = WeaponType.CATALYST

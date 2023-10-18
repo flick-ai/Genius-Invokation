@@ -143,7 +143,7 @@ class PrepareScissors(Status):
         return super().on_destroy(game)
 
 
-        
+
 
 class RockPaperScissorsCambo(ElementalSkill):
     '''

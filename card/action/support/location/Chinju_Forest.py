@@ -22,6 +22,9 @@ class Chinju_Forest_Entity(Support):
             if game.first_player != self.from_player.index:
                 dice_type = ElementToDice[get_my_active_character(game).element]
                 self.from_player.dice_zone.add([dice_type.value])
+                self.usage -= 1
+                if self.usage == 0:
+                    self.on_destroy(self)
 
     def update_listener_list(self):
         self.listeners = [
