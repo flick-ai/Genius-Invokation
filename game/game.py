@@ -31,10 +31,10 @@ class GeniusGame:
         self.special_phase = None
         self.round: int = 0
 
-        self.current_dice: Dice
-        self.current_action: Action
-        self.current_damage: Damage
-        self.current_skill: CharacterSkill
+        self.current_dice: Dice = None
+        self.current_action: Action = None
+        self.current_damage: Damage = None
+        self.current_skill: CharacterSkill = None
         self.damage_list: List[Damage] = []
         self.is_change_player: bool
         self.is_end: bool = False
@@ -122,13 +122,14 @@ class GeniusGame:
 
     def check_dying(self):
         for player in self.players:
-            for char in player.character_list:
+            for idx, char in enumerate(player.character_list):
                 if char.health_point <= 0:
                     char.is_alive = False
                     self.manager.invoke("CHARACTER_DIE", self)
                     if not char.is_alive:
                         char.character_zone.clear() # TODO: Not Implement Yet.
-
+                    if player.active_idx == idx:
+                        Active_Die().on_call(self)
         #TODO: Not Implement yet.
         # pass
 
@@ -260,3 +261,17 @@ class GeniusGame:
     def change_active_player(self):
         self.active_player_index = 1 - self.active_player_index
         self.active_player = self.players[self.active_player_index]
+
+
+class Active_Die:
+    def __init__(self) -> None:
+        self.now_phase: GamePhase
+
+    def on_call(self, game: 'GeniusGame'):
+        self.now_phase = game.game_phase
+        game.game_phase = GamePhase.SET_CHARACTER
+        game.special_phase = self
+
+    def on_finished(self, game: 'GeniusGame'):
+        game.game_phase = self.now_phase
+        game.special_phase = None

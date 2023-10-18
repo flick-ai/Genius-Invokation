@@ -20,9 +20,9 @@ class Favonius_Cathedral_Entity(Support):
 
     def on_end(self, game:'GeniusGame'):
         if game.active_player_index == self.from_player.index:
-            activte_charcater = get_active_character(game)
-            if activte_charcater.health_point != activte_charcater.max_health_point:
-                activte_charcater.heal(heal=2)
+            activte_character = get_active_character(game)
+            if activte_character.health_point != activte_character.max_health_point:
+                activte_character.heal(heal=2)
                 self.usage -= 1
                 if self.usage == 0:
                     self.on_destroy(game)
