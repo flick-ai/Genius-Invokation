@@ -155,7 +155,7 @@ class DiceZone:
                 return True
             else:
                 for dice in choose_dice:
-                    if dice != CostToDice(cost).value:
+                    if dice != CostToDice[cost].value and dice != DiceType.OMNI.value:
                         return False
         return True
 
@@ -382,6 +382,8 @@ class HandZone:
         return self.card.pop(idx)
 
     def add(self, cards: List['ActionCard']):
+        if cards == []:
+            return
         for card in cards:
             if len(self.card)>= MAX_HANDCARD:
                 break
