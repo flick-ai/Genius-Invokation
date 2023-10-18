@@ -2,12 +2,9 @@ from card.character.base import NormalAttack, ElementalSkill, ElementalBurst
 from entity.character import Character
 from entity.entity import Entity
 from entity.summon import Summon
-from game.game import GeniusGame
-from game.player import GeniusPlayer
 from utils import *
 from typing import TYPE_CHECKING, List, Tuple
 
-from utils import GeniusGame, GeniusPlayer
 
 if TYPE_CHECKING:
     from game.game import GeniusGame
