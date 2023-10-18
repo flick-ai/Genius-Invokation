@@ -11,9 +11,9 @@ if TYPE_CHECKING:
     from game.action import Action
     from event.events import ListenerNode
     from game.player import GeniusPlayer
-    from event.damage import Damage
     from game.zone import CharacterZone
-
+    
+from event.damage import Damage
 from entity.status import Status
 
 class ElectroCrystalProjection(NormalAttack):
@@ -88,7 +88,7 @@ class PreparePaper(Status):
     '''
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
-        self.skill = RockPaperScissorsCombo_Paper()
+        self.skill = RockPaperScissorsCombo_Paper(from_character=from_character)
 
     def on_call(self, game: 'GeniusGame'):
         self.skill.on_call(game)
@@ -133,7 +133,7 @@ class PrepareScissors(Status):
     '''
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
-        self.skill = RockPaperScissorsCombo_Scissors()
+        self.skill = RockPaperScissorsCombo_Scissors(from_character=from_character)
 
     def on_call(self, game: 'GeniusGame'):
         self.skill.on_call(game)
@@ -175,7 +175,7 @@ class RockPaperScissorsCambo(ElementalSkill):
         # 获得能量
         self.gain_energy(game)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
-        prepare_scissors = PrepareScissors(game=game, 
+        prepare_scissors = PrepareScissors(game=game,
                                      from_player=self.from_character.from_player,
                                      from_character=self.from_character)
         self.from_character.character_zone.add_entity(prepare_scissors)
@@ -234,8 +234,8 @@ class ChainsOfWardingThunder(Summon):
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.ON_CHANGE_CHARACTER, ZoneType.SUMMON_ZONE, self.on_change)
-            (EventType.CALCULATE_DICE, ZoneType.SUMMON_ZONE, self.on_calculate)
+            (EventType.ON_CHANGE_CHARACTER, ZoneType.SUMMON_ZONE, self.on_change),
+            (EventType.CALCULATE_DICE, ZoneType.SUMMON_ZONE, self.on_calculate),
             (EventType.END_PHASE, ZoneType.SUMMON_ZONE, self.on_end_phase)
         ]
 
@@ -330,6 +330,6 @@ class ElectroHypostasis(Character):
                                                   from_character=self)
         self.character_zone.add_entity(electro_crystal_core)
 
-    def __init__(self, game: 'GeniusGame', character_zone: 'CharacterZone', from_player: 'GeniusPlayer', index: int, from_character=None, talent=False):
-        super().__init__(game, character_zone, from_player, index, from_character)
+    def __init__(self, game: 'GeniusGame', zone: 'CharacterZone', from_player: 'GeniusPlayer', index: int, from_character=None, talent=False):
+        super().__init__(game, zone, from_player, index, from_character)
         self.talent = talent
