@@ -60,6 +60,8 @@ class GeniusPlayer:
         self.roll_time: int = 1
         self.fix_dice = []
 
+        self.prepared_skill = None
+
         # Mask
         self.action_mask: np.array
 
