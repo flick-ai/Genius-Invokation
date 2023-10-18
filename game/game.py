@@ -127,11 +127,11 @@ class GeniusGame:
             for idx, char in enumerate(player.character_list):
                 if char.health_point <= 0:
                     char.is_alive = False
-                    self.manager.invoke("CHARACTER_DIE", self)
+                    self.manager.invoke(EventType.CHARACTER_DIE, self)
                     if not char.is_alive:
                         char.character_zone.clear() # TODO: Not Implement Yet.
-                    if player.active_idx == idx:
-                        Active_Die().on_call(self)
+                        if player.active_idx == idx:
+                            Active_Die(player).on_call(self)
         #TODO: Not Implement yet.
         # pass
 
@@ -265,21 +265,40 @@ class GeniusGame:
     def change_active_player(self):
         self.active_player_index = 1 - self.active_player_index
         self.active_player = self.players[self.active_player_index]
+        oppenent_player = self.players[1 - self.active_player_index]
         if self.active_player.prepared_skill is not None:
-            character = self.active_player.prepared_skill.from_charcater
+            character = self.active_player.prepared_skill.from_character
             if character.is_active and character.is_frozen:
-                self.active_player.prepared_skill.on_call()
+                self.active_player.prepared_skill.on_call(self)
+            if oppenent_player.is_pass:
+                while self.active_player.prepared_skill is not None:
+                    character = self.active_player.prepared_skill.from_character
+                    if character.is_active and character.is_frozen:
+                        self.active_player.prepared_skill.on_call(self)
+            else:
+                self.change_active_player()
+
 
 
 class Active_Die:
-    def __init__(self) -> None:
+    def __init__(self, player) -> None:
+        self.die_player = player
         self.now_phase: GamePhase
+        self.activate_player_index: int
 
     def on_call(self, game: 'GeniusGame'):
         self.now_phase = game.game_phase
         game.game_phase = GamePhase.SET_CHARACTER
+        self.activate_player_index = game.active_player_index
+        if game.active_player != self.die_player:
+            game.change_active_player()
         game.special_phase = self
+        game.active_player.generate_mask(game)
+        action = Action.from_input(game)
+        game.step(action)
 
     def on_finished(self, game: 'GeniusGame'):
         game.game_phase = self.now_phase
         game.special_phase = None
+        game.active_player_index = self.activate_player_index
+        game.active_player = game.players[game.active_player_index]
