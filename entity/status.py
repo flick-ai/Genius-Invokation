@@ -154,7 +154,7 @@ class Crystallize_Shield(Combat_Shield):
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.EXCUTE_DAMAGE, ZoneType.ACTIVE_ZONE, self.on_excuete_dmg)
+            (EventType.EXCUTE_DAMAGE, ZoneType.ACTIVE_ZONE_SHIELD, self.on_excuete_dmg)
         ]
 
 
