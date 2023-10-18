@@ -79,6 +79,7 @@ class RockPaperScissorsCombo_Paper(ElementalSkill):
         # 处理伤害
         self.resolve_damage(game)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
+        self.from_character.from_player.prepared_skill = None
 
 
 class PreparePaper(Status):
@@ -124,6 +125,7 @@ class RockPaperScissorsCombo_Scissors(ElementalSkill):
                                      from_player=self.from_character.from_player,
                                      from_character=self.from_character)
         self.from_character.character_zone.add_entity(prepare_paper)
+        self.from_character.from_player.prepared_skill = prepare_paper
 
 class PrepareScissors(Status):
     '''
@@ -173,11 +175,11 @@ class RockPaperScissorsCambo(ElementalSkill):
         # 获得能量
         self.gain_energy(game)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
-        prepare_paper = PrepareScissors(game=game,
+        prepare_scissors = PrepareScissors(game=game, 
                                      from_player=self.from_character.from_player,
                                      from_character=self.from_character)
-        self.from_character.character_zone.add_entity(prepare_paper)
-        self.from_character.from_player.prepared_skill = prepare_paper
+        self.from_character.character_zone.add_entity(prepare_scissors)
+        self.from_character.from_player.prepared_skill = prepare_scissors
 
 
 class ChainsOfWardingThunder(Summon):
@@ -267,7 +269,7 @@ class LightningLockdown(ElementalBurst):
         '''
             生成雷锁镇域
         '''
-        summon = self.from_character.from_player.summons_zone.has_entity(Oz)
+        summon = self.from_character.from_player.summons_zone.has_entity(ChainsOfWardingThunder)
         if summon is None:
             summon = ChainsOfWardingThunder(game=game,
                     from_player=self.from_character.from_player,
