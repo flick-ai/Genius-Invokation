@@ -100,7 +100,6 @@ class Damage:
         damage = game.current_damage
         targetplayer_id = 1 - game.active_player_index
         targetplayer = game.players[targetplayer_id]
-        defenderActiveZone = targetplayer.team_combat_status
         target_character = damage.damage_to
         target_index = target_character.index
         Reaction = None
@@ -227,11 +226,11 @@ class Damage:
         if Reaction is None:
             match damage.main_damage_element:
                 case ElementType.CRYO | ElementType.HYDRO | ElementType.PYRO | ElementType.ELECTRO:
-                    if not damage.main_damage_element in defenderActiveZone.character_list[target_index].elemental_application:
-                        defenderActiveZone.character_list[target_index].elemental_application.insert(0, damage.main_damage_element)
+                    if not damage.main_damage_element in target_character.elemental_application:
+                        target_character.elemental_application.insert(0, damage.main_damage_element)
                 case ElementType.DENDRO:
-                    if not damage.main_damage_element in defenderActiveZone.character_list[target_index].elemental_application:
-                        defenderActiveZone.character_list[target_index].elemental_application.append(damage.main_damage_element)
+                    if not damage.main_damage_element in target_character.elemental_application:
+                        target_character.elemental_application.append(damage.main_damage_element)
 
         self.reaction = Reaction
         self.swirl_crystallize_type = Swirl_Crystallize_type
