@@ -65,14 +65,18 @@ class Damage:
     def elemental_infusion(self, game: 'GeniusGame'):
         game.manager.invoke(EventType.INFUSION, game)
     def damage_add(self, game: 'GeniusGame'):
+        logger.debug(f"Before Damage Add: {game.current_damage.main_damage}")
+        # import ipdb; ipdb.set_trace()
         game.manager.invoke(EventType.DAMAGE_ADD, game)
+        logger.debug(f"After Damage Add: {game.current_damage.main_damage}")
+
     def damage_dealing(self, game: 'GeniusGame'):
         game.manager.invoke(EventType.DEALING_DAMAGE, game)
 
     def damage_excute(self, game: 'GeniusGame'):
-        logger.info(f"Before Damage Excute: {game.current_damage.main_damage}")
+        logger.debug(f"Before Damage Excute: {game.current_damage.main_damage}")
         game.manager.invoke(EventType.EXCUTE_DAMAGE, game)
-        logger.info(f"After Damage Excute: {game.current_damage.main_damage}")
+        logger.debug(f"After Damage Excute: {game.current_damage.main_damage}")
 
 
     def after_damage(self, game: 'GeniusGame'):
@@ -104,6 +108,8 @@ class Damage:
         targetplayer_id = 1 - game.active_player_index
         targetplayer = game.players[targetplayer_id]
         target_character = damage.damage_to
+        logger.info(target_character.name)
+        logger.info(target_character.elemental_application)
         target_index = target_character.index
         Reaction = None
         Swirl_Crystallize_type = None
@@ -246,7 +252,7 @@ class Damage:
             targetlist.remove(target_index)
             for id in targetlist:
                 if targetplayer.character_list[id].is_alive:
-                    dmg = self.create_damage(
+                    dmg = Damage.create_damage(
                         game,
                         SkillType.OTHER,
                         Swirl_Crystallize_type,

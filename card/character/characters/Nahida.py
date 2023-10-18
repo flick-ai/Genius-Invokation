@@ -294,7 +294,7 @@ class Shrine_of_Maya(Combat_Status):
                         sta.add_one_usage()
 
     def update_listener_list(self):
-        self.listener_list = [
+        self.listeners = [
             (EventType.DAMAGE_ADD, ZoneType.ACTIVE_ZONE, self.on_damage_add),
             (EventType.BEGIN_ACTION_PHASE, ZoneType.ACTIVE_ZONE, self.on_begin_phase)
         ]
@@ -315,6 +315,9 @@ class Seed_of_Skandha(Status):
         self.current_usage = max(self.max_usage, self.current_usage)
 
     def after_take_dmg(self, game: 'GeniusGame'):
+
+        if game.current_damage.reaction is None: return
+        if game.current_damage.damage_to.from_player != self.from_player: return
 
         reaction_target = game.current_damage.damage_to # Character
         if reaction_target!=self.from_character:
@@ -377,7 +380,7 @@ class Seed_of_Skandha(Status):
             self.on_destroy(game)
 
     def update_listener_list(self):
-        self.listener_list = [
+        self.listeners= [
             (EventType.AFTER_TAKES_DMG, ZoneType.CHARACTER_ZONE, self.after_take_dmg)
         ]
 

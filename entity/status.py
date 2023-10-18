@@ -81,9 +81,14 @@ class Frozen_Status(Status):
         self.usage = 1
         self.max_usage = 1
         self.current_usage = 1
+        self.from_character.is_frozen = True
 
     def update(self):
         self.current_usage = self.usage
+
+    def on_destroy(self, game):
+        super().on_destroy(game)
+        self.from_character.is_frozen = False
 
     def on_begin_phase(self, game: 'GeniusGame'):
         self.current_usage -= 1
@@ -165,8 +170,6 @@ class Crystallize_Shield(Combat_Shield):
             self.current_usage += 1
 
     def on_excuete_dmg(self,game: 'GeniusGame'):
-        import ipdb
-        ipdb.set_trace()
         if game.current_damage.damage_to.from_player == self.from_player:
             if game.current_damage.main_damage >= self.current_usage:
                 game.current_damage.main_damage -= self.current_usage

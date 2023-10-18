@@ -43,7 +43,7 @@ class Character(Entity):
         self.skills = []
         for skill in self.skill_list:
             self.skills.append(skill(self))
-    
+
     def on_begin(self, game: 'GeniusGame'):
         '''
             回合开始时, 刷新所有技能的使用次数
@@ -56,7 +56,7 @@ class Character(Entity):
             被切换到时调用
         '''
         self.from_player.is_after_change = True
-        
+
 
     def update_listener_list(self):
         self.listeners = [
@@ -72,11 +72,13 @@ class Character(Entity):
         self.talent: bool = False
         self.is_active: bool = False
         self.is_alive: bool = True
+        self.is_frozen: bool = True
         self.health_point = self.init_health_point
         self.power: int = 0 # 初始充能
         self.elemental_application: List['ElementType'] = []
         self.index: int = index
         super().__init__(game, from_player, from_character)
+        self.init_state(game)
 
     def heal(self, heal: int):
         self.health_point += heal

@@ -250,7 +250,7 @@ class Aurous_Blaze(Combat_Status):
                 main_damage_element=ElementType.PYRO,
                 main_damage=1,
                 piercing_damage=0,
-                damage_from=self.from_character,
+                damage_from=self,
                 damage_to=get_opponent_active_character(game),
                 is_plunging_attack=False,
                 is_charged_attack=False
