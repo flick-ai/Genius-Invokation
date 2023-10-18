@@ -190,7 +190,7 @@ class Illusory_Heart(ElementalBurst):
     cost = [
         {
             'cost_num': 3,
-            'cost_type': CostType.PYRO
+            'cost_type': CostType.DENDRO
         },
     ]
     energy_cost: int = 3
