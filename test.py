@@ -39,5 +39,12 @@ I = me()
 # print(isinstance(I, 'me'), isinstance(I, person))
 # print(-1%3)
 
-from utils import DiceType
-print(DiceType(0) in DiceType)
+from utils import *
+# print(DiceType(0) in DiceType)
+
+dice = [7,5,5,0,1,2,3,4]
+sort_map = {i:DICENUM-i for i in range(DICENUM)}
+so = sorted(dice, key=lambda x:sort_map[x])
+print(so)
+idx = sorted(range(len(dice)), key=lambda x:sort_map[dice[x]])
+print(idx)

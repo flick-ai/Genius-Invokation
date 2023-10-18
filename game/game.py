@@ -16,6 +16,8 @@ class GeniusGame:
     主游戏
     '''
     def __init__(self, player0_deck, player1_deck) -> None:
+        self.manager = EventManager()
+
         self.num_players = 3
         # self.seed = seed
         # np.random.seed(seed)
@@ -29,12 +31,11 @@ class GeniusGame:
         self.special_phase = None
         self.round: int = 0
 
-        self.manager = EventManager()
         self.current_dice: Dice
         self.current_action: Action
         self.current_damage: Damage
         self.current_skill: CharacterSkill
-        self.damage_list: List[Damage]
+        self.damage_list: List[Damage] = []
         self.is_change_player: bool
         self.is_end: bool = False
 
@@ -94,7 +95,7 @@ class GeniusGame:
         self.damage_list.append(damage)
 
     def resolve_damage(self):
-        while len(self.damage_list >0):
+        while len(self.damage_list) >0:
             self.current_damage = self.damage_list.pop(0)
             self.current_damage.on_damage(self)
             del(self.current_damage)

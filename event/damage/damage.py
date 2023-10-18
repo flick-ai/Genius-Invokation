@@ -5,11 +5,11 @@ from event.Elemental_Reaction import *
 if TYPE_CHECKING:
     from game.game import GeniusGame
 
-    
+
 class Damage:
     # 伤害基本类
-    def __init__(self, damage_type: 'SkillType', main_damage_element: 'ElementType', 
-                 main_damage: int, piercing_damage: int, 
+    def __init__(self, damage_type: 'SkillType', main_damage_element: 'ElementType',
+                 main_damage: int, piercing_damage: int,
                  damage_from: 'Entity', damage_to: 'Character',
                  is_plunging_attack: bool=False, is_charged_attack: bool=False) -> None:
         self.damage_type: SkillType = damage_type
@@ -25,12 +25,12 @@ class Damage:
         self.reaction: ElementalReactionType = None
         self.swirl_crystallize_type: ElementType = None
         # self.target_idx_bias: int = 0  # The target index is active_idx + target_idx_bias, which therefore, can be defaultly 0.
-    
+
 
     @classmethod
     def create_damage(cls, game: 'GeniusGame',
-                      damage_type: 'SkillType', main_damage_element: 'ElementType', 
-                      main_damage: int, piercing_damage: int, 
+                      damage_type: 'SkillType', main_damage_element: 'ElementType',
+                      main_damage: int, piercing_damage: int,
                       damage_from: 'Entity', damage_to: 'Entity',
                       is_plunging_attack: bool=False, is_charged_attack: bool=False):
         dmg = cls(damage_type, main_damage_element, main_damage, piercing_damage, is_plunging_attack, is_charged_attack)
@@ -38,20 +38,20 @@ class Damage:
 
     # @staticmethod
     # def resolve_damage(game: 'GeniusGame',
-    #                 damage_type: 'SkillType', main_damage_element: 'ElementType', 
+    #                 damage_type: 'SkillType', main_damage_element: 'ElementType',
     #                 main_damage: int, piercing_damage: int,
     #                 damage_from: 'Entity', damage_to: 'Entity',
-    #                 is_plunging_attack: bool=False, is_charged_attack: bool=False):    
-    #     dmg = Damage.create_damage(game, damage_type, main_damage_element, 
-    #                          main_damage, piercing_damage, 
-    #                          damage_from, damage_to, 
+    #                 is_plunging_attack: bool=False, is_charged_attack: bool=False):
+    #     dmg = Damage.create_damage(game, damage_type, main_damage_element,
+    #                          main_damage, piercing_damage,
+    #                          damage_from, damage_to,
     #                          is_plunging_attack, is_charged_attack)
     #     game.damage_list.append(dmg)
         # game.current_damage.elemental_infusion(game)
         # game.current_damage.cal_damage(game)
         # game.current_damage.execute_damage(game)
         # game.current_damage.after_damage(game)
-    
+
     def on_damage(self, game: 'GeniusGame'):
         self.elemental_infusion(game)
         self.elemental_reaction(game)
@@ -87,7 +87,7 @@ class Damage:
         '''
         self.elemental_reaction(game)
         # TODO: 可能产生新的独立伤害（扩散), 这一部分需要在当前伤害结算完毕后再进行
-        
+
         # 伤害加算
         '''
         '''
@@ -98,11 +98,11 @@ class Damage:
         It will update game.current_damage, .
         '''
         damage = game.current_damage
-        targetplayer_id = 1 - game.active_player
+        targetplayer_id = 1 - game.active_player_index
         targetplayer = game.players[targetplayer_id]
         defenderActiveZone = targetplayer.team_combat_status
         target_character = damage.damage_to
-        target_index = target_character.index
+        target_index = target_character.idx
         Reaction = None
         Swirl_Crystallize_type = None
 
@@ -119,7 +119,7 @@ class Damage:
 
 
         targetAttachElement = target_character.elemental_application[0]
-    
+
         match damage.main_damage_element:
             case ElementType.CRYO: # 冰
                 match targetAttachElement:
@@ -157,7 +157,7 @@ class Damage:
                         Reaction = ElementalReactionType.Bloom
             case ElementType.PYRO: # 火
                 match targetAttachElement:
-                    case ElementType.CRYO: 
+                    case ElementType.CRYO:
                         game.current_damage.main_damage += 2
                         Melt(game, targetplayer_id, target_index)
                         Reaction = ElementalReactionType.Frozen
@@ -194,7 +194,7 @@ class Damage:
                         game.current_damage.main_damage += 1
                         Quicken(game, targetplayer_id, target_index)
                         Reaction = ElementalReactionType.Quicken
-                
+
             case ElementType.DENDRO: # 草
                 match targetAttachElement:
                     case ElementType.HYDRO:
@@ -209,7 +209,7 @@ class Damage:
                         game.current_damage.main_damage += 1
                         Quicken(game, targetplayer_id, target_index)
                         Reaction = ElementalReactionType.Quicken
-            
+
             case ElementType.ANEPMO: # 风
                 match targetAttachElement:
                     case ElementType.CRYO | ElementType.HYDRO | ElementType.PYRO | ElementType.ELECTRO:
@@ -234,18 +234,18 @@ class Damage:
                         defenderActiveZone.character_list[target_index].elemental_application.append(damage.main_damage_element)
 
         self.reaction = Reaction
-        self.swirl_crystallize_type = Swirl_Crystallize_type 
+        self.swirl_crystallize_type = Swirl_Crystallize_type
 
         if self.reaction == ElementalReactionType.Swirl:
             targetlist = []
             for id in range(targetplayer.character_num):
                 targetlist.append((id + targetplayer.active_idx)%targetplayer.character_num)
-            
+
             targetlist.remove(target_index)
             for id in targetlist:
                 if targetplayer.character_list[id].is_alive:
                     dmg = self.create_damage(
-                        game, 
+                        game,
                         SkillType.OTHER,
                         Swirl_Crystallize_type,
                         1,

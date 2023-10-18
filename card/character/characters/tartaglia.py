@@ -110,7 +110,7 @@ class MeleeStance(Status):
         self.listeners = [
             (EventType.AFTER_USE_SKILL, ZoneType.CHARACTER_ZONE, self.on_after_use_skill),
             (EventType.ON_USE_SKILL, ZoneType.CHARACTER_ZONE, self.on_use_skill),
-            (EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, self.on_damage_add)
+            (EventType.END_PHASE, ZoneType.CHARACTER_ZONE, self.on_end_phase),
         ]
 
 
@@ -278,7 +278,7 @@ class FoulLegacy_RagingTide(ElementalSkill):
 
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
-        
+
         # 切换为近战状态,在主伤害打出前
         self.add_status(game)
         # 处理伤害
