@@ -33,7 +33,7 @@ class Damage:
                       main_damage: int, piercing_damage: int,
                       damage_from: 'Entity', damage_to: 'Entity',
                       is_plunging_attack: bool=False, is_charged_attack: bool=False):
-        dmg = cls(damage_type, main_damage_element, main_damage, piercing_damage, is_plunging_attack, is_charged_attack)
+        dmg = cls(damage_type, main_damage_element, main_damage, piercing_damage, damage_from, damage_to, is_plunging_attack, is_charged_attack)
         return dmg
 
     # @staticmethod
@@ -102,7 +102,7 @@ class Damage:
         targetplayer = game.players[targetplayer_id]
         defenderActiveZone = targetplayer.team_combat_status
         target_character = damage.damage_to
-        target_index = target_character.idx
+        target_index = target_character.index
         Reaction = None
         Swirl_Crystallize_type = None
 

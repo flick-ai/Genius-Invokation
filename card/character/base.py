@@ -4,6 +4,8 @@ from event.damage import Damage
 from event.heal import Heal
 from entity.entity import Entity
 
+from loguru import logger
+
 
 if TYPE_CHECKING:
     from game.game import GeniusGame
@@ -58,17 +60,24 @@ class CharacterSkill:
     def add_status(self, game: 'GeniusGame'):
         pass
 
+    def before_use_skill(self, game: 'GeniusGame'):
+        pass
+
     def on_call(self, game: 'GeniusGame'):
         game.current_skill = self
         self.usage_this_round += 1
 
 class NormalAttack(CharacterSkill):
 
+    def before_use_skill(self, game: 'GeniusGame'):
+        self.is_plunging_attack = self.from_character.from_player.is_after_change
+        self.is_charged_attack = self.from_character.from_player.dice_zone.dice_num % 2 == 0
+        logger.info(f'is_plunging_attack: {self.is_plunging_attack}')
+        logger.info(f'is_charged_attack: {self.is_charged_attack}')
+
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         # TODO: 判断是否为重击
-        self.is_plunging_attack = self.from_character.from_player.is_after_change
-        self.is_charged_attack = self.from_character.from_player.dice_zone.dice_num % 2 == 0
 
         game.manager.invoke(EventType.ON_USE_SKILL, game)
 

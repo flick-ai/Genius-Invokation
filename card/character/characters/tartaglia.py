@@ -55,8 +55,8 @@ class MeleeStance(Status):
             用于在使用技能后，判断角色是否有断流
             目前on_use_skill仅用于达达利亚
         '''
-        active_index = game.players[game.active_player].active_idx
-        if self.from_character == game.players[game.active_player].character_list[active_index]:
+        active_index = game.active_player.active_idx
+        if self.from_character == game.active_player.character_list[active_index]:
             opponent = get_opponent_active_character(game)
             if opponent.character_zone.has_entity(Riptide) is not None:
                 '''
@@ -128,8 +128,11 @@ class Riptide(Status):
             更新需要监听的事件, 在init时会调用并自动监听
         '''
         self.listeners = [
-            (EventType.AFTER_CHANGE_CHARACTER, ZoneType.CHARACTER_ZONE, self.on_switch_character)
+            (EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, self.on_damage_add),
+            (EventType.CHARACTER_DIE, ZoneType.CHARACTER_ZONE, self.on_character_die),
+            (EventType.END_PHASE, ZoneType.CHARACTER_ZONE, self.on_end_phase)
         ]
+
 
     def on_damage_add(self, game: 'GeniusGame'):
         '''
@@ -221,18 +224,20 @@ class CuttingTorrent(NormalAttack):
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         # 处理伤害
+        # 记录一下target
+        target = get_opponent_active_character(game)
         self.resolve_damage(game)
 
         # 如果达达利亚的攻击为重击：对目标角色附属断流
         if self.is_charged_attack:
 
-            # 如果目标角色没有附属断流，则附属断流
-            status = game.current_damage.damage_to.character_zone.has_entity(Riptide)
-            if not status:
-                riptide = Riptide(game=game,
-                                  from_player=game.current_damage.damage_to.from_player,
-                                  from_character=game.current_damage.damage_to)
-                game.current_damage.damage_to.character_zone.add_entity(riptide)
+            if target.is_alive:
+                status = target.character_zone.has_entity(Riptide)
+                if not status:
+                    riptide = Riptide(game=game,
+                                    from_player=target.from_player,
+                                    from_character=target)
+                    target.character_zone.add_entity(riptide)
 
         # 获得能量
         self.gain_energy(game)
@@ -281,8 +286,18 @@ class FoulLegacy_RagingTide(ElementalSkill):
 
         # 切换为近战状态,在主伤害打出前
         self.add_status(game)
+        # 记录一下target
+        target = get_opponent_active_character(game)
         # 处理伤害
         self.resolve_damage(game)
+        # 使目标角色附属断流
+        if target.is_alive:
+            status = target.character_zone.has_entity(Riptide)
+            if not status:
+                riptide = Riptide(game=game,
+                                  from_player=target.from_player,
+                                  from_character=target)
+                target.character_zone.add_entity(riptide)
         # 获得能量
         self.gain_energy(game)
         # after skill
