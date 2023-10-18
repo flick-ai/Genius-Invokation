@@ -141,10 +141,14 @@ class ChainsOfWardingThunder(Summon):
     '''
         雷锁镇域
     '''
+    name: str = 'Oz'
+    element: ElementType = ElementType.ELECTRO
+    usage: int = 2
+    max_usage: int = 2
+
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
-        self.usage = 2
-        self.max_usage = 2
+        self.current_usage = self.usage
         self.used_this_round = True
 
 class LightningLockdown(ElementalBurst):
