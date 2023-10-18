@@ -54,11 +54,22 @@ class Combat_Shield(Shield):
         super().__init__(game, from_player, from_character)
     def on_destroy(self, game):
         self.from_player.team_combat_status.remove_entity(self)
-class Equipment(Status):
+class Equipment(Entity):
     pass
 
 class Weapon(Equipment):
-    pass
+    # 武器实体
+    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: "Character"= None, weapon_card: 'WeaponCard' = None):
+        super().__init__(game, from_player, from_character)
+        self.weapon_card = weapon_card
+
+    def on_destroy(self, game):
+        super().on_destroy(game)
+        self.from_character.character_zone.weapon_card = None
+
+    def get_weapon_card(self, game: 'GeniusGame'):
+        self.on_destroy(game)
+        return self.weapon_card
 
 class Artifact(Equipment):
     pass
