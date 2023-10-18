@@ -55,6 +55,11 @@ class ElectroCrystalProjection(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 
+class PrepareScissors(ElementalSkill):
+    '''
+
+    '''
+
 class RockPaperScissorsCombo_Scissors(ElementalSkill):
     '''
         猜拳三连击·剪刀
@@ -130,11 +135,12 @@ class RockPaperScissorsCambo(ElementalSkill):
 
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
-        # 消耗能量
-        self.consume_energy(game)
         # 处理伤害
         self.resolve_damage(game)
+        # 获得能量
+        self.gain_energy(game)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
+        self.from_character.prepared_skill = 
 
 
 class ChainsOfWardingThunder(Summon):
@@ -156,6 +162,32 @@ class LightningLockdown(ElementalBurst):
         元素爆发
         雳霆镇锁
     '''
+    id: int = 2
+    type: SkillType = SkillType.ELEMENTAL_BURST
+
+    # damage
+    damage_type: SkillType = SkillType.ELEMENTAL_BURST
+    main_damage_element: ElementType = ElementType.ELECTRO
+    main_damage: int = 2
+    piercing_damage: int = 0
+
+    # cost
+    cost = [
+        {
+            'cost_num': 3,
+            'cost_type': CostType.ELECTRO
+        }
+    ]
+    energy_cost: int = 2
+    energy_gain: int = 0
+
+    def on_call(self, game: 'GeniusGame'):
+        super().on_call(game)
+        # 消耗能量
+        self.consume_energy(game)
+        # 处理伤害
+        self.resolve_damage(game)
+        game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class ElectroCrystalCore(Status):
     '''
@@ -186,7 +218,7 @@ class ElectroHypostasis(Character):
     country: CountryType = CountryType.MONSTER
     init_health_point: int = 8
     max_health_point: int = 8
-    skill_list: List = [NormalAttack, ElementalSkill, ElementalBurst]
+    skill_list: List = [ElectroCrystalProjection, RockPaperScissorsCambo, LightningLockdown]
 
     max_power: int = 2
 
@@ -202,3 +234,4 @@ class ElectroHypostasis(Character):
     def __init__(self, game: 'GeniusGame', character_zone: 'CharacterZone', from_player: 'GeniusPlayer', index: int, from_character=None, talent=False):
         super().__init__(game, character_zone, from_player, index, from_character)
         self.talent = talent
+        self.prepared_skill = None
