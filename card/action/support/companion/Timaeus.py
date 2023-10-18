@@ -19,7 +19,7 @@ class Timaeus_Entity(Support):
         self.transmutation_material = 2
 
     def on_calculate(self, game:'GeniusGame'):
-        if game.active_player_index == self.from_player.idx:
+        if game.active_player_index == self.from_player.index:
             if game.current_dice.use_type == ActionCardType.EQUIPMENT_ARTIFACT:
                 if self.usage > 0:
                     if game.current_dice.cost[0]['cost_num'] > 0 and game.current_dice.cost[0] <= self.transmutation_material:
@@ -34,11 +34,11 @@ class Timaeus_Entity(Support):
             self.transmutation_material -= use
 
     def on_begin(self, game:'GeniusGame'):
-        if game.active_player_index == self.from_player.idx:
+        if game.active_player_index == self.from_player.index:
             self.usage = self.max_usage
 
     def on_end(self, game:'GeniusGame'):
-        if game.active_player_index == self.from_player.idx:
+        if game.active_player_index == self.from_player.index:
             self.transmutation_material += 1
 
     def update_listener_list(self):

@@ -19,7 +19,7 @@ class Wangshu_Inn_Entity(Support):
         self.usage = self.max_usage
 
     def on_end(self, game:'GeniusGame'):
-        if game.active_player_index == self.from_player.idx:
+        if game.active_player_index == self.from_player.index:
             injured = np.zeros(2)
             standby_charcater = get_my_standby_character(game)
             for idx, character in enumerate():

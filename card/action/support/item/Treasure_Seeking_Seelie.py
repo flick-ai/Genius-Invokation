@@ -18,7 +18,7 @@ class Treasure_Seeking_Seelie_Entity(Support):
         self.treasure_clues = 0
 
     def on_after(self, game:'GeniusGame'):
-        if game.active_player_index == self.from_player.idx:
+        if game.active_player_index == self.from_player.index:
             self.treasure_clues += 1
             if self.treasure_clues == self.max_count:
                 self.from_player.get_card(num=3)

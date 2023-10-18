@@ -17,7 +17,7 @@ class Knights_of_Favonius_Library_Entity(Support):
         super().__init__(game, from_player, from_character)
 
     def on_begin(self, game:'GeniusGame'):
-        if game.active_player_index == self.from_player.idx:
+        if game.active_player_index == self.from_player.index:
             self.from_character.roll_time += 1
 
     def update_listener_list(self):

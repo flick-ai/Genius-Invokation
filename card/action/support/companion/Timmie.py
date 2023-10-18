@@ -18,13 +18,13 @@ class Timmie_Entity(Support):
         self.pigeon = 1
 
     def on_begin(self, game:'GeniusGame'):
-        if game.active_player_index == self.from_player.idx:
+        if game.active_player_index == self.from_player.index:
             self.pigeon += 1
             if self.pigeon == self.max_usage:
                 self.from_player.dice_zone.add([DiceType.OMNI.value])
                 self.from_player.get_card(num=1)
                 self.on_destroy(game)
-                
+
     def update_listener_list(self):
         self.listeners = [
             (EventType.BEGIN_ACTION_PHASE, ZoneType.SUPPORT_ZONE, self.on_begin),

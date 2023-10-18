@@ -22,7 +22,7 @@ class Liben_Entity(Support):
 
 
     def on_begin(self, game:'GeniusGame'):
-        if game.active_player_index == self.from_player.idx:
+        if game.active_player_index == self.from_player.index:
             if len(self.dice) == 3:
                 self.from_player.get_card(num=2)
                 self.from_player.dice_zone.add([DiceType.OMNI.value, DiceType.OMNI.value])

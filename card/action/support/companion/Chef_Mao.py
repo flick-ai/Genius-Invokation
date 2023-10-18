@@ -19,7 +19,7 @@ class Chef_Mao_Entity(Support):
         self.usage_game = self.max_usage
 
     def on_after(self, game:'GeniusGame'):
-        if game.active_player_index == self.from_player.idx:
+        if game.active_player_index == self.from_player.index:
             if game.current_dice.use_type == ActionCardType.EVENT_FOOD:
                 if self.usage_round > 0:
                     self.from_player.dice_zone.add(self.from_player.roll_dice(num=1, is_basic=True))
@@ -28,7 +28,7 @@ class Chef_Mao_Entity(Support):
                     self.from_player.hand_zone.add([card])
 
     def on_begin(self, game:'GeniusGame'):
-        if game.active_player_index == self.from_player.idx:
+        if game.active_player_index == self.from_player.index:
             self.usage_round = self.max_usage
 
     def update_listener_list(self):

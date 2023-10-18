@@ -17,7 +17,7 @@ class Jade_Chamber_Entity(Support):
         super().__init__(game, from_player, from_character)
 
     def on_begin(self, game:'GeniusGame'):
-        if game.active_player_index == self.from_player.idx:
+        if game.active_player_index == self.from_player.index:
             dice_type = ElementToDice[get_my_active_character(game).element]
             self.from_player.fix_dice.append([dice_type.value, dice_type.value,])
 

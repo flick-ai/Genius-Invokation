@@ -22,7 +22,7 @@ if TYPE_CHECKING:
 class GeniusPlayer:
     def __init__(self, game: 'GeniusGame', deck, idx) -> None:
         # 初始化角色状态区
-        self.idx = idx
+        self.index = idx
         self.active_idx = -1
         self.character_list: List[Character] = []
         for id, name in enumerate(deck['character']):
