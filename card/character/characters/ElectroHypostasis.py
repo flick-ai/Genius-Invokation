@@ -208,7 +208,7 @@ class ElectroHypostasis(Character):
 
     max_power: int = 2
 
-    def init_state(self, game: GeniusGame):
+    def init_state(self, game: 'GeniusGame'):
         '''
             被动技能: 战斗开始时, 初始附属雷晶核心
         '''
