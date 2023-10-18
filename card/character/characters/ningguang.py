@@ -18,6 +18,7 @@ class Sparkling_Scatter(NormalAttack):
     普通攻击
     '''
     id: int = 0
+    name = "Sparkling Scatter"
     type: SkillType = SkillType.NORMAL_ATTACK
 
     #damage
@@ -56,6 +57,7 @@ class Jade_Screen(ElementalSkill):
     凝光元素战技
     '''
     id: int = 1
+    name = "Jade Screen"
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -104,6 +106,7 @@ class Starshatter(ElementalBurst):
     凝光元素爆发
     '''
     id: int = 2
+    name = "Starshatter"
     type: SkillType = SkillType.ELEMENTAL_BURST
 
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
@@ -126,14 +129,14 @@ class Starshatter(ElementalBurst):
 
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
-        # 处理伤害
+
+        self.consume_energy(game)
         self.resolve_damage(game)
-        # 获得能量
-        self.gain_energy(game)
+
         # after skill
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 class Ningguang(Character):
-    id = 4
+    id = 1601
     name = "Ningguang"
     element: ElementType = ElementType.GEO
     weapon_type: WeaponType = WeaponType.CATALYST

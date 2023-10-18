@@ -200,6 +200,7 @@ class CuttingTorrent(NormalAttack):
         断雨
     '''
     id: int = 0
+    name='Cutting Torrent'
     type: SkillType = SkillType.NORMAL_ATTACK
 
     # damage
@@ -254,6 +255,7 @@ class FoulLegacy_RagingTide(ElementalSkill):
         魔王武装：狂澜
     '''
     id: int = 1
+    name='Foul Legacy: Raging Tide'
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -312,6 +314,7 @@ class FlashOfHavoc(ElementalBurst):
         远程状态元素爆发
     '''
     id: int = 3
+    name='Flash of Havoc'
     type: SkillType = SkillType.ELEMENTAL_BURST
 
     # No damage
@@ -359,6 +362,7 @@ class LightOfHavoc(ElementalBurst):
         近战状态元素爆发
     '''
     id: int = 4
+    name = 'Light of Havoc'
     type: SkillType = SkillType.ELEMENTAL_BURST
 
     # No damage
@@ -390,6 +394,7 @@ class Havoc_Obliteration(ElementalBurst):
     '''
     '''
     id: int = 2
+    name = 'Havoc: Obliteration'
     type: SkillType = SkillType.ELEMENTAL_BURST
     cost = [
         {
@@ -411,7 +416,7 @@ class Havoc_Obliteration(ElementalBurst):
 
 class Tartaglia(Character):
     '''达达利亚'''
-    id: int = 2
+    id: int = 1204
     name: str = 'Tartaglia'
     element: ElementType = ElementType.HYDRO
     weapon_type: WeaponType = WeaponType.BOW
