@@ -18,7 +18,7 @@ class Tubby_Entity(Support):
         self.usage = self.max_usage
 
     def on_calculate(self, game:'GeniusGame'):
-        if game.active_player_index == self.from_player.idx:
+        if game.active_player_index == self.from_player.index:
             if game.current_dice.use_type == ActionCardType.SUPPORT_LOCATION:
                 if self.usage > 0:
                     if game.current_dice.cost[0]['cost_num'] > 0:
@@ -31,7 +31,7 @@ class Tubby_Entity(Support):
             self.usage -= 1
 
     def on_begin(self, game:'GeniusGame'):
-        if game.active_player_index == self.from_player.idx:
+        if game.active_player_index == self.from_player.index:
             self.usage = self.max_usage
 
     def update_listener_list(self):

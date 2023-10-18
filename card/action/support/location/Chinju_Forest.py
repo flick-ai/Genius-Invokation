@@ -18,8 +18,8 @@ class Chinju_Forest_Entity(Support):
         self.usage = self.max_usage
 
     def on_begin(self, game: 'GeniusGame'):
-        if game.active_player_index == self.from_player.idx:
-            if game.first_player != self.from_player.idx:
+        if game.active_player_index == self.from_player.index:
+            if game.first_player != self.from_player.index:
                 dice_type = ElementToDice[get_my_active_character(game).element]
                 self.from_player.dice_zone.add([dice_type.value])
 

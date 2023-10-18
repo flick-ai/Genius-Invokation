@@ -20,7 +20,7 @@ class NRE_Entity(Support):
         self.usage = self.max_usage
 
     def on_play(self, game:'GeniusGame'):
-        if game.active_player_index == self.from_player.idx:
+        if game.active_player_index == self.from_player.index:
             if game.current_dice.use_type == ActionCardType.EVENT_FOOD:
                 if self.usage > 0:
                     card = self.from_player.card_zone.find_card(card_type=ActionCardType.EVENT_FOOD)
@@ -28,7 +28,7 @@ class NRE_Entity(Support):
                     self.usage -= 1
 
     def on_begin(self, game:'GeniusGame'):
-        if game.active_player_index == self.from_player.idx:
+        if game.active_player_index == self.from_player.index:
             self.usage = self.max_usage
 
     def update_listener_list(self):

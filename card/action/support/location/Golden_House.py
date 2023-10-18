@@ -19,7 +19,7 @@ class Golden_House_Entity(Support):
         self.usage_round = 1
 
     def on_calculate(self, game: 'GeniusGame'):
-        if game.active_player_index == self.from_player.idx:
+        if game.active_player_index == self.from_player.index:
             if game.current_dice.use_type == ActionCardType.EQUIPMENT_WEAPON or game.current_dice.use_type == ActionCardType.EQUIPMENT_ARTIFACT:
                 if game.current_dice.origin_cost[0]['cost_num']>=3:
                     if self.usage_round > 0:
@@ -35,7 +35,7 @@ class Golden_House_Entity(Support):
                 self.on_destroy(game)
 
     def on_begin(self, game: 'GeniusGame'):
-        if game.active_player_index == self.from_player.idx:
+        if game.active_player_index == self.from_player.index:
             self.usage_round = 1
 
     def update_listener_list(self):

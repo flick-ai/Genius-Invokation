@@ -18,7 +18,7 @@ class Red_Feather_Fan_Entity(Support):
         self.usage = self.max_usage
 
     def on_calculate(self, game:'GeniusGame'):
-        if game.active_player_index == self.from_player.idx:
+        if game.active_player_index == self.from_player.index:
             if game.current_dice.use_type == 'change character':
                 if self.usage > 0:
                     if self.from_player.change_num%2 == 0:
@@ -33,7 +33,7 @@ class Red_Feather_Fan_Entity(Support):
             self.from_player.is_quick_change = True
 
     def on_begin(self, game:'GeniusGame'):
-        if game.active_player_index == self.from_player.idx:
+        if game.active_player_index == self.from_player.index:
             self.usage = self.max_usage
 
     def update_listener_list(self):

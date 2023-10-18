@@ -18,7 +18,7 @@ class Sangonomiya_Shrine_Entity(Support):
         self.usage = self.max_usage
 
     def on_end(self, game:'GeniusGame'):
-        if game.active_player_index == self.from_player.idx:
+        if game.active_player_index == self.from_player.index:
             need_heal = False
             for character in self.from_player.character_list:
                 if character.is_alive and character.health_point != character.max_health_point:

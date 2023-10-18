@@ -18,7 +18,7 @@ class Vanarana_Entity(Support):
         self.dice = []
 
     def on_end(self, game:'GeniusGame'):
-        if game.active_player_index == self.from_player.idx:
+        if game.active_player_index == self.from_player.index:
             dices = self.from_player.dice_zone.show()
             if dices == None:
                 return
@@ -39,7 +39,7 @@ class Vanarana_Entity(Support):
         return sort_map
 
     def on_begin(self, game:'GeniusGame'):
-        if game.active_player_index == self.from_player.idx:
+        if game.active_player_index == self.from_player.index:
             self.from_player.dice_zone.add(self.dice)
             self.dice = []
 

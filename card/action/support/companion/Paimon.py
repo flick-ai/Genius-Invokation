@@ -18,7 +18,7 @@ class Paimon_Entity(Support):
         self.usage = self.max_usage
 
     def on_begin(self, game:'GeniusGame'):
-        if game.active_player_index == self.from_player.idx:
+        if game.active_player_index == self.from_player.index:
             self.from_player.dice_zone.add([DiceType.OMNI.value, DiceType.OMNI.value,])
             self.usage -= 1
             if self.usage == 0:

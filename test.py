@@ -44,7 +44,8 @@ from utils import *
 
 dice = [7,5,5,0,1,2,3,4]
 sort_map = {i:DICENUM-i for i in range(DICENUM)}
+print(sort_map)
 so = sorted(dice, key=lambda x:sort_map[x])
-print(so)
+print(dice)
 idx = sorted(range(len(dice)), key=lambda x:sort_map[dice[x]])
 print(idx)

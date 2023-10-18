@@ -19,7 +19,7 @@ class Grand_Narukami_Shrine_Entity(Support):
         self.usage = self.max_usage - 1
 
     def on_begin(self, game:'GeniusGame'):
-        if game.active_player_index == self.from_player.idx:
+        if game.active_player_index == self.from_player.index:
             self.from_player.dice_zone.add(self.from_player.roll_dice(num=1, is_basic=True))
             self.usage -= 1
             if self.usage == 0:

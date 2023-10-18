@@ -18,13 +18,13 @@ class Katheryn_Entity(Support):
         self.usage = self.max_usage
 
     def on_change(self, game:'GeniusGame'):
-        if game.active_player_index == self.from_player.idx:
+        if game.active_player_index == self.from_player.index:
             if self.from_player.is_quick_change == False:
                 if self.usage > 0:
                     self.from_player.is_quick_change == True
 
     def on_begin(self, game:'GeniusGame'):
-        if game.active_player_index == self.from_player.idx:
+        if game.active_player_index == self.from_player.index:
             self.usage = self.max_usage
 
 

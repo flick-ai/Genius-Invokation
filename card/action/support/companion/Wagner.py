@@ -19,7 +19,7 @@ class Wagner_Entity(Support):
         self.forging_billets  = 2
 
     def on_calculate(self, game:'GeniusGame'):
-        if game.active_player_index == self.from_player.idx:
+        if game.active_player_index == self.from_player.index:
             if game.current_dice.use_type == ActionCardType.EQUIPMENT_WEAPON:
                 if self.usage > 0:
                     if game.current_dice.cost[0]['cost_num'] > 0 and game.current_dice.cost[0] <= self.forging_billets :
@@ -34,11 +34,11 @@ class Wagner_Entity(Support):
             self.forging_billets  -= use
 
     def on_begin(self, game:'GeniusGame'):
-        if game.active_player_index == self.from_player.idx:
+        if game.active_player_index == self.from_player.index:
             self.usage = self.max_usage
 
     def on_end(self, game:'GeniusGame'):
-        if game.active_player_index == self.from_player.idx:
+        if game.active_player_index == self.from_player.index:
             self.forging_billets  += 1
 
     def update_listener_list(self):
