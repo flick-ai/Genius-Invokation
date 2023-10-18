@@ -1,11 +1,8 @@
 from card.character.base import NormalAttack, ElementalSkill, ElementalBurst
 from entity.character import Character
 from entity.entity import Entity
-from game.game import GeniusGame
 from utils import *
 from typing import TYPE_CHECKING, List, Tuple
-
-from utils import GeniusGame
 
 if TYPE_CHECKING:
     from game.game import GeniusGame
@@ -80,7 +77,7 @@ class Jade_Screen(ElementalSkill):
         super().__init__(from_character)
 
 
-    def add_status(self, game: GeniusGame):
+    def add_status(self, game: 'GeniusGame'):
         status = self.from_character.from_player.team_combat_status.has_status(Jade_Screen_Status)
         if status is None:
             status = Jade_Screen_Status(game=game,
@@ -147,7 +144,7 @@ class Ningguang(Character):
     skill_list = [Sparkling_Scatter, Jade_Screen, Starshatter]
 
     max_power: int = 3
-    
+
     def __init__(self, game: 'GeniusGame', zone, from_player: 'GeniusPlayer', index:int, from_character = None, talent = False):
         super().__init__(game, zone, from_player, index, from_character)
         self.talent = talent
@@ -164,10 +161,10 @@ class Jade_Screen_Status(Combat_Status):
         self.usage = 2
         self.max_usage = 2
         self.current_usage = 2
-    
+
     def update(self):
         self.current_usage = self.usage
-    
+
     def on_excute_dmg(self, game: 'GeniusGame'):
         if game.current_damage.damage_to == get_active_character(game, self.from_player):
             if game.current_damage.main_damage >=2:
@@ -175,16 +172,16 @@ class Jade_Screen_Status(Combat_Status):
                 self.current_usage -=1
                 if self.current_usage <=0:
                     self.on_destroy(game)
-    
+
     def on_damage_add(self, game: 'GeniusGame'):
         if game.current_damage.damage_from == self.from_character:
             if game.current_damage.damage_type == SkillType.ELEMENTAL_BURST:
                 game.current_damage += 2
-        
+
         if self.from_character.is_alive:
             if game.current_damage.main_damage_element == ElementType.GEO:
                 game.current_damage.main_damage += 1
-    
+
     def update_listener_list(self):
         self.listener_list = [
             (EventType.DAMAGE_ADD, ZoneType.ACTIVE_ZONE, self.on_damage_add),

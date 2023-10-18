@@ -4,7 +4,7 @@ from utils import *
 from copy import deepcopy
 from card.action import *
 from entity.status import Status, Shield, Combat_Shield, Weapon, Artifact
-
+from card.character.characters.keqing import Lightning_Stiletto
 
 if TYPE_CHECKING:
     from entity.entity import Entity
@@ -399,15 +399,17 @@ class HandZone:
 
     def num(self):
         return len(self.card)
-    
+
     def has_card(self, card_class): # Check card_class
         for card in self.card:
             if isinstance(card, card_class):
                 return card
         return None
 
-    def remove(self, card_class):
-        for card in self.card:
-            if isinstance(card, card_class):
-                self.card.remove(card)
-    
+    def remove_name(self, card_class):
+        id = 0
+        while (id < len(self.card)):
+            if isinstance(self.card[id], card_class):
+                self.card.pop(id)
+            else:
+                id += 1

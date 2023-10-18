@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     from game.player import GeniusPlayer
     from event.damage import Damage
 from entity.status import Status, Combat_Status
+from loguru import logger
 
 class Firework_FlareUp(NormalAttack):
     '''
@@ -179,6 +180,7 @@ class Niwabi_Enshou(Status):
         self.usage = 2
         self.max_usage = 2
         self.current_usage = 2
+        self.is_use = False
 
     def infuse(self, game: 'GeniusGame'):
         if game.current_damage.damage_from == self.from_character:
@@ -189,11 +191,14 @@ class Niwabi_Enshou(Status):
         if game.current_damage.damage_from == self.from_character:
             if game.current_damage.damage_type == SkillType.NORMAL_ATTACK:
                 game.current_damage.main_damage += 1
+                self.is_use = True
 
     def after_skill(self, game:'GeniusGame'):
-        if game.current_damage is None:
-            return
-        if game.current_damage.damage_from == self.from_character:
+        # if game.current_damage is None:
+        #     return
+        # if game.current_damage.damage_from == self.from_character:
+        if self.is_use:
+            self.is_use = False
             if game.current_skill.type == SkillType.NORMAL_ATTACK:
                 if self.from_character.talent:
                     dmg = Damage.create_damage(
@@ -210,6 +215,7 @@ class Niwabi_Enshou(Status):
                     game.add_damage(dmg)
                     game.resolve_damage()
                 self.current_usage -= 1
+                logger.info(f'is_plunging_attack: {self.current_usage}')
                 if self.current_usage <= 0:
                     self.on_destroy(game)
 

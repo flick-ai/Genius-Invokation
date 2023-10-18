@@ -88,7 +88,7 @@ class ElementalSkill(CharacterSkill):
 
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
-        
+
         game.manager.invoke(EventType.ON_USE_SKILL, game)
 
 

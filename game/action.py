@@ -195,7 +195,6 @@ class Action:
             dice = []
         else:
             dice = []
-            print(use_dice[choice][target])
             for i in range(2):
                 cost_num = use_dice[choice][target][i*2]
                 if cost_num != 0:

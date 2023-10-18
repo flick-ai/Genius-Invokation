@@ -1,18 +1,15 @@
 from card.character.base import NormalAttack, ElementalSkill, ElementalBurst
 from entity.entity import Entity
-from game.player import GeniusPlayer
-from game.zone import CharacterZone
 from utils import *
 from typing import TYPE_CHECKING, List, Tuple
 from card.action.base import ActionCard
-from utils import Character, GeniusGame, GeniusPlayer
 if TYPE_CHECKING:
     from game.game import GeniusGame
     from game.action import Action
     from event.events import ListenerNode
     from game.player import GeniusPlayer
     from event.damage import Damage
-    from entity.character import Character
+from entity.character import Character
 from entity.status import Status, Combat_Status
 from loguru import logger
 class Yunlai_Swordsmanship(NormalAttack):
@@ -45,7 +42,7 @@ class Yunlai_Swordsmanship(NormalAttack):
 
     def __init__(self, from_character: 'Character'):
         super().__init__(from_character)
-    
+
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         # 处理伤害
@@ -81,7 +78,7 @@ class StellarRestoration(ElementalSkill):
 
     def __init__(self, from_character: 'Character'):
         super().__init__(from_character)
-    
+
     def add_status(self, game: 'GeniusGame'):
         char = get_my_active_character(game)
         assert isinstance(char, Keqing)
@@ -104,7 +101,7 @@ class StellarRestoration(ElementalSkill):
         if isinstance(game.current_card, Lightning_Stiletto) \
                 or self.from_character.from_player.hand_zone.has_card(Lightning_Stiletto) is not None:
             self.add_status(game)
-            self.from_character.from_player.hand_zone.remove(Lightning_Stiletto)
+            self.from_character.from_player.hand_zone.remove_name(Lightning_Stiletto)
         else:
             self.from_character.from_player.hand_zone.add([Lightning_Stiletto()])
         # after skill
@@ -136,14 +133,14 @@ class StarwardSword(ElementalBurst):
     def __init__(self, from_character: 'Character') -> None:
         super().__init__(from_character)
 
-    def on_call(self, game: GeniusGame):
+    def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         self.resolve_damage(game)
         self.consume_energy(game)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
-    
-    
+
+
 class Keqing(Character):
     id: int = 5
     name = "Keqing"
@@ -184,8 +181,10 @@ class Lightning_Stiletto(ActionCard):
             game.manager.invoke(EventType.ON_CHANGE_CHARACTER, game)
             game.active_player.change_to_id(idx)
         logger.info("Use Keqing's Elemental Skill from Lightning Stiletto.")
-        
+
+        game.is_change_player = True
         char.skills[1].on_call(game)
+
 
 
 
@@ -200,7 +199,7 @@ class Electro_Elemental_Infusion(Status):
             self.usage = 3
             self.current_usage = 3
             self.max_usage = 3
-    
+
     def update(self):
         if self.from_character.talent:
             self.usage = 3
@@ -218,14 +217,13 @@ class Electro_Elemental_Infusion(Status):
                     game.current_damage.main_damage += 1
 
     def on_begin(self, game: 'GeniusGame'):
-        self.usage -= 1
-        if self.usage <= 0:
+        self.current_usage -= 1
+        if self.current_usage <= 0:
             self.on_destroy(game)
-    
+
     def update_listener_list(self):
         self.listeners = [
             (EventType.BEGIN_ACTION_PHASE, ZoneType.CHARACTER_ZONE, self.on_begin),
             (EventType.INFUSION, ZoneType.CHARACTER_ZONE, self.infuse),
             (EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, self.on_dmg_add)
         ]
-        

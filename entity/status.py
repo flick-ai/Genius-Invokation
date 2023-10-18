@@ -24,8 +24,8 @@ class Status(Entity):
         self.current_usage: int
 
     def on_destroy(self, game):
-        return super().on_destroy(game)
-        #TODO
+        super().on_destroy(game)
+        self.from_character.character_zone.remove_entity(self)
 
     def update(self):
         # All states can be update
@@ -68,8 +68,8 @@ class Frozen_Status(Status):
     def on_begin_phase(self, game: 'GeniusGame'):
         self.current_usage -= 1
         if self.current_usage <= 0:
-            self.on_destroy(game)    
-    
+            self.on_destroy(game)
+
     def on_add_damage(self, game: 'GeniusGame'):
         if game.current_damage.damage_to == self.from_character:
             if game.current_damage.main_damage_element == ElementType.PHYSICAL or game.current_damage.main_damage_element == ElementType.PYRO:
@@ -77,13 +77,13 @@ class Frozen_Status(Status):
                 self.current_usage -= 1
                 if self.current_usage <= 0:
                     self.on_destroy(game)
-    
+
     def update_listener_list(self):
         self.listeners = [
             (EventType.BEGIN_ACTION_PHASE, ZoneType.CHARACTER_ZONE, self.on_begin_phase),
             (EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, self.on_add_damage)
         ]
-    
+
 
 class Dendro_Core(Combat_Status):
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
@@ -91,10 +91,10 @@ class Dendro_Core(Combat_Status):
         self.usage = 1
         self.current_usage = 1
         self.max_usage = 1
-    
+
     def update(self):
         self.current_usage = self.usage
-    
+
     def on_damage_add(self, game: 'GeniusGame'):
         if game.current_damage.damage_from.from_player == self.from_player:
             if game.current_damage.main_damage_element == ElementType.PYRO or game.current_damage.main_damage_element == ElementType.ELECTRO:
@@ -102,7 +102,7 @@ class Dendro_Core(Combat_Status):
                 self.current_usage -= 1
                 if self.current_usage <= 0:
                     self.on_destroy(game)
-    
+
     def update_listener_list(self):
         self.listeners = [
             (EventType.DAMAGE_ADD, ZoneType.ACTIVE_ZONE, self.on_damage_add)
@@ -114,10 +114,10 @@ class Catalyzing_Feild(Combat_Status):
         self.usage = 2
         self.current_usage = 2
         self.max_usage = 4
-    
+
     def update(self):
         self.current_usage = max(self.usage, self.current_usage)
-    
+
     def add_one_usage(self):
         self.current_usage += 1
     def on_damage_add(self, game: 'GeniusGame'):
@@ -137,7 +137,7 @@ class Crystallize_Shield(Combat_Shield):
         self.usage = 1
         self.current_usage = 1
         self.max_usage = 2
-    
+
     def update(self):
         if self.current_usage < self.max_usage:
             self.current_usage += 1
@@ -151,11 +151,11 @@ class Crystallize_Shield(Combat_Shield):
             else:
                 self.current_usage -= game.current_damage.main_damage
                 game.current_damage.main_damage = 0
-    
+
     def update_listener_list(self):
         self.listeners = [
             (EventType.EXCUTE_DAMAGE, ZoneType.ACTIVE_ZONE, self.on_excuete_dmg)
         ]
-    
+
 
 

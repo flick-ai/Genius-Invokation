@@ -1,7 +1,6 @@
 from card.character.base import NormalAttack, ElementalSkill, ElementalBurst
 from entity.character import Character
 from entity.entity import Entity
-from game.zone import CharacterZone
 from utils import *
 from typing import TYPE_CHECKING, List, Tuple
 
@@ -100,6 +99,6 @@ class ElectroHypostasis(Character):
     power: int = 0
     max_power: int = 2
 
-    def __init__(self, game: 'GeniusGame', character_zone: CharacterZone, from_player: 'GeniusPlayer', index: int, from_character=None, talent=False):
+    def __init__(self, game: 'GeniusGame', character_zone: 'CharacterZone', from_player: 'GeniusPlayer', index: int, from_character=None, talent=False):
         super().__init__(game, character_zone, from_player, index, from_character)
         self.talent = talent
