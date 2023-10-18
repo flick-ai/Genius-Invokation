@@ -24,7 +24,7 @@ class Summon(Entity):
         self.current_usage: int = self.usage
 
     def on_destroy(self, game):
-        super().on_destroy()
+        super().on_destroy(game)
         self.from_player.summons_zone.remove(self)
 
     def update(self):
@@ -37,10 +37,10 @@ class Burning_Flame(Summon):
         self.usage = 1
         self.max_usage = 2
         self.current_usage = 1
-    
+
     def update(self):
         self.current_usage += 1
-    
+
     def on_end_phase(self, game: 'GeniusGame'):
         if game.active_player == self.from_player:
             dmg = Damage.create_damage(

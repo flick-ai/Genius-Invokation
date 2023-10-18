@@ -300,8 +300,8 @@ class CharacterZone:
     '''
     def __init__(self, game: 'GeniusGame', player: 'GeniusPlayer') -> None:
 
-        self.weapon_card: Weapon
-        self.artifact_card: Artifact
+        self.weapon_card: Weapon = None
+        self.artifact_card: Artifact = None
         # self.talent_card: Talent
         self.status_list: List['Status'] = [] # Including status from weapon and artifact
 
