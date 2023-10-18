@@ -189,7 +189,7 @@ class MidnightPhantasmagoria(ElementalBurst):
 
 class Fischl(Character):
     '''菲谢尔'''
-    id: int = 0
+    id: int = 1401
     name: str = 'Fischl'
     element: ElementType = ElementType.ELECTRO
     weapon_type: WeaponType = WeaponType.BOW

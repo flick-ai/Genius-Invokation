@@ -142,7 +142,7 @@ class StarwardSword(ElementalBurst):
 
 
 class Keqing(Character):
-    id: int = 5
+    id: int = 1403
     name = "Keqing"
     element = ElementType.ELECTRO
     weapon_type: WeaponType = WeaponType.SWORD

@@ -19,6 +19,7 @@ class Firework_FlareUp(NormalAttack):
         普通攻击
     '''
     id: int = 0
+    name="Firework Flare-Up"
     type: SkillType = SkillType.NORMAL_ATTACK
 
     # damage
@@ -59,6 +60,7 @@ class Niwabi_FireDance(ElementalSkill):
         元素战技
     '''
     id: int = 1
+    name="Niwabi Fire-Dance"
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
     # No damage
@@ -110,6 +112,7 @@ class Ryuukin_Saxifrage(ElementalBurst):
         元素爆发
     '''
     id: int = 2
+    name = "Ryuukin Saxifrage"
     type: SkillType = SkillType.ELEMENTAL_BURST
 
     # damage
@@ -156,7 +159,7 @@ class Ryuukin_Saxifrage(ElementalBurst):
 
 class Yoimiya(Character):
     '''宵宫'''
-    id: int = 1
+    id: int = 1305
     name: str = 'Yoimiya'
     element: ElementType = ElementType.PYRO
     weapon_type: WeaponType = WeaponType.BOW
