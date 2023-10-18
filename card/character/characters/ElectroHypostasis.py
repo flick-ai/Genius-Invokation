@@ -141,7 +141,7 @@ class PrepareScissors(Status):
         return super().on_destroy(game)
 
 
-        
+
 
 class RockPaperScissorsCambo(ElementalSkill):
     '''
@@ -173,7 +173,7 @@ class RockPaperScissorsCambo(ElementalSkill):
         # 获得能量
         self.gain_energy(game)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
-        prepare_paper = PrepareScissors(game=game, 
+        prepare_paper = PrepareScissors(game=game,
                                      from_player=self.from_character.from_player,
                                      from_character=self.from_character)
         self.from_character.character_zone.add_entity(prepare_paper)

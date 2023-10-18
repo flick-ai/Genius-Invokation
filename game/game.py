@@ -265,6 +265,8 @@ class GeniusGame:
     def change_active_player(self):
         self.active_player_index = 1 - self.active_player_index
         self.active_player = self.players[self.active_player_index]
+        if self.active_player.prepared_skill is not None:
+            self.active_player.prepared_skill.on_call()
 
 
 class Active_Die:
