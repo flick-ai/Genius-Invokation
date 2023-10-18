@@ -6,11 +6,11 @@ from game.action import *
 from utils import *
 
 deck1 = {
-    'character': ['Tartaglia', 'Nahida', 'Yoimiya'],
+    'character': ['Fischl', 'Nahida', 'Yoimiya'],
     'action_card': ['Paimon' for i in range(30)]
 }
 deck2 = {
-    'character': ['Tartaglia', 'Nahida', 'Yoimiya'],
+    'character': ['Fischl', 'Nahida', 'Yoimiya'],
     'action_card': ['Paimon' for i in range(30)]
 }
 
