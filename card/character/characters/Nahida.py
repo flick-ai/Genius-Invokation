@@ -242,7 +242,7 @@ class Shrine_of_Maya(Combat_Status):
         self.max_usage = 2
         self.current_usage = 2
         if self.from_character.talent:
-            elemental_list = [self.from_player.character_list[i].character.element for i in range(self.from_player.character_num)]
+            elemental_list = [self.from_player.character_list[i].element for i in range(self.from_player.character_num)]
             if ElementType.HYDRO in elemental_list:
                 self.usage = 3
                 self.max_usage = 3
@@ -262,7 +262,7 @@ class Shrine_of_Maya(Combat_Status):
     def on_damage_add(self, game: 'GeniusGame'):
         game.current_damage.main_damage += 1
 
-    def end_phase(self, game: 'GeniusGame'):
+    def on_begin_phase(self, game: 'GeniusGame'):
         self.current_usage -= 1
         if self.current_usage <= 0:
             self.on_destroy(game)
@@ -271,7 +271,7 @@ class Shrine_of_Maya(Combat_Status):
         if not self.from_character.talent:
             self.current_usage = self.max_usage
         else:
-            elemental_list = [self.from_player.character_list[i].character.element for i in range(self.from_player.character_num)]
+            elemental_list = [self.from_player.character_list[i].element for i in range(self.from_player.character_num)]
             if ElementType.HYDRO in elemental_list:
                 self.usage = 3
                 self.max_usage = 3
@@ -289,8 +289,8 @@ class Shrine_of_Maya(Combat_Status):
 
     def update_listener_list(self):
         self.listener_list = [
-            (EventType.DAMAGE_ADD, self.on_damage_add),
-            (EventType.END_PHASE, self.end_phase)
+            (EventType.DAMAGE_ADD, ZoneType.ACTIVE_ZONE, self.on_damage_add),
+            (EventType.BEGIN_ACTION_PHASE, ZoneType.ACTIVE_ZONE, self.on_begin_phase)
         ]
 
 class Seed_of_Skandha(Status):
@@ -311,7 +311,7 @@ class Seed_of_Skandha(Status):
 
         reaction_target = game.current_damage.damage_to # Character
         if reaction_target!=self.from_character:
-            Damage.resolve_damage(
+            dmg = Damage.create_damage(
                 game,
                 damage_type=SkillType.OTHER,
                 main_damage_element=ElementType.PIERCING,
@@ -320,6 +320,9 @@ class Seed_of_Skandha(Status):
                 damage_from=None,
                 damage_to=self.from_character,
             )
+            game.add_damage(dmg)
+            game.resolve_damage()
+
         else:
             if game.players[0] == self.from_player:
                 Nahida_Player = game.players[1]
@@ -329,7 +332,7 @@ class Seed_of_Skandha(Status):
             if Nahida_Char.talent:
                 elemental_list = [Nahida_Player.character_list[i].character.element for i in range(Nahida_Player.character_num)]
                 if ElementType.PYRO in elemental_list:
-                    Damage.resolve_damage(
+                    dmg = Damage.create_damage(
                         game,
                         damage_type=SkillType.OTHER,
                         main_damage_element=ElementType.DENDRO,
@@ -339,7 +342,7 @@ class Seed_of_Skandha(Status):
                         damage_to=self.from_character,
                     )
                 else:
-                    Damage.resolve_damage(
+                    dmg =Damage.create_damage(
                         game,
                         damage_type=SkillType.OTHER,
                         main_damage_element=ElementType.PIERCING,
@@ -348,8 +351,10 @@ class Seed_of_Skandha(Status):
                         damage_from=None,
                         damage_to=self.from_character,
                     )
+                game.add_damage(dmg)
+                game.resolve_damage()
             else:
-                Damage.resolve_damage(
+                dmg =Damage.create_damage(
                     game,
                     damage_type=SkillType.OTHER,
                     main_damage_element=ElementType.PIERCING,
@@ -358,12 +363,14 @@ class Seed_of_Skandha(Status):
                     damage_from=None,
                     damage_to=self.from_character,
                 )
+                game.add_damage(dmg)
+                game.resolve_damage()
         self.current_usage -= 1
         if self.current_usage<=0:
             self.on_destroy(game)
 
     def update_listener_list(self):
         self.listener_list = [
-            (EventType.AFTER_TAKES_DMG, self.after_take_dmg)
+            (EventType.AFTER_TAKES_DMG, ZoneType.CHARACTER_ZONE, self.after_take_dmg)
         ]
 

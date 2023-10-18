@@ -247,13 +247,13 @@ class Aurous_Blaze(Status):
             game.add_damage(dmg)
             game.resolve_damage()
 
-    def on_end_phase(self, game: 'GeniusGame'):
+    def on_begin_phase(self, game: 'GeniusGame'):
         self.current_usage -= 1
         if self.current_usage <= 0:
             self.on_destroy(game)
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.END_PHASE, ZoneType.CHARACTER_ZONE, self.on_end_phase),
+            (EventType.BEGIN_ACTION_PHASE, ZoneType.CHARACTER_ZONE, self.on_begin_phase),
             (EventType.AFTER_USE_SKILL, ZoneType.CHARACTER_ZONE, self.after_skill)
         ]
