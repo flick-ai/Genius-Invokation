@@ -10,7 +10,7 @@ if TYPE_CHECKING:
     from event.events import ListenerNode
     from game.player import GeniusPlayer
     from event.damage import Damage
-from entity.status import Status
+from entity.status import Status, Combat_Status
 
 class Firework_FlareUp(NormalAttack):
     '''
@@ -173,7 +173,7 @@ class Yoimiya(Character):
 
 
 class Niwabi_Enshou(Status):
-
+    name = "Niwabi Enshou"
     def __init__(self, game, from_player: 'GeniusPlayer', from_character: Character=None):
         super().__init__(game, from_player, from_character)
         self.usage = 2
@@ -223,7 +223,8 @@ class Niwabi_Enshou(Status):
             (EventType.AFTER_USE_SKILL, ZoneType.CHARACTER_ZONE, self.after_skill)
         ]
 
-class Aurous_Blaze(Status):
+class Aurous_Blaze(Combat_Status):
+    name = "Aurous Blaze"
     def __init__(self, game, from_player: 'GeniusPlayer', from_character: 'Character'=None):
         super().__init__(game, from_player, from_character)
         self.usage = 2
@@ -256,6 +257,6 @@ class Aurous_Blaze(Status):
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.BEGIN_ACTION_PHASE, ZoneType.CHARACTER_ZONE, self.on_begin_phase),
-            (EventType.AFTER_USE_SKILL, ZoneType.CHARACTER_ZONE, self.after_skill)
+            (EventType.BEGIN_ACTION_PHASE, ZoneType.ACTIVE_ZONE, self.on_begin_phase),
+            (EventType.AFTER_USE_SKILL, ZoneType.ACTIVE_ZONE, self.after_skill)
         ]

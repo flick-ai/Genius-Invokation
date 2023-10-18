@@ -60,7 +60,7 @@ class All_Schemes_to_Know(ElementalSkill):
     id: int = 1
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
-    # No damage
+    #damage
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
     main_damage_element: ElementType = ElementType.DENDRO
     main_damage: int = 2
@@ -236,6 +236,7 @@ class Nahida(Character):
         self.talent = talent
 
 class Shrine_of_Maya(Combat_Status):
+    name = "Shrine of Maya"
     def __init__(self, game, from_player: 'GeniusPlayer', from_character: Character=None):
         super().__init__(game, from_player, from_character)
         self.usage = 2
@@ -294,6 +295,7 @@ class Shrine_of_Maya(Combat_Status):
         ]
 
 class Seed_of_Skandha(Status):
+    name = "Seed of Skandha"
     # 蕴种印， from_player: 附属一方， from_character: 附属的角色
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)

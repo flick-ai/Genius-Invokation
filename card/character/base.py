@@ -45,7 +45,8 @@ class CharacterSkill:
         pass
 
     def consume_energy(self, game: 'GeniusGame'):
-        pass
+        assert self.from_character.power >= self.energy_cost
+        self.from_character.power -= self.energy_cost
 
     def resolve_damage(self, game: 'GeniusGame'):
         game.add_damage(Damage.create_damage(game, self.damage_type, self.main_damage_element,
@@ -55,7 +56,8 @@ class CharacterSkill:
                               self.is_plunging_attack, self.is_charged_attack))
         game.resolve_damage()
     def gain_energy(self, game: 'GeniusGame'):
-        pass
+        self.from_character.power += self.energy_gain
+        self.from_character.power = min(self.from_character.power, self.from_character.max_power)
 
     def add_status(self, game: 'GeniusGame'):
         pass
