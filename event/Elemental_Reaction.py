@@ -41,19 +41,19 @@ def Superconduct(game: 'GeniusGame', player_id: int, target_idx: int):
     game.players[player_id].active_zone.character_list[target_idx] .
     '''
     game.players[player_id].character_list[target_idx].elemental_application.pop(0)
-    
+
 def Electro_Charged(game: 'GeniusGame', player_id: int, target_idx: int):
     '''
     game.players[player_id].active_zone.character_list[target_idx] .
     '''
     game.players[player_id].character_list[target_idx].elemental_application.pop(0)
-    
+
 def Bloom(game: 'GeniusGame', player_id: int, target_idx: int):
     '''
     game.players[player_id].active_zone.character_list[target_idx] .
     '''
     game.players[player_id].character_list[target_idx].elemental_application.pop(0)
-    
+
     status = game.players[1-player_id].team_combat_status.has_status(Dendro_Core)
     if status is not None:
         status.update()
@@ -83,7 +83,7 @@ def Quicken(game: 'GeniusGame', player_id: int, target_idx: int):
     game.players[player_id].active_zone.character_list[target_idx] .
     '''
     game.players[player_id].character_list[target_idx].elemental_application.pop(0)
-    
+
     status = game.players[1-player_id].team_combat_status.has_status(Catalyzing_Feild)
     if status is None:
         game.players[1-player_id].team_combat_status.add_entity(Catalyzing_Feild(game, game.players[1-player_id], None))
