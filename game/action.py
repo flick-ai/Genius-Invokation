@@ -136,6 +136,10 @@ class Action:
         if len(choose_list) == 1:
             choice = last_choice
             print(choose_prompt+'您目前只能选择如下行动:'+str(last_choice)+'.'+choice_dict[last_choice]+'\n')
+            if choice == 16:
+                return Action(16, 13, [])
+            if choice == 17:
+                return Action(17, 14, [])
         else:
             choice = int(input(choose_prompt))
             assert choice in choose_list
