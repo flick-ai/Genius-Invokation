@@ -4,8 +4,6 @@ from entity.entity import Entity
 from utils import *
 from typing import TYPE_CHECKING, List, Tuple
 
-from utils import GeniusGame
-
 if TYPE_CHECKING:
     from game.game import GeniusGame
     from game.action import Action
@@ -40,7 +38,7 @@ class Yuuban_Meigen(NormalAttack):
     def __init__(self, from_character: 'Character'):
         super().__init__(from_character)
     
-    def on_call(self, game: GeniusGame):
+    def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         self.resolve_damage(game)
         self.gain_energy(game)
