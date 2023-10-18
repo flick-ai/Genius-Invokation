@@ -52,7 +52,7 @@ class Damage:
         # game.current_damage.execute_damage(game)
         # game.current_damage.after_damage(game)
     
-    def on_damage(self, game):
+    def on_damage(self, game: 'GeniusGame'):
         self.elemental_infusion(game)
         self.elemental_reaction(game)
         self.damage_add(game)

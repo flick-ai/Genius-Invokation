@@ -43,6 +43,18 @@ class Character(Entity):
         self.skills = []
         for skill in self.skill_list:
             self.skills.append(skill(self))
+    
+    def on_begin(self, game: 'GeniusGame'):
+        '''
+            回合开始时, 刷新所有技能的使用次数
+        '''
+        for skill in self.skills:
+            skill.usage_this_round = 0
+
+    def update_listener_list(self):
+        self.listeners = [
+            (EventType.BEGIN_ACTION_PHASE, ZoneType.CHARACTER_ZONE, self.on_begin)
+        ]
 
     def skill(self, skill, game: 'GeniusGame'):
         self.skills[skill].on_call(game)

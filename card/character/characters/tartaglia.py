@@ -73,7 +73,7 @@ class MeleeStance(Status):
         if self.opponent:
             next_character = self.find_next_alive_character(self.opponent)
             if next_character:
-                Damage.resolve_damage(game,
+                game.add_damage(Damage.create_damage(game,
                     damage_type=SkillType.OTHER,
                     main_damage_element=ElementType.PIERCING,
                     main_damage=1,
@@ -81,7 +81,8 @@ class MeleeStance(Status):
                     damage_from=self.from_character,
                     damage_to=next_character,
                     is_plunging_attack=False,
-                    is_charged_attack=False)
+                    is_charged_attack=False))
+                game.resolve_damage()
             self.opponent = None
 
 
@@ -176,7 +177,7 @@ class Riptide(Status):
             tartaglia_player = game.players[0]
         tartaglia = get_character_with_name(tartaglia_player, Tartaglia)
         if tartaglia.talent and tartaglia.character_zone.is_alive:
-            Damage.resolve_damage(game,
+            game.add_damage(Damage.create_damage(game,
                 damage_type=SkillType.OTHER,
                 main_damage_element=ElementType.PIERCING,
                 main_damage=1,
@@ -184,7 +185,8 @@ class Riptide(Status):
                 damage_from=None,
                 damage_to=get_opponent_active_character(game),
                 is_plunging_attack=False,
-                is_charged_attack=False)
+                is_charged_attack=False))
+            game.resolve_damage()
 
 
 class CuttingTorrent(NormalAttack):
@@ -276,7 +278,7 @@ class FoulLegacy_RagingTide(ElementalSkill):
 
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
-        game.manager.invoke(EventType.ON_USE_SKILL, game)
+        
         # 切换为近战状态,在主伤害打出前
         self.add_status(game)
         # 处理伤害
@@ -314,7 +316,6 @@ class FlashOfHavoc(ElementalBurst):
 
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
-        game.manager.invoke(EventType.ON_USE_SKILL, game)
         # 消耗能量
         self.consume_energy(game)
 
@@ -362,7 +363,6 @@ class LightOfHavoc(ElementalBurst):
 
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
-        game.manager.invoke(EventType.ON_USE_SKILL, game)
         # 消耗能量
         self.consume_energy(game)
 

@@ -37,6 +37,7 @@ class CharacterSkill:
         self.from_character: Character = from_character
         self.is_plunging_attack: bool = False
         self.is_charged_attack: bool = False
+        self.usage_this_round: int = 0
 
     def generate_summon(self, game: 'GeniusGame'):
         pass
@@ -45,11 +46,12 @@ class CharacterSkill:
         pass
 
     def resolve_damage(self, game: 'GeniusGame'):
-        Damage.resolve_damage(game, self.damage_type, self.main_damage_element,
+        game.add_damage(Damage.create_damage(game, self.damage_type, self.main_damage_element,
                               self.main_damage, self.piercing_damage,
                               # TODO: 可能需要改一下调用的接口
                               self.from_character, get_opponent_active_character(game),
-                              self.is_plunging_attack, self.is_charged_attack)
+                              self.is_plunging_attack, self.is_charged_attack))
+        game.resolve_damage()
     def gain_energy(self, game: 'GeniusGame'):
         pass
 
@@ -58,6 +60,7 @@ class CharacterSkill:
 
     def on_call(self, game: 'GeniusGame'):
         game.current_skill = self
+        self.usage_this_round += 1
 
 class NormalAttack(CharacterSkill):
 
@@ -67,18 +70,23 @@ class NormalAttack(CharacterSkill):
         self.is_plunging_attack = self.from_character.from_player.is_after_change
         self.is_charged_attack = self.from_character.from_player.dice_zone.dice_num % 2 == 0
 
+        game.manager.invoke(EventType.ON_USE_SKILL, game)
+
 
 class ElementalSkill(CharacterSkill):
 
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
-        # TODO: Prepares for another Elemental Skill
+        
+        game.manager.invoke(EventType.ON_USE_SKILL, game)
 
 
 class ElementalBurst(CharacterSkill):
 
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
+
+        game.manager.invoke(EventType.ON_USE_SKILL, game)
 
 
 
