@@ -19,7 +19,7 @@ class Yunlai_Swordsmanship(NormalAttack):
     '''
     id: int = 0
     type: SkillType = SkillType.NORMAL_ATTACK
-
+    name = "Yunlai Swordsmanship"
     # damage
     damage_type: SkillType = SkillType.NORMAL_ATTACK
     main_damage_element: ElementType = ElementType.PHYSICAL
@@ -58,6 +58,7 @@ class StellarRestoration(ElementalSkill):
     元素战技
     '''
     id: int = 1
+    name = "Stellar Restoration"
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
     # damage
@@ -112,6 +113,7 @@ class StarwardSword(ElementalBurst):
     天街巡游!
     '''
     id = 2
+    name="Starward Sword"
     type: SkillType = SkillType.ELEMENTAL_BURST
 
     # damage
@@ -135,8 +137,8 @@ class StarwardSword(ElementalBurst):
 
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
-        self.resolve_damage(game)
         self.consume_energy(game)
+        self.resolve_damage(game)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 

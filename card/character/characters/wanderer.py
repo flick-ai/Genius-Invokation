@@ -197,7 +197,7 @@ class Switch(Status):
             dmg = Damage.create_damage(
                 game,
                 damage_type=SkillType.OTHER,
-                damage_from=self.from_character,
+                damage_from=self,
                 damage_to=get_opponent_active_character(game),
                 main_damage=1,
                 main_damage_element=ElementType.ANEPMO,

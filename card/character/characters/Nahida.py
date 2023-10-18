@@ -316,6 +316,9 @@ class Seed_of_Skandha(Status):
 
     def after_take_dmg(self, game: 'GeniusGame'):
 
+        if game.current_damage.reaction is None: return
+        if game.current_damage.damage_to.from_player != self.from_player: return
+        
         reaction_target = game.current_damage.damage_to # Character
         if reaction_target!=self.from_character:
             dmg = Damage.create_damage(
