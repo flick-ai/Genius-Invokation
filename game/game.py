@@ -268,7 +268,7 @@ class GeniusGame:
         if self.active_player.prepared_skill is not None:
             character = self.active_player.prepared_skill.from_charcater
             if character.is_active and character.is_frozen:
-            self.active_player.prepared_skill.on_call()
+                self.active_player.prepared_skill.on_call()
 
 
 class Active_Die:
