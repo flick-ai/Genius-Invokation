@@ -170,5 +170,18 @@ class Cyno(Character):
     id = 1404
     name = "Cyno"
     element = ElementType.ELECTRO
-    pass
+    weapon_type: WeaponType = WeaponType.POLEARM
+    country: CountryType = CountryType.SUNERU
+
+    init_health_point: int = 10
+    max_health_point: int = 10
+    skill_list = [Invokers_Spear, Secret_Rite_Chasmic_Soulfarer, Sacred_Rite_Wolfs_Swiftness]
+
+    max_power: int = 2
+
+    def __init__(self, game: 'GeniusGame', zone, from_player: 'GeniusPlayer', index:int, from_character = None, talent = False):
+        super().__init__(game, zone, from_player, index, from_character)
+        self.talent = talent
+        self.power = 0
+        self.character_zone.add_entity(Pactsworn_Pathclearer(game, self.from_player, self))
 
