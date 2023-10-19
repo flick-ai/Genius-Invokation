@@ -1,10 +1,10 @@
-from utils import *
-from ..base import WeaponCard
+from genius_invocation.utils import *
+from genius_invocation.card.action.equipment.weapon.base import WeaponCard
 from typing import TYPE_CHECKING
-from entity.status import Weapon, Status
+from genius_invocation.entity.status import Weapon, Status
 
 if TYPE_CHECKING:
-    from game.game import GeniusGame
+    from genius_invocation.game.game import GeniusGame
 
 
 class StatusOfKingsSquire(Status):

@@ -4,13 +4,13 @@ No Damage Calculation.
 All the player_id here is the player who has reaction on his character.
 '''
 from typing import TYPE_CHECKING
-from card.character.base import *
+from genius_invocation.card.character.base import *
 
-from entity.status import *
-from entity.summon import *
+from genius_invocation.entity.status import *
+from genius_invocation.entity.summon import *
 from loguru import logger
 if TYPE_CHECKING:
-    from game.game import GeniusGame
+    from genius_invocation.game.game import GeniusGame
 
 
 #The Elemental Reaction always with the first attached element.

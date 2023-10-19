@@ -7,10 +7,10 @@ from rich.progress import BarColumn, Progress, SpinnerColumn, TextColumn
 from rich.syntax import Syntax
 from rich.table import Table
 from typing import TYPE_CHECKING
-from utils import *
+from genius_invocation.utils import *
 if TYPE_CHECKING:
-    from game.game import GeniusGame
-    from game.player import GeniusPlayer
+    from genius_invocation.game.game import GeniusGame
+    from genius_invocation.game.player import GeniusPlayer
 
 def layout(game: 'GeniusGame'):
     layout = Layout()
@@ -66,8 +66,8 @@ def get_summon(player: 'GeniusPlayer'):
     sponsor_message = Table.grid()
     sponsor_message.add_column(no_wrap=True)
     sponsor_message.add_column(style="blue", justify="right")
-    if player.summon_zone.num() != 0:
-        for summon in player.summon_zone.space:
+    if player.summons_zone.num() != 0:
+        for summon in player.summons_zone.space:
             sponsor_message.add_row(
                 summon.name,
                 style='blue',
@@ -104,8 +104,8 @@ def get_summon(player: 'GeniusPlayer'):
     sponsor_message = Table.grid()
     sponsor_message.add_column(no_wrap=True)
     sponsor_message.add_column(style="blue", justify="right")
-    if player.summon_zone.num() != 0:
-        for summon in player.summon_zone.space:
+    if player.summons_zone.num() != 0:
+        for summon in player.summons_zone.space:
             sponsor_message.add_row(
                 summon.name,
                 style='blue',

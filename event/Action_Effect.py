@@ -1,6 +1,6 @@
-from game.game import GeniusGame
-from card.character.base import CharacterSkill
-from utils import *
+from genius_invocation.game.game import GeniusGame
+from genius_invocation.card.character.base import CharacterSkill
+from genius_invocation.utils import *
 '''
     我先按自己的理解写一个小action
 '''

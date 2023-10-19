@@ -1,19 +1,19 @@
 from typing import List, TYPE_CHECKING
 import numpy as np
-from ..utils import *
+from genius_invocation.utils import *
 from collections import defaultdict
-from .action import Action
-from .player import GeniusPlayer
-from ..event.events import EventManager
-from ..card.character.base import Damage
-from ..card.action.base import ActionCard
-from ..game.zone import Dice
+from genius_invocation.game.action import Action
+from genius_invocation.game.player import GeniusPlayer
+from genius_invocation.event.events import EventManager
+from genius_invocation.card.character.base import Damage
+from genius_invocation.card.action.base import ActionCard
+from genius_invocation.game.zone import Dice
 from loguru import logger
 from rich.console import Console
 from rich.table import Column, Table
-from user_layout import *
+from genius_invocation.user_layout import *
 if TYPE_CHECKING:
-    from card.character.base import CharacterSkill
+    from genius_invocation.card.character.base import CharacterSkill
 
 class GeniusGame:
     '''

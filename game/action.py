@@ -3,8 +3,8 @@
     consist of three stage of actions: choice, target and dice
 '''
 
-from utils import *
-import user_input
+from genius_invocation.utils import *
+import genius_invocation.user_input as user_input
 
 '''
     choice action (1 dim)

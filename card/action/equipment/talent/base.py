@@ -1,10 +1,10 @@
-from utils import *
-from ..base import EquipmentCard
+from genius_invocation.utils import *
+from genius_invocation.card.action.equipment.base import EquipmentCard
 
 if TYPE_CHECKING:
-    from game.game import GeniusGame
-    from game.zone import CharacterZone
-    from game.player import GeniusPlayer
+    from genius_invocation.game.game import GeniusGame
+    from genius_invocation.game.zone import CharacterZone
+    from genius_invocation.game.player import GeniusPlayer
 
 
 

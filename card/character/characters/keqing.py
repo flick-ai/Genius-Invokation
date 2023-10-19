@@ -1,16 +1,16 @@
-from card.character.base import NormalAttack, ElementalSkill, ElementalBurst
-from entity.entity import Entity
-from utils import *
+from genius_invocation.card.character.base import NormalAttack, ElementalSkill, ElementalBurst
+from genius_invocation.entity.entity import Entity
+from genius_invocation.utils import *
 from typing import TYPE_CHECKING, List, Tuple
-from card.action.base import ActionCard
+from genius_invocation.card.action.base import ActionCard
 if TYPE_CHECKING:
-    from game.game import GeniusGame
-    from game.action import Action
-    from event.events import ListenerNode
-    from game.player import GeniusPlayer
-    from event.damage import Damage
-from entity.character import Character
-from entity.status import Status, Combat_Status
+    from genius_invocation.game.game import GeniusGame
+    from genius_invocation.game.action import Action
+    from genius_invocation.event.events import ListenerNode
+    from genius_invocation.game.player import GeniusPlayer
+    from genius_invocation.event.damage import Damage
+from genius_invocation.entity.character import Character
+from genius_invocation.entity.status import Status, Combat_Status
 from loguru import logger
 class Yunlai_Swordsmanship(NormalAttack):
     '''

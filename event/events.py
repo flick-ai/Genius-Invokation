@@ -1,10 +1,10 @@
-from card.character.base import Damage
+from genius_invocation.card.character.base import Damage
 from collections import defaultdict
 from typing import Any, List, TYPE_CHECKING
-from utils import *
+from genius_invocation.utils import *
 
 if TYPE_CHECKING:
-    from game.game import GeniusGame
+    from genius_invocation.game.game import GeniusGame
 
 class ListenerNode:
     '''监听者节点'''

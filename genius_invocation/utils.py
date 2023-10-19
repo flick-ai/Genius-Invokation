@@ -188,9 +188,9 @@ utility functions
 '''
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from game.game import GeniusGame
-    from entity.character import Character
-    from game.player import GeniusPlayer
+    from genius_invocation.game.game import GeniusGame
+    from genius_invocation.entity.character import Character
+    from genius_invocation.game.player import GeniusPlayer
 
 
 # get characters

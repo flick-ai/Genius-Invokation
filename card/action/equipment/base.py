@@ -1,13 +1,13 @@
-from ..base import ActionCard
+from genius_invocation.card.action.base import ActionCard
 from typing import TYPE_CHECKING
-from entity.entity import Entity
-from utils import *
+from genius_invocation.entity.entity import Entity
+from genius_invocation.utils import *
 
 if TYPE_CHECKING:
-    from game.game import GeniusGame
-    from game.zone import CharacterZone
-    from game.player import GeniusPlayer
-    from entity.status import Status, Equipment
+    from genius_invocation.game.game import GeniusGame
+    from genius_invocation.game.zone import CharacterZone
+    from genius_invocation.game.player import GeniusPlayer
+    from genius_invocation.entity.status import Status, Equipment
 class EquipmentCard(ActionCard):
     # 装备牌基本类
     equipment_entity: 'Equipment'

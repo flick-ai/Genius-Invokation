@@ -1,13 +1,13 @@
-from entity.entity import Entity
-from utils import *
+from genius_invocation.entity.entity import Entity
+from genius_invocation.utils import *
 from typing import TYPE_CHECKING, List, Tuple
 
 
 if TYPE_CHECKING:
-    from game.game import GeniusGame
-    from game.action import Action
-    from event.events import ListenerNode
-    from game.player import GeniusPlayer
+    from genius_invocation.game.game import GeniusGame
+    from genius_invocation.game.action import Action
+    from genius_invocation.event.events import ListenerNode
+    from genius_invocation.game.player import GeniusPlayer
 
 #TODO: FINISH THE ENTITIES
 

@@ -1,8 +1,8 @@
-from ...base import ActionCard
-from utils import *
+from genius_invocation.card.action.base import ActionCard
+from genius_invocation.utils import *
 if TYPE_CHECKING:
-    from game.game import GeniusGame
-    from game.player import GeniusPlayer
+    from genius_invocation.game.game import GeniusGame
+    from genius_invocation.game.player import GeniusPlayer
 
 class Nature_and_Wisdom(ActionCard):
     id: int = 331804

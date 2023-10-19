@@ -1,9 +1,9 @@
-from utils import *
-from ..base import ArtifactCard
+from genius_invocation.utils import *
+from genius_invocation.card.action.equipment.artifact.base import ArtifactCard
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from game.game import GeniusGame
+    from genius_invocation.game.game import GeniusGame
 
 
 # artifacts

@@ -1,18 +1,18 @@
-from utils import *
+from genius_invocation.utils import *
 from typing import List, TYPE_CHECKING
-from event.damage import Damage
-from event.heal import Heal
-from entity.entity import Entity
+from genius_invocation.event.damage import Damage
+from genius_invocation.event.heal import Heal
+from genius_invocation.entity.entity import Entity
 
 from loguru import logger
 
 
 if TYPE_CHECKING:
-    from game.game import GeniusGame
-    from game.action import Action
-    from event.events import ListenerNode
-    from entity.character import Character
-    from entity.status import Status
+    from genius_invocation.game.game import GeniusGame
+    from genius_invocation.game.action import Action
+    from genius_invocation.event.events import ListenerNode
+    from genius_invocation.entity.character import Character
+    from genius_invocation.entity.status import Status
 
 
 class CharacterSkill:

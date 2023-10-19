@@ -1,23 +1,23 @@
-from utils import *
+from genius_invocation.utils import *
 from typing import List, TYPE_CHECKING
-from .zone import CardZone, ActiveZone, SummonZone, SupportZone, DiceZone, CharacterZone, HandZone, Dice
+from genius_invocation.game.zone import CardZone, ActiveZone, SummonZone, SupportZone, DiceZone, CharacterZone, HandZone, Dice
 import numpy as np
-from card.character import CharacterSkill
-# from card.character.characters import *
-import card.character.characters as chars
+from genius_invocation.card.character import CharacterSkill
+# from genius_invocation.card.character.characters import *
+import genius_invocation.card.character.characters as chars
 # You may use chars like following print examples:
 # print(chars.tartaglia) The python file(If the name of file is same as charater, it will not return the file)
 # print(chars.Tartaglia) The character class
 # print(chars.Akara) The status
 
-from card.action import ActionCard
-from card.character import CharacterSkill
+from genius_invocation.card.action import ActionCard
+from genius_invocation.card.character import CharacterSkill
 
 if TYPE_CHECKING:
-    from game.game import GeniusGame
-    from game.action import Action
-    from card.action import ActionCard
-    from card.character import CharacterSkill
+    from genius_invocation.game.game import GeniusGame
+    from genius_invocation.game.action import Action
+    from genius_invocation.card.action import ActionCard
+    from genius_invocation.card.character import CharacterSkill
 
 class GeniusPlayer:
     def __init__(self, game: 'GeniusGame', deck, idx) -> None:

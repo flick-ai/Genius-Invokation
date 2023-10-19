@@ -1,18 +1,18 @@
 from typing import List, TYPE_CHECKING
 import numpy as np
-from utils import *
+from genius_invocation.utils import *
 from copy import deepcopy
-from card.action import *
-from entity.status import Status, Shield, Combat_Shield, Weapon, Artifact, Combat_Status
-from card.character.characters.keqing import Lightning_Stiletto
+from genius_invocation.card.action import *
+from genius_invocation.entity.status import Status, Shield, Combat_Shield, Weapon, Artifact, Combat_Status
+from genius_invocation.card.character.characters.keqing import Lightning_Stiletto
 
 if TYPE_CHECKING:
-    from entity.entity import Entity
-    from game.player import GeniusPlayer
-    from entity.summon import Summon
-    from entity.support import Support
+    from genius_invocation.entity.entity import Entity
+    from genius_invocation.game.player import GeniusPlayer
+    from genius_invocation.entity.summon import Summon
+    from genius_invocation.entity.support import Support
 
-    from entity.character import Character
+    from genius_invocation.entity.character import Character
 
 
 class Dice:

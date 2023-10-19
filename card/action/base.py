@@ -1,8 +1,8 @@
 from typing import TYPE_CHECKING
-from utils import *
+from genius_invocation.utils import *
 
 if TYPE_CHECKING:
-    from game.game import GeniusGame
+    from genius_invocation.game.game import GeniusGame
 
 
 class ActionCard:

@@ -1,12 +1,12 @@
-from utils import *
-from ..base import SupportCard
+from genius_invocation.utils import *
+from genius_invocation.card.action.support.base import SupportCard
 from typing import TYPE_CHECKING
-from entity.support import Support
+from genius_invocation.entity.support import Support
 from loguru import logger
 
 if TYPE_CHECKING:
-    from game.game import GeniusGame
-    from game.player import GeniusPlayer
+    from genius_invocation.game.game import GeniusGame
+    from genius_invocation.game.player import GeniusPlayer
 
 
 class Jade_Chamber_Entity(Support):

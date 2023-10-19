@@ -1,13 +1,13 @@
-from utils import *
+from genius_invocation.utils import *
 from typing import TYPE_CHECKING
 
-# from utils import GeniusGame
-from ..base import EquipmentCard
-# from entity.entity import Entity
+# from genius_invocation.utils import GeniusGame
+from genius_invocation.card.action.equipment.base import EquipmentCard
+# from genius_invocation.entity.entity import Entity
 
 if TYPE_CHECKING:
-    from game.game import GeniusGame
-    from entity.status import Weapon
+    from genius_invocation.game.game import GeniusGame
+    from genius_invocation.entity.status import Weapon
 
 
 

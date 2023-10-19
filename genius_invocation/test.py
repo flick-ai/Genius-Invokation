@@ -39,7 +39,7 @@ I = me()
 # print(isinstance(I, 'me'), isinstance(I, person))
 # print(-1%3)
 
-from utils import *
+from genius_invocation.utils import *
 # print(DiceType(0) in DiceType)
 
 # dice = [7,5,5,0,1,2,3,4]
