@@ -36,6 +36,11 @@ class NRE_Entity(Support):
             (EventType.AFTER_PLAY_CARD, ZoneType.SUPPORT_ZONE, self.on_play),
             (EventType.BEGIN_ACTION_PHASE, ZoneType.SUPPORT_ZONE, self.on_begin),
         ]
+    def show(self):
+        if self.usage>0:
+            return '┬─┬┬─┬'
+        else:
+            return '(╯°□°）╯︵ ┻━┻┻━┻'
 
 
 class NRE(SupportCard):

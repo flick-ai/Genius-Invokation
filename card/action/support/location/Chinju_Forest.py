@@ -33,7 +33,9 @@ class Chinju_Forest_Entity(Support):
             (EventType.BEGIN_ACTION_PHASE, ZoneType.SUPPORT_ZONE, self.on_begin),
         ]
 
-
+    def show(self):
+        return str(self.usage)
+    
 class Chinju_Forest(SupportCard):
     '''
         镇守之森
