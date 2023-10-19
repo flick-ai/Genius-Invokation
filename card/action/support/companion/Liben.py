@@ -52,11 +52,11 @@ class Liben_Entity(Support):
     def show(self):
         st = ""
         if len(self.dice)==0:
-            st = 'ToT'
+            st = '(｡ ˇ‸ˇ ｡)'
         elif len(self.dice)==1:
-            st = '-_-'
+            st = '( *｀ω´)'
         elif len(self.dice)==2:
-            st = '^v^'
+            st = '↖(^ω^)↗'
         else:
             st = '(｡ì _ í｡)'
         return str(len(self.dice)) + " " + st
