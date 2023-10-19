@@ -134,7 +134,7 @@ class GeniusGame:
                     char.is_alive = False
                     self.manager.invoke(EventType.CHARACTER_DIE, self)
                     if not char.is_alive:
-                        char.character_zone.clear() # TODO: Not Implement Yet.
+                        char.character_zone.clear(self) # TODO: Not Implement Yet.
                         if player.active_idx == idx:
                             Active_Die(player).on_call(self)
         #TODO: Not Implement yet.

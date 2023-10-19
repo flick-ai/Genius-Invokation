@@ -323,10 +323,15 @@ class CharacterZone:
     def add_entity(self, entity: 'Status'):
         self.status_list.append(entity)
 
-    def clear(self):
-        self.weapon_card = None
-        self.artifact_card = None
+    def clear(self, game:'GeniusGame'):
+        if self.weapon_card is not None:
+            self.weapon_card.on_destroy(game)
+            self.weapon_card = None
+        if self.artifact_card is not None:
+            self.artifact_card.on_destroy(game)
+            self.artifact_card = None
         for status in self.status_list:
+            status.on_destroy(game)
             del(status)
         self.status_list = []
 class ActiveZone:

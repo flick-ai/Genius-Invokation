@@ -315,8 +315,8 @@ class Seed_of_Skandha(Status):
         self.current_usage = max(self.max_usage, self.current_usage)
 
     def after_take_dmg(self, game: 'GeniusGame'):
-        logger.info(game.current_damage.main_damage)
-        logger.info(game.current_damage.main_damage_element)
+        # logger.debug(game.current_damage.main_damage)
+        # logger.debug(game.current_damage.main_damage_element)
         if game.current_damage.reaction is None: return
         if game.current_damage.damage_to.from_player != self.from_player: return
 
@@ -341,7 +341,7 @@ class Seed_of_Skandha(Status):
                 Nahida_Player = game.players[0]
             Nahida_Char = get_character_with_name(Nahida_Player, Nahida)
             if Nahida_Char.talent:
-                elemental_list = [Nahida_Player.character_list[i].character.element for i in range(Nahida_Player.character_num)]
+                elemental_list = [Nahida_Player.character_list[i].element for i in range(Nahida_Player.character_num)]
                 if ElementType.PYRO in elemental_list:
                     dmg = Damage.create_damage(
                         game,

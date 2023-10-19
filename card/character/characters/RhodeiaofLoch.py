@@ -1,9 +1,11 @@
 from card.character.base import NormalAttack, ElementalSkill, ElementalBurst
 from entity.entity import Entity
+from game.game import GeniusGame
 from utils import *
 from typing import TYPE_CHECKING, List, Tuple
 from event.damage import Damage
 from card.action.base import ActionCard
+from utils import GeniusGame
 if TYPE_CHECKING:
     from game.game import GeniusGame
     from game.action import Action
@@ -158,6 +160,12 @@ class Frog(Summon):
             self.from_player.team_combat_status.add_entity(status)
 
         self.from_player.team_combat_status.has_status(Shield_from_Frog).update()
+
+    def on_destroy(self, game: 'GeniusGame'):
+        status = self.from_player.team_combat_status.has_status(Shield_from_Frog)
+        if status is not None:
+            status.on_destroy(game)
+        super().on_destroy(game)
 
     def update_listener_list(self):
         '''

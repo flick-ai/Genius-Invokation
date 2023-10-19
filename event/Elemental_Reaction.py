@@ -8,7 +8,7 @@ from card.character.base import *
 
 from entity.status import *
 from entity.summon import *
-
+from loguru import logger
 if TYPE_CHECKING:
     from game.game import GeniusGame
 
@@ -23,30 +23,35 @@ def Frozen(game: 'GeniusGame', player_id: int, target_idx: int):
     status = game.players[player_id].character_list[target_idx].character_zone.has_entity(Frozen_Status)
     if status is None:
         game.players[player_id].character_list[target_idx].character_zone.add_entity(Frozen_Status(game, game.players[player_id], game.players[player_id].character_list[target_idx]))
-
+    logger.info("Trigger Elemental_Reaction: Frozen")
 def Melt(game: 'GeniusGame', player_id: int, target_idx: int):
     '''
     game.players[player_id].active_zone.character_list[target_idx] .
     '''
     game.players[player_id].character_list[target_idx].elemental_application.pop(0)
+    logger.info("Trigger Elemental_Reaction: Melt")
+
 
 def Vaporize(game: 'GeniusGame', player_id: int, target_idx: int):
     '''
     game.players[player_id].active_zone.character_list[target_idx] .
     '''
     game.players[player_id].character_list[target_idx].elemental_application.pop(0)
+    logger.info("Trigger Elemental_Reaction: Vaporize")
 
 def Superconduct(game: 'GeniusGame', player_id: int, target_idx: int):
     '''
     game.players[player_id].active_zone.character_list[target_idx] .
     '''
     game.players[player_id].character_list[target_idx].elemental_application.pop(0)
+    logger.info("Trigger Elemental_Reaction: Superconduct")
 
 def Electro_Charged(game: 'GeniusGame', player_id: int, target_idx: int):
     '''
     game.players[player_id].active_zone.character_list[target_idx] .
     '''
     game.players[player_id].character_list[target_idx].elemental_application.pop(0)
+    logger.info("Trigger Elemental_Reaction: Electro Charged")
 
 def Bloom(game: 'GeniusGame', player_id: int, target_idx: int):
     '''
@@ -59,6 +64,7 @@ def Bloom(game: 'GeniusGame', player_id: int, target_idx: int):
         status.update()
     else:
         game.players[1-player_id].team_combat_status.add_entity(Dendro_Core(game, game.players[1-player_id], None))
+    logger.info("Trigger Elemental_Reaction: Bloom")
 
 def Overloaded(game: 'GeniusGame', player_id: int, target_idx: int):
     '''
@@ -66,6 +72,8 @@ def Overloaded(game: 'GeniusGame', player_id: int, target_idx: int):
     '''
     game.players[player_id].character_list[target_idx].elemental_application.pop(0)
     game.players[player_id].change_to_next_character()
+    logger.info("Trigger Elemental_Reaction: Overloaded")
+
 
 def Burning(game: 'GeniusGame', player_id: int, target_idx: int):
     '''
@@ -77,6 +85,7 @@ def Burning(game: 'GeniusGame', player_id: int, target_idx: int):
         summon.update()
     else:
         game.players[1-player_id].summons_zone.add_entity(Burning_Flame(game, game.players[1-player_id], None))
+    logger.info("Trigger Elemental_Reaction: Burning")
 
 def Quicken(game: 'GeniusGame', player_id: int, target_idx: int):
     '''
@@ -90,12 +99,13 @@ def Quicken(game: 'GeniusGame', player_id: int, target_idx: int):
     else:
         status.update()
 
-
+    logger.info("Trigger Elemental_Reaction: Quicken")
 def Swirl(game: 'GeniusGame', player_id: int, target_idx: int):
     '''
     game.players[player_id].active_zone.character_list[target_idx] .
     '''
     game.players[player_id].character_list[target_idx].elemental_application.pop(0)
+    logger.info("Trigger Elemental_Reaction: Swirl")
 
 
 def Crystallize(game: 'GeniusGame', player_id: int, target_idx: int):
@@ -108,3 +118,4 @@ def Crystallize(game: 'GeniusGame', player_id: int, target_idx: int):
         status.update()
     else:
         game.players[1-player_id].team_combat_status.add_entity(Crystallize_Shield(game, game.players[1-player_id], None))
+    logger.info("Trigger Elemental_Reaction: Crystallize")
