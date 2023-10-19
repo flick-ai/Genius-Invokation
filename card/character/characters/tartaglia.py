@@ -19,14 +19,18 @@ class RangedStance(Status):
     '''
         远程状态
     '''
+    name = "Ranged Stance"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
 
+    def show(self):
+        return str(MAX_ROUND)
 
 class MeleeStance(Status):
     '''
         近战状态
     '''
+    name = "Melee Stance"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.opponent = None

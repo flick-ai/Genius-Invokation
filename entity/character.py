@@ -99,7 +99,7 @@ class Character(Entity):
         self.health_point = 1
 
     def show(self):
-        return self.health_point
+        return str(self.health_point)
 
 
 

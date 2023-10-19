@@ -32,7 +32,7 @@ class Status(Entity):
         pass
 
     def show(self):
-        return self.current_usage
+        return str(self.current_usage)
 
 class Combat_Status(Entity):
     id: int
@@ -46,10 +46,10 @@ class Combat_Status(Entity):
     def on_destroy(self, game):
         super().on_destroy(game)
         self.from_player.team_combat_status.remove_entity(self)
-    
+
     def show(self):
         return self.current_usage
-    
+
 class Shield(Status):
     # Status of shield (Only for single character)
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):

@@ -45,6 +45,7 @@ def layout(game: 'GeniusGame'):
         layout[player]['card'].update(get_card(game.players[i]))
         layout[player]['dice'].update(get_dice(game.players[i]))
     return layout
+
 def get_game_info(game: 'GeniusGame'):
     sponsor_message = Table.grid()
     sponsor_message.add_column(no_wrap=True)
@@ -59,19 +60,50 @@ def get_game_info(game: 'GeniusGame'):
         title="Game Information",
     )
     return message_panel
+
 def get_character(player: 'GeniusPlayer', idx):
     sponsor_message = Table.grid()
-    sponsor_message.add_column(no_wrap=True)
+    sponsor_message.add_column(no_wrap=True,justify="medium")
     character_list = player.character_list
-    sponsor_message.add_row(
-        character_list[idx].name,
-        style='blue',
-    )
+    if character_list[idx].is_active:
+        color = 'red'
+    else:
+        color = 'black'
+    if character_list[idx].is_alive:
+        sponsor_message.add_row(
+            character_list[idx].name,
+            style=color,
+        )
+        sponsor_message.add_row(
+            character_list[idx].show(),
+            style=color,
+        )
+        sponsor_message.add_row(
+            str(character_list[idx].power),
+            style=color,
+        )
+        for status in character_list[idx].character_zone.status_list:
+            sponsor_message.add_row(
+                f"{status.name}:{status.show()}",
+                style=color,
+            )
+        if character_list[idx].is_active:
+            for status in player.team_combat_status.shield:
+                sponsor_message.add_row(
+                    f"{status.name}:{status.show()}",
+                    style='yellow',
+                )
+            for status in player.team_combat_status.space:
+                sponsor_message.add_row(
+                    f"{status.name}:{status.show()}",
+                    style='blue',
+                )
     message_panel = Panel(
         Align.center(
             Group(" ",Align.center(sponsor_message)),
+            vertical="middle",
         ),
-        title="Support"+str(idx),
+        title="Character"+str(idx),
     )
     return message_panel
 
@@ -101,6 +133,10 @@ def get_summon(player: 'GeniusPlayer', idx):
             summon.name,
             style='blue',
         )
+        sponsor_message.add_row(
+            str(summon.show()),
+            style='blue',
+        )
     message_panel = Panel(
         Align.center(
             Group(" ",Align.center(sponsor_message)),
@@ -119,25 +155,10 @@ def get_support(player: 'GeniusPlayer', idx):
             support.name,
             style='blue',
         )
-
-    message_panel = Panel(
-        Align.center(
-            Group(" ",Align.center(sponsor_message)),
-        ),
-        title="SupportZone",
-    )
-    return message_panel
-
-def get_summon(player: 'GeniusPlayer'):
-    sponsor_message = Table.grid()
-    sponsor_message.add_column(no_wrap=True)
-    sponsor_message.add_column(style="blue", justify="right")
-    if player.summons_zone.num() != 0:
-        for summon in player.summons_zone.space:
-            sponsor_message.add_row(
-                summon.name,
-                style='blue',
-            )
+        sponsor_message.add_row(
+            support.show(),
+            style='blue',
+        )
 
     message_panel = Panel(
         Align.center(

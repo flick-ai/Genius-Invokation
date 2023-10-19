@@ -11,7 +11,7 @@ deck1 = {
     'action_card': [' Knights_of_Favonius_Library' for i in range(30)]
 }
 deck2 = {
-    'character': ['Shenhe', 'Wanderer', 'Yoimiya'],
+    'character': ['Cyno', 'Wanderer', 'Yoimiya'],
     'action_card': ['Jade_Chamber' for i in range(30)]
 }
 
