@@ -207,6 +207,7 @@ class GeniusPlayer:
             2. 行动所需骰子是否足够？
             TODO:我们使用一个3维矩阵来维护,但是实际上这个矩阵十分稀疏,可以考虑使用稀疏矩阵来提升系统系能
         '''
+        # print(game.game_phase, game.active_player_index, "generate_mask")
         self.action_mask = np.zeros((18, 15, 5)).astype(np.int32)
 
        # 非标准行动的 Mask

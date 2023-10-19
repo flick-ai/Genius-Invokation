@@ -82,8 +82,8 @@ class Character(Entity):
 
     def heal(self, heal: int):
         self.health_point += heal
-        if self.hp > self.max_health_point:
-            self.hp = self.max_health_point
+        if self.health_point > self.max_health_point:
+            self.health_point = self.max_health_point
 
     def dying(self, game: 'GeniusGame'):
         assert self.is_alive==False
@@ -100,32 +100,3 @@ class Character(Entity):
 
     def show(self):
         return str(self.health_point)
-
-
-
-
-
-
-
-    # def on_game_start(self):
-    #     '''
-    #         角色区初始化
-    #         讨债人被动 潜行
-    #         雷电将军被动 诸愿百眼之轮
-    #         无相雷、丘丘等上限修改
-    #     '''
-    #     return self.power, self.health_point, self.init_state
-
-
-    # def on_round_start(self, game: GeniusGame):
-    #     '''
-    #         预留
-    #     '''
-    #     pass
-
-    # def on_switched(self, game: GeniusGame):
-    #     '''
-    #         passive skill 被动技能 神里绫华
-
-    #     '''
-    #     pass
