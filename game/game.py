@@ -9,6 +9,9 @@ from ..card.character.base import Damage
 from ..card.action.base import ActionCard
 from ..game.zone import Dice
 from loguru import logger
+from rich.console import Console
+from rich.table import Column, Table
+from user_layout import *
 if TYPE_CHECKING:
     from card.character.base import CharacterSkill
 
@@ -243,30 +246,34 @@ class GeniusGame:
 
     def encode_message(self):
         '''
-            尝试将Game的信息编码成str呈现给使用者
+            新版: 尝试将Game信息编码成table呈现给使用者
         '''
-        message = {'game':{}, 0:{}, 1:{}}
-        message['game']['round'] = self.round
-        message['game']['round_phase'] = self.game_phase.name
-        message['game']['active_player'] = int(self.active_player_index)
-        message['game']['first_player'] = int(self.first_player)
-        for player in [0, 1]:
-            message[player]['active_zone_shiled'] = self.players[player].team_combat_status.shield
-            message[player]['active_zone_status'] = self.players[player].team_combat_status.space
-            message[player]['active_character_idx'] = self.players[player].active_idx
-            message[player]['card_zone'] = {'num':self.players[player].card_zone.num()}
-            message[player]['hand_zone'] = [card.name for card in self.players[player].hand_zone.card]
-            message[player]['support_zone'] = [support.name for support in self.players[player].support_zone.space]
-            message[player]['summon_zone'] = [summon.name for summon in self.players[player].summons_zone.space]
-            message[player]['dice_zone'] = self.players[player].dice_zone.show()
-            for character in self.players[player].character_list:
-                message[player][character.name] = {}
-                message[player][character.name]['active'] = character.is_active
-                message[player][character.name]['alive'] = character.is_alive
-                message[player][character.name]['character_zone'] = character.character_zone.status_list
+        return layout(self)
+        # '''
+        #     尝试将Game的信息编码成str呈现给使用者
+        # '''
+        # message = {'game':{}, 0:{}, 1:{}}
+        # message['game']['round'] = self.round
+        # message['game']['round_phase'] = self.game_phase.name
+        # message['game']['active_player'] = int(self.active_player_index)
+        # message['game']['first_player'] = int(self.first_player)
+        # for player in [0, 1]:
+        #     message[player]['active_zone_shiled'] = self.players[player].team_combat_status.shield
+        #     message[player]['active_zone_status'] = self.players[player].team_combat_status.space
+        #     message[player]['active_character_idx'] = self.players[player].active_idx
+        #     message[player]['card_zone'] = {'num':self.players[player].card_zone.num()}
+        #     message[player]['hand_zone'] = [card.name for card in self.players[player].hand_zone.card]
+        #     message[player]['support_zone'] = [support.name for support in self.players[player].support_zone.space]
+        #     message[player]['summon_zone'] = [summon.name for summon in self.players[player].summons_zone.space]
+        #     message[player]['dice_zone'] = self.players[player].dice_zone.show()
+        #     for character in self.players[player].character_list:
+        #         message[player][character.name] = {}
+        #         message[player][character.name]['active'] = character.is_active
+        #         message[player][character.name]['alive'] = character.is_alive
+        #         message[player][character.name]['character_zone'] = character.character_zone.status_list
 
-            # message[player]['summon_zone'] = [summon.name for summon in self.players[player].summons_zone.space]
-        return message
+        #     # message[player]['summon_zone'] = [summon.name for summon in self.players[player].summons_zone.space]
+        # return message
 
     def change_active_player(self):
         self.active_player_index = 1 - self.active_player_index

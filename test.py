@@ -49,6 +49,39 @@ from utils import *
 # print(so)
 # idx = sorted(range(len(dice)), key=lambda x:sort_map[dice[x]], reverse=True)
 # print(idx)
-so = [7]
-dice = [7,7,1]
-print(dice.count(7))
+# so = [7]
+# dice = [7,7,1]
+# print(dice.count(7))
+
+from rich import print
+from rich.layout import Layout
+
+layout = Layout()
+
+layout.split_column(
+    Layout(name="upper"),
+    Layout(name="lower")
+)
+
+layout["lower"].split_row(
+    Layout(name="support"),
+    Layout(name="character"),
+    Layout(name="summon"),
+    Layout(name="dice")
+)
+
+layout["lower"]['summon'].size = None
+layout["lower"]['summon'].ratio = 2
+
+layout["lower"]['character'].size = None
+layout["lower"]['character'].ratio = 5
+
+layout["lower"]['support'].size = None
+layout["lower"]['support'].ratio = 2
+
+layout["lower"]['dice'].size = None
+layout["lower"]['dice'].ratio = 1
+
+layout["lower"]['dice']
+
+print(layout)
