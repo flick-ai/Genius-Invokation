@@ -189,7 +189,7 @@ class ChainsOfWardingThunder(Summon):
     element: ElementType = ElementType.ELECTRO
     usage: int = 2
     max_usage: int = 2
-
+    removable = True
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.current_usage = self.usage

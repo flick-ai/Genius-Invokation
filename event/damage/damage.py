@@ -58,7 +58,7 @@ class Damage:
         self.damage_add(game)
         self.damage_dealing(game)
         self.damage_excute(game)
-        game.suffer_current_damage(game)
+        game.suffer_current_damage()
         self.after_damage(game)
 
 

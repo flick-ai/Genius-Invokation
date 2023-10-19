@@ -105,11 +105,12 @@ class GeniusGame:
 
         self.check_dying() # TODO: Not Implement yet.
 
-    def suffer_current_damage(self, game:'GeniusGame'):
+    def suffer_current_damage(self):
         target = self.current_damage.damage_to
         main_dmg = self.current_damage.main_damage
         main_dmg_ele = self.current_damage.main_damage_element
         logger.info("Target {} suffers {} {} damage".format(target.name, main_dmg, main_dmg_ele.name))
+        logger.info("The damage is from {}".format(self.current_damage.damage_from.name))
         main_dmg = min(target.health_point, main_dmg)
 
         target.health_point -= self.current_damage.main_damage

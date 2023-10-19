@@ -193,6 +193,7 @@ class Talisman_Spirit(Summon):
     element: ElementType = ElementType.CRYO
     usage: int = 2
     max_usage: int = 2
+    removable = True
 
     def on_end_phase(self, game: 'GeniusGame'):
         if game.active_player == self.from_player:

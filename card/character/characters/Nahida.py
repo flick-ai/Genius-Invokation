@@ -30,7 +30,7 @@ class Akara(NormalAttack):
     cost = [
         {
             'cost_num': 1,
-            'cost_type': CostType.PYRO
+            'cost_type': CostType.DENDRO
         },
         {
             'cost_num': 2,
@@ -40,7 +40,7 @@ class Akara(NormalAttack):
     energy_cost: int = 0
     energy_gain: int = 1
 
-    def __init__(self, from_character: Character):
+    def __init__(self, from_character: 'Character'):
         super().__init__(from_character)
 
     def on_call(self, game: 'GeniusGame'):

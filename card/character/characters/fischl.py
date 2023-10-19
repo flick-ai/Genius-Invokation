@@ -18,6 +18,7 @@ class Oz(Summon):
     element: ElementType = ElementType.ELECTRO
     usage: int = 2
     max_usage: int = 2
+    removable: bool = True
 
     def on_end_phase(self, game: 'GeniusGame'):
         '''

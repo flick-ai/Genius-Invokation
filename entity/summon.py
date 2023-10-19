@@ -18,6 +18,7 @@ class Summon(Entity):
     usage: int
     max_usage: int
     skills: list
+    removable: bool # 是否能拔掉，若是盾、光降之剑，则在结束回合时按自己的方式爆炸。
 
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character:'Character'=None):
         super().__init__(game, from_player, from_character)
@@ -29,17 +30,29 @@ class Summon(Entity):
 
     def update(self):
         pass
+    
+    def add_usage(self, game: 'GeniusGame', count: int):
+        self.current_usage += count
+    
+    def minus_usage(self, game: 'GeniusGame', count: int):
+        self.current_usage -= count
+        self.current_usage = max(0, self.current_usage)
+        if self.current_usage <= 0 and self.removable:
+            self.on_destroy(game)
 
 class Burning_Flame(Summon):
+    '''燃烧烈焰'''
+    usage = 1
+    max_usage = 2
+    name = 'Burning Flame'
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character:'Character'=None):
         super().__init__(game, from_player, from_character)
         self.element = ElementType.PYRO
-        self.usage = 1
-        self.max_usage = 2
         self.current_usage = 1
 
     def update(self):
         self.current_usage += 1
+        self.current_usage = min(self.current_usage, self.max_usage)
 
     def on_end_phase(self, game: 'GeniusGame'):
         if game.active_player == self.from_player:

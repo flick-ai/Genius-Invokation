@@ -1,13 +1,11 @@
-from game.game import GeniusGame
-from game.player import GeniusPlayer
 from utils import *
-from utils import GeniusGame, GeniusPlayer
 from ..base import WeaponCard
 from typing import TYPE_CHECKING
 from entity.status import Weapon, Combat_Status
 
 if TYPE_CHECKING:
     from game.game import GeniusGame
+    from game.player import GeniusPlayer
 
 
 class MillennialMovementFarewellSong(Combat_Status):
