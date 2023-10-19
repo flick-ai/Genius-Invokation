@@ -152,6 +152,8 @@ class EventType(Enum):
     AFTER_ANY_ACTION = 18
     ON_SUMMON_REMOVE = 19
 
+    DAMAGE_ADD_AFTER_REACTION = 20 #AFTER REACTION, DMG ADD
+
 class ElementalReactionType(Enum):
     Frozen = 0
     Melt = 1
@@ -243,7 +245,7 @@ def get_opponent_standby_character(
 def get_opponent(
         game: 'GeniusGame'
     ):
-    return game.players[ - game.active_player_index]
+    return game.players[1 - game.active_player_index]
 
 def get_character_with_name(
         player: 'GeniusPlayer',

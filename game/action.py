@@ -209,7 +209,7 @@ class Action:
                         cost_type = CostType(use_dice[choice][target][i*2+1])
                         list_prompt = f'您需要选择使用的{cost_num}个{cost_type}骰子的位置,形式如0 1 2所示:'
                     sub_dice = input(list_prompt)
-                    sub_dice = [int(i) for i in sub_dice.split(' ')]
+                    sub_dice = [ int(i) for i in sub_dice.split()]
                     dice = dice + sub_dice
                     if not game.active_player.dice_zone.check_dice(sub_dice, cost_num, use_dice[choice][target][i*2+1]):
                         print("您的骰子选择不符合要求,默认您pass该Action阶段")

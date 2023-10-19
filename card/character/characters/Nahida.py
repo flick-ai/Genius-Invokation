@@ -3,15 +3,15 @@ from entity.character import Character
 from entity.entity import Entity
 from utils import *
 from typing import TYPE_CHECKING, List, Tuple
+from event.damage import Damage
 
 if TYPE_CHECKING:
     from game.game import GeniusGame
     from game.action import Action
     from event.events import ListenerNode
     from game.player import GeniusPlayer
-    from event.damage import Damage
 from entity.status import Status, Combat_Status
-
+from loguru import logger
 class Akara(NormalAttack):
     '''
         纳西妲
@@ -315,7 +315,8 @@ class Seed_of_Skandha(Status):
         self.current_usage = max(self.max_usage, self.current_usage)
 
     def after_take_dmg(self, game: 'GeniusGame'):
-
+        logger.info(game.current_damage.main_damage)
+        logger.info(game.current_damage.main_damage_element)
         if game.current_damage.reaction is None: return
         if game.current_damage.damage_to.from_player != self.from_player: return
 
@@ -331,7 +332,7 @@ class Seed_of_Skandha(Status):
                 damage_to=self.from_character,
             )
             game.add_damage(dmg)
-            game.resolve_damage()
+            # game.resolve_damage()
 
         else:
             if game.players[0] == self.from_player:
@@ -362,7 +363,7 @@ class Seed_of_Skandha(Status):
                         damage_to=self.from_character,
                     )
                 game.add_damage(dmg)
-                game.resolve_damage()
+                # game.resolve_damage()
             else:
                 dmg =Damage.create_damage(
                     game,
@@ -374,7 +375,7 @@ class Seed_of_Skandha(Status):
                     damage_to=self.from_character,
                 )
                 game.add_damage(dmg)
-                game.resolve_damage()
+                # game.resolve_damage()
         self.current_usage -= 1
         if self.current_usage<=0:
             self.on_destroy(game)

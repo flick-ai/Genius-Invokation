@@ -24,8 +24,9 @@ class Summon(Entity):
         super().__init__(game, from_player, from_character)
         self.current_usage: int = self.usage
 
-    def on_destroy(self, game):
+    def on_destroy(self, game:'GeniusGame'):
         super().on_destroy(game)
+        game.manager.invoke(EventType.ON_SUMMON_REMOVE, game)
         self.from_player.summons_zone.remove(self)
 
     def update(self):
@@ -45,6 +46,7 @@ class Burning_Flame(Summon):
     usage = 1
     max_usage = 2
     name = 'Burning Flame'
+    removable = True
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character:'Character'=None):
         super().__init__(game, from_player, from_character)
         self.element = ElementType.PYRO

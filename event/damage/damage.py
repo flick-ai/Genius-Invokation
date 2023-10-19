@@ -54,14 +54,16 @@ class Damage:
 
     def on_damage(self, game: 'GeniusGame'):
         self.elemental_infusion(game)
-        self.elemental_reaction(game)
         self.damage_add(game)
+        self.elemental_reaction(game)
+        self.damage_add_after_reaction(game)
         self.damage_dealing(game)
         self.damage_excute(game)
         game.suffer_current_damage()
         self.after_damage(game)
 
-
+    def damage_add_after_reaction(self, game:'GeniusGame'):
+        game.manager.invoke(EventType.DAMAGE_ADD_AFTER_REACTION, game)
     def elemental_infusion(self, game: 'GeniusGame'):
         game.manager.invoke(EventType.INFUSION, game)
     def damage_add(self, game: 'GeniusGame'):
@@ -254,7 +256,7 @@ class Damage:
                 if targetplayer.character_list[id].is_alive:
                     dmg = Damage.create_damage(
                         game,
-                        SkillType.OTHER,
+                        SkillType.OTHER, # TODO: check the swirl damage's type. Shenhe with talent, Wanderer use normal attack to swirl.
                         Swirl_Crystallize_type,
                         1,
                         0,

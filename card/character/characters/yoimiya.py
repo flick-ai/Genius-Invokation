@@ -243,20 +243,21 @@ class Aurous_Blaze(Combat_Status):
         self.current_usage = self.usage
 
     def after_skill(self, game: 'GeniusGame'):
-        if game.current_damage.damage_from != self.from_character:
-            dmg = Damage.create_damage(
-                game,
-                damage_type=SkillType.OTHER,
-                main_damage_element=ElementType.PYRO,
-                main_damage=1,
-                piercing_damage=0,
-                damage_from=self,
-                damage_to=get_opponent_active_character(game),
-                is_plunging_attack=False,
-                is_charged_attack=False
-            )
-            game.add_damage(dmg)
-            game.resolve_damage()
+        if game.current_skill.from_character.from_player == self.from_player:
+            if game.current_skill.from_character != self.from_character:
+                dmg = Damage.create_damage(
+                    game,
+                    damage_type=SkillType.OTHER,
+                    main_damage_element=ElementType.PYRO,
+                    main_damage=1,
+                    piercing_damage=0,
+                    damage_from=self,
+                    damage_to=get_opponent_active_character(game),
+                    is_plunging_attack=False,
+                    is_charged_attack=False
+                )
+                game.add_damage(dmg)
+                game.resolve_damage()
 
     def on_begin_phase(self, game: 'GeniusGame'):
         if game.active_player == self.from_character.from_player:

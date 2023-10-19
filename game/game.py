@@ -100,6 +100,7 @@ class GeniusGame:
         while len(self.damage_list) >0:
             self.current_damage = self.damage_list.pop(0)
             self.current_damage.on_damage(self)
+            logger.debug(f"len of damage list {len(self.damage_list)}")
             del(self.current_damage)
             self.current_damage = None
 
@@ -110,7 +111,10 @@ class GeniusGame:
         main_dmg = self.current_damage.main_damage
         main_dmg_ele = self.current_damage.main_damage_element
         logger.info("Target {} suffers {} {} damage".format(target.name, main_dmg, main_dmg_ele.name))
-        logger.info("The damage is from {}".format(self.current_damage.damage_from.name))
+        if self.current_damage.damage_from is not None:
+            logger.info("The damage is from {}".format(self.current_damage.damage_from.name))
+        else:
+            logger.info("The damage is from None (A status attached on the target character.)")
         main_dmg = min(target.health_point, main_dmg)
 
         target.health_point -= self.current_damage.main_damage

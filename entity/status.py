@@ -121,6 +121,7 @@ class Dendro_Core(Combat_Status):
         self.current_usage = self.usage
 
     def on_damage_add(self, game: 'GeniusGame'):
+        if game.current_damage.damage_from is None: return
         if game.current_damage.damage_from.from_player == self.from_player:
             if game.current_damage.main_damage_element == ElementType.PYRO or game.current_damage.main_damage_element == ElementType.ELECTRO:
                 game.current_damage.main_damage += 2
@@ -145,7 +146,9 @@ class Catalyzing_Feild(Combat_Status):
 
     def add_one_usage(self):
         self.current_usage += 1
+
     def on_damage_add(self, game: 'GeniusGame'):
+        if game.current_damage.damage_from is None: return
         if game.current_damage.damage_from.from_player == self.from_player:
             if game.current_damage.main_damage_element == ElementType.DENDRO or game.current_damage.main_damage_element == ElementType.ELECTRO:
                 game.current_damage.main_damage += 1

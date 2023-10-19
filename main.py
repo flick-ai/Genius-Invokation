@@ -6,7 +6,7 @@ from game.action import *
 from utils import *
 
 deck1 = {
-    'character': ['ElectroHypostasis', 'Nahida', 'Keqing'],
+    'character': ['Rhodeia_of_Loch', 'Nahida', 'Fischl'],
     'action_card': ['Liyue_Harbor_Wharf' for i in range(30)]
 }
 deck2 = {
