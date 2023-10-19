@@ -85,7 +85,21 @@ class Character(Entity):
         if self.hp > self.max_health_point:
             self.hp = self.max_health_point
 
+    def dying(self, game: 'GeniusGame'):
+        assert self.is_alive==False
+        self.is_frozen = False
+        self.is_alive = False
+        self.talent = False
+        self.character_zone.clear(game)
 
+    def revive(self, game: 'GeniusGame'):
+        # Basic revive.
+        assert self.is_alive == False
+        self.is_alive = True
+        self.health_point = 1
+
+    def show(self):
+        return str(self.health_point)
 
 
 

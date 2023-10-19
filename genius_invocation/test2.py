@@ -36,11 +36,12 @@ def make_layout() -> Layout:
 
 def make_sponsor_message() -> Panel:
     """Some example content."""
-    sponsor_message = Table.grid()
+    sponsor_message = Table.grid(padding=1)
     sponsor_message.add_column(style="green", justify="right")
     sponsor_message.add_column(no_wrap=True)
     sponsor_message.add_row(
-
+        "Twitter",
+        "[u blue link=https://twitter.com/textualize]https://twitter.com/textualize",
     )
     sponsor_message.add_row(
         "CEO",
@@ -153,7 +154,7 @@ progress_table.add_row(
 
 
 layout = make_layout()
-# layout["header"].update(Header())
+layout["header"].update(Header())
 layout["body"].update(make_sponsor_message())
 layout["box2"].update(Panel(make_syntax(), border_style="green"))
 layout["box1"].update(Panel(layout.tree, border_style="red"))

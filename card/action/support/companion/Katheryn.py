@@ -34,6 +34,11 @@ class Katheryn_Entity(Support):
             (EventType.BEGIN_ACTION_PHASE, ZoneType.SUPPORT_ZONE, self.on_begin),
         ]
 
+    def show(self):
+        if self.usage > 0:
+            return "^v^"
+        else:
+            return "-_-"
 
 class Katheryn(SupportCard):
     '''

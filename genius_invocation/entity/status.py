@@ -31,6 +31,9 @@ class Status(Entity):
         # All states can be update
         pass
 
+    def show(self):
+        return str(self.current_usage)
+
 class Combat_Status(Entity):
     id: int
     name: str
@@ -43,11 +46,14 @@ class Combat_Status(Entity):
     def on_destroy(self, game):
         super().on_destroy(game)
         self.from_player.team_combat_status.remove_entity(self)
+
+    def show(self):
+        return self.current_usage
+
 class Shield(Status):
     # Status of shield (Only for single character)
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
-
 class Combat_Shield(Shield):
     # Combat_Status of shield.
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
@@ -70,7 +76,8 @@ class Weapon(Equipment):
     def get_weapon_card(self, game: 'GeniusGame'):
         self.on_destroy(game)
         return self.weapon_card
-
+    def show(self):
+        return self.name
 class Artifact(Equipment):
     pass
 

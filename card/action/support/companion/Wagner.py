@@ -48,6 +48,8 @@ class Wagner_Entity(Support):
             (EventType.ON_CHANGE_CHARACTER, ZoneType.SUPPORT_ZONE, self.on_use),
             (EventType.BEGIN_ACTION_PHASE, ZoneType.SUPPORT_ZONE, self.on_begin)
         ]
+    def show(self):
+        return str(self.forging_billets )
 
 class Wagner(SupportCard):
     '''

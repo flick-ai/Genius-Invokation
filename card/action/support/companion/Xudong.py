@@ -40,7 +40,11 @@ class Xudong_Entity(Support):
             (EventType.CALCULATE_DICE, ZoneType.SUPPORT_ZONE, self.on_calculate),
             (EventType.ON_PLAY_CARD, ZoneType.SUPPORT_ZONE, self.on_play),
         ]
-
+    def show(self):
+        if self.usage>0:
+            return '^v^'
+        else:
+            return '-_-'
 
 class Xudong(SupportCard):
     '''

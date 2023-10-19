@@ -40,6 +40,9 @@ class Chang_the_Ninth_Entity(Support):
             (EventType.EXCUTE_DAMAGE, ZoneType.SUPPORT_ZONE, self.on_damage),
             (EventType.AFTER_ANY_ACTION, ZoneType.SUPPORT_ZONE, self.on_after)
         ]
+    
+    def show(self):
+        return str(self.inspiration)
 
 
 class Chang_the_Ninth(SupportCard):

@@ -36,6 +36,8 @@ class Iron_Tongue_Tian_Entity(Support):
             (EventType.END_PHASE, ZoneType.SUPPORT_ZONE, self.on_end),
         ]
 
+    def show(self):
+        return str(self.usage)
 
 class Iron_Tongue_Tian(SupportCard):
     '''

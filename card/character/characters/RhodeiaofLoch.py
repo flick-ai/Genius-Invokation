@@ -175,7 +175,9 @@ class Frog(Summon):
 
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
-        
+        status = Shield_from_Frog(game,self.from_player,self.from_character,self)
+        self.from_player.team_combat_status.add_entity(status)
+
 
 
 class Surge(NormalAttack):

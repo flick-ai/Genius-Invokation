@@ -266,6 +266,8 @@ class SummonZone:
     def add_entity(self, entity: 'Summon'):
         if not self.check_full():
             self.space.append(entity)
+        else:
+            entity.on_destroy(self.game)
 
     def num(self):
         return len(self.space)
