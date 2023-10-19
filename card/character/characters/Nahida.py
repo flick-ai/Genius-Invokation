@@ -236,8 +236,8 @@ class Nahida(Character):
 
     def __init__(self, game: 'GeniusGame', zone, from_player: 'GeniusPlayer', index:int, from_character = None, talent = False):
         super().__init__(game, zone, from_player, index, from_character)
-        self.power = 2
-        self.talent = True
+        self.power = 0
+        self.talent = talent
 
 class Shrine_of_Maya(Combat_Status):
     name = "Shrine of Maya"

@@ -3,13 +3,14 @@ from entity.character import Character
 from entity.entity import Entity
 from utils import *
 from typing import TYPE_CHECKING, List, Tuple
+from event.damage import Damage
 
 if TYPE_CHECKING:
     from game.game import GeniusGame
     from game.action import Action
     from event.events import ListenerNode
     from game.player import GeniusPlayer
-    from event.damage import Damage
+
     from game.zone import CharacterZone
 
 from entity.status import Status
@@ -35,6 +36,11 @@ class MeleeStance(Status):
 
     def update(self):
         self.current_usage = self.usage
+
+    def infuse(self, game: 'GeniusGame'):
+        if game.current_damage.damage_from == self.from_character:
+            if game.current_damage.main_damage_element == ElementType.PHYSICAL:
+                game.current_damage.main_damage_element = ElementType.HYDRO
 
     def find_next_alive_character(self, current_character: 'Character'):
         '''
@@ -95,7 +101,6 @@ class MeleeStance(Status):
             self.current_usage -= 1
             if self.current_usage <= 0:
                 self.on_destroy(game)
-                self.from_character.character_zone.remove_entity(self)
                 self.from_character.is_melee_stance = False
                 # 切换成远程模式
                 ranged_stance = RangedStance(game=game,
@@ -112,6 +117,7 @@ class MeleeStance(Status):
             (EventType.AFTER_USE_SKILL, ZoneType.CHARACTER_ZONE, self.on_after_use_skill),
             (EventType.ON_USE_SKILL, ZoneType.CHARACTER_ZONE, self.on_use_skill),
             (EventType.BEGIN_ACTION_PHASE, ZoneType.CHARACTER_ZONE, self.on_begin_phase),
+            (EventType.INFUSION, ZoneType.CHARACTER_ZONE, self.infuse)
         ]
 
 
@@ -145,7 +151,8 @@ class Riptide(Status):
             tartaglia_player = game.players[0]
         tartaglia = get_character_with_name(tartaglia_player, Tartaglia)
         if game.current_damage.damage_from == tartaglia and tartaglia.is_melee_stance:
-            game.current_damage.main_damage += 1
+            if game.current_damage.main_damage_element is not ElementType.PIERCING:
+                game.current_damage.main_damage += 1
 
     def find_next_alive_character(self, current_character: 'Character'):
         '''
@@ -172,25 +179,25 @@ class Riptide(Status):
                                     from_character=next_character)
                 next_character.character_zone.add_entity(new_riptide)
             self.on_destroy(game)
-            self.from_character.character_zone.remove_entity(self)
 
     def on_end_phase(self, game: 'GeniusGame'):
         if game.players[0] == self.from_player:
             tartaglia_player = game.players[1]
         else:
             tartaglia_player = game.players[0]
-        tartaglia = get_character_with_name(tartaglia_player, Tartaglia)
-        if tartaglia.talent and tartaglia.character_zone.is_alive:
-            game.add_damage(Damage.create_damage(game,
-                damage_type=SkillType.OTHER,
-                main_damage_element=ElementType.PIERCING,
-                main_damage=1,
-                piercing_damage=0,
-                damage_from=None,
-                damage_to=get_opponent_active_character(game),
-                is_plunging_attack=False,
-                is_charged_attack=False))
-            game.resolve_damage()
+        if game.active_player == tartaglia_player:
+            tartaglia = get_character_with_name(tartaglia_player, Tartaglia)
+            if tartaglia.talent and tartaglia.is_alive:
+                game.add_damage(Damage.create_damage(game,
+                    damage_type=SkillType.OTHER,
+                    main_damage_element=ElementType.PIERCING,
+                    main_damage=1,
+                    piercing_damage=0,
+                    damage_from=None,
+                    damage_to=get_opponent_active_character(game),
+                    is_plunging_attack=False,
+                    is_charged_attack=False))
+                game.resolve_damage()
 
 
 class CuttingTorrent(NormalAttack):
@@ -282,6 +289,8 @@ class FoulLegacy_RagingTide(ElementalSkill):
                                  from_player=self.from_character.from_player,
                                  from_character=self.from_character)
             self.from_character.character_zone.add_entity(melee_stance)
+            status = self.from_character.character_zone.has_entity(RangedStance)
+            status.on_destroy(game)
             self.from_character.is_melee_stance = True
 
     def on_call(self, game: 'GeniusGame'):
@@ -438,7 +447,7 @@ class Tartaglia(Character):
 
     def __init__(self, game: 'GeniusGame', zone:'CharacterZone', from_player: 'GeniusPlayer', index:int, from_character = None, talent = False):
         super().__init__(game, zone, from_player, index, from_character)
-        self.talent = True
-        self.power= 3
+        self.talent = talent
+        self.power= 0
 
         self.is_melee_stance = False # 是否为近战状态
