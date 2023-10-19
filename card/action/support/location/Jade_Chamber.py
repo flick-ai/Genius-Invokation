@@ -2,6 +2,7 @@ from utils import *
 from ..base import SupportCard
 from typing import TYPE_CHECKING
 from entity.support import Support
+from loguru import logger
 
 if TYPE_CHECKING:
     from game.game import GeniusGame
@@ -19,7 +20,8 @@ class Jade_Chamber_Entity(Support):
     def on_begin(self, game:'GeniusGame'):
         if game.active_player_index == self.from_player.index:
             dice_type = ElementToDice[get_my_active_character(game).element]
-            self.from_player.fix_dice.append([dice_type.value, dice_type.value,])
+            self.from_player.fix_dice += [dice_type.value, dice_type.value,]
+            logger.info(f"Jade_Chamber:fix dice {[dice_type.value, dice_type.value,]}")
 
     def update_listener_list(self):
         self.listeners = [

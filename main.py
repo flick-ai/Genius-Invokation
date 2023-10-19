@@ -4,14 +4,15 @@
 from game.game import GeniusGame
 from game.action import *
 from utils import *
+from rich import print
 
 deck1 = {
     'character': ['Rhodeia_of_Loch', 'Nahida', 'Tartaglia'],
-    'action_card': ['Liyue_Harbor_Wharf' for i in range(30)]
+    'action_card': [' Knights_of_Favonius_Library' for i in range(30)]
 }
 deck2 = {
     'character': ['Shenhe', 'Wanderer', 'Yoimiya'],
-    'action_card': ['Paimon' for i in range(30)]
+    'action_card': ['Jade_Chamber' for i in range(30)]
 }
 
 game = GeniusGame(player0_deck=deck1, player1_deck=deck2)

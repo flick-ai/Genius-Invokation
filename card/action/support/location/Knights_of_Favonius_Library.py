@@ -2,6 +2,7 @@ from utils import *
 from ..base import SupportCard
 from typing import TYPE_CHECKING
 from entity.support import Support
+from loguru import logger
 
 if TYPE_CHECKING:
     from game.game import GeniusGame
@@ -18,7 +19,8 @@ class Knights_of_Favonius_Library_Entity(Support):
 
     def on_begin(self, game:'GeniusGame'):
         if game.active_player_index == self.from_player.index:
-            self.from_character.roll_time += 1
+            self.from_player.roll_time += 1
+            logger.info(f"Knights_of_Favonius_Library:{self.from_player.roll_time}")
 
     def update_listener_list(self):
         self.listeners = [
@@ -44,6 +46,7 @@ class Knights_of_Favonius_Library(SupportCard):
     def on_played(self, game: 'GeniusGame') -> None:
         self.entity = Knights_of_Favonius_Library_Entity(game, from_player=game.active_player)
         super().on_played(game)
+        logger.info(f"Knights_of_Favonius_Library:special roll phase")
         self.now_phase = game.game_phase
         game.game_phase = GamePhase.ROLL_PHASE
         game.active_player.roll_time = 1
