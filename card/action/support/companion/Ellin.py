@@ -42,6 +42,12 @@ class Ellin_Entity(Support):
             (EventType.ON_USE_SKILL, ZoneType.SUPPORT_ZONE, self.on_skill),
             (EventType.BEGIN_ACTION_PHASE, ZoneType.SUMMON_ZONE, self.on_begin)
         ]
+    
+    def show(self):
+        if self.usage > 0:
+            return "^v^"
+        else:
+            return "-_-"
 
 
 class Ellin(SupportCard):

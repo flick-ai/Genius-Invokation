@@ -30,6 +30,8 @@ class Setaria_Entity(Support):
             (EventType.AFTER_ANY_ACTION, ZoneType.SUPPORT_ZONE, self.on_after),
         ]
 
+    def show(self):
+        return str(self.usage)
 
 class Setaria(SupportCard):
     '''

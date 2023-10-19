@@ -36,6 +36,11 @@ class Chef_Mao_Entity(Support):
             (EventType.BEGIN_ACTION_PHASE, ZoneType.SUPPORT_ZONE, self.on_begin),
             (EventType.AFTER_PLAY_CARD, ZoneType.SUPPORT_ZONE, self.on_after)
         ]
+    def show(self):
+        if self.usage_round>0:
+            return "^v^"
+        else:
+            return "-_-"
 
 class Chef_Mao(SupportCard):
     '''

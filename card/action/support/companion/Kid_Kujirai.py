@@ -32,7 +32,9 @@ class Kid_Kujirai_Entity(Support):
         self.listeners = [
             (EventType.BEGIN_ACTION_PHASE, ZoneType.SUPPORT_ZONE, self.on_begin),
         ]
-
+    
+    def show(self):
+        return "(._.)"
 
 class Kid_Kujirai(SupportCard):
     '''

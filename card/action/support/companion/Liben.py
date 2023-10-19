@@ -49,7 +49,17 @@ class Liben_Entity(Support):
             (EventType.BEGIN_ACTION_PHASE, ZoneType.SUPPORT_ZONE, self.on_begin),
             (EventType.END_PHASE, ZoneType.SUPPORT_ZONE, self.on_end)
         ]
-
+    def show(self):
+        st = ""
+        if len(self.dice)==0:
+            st = 'ToT'
+        elif len(self.dice)==1:
+            st = '-_-'
+        elif len(self.dice)==2:
+            st = '^v^'
+        else:
+            st = '(｡ì _ í｡)'
+        return str(len(self.dice)) + " " + st
 
 class Liben(SupportCard):
     '''

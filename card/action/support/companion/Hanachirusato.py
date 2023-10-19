@@ -40,6 +40,8 @@ class Hanachirusato_Entity(Support):
             (EventType.ON_PLAY_CARD, ZoneType.SUPPORT_ZONE, self.on_play),
             (EventType.ON_SUMMON_REMOVE, ZoneType.SUPPORT_ZONE, self.on_remove)
         ]
+    def show(self):
+        return str(self.cleansing_ritual_progress)
 
 
 class Hanachirusato(SupportCard):

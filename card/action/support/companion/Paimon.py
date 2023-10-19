@@ -30,7 +30,8 @@ class Paimon_Entity(Support):
         self.listeners = [
             (EventType.BEGIN_ACTION_PHASE, ZoneType.SUPPORT_ZONE, self.on_begin),
         ]
-
+    def show(self):
+        return str(self.usage)
 
 class Paimon(SupportCard):
     '''

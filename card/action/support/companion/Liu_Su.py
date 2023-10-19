@@ -39,6 +39,11 @@ class Liu_Su_Entity(Support):
             (EventType.BEGIN_ACTION_PHASE, ZoneType.SUPPORT_ZONE, self.on_begin)
         ]
 
+    def show(self):
+        st = "-_-"
+        if self.usage_round:
+            st = "^v^"
+        return str(self.usage) + " " + st
 
 class Liu_Su(SupportCard):
     '''

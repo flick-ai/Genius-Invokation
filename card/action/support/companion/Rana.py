@@ -38,7 +38,11 @@ class Rana_Entity(Support):
             (EventType.BEGIN_ACTION_PHASE, ZoneType.SUPPORT_ZONE, self.on_begin),
             (EventType.AFTER_USE_SKILL, ZoneType.SUPPORT_ZONE, self.on_skill),
         ]
-
+    def show(self):
+        if self.usage > 0:
+            return "^v^"
+        else:
+            return "-_-"
 
 class Rana(SupportCard):
     '''
