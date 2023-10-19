@@ -315,8 +315,8 @@ class Seed_of_Skandha(Status):
         self.current_usage = max(self.max_usage, self.current_usage)
 
     def after_take_dmg(self, game: 'GeniusGame'):
-        logger.info(game.current_damage.main_damage)
-        logger.info(game.current_damage.main_damage_element)
+        # logger.debug(game.current_damage.main_damage)
+        # logger.debug(game.current_damage.main_damage_element)
         if game.current_damage.reaction is None: return
         if game.current_damage.damage_to.from_player != self.from_player: return
 
