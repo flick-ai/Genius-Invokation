@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+    <script type="text/javascript">
+      async function main() {
+        let pyodide = await loadPyodide();
+        await pyodide.loadPackage("micropip");
+        await pyodide.loadPackage("numpy");
+        pyodide.setStdin({ stdin: () => prompt() })
+        const micropip = pyodide.pyimport("micropip");
+        await micropip.install('https://files.pythonhosted.org/packages/03/0a/4f6fed21aa246c6b49b561ca55facacc2a44b87d65b8b92362a8e99ba202/loguru-0.7.2-py3-none-any.whl')
+        await micropip.install('https://files.pythonhosted.org/packages/be/2a/4e62ff633612f746f88618852a626bbe24226eba5e7ac90e91dcfd6a414e/rich-13.6.0-py3-none-any.whl')
+        await micropip.install("genius_invocation-0.0.1-py3-none-any.whl");
+        await pyodide.runPython(`
+        from genius_invocation import main
+      `);
+      }
+      main();
+    </script>
+  </body>
+</html>
