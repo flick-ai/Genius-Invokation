@@ -192,6 +192,7 @@ if TYPE_CHECKING:
     from entity.character import Character
     from game.player import GeniusPlayer
 
+
 # get characters
 def get_active_character(
         game: 'GeniusGame',
