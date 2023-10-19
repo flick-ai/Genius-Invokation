@@ -8,7 +8,10 @@ if TYPE_CHECKING:
 
 
 class StatusOfKingsSquire(Status):
-    pass
+    
+    def on_calculate(self, game: 'GeniusGame'):
+        if game.current_damage.damage_from is self.from_player.character:
+            game.current_damage.main_damage += 1
 
         
     def on_end_phase(self, game: 'GeniusGame'):
