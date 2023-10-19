@@ -164,7 +164,7 @@ def get_support(player: 'GeniusPlayer', idx):
         Align.center(
             Group(" ",Align.center(sponsor_message)),
         ),
-        title="SupportZone",
+        title="Support" + str(idx),
     )
     return message_panel
 

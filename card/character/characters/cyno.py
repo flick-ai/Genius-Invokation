@@ -20,26 +20,27 @@ class Pactsworn_Pathclearer(Status):
         super().__init__(game, from_player, from_character)
         self.current_usage = 0
         self.max_usage = 5
-    
+
     def increase_level(self, level):
         self.current_usage += level
         if self.current_usage > self.max_usage:
             self.current_usage -= 4
 
     def on_end_phase(self, game:'GeniusGame'):
-        self.increase_level(1)
-    
+        if game.active_player == self.from_player:
+            self.increase_level(1)
+
     def infusion(self, game:'GeniusGame'):
         if game.current_damage.damage_from == self.from_character:
             if self.current_usage>=2:
                 if game.current_damage.main_damage_element == ElementType.PHYSICAL:
                     game.current_damage.main_damage_element = ElementType.ELECTRO
-    
+
     def on_damage_add(self, game:'GeniusGame'):
         if game.current_damage.damage_from == self.from_character:
             if self.current_usage>=4:
                 game.current_damage.main_damage += 2
-    
+
     def update_listener_list(self):
         self.listeners = [
             (EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, self.on_damage_add),
