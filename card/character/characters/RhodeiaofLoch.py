@@ -1,11 +1,9 @@
 from card.character.base import NormalAttack, ElementalSkill, ElementalBurst
 from entity.entity import Entity
-from game.game import GeniusGame
 from utils import *
 from typing import TYPE_CHECKING, List, Tuple
 from event.damage import Damage
 from card.action.base import ActionCard
-from utils import GeniusGame
 if TYPE_CHECKING:
     from game.game import GeniusGame
     from game.action import Action

@@ -279,9 +279,9 @@ class GeniusPlayer:
                 character: Character
                 if character.is_alive and not character.is_active:
                     self.action_mask[14][idx+2][0] = 1
-            for i, cost in enumerate(game.current_dice.cost):
-                    self.action_mask[14][idx+2][i*2+1] = cost['cost_num']
-                    self.action_mask[14][idx+2][i*2+2] = cost['cost_type'].value
+                for i, cost in enumerate(game.current_dice.cost):
+                        self.action_mask[14][idx+2][i*2+1] = cost['cost_num']
+                        self.action_mask[14][idx+2][i*2+2] = cost['cost_type'].value
 
     def calculate_dice(self, game: 'GeniusGame', dice: Dice):
         '''

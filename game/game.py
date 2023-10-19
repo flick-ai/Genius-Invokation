@@ -257,6 +257,7 @@ class GeniusGame:
             message[player]['card_zone'] = {'num':self.players[player].card_zone.num()}
             message[player]['hand_zone'] = [card.name for card in self.players[player].hand_zone.card]
             message[player]['support_zone'] = [support.name for support in self.players[player].support_zone.space]
+            message[player]['summon_zone'] = [summon.name for summon in self.players[player].summons_zone.space]
             message[player]['dice_zone'] = self.players[player].dice_zone.show()
             for character in self.players[player].character_list:
                 message[player][character.name] = {}

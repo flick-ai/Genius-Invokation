@@ -212,11 +212,13 @@ class Action:
                                 cost_type = CostType(use_dice[choice][target][i*2+1])
                                 list_prompt = f'您需要选择使用的{cost_num}个{cost_type}骰子的位置,形式如0 1 2所示:'
                             sub_dice = user_input.get_rng_mul_sel(
-                                list_prompt, min=0, max=game.active_player.dice_num-1, 
+                                list_prompt, min=0, max=game.active_player.dice_zone.num()-1, 
                                 assert_fn=lambda x: game.active_player.dice_zone.check_dice(x, cost_num, use_dice[choice][target][i*2+1]))
                             # sub_dice = [ int(i) for i in sub_dice.split()]
                             dice = dice + sub_dice
-                    assert check_duplicate_dice(dice)
+                    
+                    assert not check_duplicate_dice(dice)
+                    break
                 except:
                     print("您选择的骰子包含重复位置,非法,请重新选择")
 

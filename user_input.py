@@ -71,7 +71,7 @@ def get_rng_mul_sel(prompt: str, min=None, max=None, assert_fn=None, dtype=None)
     :param max: max value
     :param assert_fn: assert function on the input as a list of dtype
     '''
-    dtype = str if dtype is None else dtype
+    dtype = int if dtype is None else dtype
     while True:
         try:
             raw_input = get_input(prompt)
