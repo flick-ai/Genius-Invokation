@@ -20,7 +20,9 @@ class Liben_Entity(Support):
     def on_end(self, game:'GeniusGame'):
         if game.active_player_index == self.from_player.index:
             dices = self.from_player.dice_zone.show()
-            omni_num = dice.count(7)
+            if dices is None:
+                return
+            omni_num = dices.count(7)
             put_into = []
             #
             for idx, dice in enumerate(dices):
@@ -30,11 +32,15 @@ class Liben_Entity(Support):
                     if len(put_into) + len(self.dice) == self.max_count:
                         self.dice = self.dice + put_into
                         return
-            for i in range(omni_num-1):
-                put_into.append(7)
-                if len(put_into) + len(self.dice) == self.max_count:
-                    self.dice = self.dice + put_into
-                    return
+            if omni_num > 1:
+                dices = self.from_player.dice_zone.show()
+                for idx, dice in enumerate(dices):
+                    if dice == 7:
+                        self.from_player.dice_zone.remove([idx])
+                        put_into.append(dice)
+                        if len(put_into) + len(self.dice) == self.max_count:
+                            self.dice = self.dice + put_into
+                            return
             self.dice = self.dice + put_into
 
     def on_begin(self, game:'GeniusGame'):

@@ -277,6 +277,7 @@ class SupportZone:
         支援区
     '''
     def __init__(self, game: 'GeniusGame', player: 'GeniusPlayer') -> None:
+        self.game = game
         self.space: List[Support] = []
 
     def check_full(self):
@@ -289,7 +290,7 @@ class SupportZone:
     def add_entity(self, entity, idx):
         if self.check_full():
             # 如果支援区已经满了
-            self.space[idx].destroy()
+            self.space[idx].on_destroy(self.game)
         self.space.append(entity)
 
     def num(self):
