@@ -49,7 +49,13 @@ class Vanarana_Entity(Support):
             (EventType.BEGIN_ACTION_PHASE, ZoneType.SUPPORT_ZONE, self.on_begin),
             (EventType.END_PHASE, ZoneType.SUPPORT_ZONE, self.on_end),
         ]
-
+    def show(self):
+        if len(self.dice)==0:
+            return "T_T"
+        elif len(self.dice)==1:
+            return '┬─┬'
+        else:
+            return '┬─┬┬─┬'
 
 class Vanarana(SupportCard):
     '''

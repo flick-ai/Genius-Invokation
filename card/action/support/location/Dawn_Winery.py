@@ -40,6 +40,12 @@ class Dawn_Winery_Entity(Support):
             (EventType.BEGIN_ACTION_PHASE, ZoneType.SUPPORT_ZONE, self.on_begin),
             (EventType.ON_CHANGE_CHARACTER, ZoneType.SUPPORT_ZONE, self.on_use),
         ]
+        
+    def show(self):
+        if self.usage>0:
+            return '┬─┬┬─┬'
+        else:
+            return '(╯°□°）╯︵ ┻━┻┻━┻'
 
 
 class Dawn_Winery(SupportCard):

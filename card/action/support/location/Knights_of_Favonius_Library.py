@@ -26,7 +26,8 @@ class Knights_of_Favonius_Library_Entity(Support):
         self.listeners = [
             (EventType.BEGIN_ROLL_PHASE, ZoneType.SUPPORT_ZONE, self.on_begin),
         ]
-
+    def show(self):
+        return '┬─┬┬─┬'
 
 class Knights_of_Favonius_Library(SupportCard):
     '''
