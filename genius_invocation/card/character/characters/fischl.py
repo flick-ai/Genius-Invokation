@@ -66,6 +66,7 @@ class BoltsOfDownfall(NormalAttack):
         罪灭之矢
     '''
     id: int = 0
+    name = "Bolts of Downfall"
     type: SkillType = SkillType.NORMAL_ATTACK
 
     # damage
@@ -118,6 +119,7 @@ class Nightrider(ElementalSkill):
         夜巡影翼
     '''
     id: int = 1
+    name = "Nightrider"
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
     # damage
@@ -165,7 +167,7 @@ class MidnightPhantasmagoria(ElementalBurst):
     '''
     id: int = 2
     type: SkillType = SkillType.ELEMENTAL_BURST
-
+    name = "Midnight Phantasmagoria"
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
     main_damage_element: ElementType = ElementType.ELECTRO
     main_damage: int = 4
