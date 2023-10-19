@@ -27,7 +27,8 @@ class Parametric_Transformer_Entity(Support):
         self.listeners = [
             (EventType.AFTER_USE_SKILL, ZoneType.SUPPORT_ZONE, self.on_after),
         ]
-
+    def show(self):
+        return str(self.qualitative_progress)
 
 class Parametric_Transformer(SupportCard):
     '''

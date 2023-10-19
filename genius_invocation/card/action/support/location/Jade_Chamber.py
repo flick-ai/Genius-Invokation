@@ -27,6 +27,8 @@ class Jade_Chamber_Entity(Support):
         self.listeners = [
             (EventType.BEGIN_ROLL_PHASE, ZoneType.SUPPORT_ZONE, self.on_begin),
         ]
+    def show(self):
+        return '┬─┬┬─┬'
 
 
 class Jade_Chamber(SupportCard):

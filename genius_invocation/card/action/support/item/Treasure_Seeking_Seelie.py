@@ -28,7 +28,8 @@ class Treasure_Seeking_Seelie_Entity(Support):
         self.listeners = [
             (EventType.AFTER_USE_SKILL, ZoneType.SUPPORT_ZONE, self.on_after),
         ]
-
+    def show(self):
+        return str(self.treasure_clues)
 
 class Treasure_Seeking_Seelie(SupportCard):
     '''

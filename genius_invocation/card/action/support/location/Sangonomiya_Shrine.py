@@ -35,7 +35,8 @@ class Sangonomiya_Shrine_Entity(Support):
         self.listeners = [
             (EventType.END_PHASE, ZoneType.SUPPORT_ZONE, self.on_end),
         ]
-
+    def show(self):
+        return str(self.usage)
 
 class Sangonomiya_Shrine(SupportCard):
     '''

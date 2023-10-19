@@ -57,7 +57,11 @@ class Sumeru_City_Entity(Support):
             (EventType.BEGIN_ACTION_PHASE, ZoneType.SUPPORT_ZONE, self.on_begin),
         ]
 
-
+    def show(self):
+        if self.usage>0:
+            return '┬─┬┬─┬'
+        else:
+            return '(╯°□°）╯︵ ┻━┻┻━┻'
 class Sumeru_City(SupportCard):
     '''
         须弥城

@@ -44,7 +44,8 @@ class Golden_House_Entity(Support):
             (EventType.CALCULATE_DICE, ZoneType.SUPPORT_ZONE, self.on_calculate),
             (EventType.BEGIN_ACTION_PHASE, ZoneType.SUPPORT_ZONE, self.on_begin),
         ]
-
+    def show(self):
+        return str(self.usage)
 
 class Golden_House(SupportCard):
     '''

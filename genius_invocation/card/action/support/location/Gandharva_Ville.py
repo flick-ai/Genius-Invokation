@@ -29,7 +29,8 @@ class Gandharva_Ville_Entity(Support):
         self.listeners = [
             (EventType.BEFORE_ANY_ACTION, ZoneType.SUPPORT_ZONE, self.on_before),
         ]
-
+    def show(self):
+        return str(self.usage)
 
 class Gandharva_Ville(SupportCard):
     '''
