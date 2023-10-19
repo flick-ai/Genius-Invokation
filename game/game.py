@@ -120,7 +120,7 @@ class GeniusGame:
             logger.info("The damage is from None (A status attached on the target character.)")
         main_dmg = min(target.health_point, main_dmg)
 
-        target.health_point -= self.current_damage.main_damage
+        target.health_point -= main_dmg
 
         if self.current_damage.piercing_damage > 0:
             target_player = target.from_player
@@ -137,7 +137,7 @@ class GeniusGame:
                     char.is_alive = False
                     self.manager.invoke(EventType.CHARACTER_DIE, self)
                     if not char.is_alive:
-                        char.character_zone.clear(self) # TODO: Not Implement Yet.
+                        char.dying()
                         if player.active_idx == idx:
                             Active_Die(player).on_call(self)
         #TODO: Not Implement yet.

@@ -28,3 +28,6 @@ class Entity:
     def on_destroy(self, game):
         for action in self.registered_events:
             action.remove()
+
+    def show(self):
+        return self.name

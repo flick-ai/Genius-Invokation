@@ -41,6 +41,9 @@ class Summon(Entity):
         if self.current_usage <= 0 and self.removable:
             self.on_destroy(game)
 
+    def show(self):
+        return self.current_usage
+    
 class Burning_Flame(Summon):
     '''燃烧烈焰'''
     usage = 1

@@ -124,7 +124,26 @@ def get_support(player: 'GeniusPlayer', idx):
         Align.center(
             Group(" ",Align.center(sponsor_message)),
         ),
-        title="Support"+str(idx+1),
+        title="SupportZone",
+    )
+    return message_panel
+
+def get_summon(player: 'GeniusPlayer'):
+    sponsor_message = Table.grid()
+    sponsor_message.add_column(no_wrap=True)
+    sponsor_message.add_column(style="blue", justify="right")
+    if player.summons_zone.num() != 0:
+        for summon in player.summons_zone.space:
+            sponsor_message.add_row(
+                summon.name,
+                style='blue',
+            )
+
+    message_panel = Panel(
+        Align.center(
+            Group(" ",Align.center(sponsor_message)),
+        ),
+        title="SupportZone",
     )
     return message_panel
 

@@ -18,26 +18,26 @@ class Pactsworn_Pathclearer(Status):
     name = "Pactsworn Pathclearer"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
-        self.current_level = 0
-        self.max_level = 5
+        self.current_usage = 0
+        self.max_usage = 5
     
     def increase_level(self, level):
-        self.current_level += level
-        if self.current_level > self.max_level:
-            self.current_level -= 4
+        self.current_usage += level
+        if self.current_usage > self.max_usage:
+            self.current_usage -= 4
 
     def on_end_phase(self, game:'GeniusGame'):
         self.increase_level(1)
     
     def infusion(self, game:'GeniusGame'):
         if game.current_damage.damage_from == self.from_character:
-            if self.current_level>=2:
+            if self.current_usage>=2:
                 if game.current_damage.main_damage_element == ElementType.PHYSICAL:
                     game.current_damage.main_damage_element = ElementType.ELECTRO
     
     def on_damage_add(self, game:'GeniusGame'):
         if game.current_damage.damage_from == self.from_character:
-            if self.current_level>=4:
+            if self.current_usage>=4:
                 game.current_damage.main_damage += 2
     
     def update_listener_list(self):
@@ -185,3 +185,6 @@ class Cyno(Character):
         self.power = 0
         self.character_zone.add_entity(Pactsworn_Pathclearer(game, self.from_player, self))
 
+    def revive(self, game: 'GeniusGame'):
+        super().revive(game)
+        self.character_zone.add_entity(Pactsworn_Pathclearer(game, self.from_player, self))
