@@ -217,7 +217,6 @@ class Niwabi_Enshou(Status):
                     game.add_damage(dmg)
                     game.resolve_damage()
                 self.current_usage -= 1
-                logger.info(f'is_plunging_attack: {self.current_usage}')
                 if self.current_usage <= 0:
                     self.on_destroy(game)
 

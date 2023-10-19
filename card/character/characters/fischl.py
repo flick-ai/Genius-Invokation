@@ -45,7 +45,7 @@ class Oz(Summon):
             self.on_destroy(game)
 
     def update(self):
-        self.current_usage = self.usage
+        self.current_usage = max(self.usage, self.current_usage)
 
     def update_listener_list(self):
         '''
