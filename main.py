@@ -1,9 +1,9 @@
 '''
     预计进行运行的接口
 '''
-from game.game import GeniusGame
-from game.action import *
-from utils import *
+from genius_invocation.game.game import GeniusGame
+from genius_invocation.game.action import *
+from genius_invocation.utils import *
 
 deck1 = {
     'character': ['Rhodeia_of_Loch', 'Nahida', 'Tartaglia'],

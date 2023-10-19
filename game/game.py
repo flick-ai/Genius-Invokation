@@ -1,13 +1,13 @@
 from typing import List, TYPE_CHECKING
 import numpy as np
-from utils import *
+from ..utils import *
 from collections import defaultdict
-from game.action import Action
+from .action import Action
 from .player import GeniusPlayer
-from event.events import EventManager
-from card.character.base import Damage
-from card.action.base import ActionCard
-from game.zone import Dice
+from ..event.events import EventManager
+from ..card.character.base import Damage
+from ..card.action.base import ActionCard
+from ..game.zone import Dice
 from loguru import logger
 if TYPE_CHECKING:
     from card.character.base import CharacterSkill
