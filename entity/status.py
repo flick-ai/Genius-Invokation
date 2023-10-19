@@ -59,7 +59,7 @@ class Equipment(Entity):
 
 class Weapon(Equipment):
     # 武器实体
-    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: "Character"= None, weapon_card: 'WeaponCard' = None):
+    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: "Character"= None, weapon_card: 'Weapon' = None):
         super().__init__(game, from_player, from_character)
         self.weapon_card = weapon_card
 
