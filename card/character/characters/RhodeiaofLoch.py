@@ -341,7 +341,21 @@ class Tide_and_Torrent(ElementalBurst):
         self.consume_energy(game)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 class Rhodeia_of_Loch(Character):
-    pass
+    id = 2201
+    name = "Rhodeia of Loch"
+    element = ElementType.HYDRO
+    weapon_type = WeaponType.OTHER
+    country: CountryType = CountryType.MONSTER
+
+    init_health_point = 10
+    max_health_point = 10
+    skill_list = [Surge,Oceanid_Mimic_Summoning,The_Myriad_Wilds,Tide_and_Torrent]
+    max_power = 3
+
+    def __init__(self, game: 'GeniusGame', zone, from_player: 'GeniusPlayer', index:int, from_character = None, talent = False):
+        super().__init__(game, zone, from_player, index, from_character)
+        self.power = 0
+        self.talent = talent
 
 
 class Shield_from_Frog(Combat_Status):
