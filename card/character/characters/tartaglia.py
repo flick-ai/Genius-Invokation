@@ -438,7 +438,7 @@ class Tartaglia(Character):
 
     def __init__(self, game: 'GeniusGame', zone:'CharacterZone', from_player: 'GeniusPlayer', index:int, from_character = None, talent = False):
         super().__init__(game, zone, from_player, index, from_character)
-        self.talent = talent
-        self.power= 0
+        self.talent = True
+        self.power= 3
 
         self.is_melee_stance = False # 是否为近战状态
