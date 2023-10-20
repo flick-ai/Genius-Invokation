@@ -12,7 +12,7 @@ deck1 = {
 }
 deck2 = {
     'character': ['Cyno', 'Wanderer', 'Yoimiya'],
-    'action_card': ['Sumeru_City' for i in range(30)]
+    'action_card': ['Tenshukaku' for i in range(30)]
 }
 
 game = GeniusGame(player0_deck=deck1, player1_deck=deck2)

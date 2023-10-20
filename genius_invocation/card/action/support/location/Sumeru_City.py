@@ -28,9 +28,10 @@ class Sumeru_City_Entity(Support):
                     if game.current_dice.cost[0]['cost_num'] > 0:
                         game.current_dice.cost[0]['cost_num'] -= 1
                         return True
-                    if game.current_dice.cost[1]['cost_num'] > 0:
-                        game.current_dice.cost[1]['cost_num'] -= 1
-                        return True
+                    if len(game.current_dice.cost)>1:
+                        if game.current_dice.cost[1]['cost_num'] > 0:
+                            game.current_dice.cost[1]['cost_num'] -= 1
+                            return True
             if game.current_dice.use_type == ActionCardType.EQUIPMENT_TALENT:
                  if self.usage > 0:
                     if game.current_dice.cost[0]['cost_num'] > 0:
