@@ -67,7 +67,7 @@ def get_game_info(game: 'GeniusGame'):
     )
     return message_panel
 
-def get_character(player: 'GeniusPlayer', idx):
+def get_character(player: 'GeniusPlayer', idx: int):
     sponsor_message = Table.grid()
     sponsor_message.add_column(no_wrap=False, justify="medium")
     character_list = player.character_list
@@ -76,9 +76,12 @@ def get_character(player: 'GeniusPlayer', idx):
     else:
         color = 'black'
     if character_list[idx].is_alive:
+        col = 'rgb(255,255,255)'
+        if len(character_list[idx].elemental_application)>0:
+            col = Elements_to_color(character_list[idx].elemental_application[0])
         sponsor_message.add_row(
-            character_list[idx].elemental_application,
-            style=color,
+            Elementals_to_str(character_list[idx].elemental_application),
+            style=col,
         )
         sponsor_message.add_row(
             character_list[idx].name,
@@ -92,6 +95,7 @@ def get_character(player: 'GeniusPlayer', idx):
             str(character_list[idx].power),
             style=color,
         )
+        
         if character_list[idx].character_zone.weapon_card != None:
             sponsor_message.add_row(
                 character_list[idx].character_zone.weapon_card.show(),

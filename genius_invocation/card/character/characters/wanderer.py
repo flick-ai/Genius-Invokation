@@ -18,14 +18,14 @@ class Yuuban_Meigen(NormalAttack):
     type: SkillType = SkillType.NORMAL_ATTACK
 
     damage_type: SkillType = SkillType.NORMAL_ATTACK
-    main_damage_element: ElementType = ElementType.ANEPMO
+    main_damage_element: ElementType = ElementType.ANEMO
     main_damage: int = 1
     piercing_damage = 0
 
     cost = [
         {
             'cost_num': 1,
-            'cost_type': CostType.ANEPMO
+            'cost_type': CostType.ANEMO
         },
         {
             'cost_num': 2,
@@ -53,14 +53,14 @@ class Hanega_Song_of_the_Wind(ElementalSkill):
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
-    main_damage_element: ElementType = ElementType.ANEPMO
+    main_damage_element: ElementType = ElementType.ANEMO
     main_damage: int = 2
     piercing_damage = 0
 
     cost = [
         {
             'cost_num': 3,
-            'cost_type': CostType.ANEPMO
+            'cost_type': CostType.ANEMO
         }
     ]
     energy_cost: int = 0
@@ -90,14 +90,14 @@ class Kyougen_Five_Ceremonial_Plays(ElementalBurst):
     type: SkillType = SkillType.ELEMENTAL_BURST
 
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
-    main_damage_element: ElementType = ElementType.ANEPMO
+    main_damage_element: ElementType = ElementType.ANEMO
     main_damage: int = 7
     piercing_damage = 0
 
     cost = [
         {
             'cost_num': 3,
-            'cost_type': CostType.ANEPMO
+            'cost_type': CostType.ANEMO
         },
     ]
     energy_cost: int = 3
@@ -117,7 +117,7 @@ class Kyougen_Five_Ceremonial_Plays(ElementalBurst):
 class Wanderer(Character):
     id = 1506
     name = "Wanderer"
-    element = ElementType.ANEPMO
+    element = ElementType.ANEMO
     weapon_type: WeaponType = WeaponType.CATALYST
     country: CountryType = CountryType.OTHER
 
@@ -207,7 +207,7 @@ class Switch(Status):
                 damage_from=self,
                 damage_to=get_opponent_active_character(game),
                 main_damage=1,
-                main_damage_element=ElementType.ANEPMO,
+                main_damage_element=ElementType.ANEMO,
                 piercing_damage=0
             )
             game.add_damage(dmg)

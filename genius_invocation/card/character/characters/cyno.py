@@ -122,7 +122,7 @@ class Secret_Rite_Chasmic_Soulfarer(ElementalSkill):
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         # 处理伤害
-        if self.from_character.talent and self.from_character.character_zone.has_entity(Pactsworn_Pathclearer).current_level in [3,5]:
+        if self.from_character.talent and self.from_character.character_zone.has_entity(Pactsworn_Pathclearer).current_usage in [3,5]:
             self.resolve_damage(game, add_main_damage=1)
         else:
             self.resolve_damage(game)
