@@ -8,9 +8,9 @@ Welcome to Genius_Invokation's documentation!
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: 目录:
 
-
+   modules
 
 Indices and tables
 ==================
