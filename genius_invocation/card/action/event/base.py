@@ -22,9 +22,18 @@ class FoodCard(ActionCard):
             target_character = game.active_player.character_list[target]
             Satisfy_Statue(game, from_player=game.active_player, from_character=target_character)
             target_character.character_zone.add_entity(Satisfy_Statue)
-            target_character.character_zone.add_entity(self.food_entity(game, from_player=game.active_player, from_character=target_character))
-
-    def find_target(self, game: GeniusGame):
+            if self.food_entity != None:
+                target_character.character_zone.add_entity(self.food_entity(game, from_player=game.active_player, from_character=target_character))
+            return target_character
+        else:
+            for character in game.active_player.character_list:
+                if not character.is_satisfy:
+                    Satisfy_Statue(game, from_player=game.active_player, from_character=character)
+                    character.character_zone.add_entity(Satisfy_Statue)
+                    if self.food_entity != None:
+                        target_character.character_zone.add_entity(self.food_entity(game, from_player=game.active_player, from_character=target_character))
+    
+    def find_target(self, game: 'GeniusGame'):
         target_list = []
         for idx, character in enumerate(game.active_player.character_list):
             if not character.is_satisfy:

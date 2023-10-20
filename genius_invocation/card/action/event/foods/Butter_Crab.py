@@ -6,9 +6,9 @@ if TYPE_CHECKING:
     from genius_invocation.game.game import GeniusGame
     from genius_invocation.game.player import GeniusPlayer
 
-class Lotus_Flower_Crisp_Entity(Status):
-    id: int = 333003
-    name: str = "Lotus Flower Crisp"
+class Butter_Crab_Entity(Status):
+    id: int = 333012
+    name: str = "Butter_Crab"
 
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
@@ -19,7 +19,7 @@ class Lotus_Flower_Crisp_Entity(Status):
             if game.current_damage.main_damage_element == ElementType.PIERCING:
                 return
             if game.current_damage.main_damage > 0:
-                game.current_damage.main_damage = max(0, game.current_damage.main_damage-3)
+                game.current_damage.main_damage = max(0, game.current_damage.main_damage-2)
                 self.current_usage -=1
                 if self.current_usage <=0:
                     self.on_destroy(game)
@@ -29,17 +29,20 @@ class Lotus_Flower_Crisp_Entity(Status):
             (EventType.EXCUTE_DAMAGE, ZoneType.CHARACTER_ZONE, self.on_damage_excute),
         ]
 
-class Lotus_Flower_Crisp(FoodCard):
-    id: int = 333003
-    name: str = "Lotus Flower Crisp"
-    cost_num = 1
-    cost_type = CostType.WHITE
+class Butter_Crab(FoodCard):
+    id: int = 333012
+    name: str = "Butter_Crab"
+    cost_num = 2
+    cost_type = CostType.BLACK
 
     def __init__(self) -> None:
         super().__init__()
-        self.food_entity = Lotus_Flower_Crisp_Entity
+        self.food_entity = Butter_Crab_Entity
 
     def on_played(self, game: 'GeniusGame'):
         super().on_played(game)
+    
+    def find_target(self, game: 'GeniusGame'):
+        return [1]
 
     
