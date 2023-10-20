@@ -97,17 +97,6 @@ class ActionTarget(Enum):
     DICE_REGION = 5
     CARD_REGION = 6
 
-class ActionCardType(Enum):
-    EQUIPMENT_TALENT = 0
-    EQUIPMENT_WEAPON = 1
-    EQUIPMENT_ARTIFACT = 2
-    SUPPORT_LOCATION = 3
-    SUPPORT_ITEM = 4
-    SUPPORT_COMPANION = 5
-    EVENT = 6
-    EVENT_FOOD = 7
-    EVENT_ELEMENTAL_RESONANCE = 8
-    EVENT_ARCANE_LEGEND = 9
 
 class ActionCardType(Enum):
     EQUIPMENT_TALENT = 0
