@@ -73,6 +73,7 @@ class Character(Entity):
         self.is_active: bool = False
         self.is_alive: bool = True
         self.is_frozen: bool = True
+        self.is_satisfy: bool = False
         self.health_point = self.init_health_point
         self.power: int = 0 # 初始充能
         self.elemental_application: List['ElementType'] = []

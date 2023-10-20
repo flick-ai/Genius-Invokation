@@ -198,5 +198,30 @@ class Crystallize_Shield(Combat_Shield):
             (EventType.EXCUTE_DAMAGE, ZoneType.ACTIVE_ZONE_SHIELD, self.on_excuete_dmg)
         ]
 
+class Satisfy_Statue(Status):
+    name = "Satisfy"
+    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
+        super().__init__(game, from_player, from_character)
+        self.current_usage = 1
+        self.from_character.is_satisfy = True
+
+    def update(self):
+        self.current_usage = self.usage
+
+    def on_destroy(self, game):
+        super().on_destroy(game)
+        self.from_character.is_satisfy = False
+
+    def on_begin_phase(self, game: 'GeniusGame'):
+        self.current_usage -= 1
+        if self.current_usage <= 0:
+            self.on_destroy(game)
+
+    def update_listener_list(self):
+        self.listeners = [
+            (EventType.BEGIN_ACTION_PHASE, ZoneType.CHARACTER_ZONE, self.on_begin_phase),
+        ]
+
+
 
 
