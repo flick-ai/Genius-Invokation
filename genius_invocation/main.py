@@ -8,11 +8,11 @@ from rich import print
 
 deck1 = {
     'character': ['Rhodeia_of_Loch', 'Nahida', 'Tartaglia'],
-    'action_card': ['ElegyForTheEnd' for i in range(15)] + ['Golden_House' for i in range(15)]
+    'action_card': ['Chang_the_Ninth' for i in range(30)]
 }
 deck2 = {
-    'character': ['Cyno', 'Arataki_Itto', 'Yoimiya'],
-    'action_card': ['RavenBow' for i in range(15)] + ['Golden_House' for i in range(15)]
+    'character': ['Wanderer', 'Shenhe', 'Qiqi'],
+    'action_card': ['Dunyarzad' for i in range(30)]
 }
 
 game = GeniusGame(player0_deck=deck1, player1_deck=deck2)

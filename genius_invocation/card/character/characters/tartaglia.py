@@ -187,6 +187,7 @@ class Riptide(Status):
             self.on_destroy(game)
 
     def on_end_phase(self, game: 'GeniusGame'):
+        if not self.from_character.is_active: return
         if game.players[0] == self.from_player:
             tartaglia_player = game.players[1]
         else:

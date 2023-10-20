@@ -61,8 +61,8 @@ class Dunyarzad(SupportCard):
     '''
     id: int = 322016
     name: str = 'Dunyarzad'
-    cost_num = 2
-    cost_type = CostType.BLACK
+    cost_num = 1
+    cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_COMPANION
 
     def __init__(self) -> None:

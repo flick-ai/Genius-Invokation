@@ -203,11 +203,15 @@ class CardZone:
             检索并获取特定类型的牌
         '''
         get_list = []
-        for card in reversed(self.card):
-            if card.type == card_type:
+        idx_list = []
+        for idx, card in enumerate(reversed(self.card)):
+            if card.card_type == card_type:
                 get_list.append(card)
+                idx_list.append(idx)
                 if len(get_list) == num:
                     break
+        for idx in idx_list:
+            self.card.pop(idx)
         return get_list
 
     def get_card(self, num):
