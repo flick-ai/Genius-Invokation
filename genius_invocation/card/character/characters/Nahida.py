@@ -264,8 +264,12 @@ class Shrine_of_Maya(Combat_Status):
                     if sta is not None:
                         sta.add_one_usage()
 
-    def on_damage_add(self, game: 'GeniusGame'):
-        game.current_damage.main_damage += 1
+    def on_damage_add_reaction(self, game: 'GeniusGame'):
+        if game.current_damage.reaction is not None:
+            if isinstance(game.current_damage.damage_from, Character):
+                if game.current_damage.damage_from.from_player == self.from_player:
+                    game.current_damage.main_damage += 1
+
 
     def on_begin_phase(self, game: 'GeniusGame'):
         if game.active_player == self.from_character.from_player:
@@ -295,7 +299,7 @@ class Shrine_of_Maya(Combat_Status):
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.DAMAGE_ADD, ZoneType.ACTIVE_ZONE, self.on_damage_add),
+            (EventType.DAMAGE_ADD_AFTER_REACTION, ZoneType.ACTIVE_ZONE, self.on_damage_add_reaction),
             (EventType.BEGIN_ACTION_PHASE, ZoneType.ACTIVE_ZONE, self.on_begin_phase)
         ]
 
