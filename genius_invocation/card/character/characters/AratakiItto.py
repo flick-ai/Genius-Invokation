@@ -78,7 +78,7 @@ class Masatsu_Zetsugi_Akaushi_Burst(ElementalSkill):
                     from_character=self.from_character)
             self.from_character.from_player.summons_zone.add_entity(summon)
         else:
-            summon.update()
+            summon.update(game)
 
     def add_status(self, game: 'GeniusGame'):
         status = self.from_character.character_zone.has_entity(Superlative_Superstrength)
