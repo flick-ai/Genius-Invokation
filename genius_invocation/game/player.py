@@ -34,7 +34,7 @@ class GeniusPlayer:
                 from_player = self,
                 index = id,
                 from_character = None,
-                talent = False))
+                talent = True))
         self.character_num = len(self.character_list)
 
         # 初始化牌库、起始5张手牌、骰子区

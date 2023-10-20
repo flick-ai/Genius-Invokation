@@ -11,7 +11,7 @@ deck1 = {
     'action_card': ['ElegyForTheEnd' for i in range(15)] + ['Golden_House' for i in range(15)]
 }
 deck2 = {
-    'character': ['Cyno', 'Rhodeia_of_Loch', 'Yoimiya'],
+    'character': ['Cyno', 'Arataki_Itto', 'Yoimiya'],
     'action_card': ['RavenBow' for i in range(15)] + ['Golden_House' for i in range(15)]
 }
 
