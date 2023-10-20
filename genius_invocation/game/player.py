@@ -179,7 +179,7 @@ class GeniusPlayer:
         self.use_dice(game)
         game.current_dice = Dice(from_player=self,
                                  from_character=None,
-                                 use_type='change_character',
+                                 use_type=SwitchType.CHANGE_CHARACTER,
                                  cost=[{'cost_num':1, 'cost_type':CostType.BLACK}])
         self.change_num += 1
         self.is_quick_change = False
@@ -273,7 +273,7 @@ class GeniusPlayer:
         # 计算能否切换角色
         has_dice = self.calculate_dice(game, Dice(from_player=self,
                                                   from_character=None,
-                                                  use_type='change_character',
+                                                  use_type=SwitchType.CHANGE_CHARACTER,
                                                   cost=[{'cost_num':1, 'cost_type':CostType.BLACK}]))
         if has_dice:
             for idx, character in enumerate(self.character_list):

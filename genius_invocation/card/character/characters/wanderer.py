@@ -197,7 +197,7 @@ class Switch(Status):
     def on_switch(self, game: 'GeniusGame'):
         if game.active_player != self.from_player: return
         if game.active_player.active_idx != self.from_character.index: return
-        if game.current_dice.use_type == "change_character":
+        if game.current_dice.use_type == SwitchType.CHANGE_CHARACTER:
             if game.current_dice.cost[0]['cost_num']>0:
                 game.current_dice.cost[0]['cost_num'] -=1
             

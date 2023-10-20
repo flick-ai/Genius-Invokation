@@ -19,7 +19,7 @@ class Dawn_Winery_Entity(Support):
 
     def on_calculate(self, game:'GeniusGame'):
         if game.active_player_index == self.from_player.index:
-            if game.current_dice.use_type == 'change_character':
+            if game.current_dice.use_type == SwitchType.CHANGE_CHARACTER:
                 if self.usage > 0:
                     if game.current_dice.cost[0]['cost_num'] > 0:
                         game.current_dice.cost[0]['cost_num'] -= 1

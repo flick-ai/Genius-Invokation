@@ -154,6 +154,9 @@ class EventType(Enum):
 
     DAMAGE_ADD_AFTER_REACTION = 20 #AFTER REACTION, DMG ADD
 
+class SwitchType(Enum):
+    CHANGE_CHARACTER = 0
+
 class ElementalReactionType(Enum):
     Frozen = 0
     Melt = 1

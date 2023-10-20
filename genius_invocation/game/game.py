@@ -92,6 +92,8 @@ class GeniusGame:
 
         if self.is_change_player and (not oppenent_player.is_pass):
             self.change_active_player()
+        
+        self.manager.invoke(EventType.BEFORE_ANY_ACTION, self)
 
     def add_damage(self, damage: Damage):
         self.damage_list.append(damage)
@@ -248,8 +250,6 @@ class GeniusGame:
     def change_active_player(self):
         self.active_player_index = 1 - self.active_player_index
         self.active_player = self.players[self.active_player_index]
-        if self.game_phase == GamePhase.ACTION_PHASE:
-            self.manager.invoke(EventType.BEFORE_ANY_ACTION, self)
 
         oppenent_player = self.players[1 - self.active_player_index]
         if self.active_player.prepared_skill is not None:

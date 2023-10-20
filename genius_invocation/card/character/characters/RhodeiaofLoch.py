@@ -190,7 +190,7 @@ class Surge(NormalAttack):
 
     # damage
     damage_type: SkillType = SkillType.NORMAL_ATTACK
-    main_damage_element: ElementType = ElementType.DENDRO
+    main_damage_element: ElementType = ElementType.HYDRO
     main_damage: int = 1
     piercing_damage: int = 0
 

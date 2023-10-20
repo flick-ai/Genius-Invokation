@@ -83,6 +83,7 @@ class Artifact(Equipment):
 
 # TODO: Maybe need to move to other places in future
 class Frozen_Status(Status):
+    name = 'Frozen'
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.usage = 1
@@ -118,6 +119,7 @@ class Frozen_Status(Status):
 
 
 class Dendro_Core(Combat_Status):
+    name = 'Dendro Core'
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.usage = 1
@@ -142,6 +144,7 @@ class Dendro_Core(Combat_Status):
         ]
 
 class Catalyzing_Feild(Combat_Status):
+    name = 'Catalyzing Feild'
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.usage = 2
