@@ -33,7 +33,7 @@ class CostType(Enum):
     HYDRO = 1 # 水
     PYRO = 2 # 火
     ELECTRO = 3 # 雷
-    ANEPMO = 4 # 风
+    ANEMO = 4 # 风
     GEO = 5 # 岩
     DENDRO = 6 # 草
     WHITE = 7 # 任意相同
@@ -44,7 +44,7 @@ class DiceType(Enum):
     HYDRO = 1 # 水
     PYRO = 2 # 火
     ELECTRO = 3 # 雷
-    ANEPMO = 4 # 风
+    ANEMO = 4 # 风
     GEO = 5 # 岩
     DENDRO = 6 # 草
     OMNI = 7 # 万能
@@ -54,7 +54,7 @@ class ElementType(Enum):
     HYDRO = 1 # 水
     PYRO = 2 # 火
     ELECTRO = 3 # 雷
-    ANEPMO = 4 # 风
+    ANEMO = 4 # 风
     GEO = 5 # 岩
     DENDRO = 6 # 草
     PHYSICAL = 7 # 物理
@@ -277,3 +277,31 @@ def check_duplicate_dice(dice):
     if len(dice) != len(dice_set):
         return True
     return False
+
+def Elementals_to_str(elements: List[ElementType]):
+    res = ""
+    for element in elements:
+        res += str(element.name)+ " "
+    if res == "":
+        res = "None"
+    return res
+def Elements_to_color(ele: ElementType):
+    match ele:
+        case ElementType.CRYO:
+            return "rgb(153,255,255)"
+        case ElementType.HYDRO:
+            return "rgb(128,192,255)"
+        case ElementType.PYRO:
+            return "rgb(255,153,153)"
+        case ElementType.ELECTRO:
+            return "rgb(255,172,255)"
+        case ElementType.ANEMO:
+            return "rgb(128,255,215)"
+        case ElementType.GEO:
+            return "rgb(255,230,153)"
+        case ElementType.DENDRO:
+            return "rgb(126,194,54)"
+        case ElementType.PHYSICAL:
+            return "rgb(255,255,255)"
+        case ElementType.PIERCING:
+            return "rgb(255,255,255)"
