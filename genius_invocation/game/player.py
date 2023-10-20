@@ -9,7 +9,7 @@ import genius_invocation.card.character.characters as chars
 # print(chars.tartaglia) The python file(If the name of file is same as charater, it will not return the file)
 # print(chars.Tartaglia) The character class
 # print(chars.Akara) The status
-
+from genius_invocation.entity.entity import Entity
 from genius_invocation.card.action import ActionCard
 from genius_invocation.card.character import CharacterSkill
 from copy import deepcopy
@@ -61,7 +61,7 @@ class GeniusPlayer:
         self.roll_time: int = 1
         self.fix_dice = []
 
-        self.prepared_skill = None
+        self.prepared_skill: Entity = None
 
         # Mask
         self.action_mask: np.array

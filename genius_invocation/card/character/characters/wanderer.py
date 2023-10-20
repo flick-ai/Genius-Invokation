@@ -186,13 +186,18 @@ class Switch(Status):
     def update(self):
         self.current_usage = self.usage
 
-    def on_switch(self, game: 'GeniusGame'):
-        if game.active_player != self.from_player: return
-        if game.active_player.active_idx != self.from_character.index: return
+    def on_calculate(self, game:'GeniusGame'):
+        if self.current_usage ==0: return False
+        if game.active_player != self.from_player: return False
+        if game.active_player.active_idx != self.from_character.index: return False
         if game.current_dice.use_type == SwitchType.CHANGE_CHARACTER:
             if game.current_dice.cost[0]['cost_num']>0:
                 game.current_dice.cost[0]['cost_num'] -=1
-            
+                return True
+        return False
+
+    def on_switch(self, game: 'GeniusGame'):
+        if self.on_calculate(game):
             dmg = Damage.create_damage(
                 game,
                 damage_type=SkillType.OTHER,
@@ -210,6 +215,7 @@ class Switch(Status):
                 self.on_destroy(game)
     def update_listener_list(self):
         self.listeners = [
+            (EventType.CALCULATE_DICE, ZoneType.CHARACTER_ZONE, self.on_calculate),
             (EventType.ON_CHANGE_CHARACTER, ZoneType.CHARACTER_ZONE, self.on_switch)
         ]
 
