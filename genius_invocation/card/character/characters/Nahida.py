@@ -202,22 +202,13 @@ class Illusory_Heart(ElementalBurst):
     def __init__(self, from_character: Character):
         super().__init__(from_character)
 
-    def add_status(self, game: 'GeniusGame'):
-        status = self.from_character.from_player.team_combat_status.has_status(Shrine_of_Maya)
-
-        if status is None:
-            status = Shrine_of_Maya(game, self.from_character.from_player, self.from_character)
-            self.from_character.from_player.team_combat_status.add_entity(status)
-        else:
-            status.update(game)
-
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         # 处理伤害
         self.resolve_damage(game)
         self.consume_energy(game)
         # 召唤物/状态生成
-        self.add_status(game)
+        self.add_combat_status(game, Shrine_of_Maya)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Nahida(Character):
@@ -264,8 +255,12 @@ class Shrine_of_Maya(Combat_Status):
                     if sta is not None:
                         sta.add_one_usage()
 
-    def on_damage_add(self, game: 'GeniusGame'):
-        game.current_damage.main_damage += 1
+    def on_damage_add_reaction(self, game: 'GeniusGame'):
+        if game.current_damage.reaction is not None:
+            if isinstance(game.current_damage.damage_from, Character):
+                if game.current_damage.damage_from.from_player == self.from_player:
+                    game.current_damage.main_damage += 1
+
 
     def on_begin_phase(self, game: 'GeniusGame'):
         if game.active_player == self.from_character.from_player:
@@ -295,7 +290,7 @@ class Shrine_of_Maya(Combat_Status):
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.DAMAGE_ADD, ZoneType.ACTIVE_ZONE, self.on_damage_add),
+            (EventType.DAMAGE_ADD_AFTER_REACTION, ZoneType.ACTIVE_ZONE, self.on_damage_add_reaction),
             (EventType.BEGIN_ACTION_PHASE, ZoneType.ACTIVE_ZONE, self.on_begin_phase)
         ]
 

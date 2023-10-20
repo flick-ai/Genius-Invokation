@@ -19,7 +19,7 @@ class Tenshukaku_Entity(Support):
     def on_begin(self, game:'GeniusGame'):
         if game.active_player_index == self.from_player.index:
             dices = self.from_player.dice_zone.space[:, :-1]
-            types = sum([dices.sum(axis=0) - dices[:, -1].sum(axis=0)]>0) + dices[:, -1].sum(axis=0)
+            types = [i>0 for i in [dices.sum(axis=0)-dices[:, -1].sum(axis=0)]][0].sum() + dices[:, -1].sum(axis=0)
             if types >= 5:
                 self.from_player.dice_zone.add([DiceType.OMNI.value])
 

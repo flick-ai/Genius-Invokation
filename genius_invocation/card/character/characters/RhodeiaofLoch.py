@@ -159,6 +159,13 @@ class Frog(Summon):
 
         self.from_player.team_combat_status.has_status(Shield_from_Frog).update()
 
+    def minus_usage(self, game: 'GeniusGame', count: int):
+        if self.current_usage == 0: return
+        self.current_usage -= count
+        self.current_usage = max(0, self.current_usage)
+        if self.current_usage == 0:
+            self.from_player.team_combat_status.has_status(Shield_from_Frog).on_destroy(game)
+    
     def on_destroy(self, game: 'GeniusGame'):
         status = self.from_player.team_combat_status.has_status(Shield_from_Frog)
         if status is not None:
@@ -190,7 +197,7 @@ class Surge(NormalAttack):
 
     # damage
     damage_type: SkillType = SkillType.NORMAL_ATTACK
-    main_damage_element: ElementType = ElementType.DENDRO
+    main_damage_element: ElementType = ElementType.HYDRO
     main_damage: int = 1
     piercing_damage: int = 0
 
@@ -381,11 +388,12 @@ class Shield_from_Frog(Combat_Status):
         if game.current_damage.main_damage <=0: return
         if game.current_damage.main_damage_element==ElementType.PIERCING: return
         if game.current_damage.damage_to.from_player == self.from_player:
-            game.current_damage.main_damage -= 1
-            self.from_summon.current_usage -= 1
-            self.current_usage = self.from_summon.current_usage
-            if self.from_summon.current_usage ==0:
-                self.on_destroy(game) # Only destroy the combat_status here
+            if game.current_damage.damage_to.is_active:
+                game.current_damage.main_damage -= 1
+                self.from_summon.current_usage -= 1
+                self.current_usage = self.from_summon.current_usage
+                if self.from_summon.current_usage ==0:
+                    self.on_destroy(game) # Only destroy the combat_status here
     
     def update_listener_list(self):
         self.listeners = [

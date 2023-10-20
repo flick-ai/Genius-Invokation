@@ -11,13 +11,13 @@ from genius_invocation.utils import *
 if TYPE_CHECKING:
     from genius_invocation.game.game import GeniusGame
     from genius_invocation.game.player import GeniusPlayer
-
+from genius_invocation.entity.status import Shield
 def layout(game: 'GeniusGame'):
     layout = Layout()
     layout.split_column(
         Layout(name="Game", ratio=1),
-        Layout(name="player0", ratio=2),
-        Layout(name="player1",ratio=2)
+        Layout(name="player0", ratio=3),
+        Layout(name="player1",ratio=3)
     )
     layout['Game'].update(get_game_info(game))
     for i in range(2):
@@ -42,7 +42,13 @@ def layout(game: 'GeniusGame'):
                                                  get_character(game.players[i], 1),
                                                  get_character(game.players[i], 2))
 
-        layout[player]['card'].update(get_card(game.players[i]))
+        layout[player]['card'].split_column(
+            Layout(name="cards", ratio=1),
+            Layout(name="hands", ratio=3),
+        )
+        layout[player]['card']['cards'].update(get_card(game.players[i]))
+        layout[player]['card']['hands'].update(get_hand(game.players[i]))
+
         layout[player]['dice'].update(get_dice(game.players[i]))
     return layout
 
@@ -61,15 +67,22 @@ def get_game_info(game: 'GeniusGame'):
     )
     return message_panel
 
-def get_character(player: 'GeniusPlayer', idx):
+def get_character(player: 'GeniusPlayer', idx: int):
     sponsor_message = Table.grid()
-    sponsor_message.add_column(no_wrap=True,justify="medium")
+    sponsor_message.add_column(no_wrap=False, justify="medium")
     character_list = player.character_list
     if character_list[idx].is_active:
         color = 'red'
     else:
         color = 'black'
     if character_list[idx].is_alive:
+        col = 'rgb(255,255,255)'
+        if len(character_list[idx].elemental_application)>0:
+            col = Elements_to_color(character_list[idx].elemental_application[0])
+        sponsor_message.add_row(
+            Elementals_to_str(character_list[idx].elemental_application),
+            style=col,
+        )
         sponsor_message.add_row(
             character_list[idx].name,
             style=color,
@@ -82,10 +95,30 @@ def get_character(player: 'GeniusPlayer', idx):
             str(character_list[idx].power),
             style=color,
         )
+        
+        if character_list[idx].character_zone.weapon_card != None:
+            sponsor_message.add_row(
+                character_list[idx].character_zone.weapon_card.show(),
+                style=color,
+            )
+        if character_list[idx].character_zone.artifact_card != None:
+            sponsor_message.add_row(
+                character_list[idx].character_zone.artifact_card.show(),
+                style=color,
+            )
+        if character_list[idx].talent == True:
+            sponsor_message.add_row(
+                f"Has Talent",
+                style=color,
+            )
         for status in character_list[idx].character_zone.status_list:
+            if isinstance(status, Shield):
+                col = 'yellow'
+            else:
+                col='blue'
             sponsor_message.add_row(
                 f"{status.name}:{status.show()}",
-                style=color,
+                style=col,
             )
         if character_list[idx].is_active:
             for status in player.team_combat_status.shield:
@@ -110,6 +143,21 @@ def get_character(player: 'GeniusPlayer', idx):
 def get_card(player: 'GeniusPlayer'):
     sponsor_message = Table.grid()
     sponsor_message.add_column(no_wrap=True)
+    sponsor_message.add_row(
+        str(player.card_zone.num()),
+        style='blue',
+    )
+    message_panel = Panel(
+        Align.center(
+            Group(" ",Align.center(sponsor_message)),
+        ),
+        title="CardZone",
+    )
+    return message_panel
+
+def get_hand(player: 'GeniusPlayer'):
+    sponsor_message = Table.grid()
+    sponsor_message.add_column(no_wrap=True)
     if player.hand_zone.num() != 0:
         for card in player.hand_zone.card:
             sponsor_message.add_row(
@@ -131,11 +179,11 @@ def get_summon(player: 'GeniusPlayer', idx):
         summon = player.summons_zone.space[idx]
         sponsor_message.add_row(
             summon.name,
-            style='blue',
+            style=Elements_to_color(summon.element),
         )
         sponsor_message.add_row(
             str(summon.show()),
-            style='blue',
+            style=Elements_to_color(summon.element),
         )
     message_panel = Panel(
         Align.center(

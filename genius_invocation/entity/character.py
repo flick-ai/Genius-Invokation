@@ -1,7 +1,7 @@
 from typing import TYPE_CHECKING, List
 from genius_invocation.utils import *
 from genius_invocation.entity.entity import Entity
-
+from genius_invocation.event.Elemental_Reaction import *
 if TYPE_CHECKING:
     from genius_invocation.game.game import GeniusGame
     from genius_invocation.game.zone import CharacterZone
@@ -72,7 +72,8 @@ class Character(Entity):
         self.talent: bool = False
         self.is_active: bool = False
         self.is_alive: bool = True
-        self.is_frozen: bool = True
+        self.is_frozen: bool = False
+        self.is_satisfy: bool = False
         self.health_point = self.init_health_point
         self.power: int = 0 # 初始充能
         self.elemental_application: List['ElementType'] = []
@@ -82,14 +83,15 @@ class Character(Entity):
 
     def heal(self, heal: int):
         self.health_point += heal
-        if self.hp > self.max_health_point:
-            self.hp = self.max_health_point
+        if self.health_point > self.max_health_point:
+            self.health_point = self.max_health_point
 
     def dying(self, game: 'GeniusGame'):
         assert self.is_alive==False
         self.is_frozen = False
-        self.is_alive = False
+        self.is_active = False
         self.talent = False
+        self.power = 0
         self.character_zone.clear(game)
 
     def revive(self, game: 'GeniusGame'):
@@ -101,31 +103,88 @@ class Character(Entity):
     def show(self):
         return str(self.health_point)
 
-
-
-
-
-
-
-    # def on_game_start(self):
-    #     '''
-    #         角色区初始化
-    #         讨债人被动 潜行
-    #         雷电将军被动 诸愿百眼之轮
-    #         无相雷、丘丘等上限修改
-    #     '''
-    #     return self.power, self.health_point, self.init_state
-
-
-    # def on_round_start(self, game: GeniusGame):
-    #     '''
-    #         预留
-    #     '''
-    #     pass
-
-    # def on_switched(self, game: GeniusGame):
-    #     '''
-    #         passive skill 被动技能 神里绫华
-
-    #     '''
-    #     pass
+    def elemental_attach(self, game: 'GeniusGame', element: 'ElementType'):
+        assert element in [ElementType.CRYO, ElementType.DENDRO, ElementType.ELECTRO, ElementType.HYDRO, ElementType.PYRO]
+        if len(self.elemental_application) == 0:
+            self.elemental_application.append(element)
+            return
+        
+        attached = self.elemental_application[0]
+        Reaction = None
+        targetplayer_id = self.from_player.index
+        target_index = self.index # Target is myself.
+        match attached:
+            case ElementType.CRYO:
+                match element:
+                    case ElementType.HYDRO:
+                        Frozen(game, targetplayer_id, target_index)
+                        Reaction = ElementalReactionType.Frozen
+                    case ElementType.PYRO: # 火
+                        Melt(game, targetplayer_id, target_index)
+                        Reaction = ElementalReactionType.Melt
+                    case ElementType.ELECTRO: # 雷
+                        Superconduct(game, targetplayer_id, target_index)
+                        Reaction = ElementalReactionType.Superconduct
+            case ElementType.HYDRO:
+                match element:
+                    case ElementType.CRYO:
+                        Frozen(game, targetplayer_id, target_index)
+                        Reaction = ElementalReactionType.Frozen
+                    case ElementType.PYRO:
+                        Vaporize(game, targetplayer_id, target_index)
+                        Reaction = ElementalReactionType.Vaporize
+                    case ElementType.ELECTRO:
+                        Electro_Charged(game, targetplayer_id, target_index)
+                        Reaction = ElementalReactionType.Electro_Charged
+                    case ElementType.DENDRO:
+                        Bloom(game, targetplayer_id, target_index)
+                        Reaction = ElementalReactionType.Bloom
+            case ElementType.PYRO:
+                match element:
+                    case ElementType.CRYO:
+                        Melt(game, targetplayer_id, target_index)
+                        Reaction = ElementalReactionType.Frozen
+                    case ElementType.HYDRO:
+                        Vaporize(game, targetplayer_id, target_index)
+                        Reaction = ElementalReactionType.Vaporize
+                    case ElementType.ELECTRO:
+                        Overloaded(game, targetplayer_id, target_index)
+                        Reaction = ElementalReactionType.Overloaded
+                    case ElementType.DENDRO:
+                        Burning(game, targetplayer_id, target_index)
+                        Reaction = ElementalReactionType.Burning
+            case ElementType.ELECTRO:
+                match element:
+                    case ElementType.CRYO:
+                        Superconduct(game, targetplayer_id, target_index)
+                        Reaction = ElementalReactionType.Superconduct
+                    case ElementType.HYDRO:
+                        Electro_Charged(game, targetplayer_id, target_index)
+                        Reaction = ElementalReactionType.Electro_Charged
+                    case ElementType.PYRO:
+                        Overloaded(game, targetplayer_id, target_index)
+                        Reaction = ElementalReactionType.Overloaded
+                    case ElementType.DENDRO:
+                        Quicken(game, targetplayer_id, target_index)
+                        Reaction = ElementalReactionType.Quicken
+            case ElementType.DENDRO:
+                match element:
+                    case ElementType.HYDRO:
+                        Bloom(game, targetplayer_id, target_index)
+                        Reaction = ElementalReactionType.Bloom
+                    case ElementType.PYRO:
+                        Burning(game, targetplayer_id, target_index)
+                        Reaction = ElementalReactionType.Burning
+                    case ElementType.ELECTRO:
+                        Quicken(game, targetplayer_id, target_index)
+                        Reaction = ElementalReactionType.Quicken
+        if Reaction is None and (not element in self.elemental_attach):
+            match element:
+                case ElementType.CRYO | ElementType.HYDRO | ElementType.PYRO | ElementType.ELECTRO:
+                    self.elemental_application.insert(0, element)
+                case ElementType.DENDRO:
+                    self.elemental_application.append(element)
+        if Reaction is not None:
+            game.manager.invoke(EventType.ELEMENTAL_APPLICATION_REATION, game)
+            
+        return Reaction

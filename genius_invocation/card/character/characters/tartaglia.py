@@ -131,6 +131,8 @@ class Riptide(Status):
         实现逻辑:
         当角色死亡时, 会调用on_distroy, 这时候先建一个新的断流
     '''
+    name = 'Riptide'
+    current_usage = MAX_ROUND
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
 
@@ -185,6 +187,7 @@ class Riptide(Status):
             self.on_destroy(game)
 
     def on_end_phase(self, game: 'GeniusGame'):
+        if not self.from_character.is_active: return
         if game.players[0] == self.from_player:
             tartaglia_player = game.players[1]
         else:
@@ -455,3 +458,8 @@ class Tartaglia(Character):
         self.power= 0
 
         self.is_melee_stance = False # 是否为近战状态
+
+    def revive(self, game: 'GeniusGame'):
+        super().revive(game)
+        self.init_state(game)
+        self.is_melee_stance = False

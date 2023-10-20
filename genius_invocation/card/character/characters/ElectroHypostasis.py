@@ -22,7 +22,7 @@ class ElectroCrystalProjection(NormalAttack):
     '''
     id: int = 0
     type: SkillType = SkillType.NORMAL_ATTACK
-
+    name = "Electro Crystal Projection"
     # damage
     damage_type: SkillType = SkillType.NORMAL_ATTACK
     main_damage_element: ElementType = ElementType.ELECTRO
@@ -60,6 +60,7 @@ class RockPaperScissorsCombo_Paper(ElementalSkill):
     '''
         猜拳三连击·布
     '''
+    name = 'Rock-Paper-Scissors Combo: Paper'
     id: int = 11
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
@@ -86,6 +87,8 @@ class PreparePaper(Status):
     '''
         准备技能: 猜拳三连击·布
     '''
+    name = 'Prepare for Paper'
+    current_usage = 1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.skill = RockPaperScissorsCombo_Paper(from_character=from_character)
@@ -102,6 +105,7 @@ class RockPaperScissorsCombo_Scissors(ElementalSkill):
     '''
         猜拳三连击·剪刀
     '''
+    name = 'Rock-Paper-Scissors Combo: Scissors'
     id: int = 12
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
@@ -120,17 +124,19 @@ class RockPaperScissorsCombo_Scissors(ElementalSkill):
         super().on_call(game)
         # 处理伤害
         self.resolve_damage(game)
-        game.manager.invoke(EventType.AFTER_USE_SKILL, game)
         prepare_paper = PreparePaper(game=game,
                                      from_player=self.from_character.from_player,
                                      from_character=self.from_character)
         self.from_character.character_zone.add_entity(prepare_paper)
         self.from_character.from_player.prepared_skill = prepare_paper
+        game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class PrepareScissors(Status):
     '''
         准备技能: 猜拳三连击·剪刀
     '''
+    name = 'Prepare for Scissors'
+    current_usage = 1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.skill = RockPaperScissorsCombo_Scissors(from_character=from_character)
@@ -151,7 +157,7 @@ class RockPaperScissorsCambo(ElementalSkill):
     '''
     id: int = 1
     type: SkillType = SkillType.ELEMENTAL_SKILL
-
+    name = 'Rock-Paper-Scissors Combo'
     # damage
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
     main_damage_element: ElementType = ElementType.ELECTRO
@@ -174,18 +180,19 @@ class RockPaperScissorsCambo(ElementalSkill):
         self.resolve_damage(game)
         # 获得能量
         self.gain_energy(game)
-        game.manager.invoke(EventType.AFTER_USE_SKILL, game)
         prepare_scissors = PrepareScissors(game=game,
                                      from_player=self.from_character.from_player,
                                      from_character=self.from_character)
         self.from_character.character_zone.add_entity(prepare_scissors)
         self.from_character.from_player.prepared_skill = prepare_scissors
+        game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 
 class ChainsOfWardingThunder(Summon):
     '''
         雷锁镇域
     '''
+    name = 'Chains of Warding Thunder'
     element: ElementType = ElementType.ELECTRO
     usage: int = 2
     max_usage: int = 2
@@ -248,7 +255,7 @@ class LightningLockdown(ElementalBurst):
     '''
     id: int = 2
     type: SkillType = SkillType.ELEMENTAL_BURST
-
+    name = 'Lightning Lockdown'
     # damage
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
     main_damage_element: ElementType = ElementType.ELECTRO
@@ -265,26 +272,13 @@ class LightningLockdown(ElementalBurst):
     energy_cost: int = 2
     energy_gain: int = 0
 
-    def generate_summon(self, game: 'GeniusGame'):
-        '''
-            生成雷锁镇域
-        '''
-        summon = self.from_character.from_player.summons_zone.has_entity(ChainsOfWardingThunder)
-        if summon is None:
-            summon = ChainsOfWardingThunder(game=game,
-                    from_player=self.from_character.from_player,
-                    from_character=self.from_character)
-            self.from_character.from_player.summons_zone.add_entity(summon)
-        else:
-            summon.update()
-
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         # 消耗能量
         self.consume_energy(game)
         # 处理伤害
         self.resolve_damage(game)
-        self.generate_summon(game)
+        self.generate_summon(game, ChainsOfWardingThunder)
 
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
@@ -292,6 +286,8 @@ class ElectroCrystalCore(Status):
     '''
         雷晶核心
     '''
+    name = 'Electro Crystal Core'
+    current_usage = 1
     def on_character_die(self, game: 'GeniusGame'):
         '''
             角色死亡时
@@ -311,7 +307,7 @@ class ElectroHypostasis(Character):
         无相之雷
     '''
     id: int = 2401
-    name: str = 'ElectroHypostasis'
+    name: str = 'Electro Hypostasis'
     element: ElementType = ElementType.ELECTRO
     weapon_type: WeaponType = WeaponType.OTHER
     country: CountryType = CountryType.MONSTER

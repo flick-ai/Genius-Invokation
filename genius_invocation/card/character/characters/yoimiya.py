@@ -82,25 +82,12 @@ class Niwabi_FireDance(ElementalSkill):
     def __init__(self, from_character: 'Character'):
         super().__init__(from_character)
 
-
-    def add_status(self, game: 'GeniusGame'):
-
-        status = self.from_character.character_zone.has_entity(Niwabi_Enshou)
-        if status is not None:
-            status.update()
-        else:
-            status = Niwabi_Enshou(game=game,
-                                from_player=self.from_character.from_player,
-                                from_character=self.from_character)
-            # 放到状态区
-            self.from_character.character_zone.add_entity(status)
-
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         # 不造成伤害
 
         # 召唤物/状态生成
-        self.add_status(game)
+        self.add_status(game, Niwabi_Enshou)
         # 获得能量 gain 不了一点！
         # self.gain_energy(game)
 
@@ -134,26 +121,13 @@ class Ryuukin_Saxifrage(ElementalBurst):
     def __init__(self, from_character: 'Character'):
         super().__init__(from_character)
 
-    def add_status(self, game: 'GeniusGame'):
-
-        status = self.from_character.from_player.team_combat_status.has_status(Aurous_Blaze)
-        if status is not None:
-            status.update()
-        else:
-            status = Aurous_Blaze(game=game,
-                                from_player=self.from_character.from_player,
-                                from_character=self.from_character)
-            # 放到状态区
-
-            self.from_character.from_player.team_combat_status.add_entity(status)
-
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         self.consume_energy(game)
         # 处理伤害
         self.resolve_damage(game)
         # 召唤物/状态生成
-        self.add_status(game)
+        self.add_combat_status(game, Aurous_Blaze)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Yoimiya(Character):

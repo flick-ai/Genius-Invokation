@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 class AdventurerBandana(ArtifactCard):
     '''冒险家头巾'''
     id: int = 0
-    name: str = 'Adventurer\'s Bandana'
+    name: str = "Adventurer's Bandana"
     cost_num: int = 1
     cost_type: CostType = CostType.WHITE
     max_usage: int = 3

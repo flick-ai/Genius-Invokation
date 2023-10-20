@@ -28,7 +28,7 @@ class Status(Entity):
         self.from_character.character_zone.remove_entity(self)
 
     def update(self):
-        # All states can be update
+        # All states can be update, maybe need to re-implement in subclass
         pass
 
     def show(self):
@@ -54,12 +54,16 @@ class Shield(Status):
     # Status of shield (Only for single character)
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
-class Combat_Shield(Shield):
+    def on_destroy(self, game):
+        super().on_destroy(game)
+        
+class Combat_Shield(Combat_Status):
     # Combat_Status of shield.
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
+
     def on_destroy(self, game):
-        self.from_player.team_combat_status.remove_entity(self)
+        super().on_destroy(game)
 class Equipment(Entity):
     pass
 
@@ -83,6 +87,7 @@ class Artifact(Equipment):
 
 # TODO: Maybe need to move to other places in future
 class Frozen_Status(Status):
+    name = 'Frozen'
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.usage = 1
@@ -118,6 +123,7 @@ class Frozen_Status(Status):
 
 
 class Dendro_Core(Combat_Status):
+    name = 'Dendro Core'
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.usage = 1
@@ -142,6 +148,7 @@ class Dendro_Core(Combat_Status):
         ]
 
 class Catalyzing_Feild(Combat_Status):
+    name = 'Catalyzing Feild'
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.usage = 2
@@ -168,7 +175,7 @@ class Catalyzing_Feild(Combat_Status):
         ]
 class Crystallize_Shield(Combat_Shield):
     id = 12345
-    name = "Crystallize_Shield"
+    name = "Crystallize Shield"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.usage = 1
@@ -181,18 +188,44 @@ class Crystallize_Shield(Combat_Shield):
 
     def on_excuete_dmg(self,game: 'GeniusGame'):
         if game.current_damage.damage_to.from_player == self.from_player:
-            if game.current_damage.main_damage >= self.current_usage:
-                game.current_damage.main_damage -= self.current_usage
-                self.current_usage = 0
-                self.on_destroy(game)
-            else:
-                self.current_usage -= game.current_damage.main_damage
-                game.current_damage.main_damage = 0
+            if game.current_damage.damage_to.is_active:
+                if game.current_damage.main_damage >= self.current_usage:
+                    game.current_damage.main_damage -= self.current_usage
+                    self.current_usage = 0
+                    self.on_destroy(game)
+                else:
+                    self.current_usage -= game.current_damage.main_damage
+                    game.current_damage.main_damage = 0
 
     def update_listener_list(self):
         self.listeners = [
             (EventType.EXCUTE_DAMAGE, ZoneType.ACTIVE_ZONE_SHIELD, self.on_excuete_dmg)
         ]
+
+class Satisfy_Statue(Status):
+    name = "Satisfy"
+    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
+        super().__init__(game, from_player, from_character)
+        self.current_usage = 1
+        self.from_character.is_satisfy = True
+
+    def update(self):
+        self.current_usage = self.usage
+
+    def on_destroy(self, game):
+        super().on_destroy(game)
+        self.from_character.is_satisfy = False
+
+    def on_begin_phase(self, game: 'GeniusGame'):
+        self.current_usage -= 1
+        if self.current_usage <= 0:
+            self.on_destroy(game)
+
+    def update_listener_list(self):
+        self.listeners = [
+            (EventType.BEGIN_ACTION_PHASE, ZoneType.CHARACTER_ZONE, self.on_begin_phase),
+        ]
+
 
 
 

@@ -71,7 +71,7 @@ class DiceZone:
                 self.space[self.dice_num][dice] = 1
             else:
                 self.space[self.dice_num][-1] = dice
-                for i in range(DICENUM-1):
+                for i in range(DICENUM):
                     self.space[self.dice_num][i] = 1
             self.dice_num += 1
             if self.dice_num == MAX_DICE:
@@ -80,7 +80,7 @@ class DiceZone:
 
     def delete(self, idx):
         self.space[idx][-1] = -1
-        for i in range(DICENUM-1):
+        for i in range(DICENUM):
             self.space[idx][i] = 0
 
     def remove(self, dices: List):
@@ -203,11 +203,16 @@ class CardZone:
             检索并获取特定类型的牌
         '''
         get_list = []
-        for card in reversed(self.card):
-            if card.type == card_type:
+        idx_list = []
+        for idx, card in enumerate(reversed(self.card)):
+            if card.card_type == card_type:
                 get_list.append(card)
-                if len(get_list) == num:
-                    break
+                idx_list.append(idx)
+                if num > 0:
+                    if len(get_list) == num:
+                        break
+        for idx in idx_list:
+            self.card.pop(idx)
         return get_list
 
     def get_card(self, num):
@@ -302,7 +307,6 @@ class CharacterZone:
         单个角色状态区, 包括角色牌、装备区、角色状态
     '''
     def __init__(self, game: 'GeniusGame', player: 'GeniusPlayer') -> None:
-
         self.weapon_card: Weapon = None
         self.artifact_card: Artifact = None
         # self.talent_card: Talent

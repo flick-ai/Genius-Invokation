@@ -122,7 +122,7 @@ class Secret_Rite_Chasmic_Soulfarer(ElementalSkill):
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         # 处理伤害
-        if self.from_character.talent and self.from_character.character_zone.has_entity(Pactsworn_Pathclearer).current_level in [3,5]:
+        if self.from_character.talent and self.from_character.character_zone.has_entity(Pactsworn_Pathclearer).current_usage in [3,5]:
             self.resolve_damage(game, add_main_damage=1)
         else:
             self.resolve_damage(game)
@@ -180,12 +180,14 @@ class Cyno(Character):
 
     max_power: int = 2
 
+    def init_state(self, game: 'GeniusGame'):
+        self.character_zone.add_entity(Pactsworn_Pathclearer(game, self.from_player, self))
+
     def __init__(self, game: 'GeniusGame', zone, from_player: 'GeniusPlayer', index:int, from_character = None, talent = False):
         super().__init__(game, zone, from_player, index, from_character)
         self.talent = talent
         self.power = 0
-        self.character_zone.add_entity(Pactsworn_Pathclearer(game, self.from_player, self))
 
     def revive(self, game: 'GeniusGame'):
         super().revive(game)
-        self.character_zone.add_entity(Pactsworn_Pathclearer(game, self.from_player, self))
+        self.init_state(game)

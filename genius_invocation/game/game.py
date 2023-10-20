@@ -12,6 +12,7 @@ from loguru import logger
 from rich.console import Console
 from rich.table import Column, Table
 from genius_invocation.user_layout import *
+from genius_invocation.utils_dict import *
 if TYPE_CHECKING:
     from genius_invocation.card.character.base import CharacterSkill
 
@@ -61,8 +62,7 @@ class GeniusGame:
         self.game_phase = GamePhase.SET_CARD
         self.active_player_index = first
         self.active_player = self.players[first]
-        for player in self.players:
-            player.generate_mask(self)
+        self.active_player.generate_mask(self)
 
     def resolve_action(self, action: 'Action'):
         '''
@@ -71,8 +71,6 @@ class GeniusGame:
         self.current_action = action
         oppenent_player = self.players[1 - self.active_player_index]
         active_player = self.active_player
-
-        self.manager.invoke(EventType.BEFORE_ANY_ACTION, self)
 
         if action.choice_type == ActionChoice.HAND_CARD:
             self.is_change_player = False
@@ -92,9 +90,17 @@ class GeniusGame:
                 self.first_player = self.active_player_index
 
         self.manager.invoke(EventType.AFTER_ANY_ACTION, self)
-
         if self.is_change_player and (not oppenent_player.is_pass):
             self.change_active_player()
+        
+        oppenent_player = self.players[1 - self.active_player_index]
+        self.manager.invoke(EventType.BEFORE_ANY_ACTION, self)
+        while self.active_player.prepared_skill is not None:
+            character = self.active_player.prepared_skill.from_character
+            if character.is_active and not character.is_frozen:
+                self.active_player.prepared_skill.on_call(self)
+                if not oppenent_player.is_pass:
+                    self.change_active_player()
 
     def add_damage(self, damage: Damage):
         self.damage_list.append(damage)
@@ -157,8 +163,7 @@ class GeniusGame:
             case GamePhase.ACTION_PHASE:
                 self.resolve_action(action)
 
-        for player in self.players:
-            player.generate_mask(self)
+        self.active_player.generate_mask(self)
 
     def set_hand_card(self, action):
         '''
@@ -190,7 +195,6 @@ class GeniusGame:
         '''
             选择重新投掷的骰子
         '''
-
         self.active_player.choose_dice(action)
         self.active_player.roll_time -= 1
         if self.active_player.roll_time == 0:
@@ -220,11 +224,11 @@ class GeniusGame:
         '''
             进入交替行动阶段
         '''
-        self.players[self.active_player_index].begin_action_phase(self)
-        self.change_active_player()
-        self.players[self.active_player_index].begin_action_phase(self)
-        self.change_active_player()
 
+        self.active_player.begin_action_phase(self)
+        self.change_active_player()
+        self.active_player.begin_action_phase(self)
+        self.change_active_player()
         self.game_phase = GamePhase.ACTION_PHASE
 
     def end_phase(self):
@@ -249,47 +253,11 @@ class GeniusGame:
             新版: 尝试将Game信息编码成table呈现给使用者
         '''
         return layout(self)
-        # '''
-        #     尝试将Game的信息编码成str呈现给使用者
-        # '''
-        # message = {'game':{}, 0:{}, 1:{}}
-        # message['game']['round'] = self.round
-        # message['game']['round_phase'] = self.game_phase.name
-        # message['game']['active_player'] = int(self.active_player_index)
-        # message['game']['first_player'] = int(self.first_player)
-        # for player in [0, 1]:
-        #     message[player]['active_zone_shiled'] = self.players[player].team_combat_status.shield
-        #     message[player]['active_zone_status'] = self.players[player].team_combat_status.space
-        #     message[player]['active_character_idx'] = self.players[player].active_idx
-        #     message[player]['card_zone'] = {'num':self.players[player].card_zone.num()}
-        #     message[player]['hand_zone'] = [card.name for card in self.players[player].hand_zone.card]
-        #     message[player]['support_zone'] = [support.name for support in self.players[player].support_zone.space]
-        #     message[player]['summon_zone'] = [summon.name for summon in self.players[player].summons_zone.space]
-        #     message[player]['dice_zone'] = self.players[player].dice_zone.show()
-        #     for character in self.players[player].character_list:
-        #         message[player][character.name] = {}
-        #         message[player][character.name]['active'] = character.is_active
-        #         message[player][character.name]['alive'] = character.is_alive
-        #         message[player][character.name]['character_zone'] = character.character_zone.status_list
-
-        #     # message[player]['summon_zone'] = [summon.name for summon in self.players[player].summons_zone.space]
-        # return message
+        # return get_dict(self)
 
     def change_active_player(self):
         self.active_player_index = 1 - self.active_player_index
         self.active_player = self.players[self.active_player_index]
-        oppenent_player = self.players[1 - self.active_player_index]
-        if self.active_player.prepared_skill is not None:
-            character = self.active_player.prepared_skill.from_character
-            if character.is_active and character.is_frozen:
-                self.active_player.prepared_skill.on_call(self)
-            if oppenent_player.is_pass:
-                while self.active_player.prepared_skill is not None:
-                    character = self.active_player.prepared_skill.from_character
-                    if character.is_active and character.is_frozen:
-                        self.active_player.prepared_skill.on_call(self)
-            else:
-                self.change_active_player()
 
 
 

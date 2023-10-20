@@ -75,15 +75,6 @@ class Spring_Spirit_Summoning(ElementalSkill):
     def __init__(self, from_character: 'Character'):
         super().__init__(from_character)
 
-    def add_status(self, game: 'GeniusGame'):
-        status = self.from_character.from_player.team_combat_status.has_status(Icy_Quill)
-        if status is None:
-            status = Icy_Quill(game=game,
-                               from_character=self.from_character,
-                               from_player=self.from_character.from_player)
-            self.from_character.from_player.team_combat_status.add_entity(status)
-        else:
-            status.update()
 
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
@@ -91,7 +82,7 @@ class Spring_Spirit_Summoning(ElementalSkill):
         self.resolve_damage(game)
         # 获得能量
         self.gain_energy(game)
-        self.add_status(game)
+        self.add_combat_status(game, Icy_Quill)
         # after skill
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
@@ -119,23 +110,13 @@ class Divine_Maidens_Deliverance(ElementalBurst):
     def __init__(self, from_character: 'Character'):
         super().__init__(from_character)
 
-    def generate_summon(self, game:'GeniusGame'):
-        summon = self.from_character.from_player.summons_zone.has_entity(Talisman_Spirit)
-        if summon is None:
-            summon = Talisman_Spirit(game=game,
-                                     from_character=self.from_character,
-                                     from_player=self.from_character.from_player)
-            self.from_character.from_player.summons_zone.add_entity(summon)
-        else:
-            summon.update()
-    
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         # 消耗能量
         self.consume_energy(game)
         # 处理伤害
         self.resolve_damage(game)
-        self.generate_summon(game)
+        self.generate_summon(game, Talisman_Spirit)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 

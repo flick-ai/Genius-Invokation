@@ -66,6 +66,7 @@ class BoltsOfDownfall(NormalAttack):
         罪灭之矢
     '''
     id: int = 0
+    name = "Bolts of Downfall"
     type: SkillType = SkillType.NORMAL_ATTACK
 
     # damage
@@ -118,6 +119,7 @@ class Nightrider(ElementalSkill):
         夜巡影翼
     '''
     id: int = 1
+    name = "Nightrider"
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
     # damage
@@ -136,23 +138,11 @@ class Nightrider(ElementalSkill):
     energy_cost: int = 0
     energy_gain: int = 1
 
-    def generate_summon(self, game: 'GeniusGame'):
-        '''
-            生成奥兹召唤物
-        '''
-        summon = self.from_character.from_player.summons_zone.has_entity(Oz)
-        if summon is None:
-            summon = Oz(game=game,
-                    from_player=self.from_character.from_player,
-                    from_character=self.from_character)
-            self.from_character.from_player.summons_zone.add_entity(summon)
-        else:
-            summon.update()
 
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         self.resolve_damage(game)
-        self.generate_summon(game)
+        self.generate_summon(game, Oz)
         self.gain_energy(game)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
@@ -165,7 +155,7 @@ class MidnightPhantasmagoria(ElementalBurst):
     '''
     id: int = 2
     type: SkillType = SkillType.ELEMENTAL_BURST
-
+    name = "Midnight Phantasmagoria"
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
     main_damage_element: ElementType = ElementType.ELECTRO
     main_damage: int = 4

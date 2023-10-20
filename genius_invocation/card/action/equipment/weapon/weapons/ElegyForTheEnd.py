@@ -19,7 +19,7 @@ class MillennialMovementFarewellSong(Combat_Status):
         self.current_usage = self.usage
     
     def on_damage_add(self, game: 'GeniusGame'):
-        if game.current_damage.damage_from is not None:
+        if isinstance(game.current_damage.damage_from, Character):
             if game.current_damage.damage_from.from_player == self.from_player:
                 if game.current_damage.main_damage_element is not ElementType.PIERCING:
                     game.current_damage.main_damage += 1
@@ -42,6 +42,8 @@ class MillennialMovementFarewellSong(Combat_Status):
 # weapon
 class ElegyForTheEndWeapon(Weapon):
     '''终末嗟叹之诗'''
+    id: int = 311205
+    name: str = 'Elegy for the End'
     def on_damage_add(self, game: 'GeniusGame'):
         if game.current_damage.damage_from == self.from_character:
             if game.current_damage.main_damage_element is not ElementType.PIERCING:
@@ -76,6 +78,7 @@ class ElegyForTheEnd(WeaponCard):
 
     def __init__(self) -> None:
         super().__init__()
+        self.equipment_entity = ElegyForTheEndWeapon
     
     def on_played(self, game: 'GeniusGame') -> None:
         super().on_played(game)

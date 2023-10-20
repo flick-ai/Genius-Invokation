@@ -11,34 +11,40 @@ if TYPE_CHECKING:
 class Chang_the_Ninth_Entity(Support):
     id: int = 322009
     name = 'Chang the Ninth'
-    max_usage = 1
+    max_usage = -1
     max_count = 3
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
-        self.usage = self.max_usage
+        self.is_calculate = False
         self.inspiration = 0
 
     def on_damage(self, game:'GeniusGame'):
-        if game.active_player_index == self.from_player.index:
-            if self.usage > 0:
-                damage = game.current_damage
-                if damage.main_damage_element == ElementType.PHYSICAL:
-                    self.inspiration += 1
-                elif damage.reaction != None:
-                    self.inspiration += 1
-                elif damage.main_damgae_element == ElementType.PIERCING or damage.piercing_damage > 0:
-                    self.inspiration += 1
-                if self.inspiration == self.max_count:
-                    self.from_player.get_card(num=2)
+        damage = game.current_damage
+        if damage.main_damage_element == ElementType.PHYSICAL:
+            self.is_calculate =True
+        elif damage.reaction != None:
+            self.is_calculate =True
+        elif damage.main_damage_element == ElementType.PIERCING or damage.piercing_damage > 0:
+            self.is_calculate =True
+    def on_attach_reaction(self, game:'GeniusGame'):
+        self.is_calculate = True
+    def on_skill(self, game:'GeniusGame'):
+        self.is_calculate = False
 
-    def on_after(self, game:'GeniusGame'):
-        if game.active_player_index == self.from_player.index:
-           self.usage = self.max_usage
-
+    def on_after_skill(self, game:'GeniusGame'):
+        if self.is_calculate:
+            self.is_calculate = False
+            self.inspiration += 1
+            if self.inspiration == self.max_count:
+                self.from_player.get_card(num=2)
+                self.on_destroy(game)
+        
     def update_listener_list(self):
         self.listeners = [
             (EventType.EXCUTE_DAMAGE, ZoneType.SUPPORT_ZONE, self.on_damage),
-            (EventType.AFTER_ANY_ACTION, ZoneType.SUPPORT_ZONE, self.on_after)
+            (EventType.BEFORE_ANY_ACTION, ZoneType.SUPPORT_ZONE, self.on_skill),
+            (EventType.AFTER_USE_SKILL, ZoneType.SUPPORT_ZONE, self.on_after_skill),
+            (EventType.ELEMENTAL_APPLICATION_REATION, ZoneType.SUPPORT_ZONE,self.on_attach_reaction)
         ]
     
     def show(self):

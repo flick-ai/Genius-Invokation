@@ -78,17 +78,6 @@ class Jade_Screen(ElementalSkill):
     def __init__(self, from_character: 'Character'):
         super().__init__(from_character)
 
-
-    def add_status(self, game: 'GeniusGame'):
-        status = self.from_character.from_player.team_combat_status.has_status(Jade_Screen_Status)
-        if status is None:
-            status = Jade_Screen_Status(game=game,
-                                        from_player=self.from_character.from_player,
-                                        from_character=self.from_character)
-            self.from_character.from_player.team_combat_status.add_entity(status)
-        else:
-            status.update()
-
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         # 处理伤害
@@ -96,7 +85,7 @@ class Jade_Screen(ElementalSkill):
         # 获得能量
         self.gain_energy(game)
         # add status
-        self.add_status(game)
+        self.add_combat_status(game, Jade_Screen_Status)
         # after skill
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
@@ -172,11 +161,12 @@ class Jade_Screen_Status(Combat_Status):
         if game.current_damage.damage_to.from_player == self.from_player:
             if game.current_damage.main_damage_element == ElementType.PIERCING:
                 return
-            if game.current_damage.main_damage >=2:
-                game.current_damage.main_damage -= 1
-                self.current_usage -=1
-                if self.current_usage <=0:
-                    self.on_destroy(game)
+            if game.current_damage.damage_to.is_active:
+                if game.current_damage.main_damage >=2:
+                    game.current_damage.main_damage -= 1
+                    self.current_usage -=1
+                    if self.current_usage <=0:
+                        self.on_destroy(game)
 
     def on_damage_add(self, game: 'GeniusGame'):
         if game.current_damage.damage_from == self.from_character:

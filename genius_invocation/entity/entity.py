@@ -22,6 +22,9 @@ class Entity:
         pass
 
     def listen_all(self, game: 'GeniusGame'):
+        print(self.listeners)
+        import ipdb
+        ipdb.set_trace()
         for event_name, event_type, action in self.listeners:
             self.registered_events.append(game.manager.listen(event_name, event_type, action))
 
@@ -29,5 +32,8 @@ class Entity:
         for action in self.registered_events:
             action.remove()
 
+    def update(self):
+        pass
+    
     def show(self):
         return self.name

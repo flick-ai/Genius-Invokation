@@ -18,14 +18,14 @@ class Yuuban_Meigen(NormalAttack):
     type: SkillType = SkillType.NORMAL_ATTACK
 
     damage_type: SkillType = SkillType.NORMAL_ATTACK
-    main_damage_element: ElementType = ElementType.ANEPMO
+    main_damage_element: ElementType = ElementType.ANEMO
     main_damage: int = 1
     piercing_damage = 0
 
     cost = [
         {
             'cost_num': 1,
-            'cost_type': CostType.ANEPMO
+            'cost_type': CostType.ANEMO
         },
         {
             'cost_num': 2,
@@ -53,14 +53,14 @@ class Hanega_Song_of_the_Wind(ElementalSkill):
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
-    main_damage_element: ElementType = ElementType.ANEPMO
+    main_damage_element: ElementType = ElementType.ANEMO
     main_damage: int = 2
     piercing_damage = 0
 
     cost = [
         {
             'cost_num': 3,
-            'cost_type': CostType.ANEPMO
+            'cost_type': CostType.ANEMO
         }
     ]
     energy_cost: int = 0
@@ -68,20 +68,12 @@ class Hanega_Song_of_the_Wind(ElementalSkill):
 
     def __init__(self, from_character: 'Character') -> None:
         super().__init__(from_character)
-    
-    def add_status(self, game: 'GeniusGame'):
-        status = self.from_character.character_zone.has_entity(Windfavored)
-        if status is None:
-            status = Windfavored(game, self.from_character.from_player, self.from_character)
-            self.from_character.character_zone.add_entity(status)
-        else:
-            status.update()
 
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         self.resolve_damage(game)
         self.gain_energy(game)
-        self.add_status(game)
+        self.add_status(game, Windfavored)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Kyougen_Five_Ceremonial_Plays(ElementalBurst):
@@ -90,14 +82,14 @@ class Kyougen_Five_Ceremonial_Plays(ElementalBurst):
     type: SkillType = SkillType.ELEMENTAL_BURST
 
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
-    main_damage_element: ElementType = ElementType.ANEPMO
+    main_damage_element: ElementType = ElementType.ANEMO
     main_damage: int = 7
     piercing_damage = 0
 
     cost = [
         {
             'cost_num': 3,
-            'cost_type': CostType.ANEPMO
+            'cost_type': CostType.ANEMO
         },
     ]
     energy_cost: int = 3
@@ -117,7 +109,7 @@ class Kyougen_Five_Ceremonial_Plays(ElementalBurst):
 class Wanderer(Character):
     id = 1506
     name = "Wanderer"
-    element = ElementType.ANEPMO
+    element = ElementType.ANEMO
     weapon_type: WeaponType = WeaponType.CATALYST
     country: CountryType = CountryType.OTHER
 
@@ -194,20 +186,25 @@ class Switch(Status):
     def update(self):
         self.current_usage = self.usage
 
-    def on_switch(self, game: 'GeniusGame'):
-        if game.active_player != self.from_player: return
-        if game.active_player.active_idx != self.from_character.index: return
-        if game.current_dice.use_type == "change_character":
+    def on_calculate(self, game:'GeniusGame'):
+        if self.current_usage ==0: return False
+        if game.active_player != self.from_player: return False
+        if game.active_player.active_idx != self.from_character.index: return False
+        if game.current_dice.use_type == SwitchType.CHANGE_CHARACTER:
             if game.current_dice.cost[0]['cost_num']>0:
                 game.current_dice.cost[0]['cost_num'] -=1
-            
+                return True
+        return False
+
+    def on_switch(self, game: 'GeniusGame'):
+        if self.on_calculate(game):
             dmg = Damage.create_damage(
                 game,
                 damage_type=SkillType.OTHER,
                 damage_from=self,
                 damage_to=get_opponent_active_character(game),
                 main_damage=1,
-                main_damage_element=ElementType.ANEPMO,
+                main_damage_element=ElementType.ANEMO,
                 piercing_damage=0
             )
             game.add_damage(dmg)
@@ -218,6 +215,7 @@ class Switch(Status):
                 self.on_destroy(game)
     def update_listener_list(self):
         self.listeners = [
+            (EventType.CALCULATE_DICE, ZoneType.CHARACTER_ZONE, self.on_calculate),
             (EventType.ON_CHANGE_CHARACTER, ZoneType.CHARACTER_ZONE, self.on_switch)
         ]
 

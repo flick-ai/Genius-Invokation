@@ -220,7 +220,7 @@ class Damage:
                         Quicken(game, targetplayer_id, target_index)
                         Reaction = ElementalReactionType.Quicken
 
-            case ElementType.ANEPMO: # 风
+            case ElementType.ANEMO: # 风
                 match targetAttachElement:
                     case ElementType.CRYO | ElementType.HYDRO | ElementType.PYRO | ElementType.ELECTRO:
                         Swirl(game, targetplayer_id, target_index)

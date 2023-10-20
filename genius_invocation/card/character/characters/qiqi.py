@@ -75,19 +75,10 @@ class Adeptus_Art_Herald_of_Frost(ElementalSkill):
     def __init__(self, from_character: 'Character'):
         super().__init__(from_character)
 
-    def generate_summon(self, game: 'GeniusGame'):
-        summon = self.from_character.from_player.summons_zone.has_entity(Herald_of_Frost)
-        if summon is None:
-            summon = Herald_of_Frost(game, self.from_character.from_player, self.from_character)
-            self.from_character.from_player.summons_zone.add_entity(summon)
-        else:
-            summon.update()
-    
-
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         # 处理伤害
-        self.generate_summon(game)
+        self.generate_summon(game, Herald_of_Frost)
         # 获得能量
         self.gain_energy(game)
         # after skill
@@ -119,20 +110,13 @@ class Adeptus_Art_Preserver_of_Fortune(ElementalBurst):
     def __init__(self, from_character: 'Character'):
         super().__init__(from_character)
     
-    def add_status(self, game: 'GeniusGame'):
-        status = self.from_character.from_player.team_combat_status.has_status(Fortune_Preserving_Talisman)
-        if status is None:
-            status = Fortune_Preserving_Talisman(game, self.from_character.from_player, self.from_character)
-            self.from_character.from_player.team_combat_status.add_entity(status)
-        else:
-            status.update()
 
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         # 处理伤害
         self.consume_energy(game)
         self.resolve_damage(game)
-        self.add_status(game)
+        self.add_combat_status(game, Fortune_Preserving_Talisman)
 
         if self.from_character.talent:
             if self.from_character.use_revive <2:

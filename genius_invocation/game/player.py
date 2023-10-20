@@ -9,9 +9,10 @@ import genius_invocation.card.character.characters as chars
 # print(chars.tartaglia) The python file(If the name of file is same as charater, it will not return the file)
 # print(chars.Tartaglia) The character class
 # print(chars.Akara) The status
-
+from genius_invocation.entity.entity import Entity
 from genius_invocation.card.action import ActionCard
 from genius_invocation.card.character import CharacterSkill
+from copy import deepcopy
 
 if TYPE_CHECKING:
     from genius_invocation.game.game import GeniusGame
@@ -33,13 +34,14 @@ class GeniusPlayer:
                 from_player = self,
                 index = id,
                 from_character = None,
-                talent = False))
+                talent = True))
         self.character_num = len(self.character_list)
 
         # 初始化牌库、起始5张手牌、骰子区
         self.card_zone: CardZone = CardZone(game, self, deck['action_card']) # 牌库区
         self.hand_zone: HandZone = HandZone(game, self) # 手牌区
-        self.hand_zone.add(self.card_zone.get_card(num=5))
+        arcanes = self.card_zone.find_card(ActionCardType.EVENT_ARCANE_LEGEND, num=-1)
+        self.hand_zone.add(self.card_zone.get_card(num=5-len(arcanes))+arcanes)
         self.dice_zone: DiceZone = DiceZone(game, self)
 
         # 环境中的基本状态
@@ -48,7 +50,9 @@ class GeniusPlayer:
         self.team_combat_status: ActiveZone = ActiveZone(game, self)
 
         # 回合pass
+        self.game = game
         self.is_pass: bool
+        self.play_arcane_legend: bool = False
 
         # 切换角色基本信息
         self.is_after_change: bool
@@ -60,7 +64,7 @@ class GeniusPlayer:
         self.roll_time: int = 1
         self.fix_dice = []
 
-        self.prepared_skill = None
+        self.prepared_skill: Entity = None
 
         # Mask
         self.action_mask: np.array
@@ -117,7 +121,7 @@ class GeniusPlayer:
             self.character_list[self.active_idx].is_active = False
         self.active_idx = idx
         self.character_list[self.active_idx].is_active = True
-        # self.is_after_change = True
+        self.game.manager.invoke(EventType.AFTER_CHANGE_CHARACTER, self.game)
         self.character_list[self.active_idx].on_switched_to()
 
     def change_to_previous_character(self):
@@ -149,9 +153,8 @@ class GeniusPlayer:
         game.current_dice = Dice(from_player=self,
                                  from_character=self.character_list[self.active_idx],
                                  use_type=skill.type,
-                                 cost=skill.cost)
+                                 cost=deepcopy(skill.cost))
         self.character_list[self.active_idx].skill(idx, game)
-        self.is_after_change = False
 
     def play_card(self, game: 'GeniusGame'):
         '''
@@ -179,14 +182,13 @@ class GeniusPlayer:
         self.use_dice(game)
         game.current_dice = Dice(from_player=self,
                                  from_character=None,
-                                 use_type='change_character',
+                                 use_type=SwitchType.CHANGE_CHARACTER,
                                  cost=[{'cost_num':1, 'cost_type':CostType.BLACK}])
         self.change_num += 1
         self.is_quick_change = False
         game.manager.invoke(EventType.ON_CHANGE_CHARACTER, game)
         idx = game.current_action.target_idx
         self.change_to_id(idx)
-        game.manager.invoke(EventType.AFTER_CHANGE_CHARACTER, game)
         if self.is_quick_change:
             game.is_change_player = False
 
@@ -207,6 +209,7 @@ class GeniusPlayer:
             2. 行动所需骰子是否足够？
             TODO:我们使用一个3维矩阵来维护,但是实际上这个矩阵十分稀疏,可以考虑使用稀疏矩阵来提升系统系能
         '''
+        print(game.game_phase, game.active_player_index, "generate_mask")
         self.action_mask = np.zeros((18, 15, 5)).astype(np.int32)
 
        # 非标准行动的 Mask
@@ -238,9 +241,9 @@ class GeniusPlayer:
             if has_target is not None and has_dice:
                 for target in has_target:
                     self.action_mask[idx][target][0] = 1
-                for i, cost in enumerate(game.current_dice.cost):
-                    self.action_mask[idx][target][i*2+1] = cost['cost_num']
-                    self.action_mask[idx][target][i*2+2] = cost['cost_type'].value if cost['cost_type'] is not None else 0
+                    for i, cost in enumerate(game.current_dice.cost):
+                        self.action_mask[idx][target][i*2+1] = cost['cost_num']
+                        self.action_mask[idx][target][i*2+2] = cost['cost_type'].value if cost['cost_type'] is not None else 0
 
             active_dice = DiceToCost[ElementToDice[self.character_list[self.active_idx].element]]
             can_tune = self.dice_zone.calculate_dice(Dice(from_player=self,
@@ -259,7 +262,7 @@ class GeniusPlayer:
             has_dice = self.calculate_dice(game, Dice(from_player=self,
                                                       from_character=self.character_list[self.active_idx],
                                                       use_type=skill.type,
-                                                      cost=skill.cost))
+                                                      cost=deepcopy(skill.cost)))
             can_use = True
             if skill.type == SkillType.ELEMENTAL_BURST:
                 can_use = self.character_list[self.active_idx].max_power == self.character_list[self.active_idx].power
@@ -272,7 +275,7 @@ class GeniusPlayer:
         # 计算能否切换角色
         has_dice = self.calculate_dice(game, Dice(from_player=self,
                                                   from_character=None,
-                                                  use_type='change_character',
+                                                  use_type=SwitchType.CHANGE_CHARACTER,
                                                   cost=[{'cost_num':1, 'cost_type':CostType.BLACK}]))
         if has_dice:
             for idx, character in enumerate(self.character_list):
