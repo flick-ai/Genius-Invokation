@@ -12,6 +12,7 @@ import genius_invocation.card.character.characters as chars
 
 from genius_invocation.card.action import ActionCard
 from genius_invocation.card.character import CharacterSkill
+from copy import deepcopy
 
 if TYPE_CHECKING:
     from genius_invocation.game.game import GeniusGame
@@ -149,7 +150,7 @@ class GeniusPlayer:
         game.current_dice = Dice(from_player=self,
                                  from_character=self.character_list[self.active_idx],
                                  use_type=skill.type,
-                                 cost=skill.cost)
+                                 cost=deepcopy(skill.cost))
         self.character_list[self.active_idx].skill(idx, game)
         self.is_after_change = False
 
@@ -260,7 +261,7 @@ class GeniusPlayer:
             has_dice = self.calculate_dice(game, Dice(from_player=self,
                                                       from_character=self.character_list[self.active_idx],
                                                       use_type=skill.type,
-                                                      cost=skill.cost))
+                                                      cost=deepcopy(skill.cost)))
             can_use = True
             if skill.type == SkillType.ELEMENTAL_BURST:
                 can_use = self.character_list[self.active_idx].max_power == self.character_list[self.active_idx].power

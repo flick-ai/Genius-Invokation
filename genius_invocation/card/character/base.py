@@ -81,7 +81,6 @@ class NormalAttack(CharacterSkill):
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         # TODO: 判断是否为重击
-
         game.manager.invoke(EventType.ON_USE_SKILL, game)
 
 
