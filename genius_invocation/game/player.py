@@ -50,6 +50,7 @@ class GeniusPlayer:
         self.team_combat_status: ActiveZone = ActiveZone(game, self)
 
         # 回合pass
+        self.game = game
         self.is_pass: bool
         self.play_arcane_legend: bool = False
 
@@ -120,7 +121,7 @@ class GeniusPlayer:
             self.character_list[self.active_idx].is_active = False
         self.active_idx = idx
         self.character_list[self.active_idx].is_active = True
-        # self.is_after_change = True
+        self.game.manager.invoke(EventType.AFTER_CHANGE_CHARACTER, self.game)
         self.character_list[self.active_idx].on_switched_to()
 
     def change_to_previous_character(self):
@@ -154,7 +155,6 @@ class GeniusPlayer:
                                  use_type=skill.type,
                                  cost=deepcopy(skill.cost))
         self.character_list[self.active_idx].skill(idx, game)
-        self.is_after_change = False
 
     def play_card(self, game: 'GeniusGame'):
         '''
@@ -189,7 +189,6 @@ class GeniusPlayer:
         game.manager.invoke(EventType.ON_CHANGE_CHARACTER, game)
         idx = game.current_action.target_idx
         self.change_to_id(idx)
-        game.manager.invoke(EventType.AFTER_CHANGE_CHARACTER, game)
         if self.is_quick_change:
             game.is_change_player = False
 
@@ -210,7 +209,7 @@ class GeniusPlayer:
             2. 行动所需骰子是否足够？
             TODO:我们使用一个3维矩阵来维护,但是实际上这个矩阵十分稀疏,可以考虑使用稀疏矩阵来提升系统系能
         '''
-        # print(game.game_phase, game.active_player_index, "generate_mask")
+        print(game.game_phase, game.active_player_index, "generate_mask")
         self.action_mask = np.zeros((18, 15, 5)).astype(np.int32)
 
        # 非标准行动的 Mask

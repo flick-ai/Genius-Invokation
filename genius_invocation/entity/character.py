@@ -72,7 +72,7 @@ class Character(Entity):
         self.talent: bool = False
         self.is_active: bool = False
         self.is_alive: bool = True
-        self.is_frozen: bool = True
+        self.is_frozen: bool = False
         self.is_satisfy: bool = False
         self.health_point = self.init_health_point
         self.power: int = 0 # 初始充能
