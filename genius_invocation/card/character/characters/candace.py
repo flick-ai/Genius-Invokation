@@ -71,6 +71,7 @@ class Sacred_Rite_Herons_Sanctum(ElementalSkill):
         self.gain_energy(game)
         Next_Skill = self.from_character.next_skill # The Skill instance now is stored in character, somewhere else maybe better?
         prepare_status = Heron_Shield(game, self.from_character.from_player, self.from_character, Next_Skill)
+        assert self.from_character.character_zone.has_entity(Heron_Shield) is None
         self.from_character.character_zone.add_entity(prepare_status)
         self.from_character.from_player.prepared_skill = prepare_status
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
@@ -179,14 +180,14 @@ class Prayer_of_the_Crimson_Crown(Combat_Status):
         self.last_switch_round = -1
     
     def infusion(self, game:'GeniusGame'):
-        if game.current_damage.damage_from.isinstance(Character):
+        if isinstance(game.current_damage.damage_from, Character):
             if game.current_damage.damage_from.from_player == self.from_player:
                 if game.current_damage.damage_from.weapon_type in [WeaponType.SWORD, WeaponType.CLAYMORE, WeaponType.POLEARM]:
                     if game.current_damage.main_damage_element == ElementType.PHYSICAL:
                         game.current_damage.main_damage_element = ElementType.HYDRO
     
     def on_dmg_add(self, game:'GeniusGame'):
-        if game.current_damage.damage_from.isinstance(Character):
+        if isinstance(game.current_damage.damage_from, Character):
             if game.current_damage.damage_from.from_player == self.from_player:
                 if game.current_damage.damage_type == SkillType.NORMAL_ATTACK:
                     game.current_damage.main_damage += 1
