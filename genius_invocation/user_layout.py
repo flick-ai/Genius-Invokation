@@ -88,6 +88,25 @@ def get_character(player: 'GeniusPlayer', idx):
             str(character_list[idx].power),
             style=color,
         )
+        sponsor_message.add_row(
+            str(character_list[idx].power),
+            style=color,
+        )
+        if character_list[idx].character_zone.weapon_card != None:
+            sponsor_message.add_row(
+                character_list[idx].character_zone.weapon_card.show(),
+                style=color,
+            )
+        if character_list[idx].character_zone.artifact_card != None:
+            sponsor_message.add_row(
+                character_list[idx].character_zone.artifact_card.show(),
+                style=color,
+            )
+        if character_list[idx].talent == True:
+            sponsor_message.add_row(
+                f"Has Talent",
+                style=color,
+            )
         for status in character_list[idx].character_zone.status_list:
             sponsor_message.add_row(
                 f"{status.name}:{status.show()}",

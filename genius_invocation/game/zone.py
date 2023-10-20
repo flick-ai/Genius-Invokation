@@ -71,7 +71,7 @@ class DiceZone:
                 self.space[self.dice_num][dice] = 1
             else:
                 self.space[self.dice_num][-1] = dice
-                for i in range(DICENUM-1):
+                for i in range(DICENUM):
                     self.space[self.dice_num][i] = 1
             self.dice_num += 1
             if self.dice_num == MAX_DICE:
@@ -80,7 +80,7 @@ class DiceZone:
 
     def delete(self, idx):
         self.space[idx][-1] = -1
-        for i in range(DICENUM-1):
+        for i in range(DICENUM):
             self.space[idx][i] = 0
 
     def remove(self, dices: List):
@@ -302,7 +302,6 @@ class CharacterZone:
         单个角色状态区, 包括角色牌、装备区、角色状态
     '''
     def __init__(self, game: 'GeniusGame', player: 'GeniusPlayer') -> None:
-
         self.weapon_card: Weapon = None
         self.artifact_card: Artifact = None
         # self.talent_card: Talent

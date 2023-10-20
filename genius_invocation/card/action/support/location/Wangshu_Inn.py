@@ -22,7 +22,7 @@ class Wangshu_Inn_Entity(Support):
         if game.active_player_index == self.from_player.index:
             injured = np.zeros(2)
             standby_character = get_my_standby_character(game)
-            for idx, character in enumerate():
+            for idx, character in enumerate(standby_character):
                 injured[idx] = character.max_health_point - character.health_point
             max_injured = injured.argmax()
             if injured.max() > 0:

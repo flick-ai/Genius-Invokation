@@ -131,6 +131,7 @@ class Riptide(Status):
         实现逻辑:
         当角色死亡时, 会调用on_distroy, 这时候先建一个新的断流
     '''
+    name = 'Riptide'
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
 

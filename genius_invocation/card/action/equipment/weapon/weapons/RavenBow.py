@@ -9,6 +9,8 @@ if TYPE_CHECKING:
 
 # weapons
 class RavenBowWeapon(Weapon):
+    id: int = 311201
+    name: str = 'Raven Bow'
     def on_damage_add(self, game: 'GeniusGame'):
         if game.current_damage.damage_from == self.from_character:
             if game.current_damage.main_damage_element is not ElementType.PIERCING:
@@ -30,6 +32,7 @@ class RavenBow(WeaponCard):
 
     def __init__(self) -> None:
         super().__init__()
+        self.equipment_entity = RavenBowWeapon
     
     def on_played(self, game: 'GeniusGame') -> None:
         super().on_played(game)

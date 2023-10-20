@@ -240,9 +240,9 @@ class GeniusPlayer:
             if has_target is not None and has_dice:
                 for target in has_target:
                     self.action_mask[idx][target][0] = 1
-                for i, cost in enumerate(game.current_dice.cost):
-                    self.action_mask[idx][target][i*2+1] = cost['cost_num']
-                    self.action_mask[idx][target][i*2+2] = cost['cost_type'].value if cost['cost_type'] is not None else 0
+                    for i, cost in enumerate(game.current_dice.cost):
+                        self.action_mask[idx][target][i*2+1] = cost['cost_num']
+                        self.action_mask[idx][target][i*2+2] = cost['cost_type'].value if cost['cost_type'] is not None else 0
 
             active_dice = DiceToCost[ElementToDice[self.character_list[self.active_idx].element]]
             can_tune = self.dice_zone.calculate_dice(Dice(from_player=self,

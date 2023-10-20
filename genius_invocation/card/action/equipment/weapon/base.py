@@ -32,7 +32,7 @@ class WeaponCard(EquipmentCard):
     def find_target(self, game: 'GeniusGame'):
         character_idx = []
         for idx, character in enumerate(game.active_player.character_list):
-            if character.is_alive and character.character_zone.weapon_card is None:
+            if character.is_alive:
                 if character.weapon_type == self.weapon_type:
                     character_idx.append(idx + 2)
         return character_idx
