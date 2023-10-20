@@ -89,8 +89,9 @@ class Character(Entity):
     def dying(self, game: 'GeniusGame'):
         assert self.is_alive==False
         self.is_frozen = False
-        self.is_alive = False
+        self.is_active = False
         self.talent = False
+        self.power = 0
         self.character_zone.clear(game)
 
     def revive(self, game: 'GeniusGame'):
