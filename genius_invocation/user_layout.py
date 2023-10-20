@@ -69,7 +69,7 @@ def get_game_info(game: 'GeniusGame'):
 
 def get_character(player: 'GeniusPlayer', idx):
     sponsor_message = Table.grid()
-    sponsor_message.add_column(no_wrap=True,justify="medium")
+    sponsor_message.add_column(no_wrap=False, justify="medium")
     character_list = player.character_list
     if character_list[idx].is_active:
         color = 'red'
