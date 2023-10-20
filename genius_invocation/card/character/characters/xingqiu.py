@@ -80,16 +80,6 @@ class Fatal_Rainscreen(ElementalSkill):
     def __init__(self, from_character: 'Character'):
         super().__init__(from_character)
 
-    def add_status(self, game: 'GeniusGame'):
-        char = get_my_active_character(game)
-        status = self.from_character.from_player.team_combat_status.has_status(Rain_Sword)
-        if status is None:
-            status = Rain_Sword(game=game,
-                    from_player=game.active_player,
-                    from_character=char)
-            self.from_character.from_player.team_combat_status.add_entity(status)
-        else:
-            status.update()
 
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
@@ -99,7 +89,7 @@ class Fatal_Rainscreen(ElementalSkill):
         self.from_character.elemental_attach(game, ElementType.HYDRO)
         # 获得能量
         self.gain_energy(game)
-        self.add_status(game)
+        self.add_combat_status(game, Rain_Sword)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Raincutter(ElementalBurst):
@@ -130,22 +120,12 @@ class Raincutter(ElementalBurst):
     def __init__(self, from_character: 'Character'):
         super().__init__(from_character)
 
-    def add_status(self, game: 'GeniusGame'):
-        status = self.from_character.from_player.team_combat_status.has_status(Rainbow_Bladework)
-        if status is None:
-            status = Rainbow_Bladework(game=game,
-                    from_player=game.active_player,
-                    from_character=self.from_character)
-            self.from_character.from_player.team_combat_status.add_entity(status)
-        else:
-            status.update()
-
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         self.consume_energy(game)
         self.resolve_damage(game)
         self.from_character.elemental_attach(game, ElementType.HYDRO)
-        self.add_status(game)
+        self.add_combat_status(game, Rainbow_Bladework)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 

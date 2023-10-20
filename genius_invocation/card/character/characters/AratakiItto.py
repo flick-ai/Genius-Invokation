@@ -67,32 +67,11 @@ class Masatsu_Zetsugi_Akaushi_Burst(ElementalSkill):
     energy_cost: int = 0
     energy_gain: int = 1
 
-    def generate_summon(self, game: 'GeniusGame'):
-        '''
-            生成牛牛
-        '''
-        summon = self.from_character.from_player.summons_zone.has_entity(Ushi)
-        if summon is None:
-            summon = Ushi(game=game,
-                    from_player=self.from_character.from_player,
-                    from_character=self.from_character)
-            self.from_character.from_player.summons_zone.add_entity(summon)
-        else:
-            summon.update(game)
-
-    def add_status(self, game: 'GeniusGame'):
-        status = self.from_character.character_zone.has_entity(Superlative_Superstrength)
-        if status is None:
-            status = Superlative_Superstrength(game, self.from_character.from_player, self.from_character)
-            self.from_character.character_zone.add_entity(status)
-        else:
-            status.update()
-
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         self.resolve_damage(game)
-        self.generate_summon(game)
-        self.add_status(game)
+        self.generate_summon(game, Ushi)
+        self.add_status(game, Superlative_Superstrength)
         self.gain_energy(game)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
@@ -116,19 +95,11 @@ class Royal_Descent_Behold_Itto_the_Evil(ElementalBurst):
     energy_cost = 3
     energy_gain = 0
 
-    def add_status(self, game: 'GeniusGame'):
-        status = self.from_character.character_zone.has_entity(Raging_Oni_King)
-        if status is None:
-            status = Raging_Oni_King(game, self.from_character.from_player, self.from_character)
-            self.from_character.character_zone.add_entity(status)
-        else:
-            status.update()
-
     def on_call(self, game:'GeniusGame'):
         super().on_call(game)
         self.consume_energy(game)
         self.resolve_damage(game)
-        self.add_status(game)
+        self.add_status(game, Raging_Oni_King)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Arataki_Itto(Character):

@@ -202,22 +202,13 @@ class Illusory_Heart(ElementalBurst):
     def __init__(self, from_character: Character):
         super().__init__(from_character)
 
-    def add_status(self, game: 'GeniusGame'):
-        status = self.from_character.from_player.team_combat_status.has_status(Shrine_of_Maya)
-
-        if status is None:
-            status = Shrine_of_Maya(game, self.from_character.from_player, self.from_character)
-            self.from_character.from_player.team_combat_status.add_entity(status)
-        else:
-            status.update(game)
-
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         # 处理伤害
         self.resolve_damage(game)
         self.consume_energy(game)
         # 召唤物/状态生成
-        self.add_status(game)
+        self.add_combat_status(game, Shrine_of_Maya)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Nahida(Character):

@@ -28,7 +28,7 @@ class Status(Entity):
         self.from_character.character_zone.remove_entity(self)
 
     def update(self):
-        # All states can be update
+        # All states can be update, maybe need to re-implement in subclass
         pass
 
     def show(self):

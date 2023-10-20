@@ -138,23 +138,11 @@ class Nightrider(ElementalSkill):
     energy_cost: int = 0
     energy_gain: int = 1
 
-    def generate_summon(self, game: 'GeniusGame'):
-        '''
-            生成奥兹召唤物
-        '''
-        summon = self.from_character.from_player.summons_zone.has_entity(Oz)
-        if summon is None:
-            summon = Oz(game=game,
-                    from_player=self.from_character.from_player,
-                    from_character=self.from_character)
-            self.from_character.from_player.summons_zone.add_entity(summon)
-        else:
-            summon.update()
 
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         self.resolve_damage(game)
-        self.generate_summon(game)
+        self.generate_summon(game, Oz)
         self.gain_energy(game)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 

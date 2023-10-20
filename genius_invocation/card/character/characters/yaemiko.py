@@ -74,19 +74,11 @@ class Yakan_Evocation_Sesshou_Sakura(ElementalSkill):
 
     def __init__(self, from_character: 'Character'):
         super().__init__(from_character)
-    
-    def generate_summon(self, game: 'GeniusGame'):
-        summon = self.from_character.from_player.summons_zone.has_entity(Sesshou_Sakura)
-        if summon is None:
-            summon = Sesshou_Sakura(game, self.from_character.from_player, self.from_character)
-            self.from_character.from_player.summons_zone.add_entity(summon)
-        else:
-            summon.update()
 
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
-        # 处理伤害
-        self.generate_summon(game)
+        # 召唤杀生樱
+        self.generate_summon(game, Sesshou_Sakura)
         # 获得能量
         self.gain_energy(game)
         # after skill
