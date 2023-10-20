@@ -23,8 +23,6 @@ class Entity:
 
     def listen_all(self, game: 'GeniusGame'):
         print(self.listeners)
-        import ipdb
-        ipdb.set_trace()
         for event_name, event_type, action in self.listeners:
             self.registered_events.append(game.manager.listen(event_name, event_type, action))
 
