@@ -93,6 +93,7 @@ class Heron_Strike(ElementalSkill):
         super().on_call(game)
         self.resolve_damage(game)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
+        self.from_character.from_player.prepared_skill = None
 
 
 class Sacred_Rite_Wagtails_Tide(ElementalBurst):

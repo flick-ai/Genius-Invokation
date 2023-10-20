@@ -88,6 +88,7 @@ class PreparePaper(Status):
         准备技能: 猜拳三连击·布
     '''
     name = 'Prepare for Paper'
+    current_usage = 1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.skill = RockPaperScissorsCombo_Paper(from_character=from_character)
@@ -135,6 +136,7 @@ class PrepareScissors(Status):
         准备技能: 猜拳三连击·剪刀
     '''
     name = 'Prepare for Scissors'
+    current_usage = 1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.skill = RockPaperScissorsCombo_Scissors(from_character=from_character)
@@ -285,6 +287,7 @@ class ElectroCrystalCore(Status):
         雷晶核心
     '''
     name = 'Electro Crystal Core'
+    current_usage = 1
     def on_character_die(self, game: 'GeniusGame'):
         '''
             角色死亡时

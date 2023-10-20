@@ -246,8 +246,8 @@ class GeniusGame:
         '''
             新版: 尝试将Game信息编码成table呈现给使用者
         '''
-        # return layout(self)
-        return get_dict(self)
+        return layout(self)
+        # return get_dict(self)
 
     def change_active_player(self):
         self.active_player_index = 1 - self.active_player_index

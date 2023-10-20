@@ -8,11 +8,11 @@ from rich import print
 
 if __name__=="__main__":
     deck1 = {
-        'character': ['Rhodeia_of_Loch', 'Nahida', 'Tartaglia'],
+        'character': ['ElectroHypostasis', 'Nahida', 'Tartaglia'],
         'action_card': ['Chang_the_Ninth' for i in range(30)]
     }
     deck2 = {
-        'character': ['Wanderer', 'Shenhe', 'Qiqi'],
+        'character': ['Candace', 'Shenhe', 'Qiqi'],
         'action_card': ['Dunyarzad' for i in range(30)]
     }
 
