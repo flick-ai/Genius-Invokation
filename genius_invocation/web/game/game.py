@@ -2,7 +2,7 @@ from typing import List, TYPE_CHECKING
 import numpy as np
 from genius_invocation.utils import *
 from collections import defaultdict
-from genius_invocation.game.action import Action
+from genius_invocation.web.game.action import Action, from_input
 from genius_invocation.game.player import GeniusPlayer
 from genius_invocation.event.events import EventManager
 from genius_invocation.card.character.base import Damage
@@ -12,6 +12,8 @@ from loguru import logger
 from rich.console import Console
 from rich.table import Column, Table
 from genius_invocation.user_layout import *
+import js
+from js import prompt
 if TYPE_CHECKING:
     from genius_invocation.card.character.base import CharacterSkill
 
@@ -307,8 +309,12 @@ class Active_Die:
             game.change_active_player()
         game.special_phase = self
         game.active_player.generate_mask(game)
-        action = Action.from_input(game)
+        action = self.get_next_char()
         game.step(action)
+
+    def get_next_char(self):
+        res = prompt("请输入下一个出战角色的序号:")
+        return Action(14, 3, dice=[])
 
     def on_finished(self, game: 'GeniusGame'):
         game.game_phase = self.now_phase

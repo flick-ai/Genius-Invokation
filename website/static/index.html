@@ -1,24 +1,141 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <!-- <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" /> -->
+    <link rel="stylesheet" href="https://pyscript.net/releases/2022.12.1/pyscript.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <script defer src="https://pyscript.net/releases/2022.12.1/pyscript.js"></script>
   </head>
+
   <body>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
-    <script type="text/javascript">
-      async function main() {
-        let pyodide = await loadPyodide();
-        await pyodide.loadPackage("micropip");
-        await pyodide.loadPackage("numpy");
-        pyodide.setStdin({ stdin: () => prompt() })
-        const micropip = pyodide.pyimport("micropip");
-        await micropip.install('https://files.pythonhosted.org/packages/03/0a/4f6fed21aa246c6b49b561ca55facacc2a44b87d65b8b92362a8e99ba202/loguru-0.7.2-py3-none-any.whl')
-        await micropip.install('https://files.pythonhosted.org/packages/be/2a/4e62ff633612f746f88618852a626bbe24226eba5e7ac90e91dcfd6a414e/rich-13.6.0-py3-none-any.whl')
-        await micropip.install("genius_invocation-0.0.1-py3-none-any.whl");
-        await pyodide.runPython(`
-        from genius_invocation import main
-      `);
+    <py-config>
+      packages = [
+        './genius_invocation-0.0.1-py3-none-any.whl',
+        'numpy',
+        './loguru-0.7.2-py3-none-any.whl',
+        './rich-13.6.0-py3-none-any.whl']
+    </py-config>
+    
+    <div class="wrapper">
+      <div class="information item"><div class="title">对局信息</div><div id="information"></div></div>
+      <div class="cardzone player0 item"><div class="title">手牌信息</div></div>
+      <div class="handcard player0 item"><div class="title"></div></div>
+      <div class="support0 player0 item"><div class="title">支援区1</div></div>
+      <div class="support2 player0 item"><div class="title">支援区3</div></div>
+      <div class="support1 player0 item"><div class="title">支援区2</div></div>
+      <div class="support3 player0 item"><div class="title">支援区4</div></div>
+      <div class="character0 player0 item"><div class="title">角色1</div></div>
+      <div class="character1 player0 item"><div class="title">角色2</div></div>
+      <div class="character2 player0 item"><div class="title">角色3</div></div>
+      <div class="summon0 player0 item"><div class="title">召唤区1</div></div>
+      <div class="summon2 player0 item"><div class="title">召唤区3</div></div>
+      <div class="summon1 player0 item"><div class="title">召唤区2</div></div>
+      <div class="summon3 player0 item"><div class="title">召唤区4</div></div>
+      <div class="dice player0 item"><div class="title">骰子区</div></div>
+      <div class="cardzone player1 item"><div class="title">手牌信息</div></div>
+      <div class="handcard player1 item"><div class="title"></div></div>
+      <div class="support0 player1 item"><div class="title">支援区1</div></div>
+      <div class="support2 player1 item"><div class="title">支援区3</div></div>
+      <div class="support1 player1 item"><div class="title">支援区2</div></div>
+      <div class="support3 player1 item"><div class="title">支援区4</div></div>
+      <div class="character0 player1 item"><div class="title">角色1</div></div>
+      <div class="character1 player1 item"><div class="title">角色2</div></div>
+      <div class="character2 player1 item"><div class="title">角色3</div></div>
+      <div class="summon0 player1 item"><div class="title">召唤区1</div></div>
+      <div class="summon2 player1 item"><div class="title">召唤区3</div></div>
+      <div class="summon1 player1 item"><div class="title">召唤区2</div></div>
+      <div class="summon3 player1 item"><div class="title">召唤区4</div></div>
+      <div class="dice player1 item"><div class="title">骰子区</div></div>
+    </div>
+    <div class="input">
+      <div id="prompt">></div>
+      <input type="text" id="input_text"></input>
+      <div id="input_result"></div>
+      <button id="input_button">Input</button>
+      <div id="error_text"></div>
+      
+    </div>
+    <script>
+      let current_choice = ""
+      let current_target = ""
+
+
+      for (let index = 0; index < 2; index++) {
+        let handcard_player = document.getElementsByClassName(`handcard player${index}`)[0]
+        for (let i = 0; i < 10; i++) {
+          let card = document.createElement("div")
+          card.classList.add("card")
+          card.id = `player${index}_card` + i
+          card.innerText = ""
+          card.addEventListener(
+            "click", ()=>{
+              current_choice = `${i}`
+            }
+          )
+          handcard_player.appendChild(card)
+        }
+        let dice_player = document.getElementsByClassName(`dice player${index}`)[0]
+        let dice_inner = document.createElement('div');
+        dice_inner.className = 'diceinner';
+        dice_player.appendChild(dice_inner);
+        for (let i = 0; i < 16; i++) {
+          let newDiv = document.createElement('div');
+          newDiv.className = 'gridItem';
+          newDiv.id = `player${index}_dice` + i
+          newDiv.textContent = "";
+          dice_inner.appendChild(newDiv);
+        }
+        for (let chara_idx = 0; chara_idx < 3; chara_idx++) {
+          chara_zone = document.getElementsByClassName(`character${chara_idx} player${index}`)[0]
+          let basebar = document.createElement("div")
+          basebar.classList.add("basebar")
+          health_circle = document.createElement("div")
+          health_circle.classList.add("health", "circle")
+          health_circle.id = `player${index}_character${chara_idx}_health`
+          energy_circle = document.createElement("div")
+          energy_circle.classList.add("energy", "circle")
+          energy_circle.id = `player${index}_character${chara_idx}_power`
+          elemnt_circle = document.createElement("div")
+          elemnt_circle.classList.add("element", "circle")
+          elemnt_circle.id = `player${index}_character${chara_idx}_element`
+          basebar.appendChild(health_circle)
+          basebar.appendChild(energy_circle)
+          chara_zone.appendChild(basebar)
+          let skill_list = document.createElement("div")
+          for (let i = 0; i < 4; i++) {
+            let skill = document.createElement("div")
+            skill.id = `player${index}_character${chara_idx}_skill` + i
+            skill.classList.add("skill")
+            skill.innerText = ""
+            skill.addEventListener(
+              "click", ()=>{
+                current_choice = `${i+10}`
+              }
+            )
+            skill_list.appendChild(skill)
+          }
+          chara_zone.appendChild(skill_list)
+        }
+
       }
-      main();
+
+
+      let input_element = document.getElementById("input_text")
+      let input_button = document.getElementById("input_button")
+      input_button.addEventListener(
+        "click", ()=>{
+            document.getElementById("input_result").innerText = input_element.value
+            input_element.value = ""
+        }
+      )
     </script>
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script> -->
+    <!-- <py-terminal id="py-terminal"></py-terminal> -->
+    <py-script>
+      from genius_invocation.web import main
+      import asyncio
+      asyncio.ensure_future(main.main())
+    </py-script>
+    
   </body>
 </html>
