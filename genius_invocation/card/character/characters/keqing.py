@@ -182,6 +182,7 @@ class Lightning_Stiletto(ActionCard):
             logger.info("Switch to Keqing.")
             game.manager.invoke(EventType.ON_CHANGE_CHARACTER, game)
             game.active_player.change_to_id(idx)
+            game.manager.invoke(EventType.AFTER_CHANGE_CHARACTER, game)
         logger.info("Use Keqing's Elemental Skill from Lightning Stiletto.")
 
         game.is_change_player = True

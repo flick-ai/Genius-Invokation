@@ -180,12 +180,14 @@ class Cyno(Character):
 
     max_power: int = 2
 
+    def init_state(self, game: 'GeniusGame'):
+        self.character_zone.add_entity(Pactsworn_Pathclearer(game, self.from_player, self))
+
     def __init__(self, game: 'GeniusGame', zone, from_player: 'GeniusPlayer', index:int, from_character = None, talent = False):
         super().__init__(game, zone, from_player, index, from_character)
         self.talent = talent
         self.power = 0
-        self.character_zone.add_entity(Pactsworn_Pathclearer(game, self.from_player, self))
 
     def revive(self, game: 'GeniusGame'):
         super().revive(game)
-        self.character_zone.add_entity(Pactsworn_Pathclearer(game, self.from_player, self))
+        self.init_state(game)
