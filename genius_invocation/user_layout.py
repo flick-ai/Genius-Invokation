@@ -77,15 +77,15 @@ def get_character(player: 'GeniusPlayer', idx):
         color = 'black'
     if character_list[idx].is_alive:
         sponsor_message.add_row(
+            character_list[idx].elemental_application,
+            style=color,
+        )
+        sponsor_message.add_row(
             character_list[idx].name,
             style=color,
         )
         sponsor_message.add_row(
             character_list[idx].show(),
-            style=color,
-        )
-        sponsor_message.add_row(
-            str(character_list[idx].power),
             style=color,
         )
         sponsor_message.add_row(
