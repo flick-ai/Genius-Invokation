@@ -159,6 +159,13 @@ class Frog(Summon):
 
         self.from_player.team_combat_status.has_status(Shield_from_Frog).update()
 
+    def minus_usage(self, game: 'GeniusGame', count: int):
+        if self.current_usage == 0: return
+        self.current_usage -= count
+        self.current_usage = max(0, self.current_usage)
+        if self.current_usage == 0:
+            self.from_player.team_combat_status.has_status(Shield_from_Frog).on_destroy(game)
+    
     def on_destroy(self, game: 'GeniusGame'):
         status = self.from_player.team_combat_status.has_status(Shield_from_Frog)
         if status is not None:
