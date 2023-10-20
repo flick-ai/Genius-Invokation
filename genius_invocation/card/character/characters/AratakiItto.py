@@ -250,11 +250,12 @@ class Shield_from_Ushi(Combat_Status):
         if game.current_damage.main_damage <=0: return
         if game.current_damage.main_damage_element==ElementType.PIERCING: return
         if game.current_damage.damage_to.from_player == self.from_player:
-            game.current_damage.main_damage -= 1
-            self.from_summon.current_usage -= 1
-            self.current_usage = self.from_summon.current_usage
-            if self.from_summon.current_usage ==0:
-                self.on_destroy(game) # Only destroy the combat_status here
+            if game.current_damage.damage_to.is_active:
+                game.current_damage.main_damage -= 1
+                self.from_summon.current_usage -= 1
+                self.current_usage = self.from_summon.current_usage
+                if self.from_summon.current_usage ==0:
+                    self.on_destroy(game) # Only destroy the combat_status here
     
     def update_listener_list(self):
         self.listeners = [

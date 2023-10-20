@@ -19,7 +19,7 @@ class MillennialMovementFarewellSong(Combat_Status):
         self.current_usage = self.usage
     
     def on_damage_add(self, game: 'GeniusGame'):
-        if game.current_damage.damage_from is not None:
+        if isinstance(game.current_damage.damage_from, Character):
             if game.current_damage.damage_from.from_player == self.from_player:
                 if game.current_damage.main_damage_element is not ElementType.PIERCING:
                     game.current_damage.main_damage += 1

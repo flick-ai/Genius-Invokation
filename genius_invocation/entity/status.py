@@ -184,13 +184,14 @@ class Crystallize_Shield(Combat_Shield):
 
     def on_excuete_dmg(self,game: 'GeniusGame'):
         if game.current_damage.damage_to.from_player == self.from_player:
-            if game.current_damage.main_damage >= self.current_usage:
-                game.current_damage.main_damage -= self.current_usage
-                self.current_usage = 0
-                self.on_destroy(game)
-            else:
-                self.current_usage -= game.current_damage.main_damage
-                game.current_damage.main_damage = 0
+            if game.current_damage.damage_to.is_active:
+                if game.current_damage.main_damage >= self.current_usage:
+                    game.current_damage.main_damage -= self.current_usage
+                    self.current_usage = 0
+                    self.on_destroy(game)
+                else:
+                    self.current_usage -= game.current_damage.main_damage
+                    game.current_damage.main_damage = 0
 
     def update_listener_list(self):
         self.listeners = [

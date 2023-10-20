@@ -172,11 +172,12 @@ class Jade_Screen_Status(Combat_Status):
         if game.current_damage.damage_to.from_player == self.from_player:
             if game.current_damage.main_damage_element == ElementType.PIERCING:
                 return
-            if game.current_damage.main_damage >=2:
-                game.current_damage.main_damage -= 1
-                self.current_usage -=1
-                if self.current_usage <=0:
-                    self.on_destroy(game)
+            if game.current_damage.damage_to.is_active:
+                if game.current_damage.main_damage >=2:
+                    game.current_damage.main_damage -= 1
+                    self.current_usage -=1
+                    if self.current_usage <=0:
+                        self.on_destroy(game)
 
     def on_damage_add(self, game: 'GeniusGame'):
         if game.current_damage.damage_from == self.from_character:
