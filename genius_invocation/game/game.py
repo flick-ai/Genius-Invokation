@@ -12,6 +12,7 @@ from loguru import logger
 from rich.console import Console
 from rich.table import Column, Table
 from genius_invocation.user_layout import *
+from genius_invocation.utils_dict import *
 if TYPE_CHECKING:
     from genius_invocation.card.character.base import CharacterSkill
 
@@ -245,7 +246,8 @@ class GeniusGame:
         '''
             新版: 尝试将Game信息编码成table呈现给使用者
         '''
-        return layout(self)
+        # return layout(self)
+        return get_dict(self)
 
     def change_active_player(self):
         self.active_player_index = 1 - self.active_player_index

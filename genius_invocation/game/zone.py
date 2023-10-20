@@ -208,8 +208,9 @@ class CardZone:
             if card.card_type == card_type:
                 get_list.append(card)
                 idx_list.append(idx)
-                if len(get_list) == num:
-                    break
+                if num > 0:
+                    if len(get_list) == num:
+                        break
         for idx in idx_list:
             self.card.pop(idx)
         return get_list

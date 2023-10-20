@@ -40,7 +40,8 @@ class GeniusPlayer:
         # 初始化牌库、起始5张手牌、骰子区
         self.card_zone: CardZone = CardZone(game, self, deck['action_card']) # 牌库区
         self.hand_zone: HandZone = HandZone(game, self) # 手牌区
-        self.hand_zone.add(self.card_zone.get_card(num=5))
+        arcanes = self.card_zone.find_card(ActionCardType.EVENT_ARCANE_LEGEND, num=-1)
+        self.hand_zone.add(self.card_zone.get_card(num=5-len(arcanes))+arcanes)
         self.dice_zone: DiceZone = DiceZone(game, self)
 
         # 环境中的基本状态
@@ -50,6 +51,7 @@ class GeniusPlayer:
 
         # 回合pass
         self.is_pass: bool
+        self.play_arcane_legend: bool = False
 
         # 切换角色基本信息
         self.is_after_change: bool
