@@ -225,6 +225,9 @@ class Ushi(Summon):
         super().__init__(game, from_player, from_character)
         self.current_usage = self.usage
         self.add_strength = False
+        assert self.from_player.team_combat_status.has_status(Shield_from_Ushi) is None
+        status = Shield_from_Ushi(game, self.from_player, self.from_character, self)
+        self.from_player.team_combat_status.add_entity(status)
 
     def update_listener_list(self):
         self.listeners = [
