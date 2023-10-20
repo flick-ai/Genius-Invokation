@@ -1,7 +1,7 @@
 # Genius-Invokation
 七圣召唤强化学习环境
 
-[Document]() | [详细信息文档](https://j0mmhq251c1.feishu.cn/drive/folder/Xl6ZfevqplEfNud10YLcgP44nGh?from=from_copylink) | Attach(qq:192339964)
+[Document]() | [详细信息文档](https://j0mmhq251c1.feishu.cn/drive/folder/Xl6ZfevqplEfNud10YLcgP44nGh?from=from_copylink) | [Attach](qq:192339964)
 
 ## 介绍
 
