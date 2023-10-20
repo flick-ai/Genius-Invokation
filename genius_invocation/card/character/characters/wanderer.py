@@ -68,20 +68,12 @@ class Hanega_Song_of_the_Wind(ElementalSkill):
 
     def __init__(self, from_character: 'Character') -> None:
         super().__init__(from_character)
-    
-    def add_status(self, game: 'GeniusGame'):
-        status = self.from_character.character_zone.has_entity(Windfavored)
-        if status is None:
-            status = Windfavored(game, self.from_character.from_player, self.from_character)
-            self.from_character.character_zone.add_entity(status)
-        else:
-            status.update()
 
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         self.resolve_damage(game)
         self.gain_energy(game)
-        self.add_status(game)
+        self.add_status(game, Windfavored)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Kyougen_Five_Ceremonial_Plays(ElementalBurst):

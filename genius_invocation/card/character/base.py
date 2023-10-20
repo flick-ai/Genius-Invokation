@@ -41,9 +41,6 @@ class CharacterSkill:
         self.is_charged_attack: bool = False
         self.usage_this_round: int = 0
 
-    def generate_summon(self, game: 'GeniusGame'):
-        pass
-
     def consume_energy(self, game: 'GeniusGame'):
         assert self.from_character.power >= self.energy_cost
         self.from_character.power -= self.energy_cost
@@ -60,9 +57,71 @@ class CharacterSkill:
         self.from_character.power += self.energy_gain
         self.from_character.power = min(self.from_character.power, self.from_character.max_power)
 
-    def add_status(self, game: 'GeniusGame'):
-        pass
+    def add_status(self, game: 'GeniusGame', STATUS): 
+        # Add a status in character zone of current character
+        # Here status is the "class" of status, is not an instance of status
+        status = self.from_character.character_zone.has_entity(STATUS)
+        if status is None:
+            status = STATUS(game, self.from_character.from_player, self.from_character)
+            self.from_character.character_zone.add_entity(status)
+        else:
+            try:
+                status.update(game)
+            except:
+                status.update()
 
+    def add_shield(self, game: 'GeniusGame', SHIELD):
+        # Add a shield in character zone of current character
+        # Here SHIELD is the "class" of shield, is not an instance of shield
+        shield = self.from_character.character_zone.has_entity(SHIELD)
+        if shield is None:
+            shield = SHIELD(game, self.from_character.from_player, self.from_character)
+            self.from_character.character_zone.add_entity(shield)
+        else:
+            try:
+                shield.update(game)
+            except:
+                shield.update()
+
+    def add_combat_status(self, game: 'GeniusGame', STATUS):
+        # Add a combat status in active zone of current player
+        # Here STATUS is the "class" of Combat_Status, is not an instance of status
+        status = self.from_character.from_player.team_combat_status.has_status(STATUS)
+        if status is None:
+            status = STATUS(game, self.from_character.from_player, self.from_character)
+            self.from_character.from_player.team_combat_status.add_entity(status)
+        else:
+            try:
+                status.update(game)
+            except:
+                status.update()
+
+    def generate_summon(self, game: 'GeniusGame', SUMMON):
+        # Add a summon in summons zone of current player
+        # Here SUMMON is the "class" of SUMMON, is not an instance of status
+        summon = self.from_character.from_player.summons_zone.has_entity(SUMMON)
+        if summon is None:
+            summon = SUMMON(game, self.from_character.from_player, self.from_character)
+            self.from_character.from_player.summons_zone.add_entity(summon)
+        else:
+            try:
+                summon.update(game)
+            except:
+                summon.update()
+    
+    def add_combat_shield(self, game: 'GeniusGame', COMBAT_SHIELD):
+        # Add a combat shield in active zone of current player
+        # Here COMBAT_SHIELD is the "class" of Combat_Shield, is not an instance
+        shield = self.from_character.from_player.team_combat_status.has_shield(COMBAT_SHIELD)
+        if shield is None:
+            shield = COMBAT_SHIELD(game, self.from_character.from_player, self.from_character)
+            self.from_character.from_player.team_combat_status.add_entity(shield)
+        else:
+            try:
+                shield.update(game)
+            except:
+                shield.update()
+    # MORE ADD SITUATION NEED TO IMPLEMENT IN THE SUBCLASS.
     def before_use_skill(self, game: 'GeniusGame'):
         pass
 

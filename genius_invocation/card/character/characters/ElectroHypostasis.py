@@ -265,26 +265,13 @@ class LightningLockdown(ElementalBurst):
     energy_cost: int = 2
     energy_gain: int = 0
 
-    def generate_summon(self, game: 'GeniusGame'):
-        '''
-            生成雷锁镇域
-        '''
-        summon = self.from_character.from_player.summons_zone.has_entity(ChainsOfWardingThunder)
-        if summon is None:
-            summon = ChainsOfWardingThunder(game=game,
-                    from_player=self.from_character.from_player,
-                    from_character=self.from_character)
-            self.from_character.from_player.summons_zone.add_entity(summon)
-        else:
-            summon.update()
-
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         # 消耗能量
         self.consume_energy(game)
         # 处理伤害
         self.resolve_damage(game)
-        self.generate_summon(game)
+        self.generate_summon(game, ChainsOfWardingThunder)
 
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
