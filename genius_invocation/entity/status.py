@@ -54,12 +54,16 @@ class Shield(Status):
     # Status of shield (Only for single character)
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
-class Combat_Shield(Shield):
+    def on_destroy(self, game):
+        super().on_destroy(game)
+        
+class Combat_Shield(Combat_Status):
     # Combat_Status of shield.
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
+
     def on_destroy(self, game):
-        self.from_player.team_combat_status.remove_entity(self)
+        super().on_destroy(game)
 class Equipment(Entity):
     pass
 
