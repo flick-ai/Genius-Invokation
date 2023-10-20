@@ -16,8 +16,8 @@ def layout(game: 'GeniusGame'):
     layout = Layout()
     layout.split_column(
         Layout(name="Game", ratio=1),
-        Layout(name="player0", ratio=2),
-        Layout(name="player1",ratio=2)
+        Layout(name="player0", ratio=3),
+        Layout(name="player1",ratio=3)
     )
     layout['Game'].update(get_game_info(game))
     for i in range(2):
@@ -42,7 +42,13 @@ def layout(game: 'GeniusGame'):
                                                  get_character(game.players[i], 1),
                                                  get_character(game.players[i], 2))
 
-        layout[player]['card'].update(get_card(game.players[i]))
+        layout[player]['card'].split_column(
+            Layout(name="cards", ratio=1),
+            Layout(name="hands", ratio=3),
+        )
+        layout[player]['card']['cards'].update(get_card(game.players[i]))
+        layout[player]['card']['hands'].update(get_hand(game.players[i]))
+
         layout[player]['dice'].update(get_dice(game.players[i]))
     return layout
 
@@ -108,6 +114,21 @@ def get_character(player: 'GeniusPlayer', idx):
     return message_panel
 
 def get_card(player: 'GeniusPlayer'):
+    sponsor_message = Table.grid()
+    sponsor_message.add_column(no_wrap=True)
+    sponsor_message.add_row(
+        str(player.card_zone.num()),
+        style='blue',
+    )
+    message_panel = Panel(
+        Align.center(
+            Group(" ",Align.center(sponsor_message)),
+        ),
+        title="CardZone",
+    )
+    return message_panel
+
+def get_hand(player: 'GeniusPlayer'):
     sponsor_message = Table.grid()
     sponsor_message.add_column(no_wrap=True)
     if player.hand_zone.num() != 0:
