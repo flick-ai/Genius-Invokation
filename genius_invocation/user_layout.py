@@ -175,11 +175,11 @@ def get_summon(player: 'GeniusPlayer', idx):
         summon = player.summons_zone.space[idx]
         sponsor_message.add_row(
             summon.name,
-            style='blue',
+            style=Elements_to_color(summon.element),
         )
         sponsor_message.add_row(
             str(summon.show()),
-            style='blue',
+            style=Elements_to_color(summon.element),
         )
     message_panel = Panel(
         Align.center(

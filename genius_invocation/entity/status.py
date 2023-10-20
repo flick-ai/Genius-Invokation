@@ -171,7 +171,7 @@ class Catalyzing_Feild(Combat_Status):
         ]
 class Crystallize_Shield(Combat_Shield):
     id = 12345
-    name = "Crystallize_Shield"
+    name = "Crystallize Shield"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.usage = 1

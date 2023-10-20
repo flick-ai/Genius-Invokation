@@ -78,7 +78,7 @@ class Masatsu_Zetsugi_Akaushi_Burst(ElementalSkill):
                     from_character=self.from_character)
             self.from_character.from_player.summons_zone.add_entity(summon)
         else:
-            summon.update()
+            summon.update(game)
 
     def add_status(self, game: 'GeniusGame'):
         status = self.from_character.character_zone.has_entity(Superlative_Superstrength)
@@ -298,9 +298,10 @@ class Raging_Oni_King(Status):
                 game.current_damage.main_damage += 2
     
     def on_begin_phase(self, game:'GeniusGame'):
-        self.current_usage -= 1
-        if self.current_usage <= 0:
-            self.on_destroy(game)
+        if game.active_player == self.from_player:
+            self.current_usage -= 1
+            if self.current_usage <= 0:
+                self.on_destroy(game)
     
     def update_listener_list(self):
         self.listeners = [
