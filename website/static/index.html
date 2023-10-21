@@ -4,26 +4,26 @@
     <!-- <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" /> -->
     <link rel="stylesheet" href="https://pyscript.net/releases/2022.12.1/pyscript.css" />
     <link rel="stylesheet" href="./style.css" />
-    <script defer src="https://pyscript.net/releases/2022.12.1/pyscript.js"></script>
+    <script defer src="https://pyscript.net/releases/2022.06.1/pyscript.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.3/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.3/js/bootstrap.bundle.min.js"></script>
-    <!-- <py-env>
+    <py-env>
       - './genius_invocation-0.0.1-py3-none-any.whl'
       - numpy
       - './loguru-0.7.2-py3-none-any.whl'
       - './rich-13.6.0-py3-none-any.whl'
-    </py-env> -->
+    </py-env>
   </head>
 
   <body>
-    <py-config>
+    <!-- <py-config>
       packages = [
         './genius_invocation-0.0.1-py3-none-any.whl',
         'numpy',
         './loguru-0.7.2-py3-none-any.whl',
         './rich-13.6.0-py3-none-any.whl']
-    </py-config>
+    </py-config> -->
     
     <div class="wrapper">
       <div class="informationbox">
@@ -180,6 +180,14 @@
         let dice_inner = document.createElement('div');
         dice_inner.className = 'diceinner';
         dice_player.appendChild(dice_inner);
+        let dice_name = dice_player.getElementsByClassName("thetitle")[0]
+        dice_name.addEventListener(
+          "click", ()=>{
+            dice_name.classList.toggle("selected")
+            current_choice = update_set(current_choice_set, "13")
+            current_choice_text.innerText = current_choice
+          }
+        )
         for (let i = 0; i < 16; i++) {
           let newDiv = document.createElement('div');
           newDiv.className = 'gridItem';
