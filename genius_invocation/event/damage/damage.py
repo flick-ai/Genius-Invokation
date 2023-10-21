@@ -110,8 +110,8 @@ class Damage:
         targetplayer_id = 1 - game.active_player_index
         targetplayer = game.players[targetplayer_id]
         target_character = damage.damage_to
-        logger.info(target_character.name)
-        logger.info(target_character.elemental_application)
+        logger.info(f"target character: {target_character.name}")
+        logger.info(f"elemental application: {target_character.elemental_application}")
         target_index = target_character.index
         Reaction = None
         Swirl_Crystallize_type = None

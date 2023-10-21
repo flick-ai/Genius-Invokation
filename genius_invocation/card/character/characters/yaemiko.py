@@ -95,7 +95,7 @@ class Great_Secret_Art_Tenko_Kenshin(ElementalBurst):
         super().on_call(game)
         self.consume_energy(game)
         self.resolve_damage(game)
-        summon = self.from_character.from_player.summons_zone.has_entity(Sesshou_Sakura)
+        summon = self.from_character.from_player.summon_zone.has_entity(Sesshou_Sakura)
         if summon is not None:
             summon.on_destroy(game)
             assert(self.from_character.from_player.team_combat_status.has_status(Tenko_Thunderbolts) is None)

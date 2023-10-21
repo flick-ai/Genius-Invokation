@@ -99,10 +99,10 @@ class CharacterSkill:
     def generate_summon(self, game: 'GeniusGame', SUMMON):
         # Add a summon in summons zone of current player
         # Here SUMMON is the "class" of SUMMON, is not an instance of status
-        summon = self.from_character.from_player.summons_zone.has_entity(SUMMON)
+        summon = self.from_character.from_player.summon_zone.has_entity(SUMMON)
         if summon is None:
             summon = SUMMON(game, self.from_character.from_player, self.from_character)
-            self.from_character.from_player.summons_zone.add_entity(summon)
+            self.from_character.from_player.summon_zone.add_entity(summon)
         else:
             try:
                 summon.update(game)

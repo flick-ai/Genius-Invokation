@@ -83,7 +83,7 @@ class BoltsOfDownfall(NormalAttack):
         super().on_call(game)
         self.resolve_damage(game)
         if self.from_character.talent:
-            oz = self.from_character.from_player.summons_zone.has_entity(Oz)
+            oz = self.from_character.from_player.summon_zone.has_entity(Oz)
             if oz is not None:
                 oz.current_usage -= 1
                 dmg = Damage.create_damage(

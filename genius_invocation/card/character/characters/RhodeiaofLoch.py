@@ -218,15 +218,15 @@ Summon_list = [Squirrel,Raptor,Frog]
 def choose_one_summon(Skill: ElementalSkill, game: 'GeniusGame'):
     un_summon_list = []
     for summon in Summon_list:
-        if Skill.from_character.from_player.summons_zone.has_entity(summon) is None:
+        if Skill.from_character.from_player.summon_zone.has_entity(summon) is None:
             un_summon_list.append(summon)
     if len(un_summon_list) == 0:
         x = Summon_list[random.randint(0,2)]
-        Skill.from_character.from_player.summons_zone.has_entity(x).update(game)
+        Skill.from_character.from_player.summon_zone.has_entity(x).update(game)
     else:
         x = un_summon_list[random.randint(0,len(un_summon_list)-1)]
         summon = x(game,Skill.from_character.from_player,Skill.from_character)
-        Skill.from_character.from_player.summons_zone.add_entity(summon)
+        Skill.from_character.from_player.summon_zone.add_entity(summon)
 
 class Oceanid_Mimic_Summoning(ElementalSkill):
     '''
@@ -322,7 +322,7 @@ class Tide_and_Torrent(ElementalBurst):
     
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
-        main_dmg = self.main_damage + self.from_character.from_player.summons_zone.num()*2
+        main_dmg = self.main_damage + self.from_character.from_player.summon_zone.num()*2
         dmg = Damage.create_damage(
             game,
             damage_type=SkillType.ELEMENTAL_BURST,
@@ -336,7 +336,7 @@ class Tide_and_Torrent(ElementalBurst):
         game.resolve_damage()
 
         if self.from_character.talent:
-            for summon in self.from_character.from_player.summons_zone.space:
+            for summon in self.from_character.from_player.summon_zone.space:
                 summon.add_usage(game, 1)
 
         self.consume_energy(game)
