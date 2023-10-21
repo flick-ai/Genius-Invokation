@@ -140,13 +140,20 @@ class GeniusGame:
                     char.health_point -= self.current_damage.piercing_damage
 
     def check_dying(self):
+        num = 0
         for player in self.players:
             for idx, char in enumerate(player.character_list):
+                if not char.is_alive:
+                    num += 1
                 if char.health_point <= 0:
                     char.is_alive = False
                     self.manager.invoke(EventType.CHARACTER_DIE, self)
                     if not char.is_alive:
                         char.dying(self)
+                        num += 1
+                        if num == 3:
+                            print("Winner is oppenent!")
+                            exit()
                         if player.active_idx == idx:
                             Active_Die(player).on_call(self)
         #TODO: Not Implement yet.

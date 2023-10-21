@@ -131,18 +131,18 @@ class EventType(Enum):
 
     AFTER_TAKES_DMG = 10
     DAMAGE_ADD = 11
-    DEALING_DAMAGE = 12 # Mona only right now
-    INFUSION = 13
-    ON_REACTION = 14 # Elemental Reaction based event. Maybe trigger sth, or just add DMG.
-    EXCUTE_DAMAGE = 15
+    DAMAGE_ADD_AFTER_REACTION = 12 #AFTER REACTION, DMG ADD
+    DEALING_DAMAGE = 13 # Mona only right now
+    INFUSION = 14
+    # ON_REACTION = 14 # Elemental Reaction based event. Maybe trigger sth, or just add DMG.
+    EXECUTE_DAMAGE = 15
     CHARACTER_DIE = 16
 
     BEFORE_ANY_ACTION = 17
     AFTER_ANY_ACTION = 18
     ON_SUMMON_REMOVE = 19
 
-    DAMAGE_ADD_AFTER_REACTION = 20 #AFTER REACTION, DMG ADD
-    ELEMENTAL_APPLICATION_REATION = 21
+    ELEMENTAL_APPLICATION_REATION = 20
 class SwitchType(Enum):
     CHANGE_CHARACTER = 0
 

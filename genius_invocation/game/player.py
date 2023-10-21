@@ -46,7 +46,7 @@ class GeniusPlayer:
 
         # 环境中的基本状态
         self.support_zone: SupportZone = SupportZone(game, self)
-        self.summons_zone: SummonZone = SummonZone(game, self)
+        self.summon_zone: SummonZone = SummonZone(game, self)
         self.team_combat_status: ActiveZone = ActiveZone(game, self)
 
         # 回合pass

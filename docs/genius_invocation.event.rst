@@ -12,14 +12,6 @@ Subpackages
 Submodules
 ----------
 
-genius\_invocation.event.Action\_Effect module
-----------------------------------------------
-
-.. automodule:: genius_invocation.event.Action_Effect
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 genius\_invocation.event.Elemental\_Reaction module
 ---------------------------------------------------
 

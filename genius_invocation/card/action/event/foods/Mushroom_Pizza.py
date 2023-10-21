@@ -14,11 +14,14 @@ class Mushroom_Pizza_Entity(Status):
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.from_character.heal(heal=1)
-        self.current_usage = 1
+        self.current_usage = 2
     
     def on_end(self, game: 'GeniusGame'):
         if game.active_player_index == self.from_player.index:
             self.from_character.heal(int=1)
+            self.current_usage -= 1
+            if self.current_usage <=0:
+                self.on_destroy(game)
 
     def update_listener_list(self):
         self.listeners = [

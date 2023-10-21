@@ -56,7 +56,7 @@ class Shield(Status):
         super().__init__(game, from_player, from_character)
     def on_destroy(self, game):
         super().on_destroy(game)
-        
+
 class Combat_Shield(Combat_Status):
     # Combat_Status of shield.
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
@@ -199,7 +199,7 @@ class Crystallize_Shield(Combat_Shield):
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.EXCUTE_DAMAGE, ZoneType.ACTIVE_ZONE_SHIELD, self.on_excuete_dmg)
+            (EventType.EXECUTE_DAMAGE, ZoneType.ACTIVE_ZONE_SHIELD, self.on_excuete_dmg)
         ]
 
 class Satisfy_Statue(Status):

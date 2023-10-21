@@ -146,7 +146,7 @@ class Jade_Screen_Status(Combat_Status):
     def update(self):
         self.current_usage = self.usage
 
-    def on_excute_dmg(self, game: 'GeniusGame'):
+    def on_execute_dmg(self, game: 'GeniusGame'):
         if game.current_damage.damage_to.from_player == self.from_player:
             if game.current_damage.main_damage_element == ElementType.PIERCING:
                 return
@@ -169,5 +169,5 @@ class Jade_Screen_Status(Combat_Status):
     def update_listener_list(self):
         self.listeners = [
             (EventType.DAMAGE_ADD, ZoneType.ACTIVE_ZONE, self.on_damage_add),
-            (EventType.EXCUTE_DAMAGE, ZoneType.ACTIVE_ZONE, self.on_excute_dmg),
+            (EventType.EXECUTE_DAMAGE, ZoneType.ACTIVE_ZONE, self.on_execute_dmg),
         ]

@@ -24,7 +24,7 @@ def get_dict(game: 'GeniusGame'):
         message[idx]["dice_zone"]: List[str] = [DiceType(dice).name for dice in player.dice_zone.show()] if player.dice_zone.num()>0 else []
         message[idx]["card_zone"]: int = player.card_zone.num() 
         message[idx]["hand_zone"]: List[str] = [card.name for card in player.hand_zone.card]
-        message[idx]["summon_zone"]: List[List[str]] = [[summon.name,  str(summon.show())]for summon in player.summons_zone.space]
+        message[idx]["summon_zone"]: List[List[str]] = [[summon.name,  str(summon.show())]for summon in player.summon_zone.space]
         message[idx]["support_zone"]: List[List[str]] = [[support.name,  str(support.show())]for support in player.support_zone.space]
         message[idx]["character_zone"] = [{}, {}, {}]
         for i, character in enumerate(player.character_list):

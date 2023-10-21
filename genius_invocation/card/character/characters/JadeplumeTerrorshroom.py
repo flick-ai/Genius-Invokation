@@ -132,7 +132,7 @@ class Radical_Vitality(Status):
     def update(self): #No update
         pass
 
-    def on_excute_dmg(self, game: 'GeniusGame'):
+    def on_execute_dmg(self, game: 'GeniusGame'):
         if game.current_damage.main_damage_element in [ElementType.PHYSICAL, ElementType.PIERCING]:
             return
 
@@ -149,7 +149,7 @@ class Radical_Vitality(Status):
     
     def update_listener_list(self):
         self.listeners = [
-            (EventType.EXCUTE_DAMAGE, ZoneType.CHARACTER_ZONE, self.on_excute_dmg),
+            (EventType.EXECUTE_DAMAGE, ZoneType.CHARACTER_ZONE, self.on_execute_dmg),
             (EventType.END_PHASE, ZoneType.CHARACTER_ZONE, self.on_end_phase)
         ]
             

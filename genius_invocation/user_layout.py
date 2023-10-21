@@ -175,8 +175,8 @@ def get_hand(player: 'GeniusPlayer'):
 def get_summon(player: 'GeniusPlayer', idx):
     sponsor_message = Table.grid()
     sponsor_message.add_column(no_wrap=True)
-    if player.summons_zone.num() > idx:
-        summon = player.summons_zone.space[idx]
+    if player.summon_zone.num() > idx:
+        summon = player.summon_zone.space[idx]
         sponsor_message.add_row(
             summon.name,
             style=Elements_to_color(summon.element),
