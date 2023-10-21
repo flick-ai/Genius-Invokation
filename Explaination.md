@@ -232,20 +232,22 @@ To tackle the difficult calculation of damage, we create the class of `Damage`�
 
 -   In `game.resolve_damage()`, we repeatedly pop the first damage in damage list, and set `game.current_damage`, dealing the damages one by one. 在`game.resolve_damage()`中，我们一个个处理列表中的伤害，设置`game.current_damage`，依次处理。
 
--   For a single damage, we need to follow the sequential steps: 对于一个伤害，我们需要根据如下的顺序结算
+-   For a single damage, we need to follow the sequential steps: 对于一个伤害，我们需要根据如下的顺序结算。 During the process, it will invoke the corresponding event. 在此过程中，将不断触发对应的事件。
 
     -   **Infusion** : infuse current damage to certain element. 将当前伤害染色。
     -   **Damage Add**: Call `Status`, etc. to enhance the main damage. 结算各种状态，使得加算增伤得到计算。
-    -   **Elemental Reaction**: Check and trigger elemental reaction. 检查并触发元素反应。Swirl will trigger additonal damage. 扩散会触发额外伤害。
+    -   **Elemental Reaction**: Check and trigger elemental reaction. 检查并触发元素反应。Swirl will trigger additonal damage. 扩散会触发额外伤害。 
     -   **Damage Add After Reactoin**: Calculate additonal damage add because of triggering reaction. 计算由于触发反应引起的增伤。
     -   **Damage Dealing**: Calculate the final multiplicative damage increase. 计算最终乘算增伤。
     -   **Damage Dividing**: Calculate the division damage reduction. 计算最终除算减伤。
     -   **Damage Execute**: Calculate the status, shield etc's effect on damage reduction. 计算状态、盾提供的减伤。
     -   **Suffer Damage**: The characters suffer the final damage. 承受最终伤害。
+    -   If triggered overload on active character, switch the active character to the next. 若在出战角色触发超载，则切换出战角色。
 
--   And after that，invoke event `AFTER_TAKE_DMG`， maybe there are more damage need to add in the list to resolve together. 之后触发收到伤害后事件，处理可能的更多放在伤害列表中的伤害。e.g. Nahida。
+    -   Now it is the time `AFTER_TAKE_DMG`， 轮到`AFTER_TAKE_DMG`结算。Maybe there are more damage need to add in the list to resolve together. 之后触发受到伤害后事件，处理可能的更多放在伤害列表中的伤害。e.g. Nahida。
 
-    
+      
+
 
 ## 6. Dice 骰子
 -   We have a total of 7 basic dice and universal dice. Dice are transferred and calculated in the game as int. 我们共有7种基础元素骰和万能骰。骰子以int的形式在游戏中传输和计算。

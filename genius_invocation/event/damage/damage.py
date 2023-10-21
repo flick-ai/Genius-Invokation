@@ -61,6 +61,9 @@ class Damage:
         self.damage_divide(game)
         self.damage_execute(game)
         game.suffer_current_damage()
+        if self.reaction == ElementalReactionType.Overloaded:
+            if self.damage_to.is_active:
+                self.damage_to.from_player.change_to_next_character()
         self.after_damage(game)
 
     def damage_add_after_reaction(self, game:'GeniusGame'):
