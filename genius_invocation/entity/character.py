@@ -92,6 +92,7 @@ class Character(Entity):
         self.is_active = False
         self.talent = False
         self.power = 0
+        self.elemental_attach = None
         self.character_zone.clear(game)
 
     def revive(self, game: 'GeniusGame'):
