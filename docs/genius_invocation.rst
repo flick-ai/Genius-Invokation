@@ -11,6 +11,7 @@ Subpackages
    genius_invocation.entity
    genius_invocation.event
    genius_invocation.game
+   genius_invocation.web
 
 Submodules
 ----------
@@ -43,6 +44,14 @@ genius\_invocation.utils module
 -------------------------------
 
 .. automodule:: genius_invocation.utils
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+genius\_invocation.utils\_dict module
+-------------------------------------
+
+.. automodule:: genius_invocation.utils_dict
    :members:
    :undoc-members:
    :show-inheritance:
