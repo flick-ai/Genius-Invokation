@@ -18,7 +18,7 @@ class Mushroom_Pizza_Entity(Status):
     
     def on_end(self, game: 'GeniusGame'):
         if game.active_player_index == self.from_player.index:
-            self.from_character.heal(int=1)
+            self.from_character.heal(heal=1)
             self.current_usage -= 1
             if self.current_usage <=0:
                 self.on_destroy(game)

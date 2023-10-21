@@ -1,12 +1,12 @@
 from genius_invocation.card.action.base import ActionCard
-from genius_invocation.entity.status import Status
+from genius_invocation.entity.status import Combat_Status
 from genius_invocation.utils import *
 
 if TYPE_CHECKING:
     from genius_invocation.game.game import GeniusGame
 
-class Fervent_Flames_Entity(Status):
-    id: int = 331102
+class Fervent_Flames_Entity(Combat_Status):
+    id: int = 331302
     name: str = "Fervent_Flames"
 
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
@@ -14,9 +14,9 @@ class Fervent_Flames_Entity(Status):
         self.current_usage = 1
         self.from_player = from_player
     
-    def on_destroy(self, game):
-        super().on_destroy(game)
-        self.from_player.team_combat_status.remove_entity(self)
+    # def on_destroy(self, game):
+    #     super().on_destroy(game)
+    #     self.from_player.team_combat_status.remove_entity(self)
 
     def on_damage_add_after_reaction(self, game: 'GeniusGame'):
         if game.current_damage.damage_from == get_active_character(game, self.from_player.index):
@@ -36,7 +36,6 @@ class Fervent_Flames_Entity(Status):
                     self.on_destroy(game)
             else:
                 return
-                
 
     def on_end(self, game: 'GeniusGame'):
         self.current_usage = 0
@@ -49,7 +48,7 @@ class Fervent_Flames_Entity(Status):
         ]
 
 class Fervent_Flames(ActionCard):
-    id: int = 331102
+    id: int = 331302
     name: str = "Fervent_Flames"
     cost_num = 1
     card_type = ActionCardType.EVENT_ELEMENTAL_RESONANCE.value
