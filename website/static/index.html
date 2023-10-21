@@ -4,26 +4,26 @@
     <!-- <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" /> -->
     <link rel="stylesheet" href="https://pyscript.net/releases/2022.12.1/pyscript.css" />
     <link rel="stylesheet" href="./style.css" />
-    <script defer src="https://pyscript.net/releases/2022.06.1/pyscript.js"></script>
+    <script defer src="https://pyscript.net/releases/2022.12.1/pyscript.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.3/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.3/js/bootstrap.bundle.min.js"></script>
-    <py-env>
+    <!-- <py-env>
       - './genius_invocation-0.0.1-py3-none-any.whl'
       - numpy
       - './loguru-0.7.2-py3-none-any.whl'
       - './rich-13.6.0-py3-none-any.whl'
-    </py-env>
+    </py-env> -->
   </head>
 
   <body>
-    <!-- <py-config>
+    <py-config>
       packages = [
         './genius_invocation-0.0.1-py3-none-any.whl',
         'numpy',
         './loguru-0.7.2-py3-none-any.whl',
         './rich-13.6.0-py3-none-any.whl']
-    </py-config> -->
+    </py-config>
     
     <div class="wrapper">
       <div class="informationbox">
@@ -85,11 +85,11 @@
     <div class="input">
       <!-- <div id="prompt">></div> -->
       <!-- <input type="text" id="input_text"></input> -->
-      <div id="input_result"></div>
+      <div id="input_result" style="display:none"></div>
       <!-- <button id="input_button">Input</button> -->
       <div id="error_text" style="display:none"></div>
       <!-- <div id="current_choice"></div> -->
-      <div id="current_dice"></div>
+      <div id="current_dice" style="display:none"></div>
     </div>
     <script>
 
@@ -122,7 +122,7 @@
           current_choice_text.innerText = current_choice
 
           // 不需要确认
-          document.getElementById("input_result").innerText = current_choice
+          document.getElementById("input_result").innerText = current_choice + 't'
           current_choice_text.innerText = ""
           current_choice_set.clear()
           current_choice = ""
@@ -140,7 +140,7 @@
           current_choice_text.innerText = current_choice
 
           // 不需要确认
-          document.getElementById("input_result").innerText = current_choice
+          document.getElementById("input_result").innerText = current_choice + 't'
           current_choice_text.innerText = ""
           current_choice_set.clear()
           current_choice = ""
@@ -200,7 +200,7 @@
         confirm_btn.classList.add("item", "clickable")
         confirm_btn.addEventListener(
             "click", ()=>{
-            document.getElementById("input_result").innerText = current_choice
+            document.getElementById("input_result").innerText = current_choice + 't'
             current_choice_text.innerText = ""
             current_choice_set.clear()
             current_choice = ""
@@ -368,7 +368,7 @@
       let confirm_action = document.getElementById("confirm_action")
       confirm_action.addEventListener(
         "click", ()=>{
-          document.getElementById("input_result").innerText = current_choice
+          document.getElementById("input_result").innerText = current_choice + 't'
           current_choice_text.innerText = ""
           current_choice_set.clear()
           current_choice = ""

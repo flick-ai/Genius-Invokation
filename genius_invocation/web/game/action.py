@@ -178,7 +178,7 @@ async def from_input(game: 'GeniusGame'):
 
     if choice == 16:
         list_prompt = f'您需要选择重新投掷的骰子的位置,数值应该在{0}-{use_dice[choice][target][0]-1}之间'
-        dice = await user_input.get_rng_mul_sel(list_prompt, min=0, max=use_dice[choice][target][0]-1)
+        dice = await user_input.get_special_rng_mul_sel(list_prompt, min=0, max=use_dice[choice][target][0]-1)
         if False:
             if dice == '':
                 dice = []
@@ -189,7 +189,7 @@ async def from_input(game: 'GeniusGame'):
                 dice = []
     elif choice == 17:
         list_prompt = f'您需要选择重新获取的手牌的位置,数值应该在{0}-{use_dice[choice][target][0]-1}之间'
-        dice = await user_input.get_rng_mul_sel(list_prompt, min=0, max=use_dice[choice][target][0]-1)
+        dice = await user_input.get_special_rng_mul_sel(list_prompt, min=0, max=use_dice[choice][target][0]-1)
         if False:
             if dice == '':
                 dice = []

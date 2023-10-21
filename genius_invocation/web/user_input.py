@@ -9,6 +9,7 @@ async def get_input(prompt: str, assert_fn=None, dtype=None):
         try:
             user_input = js.document.getElementById("input_result").innerText
             # user_input = input(prompt)
+            user_input = user_input.strip('t')
             if dtype is not None:
                 user_input = dtype(user_input)
             if assert_fn is not None:
@@ -100,6 +101,39 @@ async def get_rng_mul_sel(prompt: str, min=None, max=None, assert_fn=None, dtype
                 assert assert_fn(selection)
             return selection
         except KeyboardInterrupt:
+            exit()
+        except:
+            js.document.getElementById("error_text").innerText = "您输入的内容无效，请重新输入"
+        await asyncio.sleep(0.2)
+
+
+async def get_special_rng_mul_sel(prompt: str, min=None, max=None, assert_fn=None, dtype=None):
+    '''
+    get ranged multiple selection
+    :param prompt: prompt
+    :param min: min value
+    :param max: max value
+    :param assert_fn: assert function on the input as a list of dtype
+    '''
+    dtype = int if dtype is None else dtype
+    js.document.getElementById("prompt").innerText = prompt
+    while True:
+        try:
+            raw_input = js.document.getElementById("input_result").innerText
+            js.document.getElementById("input_result").innerText = ""
+            if raw_input == 't':
+                return []
+            raw_input = raw_input.strip('t')
+            selection = raw_input.split(' ')
+            assert len(selection) == len(set(selection))
+            for i in range(len(selection)):
+                selection[i] = dtype(selection[i])
+                assert min <= selection[i] <= max
+            if assert_fn is not None:
+                assert assert_fn(selection)
+            return selection
+        except KeyboardInterrupt:
+            raise KeyboardInterrupt
             exit()
         except:
             js.document.getElementById("error_text").innerText = "您输入的内容无效，请重新输入"
