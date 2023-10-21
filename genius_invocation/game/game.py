@@ -88,7 +88,7 @@ class GeniusGame:
                 self.end_phase()
             else:
                 self.first_player = self.active_player_index
-
+        
         self.manager.invoke(EventType.AFTER_ANY_ACTION, self)
         if self.is_change_player and (not oppenent_player.is_pass):
             self.change_active_player()
@@ -97,10 +97,13 @@ class GeniusGame:
         self.manager.invoke(EventType.BEFORE_ANY_ACTION, self)
         while self.active_player.prepared_skill is not None:
             character = self.active_player.prepared_skill.from_character
-            if character.is_active and not character.is_frozen:
-                self.active_player.prepared_skill.on_call(self)
-                if not oppenent_player.is_pass:
-                    self.change_active_player()
+            if not character.is_active:
+                break
+            if character.is_frozen:
+                break
+            self.active_player.prepared_skill.on_call(self)
+            if not oppenent_player.is_pass:
+                self.change_active_player()
 
     def add_damage(self, damage: Damage):
         self.damage_list.append(damage)
