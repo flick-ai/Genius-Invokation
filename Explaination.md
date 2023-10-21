@@ -49,7 +49,7 @@ A player has a character list, instances of `Character` are in it. 每一个玩�
 
 ## Class Entity, Entity 类
 
-All of `Status`, `Shield`,  `Combat_Status`, `Combat_Shield`, `Summon`, `Support` and `Character` are entities (subclass of `Entity`). 包括状态、护盾、出战状态、出战护盾，召唤物，支援物，角色在内的对象均为实例，是`Entity`类的子类。
+All of `Status`, `Shield`,  `Combat_Status`, `Combat_Shield`, `Summon`, `Support`,  `Weapon`, `Artifact` and `Character` are entities (subclass of `Entity`). 包括状态、护盾、出战状态、出战护盾，召唤物，支援物，武器，圣遗物，角色在内的对象均为实例，是`Entity`类的子类。
 
 ### Class Status， Status 类
 
@@ -75,7 +75,48 @@ Class of `Summon`, lying in `Summon_Zone`. 召唤物类，置于召唤物区。
 
 Class of `Support`, lying in `Support_Zone`。 支援，于支援区。
 
+### Class Weapon, Weapon 类
 
+Class of weapon, stored the card information of the weapon. 武器类，存有武器牌信息。
+
+### Class Artifact, Artifact 类
+
+Similar with `weapon`. 与武器类似。 Not Implement Yet. 还未实现。 
 
 ## Class Character, Character 类
+
+Each character should has the following attributes: 每个角色需要维护以下属性:
+
+-   `id`: Indentity Document. 角色卡牌编号
+-   `name`: name, 姓名
+-   `element`: element type, 元素类别。
+-   `weapon_type`: weapon type, 武器类别。
+-   `country`: country, 所属国家。
+-   `health_point`： current health point，当前血量。
+-   `init_health_point`: init health point. 初始血量。
+-   `max_health_point`: max health point. 血量上限。
+-   `skill_list`: list of skills, containing several `CharacterSkill` class. 技能列表，包含若干个“角色技能”类。
+-   `skills`: list of instances of skill, the instance can be called by game. 技能实例列表，每个实例均可以被游戏调用。
+-   `power`: current power, 角色当前充能数。
+-   `max_power`：max power, 角色充能上限。
+-   `element_application`: list, element applications on the character. 列表，当前角色的附着元素。
+-   `index`： index of the character in the player's character list. 该角色在玩家在角色列表中的编号。
+-   `talent`: whether equips talent. 是否装有天赋。
+-   `is_active`: whether the active character. 是否出战。
+-   `is_alive`: whether alive. 是否存活。
+-   `is_frozen`: whether frozen. 是否冻结。
+-   `is_satisfied`: whether satisfies. 是否饱腹。
+-   `character_zone`: Character Zone,  角色区域。
+
+In this base class, several basic operations have been defined. 在该基类中，定义了许多基本操作。
+
+More detail could be viewed in 更多信息可以在以下文件中查看： `genius_invocation/entity/character.py`。 
+
+### Class CharacterZone, CharacterZone 类
+
+This zone contains `Weapon`, `Artifact`, `Status` List. 该区域包含装备的武器牌，圣遗物牌，角色状态列表。
+
+
+
+## Event System, 事件系统
 
