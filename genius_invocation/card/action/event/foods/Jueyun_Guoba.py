@@ -22,9 +22,14 @@ class Jueyun_Guoba_Entity(Status):
                 if self.current_usage == 0:
                     self.on_destroy(game)
 
+    def on_begin(self, game: 'GeniusGame'):
+        if game.current_damage.damage_from == self.from_character:
+            self.on_destroy(game)
+
     def update_listener_list(self):
         self.listeners = [
             (EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, self.on_damage_add),
+            (EventType.BEGIN_ACTION_PHASE, ZoneType.CHARACTER_ZONE, self.on_begin)
         ]
 
 class Jueyun_Guoba(FoodCard):

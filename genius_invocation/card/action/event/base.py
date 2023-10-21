@@ -32,7 +32,7 @@ class FoodCard(ActionCard):
                     character.character_zone.add_entity(Satisfy_Statue)
                     if self.food_entity != None:
                         target_character.character_zone.add_entity(self.food_entity(game, from_player=game.active_player, from_character=target_character))
-    
+
     def find_target(self, game: 'GeniusGame'):
         target_list = []
         for idx, character in enumerate(game.active_player.character_list):

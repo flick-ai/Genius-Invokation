@@ -248,11 +248,13 @@ To tackle the difficult calculation of damage, we create the class of `Damage`�
     
 
 ## 6. Dice 骰子
+-   We have a total of 7 basic dice and universal dice. Dice are transferred and calculated in the game as int. 我们共有7种基础元素骰和万能骰。骰子以int的形式在游戏中传输和计算。
+-  We use a two-dimensional np.array to maintain our dice area. We sort the dice in the dice area according to four rules: universal dice priority, character element type dice priority, large number of dice priority, and dice type order. 我们使用一个二维的np.array来维护我们的骰子区，我们按照万能骰优先、出战角色元素类型骰子优先、数量多骰子优先和骰子类型顺序四种规则对骰子区的骰子进行排序。
+-   Our dice area supports five basic operations: add, use remove, remove_all, show, and num return quantity, which are used to maintain the number of your dice. 我们的骰子区支持 add添加、remove使用、remove_all清空、show展示和num返回数量五个基本操作，用于维护您骰子的数量。
+-   We also support check_dice, which is used to determine whether the dice you choose is legal, and calculate_dice, which is used to calculate whether there is currently a dice type that supports you to perform a certain operation. 我们还支持了 check_dice 用于判断您某次选择的骰子是否合法，以及calculate_dice 用于计算当前是否有支持您进行某个操作的骰子类型。
+- Before we can perform any action, we will calculate for you the mask that you can perform the action on. Go through your action list: 1. Does the action goal exist? 2. Are the action requirements met? 2. Are there enough dice required for the action? , at this time we will trigger the CALCULATE_DICE moment for calculation, but it will not affect your status. When we actually perform an action, we will generate current_dice again. At this time, the Entity will autonomously call its own on_calculate event and change its own state. 当我们可以执行任意行动前，我们会为您计算你能够执行行动的mask。遍历您的行动列表：1. 行动目标是否存在？2. 行动要求是否满足？2. 行动所需骰子是否足够？，此时我们会触发CALCULATE_DICE时刻进行计算，但不会影响到您的状态。当我们真正执行某一行动时，我们会再次生成current_dice，此时在Entity内部会自主的调用自己的on_calculate事件，并改变自身的状态。
 
-We have a total of 7 basic element dice and universal dice.
-We use an np. array to maintain our dice area, and we sort it according to the default order and the element types of the participating characters. Our dice area supports basic operations such as adding, using, and clearing.
-我们共有7种基础元素骰和万能骰。
-我们使用一个二维的np.array来维护我们的骰子区，我们按照默认顺序和出战角色的元素类型来进行排序。我们的骰子区支持添加、使用、清空等基本操作。
+
 
 ## 7. Class CharacterSkill 角色技能类
 
@@ -266,8 +268,9 @@ We use an np. array to maintain our dice area, and we sort it according to the d
 
 In `CharacterSkill` class, several *atom operation*s have been implemented.  在该类中已经写好许多原子操作。Some other operation need to implement dependently in the specific character. 更多的操作需要在特定的角色中实现。
 
-## 8. Card 牌
-
-Our cards support three basic operations: playing, reconciling, and finding targets. After our card is played, an Entity will be generated and stored on the field for settlement.
-我们的牌支持打出、调和和寻找作用对象三个基本操作。我们的牌打出后，会产生一个Entity存在在场上用于结算。
+## 8. Card 行动牌
+-   All our action cards belong to the ActionCard category, they will only exist in your hand area and library area. One of them consists of three basic operations: on_played (performs the effect of the card you played), find_target (finds the card's executable target), and on_tuning (uses the card for elemental attunement). 我们所有的行动牌均属于 ActionCard类，他们将仅存在于您的手牌区和牌库区中。他们一个包含三个基本操作：on_played（执行您打出该牌的效果）、find_target（寻找卡牌可执行目标） 和 on_tuning（将该牌用于元素调和）。
+-   对于打出后会持续存在在场上或者产生特定效果状态的卡牌，我们会维护一个同名的 Status 用于执行该牌在场时的效果。例如：我打出支援牌 Paimon时，会在我方支援区产生一个名为 Paimon 的Status，其拥有一个在回合行动阶段开始时触发的事件：为我方增加两个万能骰。
+-   For cards that will continue to exist on the field or produce a specific effect status after being played, we will maintain a Status with the same name to perform the effect of the card while it is on the field. For example: When I play the support card Paimon, a Status named Paimon will be generated in our support area, which has an event triggered at the beginning of the action phase of the round: adding two omni dice to our dicezone. 我们的牌库区会在游戏开始时排好顺序，将牌依次返回给玩家。当我们将牌放回牌库时，会随机插入牌库区。牌库区支持以下操作：find_card（检索并获取特定类型的牌）、 get_card（随机获取牌）、return_car（将牌放回牌堆）和num（返回剩余数量）
+-   Our hand area will get five cards from the card library at the beginning of the game (must include arcane legend cards), and the number will not exceed 10. When the number exceeds 10, the newly obtained cards will be burned randomly. Our hand area supports the following operations: remove (batch removal), use (remove a single card by serial number), add (batch acquisition), has_card (determine whether you have a card with a certain name), remove_name (remove by name) and num (returns the current number) 我们的手牌区会在游戏开始时从牌库获取五张牌（一定包含秘传牌），数量不超过10张。当数量将超过10张时，会随机烧毁改次获得的牌。我们的手牌区支持以下操作：remove（批量移除）、use（按序号移除单张）、add（批量获取）、has_card（判断是否拥有某个名字的牌）、remove_name（按名字移除）和num（返回当前数量）
 

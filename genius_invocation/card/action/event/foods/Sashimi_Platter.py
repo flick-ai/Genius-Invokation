@@ -19,14 +19,15 @@ class Sashimi_Platter_Entity(Status):
             if game.current_damage.damage_type == SkillType.NORMAL_ATTACK:
                 game.current_damage.main_damage += 1
 
-    def on_end(self, game: 'GeniusGame'):
+    def on_begin(self, game: 'GeniusGame'):
         if game.current_damage.damage_from == self.from_character:
             self.on_destroy(game)
 
     def update_listener_list(self):
         self.listeners = [
             (EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, self.on_damage_add),
-            (EventType.END_PHASE, ZoneType.CHARACTER_ZONE, self.on_end),
+            (EventType.BEGIN_ACTION_PHASE_PHASE, ZoneType.CHARACTER_ZONE, self.on_begin),
+            (EventType.BEGIN_ACTION_PHASE, ZoneType.CHARACTER_ZONE, self.on_begin)
         ]
 
 class Sashimi_Platter(FoodCard):

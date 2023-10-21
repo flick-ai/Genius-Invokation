@@ -24,9 +24,14 @@ class Butter_Crab_Entity(Status):
                 if self.current_usage <=0:
                     self.on_destroy(game)
 
+    def on_begin(self, game: 'GeniusGame'):
+        if game.current_damage.damage_from == self.from_character:
+            self.on_destroy(game)
+
     def update_listener_list(self):
         self.listeners = [
             (EventType.EXECUTE_DAMAGE, ZoneType.CHARACTER_ZONE, self.on_damage_execute),
+            (EventType.BEGIN_ACTION_PHASE, ZoneType.CHARACTER_ZONE, self.on_begin)
         ]
 
 class Butter_Crab(FoodCard):

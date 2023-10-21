@@ -187,7 +187,7 @@ class Action:
                     dice = []
         elif choice == 17:
             list_prompt = f'您需要选择重新获取的手牌的位置,形式如0 1 2所示,数值应该在{0}-{use_dice[choice][target][0]-1}之间:'
-            dice = user_input.get_rng_mul_sel(list_promptmin=0, max=use_dice[choice][target][0]-1)
+            dice = user_input.get_rng_mul_sel(list_prompt, min=0, max=use_dice[choice][target][0]-1)
             if False:
                 if dice == '':
                     dice = []
