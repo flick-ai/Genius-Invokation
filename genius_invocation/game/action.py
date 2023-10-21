@@ -124,7 +124,7 @@ class Action:
                        16:'选择操作本方骰子',
                        17:'选择操作本方手牌'}
 
-        choose_prompt = f"您是{game.active_player_index}号玩家,以下是你可以选择的行动,请输入一个数字表示你的行动选择:\n"
+        choose_prompt = f"您是{game.active_player_index}号玩家,以下是你可以选择的行动,请输入一个数字表示你的行动选择(按确认以提交或清空选择):\n"
         choose_list = []
         last_choice = -1
         mask_sum = mask.sum(axis=1)
@@ -159,7 +159,7 @@ class Action:
                        12:'选择本方3号支援',
                        13:'选择操作本方骰子',
                        14:'选择操作本方手牌'}
-        target_prompt = '根据您选择的行动，您可以选择以下目标:\n'
+        target_prompt = '根据您选择的行动，您可以选择以下目标(按确认以提交或清空选择):\n'
         target_list = []
         last_target = -1
         for i in range(15):
@@ -187,7 +187,7 @@ class Action:
                     dice = []
         elif choice == 17:
             list_prompt = f'您需要选择重新获取的手牌的位置,形式如0 1 2所示,数值应该在{0}-{use_dice[choice][target][0]-1}之间:'
-            dice = user_input.get_rng_mul_sel(list_promptmin=0, max=use_dice[choice][target][0]-1)
+            dice = user_input.get_rng_mul_sel(list_prompt, min=0, max=use_dice[choice][target][0]-1)
             if False:
                 if dice == '':
                     dice = []

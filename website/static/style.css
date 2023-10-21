@@ -13,6 +13,11 @@
   grid-template-columns: auto auto;
 }
 
+.handcardinner {
+  display: flex;
+  flex-direction: column;
+}
+
 .basebar {
   display: flex;
   flex-direction: row;
@@ -26,11 +31,12 @@
   background-color: rgb(58, 90, 186);
 } */
 
+
 .wrapper {
     display: grid;
-    grid-template-columns: repeat(9, 1fr);
-    grid-gap: 10px;
-    grid-auto-rows: minmax(80px, 80px);
+    grid-template-columns: 1fr 0.6fr 0.6fr 1fr 1fr 1fr 0.6fr 0.6fr 0.6fr 0.8fr 0.8fr;
+    grid-gap: 2px;
+    grid-auto-rows: minmax(80px, 90px);
   }
   .player0box {
     grid-column: 1 / 10;
@@ -39,6 +45,8 @@
     border-width: 4px;
     border-color: #00000000;
   }
+
+
   .player1box {
     grid-column: 1 / 10;
     grid-row: 6/10;
@@ -47,7 +55,7 @@
     border-color: #00000000;
   }
   .informationbox {
-    grid-column: 1 / 10;
+    grid-column: 1 / 12;
     grid-row: 1 / 2;
     background: #BBBBBB;
     display: grid;
@@ -56,6 +64,10 @@
 
   .confirm {
     grid-column: 1/ 2;
+    grid-row: 1/ 2;
+  }
+  .current {
+    grid-column: 2/3;
     grid-row: 1/ 2;
   }
   .information {
@@ -202,7 +214,7 @@
     background: #ECAD9E;
     border-style:solid;
     border-width: 4px;
-    border-color: #994400;
+    border-color: #00000000;
   }
   
   .summon0.player1 {
@@ -240,7 +252,7 @@
     color: #fff;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
   }
   .item .skill {
     text-align: center;
@@ -255,12 +267,16 @@
   }
   
   .diceitem {
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     border-style:solid;
     border-width:2px;
     border-color: #00000000;
+  }
+
+  .zone {
+    margin: 4px;
   }
   
   /* .contain {
@@ -280,7 +296,7 @@
   }
   
   .selected {
-    background-color: #FFFFFF33;
+    background-color: #FFFFFF55;
   }
   
   
@@ -291,12 +307,20 @@
   .diceitem.selected {
     border-color: #555555;
   }
+
+  .expanditem {
+    font-size: 90%;
+  }
   
   .topclick {
     justify-content: center;
     align-items: center;
     font-size: 120%;
   }
+
+  /* .someinfo {
+    font-size: 100%;
+  } */
   
   .health {
     background-color: #BB3333;
@@ -308,4 +332,13 @@
   
   .element {
     background-color: #BBBBBB;
+  }
+
+  .prompt {
+    grid-column: 10/12;
+    grid-row: 2/10;
+    background: #E6CEAC;
+    padding: 10px;
+    margin: 4px 0 4px 4px;
+    color: #444;
   }

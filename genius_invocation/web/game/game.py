@@ -98,10 +98,13 @@ class GeniusGame:
         self.manager.invoke(EventType.BEFORE_ANY_ACTION, self)
         while self.active_player.prepared_skill is not None:
             character = self.active_player.prepared_skill.from_character
-            if character.is_active and not character.is_frozen:
-                self.active_player.prepared_skill.on_call(self)
-                if not oppenent_player.is_pass:
-                    self.change_active_player()
+            if not character.is_active:
+                break
+            if character.is_frozen:
+                break
+            self.active_player.prepared_skill.on_call(self)
+            if not oppenent_player.is_pass:
+                self.change_active_player()
     def add_damage(self, damage: Damage):
         self.damage_list.append(damage)
 
@@ -145,7 +148,7 @@ class GeniusGame:
                     if not char.is_alive:
                         char.dying(self)
                         if player.active_idx == idx:
-                            Active_Die(player).on_call(self)
+                            Active_Die(player).on_call(self, idx)
         #TODO: Not Implement yet.
         # pass
 
@@ -269,7 +272,7 @@ class Active_Die:
         self.now_phase: GamePhase
         self.activate_player_index: int
 
-    def on_call(self, game: 'GeniusGame'):
+    def on_call(self, game: 'GeniusGame', idx):
         self.now_phase = game.game_phase
         game.game_phase = GamePhase.SET_CHARACTER
         self.activate_player_index = game.active_player_index
@@ -277,12 +280,19 @@ class Active_Die:
             game.change_active_player()
         game.special_phase = self
         game.active_player.generate_mask(game)
-        action = self.get_next_char()
+        die_player = game.active_player
+        action = self.get_next_char(die_player, idx)
         game.step(action)
 
-    def get_next_char(self):
-        res = prompt("请输入下一个出战角色的序号:")
-        return Action(14, 3, dice=[])
+    def get_next_char(self, die_player: 'GeniusPlayer', idx):
+        available_idx = []
+        for i, characters in enumerate(die_player.character_list):
+            if characters.is_alive:
+                available_idx.append(str(i))
+        while True:
+            res = prompt(f"玩家{die_player}角色{idx}死亡, 请输入下一个出战角色的序号(0, 1, 2):")
+            if res in ['0', '1', '2'] and res in available_idx:
+                return Action(14, int(res)+2, dice=[])
 
     def on_finished(self, game: 'GeniusGame'):
         game.game_phase = self.now_phase

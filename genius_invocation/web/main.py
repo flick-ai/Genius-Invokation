@@ -40,8 +40,8 @@ async def main():
         active_player = game_information['active_player']
         js.document.getElementById('information').innerText = game_inf_str
         for i in range(2):
-            js.document.getElementsByClassName(f'player{i}')[0].style.borderColor = '#00000000'
-        js.document.getElementsByClassName(f'player{active_player}')[0].style.borderColor = '#EE6622'
+            js.document.getElementsByClassName(f'player{i}box')[0].style.borderColor = '#DDDDDD'
+        js.document.getElementsByClassName(f'player{active_player}box')[0].style.borderColor = '#EE6622'
         # print(game.encode_message())
         print(message)
         for i, player in enumerate(['player0', 'player1']):
@@ -57,8 +57,32 @@ async def main():
             for idx, item in enumerate(dice_zone):
                 js.document.getElementById(f'{player}_dice{idx}').innerText = ''
                 js.document.getElementById(f'{player}_dice{idx}').style.background = element_to_dice[item]
+
+            # 召唤物区
+            summon_zone = message[i]['summon_zone']
+            for idx in range(4):
+                summon = js.document.getElementsByClassName(f'summon{idx} {player}')[0]
+                summon.getElementsByClassName('title')[0].innerText = f'召唤区{idx+1}'
+                summon.getElementsByClassName('inneritem')[0].innerText = ''
+            for idx, item in enumerate(summon_zone):
+                summon = js.document.getElementsByClassName(f'summon{idx} {player}')[0]
+                summon.getElementsByClassName('title')[0].innerText = item[0]
+                summon.getElementsByClassName('inneritem')[0].innerText = item[1]
+
+            # 支援区
+            support_zone = message[i]['support_zone']
+            for idx in range(4):
+                support = js.document.getElementsByClassName(f'support{idx} {player}')[0]
+                support.getElementsByClassName('title')[0].innerText = f'支援区{idx+1}'
+                support.getElementsByClassName('inneritem')[0].innerText = ''
+            for idx, item in enumerate(support_zone):
+                support = js.document.getElementsByClassName(f'support{idx} {player}')[0]
+                support.getElementsByClassName('title')[0].innerText = item[0]
+                support.getElementsByClassName('inneritem')[0].innerText = item[1]
+
+            # 角色区
             character_zone = message[i]['character_zone']
-            characters = [js.document.getElementsByClassName(f'character{i} {player}')[0] for i in range(3)]
+            characters = [js.document.getElementsByClassName(f'character{j} {player}')[0] for j in range(3)]
             for idx, item in enumerate(character_zone):
                 if item['base'][4]:
                     characters[idx].style.borderColor = '#994400'

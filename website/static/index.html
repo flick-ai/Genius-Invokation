@@ -21,6 +21,9 @@
         <div class="confirm item topclick clickable" id="confirm_action">
           确认行动
         </div>
+        <div class="current item topclick">
+          <div>当前行动:</div><div id="current_choice"></div>
+        </div>
         <div class="information item">
           <div class="title">对局信息</div>
           <div id="information"></div>
@@ -33,45 +36,49 @@
         </div>
       </div>
 
-      
-      <div class="cardzone player0 item"><div class="title">手牌区</div></div>
-      <div class="handcard player0 item"><div class="title"></div></div>
-      <div class="support0 player0 item"><div class="title clickable">支援区1</div></div>
-      <div class="support2 player0 item"><div class="title clickable">支援区3</div></div>
-      <div class="support1 player0 item"><div class="title clickable">支援区2</div></div>
-      <div class="support3 player0 item"><div class="title clickable">支援区4</div></div>
-      <div class="character0 player0 item"><div class="title clickable">角色1</div></div>
-      <div class="character1 player0 item"><div class="title clickable">角色2</div></div>
-      <div class="character2 player0 item"><div class="title clickable">角色3</div></div>
-      <div class="summon0 player0 item"><div class="title clickable">召唤区1</div></div>
-      <div class="summon2 player0 item"><div class="title clickable">召唤区3</div></div>
-      <div class="summon1 player0 item"><div class="title clickable">召唤区2</div></div>
-      <div class="summon3 player0 item"><div class="title clickable">召唤区4</div></div>
-      <div class="dice player0 item"><div class="title">骰子区</div></div>
-      <div class="cardzone player1 item"><div class="title">手牌区</div></div>
-      <div class="handcard player1 item"><div class="title"></div></div>
-      <div class="support0 player1 item"><div class="title clickable">支援区1</div></div>
-      <div class="support2 player1 item"><div class="title clickable">支援区3</div></div>
-      <div class="support1 player1 item"><div class="title clickable">支援区2</div></div>
-      <div class="support3 player1 item"><div class="title clickable">支援区4</div></div>
-      <div class="character0 player1 item"><div class="title clickable">角色1</div></div>
-      <div class="character1 player1 item"><div class="title clickable">角色2</div></div>
-      <div class="character2 player1 item"><div class="title clickable">角色3</div></div>
-      <div class="summon0 player1 item"><div class="title clickable">召唤区1</div></div>
-      <div class="summon2 player1 item"><div class="title clickable">召唤区3</div></div>
-      <div class="summon1 player1 item"><div class="title clickable">召唤区2</div></div>
-      <div class="summon3 player1 item"><div class="title clickable">召唤区4</div></div>
-      <div class="dice player1 item"><div class="title">骰子区</div></div>
       <div class="player0box"></div>
+      <div class="cardzone player0 item zone"><div class="title">手牌区</div></div>
+      <div class="handcard player0 item zone"><div class="title"></div></div>
+      <div class="support0 player0 item zone"><div class="title clickable">支援区1</div></div>
+      <div class="support2 player0 item zone"><div class="title clickable">支援区3</div></div>
+      <div class="support1 player0 item zone"><div class="title clickable">支援区2</div></div>
+      <div class="support3 player0 item zone"><div class="title clickable">支援区4</div></div>
+      <div class="character0 player0 item zone"><div class="title clickable">角色1</div></div>
+      <div class="character1 player0 item zone"><div class="title clickable">角色2</div></div>
+      <div class="character2 player0 item zone"><div class="title clickable">角色3</div></div>
+      <div class="summon0 player0 item zone"><div class="title clickable">召唤区1</div></div>
+      <div class="summon2 player0 item zone"><div class="title clickable">召唤区3</div></div>
+      <div class="summon1 player0 item zone"><div class="title clickable">召唤区2</div></div>
+      <div class="summon3 player0 item zone"><div class="title clickable">召唤区4</div></div>
+      <div class="dice player0 item zone"><div class="title clickable">骰子区</div></div>
+      <div class="prompt item" id="prompt"></div>
+
       <div class="player1box"></div>
+
+      <div class="cardzone player1 item zone"><div class="title">手牌区</div></div>
+      <div class="handcard player1 item zone"><div class="title"></div></div>
+      <div class="support0 player1 item zone"><div class="title clickable">支援区1</div></div>
+      <div class="support2 player1 item zone"><div class="title clickable">支援区3</div></div>
+      <div class="support1 player1 item zone"><div class="title clickable">支援区2</div></div>
+      <div class="support3 player1 item zone"><div class="title clickable">支援区4</div></div>
+      <div class="character0 player1 item zone"><div class="title clickable">角色1</div></div>
+      <div class="character1 player1 item zone"><div class="title clickable">角色2</div></div>
+      <div class="character2 player1 item zone"><div class="title clickable">角色3</div></div>
+      <div class="summon0 player1 item zone"><div class="title clickable">召唤区1</div></div>
+      <div class="summon2 player1 item zone"><div class="title clickable">召唤区3</div></div>
+      <div class="summon1 player1 item zone"><div class="title clickable">召唤区2</div></div>
+      <div class="summon3 player1 item zone"><div class="title clickable">召唤区4</div></div>
+      <div class="dice player1 item zone"><div class="title clickable">骰子区</div></div>
+      
+      
     </div>
     <div class="input">
-      <div id="prompt">></div>
-      <input type="text" id="input_text"></input>
+      <!-- <div id="prompt">></div> -->
+      <!-- <input type="text" id="input_text"></input> -->
       <div id="input_result"></div>
-      <button id="input_button">Input</button>
-      <div id="error_text"></div>
-      <div id="current_choice"></div>
+      <!-- <button id="input_button">Input</button> -->
+      <div id="error_text" style="display:none"></div>
+      <!-- <div id="current_choice"></div> -->
       <div id="current_dice"></div>
     </div>
     <script>
@@ -102,6 +109,16 @@
           change_character.classList.toggle("selected")
           current_choice = update_set(current_choice_set, "14")
           current_choice_text.innerText = current_choice
+
+          // 不需要确认
+          document.getElementById("input_result").innerText = current_choice
+          current_choice_text.innerText = ""
+          current_choice_set.clear()
+          current_choice = ""
+          clicker = document.getElementsByClassName("clickable")
+          for (let i = 0; i < clicker.length; i++) {
+            clicker[i].classList.remove("selected")
+          }
         }
       )
       let passround = document.getElementsByClassName("passround")[0]
@@ -110,6 +127,16 @@
           passround.classList.toggle("selected")
           current_choice = update_set(current_choice_set, "15")
           current_choice_text.innerText = current_choice
+
+          // 不需要确认
+          document.getElementById("input_result").innerText = current_choice
+          current_choice_text.innerText = ""
+          current_choice_set.clear()
+          current_choice = ""
+          clicker = document.getElementsByClassName("clickable")
+          for (let i = 0; i < clicker.length; i++) {
+            clicker[i].classList.remove("selected")
+          }
         }
       )
 
@@ -117,6 +144,9 @@
 
       for (let index = 0; index < 2; index++) {
         let handcard_player = document.getElementsByClassName(`handcard player${index}`)[0]
+        let handcard_inner = document.createElement('div');
+        handcard_inner.className = 'handcardinner';
+        handcard_player.appendChild(handcard_inner);
         for (let i = 0; i < 10; i++) {
           let card = document.createElement("div")
           card.classList.add("card")
@@ -131,7 +161,7 @@
               current_choice_text.innerText = current_choice
             }
           )
-          handcard_player.appendChild(card)
+          handcard_inner.appendChild(card)
         }
 
         // 骰子区
@@ -155,6 +185,23 @@
           dice_inner.appendChild(newDiv);
         }
 
+        let confirm_btn = document.createElement("div")
+        confirm_btn.classList.add("item", "clickable")
+        confirm_btn.addEventListener(
+            "click", ()=>{
+            document.getElementById("input_result").innerText = current_choice
+            current_choice_text.innerText = ""
+            current_choice_set.clear()
+            current_choice = ""
+            clicker = document.getElementsByClassName("clickable")
+            for (let i = 0; i < clicker.length; i++) {
+              clicker[i].classList.remove("selected")
+            }
+          }
+        )
+        confirm_btn.innerText = "确认"
+        dice_player.appendChild(confirm_btn)
+
         // 支援区
         for (let support_idx = 0; support_idx < 4; support_idx++) {
           support_zone = document.getElementsByClassName(`support${support_idx} player${index}`)[0]
@@ -162,10 +209,15 @@
           support_name.addEventListener(
             "click", ()=>{
               support_name.classList.toggle("selected")
-              current_choice = update_set(current_choice_set, `${support_idx + 10}`)
+              current_choice = update_set(current_choice_set, `${support_idx + 9}`)
               current_choice_text.innerText = current_choice
             }
           )
+          support_inner = document.createElement('div');
+          support_inner.classList.add("inneritem")
+          // support_inner.className = 'supportinner';
+          support_zone.appendChild(support_inner);
+
         }
 
         // 召唤区
@@ -175,10 +227,14 @@
           summon_name.addEventListener(
             "click", ()=>{
               summon_name.classList.toggle("selected")
-              current_choice = update_set(current_choice_set, `${summon_idx + 6}`)
+              current_choice = update_set(current_choice_set, `${summon_idx + 5}`)
               current_choice_text.innerText = current_choice
             }
           )
+          let summon_inner = document.createElement('div');
+          summon_inner.classList.add("inneritem")
+          // summon_name = document.createElement('div');
+          summon_zone.appendChild(summon_inner);
         }
 
         // 角色区
@@ -224,19 +280,31 @@
             skill_list.appendChild(skill)
           }
           chara_zone.appendChild(skill_list)
+
+          let chara_state = document.createElement("div")
+          chara_state.classList.add("expanditem")
+          chara_state.id = `player${index}_character${chara_idx}_state`
+          chara_state.innerText = "状态"
+          chara_zone.appendChild(chara_state)
+
+          // let 
+
+          // let group_shield = document.createElement("div")
+          // group_shield.classList.add("expanditem")
+          // group_shield.id = `player${index}_character${chara_idx}_group_shield`
+          // group_shield.innerText = "护盾(出战)"
+          // chara_zone.appendChild(group_shield)
+
+          let group_state = document.createElement("div")
+          group_state.classList.add("expanditem")
+          group_state.id = `player${index}_character${chara_idx}_group_state`
+          group_state.innerText = "状态(出战)"
+          chara_zone.appendChild(group_state)
+
         }
 
       }
 
-
-      let input_element = document.getElementById("input_text")
-      let input_button = document.getElementById("input_button")
-      input_button.addEventListener(
-        "click", ()=>{
-            document.getElementById("input_result").innerText = input_element.value
-            input_element.value = ""
-        }
-      )
       let confirm_action = document.getElementById("confirm_action")
       confirm_action.addEventListener(
         "click", ()=>{
@@ -252,10 +320,12 @@
       )
     </script>
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script> -->
-    <!-- <py-terminal id="py-terminal"></py-terminal> -->
+    <py-terminal id="terminal"></py-terminal>
     <py-script>
       from genius_invocation.web import main
+      import js
       import asyncio
+      js.document.getElementById("terminal").classList.add('py-terminal-hidden')
       asyncio.ensure_future(main.main())
     </py-script>
     
