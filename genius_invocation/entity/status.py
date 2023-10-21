@@ -25,7 +25,8 @@ class Status(Entity):
 
     def on_destroy(self, game):
         super().on_destroy(game)
-        self.from_character.character_zone.remove_entity(self)
+        if self.from_character is not None:
+            self.from_character.character_zone.remove_entity(self)
 
     def update(self):
         # All states can be update, maybe need to re-implement in subclass
