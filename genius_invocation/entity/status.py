@@ -32,7 +32,10 @@ class Status(Entity):
         pass
 
     def show(self):
-        return str(self.current_usage)
+        try:
+            return str(self.current_usage)
+        except:
+            return "^(._.)<^"
 
 class Combat_Status(Entity):
     id: int
@@ -48,7 +51,10 @@ class Combat_Status(Entity):
         self.from_player.team_combat_status.remove_entity(self)
 
     def show(self):
-        return self.current_usage
+        try:
+            return str(self.current_usage)
+        except:
+            return "^(._.)<^"
 
 class Shield(Status):
     # Status of shield (Only for single character)
