@@ -152,8 +152,8 @@ class Rainbow_Bladework(Combat_Status):
 
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
-        self.max_usage = 2
-        self.usage = 2
+        self.max_usage = 3
+        self.usage = 3
         self.current_usage = self.usage
 
     def after_skill(self, game:'GeniusGame'):

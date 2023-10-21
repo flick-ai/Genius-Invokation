@@ -14,7 +14,6 @@ class FoodCard(ActionCard):
     
     def __init__(self) -> None:
         super().__init__()
-        self.food_entity
     
     def on_played(self, game: 'GeniusGame') -> None:
         if game.current_action.target_ty == ActionTarget.MY_CHARACTER:

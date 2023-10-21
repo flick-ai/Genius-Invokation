@@ -179,7 +179,7 @@ class Character(Entity):
                     case ElementType.ELECTRO:
                         Quicken(game, targetplayer_id, target_index)
                         Reaction = ElementalReactionType.Quicken
-        if Reaction is None and (not element in self.elemental_attach):
+        if Reaction is None and (not element in self.elemental_application):
             match element:
                 case ElementType.CRYO | ElementType.HYDRO | ElementType.PYRO | ElementType.ELECTRO:
                     self.elemental_application.insert(0, element)
