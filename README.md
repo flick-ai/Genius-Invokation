@@ -39,7 +39,11 @@ A simulator of the Genius Invokation TCG in Genshin impact for Reinforcement Lea
 
 ### Fix deck
 
-    在 genius_invocation/main.py 中修改 deck1 和 deck2 来确定两位 player 的出战牌组。 目前您可以任意组合您的手牌选择。您可以在 genius_invocation/card/character/characters 下找到您可以使用的角色牌。 genius_invocation/card/action 下的各个子目录找到您可以使用的行动牌。 
+    在 genius_invocation/main.py 中修改 deck1 和 deck2 来确定两位 player 的出战牌组。 
+    目前您可以任意组合您的手牌选择。您可以在：
+
+        genius_invocation/card/character/characters 下找到您可以使用的角色牌。 
+        genius_invocation/card/action 下的各个子目录找到您可以使用的行动牌。 
 
 ### Play game
 
@@ -62,4 +66,4 @@ A simulator of the Genius Invokation TCG in Genshin impact for Reinforcement Lea
         每回合初始8个骰子非默认万能：genius_invocation/game/player.py Line102，is_omni=False
 
 ## 网页端运行
-    我们正在搭建网页端的单机游玩平台，敬请期待。
+    我们正在搭建网页端的单机游玩f方式，敬请期待。
