@@ -14,7 +14,6 @@ class Shattering_Ice_Entity(Status):
         self.current_usage = 1
     
     def on_damage_add(self, game: 'GeniusGame'):
-        print(game.current_damage.damage_from.name, self.from_character.name)
         if game.current_damage.damage_from == self.from_character:
             if game.current_damage.main_damage_element == ElementType.PIERCING:
                 return
@@ -24,9 +23,14 @@ class Shattering_Ice_Entity(Status):
                 if self.current_usage <=0:
                     self.on_destroy(game)
 
+    def on_end(self, game: 'GeniusGame'):
+        self.current_usage = 0
+        self.on_destroy(game)
+
     def update_listener_list(self):
         self.listeners = [
             (EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, self.on_damage_add),
+            (EventType.BEGIN_ROLL_PHASE, ZoneType.CHARACTER_ZONE, self.on_end)
         ]
 
 class Shattering_Ice(ActionCard):
