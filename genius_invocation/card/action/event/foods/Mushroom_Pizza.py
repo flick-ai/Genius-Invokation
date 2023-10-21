@@ -40,6 +40,13 @@ class Mushroom_Pizza(FoodCard):
 
     def on_played(self, game: 'GeniusGame'):
         super().on_played(game)
+    
+    def find_target(self, game: 'GeniusGame'):
+        target_list = []
+        for idx, character in enumerate(game.active_player.character_list):
+            if not character.is_satisfy and character.health_point != character.max_health_point:
+                target_list.append(idx+2)
+        return target_list
         
 
     
