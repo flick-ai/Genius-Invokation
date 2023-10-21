@@ -58,7 +58,6 @@ class ListenerList(object):
     def __call__(self, game: 'GeniusGame') -> None:
         listener = self.head.next
         while listener!=self.tail:
-            logger.debug(listener)
             listener(game)
             listener = listener.next
 

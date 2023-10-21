@@ -95,16 +95,20 @@ class GeniusPlayer:
         self.dice_zone.remove(action.choice_list)
         self.dice_zone.add(reroll_dice)
 
-    def roll_dice(self, num=8, is_basic=False, is_different=False):
+    def roll_dice(self, num=8, is_basic=False, is_different=False,):
         '''
             基本行动: 投掷骰子
         '''
+        is_omni = True
         if is_basic:
-            if is_different:
-                return np.random.choice(DICENUM-1, num, replace=False).tolist()
-            return np.random.randint(0, DICENUM-1, num).tolist()
-        # return np.random.randint(0, DICENUM, num).tolist()
-        return  [7 for i in range(num)]
+                if is_different:
+                    return np.random.choice(DICENUM-1, num, replace=False).tolist()
+                return np.random.randint(0, DICENUM-1, num).tolist()
+        if is_omni:
+            return  [7 for i in range(num)]
+        else:
+            return np.random.randint(0, DICENUM, num).tolist()
+        
 
     def get_card(self, num):
         '''

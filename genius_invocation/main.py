@@ -8,7 +8,7 @@ from rich import print
 
 if __name__=="__main__":
     deck1 = {
-        'character': ['ElectroHypostasis', 'Nahida', 'Tartaglia'],
+        'character': ['Cyno', 'Wanderer', 'Yoimiya'],
         'action_card': ['Chang_the_Ninth' for i in range(30)]
     }
     deck2 = {
@@ -20,5 +20,5 @@ if __name__=="__main__":
 
     while not game.is_end:
         print(game.encode_message())
-        action = Action.from_input(game)
+        action = Action.from_input(game, jump=True)
         game.step(action)
