@@ -267,7 +267,7 @@ class GeniusPlayer:
                                                       from_character=self.character_list[self.active_idx],
                                                       use_type=skill.type,
                                                       cost=deepcopy(skill.cost)))
-            can_use = True
+            can_use = not self.character_list[self.active_idx].is_frozen
             if skill.type == SkillType.ELEMENTAL_BURST:
                 can_use = self.character_list[self.active_idx].max_power == self.character_list[self.active_idx].power
             if can_use and has_dice:

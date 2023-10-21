@@ -1,11 +1,11 @@
 from genius_invocation.card.action.base import ActionCard
 from genius_invocation.utils import *
-from genius_invocation.entity.status import Status
+from genius_invocation.entity.status import Combat_Status
 if TYPE_CHECKING:
     from genius_invocation.game.game import GeniusGame
     from genius_invocation.game.player import GeniusPlayer
 
-class Fresh_Wind_of_Freedom_Entity(Status):
+class Fresh_Wind_of_Freedom_Entity(Combat_Status):
     id: int = 330004
     name: name = "Fresh Wind of Freedom"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
