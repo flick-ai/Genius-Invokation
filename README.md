@@ -46,7 +46,7 @@ A simulator of the Genius Invokation TCG in Genshin impact for Reinforcement Lea
     3. rice.Layout: 展示对战信息
 
     您将可以形如下图的对战信息。
-    ![Alt text](image.png)
+    ![](image.png)
 
 ### Define game
 
