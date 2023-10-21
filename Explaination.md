@@ -12,7 +12,7 @@ In a `Game`, we have 5 different phase in total. 在 `Game` 类中，我们共�
 -   *SET_CHARACTER*: The phase of choosing active character，选择出战角色阶段。
     -   After choosing initial hand cards. 选择初始手牌后。Choose initial active character. 选择初始出战角色。
     -   When an active character dies. 在某个出战角色死亡时。Choose the new active character. 选择一个新的出战角色。
--   *ROLL_PHASE*: 掷骰子阶段
+-   *ROLL_PHASE*: 投掷阶段
     -   Begin of each round. 每个回合开始时。
     -   `Toss-up`, `Knights of Favonius Library` are played.  "一掷乾坤", "骑士团图书馆" 打出之时。Insert a special phase. 插入一个特殊阶段。
 -   *ACTION_PHASE*: 行动阶段
@@ -21,7 +21,7 @@ In a `Game`, we have 5 different phase in total. 在 `Game` 类中，我们共�
 
 
 
-## Class Player, Player 类
+## 2. Class Player, Player 类
 
 In a game, we have 2 players, which are instances of class `Player`. 一局游戏里，每个玩家时一个`Player`类的实例。
 
@@ -47,43 +47,43 @@ A player has a character list, instances of `Character` are in it. 每一个玩�
 
 
 
-## Class Entity, Entity 类
+## 3. Class Entity, Entity 类
 
 All of `Status`, `Shield`,  `Combat_Status`, `Combat_Shield`, `Summon`, `Support`,  `Weapon`, `Artifact` and `Character` are entities (subclass of `Entity`). 包括状态、护盾、出战状态、出战护盾，召唤物，支援物，武器，圣遗物，角色在内的对象均为实例，是`Entity`类的子类。
 
-### Class Status， Status 类
+### 3.1 Class Status， Status 类
 
 Class of character status, maintain in `Character_Zone` of each `Character`. 角色状态类，在每个角色的角色区内维护。
 
-#### Class Shield, Shield 类
+#### 3.1.1 Class Shield, Shield 类
 
 Same as `Status`. Design for shield on single character. 和角色状态一致，用于附着在单个角色的盾。
 
-### Class Combat_Status, Combat_Status 类
+### 3.2 Class Combat_Status, Combat_Status 类
 
 Class of `Combat_Status`, maintain in `Team_Combat_Status_Zone`. 出战状态类，在出战状态区内。
 
-#### Class of Combat_Shield, Combat_Shield 类
+#### 3.2.1 Class of Combat_Shield, Combat_Shield 类
 
 Same as `Combat_Status` for shields.  与出战状态一致，用于盾。
 
-### Class Summon， Summon 类
+### 3.3 Class Summon， Summon 类
 
 Class of `Summon`, lying in `Summon_Zone`. 召唤物类，置于召唤物区。
 
-### Class Support, Support 类
+### 3.4 Class Support, Support 类
 
 Class of `Support`, lying in `Support_Zone`。 支援，于支援区。
 
-### Class Weapon, Weapon 类
+### 3.5 Class Weapon, Weapon 类
 
 Class of weapon, stored the card information of the weapon. 武器类，存有武器牌信息。
 
-### Class Artifact, Artifact 类
+### 3.6 Class Artifact, Artifact 类
 
 Similar with `weapon`. 与武器类似。 Not Implement Yet. 还未实现。 
 
-## Class Character, Character 类
+### 3.7 Class Character, Character 类
 
 Each character should has the following attributes: 每个角色需要维护以下属性:
 
@@ -112,11 +112,46 @@ In this base class, several basic operations have been defined. 在该基类中�
 
 More detail could be viewed in 更多信息可以在以下文件中查看： `genius_invocation/entity/character.py`。 
 
-### Class CharacterZone, CharacterZone 类
+#### 3.7.1 Class CharacterZone, CharacterZone 类
 
 This zone contains `Weapon`, `Artifact`, `Status` List. 该区域包含装备的武器牌，圣遗物牌，角色状态列表。
 
 
 
-## Event System, 事件系统
+## 4. Event System, 事件系统
 
+Event System provides the simulator with the event listening (`listen`), event triggering (`invoke`) functions. When an event occurs, the `listener` can be notified to perform a predefined `action`. 事件系统为模拟环境提供了事件监听 (`listen`) 和触发 (`invoke`) 功能。在事件 (`event`) 发生时，可以通知监听者 (`listener`) 执行预定义的动作 (`action`)。
+
+The event system provides unified management and triggering mechanism for tasks with uncertain source, quantity, frequency, and timing. 事件系统提供了不确定来源、数量、次数、时机的任务的统一管理、触发机制。
+
+
+
+### 4.1 Event, 事件
+
+Event represents some abstract timing. 事件代表某种抽象时刻。
+
+We can treat any gaps during execution as events. 我们可以把代码执行的任何间隔时刻当作事件。
+
+Here are the `Event` used in the project： 一下为我们使用到的事件： `Enum: EventType`
+
+-   `BEGIN_ROLL_PHASE` 开始投掷阶段
+-   `BEGIN_ACTION_PHASE` 开始行动阶段 
+-   `CALCULATE_DICE` 计算骰子需求
+-   `ON_PLAY_CARD` 打出手牌
+-   `AFTER_PLAY_CARD`打出手牌后
+-   `ON_USE_SKILL`执行技能
+-   `AFTER_USE_SKILL`执行技能后
+-   `ON_CHANGE_CHARACTER` 切换角色
+-   `AFTER_CHANGE_CHARACTER` 切换角色后
+-   `END_PHASE` 结束阶段
+-   `AFTER_TAKES_DMG` 受到伤害后
+-   `DAMAGE_ADD`计算伤害增加量
+-   `DAMAGE_ADD_AFTER_REACTION`: 计算由于触发反应引起的加伤。 e.g. `Elemental Resonance: Fervent Flames` 例如：`元素共鸣：热诚之火`。
+-   `DEALING_DAMAGE`: 结算伤害时，for Mona only right now, 现仅对莫娜起作用
+-   `INFUSION`: 伤害元素附着
+-   `EXCUTE_DAMAGE`: 执行伤害时，Calculate the damage discount from shield and status, 计算由盾、状态产生的伤害减免。
+-   `CHARACTER_DIE` 角色死亡时
+-   `BEFORE_ANY_ACTION` 任意行动之前
+-   `AFTER_ANY_ACTION`任意行动之后
+-   `ON_SUMMON_REMOVE`召唤物移除时
+-   `ELEMENTAL_APPLICATION_REACTION`: The timing that a reaction is triggered by an elemental application (no damage).  附着元素造成反应之时（无伤害）。
