@@ -34,7 +34,7 @@ class GeniusPlayer:
                 from_player = self,
                 index = id,
                 from_character = None,
-                talent = False))
+                talent = True))
         self.character_num = len(self.character_list)
 
         # 初始化牌库、起始5张手牌、骰子区
@@ -99,7 +99,7 @@ class GeniusPlayer:
         '''
             基本行动: 投掷骰子
         '''
-        is_omni = False
+        is_omni = True
         if is_basic:
                 if is_different:
                     return np.random.choice(DICENUM-1, num, replace=False).tolist()
