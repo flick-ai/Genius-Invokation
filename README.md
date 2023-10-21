@@ -1,12 +1,14 @@
 # Genius-Invokation
-A simulator of the Genius Invokation TCG in Genshin impact for Reinforcement Learning
-一个用于强化学习的原神七圣召唤卡牌模拟器
+A simulator of the Genius Invokation TCG in Genshin impact
+一个用于自定义卡牌、训练强化学习AI的原神七圣召唤卡牌模拟器
 
-[Document](https://genius-invokation.readthedocs.io/zh/latest/) | [详细信息文档](Explaination.md) | [Attach](qq.jpg)
+[网页demo](https://flick-ai.github.io/Genius-Invokation-Website/) ｜ [Document](https://genius-invokation.readthedocs.io/zh/latest/) | [详细信息文档](Explaination.md) | [测试表格](https://j0mmhq251c1.feishu.cn/sheets/RloasMqWHh1RgytsZfqcblqBnge?from=from_copylink) | [Attach](qq.jpg)
+
 ![](main.png)
-我们的项目目标是基于python搭建原神七圣召唤卡牌游戏的模拟器对战环境，并在此基础上基于Reinforcement Learning训练七圣召唤的AI牌手。目前我们的环境已经可以支持游戏，并且基本实现了和七圣召唤中相同的结算效果。
 
-由于我们的贡献者都是出于热爱的工作，精力有限，目前只实现了部分卡片的实现，但需要的主要接口都已完成。如果您在体验过程中发现有任何bug或者实现了部分卡片的功能，请及时联系我们。
+我们的项目目标是基于python搭建原神七圣召唤卡牌游戏的模拟器对战环境，使得使用者可以随心所欲的自定义卡牌并测试其强度，并在此基础上基于Reinforcement Learning训练七圣召唤的AI牌手。目前我们的环境已经可以支持游戏，并且基本实现了和七圣召唤中相同的结算效果。您可以阅读我们撰写的详细信息文档和该库的参考文档，来实现您自己的七圣召唤卡牌！
+
+由于我们的贡献者都是出于热爱的工作，精力有限，目前只实现了部分卡片的实现，但需要的主要接口都已完成。如果您在体验过程中发现有任何bug或者实现了部分卡片的功能，请及时联系我们。如果您测试了一些卡片并发现其没有问题，欢迎填写我们的测试表格。
 
 ## Roadmap
 - [x] 实现了游戏主体架构的搭建
@@ -64,6 +66,6 @@ A simulator of the Genius Invokation TCG in Genshin impact for Reinforcement Lea
         每回合初始8个骰子非默认万能：genius_invocation/game/player.py Line102，is_omni=False
 
 ## 网页端运行
-    我们正在搭建网页端的单机游玩f方式，敬请期待。
+    您可以通过我们的网页端demo进行运行，或者自己在本地配置。
 
 ![](website.png)
