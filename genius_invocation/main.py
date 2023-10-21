@@ -20,5 +20,5 @@ if __name__=="__main__":
 
     while not game.is_end:
         print(game.encode_message())
-        action = Action.from_input(game)
+        action = Action.from_input(game, jump=True)
         game.step(action)
