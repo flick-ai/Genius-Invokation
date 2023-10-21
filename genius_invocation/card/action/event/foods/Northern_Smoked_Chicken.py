@@ -28,10 +28,15 @@ class Northern_Smoked_Chicken_Entity(Status):
             if self.current_usage <= 0:
                 self.on_destroy(game)
 
+    def on_begin(self, game: 'GeniusGame'):
+        if game.current_damage.damage_from == self.from_character:
+            self.on_destroy(game)
+
     def update_listener_list(self):
         self.listeners = [
             (EventType.ON_USE_SKILL, ZoneType.CHARACTER_ZONE, self.on_skill),
             (EventType.CALCULATE_DICE, ZoneType.CHARACTER_ZONE, self.on_calculate),
+            (EventType.BEGIN_ACTION_PHASE, ZoneType.CHARACTER_ZONE, self.on_begin)
         ]
 
 class Northern_Smoked_Chicken(FoodCard):

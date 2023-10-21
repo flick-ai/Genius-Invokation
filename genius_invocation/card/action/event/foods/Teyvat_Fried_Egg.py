@@ -14,6 +14,14 @@ class NoRevie(Status):
         super().__init__(game, from_player, from_character)
         self.current_usage = 1
 
+    def on_begin(self, game: 'GeniusGame'):
+        if game.current_damage.damage_from == self.from_character:
+            self.on_destroy(game)
+    
+    def update_listener_list(self):
+        self.listeners = [
+            (EventType.BEGIN_ACTION_PHASE, ZoneType.CHARACTER_ZONE, self.on_begin)
+        ]
 class Teyvat_Fried_Egg(FoodCard):
     id: int = 333009
     name: str = "Teyvat Fried Egg"
