@@ -19,7 +19,7 @@ async def get_input(prompt: str, assert_fn=None, dtype=None):
             exit()
         except:
             js.document.getElementById("error_text").innerText = "您输入的内容无效，请重新输入"
-        await asyncio.sleep(0.05)
+        await asyncio.sleep(0.2)
 
 async def get_sel(prompt: str, selection: List, assert_fn=None, dtype=None):
     '''
@@ -103,4 +103,4 @@ async def get_rng_mul_sel(prompt: str, min=None, max=None, assert_fn=None, dtype
             exit()
         except:
             js.document.getElementById("error_text").innerText = "您输入的内容无效，请重新输入"
-        await asyncio.sleep(0.05)
+        await asyncio.sleep(0.2)

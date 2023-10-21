@@ -28,10 +28,11 @@ def get_dict(game: 'GeniusGame'):
         message[idx]["support_zone"]: List[List[str]] = [[support.name,  str(support.show())]for support in player.support_zone.space]
         message[idx]["character_zone"] = [{}, {}, {}]
         for i, character in enumerate(player.character_list):
-            message[idx]["character_zone"][i]['base'] = [Elementals_to_str(character.elemental_application),
+            message[idx]["character_zone"][i]['base'] = [Elementals_to_str(character.elemental_application).strip(),
              character.name,
              character.show(),
              str(character.power),
+             character.is_active
             ]
             if character.character_zone.weapon_card != None:
                 message[idx]["character_zone"][i]['weapon'] = character.character_zone.weapon_card.show()

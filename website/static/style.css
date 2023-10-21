@@ -6,7 +6,10 @@
 }
 
 .diceinner {
+  margin: 10px 20px;
   display: grid;
+  place-items: center;
+  grid-gap: 4px;
   grid-template-columns: auto auto;
 }
 
@@ -17,24 +20,11 @@
   justify-content: center;
 }
 
-.circle {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-}
-
-.health {
-  background-color: #BB3333;
-}
 
 
-.energy {
-  background-color: #D6CEAC;
-}
-
-.element {
-  background-color: #BBBBBB;
-}
+/* .test {
+  background-color: rgb(58, 90, 186);
+} */
 
 .wrapper {
     display: grid;
@@ -42,10 +32,43 @@
     grid-gap: 10px;
     grid-auto-rows: minmax(80px, 80px);
   }
-  .information {
+  .player0box {
+    grid-column: 1 / 10;
+    grid-row: 2/6;
+    border-style:solid;
+    border-width: 4px;
+    border-color: #00000000;
+  }
+  .player1box {
+    grid-column: 1 / 10;
+    grid-row: 6/10;
+    border-style:solid;
+    border-width: 4px;
+    border-color: #00000000;
+  }
+  .informationbox {
     grid-column: 1 / 10;
     grid-row: 1 / 2;
     background: #BBBBBB;
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+  }
+
+  .confirm {
+    grid-column: 1/ 2;
+    grid-row: 1/ 2;
+  }
+  .information {
+    grid-column: 3/ 8;
+    grid-row: 1/ 2;
+  }
+  .changecharacter {
+    grid-column: 8/ 9;
+    grid-row: 1/ 2;
+  }
+  .passround {
+    grid-column: 9/ 10;
+    grid-row: 1/ 2;
   }
   .cardzone.player0 { 
     grid-column: 1 / 2;
@@ -60,7 +83,7 @@
   .support0.player0 {
     grid-column: 2;
     grid-row: 2/4;
-    background: #BBBBBB;
+    background: rgb(187, 187, 187);
   }
   .support2.player0 {
     grid-column: 2;
@@ -81,16 +104,25 @@
     grid-column: 4;
     grid-row: 2/6;
     background: #ECAD9E;
+    border-style:solid;
+    border-width: 4px;
+    border-color: #00000000;
   }
   .character1.player0 {
     grid-column: 5;
     grid-row: 2/6;
     background: #ECAD9E;
+    border-style:solid;
+    border-width: 4px;
+    border-color: #00000000;
   }
   .character2.player0 {
     grid-column: 6;
     grid-row: 2/6;
     background: #ECAD9E;
+    border-style:solid;
+    border-width: 4px;
+    border-color: #00000000;
   }
   
   .summon0.player0 {
@@ -152,16 +184,25 @@
     grid-column: 4;
     grid-row: 6/10;
     background: #ECAD9E;
+    border-style:solid;
+    border-width: 4px;
+    border-color: #00000000;
   }
   .character1.player1 {
     grid-column: 5;
     grid-row: 6/10;
     background: #ECAD9E;
+    border-style:solid;
+    border-width: 4px;
+    border-color: #00000000;
   }
   .character2.player1 {
     grid-column: 6;
     grid-row: 6/10;
     background: #ECAD9E;
+    border-style:solid;
+    border-width: 4px;
+    border-color: #994400;
   }
   
   .summon0.player1 {
@@ -197,9 +238,74 @@
     text-align: center;
     font-size: 110%;
     color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
   .item .skill {
     text-align: center;
     font-size: 90%;
     color: #fff;
+  }
+
+  .circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+  }
+  
+  .diceitem {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border-style:solid;
+    border-width:2px;
+    border-color: #00000000;
+  }
+  
+  /* .contain {
+    border-style:solid;
+    border-width:1px;
+    border-color:#999999;
+  } */
+  
+  /* .clickable {
+    border-style:solid;
+    border-width:2px;
+    border-color: #00000000;
+  } */
+  
+  .clickable:hover {
+    background-color: #FFFFFF33;
+  }
+  
+  .selected {
+    background-color: #FFFFFF33;
+  }
+  
+  
+  .diceitem:hover {
+    border-color: #555555;
+  }
+  
+  .diceitem.selected {
+    border-color: #555555;
+  }
+  
+  .topclick {
+    justify-content: center;
+    align-items: center;
+    font-size: 120%;
+  }
+  
+  .health {
+    background-color: #BB3333;
+  }
+  
+  .energy {
+    background-color: #D6CEAC;
+  }
+  
+  .element {
+    background-color: #BBBBBB;
   }
