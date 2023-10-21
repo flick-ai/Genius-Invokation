@@ -25,14 +25,18 @@ class Status(Entity):
 
     def on_destroy(self, game):
         super().on_destroy(game)
-        self.from_character.character_zone.remove_entity(self)
+        if self.from_character is not None:
+            self.from_character.character_zone.remove_entity(self)
 
     def update(self):
         # All states can be update, maybe need to re-implement in subclass
         pass
 
     def show(self):
-        return str(self.current_usage)
+        try:
+            return str(self.current_usage)
+        except:
+            return "^(._.)<^"
 
 class Combat_Status(Entity):
     id: int
@@ -48,7 +52,10 @@ class Combat_Status(Entity):
         self.from_player.team_combat_status.remove_entity(self)
 
     def show(self):
-        return self.current_usage
+        try:
+            return str(self.current_usage)
+        except:
+            return "^(._.)<^"
 
 class Shield(Status):
     # Status of shield (Only for single character)
@@ -132,6 +139,9 @@ class Dendro_Core(Combat_Status):
 
     def update(self):
         self.current_usage = self.usage
+    
+    def add_one_usage(self):
+        self.current_usage = min(self.current_usage+1, self.max_usage)
 
     def on_damage_add(self, game: 'GeniusGame'):
         if game.current_damage.damage_from is None: return
@@ -156,10 +166,10 @@ class Catalyzing_Feild(Combat_Status):
         self.max_usage = 4
 
     def update(self):
-        self.current_usage = max(self.usage, self.current_usage)
+        self.current_usage = self.usage
 
     def add_one_usage(self):
-        self.current_usage += 1
+        self.current_usage = min(self.current_usage+1, self.max_usage)
 
     def on_damage_add(self, game: 'GeniusGame'):
         if game.current_damage.damage_from is None: return

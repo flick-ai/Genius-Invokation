@@ -1,5 +1,5 @@
 from genius_invocation.card.action.base import ActionCard
-from genius_invocation.entity.status import Status
+from genius_invocation.entity.status import Combat_Status
 
 from genius_invocation.utils import *
 if TYPE_CHECKING:
@@ -7,7 +7,7 @@ if TYPE_CHECKING:
     from genius_invocation.game.player import GeniusPlayer
 
 
-class  Stone_and_Contracts_Entity(Status):
+class  Stone_and_Contracts_Entity(Combat_Status):
     id: int = 331802
     name: str = 'Stone and Contracts'
     def __init__(self, game:'GeniusGame', from_player: 'GeniusPlayer', from_character=None):

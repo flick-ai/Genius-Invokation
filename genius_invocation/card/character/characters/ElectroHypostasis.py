@@ -78,6 +78,11 @@ class PreparePaper(Status):
         super().__init__(game, from_player, from_character)
         self.skill = RockPaperScissorsCombo_Paper(from_character=from_character)
 
+    def after_change(self,game:'GeniusGame'):
+        if game.current_switch["from"] == self.from_character:
+            self.from_character.from_player.prepared_skill = None
+            self.on_destroy(game)
+
     def on_call(self, game: 'GeniusGame'):
         self.skill.on_call(game)
         self.on_destroy(game)
@@ -85,6 +90,10 @@ class PreparePaper(Status):
     def on_destroy(self, game):
         return super().on_destroy(game)
 
+    def update_listener_list(self):
+        self.listeners = [
+            (EventType.AFTER_CHANGE_CHARACTER, ZoneType.CHARACTER_ZONE, self.after_change)
+        ]
 
 class RockPaperScissorsCombo_Scissors(ElementalSkill):
     '''
@@ -126,10 +135,19 @@ class PrepareScissors(Status):
         super().__init__(game, from_player, from_character)
         self.skill = RockPaperScissorsCombo_Scissors(from_character=from_character)
 
+    def after_change(self,game:'GeniusGame'):
+        if game.current_switch["from"] == self.from_character:
+            self.from_character.from_player.prepared_skill = None
+            self.on_destroy(game)
+
     def on_call(self, game: 'GeniusGame'):
         self.skill.on_call(game)
         self.on_destroy(game)
 
+    def update_listener_list(self):
+        self.listeners = [
+            (EventType.AFTER_CHANGE_CHARACTER, ZoneType.CHARACTER_ZONE, self.after_change)
+        ]
     def on_destroy(self, game):
         return super().on_destroy(game)
 

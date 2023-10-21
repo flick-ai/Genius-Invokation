@@ -71,7 +71,7 @@ def Overloaded(game: 'GeniusGame', player_id: int, target_idx: int):
     game.players[player_id].active_zone.character_list[target_idx] .
     '''
     game.players[player_id].character_list[target_idx].elemental_application.pop(0)
-    game.players[player_id].change_to_next_character()
+    # game.players[player_id].change_to_next_character()
     logger.info("Trigger Elemental_Reaction: Overloaded")
 
 

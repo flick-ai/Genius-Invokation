@@ -27,9 +27,6 @@ class CharacterSkill:
     main_damage: int
     piercing_damage: int
 
-    # heal
-    heal: int
-
     # cost
     cost: list({'cost_num': int, 'cost_type': CostType})
     energy_cost: int

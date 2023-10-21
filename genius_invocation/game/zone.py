@@ -207,7 +207,7 @@ class CardZone:
         for idx, card in enumerate(reversed(self.card)):
             if card.card_type == card_type:
                 get_list.append(card)
-                idx_list.append(idx)
+                idx_list.append(len(self.card) - idx -1)
                 if num > 0:
                     if len(get_list) == num:
                         break
