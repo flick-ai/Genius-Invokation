@@ -121,12 +121,16 @@ class GeniusPlayer:
         '''
             基本行动: 切换到指定人
         '''
+        if self.active_idx in range(self.character_num):
+            self.game.current_switch["from"] = self.character_list[self.active_idx]
         if self.active_idx >= 0:
             self.character_list[self.active_idx].is_active = False
         self.active_idx = idx
         self.character_list[self.active_idx].is_active = True
+        self.game.current_switch["to"] = self.character_list[self.active_idx]
         self.game.manager.invoke(EventType.AFTER_CHANGE_CHARACTER, self.game)
         self.character_list[self.active_idx].on_switched_to()
+        self.game.current_switch = {"from": None, "to": None}
 
     def change_to_previous_character(self):
         '''
