@@ -56,3 +56,8 @@ A simulator of the Genius Invokation TCG in Genshin impact for Reinforcement Lea
         不跳过了重新投掷骰子和选择手牌的环节： genius_invocation/main.py Line 23， jump=False
         角色不默认装备天赋：genius_invocation/game/player.py Line37， talent=False
         每回合初始8个骰子非默认万能：genius_invocation/game/player.py Line102，is_omni=False
+
+## 网页端运行
+    我们正在搭建网页端的单机游玩平台，敬请期待。
+    
+![](image-1.png)
