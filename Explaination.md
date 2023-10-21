@@ -2,7 +2,9 @@
 
 #  七圣召唤环境构建
 
-## 1. Class: Game ， Game 类
+## 1. Class: GeniusGame ， GeniusGame 类
+
+### 1.1 Game Phase, 游戏阶段
 
 In a `Game`, we have 5 different phase in total. 在 `Game` 类中，我们共有5个不同的阶段：
 
@@ -19,11 +21,31 @@ In a `Game`, we have 5 different phase in total. 在 `Game` 类中，我们共�
     -   In each *ACTION_PHASE* ， two player act alternately. 在每一个行动阶段，双方轮流行动。
 -   *END_PHASE*: 回合结束阶段
 
+### 1.2 Attributes, 属性
+
+-   `first_player`: which player acts first in this round，当前轮次内先手。 (Index only,  只记录了序号)
+-   `active_player`: which player is active. 当前行动角色。 (Instance of `GeniusPlayer`)
+-   `active_player_index`: the index of active player. 当前行动角色编号。
+-   `player0`, `player1`: two player instance. 2个玩家实例。
+-   `players=[player0, player1]`:  list of players，玩家列表。
+-   `game_phase` Game Phase, 游戏阶段。
+-   `special_phase`: The insert special phase to deal, default as `None`. 需要处理的插入阶段，默认为`None`.
+-   `round`: round of the game, 游戏轮次。
+-   `current_dice`:  # TODO
+-   `current_action`:
+-   `current_damage`: 
+-   `current_skill`:
+-   `current_card`:
+-   `damage_list`:
+-   `is_changed_player`:
+-   `is_end`:
+-   `manager`: 
 
 
-## 2. Class Player, Player 类
 
-In a game, we have 2 players, which are instances of class `Player`. 一局游戏里，每个玩家时一个`Player`类的实例。
+## 2. Class GeniusPlayer, GeniusPlayer 类
+
+In a game, we have 2 players, which are instances of class `GeniusPlayer`. 一局游戏里，每个玩家时一个`GeniusPlayer`类的实例。
 
 We maintain some global team state in this class: 我们在这个类中维护了一些全队的状态：
 
@@ -156,4 +178,41 @@ Here are the `Event` used in the project： 一下为我们使用到的事件：
 -   `ON_SUMMON_REMOVE`召唤物移除时
 -   `ELEMENTAL_APPLICATION_REACTION`: The timing that a reaction is triggered by an elemental application (no damage).  附着元素造成反应之时（无伤害）。
 
-### 4.2 Executing Logic
+### 4.2 Event Execution Order 事件执行顺序
+
+The execution order is defined by the priority of zones. 执行顺序由各区域的优先级确定。 
+
+As far as we known, the priority is as bellow: 具我们所知，优先级按下列排列：
+
+-   `CHARACTER_ZONE` $0$ 
+-   `ACTIVE_ZONE_SHIELD` $1$ 
+-   `ACTIVE_ZONE` $2$
+-   `SUMMON_ZONE`: $3$
+-   `SUPPORT_ZONE`: $4$
+
+In the same priority, the event registered earlier will be triggered earlier, too. 在同一优先级内，先注册的事件会优先执行。
+
+###4.3  Listen 监听
+
+-   Each entity may need to be listened at some specific event timing. 每个实例都有可能需要在某些时刻被监听。
+
+-   Please maintain the listener list of each `Entity`: `listeners` in its function `update_listener_list`. 请对每个需要监听的`Entity`对象维护 listener 列表: 在所属函数`update_listener_list`中维护`listeners`。
+
+-   The list consists tuples: (`EventType`, `ZoneType`, `ACTION`)，the `ACTION` is the called function when the event is invoked. 这个列表由一个或多个三元组构成，(`EventType`, `ZoneType`, `ACTION`), 其中， `ACTION` 为触发时调用的函数。
+
+-   ·`ACTION` always has the only input param: `game`. `ACTION`的输入总是只有`game`一项。
+
+### 4.4 Invoke 触发
+
+You only need to give the `event`to  the event manager, the `ACTION`s will automatically invoked. 仅需将需要触发的事件发送给事件管理器，对应的函数将自动触发。
+
+
+
+## 5. Damage 伤害
+
+## 6. Dice 骰子
+
+## 7. Skill 技能
+
+## 8. Card 牌
+
