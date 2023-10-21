@@ -29,6 +29,7 @@ def get_sel(prompt: str, selection: List, assert_fn=None, dtype=None):
                 assert assert_fn(inp)
             return inp
         except KeyboardInterrupt:
+            raise KeyboardInterrupt
             exit()
         except:
             print("您输入的选择无效，请重新输入")
@@ -49,6 +50,7 @@ def get_mul_sel(prompt: str, selection: List, assert_fn=lambda x:True):
                 assert assert_fn(selection)
             return selection
         except KeyboardInterrupt:
+            raise KeyboardInterrupt
             exit()
         except:
             print("您输入的多选无效，请重新输入")
@@ -69,6 +71,7 @@ def get_rng_sel(prompt: str, min=None, max=None, assert_fn=None, dtype=None):
                 assert assert_fn(inp)
             return
         except KeyboardInterrupt:
+            raise KeyboardInterrupt
             exit()
         except:
             print("您输入的选择无效，请重新输入")
@@ -94,6 +97,7 @@ def get_rng_mul_sel(prompt: str, min=None, max=None, assert_fn=None, dtype=None)
                 assert assert_fn(selection)
             return selection
         except KeyboardInterrupt:
+            raise KeyboardInterrupt
             exit()
         except:
             print("您输入的多选无效，请重新输入")

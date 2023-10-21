@@ -32,6 +32,7 @@ class Rana_Entity(Support):
                         next_character = standby_character[0]
                         dice_type = ElementToDice[next_character.element]
                         self.from_player.dice_zone.add([dice_type.value])
+                        self.usage -= 1
 
     def update_listener_list(self):
         self.listeners = [

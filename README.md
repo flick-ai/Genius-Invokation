@@ -24,7 +24,8 @@ A simulator of the Genius Invokation TCG in Genshin impact
         - [ ] 事件牌进度:27/59
 - [ ] 完成了网页端的调试接口
     - [x] 实现了在网页端的输入调试
-    - [ ] 实现了在网页端的交互式调试
+    - [x] 实现了在网页端的交互式调试
+    - [ ] 丰富和美化网页端的功能
 - [ ] 完成了强化学习算法的实习和训练
 
 
@@ -66,6 +67,6 @@ A simulator of the Genius Invokation TCG in Genshin impact
         每回合初始8个骰子非默认万能：genius_invocation/game/player.py Line102，is_omni=False
 
 ## 网页端运行
-    您可以通过我们的网页端demo进行运行，或者自己在本地配置。
+    您可以通过我们的网页端demo(https://flick-ai.github.io/Genius-Invokation-Website/)进行运行，或者自己在本地配置网页端进行运行。网页端的交互更加便利，并且支持不同的设备。
 
 ![](website.png)

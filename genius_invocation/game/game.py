@@ -146,6 +146,7 @@ class GeniusGame:
             for idx, char in enumerate(player.character_list):
                 if not char.is_alive:
                     num += 1
+                    continue
                 if char.health_point <= 0:
                     char.is_alive = False
                     self.manager.invoke(EventType.CHARACTER_DIE, self)
