@@ -71,13 +71,6 @@ class Molten_Inferno(ElementalSkill):
         # 召唤物/状态生成
         self.generate_summon(game, Fiery_Sanctum_Field)
         self.gain_energy(game)
-
-        if self.from_character.talent:
-            if self.from_character.character_zone.has_entity(Talent_Status) is None:
-                talent_status = Talent_Status(game, self.from_character.from_player, self.from_character)
-                self.from_character.character_zone.add_entity(talent_status)
-            #TODO: When talent card is written, please move this part of the code into its on_call.
-
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 
@@ -195,23 +188,6 @@ class Fiery_Sanctum_Field(Summon):
         super().__init__(game, from_player, from_character)
         self.current_usage = self.usage
         self.last_round = -1
-
-class Talent_Status(Status):
-    name = "Stalwart and True"
-
-    def __init__(self, game:'GeniusGame', from_player:'GeniusPlayer', from_character:'Character'):
-        super().__init__(game, from_player, from_character)
-    
-    def on_end_phase(self, game:'GeniusGame'):
-        if game.active_player == self.from_player:
-            if self.from_character.health_point <=6:
-                self.from_character.heal(2)
-    
-    def update_listener_list(self):
-        self.listeners = [
-            (EventType.END_PHASE, ZoneType.CHARACTER_ZONE, self.on_end_phase)
-        ]
-
 class Dehya(Character):
     id = 1309
     name = "Dehya"
@@ -228,11 +204,18 @@ class Dehya(Character):
         self.talent = talent
         self.power = 0
         self.next_skill = Incineration_Drive(self)
-        if self.talent:
-            if self.character_zone.has_entity(Talent_Status) is None:
-                talent_status = Talent_Status(game, self.from_player, self)
-                self.character_zone.add_entity(talent_status)
 
+    def on_end_phase(self, game:'GeniusGame'):
+        if self.talent:
+            if game.active_player == self.from_player:
+                if self.health_point <=6:
+                    self.heal(2)
+
+    def update_listener_list(self):
+        self.listeners = [
+            (EventType.END_PHASE, ZoneType.CHARACTER_ZONE, self.on_end_phase)
+        ]
+    
 
 class Prepare_Incineration_Drive(Status):
     name = "Prepare Incineration Drive"
