@@ -21,12 +21,18 @@ element_to_dice = {
 
 async def main():
     deck1 = {
-    'character': ['Rhodeia_of_Loch', 'Nahida', 'Tartaglia'],
-    'action_card': ['Liben' for i in range(30)]
+    'character': ['Rhodeia_of_Loch', 'Nahida', 'Fischl'],
+    'action_card': ['Fresh_Wind_of_Freedom','Toss_up','Toss_up','Dunyarzad','Dunyarzad','Chef_Mao','Chef_Mao','Paimon','Paimon',
+                    'Rana','Rana','Liben','Liben','Timmie','Timmie','Mushroom_Pizza','Mushroom_Pizza','Adeptus_Temptation','Adeptus_Temptation',
+                    'Teyvat_Fried_Egg','Teyvat_Fried_Egg','Sweet_Madame','Sweet_Madame','Mondstadt_Hash_Brown','Mondstadt_Hash_Brown',
+                    'Treasure_Seeking_Seelie','Treasure_Seeking_Seelie','Vanarana','Lotus_Flower_Crisp','Lotus_Flower_Crisp']
     }
     deck2 = {
-    'character': ['Cyno', 'Wanderer', 'Yoimiya'],
-    'action_card': ['Liben' for i in range(30)]
+    'character': ['Xingqiu', 'Ganyu', 'Shenhe'],
+    'action_card': ['Fresh_Wind_of_Freedom','Toss_up','Toss_up','Dunyarzad','Dunyarzad','Chef_Mao','Chef_Mao','Paimon','Paimon',
+                    'Rana','Rana','Liben','Liben','Timmie','Timmie','Mushroom_Pizza','Mushroom_Pizza','Adeptus_Temptation','Adeptus_Temptation',
+                    'Teyvat_Fried_Egg','Teyvat_Fried_Egg','Sweet_Madame','Sweet_Madame','Mondstadt_Hash_Brown','Mondstadt_Hash_Brown',
+                    'Treasure_Seeking_Seelie','Treasure_Seeking_Seelie','Vanarana','Lotus_Flower_Crisp','Lotus_Flower_Crisp']
     }
     game = GeniusGame(player0_deck=deck1, player1_deck=deck2)
     information = []
@@ -62,22 +68,22 @@ async def main():
             summon_zone = message[i]['summon_zone']
             for idx in range(4):
                 summon = js.document.getElementsByClassName(f'summon{idx} {player}')[0]
-                summon.getElementsByClassName('title')[0].innerText = f'召唤区{idx+1}'
+                summon.getElementsByClassName('thetitle')[0].innerText = f'召唤区{idx+1}'
                 summon.getElementsByClassName('inneritem')[0].innerText = ''
             for idx, item in enumerate(summon_zone):
                 summon = js.document.getElementsByClassName(f'summon{idx} {player}')[0]
-                summon.getElementsByClassName('title')[0].innerText = item[0]
+                summon.getElementsByClassName('thetitle')[0].innerText = item[0]
                 summon.getElementsByClassName('inneritem')[0].innerText = item[1]
 
             # 支援区
             support_zone = message[i]['support_zone']
             for idx in range(4):
                 support = js.document.getElementsByClassName(f'support{idx} {player}')[0]
-                support.getElementsByClassName('title')[0].innerText = f'支援区{idx+1}'
+                support.getElementsByClassName('thetitle')[0].innerText = f'支援区{idx+1}'
                 support.getElementsByClassName('inneritem')[0].innerText = ''
             for idx, item in enumerate(support_zone):
                 support = js.document.getElementsByClassName(f'support{idx} {player}')[0]
-                support.getElementsByClassName('title')[0].innerText = item[0]
+                support.getElementsByClassName('thetitle')[0].innerText = item[0]
                 support.getElementsByClassName('inneritem')[0].innerText = item[1]
 
             # 角色区
@@ -89,11 +95,31 @@ async def main():
                 else:
                     characters[idx].style.borderColor = '#00000000'
                 js.document.getElementById(f'{player}_character{idx}_element').style.background = element_to_dice[item['base'][0]]
-                characters[idx].getElementsByClassName('title')[0].innerText = item['base'][1]
+                characters[idx].getElementsByClassName('thetitle')[0].innerText = item['base'][1]
                 js.document.getElementById(f'{player}_character{idx}_health').innerText = item['base'][2]
                 js.document.getElementById(f'{player}_character{idx}_power').innerText = item['base'][3]
                 for skill_idx, skill in enumerate(item['skills']):
                     js.document.getElementById(f'{player}_character{idx}_skill{skill_idx}').innerText = skill
+
+                if len(item['status']) == 0:
+                    chara_state = '角色状态\n(空)'
+                else:
+                    chara_state = '角色状态\n' + '\n'.join(item['status'])
+                js.document.getElementById(f'{player}_character{idx}_state_inner').innerText = chara_state
+
+                if item['active'] == "Active":
+                    js.document.getElementById(f'{player}_character{idx}_group_state').style.display = 'inline-block'
+                    if len(item['shield']) == 0:
+                        shield_state = '护盾\n(空)'
+                    else:
+                        shield_state = '护盾\n' + '\n'.join(item['shield'])
+                    if len(item['active_status']) == 0:
+                        active_state = '出战状态\n(空)'
+                    else:
+                        active_state = '出战状态\n' + '\n'.join(item['active_status'])
+                    js.document.getElementById(f'{player}_character{idx}_group_state_inner').innerText = shield_state +'\n' + active_state
+                else:
+                    js.document.getElementById(f'{player}_character{idx}_group_state').style.display = 'none'
             
 
 

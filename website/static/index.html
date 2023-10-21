@@ -5,6 +5,9 @@
     <link rel="stylesheet" href="https://pyscript.net/releases/2022.12.1/pyscript.css" />
     <link rel="stylesheet" href="./style.css" />
     <script defer src="https://pyscript.net/releases/2022.12.1/pyscript.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.3/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.3/js/bootstrap.bundle.min.js"></script>
   </head>
 
   <body>
@@ -25,7 +28,7 @@
           <div>当前行动:</div><div id="current_choice"></div>
         </div>
         <div class="information item">
-          <div class="title">对局信息</div>
+          <div class="thetitle">对局信息</div>
           <div id="information"></div>
         </div>
         <div class="changecharacter item topclick clickable">
@@ -35,40 +38,41 @@
           结束回合
         </div>
       </div>
-
+      
       <div class="player0box"></div>
-      <div class="cardzone player0 item zone"><div class="title">手牌区</div></div>
-      <div class="handcard player0 item zone"><div class="title"></div></div>
-      <div class="support0 player0 item zone"><div class="title clickable">支援区1</div></div>
-      <div class="support2 player0 item zone"><div class="title clickable">支援区3</div></div>
-      <div class="support1 player0 item zone"><div class="title clickable">支援区2</div></div>
-      <div class="support3 player0 item zone"><div class="title clickable">支援区4</div></div>
-      <div class="character0 player0 item zone"><div class="title clickable">角色1</div></div>
-      <div class="character1 player0 item zone"><div class="title clickable">角色2</div></div>
-      <div class="character2 player0 item zone"><div class="title clickable">角色3</div></div>
-      <div class="summon0 player0 item zone"><div class="title clickable">召唤区1</div></div>
-      <div class="summon2 player0 item zone"><div class="title clickable">召唤区3</div></div>
-      <div class="summon1 player0 item zone"><div class="title clickable">召唤区2</div></div>
-      <div class="summon3 player0 item zone"><div class="title clickable">召唤区4</div></div>
-      <div class="dice player0 item zone"><div class="title clickable">骰子区</div></div>
+      <div class="cardzone player0 item zone"><div class="thetitle">手牌区</div></div>
+      <div class="handcard player0 item zone"><div class="thetitle"></div></div>
+      <div class="support0 player0 item zone"><div class="thetitle clickable">支援区1</div></div>
+      <div class="support2 player0 item zone"><div class="thetitle clickable">支援区3</div></div>
+      <div class="support1 player0 item zone"><div class="thetitle clickable">支援区2</div></div>
+      <div class="support3 player0 item zone"><div class="thetitle clickable">支援区4</div></div>
+      <div class="character0 player0 item zone"><div class="thetitle clickable">角色1</div></div>
+      <div class="character1 player0 item zone"><div class="thetitle clickable">角色2</div></div>
+      <div class="character2 player0 item zone"><div class="thetitle clickable">角色3</div></div>
+      <div class="summon0 player0 item zone"><div class="thetitle clickable">召唤区1</div></div>
+      <div class="summon2 player0 item zone"><div class="thetitle clickable">召唤区3</div></div>
+      <div class="summon1 player0 item zone"><div class="thetitle clickable">召唤区2</div></div>
+      <div class="summon3 player0 item zone"><div class="thetitle clickable">召唤区4</div></div>
+      <div class="dice player0 item zone"><div class="thetitle clickable">骰子区</div></div>
       <div class="prompt item" id="prompt"></div>
 
       <div class="player1box"></div>
 
-      <div class="cardzone player1 item zone"><div class="title">手牌区</div></div>
-      <div class="handcard player1 item zone"><div class="title"></div></div>
-      <div class="support0 player1 item zone"><div class="title clickable">支援区1</div></div>
-      <div class="support2 player1 item zone"><div class="title clickable">支援区3</div></div>
-      <div class="support1 player1 item zone"><div class="title clickable">支援区2</div></div>
-      <div class="support3 player1 item zone"><div class="title clickable">支援区4</div></div>
-      <div class="character0 player1 item zone"><div class="title clickable">角色1</div></div>
-      <div class="character1 player1 item zone"><div class="title clickable">角色2</div></div>
-      <div class="character2 player1 item zone"><div class="title clickable">角色3</div></div>
-      <div class="summon0 player1 item zone"><div class="title clickable">召唤区1</div></div>
-      <div class="summon2 player1 item zone"><div class="title clickable">召唤区3</div></div>
-      <div class="summon1 player1 item zone"><div class="title clickable">召唤区2</div></div>
-      <div class="summon3 player1 item zone"><div class="title clickable">召唤区4</div></div>
-      <div class="dice player1 item zone"><div class="title clickable">骰子区</div></div>
+      <div class="cardzone player1 item zone"><div class="thetitle">手牌区</div></div>
+      <div class="handcard player1 item zone"><div class="thetitle"></div></div>
+      <div class="support0 player1 item zone"><div class="thetitle clickable">支援区1</div></div>
+      <div class="support2 player1 item zone"><div class="thetitle clickable">支援区3</div></div>
+      <div class="support1 player1 item zone"><div class="thetitle clickable">支援区2</div></div>
+      <div class="support3 player1 item zone"><div class="thetitle clickable">支援区4</div></div>
+      <div class="character0 player1 item zone"><div class="thetitle clickable">角色1</div></div>
+      <div class="character1 player1 item zone"><div class="thetitle clickable">角色2</div></div>
+      <div class="character2 player1 item zone"><div class="thetitle clickable">角色3</div></div>
+      <div class="summon0 player1 item zone"><div class="thetitle clickable">召唤区1</div></div>
+      <div class="summon2 player1 item zone"><div class="thetitle clickable">召唤区3</div></div>
+      <div class="summon1 player1 item zone"><div class="thetitle clickable">召唤区2</div></div>
+      
+      <div class="summon3 player1 item zone"><div class="thetitle clickable">召唤区4</div></div>
+      <div class="dice player1 item zone"><div class="thetitle clickable">骰子区</div></div>
       
       
     </div>
@@ -82,6 +86,7 @@
       <div id="current_dice"></div>
     </div>
     <script>
+
       let current_choice = ""
       let current_choice_set = new Set()
       let current_dice = ""
@@ -149,7 +154,7 @@
         handcard_player.appendChild(handcard_inner);
         for (let i = 0; i < 10; i++) {
           let card = document.createElement("div")
-          card.classList.add("card")
+          card.classList.add("handcard")
           card.classList.add("clickable")
           card.id = `player${index}_card` + i
           card.innerText = ""
@@ -205,7 +210,7 @@
         // 支援区
         for (let support_idx = 0; support_idx < 4; support_idx++) {
           support_zone = document.getElementsByClassName(`support${support_idx} player${index}`)[0]
-          let support_name = support_zone.getElementsByClassName("title")[0]
+          let support_name = support_zone.getElementsByClassName("thetitle")[0]
           support_name.addEventListener(
             "click", ()=>{
               support_name.classList.toggle("selected")
@@ -223,7 +228,7 @@
         // 召唤区
         for (let summon_idx = 0; summon_idx < 4; summon_idx++) {
           summon_zone = document.getElementsByClassName(`summon${summon_idx} player${index}`)[0]
-          let summon_name = summon_zone.getElementsByClassName("title")[0]
+          let summon_name = summon_zone.getElementsByClassName("thetitle")[0]
           summon_name.addEventListener(
             "click", ()=>{
               summon_name.classList.toggle("selected")
@@ -240,7 +245,7 @@
         // 角色区
         for (let chara_idx = 0; chara_idx < 3; chara_idx++) {
           chara_zone = document.getElementsByClassName(`character${chara_idx} player${index}`)[0]
-          let chara_name = chara_zone.getElementsByClassName("title")[0]
+          let chara_name = chara_zone.getElementsByClassName("thetitle")[0]
           chara_name.addEventListener(
             "click", ()=>{
               chara_name.classList.toggle("selected")
@@ -250,19 +255,46 @@
           )
           let basebar = document.createElement("div")
           basebar.classList.add("basebar")
-          health_circle = document.createElement("div")
+          let health_circle = document.createElement("div")
           health_circle.classList.add("health", "circle")
           health_circle.id = `player${index}_character${chara_idx}_health`
-          energy_circle = document.createElement("div")
+          let energy_circle = document.createElement("div")
           energy_circle.classList.add("energy", "circle")
           energy_circle.id = `player${index}_character${chara_idx}_power`
-          elemnt_circle = document.createElement("div")
+          let elemnt_circle = document.createElement("div")
           elemnt_circle.classList.add("element", "circle")
           elemnt_circle.id = `player${index}_character${chara_idx}_element`
+
           basebar.appendChild(health_circle)
           basebar.appendChild(energy_circle)
           basebar.appendChild(elemnt_circle)
           chara_zone.appendChild(basebar)
+
+          let equipbar = document.createElement("div")
+          equipbar.classList.add("basebar")
+          let weapon_circle = document.createElement("div")
+          weapon_circle.classList.add("equip", "circle")
+          weapon_circle.id = `player${index}_character${chara_idx}_weapon`
+          weapon_circle.innerText = "W"
+
+
+          let artifact_circle = document.createElement("div")
+          artifact_circle.classList.add("equip", "circle")
+          artifact_circle.id = `player${index}_character${chara_idx}_artifact`
+          artifact_circle.innerText = "A"
+
+
+          let talent_circle = document.createElement("div")
+          talent_circle.classList.add("equip", "circle")
+          talent_circle.id = `player${index}_character${chara_idx}_talent`
+          talent_circle.innerText = "T"
+
+
+          equipbar.appendChild(weapon_circle)
+          equipbar.appendChild(artifact_circle)
+          equipbar.appendChild(talent_circle)
+          chara_zone.appendChild(equipbar)
+
           let skill_list = document.createElement("div")
           skill_list.classList.add("contain")
           for (let i = 0; i < 4; i++) {
@@ -280,12 +312,26 @@
             skill_list.appendChild(skill)
           }
           chara_zone.appendChild(skill_list)
-
+          let chara_state_box = document.createElement("div")
           let chara_state = document.createElement("div")
           chara_state.classList.add("expanditem")
+          chara_state.innerText = "角色状态"
+
           chara_state.id = `player${index}_character${chara_idx}_state`
-          chara_state.innerText = "状态"
-          chara_zone.appendChild(chara_state)
+          
+
+
+          let chara_state_inner = document.createElement("div")
+          chara_state_inner.classList.add("expandinner")
+
+          chara_state_inner.id = `player${index}_character${chara_idx}_state_inner`
+
+          chara_state_inner.innerText = "角色状态"
+          chara_state.appendChild(chara_state_inner)
+
+          chara_state_box.appendChild(chara_state)
+
+          chara_zone.appendChild(chara_state_box)
 
           // let 
 
@@ -294,12 +340,20 @@
           // group_shield.id = `player${index}_character${chara_idx}_group_shield`
           // group_shield.innerText = "护盾(出战)"
           // chara_zone.appendChild(group_shield)
-
+          let group_shield_box = document.createElement("div")
           let group_state = document.createElement("div")
           group_state.classList.add("expanditem")
           group_state.id = `player${index}_character${chara_idx}_group_state`
-          group_state.innerText = "状态(出战)"
-          chara_zone.appendChild(group_state)
+          group_state.innerText = "出战状态"
+          
+          let group_state_inner = document.createElement("div")
+          group_state_inner.classList.add("expandinner")
+          group_state_inner.id = `player${index}_character${chara_idx}_group_state_inner`
+          group_state_inner.innerText = "出战状态"
+          group_state.appendChild(group_state_inner)
+          group_shield_box.appendChild(group_state)
+          chara_zone.appendChild(group_shield_box)
+          
 
         }
 
@@ -318,6 +372,8 @@
           }
         }
       )
+      // tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      // tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
     </script>
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script> -->
     <py-terminal id="terminal"></py-terminal>

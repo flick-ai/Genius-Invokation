@@ -47,6 +47,9 @@ def get_dict(game: 'GeniusGame'):
                 message[idx]["character_zone"][i]['active'] = "Active"
                 message[idx]["character_zone"][i]['shield'] = [f"{status.name}:{status.show()}" for status in player.team_combat_status.shield]
                 message[idx]["character_zone"][i]['active_status'] = [f"{status.name}:{status.show()}" for status in player.team_combat_status.space]
+            else:
+                message[idx]["character_zone"][i]['active'] = 'None'
+
             # message[idx]["character_zone"].append(m)
     return message
   

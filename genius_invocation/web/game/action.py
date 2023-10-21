@@ -124,7 +124,7 @@ async def from_input(game: 'GeniusGame'):
                     16:'选择操作本方骰子',
                     17:'选择操作本方手牌'}
 
-    choose_prompt = f"您是{game.active_player_index}号玩家,以下是你可以选择的行动,请输入一个数字表示你的行动选择:\n"
+    choose_prompt = f"您是{game.active_player_index}号玩家,以下是你可以选择的行动\n"
     choose_list = []
     last_choice = -1
     mask_sum = mask.sum(axis=1)
@@ -175,7 +175,7 @@ async def from_input(game: 'GeniusGame'):
         target = await user_input.get_sel(target_prompt, target_list)
 
     if choice == 16:
-        list_prompt = f'您需要选择重新投掷的骰子的位置,形式如0 1 2所示,数值应该在{0}-{use_dice[choice][target][0]-1}之间:'
+        list_prompt = f'您需要选择重新投掷的骰子的位置,数值应该在{0}-{use_dice[choice][target][0]-1}之间'
         dice = await user_input.get_rng_mul_sel(list_prompt, min=0, max=use_dice[choice][target][0]-1)
         if False:
             if dice == '':
@@ -186,7 +186,7 @@ async def from_input(game: 'GeniusGame'):
                 print("您选择的骰子包含重复位置,非法,默认您选择[]")
                 dice = []
     elif choice == 17:
-        list_prompt = f'您需要选择重新获取的手牌的位置,形式如0 1 2所示,数值应该在{0}-{use_dice[choice][target][0]-1}之间:'
+        list_prompt = f'您需要选择重新获取的手牌的位置,数值应该在{0}-{use_dice[choice][target][0]-1}之间'
         dice = await user_input.get_rng_mul_sel(list_prompt, min=0, max=use_dice[choice][target][0]-1)
         if False:
             if dice == '':
@@ -207,10 +207,10 @@ async def from_input(game: 'GeniusGame'):
                     if cost_num != 0:
                         if use_dice[choice][target][i*2+1] < 0:
                             cost_type = CostType(-use_dice[choice][target][i*2+1])
-                            list_prompt = f'您需要选择使用的{cost_num}个非{cost_type}骰子的位置,形式如0 1 2所示:'
+                            list_prompt = f'您需要选择使用的{cost_num}个非{cost_type}骰子的位置'
                         else:
                             cost_type = CostType(use_dice[choice][target][i*2+1])
-                            list_prompt = f'您需要选择使用的{cost_num}个{cost_type}骰子的位置,形式如0 1 2所示:'
+                            list_prompt = f'您需要选择使用的{cost_num}个{cost_type}骰子的位置'
                         sub_dice = await user_input.get_rng_mul_sel(
                             list_prompt, min=0, max=game.active_player.dice_zone.num()-1,
                             assert_fn=lambda x: game.active_player.dice_zone.check_dice(x, cost_num, use_dice[choice][target][i*2+1]))

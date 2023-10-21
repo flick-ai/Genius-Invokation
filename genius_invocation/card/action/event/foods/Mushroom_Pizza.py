@@ -36,7 +36,7 @@ class Mushroom_Pizza(FoodCard):
 
     def __init__(self) -> None:
         super().__init__()
-        self.food_entity = Mushroom_Pizza_Entity
+        
 
     def on_played(self, game: 'GeniusGame'):
         super().on_played(game)
