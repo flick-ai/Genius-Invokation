@@ -228,6 +228,11 @@ class Dehya(Character):
         self.talent = talent
         self.power = 0
         self.next_skill = Incineration_Drive(self)
+        if self.talent:
+            if self.character_zone.has_entity(Talent_Status) is None:
+                talent_status = Talent_Status(game, self.from_player, self)
+                self.character_zone.add_entity(talent_status)
+
 
 class Prepare_Incineration_Drive(Status):
     name = "Prepare Incineration Drive"

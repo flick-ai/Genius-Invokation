@@ -10,7 +10,7 @@ Welcome to Genius_Invokation's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-
+   genius_invocation
 
 Indices and tables
 ==================
