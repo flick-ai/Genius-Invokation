@@ -2,7 +2,7 @@ from genius_invocation.card.character.base import Damage
 from collections import defaultdict
 from typing import Any, List, TYPE_CHECKING
 from genius_invocation.utils import *
-
+from loguru import logger
 if TYPE_CHECKING:
     from genius_invocation.game.game import GeniusGame
 
@@ -36,23 +36,28 @@ class Event:
 class ListenerList(object):
     def __init__(self, actions) -> None:
         self.head = ListenerNode(None)
-        self.tail = self.head
+        self.tail = ListenerNode(None)
+        self.head.next = self.tail
+        self.tail.before = self.head
         for action in actions:
             self.append_action(action)
 
     def append_action(self, action) -> ListenerNode:
-        self.tail.next = ListenerNode(action, self.tail)
-        self.tail = self.tail.next
-        return self.tail
+        node = ListenerNode(action, self.tail.before, self.tail)
+        self.tail.before.next = node
+        self.tail.before = node
+        return node
 
     def append(self, listener: ListenerNode) -> ListenerNode:
-        self.tail.next = listener
-        self.tail = self.tail.next
-        return self.tail
+        listener.before = self.tail.before
+        listener.next = self.tail
+        self.tail.before.next = listener
+        self.tail.before = listener
+        return listener
 
     def __call__(self, game: 'GeniusGame') -> None:
         listener = self.head.next
-        while listener:
+        while listener!=self.tail:
             listener(game)
             listener = listener.next
 

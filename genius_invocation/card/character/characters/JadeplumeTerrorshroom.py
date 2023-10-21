@@ -1,19 +1,4 @@
-from genius_invocation.card.character.base import NormalAttack, ElementalSkill, ElementalBurst
-from genius_invocation.entity.entity import Entity
-from genius_invocation.utils import *
-from typing import TYPE_CHECKING, List, Tuple
-from genius_invocation.event.damage import Damage
-from genius_invocation.card.action.base import ActionCard
-if TYPE_CHECKING:
-    from genius_invocation.game.game import GeniusGame
-    from genius_invocation.game.action import Action
-    from genius_invocation.event.events import ListenerNode
-    from genius_invocation.game.player import GeniusPlayer
-from genius_invocation.entity.character import Character
-from genius_invocation.entity.status import Status, Combat_Status
-from genius_invocation.entity.summon import Summon
-from loguru import logger
-import random
+from genius_invocation.card.character.characters.import_head import *
 
 class Majestic_Dance(NormalAttack):
     id: int = 0
@@ -120,7 +105,7 @@ class Jadeplume_Terrorshroom(Character):
     skill_list = [Majestic_Dance, Volatile_Spore_Cloud, Feather_Spreading]
     max_power = 2
 
-    def __init__(self, game: 'GeniusGame', zone, from_player: 'GeniusPlayer', index:int, from_character = None, talent = False):
+    def __init__(self, game: 'GeniusGame', zone: 'CharacterZone', from_player: 'GeniusPlayer', index:int, from_character = None, talent = False):
         super().__init__(game, zone, from_player, index, from_character)
         self.power = 0
         self.talent = talent
@@ -147,7 +132,7 @@ class Radical_Vitality(Status):
     def update(self): #No update
         pass
 
-    def on_excute_dmg(self, game: 'GeniusGame'):
+    def on_execute_dmg(self, game: 'GeniusGame'):
         if game.current_damage.main_damage_element in [ElementType.PHYSICAL, ElementType.PIERCING]:
             return
 
@@ -164,7 +149,7 @@ class Radical_Vitality(Status):
     
     def update_listener_list(self):
         self.listeners = [
-            (EventType.EXCUTE_DAMAGE, ZoneType.CHARACTER_ZONE, self.on_excute_dmg),
+            (EventType.EXECUTE_DAMAGE, ZoneType.CHARACTER_ZONE, self.on_execute_dmg),
             (EventType.END_PHASE, ZoneType.CHARACTER_ZONE, self.on_end_phase)
         ]
             

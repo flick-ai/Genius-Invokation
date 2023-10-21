@@ -41,7 +41,7 @@ class Chang_the_Ninth_Entity(Support):
         
     def update_listener_list(self):
         self.listeners = [
-            (EventType.EXCUTE_DAMAGE, ZoneType.SUPPORT_ZONE, self.on_damage),
+            (EventType.EXECUTE_DAMAGE, ZoneType.SUPPORT_ZONE, self.on_damage),
             (EventType.BEFORE_ANY_ACTION, ZoneType.SUPPORT_ZONE, self.on_skill),
             (EventType.AFTER_USE_SKILL, ZoneType.SUPPORT_ZONE, self.on_after_skill),
             (EventType.ELEMENTAL_APPLICATION_REATION, ZoneType.SUPPORT_ZONE,self.on_attach_reaction)

@@ -14,11 +14,14 @@ class Mushroom_Pizza_Entity(Status):
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.from_character.heal(heal=1)
-        self.current_usage = 1
+        self.current_usage = 2
     
     def on_end(self, game: 'GeniusGame'):
         if game.active_player_index == self.from_player.index:
             self.from_character.heal(int=1)
+            self.current_usage -= 1
+            if self.current_usage <=0:
+                self.on_destroy(game)
 
     def update_listener_list(self):
         self.listeners = [
@@ -37,6 +40,13 @@ class Mushroom_Pizza(FoodCard):
 
     def on_played(self, game: 'GeniusGame'):
         super().on_played(game)
+    
+    def find_target(self, game: 'GeniusGame'):
+        target_list = []
+        for idx, character in enumerate(game.active_player.character_list):
+            if not character.is_satisfy and character.health_point != character.max_health_point:
+                target_list.append(idx+2)
+        return target_list
         
 
     

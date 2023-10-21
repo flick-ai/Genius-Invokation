@@ -71,7 +71,7 @@ def Overloaded(game: 'GeniusGame', player_id: int, target_idx: int):
     game.players[player_id].active_zone.character_list[target_idx] .
     '''
     game.players[player_id].character_list[target_idx].elemental_application.pop(0)
-    game.players[player_id].change_to_next_character()
+    # game.players[player_id].change_to_next_character()
     logger.info("Trigger Elemental_Reaction: Overloaded")
 
 
@@ -80,11 +80,11 @@ def Burning(game: 'GeniusGame', player_id: int, target_idx: int):
     game.players[player_id].active_zone.character_list[target_idx] .
     '''
     game.players[player_id].character_list[target_idx].elemental_application.pop(0)
-    summon = game.players[1-player_id].summons_zone.has_entity(Burning_Flame)
+    summon = game.players[1-player_id].summon_zone.has_entity(Burning_Flame)
     if summon is not None:
         summon.update()
     else:
-        game.players[1-player_id].summons_zone.add_entity(Burning_Flame(game, game.players[1-player_id], None))
+        game.players[1-player_id].summon_zone.add_entity(Burning_Flame(game, game.players[1-player_id], None))
     logger.info("Trigger Elemental_Reaction: Burning")
 
 def Quicken(game: 'GeniusGame', player_id: int, target_idx: int):

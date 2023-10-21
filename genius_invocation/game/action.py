@@ -103,7 +103,7 @@ class Action:
         return Action(action[0], action[1], action[2])
 
     @staticmethod
-    def from_input(game: 'GeniusGame'):
+    def from_input(game: 'GeniusGame', jump=True):
         mask, use_dice = game.active_player.action_mask[:,:,0], game.active_player.action_mask[:,:,1:]
         choice_dict = {0:'打出本方第1张手牌',
                        1:'打出本方第2张手牌',
@@ -137,9 +137,9 @@ class Action:
         if len(choose_list) == 1:
             choice = last_choice
             print(choose_prompt+'您目前只能选择如下行动:'+str(last_choice)+'.'+choice_dict[last_choice]+'\n')
-            if choice == 16:
+            if jump and choice == 16:
                 return Action(16, 13, [])
-            if choice == 17:
+            if jump and choice == 17:
                 return Action(17, 14, [])
         else:
             choice = int(user_input.get_sel(choose_prompt, choose_list))
@@ -187,7 +187,7 @@ class Action:
                     dice = []
         elif choice == 17:
             list_prompt = f'您需要选择重新获取的手牌的位置,形式如0 1 2所示,数值应该在{0}-{use_dice[choice][target][0]-1}之间:'
-            dice = user_input.get_rng_mul_sel(list_promptmin=0, max=use_dice[choice][target][0]-1)
+            dice = user_input.get_rng_mul_sel(list_prompt, min=0, max=use_dice[choice][target][0]-1)
             if False:
                 if dice == '':
                     dice = []

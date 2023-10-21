@@ -11,7 +11,7 @@ from genius_invocation.utils import *
 if TYPE_CHECKING:
     from genius_invocation.game.game import GeniusGame
     from genius_invocation.game.player import GeniusPlayer
-
+from genius_invocation.entity.status import Shield
 def layout(game: 'GeniusGame'):
     layout = Layout()
     layout.split_column(
@@ -112,9 +112,13 @@ def get_character(player: 'GeniusPlayer', idx: int):
                 style=color,
             )
         for status in character_list[idx].character_zone.status_list:
+            if isinstance(status, Shield):
+                col = 'yellow'
+            else:
+                col='blue'
             sponsor_message.add_row(
                 f"{status.name}:{status.show()}",
-                style=color,
+                style=col,
             )
         if character_list[idx].is_active:
             for status in player.team_combat_status.shield:
@@ -171,8 +175,8 @@ def get_hand(player: 'GeniusPlayer'):
 def get_summon(player: 'GeniusPlayer', idx):
     sponsor_message = Table.grid()
     sponsor_message.add_column(no_wrap=True)
-    if player.summons_zone.num() > idx:
-        summon = player.summons_zone.space[idx]
+    if player.summon_zone.num() > idx:
+        summon = player.summon_zone.space[idx]
         sponsor_message.add_row(
             summon.name,
             style=Elements_to_color(summon.element),

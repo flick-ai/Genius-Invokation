@@ -1,17 +1,5 @@
-from genius_invocation.card.character.base import NormalAttack, ElementalSkill, ElementalBurst
-from genius_invocation.entity.character import Character
-from genius_invocation.entity.entity import Entity
-from genius_invocation.utils import *
-from typing import TYPE_CHECKING, List, Tuple
-from genius_invocation.event.damage import Damage
+from genius_invocation.card.character.characters.import_head import *
 
-if TYPE_CHECKING:
-    from genius_invocation.game.game import GeniusGame
-    from genius_invocation.game.action import Action
-    from genius_invocation.event.events import ListenerNode
-    from genius_invocation.game.player import GeniusPlayer
-from genius_invocation.entity.status import Status, Combat_Status
-from loguru import logger
 class Akara(NormalAttack):
     '''
         纳西妲
@@ -225,7 +213,7 @@ class Nahida(Character):
 
     max_power: int = 2
 
-    def __init__(self, game: 'GeniusGame', zone, from_player: 'GeniusPlayer', index:int, from_character = None, talent = False):
+    def __init__(self, game: 'GeniusGame', zone: 'CharacterZone', from_player: 'GeniusPlayer', index:int, from_character = None, talent = False):
         super().__init__(game, zone, from_player, index, from_character)
         self.power = 0
         self.talent = talent

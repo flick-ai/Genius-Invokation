@@ -1,19 +1,5 @@
-from genius_invocation.card.character.base import NormalAttack, ElementalSkill, ElementalBurst
-from genius_invocation.entity.entity import Entity
-from genius_invocation.utils import *
-from typing import TYPE_CHECKING, List, Tuple
-from genius_invocation.event.damage import Damage
-from genius_invocation.card.action.base import ActionCard
-if TYPE_CHECKING:
-    from genius_invocation.game.game import GeniusGame
-    from genius_invocation.game.action import Action
-    from genius_invocation.event.events import ListenerNode
-    from genius_invocation.game.player import GeniusPlayer
-from genius_invocation.entity.character import Character
-from genius_invocation.entity.status import Status, Combat_Status
-from genius_invocation.entity.summon import Summon
-from loguru import logger
-import random
+from genius_invocation.card.character.characters.import_head import *
+
 
 class Guhua_Style(NormalAttack):
     id: int = 0
@@ -146,7 +132,7 @@ class Rain_Sword(Combat_Status):
             self.usage = 3
         self.current_usage = max(self.current_usage, self.usage)
     
-    def on_excute_dmg(self, game:'GeniusGame'):
+    def on_execute_dmg(self, game:'GeniusGame'):
         if game.current_damage.damage_to.from_player == self.from_player:
             if game.current_damage.damage_to.is_active:
                 if game.current_damage.main_damage_element != ElementType.PIERCING:
@@ -158,7 +144,7 @@ class Rain_Sword(Combat_Status):
     
     def update_listener_list(self):
         self.listeners = [
-            (EventType.EXCUTE_DAMAGE, ZoneType.ACTIVE_ZONE, self.on_excute_dmg)
+            (EventType.EXECUTE_DAMAGE, ZoneType.ACTIVE_ZONE, self.on_execute_dmg)
         ]
 
 class Rainbow_Bladework(Combat_Status):
@@ -166,8 +152,8 @@ class Rainbow_Bladework(Combat_Status):
 
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
-        self.max_usage = 2
-        self.usage = 2
+        self.max_usage = 3
+        self.usage = 3
         self.current_usage = self.usage
 
     def after_skill(self, game:'GeniusGame'):
@@ -204,7 +190,7 @@ class Xingqiu(Character):
     skill_list = [Guhua_Style, Fatal_Rainscreen, Raincutter]
     max_power = 2
 
-    def __init__(self, game: 'GeniusGame', zone, from_player: 'GeniusPlayer', index:int, from_character = None, talent = False):
+    def __init__(self, game: 'GeniusGame', zone: 'CharacterZone', from_player: 'GeniusPlayer', index:int, from_character = None, talent = False):
         super().__init__(game, zone, from_player, index, from_character)
         self.talent = talent
         self.power = 0

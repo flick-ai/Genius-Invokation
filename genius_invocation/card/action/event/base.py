@@ -1,6 +1,6 @@
 from genius_invocation.card.action.base import ActionCard
 from genius_invocation.entity.status import Satisfy_Statue
-from utils import *
+from genius_invocation.utils import *
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from genius_invocation.game.game import GeniusGame
@@ -14,7 +14,6 @@ class FoodCard(ActionCard):
     
     def __init__(self) -> None:
         super().__init__()
-        self.food_entity
     
     def on_played(self, game: 'GeniusGame') -> None:
         if game.current_action.target_ty == ActionTarget.MY_CHARACTER:
@@ -32,7 +31,7 @@ class FoodCard(ActionCard):
                     character.character_zone.add_entity(Satisfy_Statue)
                     if self.food_entity != None:
                         target_character.character_zone.add_entity(self.food_entity(game, from_player=game.active_player, from_character=target_character))
-    
+
     def find_target(self, game: 'GeniusGame'):
         target_list = []
         for idx, character in enumerate(game.active_player.character_list):

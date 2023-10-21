@@ -2,3 +2,5 @@ python=3.11
 numpy
 loguru
 rich
+flask
+sphinx-rtd-theme

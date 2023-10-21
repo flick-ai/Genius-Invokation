@@ -72,7 +72,7 @@ class Character(Entity):
         self.talent: bool = False
         self.is_active: bool = False
         self.is_alive: bool = True
-        self.is_frozen: bool = True
+        self.is_frozen: bool = False
         self.is_satisfy: bool = False
         self.health_point = self.init_health_point
         self.power: int = 0 # 初始充能
@@ -82,9 +82,10 @@ class Character(Entity):
         self.init_state(game)
 
     def heal(self, heal: int):
-        self.health_point += heal
-        if self.health_point > self.max_health_point:
-            self.health_point = self.max_health_point
+        if self.is_alive:
+            self.health_point += heal
+            if self.health_point > self.max_health_point:
+                self.health_point = self.max_health_point
 
     def dying(self, game: 'GeniusGame'):
         assert self.is_alive==False
@@ -92,6 +93,7 @@ class Character(Entity):
         self.is_active = False
         self.talent = False
         self.power = 0
+        self.elemental_attach = None
         self.character_zone.clear(game)
 
     def revive(self, game: 'GeniusGame'):
@@ -178,7 +180,7 @@ class Character(Entity):
                     case ElementType.ELECTRO:
                         Quicken(game, targetplayer_id, target_index)
                         Reaction = ElementalReactionType.Quicken
-        if Reaction is None and (not element in self.elemental_attach):
+        if Reaction is None and (not element in self.elemental_application):
             match element:
                 case ElementType.CRYO | ElementType.HYDRO | ElementType.PYRO | ElementType.ELECTRO:
                     self.elemental_application.insert(0, element)
@@ -186,5 +188,8 @@ class Character(Entity):
                     self.elemental_application.append(element)
         if Reaction is not None:
             game.manager.invoke(EventType.ELEMENTAL_APPLICATION_REATION, game)
-            
+        
+        if Reaction == ElementalReactionType.Overloaded:
+            if self.is_active:
+                self.from_player.change_to_next_character()
         return Reaction

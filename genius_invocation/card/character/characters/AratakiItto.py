@@ -1,19 +1,4 @@
-from genius_invocation.card.character.base import NormalAttack, ElementalSkill, ElementalBurst
-from genius_invocation.entity.entity import Entity
-from genius_invocation.utils import *
-from typing import TYPE_CHECKING, List, Tuple
-from genius_invocation.event.damage import Damage
-from genius_invocation.card.action.base import ActionCard
-if TYPE_CHECKING:
-    from genius_invocation.game.game import GeniusGame
-    from genius_invocation.game.action import Action
-    from genius_invocation.event.events import ListenerNode
-    from genius_invocation.game.player import GeniusPlayer
-from genius_invocation.entity.character import Character
-from genius_invocation.entity.status import Status, Combat_Status
-from genius_invocation.entity.summon import Summon
-from loguru import logger
-import random
+from genius_invocation.card.character.characters.import_head import *
 
 class Fight_Club_Legend(NormalAttack):
     id: int = 0
@@ -117,7 +102,7 @@ class Arataki_Itto(Character):
     ]
     max_power: int = 3
 
-    def __init__(self, game: 'GeniusGame', zone, from_player: 'GeniusPlayer', index:int, from_character = None, talent = False):
+    def __init__(self, game: 'GeniusGame', zone: 'CharacterZone', from_player: 'GeniusPlayer', index:int, from_character = None, talent = False):
         super().__init__(game, zone, from_player, index, from_character)
         self.power = 0
         self.talent = talent
@@ -216,7 +201,7 @@ class Shield_from_Ushi(Combat_Status):
         self.usage = self.from_summon.usage
         self.max_usage = self.from_summon.max_usage
 
-    def on_damage_excute(self, game:'GeniusGame'):
+    def on_damage_execute(self, game:'GeniusGame'):
         if self.from_summon.current_usage <=0: return
         if game.current_damage.main_damage <=0: return
         if game.current_damage.main_damage_element==ElementType.PIERCING: return
@@ -230,7 +215,7 @@ class Shield_from_Ushi(Combat_Status):
     
     def update_listener_list(self):
         self.listeners = [
-            (EventType.EXCUTE_DAMAGE, ZoneType.ACTIVE_ZONE, self.on_damage_excute)
+            (EventType.EXECUTE_DAMAGE, ZoneType.ACTIVE_ZONE, self.on_damage_execute)
         ]
     def update(self):
         self.current_usage = self.from_summon.current_usage

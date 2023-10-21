@@ -12,6 +12,7 @@ from loguru import logger
 from rich.console import Console
 from rich.table import Column, Table
 from genius_invocation.user_layout import *
+from genius_invocation.utils_dict import *
 if TYPE_CHECKING:
     from genius_invocation.card.character.base import CharacterSkill
 
@@ -38,6 +39,7 @@ class GeniusGame:
         self.current_dice: Dice = None
         self.current_action: Action = None
         self.current_damage: Damage = None
+        self.current_switch: dict(Character) = {"from": None, "to": None}
         self.current_skill: CharacterSkill = None
         self.current_card: ActionCard = None
         self.damage_list: List[Damage] = []
@@ -87,13 +89,22 @@ class GeniusGame:
                 self.end_phase()
             else:
                 self.first_player = self.active_player_index
-
+        
         self.manager.invoke(EventType.AFTER_ANY_ACTION, self)
-
         if self.is_change_player and (not oppenent_player.is_pass):
             self.change_active_player()
         
+        oppenent_player = self.players[1 - self.active_player_index]
         self.manager.invoke(EventType.BEFORE_ANY_ACTION, self)
+        while self.active_player.prepared_skill is not None:
+            character = self.active_player.prepared_skill.from_character
+            if not character.is_active:
+                break
+            if character.is_frozen:
+                break
+            self.active_player.prepared_skill.on_call(self)
+            if not oppenent_player.is_pass:
+                self.change_active_player()
 
     def add_damage(self, damage: Damage):
         self.damage_list.append(damage)
@@ -130,13 +141,20 @@ class GeniusGame:
                     char.health_point -= self.current_damage.piercing_damage
 
     def check_dying(self):
+        num = 0
         for player in self.players:
             for idx, char in enumerate(player.character_list):
+                if not char.is_alive:
+                    num += 1
                 if char.health_point <= 0:
                     char.is_alive = False
                     self.manager.invoke(EventType.CHARACTER_DIE, self)
                     if not char.is_alive:
                         char.dying(self)
+                        num += 1
+                        if num == 3:
+                            print("Winner is oppenent!")
+                            exit()
                         if player.active_idx == idx:
                             Active_Die(player).on_call(self)
         #TODO: Not Implement yet.
@@ -246,23 +264,11 @@ class GeniusGame:
             新版: 尝试将Game信息编码成table呈现给使用者
         '''
         return layout(self)
+        # return get_dict(self)
 
     def change_active_player(self):
         self.active_player_index = 1 - self.active_player_index
         self.active_player = self.players[self.active_player_index]
-
-        oppenent_player = self.players[1 - self.active_player_index]
-        if self.active_player.prepared_skill is not None:
-            character = self.active_player.prepared_skill.from_character
-            if character.is_active and character.is_frozen:
-                self.active_player.prepared_skill.on_call(self)
-            if oppenent_player.is_pass:
-                while self.active_player.prepared_skill is not None:
-                    character = self.active_player.prepared_skill.from_character
-                    if character.is_active and character.is_frozen:
-                        self.active_player.prepared_skill.on_call(self)
-            else:
-                self.change_active_player()
 
 
 

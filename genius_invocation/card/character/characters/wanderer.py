@@ -1,17 +1,5 @@
-from genius_invocation.card.character.base import NormalAttack, ElementalSkill, ElementalBurst
-from genius_invocation.entity.character import Character
-from genius_invocation.entity.entity import Entity
-from genius_invocation.utils import *
-from typing import TYPE_CHECKING, List, Tuple
-from genius_invocation.event.damage import Damage
+from genius_invocation.card.character.characters.import_head import *
 
-if TYPE_CHECKING:
-    from genius_invocation.game.game import GeniusGame
-    from genius_invocation.game.action import Action
-    from genius_invocation.event.events import ListenerNode
-    from genius_invocation.game.player import GeniusPlayer
-from genius_invocation.entity.status import Status, Combat_Status
-from loguru import logger
 class Yuuban_Meigen(NormalAttack):
     id: int = 0
     name = "Yuuban Meigen"
@@ -119,7 +107,7 @@ class Wanderer(Character):
 
     max_power = 3
 
-    def __init__(self, game: 'GeniusGame', zone, from_player: 'GeniusPlayer', index:int, from_character = None, talent = False):
+    def __init__(self, game: 'GeniusGame', zone: 'CharacterZone', from_player: 'GeniusPlayer', index:int, from_character = None, talent = False):
         super().__init__(game, zone, from_player, index, from_character)
         self.talent = talent
         self.power = 0
@@ -186,13 +174,18 @@ class Switch(Status):
     def update(self):
         self.current_usage = self.usage
 
-    def on_switch(self, game: 'GeniusGame'):
-        if game.active_player != self.from_player: return
-        if game.active_player.active_idx != self.from_character.index: return
+    def on_calculate(self, game:'GeniusGame'):
+        if self.current_usage ==0: return False
+        if game.active_player != self.from_player: return False
+        if game.active_player.active_idx != self.from_character.index: return False
         if game.current_dice.use_type == SwitchType.CHANGE_CHARACTER:
             if game.current_dice.cost[0]['cost_num']>0:
                 game.current_dice.cost[0]['cost_num'] -=1
-            
+                return True
+        return False
+
+    def on_switch(self, game: 'GeniusGame'):
+        if self.on_calculate(game):
             dmg = Damage.create_damage(
                 game,
                 damage_type=SkillType.OTHER,
@@ -210,6 +203,7 @@ class Switch(Status):
                 self.on_destroy(game)
     def update_listener_list(self):
         self.listeners = [
+            (EventType.CALCULATE_DICE, ZoneType.CHARACTER_ZONE, self.on_calculate),
             (EventType.ON_CHANGE_CHARACTER, ZoneType.CHARACTER_ZONE, self.on_switch)
         ]
 

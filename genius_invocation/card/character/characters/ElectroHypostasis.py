@@ -1,20 +1,5 @@
-from genius_invocation.card.character.base import NormalAttack, ElementalSkill, ElementalBurst
-from genius_invocation.entity.character import Character
-from genius_invocation.entity.entity import Entity
-from genius_invocation.entity.summon import Summon
-from genius_invocation.utils import *
-from typing import TYPE_CHECKING, List, Tuple
+from genius_invocation.card.character.characters.import_head import *
 
-
-if TYPE_CHECKING:
-    from genius_invocation.game.game import GeniusGame
-    from genius_invocation.game.action import Action
-    from genius_invocation.event.events import ListenerNode
-    from genius_invocation.game.player import GeniusPlayer
-    from genius_invocation.game.zone import CharacterZone
-    
-from genius_invocation.event.damage import Damage
-from genius_invocation.entity.status import Status
 
 class ElectroCrystalProjection(NormalAttack):
     '''
@@ -22,7 +7,7 @@ class ElectroCrystalProjection(NormalAttack):
     '''
     id: int = 0
     type: SkillType = SkillType.NORMAL_ATTACK
-
+    name = "Electro Crystal Projection"
     # damage
     damage_type: SkillType = SkillType.NORMAL_ATTACK
     main_damage_element: ElementType = ElementType.ELECTRO
@@ -60,6 +45,7 @@ class RockPaperScissorsCombo_Paper(ElementalSkill):
     '''
         猜拳三连击·布
     '''
+    name = 'Rock-Paper-Scissors Combo: Paper'
     id: int = 11
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
@@ -86,9 +72,16 @@ class PreparePaper(Status):
     '''
         准备技能: 猜拳三连击·布
     '''
+    name = 'Prepare for Paper'
+    current_usage = 1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.skill = RockPaperScissorsCombo_Paper(from_character=from_character)
+
+    def after_change(self,game:'GeniusGame'):
+        if game.current_switch["from"] == self.from_character:
+            self.from_character.from_player.prepared_skill = None
+            self.on_destroy(game)
 
     def on_call(self, game: 'GeniusGame'):
         self.skill.on_call(game)
@@ -97,11 +90,16 @@ class PreparePaper(Status):
     def on_destroy(self, game):
         return super().on_destroy(game)
 
+    def update_listener_list(self):
+        self.listeners = [
+            (EventType.AFTER_CHANGE_CHARACTER, ZoneType.CHARACTER_ZONE, self.after_change)
+        ]
 
 class RockPaperScissorsCombo_Scissors(ElementalSkill):
     '''
         猜拳三连击·剪刀
     '''
+    name = 'Rock-Paper-Scissors Combo: Scissors'
     id: int = 12
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
@@ -120,25 +118,36 @@ class RockPaperScissorsCombo_Scissors(ElementalSkill):
         super().on_call(game)
         # 处理伤害
         self.resolve_damage(game)
-        game.manager.invoke(EventType.AFTER_USE_SKILL, game)
         prepare_paper = PreparePaper(game=game,
                                      from_player=self.from_character.from_player,
                                      from_character=self.from_character)
         self.from_character.character_zone.add_entity(prepare_paper)
         self.from_character.from_player.prepared_skill = prepare_paper
+        game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class PrepareScissors(Status):
     '''
         准备技能: 猜拳三连击·剪刀
     '''
+    name = 'Prepare for Scissors'
+    current_usage = 1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.skill = RockPaperScissorsCombo_Scissors(from_character=from_character)
+
+    def after_change(self,game:'GeniusGame'):
+        if game.current_switch["from"] == self.from_character:
+            self.from_character.from_player.prepared_skill = None
+            self.on_destroy(game)
 
     def on_call(self, game: 'GeniusGame'):
         self.skill.on_call(game)
         self.on_destroy(game)
 
+    def update_listener_list(self):
+        self.listeners = [
+            (EventType.AFTER_CHANGE_CHARACTER, ZoneType.CHARACTER_ZONE, self.after_change)
+        ]
     def on_destroy(self, game):
         return super().on_destroy(game)
 
@@ -151,7 +160,7 @@ class RockPaperScissorsCambo(ElementalSkill):
     '''
     id: int = 1
     type: SkillType = SkillType.ELEMENTAL_SKILL
-
+    name = 'Rock-Paper-Scissors Combo'
     # damage
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
     main_damage_element: ElementType = ElementType.ELECTRO
@@ -174,18 +183,19 @@ class RockPaperScissorsCambo(ElementalSkill):
         self.resolve_damage(game)
         # 获得能量
         self.gain_energy(game)
-        game.manager.invoke(EventType.AFTER_USE_SKILL, game)
         prepare_scissors = PrepareScissors(game=game,
                                      from_player=self.from_character.from_player,
                                      from_character=self.from_character)
         self.from_character.character_zone.add_entity(prepare_scissors)
         self.from_character.from_player.prepared_skill = prepare_scissors
+        game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 
 class ChainsOfWardingThunder(Summon):
     '''
         雷锁镇域
     '''
+    name = 'Chains of Warding Thunder'
     element: ElementType = ElementType.ELECTRO
     usage: int = 2
     max_usage: int = 2
@@ -248,7 +258,7 @@ class LightningLockdown(ElementalBurst):
     '''
     id: int = 2
     type: SkillType = SkillType.ELEMENTAL_BURST
-
+    name = 'Lightning Lockdown'
     # damage
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
     main_damage_element: ElementType = ElementType.ELECTRO
@@ -279,6 +289,8 @@ class ElectroCrystalCore(Status):
     '''
         雷晶核心
     '''
+    name = 'Electro Crystal Core'
+    current_usage = 1
     def on_character_die(self, game: 'GeniusGame'):
         '''
             角色死亡时
@@ -298,7 +310,7 @@ class ElectroHypostasis(Character):
         无相之雷
     '''
     id: int = 2401
-    name: str = 'ElectroHypostasis'
+    name: str = 'Electro Hypostasis'
     element: ElementType = ElementType.ELECTRO
     weapon_type: WeaponType = WeaponType.OTHER
     country: CountryType = CountryType.MONSTER

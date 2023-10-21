@@ -58,8 +58,12 @@ class Damage:
         self.elemental_reaction(game)
         self.damage_add_after_reaction(game)
         self.damage_dealing(game)
-        self.damage_excute(game)
+        self.damage_divide(game)
+        self.damage_execute(game)
         game.suffer_current_damage()
+        if self.reaction == ElementalReactionType.Overloaded:
+            if self.damage_to.is_active:
+                self.damage_to.from_player.change_to_next_character()
         self.after_damage(game)
 
     def damage_add_after_reaction(self, game:'GeniusGame'):
@@ -74,11 +78,12 @@ class Damage:
 
     def damage_dealing(self, game: 'GeniusGame'):
         game.manager.invoke(EventType.DEALING_DAMAGE, game)
-
-    def damage_excute(self, game: 'GeniusGame'):
-        logger.debug(f"Before Damage Excute: {game.current_damage.main_damage}")
-        game.manager.invoke(EventType.EXCUTE_DAMAGE, game)
-        logger.debug(f"After Damage Excute: {game.current_damage.main_damage}")
+    def damage_divide(self, game: 'GeniusGame'):
+        game.manager.invoke(EventType.DIVIDE_DAMAGE, game)
+    def damage_execute(self, game: 'GeniusGame'):
+        logger.debug(f"Before Damage Execute: {game.current_damage.main_damage}")
+        game.manager.invoke(EventType.EXECUTE_DAMAGE, game)
+        logger.debug(f"After Damage Execute: {game.current_damage.main_damage}")
 
 
     def after_damage(self, game: 'GeniusGame'):
@@ -110,8 +115,8 @@ class Damage:
         targetplayer_id = 1 - game.active_player_index
         targetplayer = game.players[targetplayer_id]
         target_character = damage.damage_to
-        logger.info(target_character.name)
-        logger.info(target_character.elemental_application)
+        logger.info(f"target character: {target_character.name}")
+        logger.info(f"elemental application: {target_character.elemental_application}")
         target_index = target_character.index
         Reaction = None
         Swirl_Crystallize_type = None

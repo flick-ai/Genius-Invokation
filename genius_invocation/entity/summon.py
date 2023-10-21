@@ -27,7 +27,7 @@ class Summon(Entity):
     def on_destroy(self, game:'GeniusGame'):
         super().on_destroy(game)
         game.manager.invoke(EventType.ON_SUMMON_REMOVE, game)
-        self.from_player.summons_zone.remove(self)
+        self.from_player.summon_zone.remove(self)
 
     def update(self):
         pass

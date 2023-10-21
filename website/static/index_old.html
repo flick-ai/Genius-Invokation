@@ -1,0 +1,92 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <div id="aaa" style="width: 600px; height: 500px;">
+    </div>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+    <script type="text/javascript">
+      async function main() {
+        let pyodide = await loadPyodide();
+        let text = "";
+        await pyodide.loadPackage("micropip");
+        await pyodide.loadPackage("numpy");
+        pyodide.setStdin({ stdin: () => prompt() })
+        class StringWriter {
+
+          constructor(out) {
+            this.out = out;
+            this.output = [];
+          }
+
+          write(buffer) {
+            // for (let val of buffer) {
+            //   // if (val === 10 /* charCode('\n') */) {
+            //   //   this.out(textdecoder.decode(new Uint8Array(this.output)));
+            //   //   this.output = [];
+            //   // } else if (val !== 0) {
+            //   //   // val == 0 would cut text output off in the middle.
+            //   //   this.output.push(val);
+            //   // }
+            //   if (val !== 0){
+            //     this.output.push(val);
+            //   } else {
+            //     this.out(textdecoder.decode(new Uint8Array(this.output)));
+            //     this.output = [];
+            //     console.log("aaa")
+            //   }
+            // }
+
+            this.out += new TextDecoder().decode(new Uint8Array(buffer));
+            document.getElementById('aaa').innerText = this.out;
+            // window.location.reload();
+            console.log(new TextDecoder().decode(new Uint8Array(buffer)));
+            // await sleep(1000)
+            return buffer.length;
+          }
+
+          fsync() {
+            if (this.output && this.output.length > 0) {
+              this.out(textdecoder.decode(new Uint8Array(this.output)));
+              this.output = [];
+              console.log("bbb")
+            }
+          }
+        }
+        pyodide.setStdout(new StringWriter(text))
+        // pyodide.setStdout({ batched: (x) => {output += x; console.log(output); document.getElementById('aaa').innerText=output} })
+        // pyodide.setStdout({ write: (x) => { output = String.fromCharCode(x); console.log(output); document.getElementById('aaa').innerText=output; return 0;}})
+        const micropip = pyodide.pyimport("micropip");
+        await micropip.install('https://files.pythonhosted.org/packages/03/0a/4f6fed21aa246c6b49b561ca55facacc2a44b87d65b8b92362a8e99ba202/loguru-0.7.2-py3-none-any.whl')
+        await micropip.install('https://files.pythonhosted.org/packages/be/2a/4e62ff633612f746f88618852a626bbe24226eba5e7ac90e91dcfd6a414e/rich-13.6.0-py3-none-any.whl')
+        await micropip.install("genius_invocation-0.0.1-py3-none-any.whl");
+        await pyodide.runPythonAsync(`
+        from genius_invocation import main
+        main.main()
+        `)
+      //   await pyodide.runPython(`
+      //   from genius_invocation.game.game import GeniusGame
+      //   from genius_invocation.game.action import *
+      //   from genius_invocation.utils import *
+      //   from rich import print
+
+      //   deck1 = {
+      //       'character': ['Rhodeia_of_Loch', 'Nahida', 'Tartaglia'],
+      //       'action_card': ['Liben' for i in range(30)]
+      //   }
+      //   deck2 = {
+      //       'character': ['Cyno', 'Wanderer', 'Yoimiya'],
+      //       'action_card': ['Liben' for i in range(30)]
+      //   }
+      // `);
+      //   await pyodide.runPython(`
+      //   game = GeniusGame(player0_deck=deck1, player1_deck=deck2)
+      //   information = []
+      //   `);
+      //   console.log('success')
+      }
+      main();
+    </script>
+  </body>
+</html>

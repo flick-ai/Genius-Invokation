@@ -1,0 +1,5 @@
+numpy
+loguru
+rich
+flask
+sphinx-rtd-theme

@@ -1,19 +1,4 @@
-from genius_invocation.card.character.base import NormalAttack, ElementalSkill, ElementalBurst
-from genius_invocation.entity.entity import Entity
-from genius_invocation.utils import *
-from typing import TYPE_CHECKING, List, Tuple
-from genius_invocation.event.damage import Damage
-from genius_invocation.card.action.base import ActionCard
-if TYPE_CHECKING:
-    from genius_invocation.game.game import GeniusGame
-    from genius_invocation.game.action import Action
-    from genius_invocation.event.events import ListenerNode
-    from genius_invocation.game.player import GeniusPlayer
-from genius_invocation.entity.character import Character
-from genius_invocation.entity.status import Status, Combat_Status
-from genius_invocation.entity.summon import Summon
-from loguru import logger
-import random
+from genius_invocation.card.character.characters.import_head import *
 
 class Liutian_Archery(NormalAttack):
     name = 'Liutian Archery'
@@ -164,7 +149,7 @@ class Ice_Lotus(Combat_Status):
     def update(self):
         self.current_usage = self.usage
 
-    def on_excute_dmg(self, game: 'GeniusGame'):
+    def on_execute_dmg(self, game: 'GeniusGame'):
         if game.current_damage.damage_to.from_player == self.from_player:
             if game.current_damage.main_damage_element == ElementType.PIERCING:
                 return
@@ -177,7 +162,7 @@ class Ice_Lotus(Combat_Status):
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.EXCUTE_DAMAGE, ZoneType.ACTIVE_ZONE, self.on_excute_dmg),
+            (EventType.EXECUTE_DAMAGE, ZoneType.ACTIVE_ZONE, self.on_execute_dmg),
         ]
 
 class Sacred_Cryo_Pearl(Summon):
@@ -238,8 +223,8 @@ class Ganyu(Character):
     skill_list = [Liutian_Archery, Trail_of_the_Qilin, Frostflake_Arrow, Celestial_Shower]
     
     max_power = 3
-    
-    def __init__(self, game: 'GeniusGame', zone, from_player: 'GeniusPlayer', index:int, from_character = None, talent = False):
+
+    def __init__(self, game: 'GeniusGame', zone: 'CharacterZone', from_player: 'GeniusPlayer', index:int, from_character = None, talent = False):
         super().__init__(game, zone, from_player, index, from_character)
         self.talent = talent
         self.power = 0

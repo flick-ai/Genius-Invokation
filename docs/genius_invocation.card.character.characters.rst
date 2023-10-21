@@ -20,6 +20,14 @@ genius\_invocation.card.character.characters.ElectroHypostasis module
    :undoc-members:
    :show-inheritance:
 
+genius\_invocation.card.character.characters.JadeplumeTerrorshroom module
+-------------------------------------------------------------------------
+
+.. automodule:: genius_invocation.card.character.characters.JadeplumeTerrorshroom
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 genius\_invocation.card.character.characters.Nahida module
 ----------------------------------------------------------
 
@@ -36,6 +44,14 @@ genius\_invocation.card.character.characters.RhodeiaofLoch module
    :undoc-members:
    :show-inheritance:
 
+genius\_invocation.card.character.characters.candace module
+-----------------------------------------------------------
+
+.. automodule:: genius_invocation.card.character.characters.candace
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 genius\_invocation.card.character.characters.cyno module
 --------------------------------------------------------
 
@@ -48,6 +64,22 @@ genius\_invocation.card.character.characters.fischl module
 ----------------------------------------------------------
 
 .. automodule:: genius_invocation.card.character.characters.fischl
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+genius\_invocation.card.character.characters.ganyu module
+---------------------------------------------------------
+
+.. automodule:: genius_invocation.card.character.characters.ganyu
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+genius\_invocation.card.character.characters.import\_head module
+----------------------------------------------------------------
+
+.. automodule:: genius_invocation.card.character.characters.import_head
    :members:
    :undoc-members:
    :show-inheritance:
@@ -96,6 +128,14 @@ genius\_invocation.card.character.characters.wanderer module
 ------------------------------------------------------------
 
 .. automodule:: genius_invocation.card.character.characters.wanderer
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+genius\_invocation.card.character.characters.xingqiu module
+-----------------------------------------------------------
+
+.. automodule:: genius_invocation.card.character.characters.xingqiu
    :members:
    :undoc-members:
    :show-inheritance:

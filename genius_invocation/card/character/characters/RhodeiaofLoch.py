@@ -1,19 +1,5 @@
-from genius_invocation.card.character.base import NormalAttack, ElementalSkill, ElementalBurst
-from genius_invocation.entity.entity import Entity
-from genius_invocation.utils import *
-from typing import TYPE_CHECKING, List, Tuple
-from genius_invocation.event.damage import Damage
-from genius_invocation.card.action.base import ActionCard
-if TYPE_CHECKING:
-    from genius_invocation.game.game import GeniusGame
-    from genius_invocation.game.action import Action
-    from genius_invocation.event.events import ListenerNode
-    from genius_invocation.game.player import GeniusPlayer
-from genius_invocation.entity.character import Character
-from genius_invocation.entity.status import Status, Combat_Status
-from genius_invocation.entity.summon import Summon
-from loguru import logger
-import random
+from genius_invocation.card.character.characters.import_head import *
+
 
 class Squirrel(Summon):
     '''花鼠'''
@@ -232,15 +218,15 @@ Summon_list = [Squirrel,Raptor,Frog]
 def choose_one_summon(Skill: ElementalSkill, game: 'GeniusGame'):
     un_summon_list = []
     for summon in Summon_list:
-        if Skill.from_character.from_player.summons_zone.has_entity(summon) is None:
+        if Skill.from_character.from_player.summon_zone.has_entity(summon) is None:
             un_summon_list.append(summon)
     if len(un_summon_list) == 0:
         x = Summon_list[random.randint(0,2)]
-        Skill.from_character.from_player.summons_zone.has_entity(x).update(game)
+        Skill.from_character.from_player.summon_zone.has_entity(x).update(game)
     else:
         x = un_summon_list[random.randint(0,len(un_summon_list)-1)]
         summon = x(game,Skill.from_character.from_player,Skill.from_character)
-        Skill.from_character.from_player.summons_zone.add_entity(summon)
+        Skill.from_character.from_player.summon_zone.add_entity(summon)
 
 class Oceanid_Mimic_Summoning(ElementalSkill):
     '''
@@ -336,7 +322,7 @@ class Tide_and_Torrent(ElementalBurst):
     
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
-        main_dmg = self.main_damage + self.from_character.from_player.summons_zone.num()*2
+        main_dmg = self.main_damage + self.from_character.from_player.summon_zone.num()*2
         dmg = Damage.create_damage(
             game,
             damage_type=SkillType.ELEMENTAL_BURST,
@@ -350,7 +336,7 @@ class Tide_and_Torrent(ElementalBurst):
         game.resolve_damage()
 
         if self.from_character.talent:
-            for summon in self.from_character.from_player.summons_zone.space:
+            for summon in self.from_character.from_player.summon_zone.space:
                 summon.add_usage(game, 1)
 
         self.consume_energy(game)
@@ -367,7 +353,7 @@ class Rhodeia_of_Loch(Character):
     skill_list = [Surge,Oceanid_Mimic_Summoning,The_Myriad_Wilds,Tide_and_Torrent]
     max_power = 3
 
-    def __init__(self, game: 'GeniusGame', zone, from_player: 'GeniusPlayer', index:int, from_character = None, talent = False):
+    def __init__(self, game: 'GeniusGame', zone: 'CharacterZone', from_player: 'GeniusPlayer', index:int, from_character = None, talent = False):
         super().__init__(game, zone, from_player, index, from_character)
         self.power = 0
         self.talent = talent
@@ -383,7 +369,7 @@ class Shield_from_Frog(Combat_Status):
         self.usage = self.from_summon.usage
         self.max_usage = self.from_summon.max_usage
 
-    def on_damage_excute(self, game:'GeniusGame'):
+    def on_damage_execute(self, game:'GeniusGame'):
         if self.from_summon.current_usage <=0: return
         if game.current_damage.main_damage <=0: return
         if game.current_damage.main_damage_element==ElementType.PIERCING: return
@@ -397,7 +383,7 @@ class Shield_from_Frog(Combat_Status):
     
     def update_listener_list(self):
         self.listeners = [
-            (EventType.EXCUTE_DAMAGE, ZoneType.ACTIVE_ZONE, self.on_damage_excute)
+            (EventType.EXECUTE_DAMAGE, ZoneType.ACTIVE_ZONE, self.on_damage_execute)
         ]
     def update(self):
         self.current_usage = self.from_summon.current_usage
