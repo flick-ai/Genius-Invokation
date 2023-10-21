@@ -83,6 +83,7 @@ class Molten_Inferno(ElementalSkill):
 
 class Leonine_Bite(ElementalBurst):
     id: int = 2
+    name = "Leonine Bite"
     type: SkillType = SkillType.ELEMENTAL_BURST
 
     # damage
@@ -189,7 +190,7 @@ class Fiery_Sanctum_Field(Summon):
             (EventType.END_PHASE, ZoneType.CHARACTER_ZONE, self.on_end_phase),
             (EventType.EXECUTE_DAMAGE, ZoneType.CHARACTER_ZONE, self.on_execute_dmg)
         ]
-        
+
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.current_usage = self.usage
