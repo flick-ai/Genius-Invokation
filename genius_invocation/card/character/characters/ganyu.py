@@ -66,6 +66,7 @@ class Trail_of_the_Qilin(ElementalSkill):
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         # 处理伤害
+        self.resolve_damage(game)
         self.add_combat_status(game, Ice_Lotus)
         # 获得能量
         self.gain_energy(game)
