@@ -180,6 +180,14 @@
         let dice_inner = document.createElement('div');
         dice_inner.className = 'diceinner';
         dice_player.appendChild(dice_inner);
+        let dice_name = dice_player.getElementsByClassName("thetitle")[0]
+        dice_name.addEventListener(
+          "click", ()=>{
+            dice_name.classList.toggle("selected")
+            current_choice = update_set(current_choice_set, "13")
+            current_choice_text.innerText = current_choice
+          }
+        )
         for (let i = 0; i < 16; i++) {
           let newDiv = document.createElement('div');
           newDiv.className = 'gridItem';

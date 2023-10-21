@@ -13,7 +13,7 @@ from rich.console import Console
 from rich.table import Column, Table
 from genius_invocation.user_layout import *
 import js
-from js import prompt
+from js import prompt, alert
 if TYPE_CHECKING:
     from genius_invocation.card.character.base import CharacterSkill
 
@@ -287,11 +287,13 @@ class Active_Die:
 
     def get_next_char(self, die_player: 'GeniusPlayer', idx):
         available_idx = []
-        for i, characters in enumerate(die_player.character_list):
-            if characters.is_alive:
+        for i, character in enumerate(die_player.character_list):
+            if character.is_alive:
                 available_idx.append(str(i))
+        if len(available_idx) == 0:
+            alert(f"玩家{die_player.index}角色全部死亡，玩家{1-die_player.index}获胜")
         while True:
-            res = prompt(f"玩家{die_player}角色{idx}死亡, 请输入下一个出战角色的序号(0, 1, 2):")
+            res = prompt(f"玩家{die_player.index}角色{idx}死亡, 请输入下一个出战角色的序号(0, 1, 2):")
             if res in ['0', '1', '2'] and res in available_idx:
                 return Action(14, int(res)+2, dice=[])
 

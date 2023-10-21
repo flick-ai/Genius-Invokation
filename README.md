@@ -67,6 +67,17 @@ A simulator of the Genius Invokation TCG in Genshin impact
         每回合初始8个骰子非默认万能：genius_invocation/game/player.py Line102，is_omni=False
 
 ## 网页端运行
-    您可以通过我们的网页端demo(https://flick-ai.github.io/Genius-Invokation-Website/)进行运行，或者自己在本地配置网页端进行运行。网页端的交互更加便利，并且支持不同的设备。
+    您可以通过我们的网页端demo(https://flick-ai.github.io/Genius-Invokation-Website/)进行运行，
+    或者自己在本地配置网页端进行运行。网页端的交互更加便利，并且支持不同的设备。
 
 ![](website.png)
+### 网页端说明
+我们并没有太多的Web应用开发经验，目前的这个版本仅为了优化游戏体验和方便不熟悉python运行环境的玩家体验我们的项目。如果您有相关的开发经验并且有兴趣和我们一起优化这个应用，欢迎联系并加入我们！
+
+本项目使用了PyScript完成Python程序的浏览器运行，因此所有的游戏都是在浏览器端执行计算的，
+### 网页端游玩教程
+您可以使用电脑端（鼠标）或移动端（点击）来控制游戏。
+目前部署的网页端demo为固定卡组，如果您在本地部署将能够自定义卡组。后续我们会支持网页端配置卡组。
+
+### 网页端本地部署教程
+在website文件夹中执行```bash rebuild.sh```并访问```localhost:5001```
