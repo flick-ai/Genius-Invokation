@@ -5,7 +5,7 @@ if TYPE_CHECKING:
     from genius_invocation.game.game import GeniusGame
 
 class Soothing_Water(ActionCard):
-    id: int = 331102
+    id: int = 331202
     name: str = "Shattering_Ice"
     cost_num = 1
     card_type = ActionCardType.EVENT_ELEMENTAL_RESONANCE.value
