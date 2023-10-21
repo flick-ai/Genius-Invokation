@@ -167,10 +167,11 @@ Here are the `Event` used in the project： 一下为我们使用到的事件：
 -   `AFTER_CHANGE_CHARACTER` 切换角色后
 -   `END_PHASE` 结束阶段
 -   `AFTER_TAKES_DMG` 受到伤害后
+-   `INFUSION`: 伤害元素附着
 -   `DAMAGE_ADD`计算伤害增加量
 -   `DAMAGE_ADD_AFTER_REACTION`: 计算由于触发反应引起的加伤。 e.g. `Elemental Resonance: Fervent Flames` 例如：`元素共鸣：热诚之火`。
--   `DEALING_DAMAGE`: 结算伤害时，for Mona only right now, 现仅对莫娜起作用
--   `INFUSION`: 伤害元素附着
+-   `DEALING_DAMAGE`: Multiplicative damage dealing. 结算伤害时，for Mona only right now, 现仅对莫娜起作用。
+-   `DIVIDE_DAMAGE`: Dividing damage. 伤害除算。For Noelle only right now. 现仅对诺艾尔起作用。
 -   `EXECUTE_DAMAGE`: 执行伤害时，Calculate the damage discount from shield and status, 计算由盾、状态产生的伤害减免。
 -   `CHARACTER_DIE` 角色死亡时
 -   `BEFORE_ANY_ACTION` 任意行动之前
@@ -206,17 +207,67 @@ In the same priority, the event registered earlier will be triggered earlier, to
 
 You only need to give the `event`to  the event manager, the `ACTION`s will automatically invoked. 仅需将需要触发的事件发送给事件管理器，对应的函数将自动触发。
 
-## 5. Damage 伤害
+## 5. Class Damage 伤害类
+
+To tackle the difficult calculation of damage, we create the class of `Damage`， 为了解决复杂的伤害计算，我们创建了伤害类。
+
+### 5.1 Attribute 
+
+-   `damage_type`： Which type of skill causes the damage.  造成伤害的技能类型。
+-   `main_damage_element`: Which element the main damage is. 伤害的元素类型。
+-   `main_damage`: The mount of damage. 伤害量。
+-   `piercing_damage`: The mount of piercing damage. 穿透伤害量。
+-   `damage_from`: Which `Entity`  the damage from. 伤害来源``实例``。
+-   `damage_to`: Which `Character` the damage to. 伤害目标`角色`。
+-   `reaction`: The reaction type this damage triggered. 该伤害触发的元素反应。
+-   `swirl_crystallize_type`: The swirl or crystallize's element type. 扩散、结晶对应的元素类型。
+-   `is_plunging_attack`: Whether the damage from a plugging attack. 是否来自下落攻击。
+-   `is_charged_attack`: Whether the damage from a charged attack. 是否来自重击。
+
+### 5.2 Resolve of Damage, 伤害结算
+
+-    We can call `game.add_damage(DMG)` to add a `Damage` instance into the damage list. 我们通过调用`game.add_damage(DMG)`将带计算的伤害加入伤害列表中。
+
+-   Then we call `game.resolve_damage()` to resolve all the damages in the list. 然后通过调用 `game.resolve_damage()`来计算这个伤害的影响。
+
+-   In `game.resolve_damage()`, we repeatedly pop the first damage in damage list, and set `game.current_damage`, dealing the damages one by one. 在`game.resolve_damage()`中，我们一个个处理列表中的伤害，设置`game.current_damage`，依次处理。
+
+-   For a single damage, we need to follow the sequential steps: 对于一个伤害，我们需要根据如下的顺序结算
+
+    -   **Infusion** : infuse current damage to certain element. 将当前伤害染色。
+    -   **Damage Add**: Call `Status`, etc. to enhance the main damage. 结算各种状态，使得加算增伤得到计算。
+    -   **Elemental Reaction**: Check and trigger elemental reaction. 检查并触发元素反应。Swirl will trigger additonal damage. 扩散会触发额外伤害。
+    -   **Damage Add After Reactoin**: Calculate additonal damage add because of triggering reaction. 计算由于触发反应引起的增伤。
+    -   **Damage Dealing**: Calculate the final multiplicative damage increase. 计算最终乘算增伤。
+    -   **Damage Dividing**: Calculate the division damage reduction. 计算最终除算减伤。
+    -   **Damage Execute**: Calculate the status, shield etc's effect on damage reduction. 计算状态、盾提供的减伤。
+    -   **Suffer Damage**: The characters suffer the final damage. 承受最终伤害。
+
+-   And after that，invoke event `AFTER_TAKE_DMG`， maybe there are more damage need to add in the list to resolve together. 之后触发收到伤害后事件，处理可能的更多放在伤害列表中的伤害。e.g. Nahida。
+
+    
 
 ## 6. Dice 骰子
+
 We have a total of 7 basic element dice and universal dice.
 We use an np. array to maintain our dice area, and we sort it according to the default order and the element types of the participating characters. Our dice area supports basic operations such as adding, using, and clearing.
 我们共有7种基础元素骰和万能骰。
 我们使用一个二维的np.array来维护我们的骰子区，我们按照默认顺序和出战角色的元素类型来进行排序。我们的骰子区支持添加、使用、清空等基本操作。
 
-## 7. Skill 技能
+## 7. Class CharacterSkill 角色技能类
+
+`CharacterSkill`  has `NoramalAttack`, `ElementalSkill`, `ElementalBurst` 3 subclass. 技能有普通攻击、元素战技、元素爆发三个子类。It is the base class for each character's each skill. 是每个角色的每个技能的基类。 It contains the following attributes, 包含如下属性
+
+-   `name`
+-   `type` Skill type 技能类别.
+-   `damage_type`, `main_damage_element`, `main_damage`, `piercing_damage`
+-   `cost`: cost of the dice. 骰子消耗。
+-   `energy_cost`, `energy_gain` 能量消耗与获得。
+
+In `CharacterSkill` class, several *atom operation*s have been implemented.  在该类中已经写好许多原子操作。Some other operation need to implement dependently in the specific character. 更多的操作需要在特定的角色中实现。
 
 ## 8. Card 牌
+
 Our cards support three basic operations: playing, reconciling, and finding targets. After our card is played, an Entity will be generated and stored on the field for settlement.
 我们的牌支持打出、调和和寻找作用对象三个基本操作。我们的牌打出后，会产生一个Entity存在在场上用于结算。
 

@@ -58,6 +58,7 @@ class Damage:
         self.elemental_reaction(game)
         self.damage_add_after_reaction(game)
         self.damage_dealing(game)
+        self.damage_divide(game)
         self.damage_execute(game)
         game.suffer_current_damage()
         self.after_damage(game)
@@ -74,7 +75,8 @@ class Damage:
 
     def damage_dealing(self, game: 'GeniusGame'):
         game.manager.invoke(EventType.DEALING_DAMAGE, game)
-
+    def damage_divide(self, game: 'GeniusGame'):
+        game.manager.invoke(EventType.DIVIDE_DAMAGE, game)
     def damage_execute(self, game: 'GeniusGame'):
         logger.debug(f"Before Damage Execute: {game.current_damage.main_damage}")
         game.manager.invoke(EventType.EXECUTE_DAMAGE, game)

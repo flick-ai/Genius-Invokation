@@ -135,6 +135,7 @@ class EventType(Enum):
     DEALING_DAMAGE = 13 # Mona only right now
     INFUSION = 14
     # ON_REACTION = 14 # Elemental Reaction based event. Maybe trigger sth, or just add DMG.
+    DIVIDE_DAMAGE = 21 # 诺艾尔!
     EXECUTE_DAMAGE = 15
     CHARACTER_DIE = 16
 
