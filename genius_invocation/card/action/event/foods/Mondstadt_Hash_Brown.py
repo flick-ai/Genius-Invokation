@@ -18,7 +18,7 @@ class Mondstadt_Hash_Brown(FoodCard):
 
     def on_played(self, game: 'GeniusGame'):
         target_character = super().on_played(game)
-        target_character.heal(int=2)
+        target_character.heal(heal=2)
     
     def find_target(self, game: 'GeniusGame'):
         target_list = []

@@ -18,7 +18,7 @@ class Sweet_Madame(FoodCard):
 
     def on_played(self, game: 'GeniusGame'):
         target_character = super().on_played(game)
-        target_character.heal(int=1)
+        target_character.heal(heal=1)
     
     def find_target(self, game: 'GeniusGame'):
         target_list = []
