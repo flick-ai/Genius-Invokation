@@ -132,7 +132,7 @@ class Rain_Sword(Combat_Status):
             self.usage = 3
         self.current_usage = max(self.current_usage, self.usage)
     
-    def on_excute_dmg(self, game:'GeniusGame'):
+    def on_execute_dmg(self, game:'GeniusGame'):
         if game.current_damage.damage_to.from_player == self.from_player:
             if game.current_damage.damage_to.is_active:
                 if game.current_damage.main_damage_element != ElementType.PIERCING:
@@ -144,7 +144,7 @@ class Rain_Sword(Combat_Status):
     
     def update_listener_list(self):
         self.listeners = [
-            (EventType.EXCUTE_DAMAGE, ZoneType.ACTIVE_ZONE, self.on_excute_dmg)
+            (EventType.EXECUTE_DAMAGE, ZoneType.ACTIVE_ZONE, self.on_execute_dmg)
         ]
 
 class Rainbow_Bladework(Combat_Status):

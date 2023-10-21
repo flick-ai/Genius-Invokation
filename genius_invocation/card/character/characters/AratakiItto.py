@@ -201,7 +201,7 @@ class Shield_from_Ushi(Combat_Status):
         self.usage = self.from_summon.usage
         self.max_usage = self.from_summon.max_usage
 
-    def on_damage_excute(self, game:'GeniusGame'):
+    def on_damage_execute(self, game:'GeniusGame'):
         if self.from_summon.current_usage <=0: return
         if game.current_damage.main_damage <=0: return
         if game.current_damage.main_damage_element==ElementType.PIERCING: return
@@ -215,7 +215,7 @@ class Shield_from_Ushi(Combat_Status):
     
     def update_listener_list(self):
         self.listeners = [
-            (EventType.EXCUTE_DAMAGE, ZoneType.ACTIVE_ZONE, self.on_damage_excute)
+            (EventType.EXECUTE_DAMAGE, ZoneType.ACTIVE_ZONE, self.on_damage_execute)
         ]
     def update(self):
         self.current_usage = self.from_summon.current_usage

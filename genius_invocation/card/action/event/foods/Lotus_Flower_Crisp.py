@@ -14,7 +14,7 @@ class Lotus_Flower_Crisp_Entity(Status):
         super().__init__(game, from_player, from_character)
         self.current_usage = 1
     
-    def on_damage_excute(self, game: 'GeniusGame'):
+    def on_damage_execute(self, game: 'GeniusGame'):
         if game.current_damage.damage_to == self.from_character:
             if game.current_damage.main_damage_element == ElementType.PIERCING:
                 return
@@ -26,7 +26,7 @@ class Lotus_Flower_Crisp_Entity(Status):
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.EXCUTE_DAMAGE, ZoneType.CHARACTER_ZONE, self.on_damage_excute),
+            (EventType.EXECUTE_DAMAGE, ZoneType.CHARACTER_ZONE, self.on_damage_execute),
         ]
 
 class Lotus_Flower_Crisp(FoodCard):

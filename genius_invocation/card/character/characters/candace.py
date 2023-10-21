@@ -139,7 +139,7 @@ class Heron_Shield(Shield):
         #TODO: Check when the shield disappear. Answer: the same point of damage, even the shield is 0. 
         #In this implement, the prepare_status is destroy after the stage of after_skill in the process of on_call.
     
-    def on_excute_dmg(self, game:'GeniusGame'):
+    def on_execute_dmg(self, game:'GeniusGame'):
         if game.current_damage.damage_to == self.from_character:
             if game.current_damage.main_damage_element != ElementType.PIERCING:
                 if game.current_damage.main_damage >= self.current_usage:
@@ -151,7 +151,7 @@ class Heron_Shield(Shield):
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.EXCUTE_DAMAGE, ZoneType.CHARACTER_ZONE, self.on_excute_dmg)
+            (EventType.EXECUTE_DAMAGE, ZoneType.CHARACTER_ZONE, self.on_execute_dmg)
         ]
 
 class Prayer_of_the_Crimson_Crown(Combat_Status):

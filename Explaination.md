@@ -149,9 +149,11 @@ Here are the `Event` used in the project： 一下为我们使用到的事件：
 -   `DAMAGE_ADD_AFTER_REACTION`: 计算由于触发反应引起的加伤。 e.g. `Elemental Resonance: Fervent Flames` 例如：`元素共鸣：热诚之火`。
 -   `DEALING_DAMAGE`: 结算伤害时，for Mona only right now, 现仅对莫娜起作用
 -   `INFUSION`: 伤害元素附着
--   `EXCUTE_DAMAGE`: 执行伤害时，Calculate the damage discount from shield and status, 计算由盾、状态产生的伤害减免。
+-   `EXECUTE_DAMAGE`: 执行伤害时，Calculate the damage discount from shield and status, 计算由盾、状态产生的伤害减免。
 -   `CHARACTER_DIE` 角色死亡时
 -   `BEFORE_ANY_ACTION` 任意行动之前
 -   `AFTER_ANY_ACTION`任意行动之后
 -   `ON_SUMMON_REMOVE`召唤物移除时
 -   `ELEMENTAL_APPLICATION_REACTION`: The timing that a reaction is triggered by an elemental application (no damage).  附着元素造成反应之时（无伤害）。
+
+### 4.2 Executing Logic
