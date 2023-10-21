@@ -172,7 +172,9 @@ async def from_input(game: 'GeniusGame'):
         target = last_target
         print(target_prompt+'您目前只能选择如下目标:'+str(last_target)+'.'+target_dict[last_target]+'\n')
     else:
+        print(11111)
         target = await user_input.get_sel(target_prompt, target_list)
+        print(4444)
 
     if choice == 16:
         list_prompt = f'您需要选择重新投掷的骰子的位置,数值应该在{0}-{use_dice[choice][target][0]-1}之间'

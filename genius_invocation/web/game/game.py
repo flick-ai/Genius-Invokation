@@ -40,6 +40,7 @@ class GeniusGame:
         self.current_dice: Dice = None
         self.current_action: Action = None
         self.current_damage: Damage = None
+        self.current_switch: dict(Character) = {"from": None, "to": None}
         self.current_skill: CharacterSkill = None
         self.current_card: ActionCard = None
         self.damage_list: List[Damage] = []
