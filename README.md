@@ -2,7 +2,7 @@
 A simulator of the Genius Invokation TCG in Genshin impact for Reinforcement Learning
 一个用于强化学习的原神七圣召唤卡牌模拟器
 
-[Document]() | [详细信息文档](Explaination.md) | [Attach]()
+[Document]() | [详细信息文档](Explaination.md) | [Attach](qq.jpg)
 ![](image-2.png)
 我们的项目目标是基于python搭建原神七圣召唤卡牌游戏的模拟器对战环境，并在此基础上基于Reinforcement Learning训练七圣召唤的AI牌手。目前我们的环境已经可以支持游戏，并且基本实现了和七圣召唤中相同的结算效果。
 
