@@ -4,18 +4,18 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from genius_invocation.game.game import GeniusGame
-
+    from genius_invocation.entity.status import Artifact
 
 class ArtifactCard(EquipmentCard):
     # 圣遗物牌
-
+    equipment_entity: 'Artifact'
     def __init__(self) -> None:
         super().__init__()
 
     def on_played(self, game: 'GeniusGame') -> None:
         idx = game.current_action.target_idx
         target_character = game.active_player.character_list[idx]
-        entity = self.artifact_entity(game=game,
+        entity = self.equipment_entity(game=game,
                                        from_player=game.active_player,
                                        from_character=target_character,
                                        artifact_card=self)
