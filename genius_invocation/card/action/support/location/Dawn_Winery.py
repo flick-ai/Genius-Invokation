@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 class Dawn_Winery_Entity(Support):
     id: int = 321004
     name = 'Dawn Wineryr'
+    name_ch = '晨曦酒庄'
     max_usage = 1
     max_count = -1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
@@ -54,6 +55,7 @@ class Dawn_Winery(SupportCard):
     '''
     id: int = 321004
     name: str = 'Dawn Winery'
+    name_ch = '晨曦酒庄'
     cost_num = 2
     cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_LOCATION

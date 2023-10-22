@@ -8,6 +8,7 @@ class Yunlai_Swordsmanship(NormalAttack):
     id: int = 0
     type: SkillType = SkillType.NORMAL_ATTACK
     name = "Yunlai Swordsmanship"
+    name_ch = "云来剑法"
     # damage
     damage_type: SkillType = SkillType.NORMAL_ATTACK
     main_damage_element: ElementType = ElementType.PHYSICAL
@@ -47,6 +48,7 @@ class StellarRestoration(ElementalSkill):
     '''
     id: int = 1
     name = "Stellar Restoration"
+    name_ch = "星斗归位"
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
     # damage
@@ -102,6 +104,7 @@ class StarwardSword(ElementalBurst):
     '''
     id = 2
     name="Starward Sword"
+    name_ch = "天街巡游"
     type: SkillType = SkillType.ELEMENTAL_BURST
 
     # damage
@@ -134,6 +137,7 @@ class StarwardSword(ElementalBurst):
 class Keqing(Character):
     id: int = 1403
     name = "Keqing"
+    name_ch = "刻晴"
     element = ElementType.ELECTRO
     weapon_type: WeaponType = WeaponType.SWORD
     country: CountryType = CountryType.LIYUE
@@ -152,6 +156,7 @@ class Keqing(Character):
 class Lightning_Stiletto(ActionCard):
     id: int = -1 #TODO: CHECK THE ID
     name: str = 'Lightning Stiletto'
+    name_ch = "雷楔"
     cost_num = 3
     cost_type = CostType.ELECTRO
     card_type = ActionCardType.EVENT
@@ -181,11 +186,16 @@ class Lightning_Stiletto(ActionCard):
 
 
 class Electro_Elemental_Infusion(Status):
+
+    name = "Electro Infusion"
+    name_ch = "雷元素附魔"
+        
     def __init__(self, game, from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.usage = 2
         self.current_usage = 2
         self.max_usage = 2
+        
         if self.from_character.talent:
             self.usage = 3
             self.current_usage = 3

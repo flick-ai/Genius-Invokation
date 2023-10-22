@@ -19,6 +19,7 @@ class CharacterSkill:
     # 角色技能基本类
     id: int
     name: str
+    name_ch: str
     type: SkillType
 
     # damage

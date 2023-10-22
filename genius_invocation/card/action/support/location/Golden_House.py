@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 class Golden_House_Entity(Support):
     id: int = 321013
     name = 'Golden House'
+    name_ch = '黄金屋'
     max_usage = 2
     max_count = -1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
@@ -53,6 +54,7 @@ class Golden_House(SupportCard):
     '''
     id: int = 321013
     name: str = 'Golden House'
+    name_ch = '黄金屋'
     cost_num = 0
     cost_type = None
     card_type = ActionCardType.SUPPORT_LOCATION

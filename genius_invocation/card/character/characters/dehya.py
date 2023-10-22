@@ -3,6 +3,7 @@ from genius_invocation.card.character.characters.import_head import *
 class Sandstorm_Assault(NormalAttack):
     id: int = 0
     name="Sandstorm Assault"
+    name_ch = "拂金剑斗术"
     type: SkillType = SkillType.NORMAL_ATTACK
 
     # damage
@@ -41,6 +42,7 @@ class Sandstorm_Assault(NormalAttack):
 class Molten_Inferno(ElementalSkill):
     id: int = 1
     name="Monlten Inferno"
+    name_ch = "熔铁流狱"
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
     # No damage
@@ -77,6 +79,7 @@ class Molten_Inferno(ElementalSkill):
 class Leonine_Bite(ElementalBurst):
     id: int = 2
     name = "Leonine Bite"
+    name_ch = "炎啸狮子咬"
     type: SkillType = SkillType.ELEMENTAL_BURST
 
     # damage
@@ -108,6 +111,7 @@ class Leonine_Bite(ElementalBurst):
 
 class Incineration_Drive(ElementalBurst):
     name = "Incineration Drive"
+    name_ch = "焚落踢"
     id = 3
     type = SkillType.ELEMENTAL_BURST
 
@@ -130,6 +134,7 @@ class Incineration_Drive(ElementalBurst):
 
 class Fiery_Sanctum_Field(Summon):
     name = "Fiery Sanctum Field"
+    name_ch = "净焰剑狱领域"
     id = 0
     element = ElementType.PYRO
     usage = 3
@@ -191,6 +196,7 @@ class Fiery_Sanctum_Field(Summon):
 class Dehya(Character):
     id = 1309
     name = "Dehya"
+    name_ch = "迪希雅"
     element: ElementType = ElementType.PYRO
     weapon_type: WeaponType = WeaponType.CLAYMORE
     country: CountryType = CountryType.SUNERU
@@ -219,6 +225,7 @@ class Dehya(Character):
 
 class Prepare_Incineration_Drive(Status):
     name = "Prepare Incineration Drive"
+    name_ch = "准备技能: 焚落踢"
     def __init__(self, game:'GeniusGame', from_player:'GeniusPlayer', from_character:'Character', next_skill: 'CharacterSkill'):
         super().__init__(game, from_player, from_character)
         self.next_skill = next_skill

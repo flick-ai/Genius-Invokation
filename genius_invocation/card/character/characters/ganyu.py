@@ -2,6 +2,7 @@ from genius_invocation.card.character.characters.import_head import *
 
 class Liutian_Archery(NormalAttack):
     name = 'Liutian Archery'
+    name_ch = "流天射术"
     id: int = 0
     type: SkillType = SkillType.NORMAL_ATTACK
 
@@ -41,7 +42,7 @@ class Liutian_Archery(NormalAttack):
 class Trail_of_the_Qilin(ElementalSkill):
     id = 1
     name = 'Trail of the Qilin'
-
+    name_ch = "山泽麟迹"
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
     # damage
@@ -76,6 +77,7 @@ class Trail_of_the_Qilin(ElementalSkill):
 
 class Frostflake_Arrow(NormalAttack):
     name = 'Frostflake Arrow'
+    name_ch = "霜华矢"
     id: int = 2
     type: SkillType = SkillType.NORMAL_ATTACK
 
@@ -115,6 +117,7 @@ class Frostflake_Arrow(NormalAttack):
 class Celestial_Shower(ElementalBurst):
     id = 3
     name = 'Celestial Shower'
+    name_ch = "降众天华"
     type = SkillType.ELEMENTAL_BURST
 
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
@@ -141,6 +144,7 @@ class Celestial_Shower(ElementalBurst):
 
 class Ice_Lotus(Combat_Status):
     name = 'Ice Lotus'
+    name_ch = "冰莲"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character' = None):
         super().__init__(game, from_player, from_character)
         self.usage = 2
@@ -168,6 +172,7 @@ class Ice_Lotus(Combat_Status):
 
 class Sacred_Cryo_Pearl(Summon):
     name = "Sacred Cryo Pearl"
+    name_ch = "冰灵珠"
     element = ElementType.CRYO
     usage = 2
     max_usage = 2
@@ -215,6 +220,7 @@ class Sacred_Cryo_Pearl(Summon):
 class Ganyu(Character):
     id = 1101
     name = "Ganyu"
+    name_ch = "甘雨"
     element = ElementType.CRYO
     weapon_type = WeaponType.BOW
     country = CountryType.LIYUE

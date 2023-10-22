@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 class Vanarana_Entity(Support):
     id: int = 321011
     name = 'Vanarana'
+    name_ch = '桓那兰那'
     max_usage = -1
     max_count = 2
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
@@ -63,6 +64,7 @@ class Vanarana(SupportCard):
     '''
     id: int = 321011
     name: str = 'Vanarana'
+    name_ch = '桓那兰那'
     cost_num = 0
     cost_type = None
     card_type = ActionCardType.SUPPORT_LOCATION
