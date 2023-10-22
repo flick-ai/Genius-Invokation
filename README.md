@@ -2,9 +2,9 @@
 A simulator of the Genius Invokation TCG in Genshin impact
 一个用于自定义卡牌、训练强化学习AI的原神七圣召唤卡牌模拟器
 
-[网页demo](https://flick-ai.github.io/Genius-Invokation-Website/) ｜ [Document](https://genius-invokation.readthedocs.io/zh/latest/) | [详细信息文档](Explaination.md) | [测试表格](https://j0mmhq251c1.feishu.cn/sheets/RloasMqWHh1RgytsZfqcblqBnge?from=from_copylink) | [Attach](qq.jpg)
+[网页demo](https://flick-ai.github.io/Genius-Invokation-Website/) ｜ [Document](https://genius-invokation.readthedocs.io/zh/latest/) | [详细信息文档](Explaination.md) | [测试表格](https://j0mmhq251c1.feishu.cn/sheets/RloasMqWHh1RgytsZfqcblqBnge?from=from_copylink) | [Attach](./assets/qq.jpg)
 
-![](main.png)
+![](./assets/main.png)
 
 我们的项目目标是基于python搭建原神七圣召唤卡牌游戏的模拟器对战环境，使得使用者可以随心所欲的自定义卡牌并测试其强度，并在此基础上基于Reinforcement Learning训练七圣召唤的AI牌手。目前我们的环境已经可以支持游戏，并且基本实现了和七圣召唤中相同的结算效果。您可以阅读我们撰写的详细信息文档和该库的参考文档，来实现您自己的七圣召唤卡牌！
 
@@ -56,7 +56,7 @@ A simulator of the Genius Invokation TCG in Genshin impact
 
     您将可以形如下图的对战信息。我们会告知您您当前可以执行的所有动作选择、动作目标和列表选择。您只需要按照中文描述输入数字即可。
 
-![](terminal.png)
+![](./assets/terminal.png)
 
 ### Define game
 
@@ -70,7 +70,7 @@ A simulator of the Genius Invokation TCG in Genshin impact
     您可以通过我们的网页端demo(https://flick-ai.github.io/Genius-Invokation-Website/)进行运行，
     或者自己在本地配置网页端进行运行。网页端的交互更加便利，并且支持不同的设备。
 
-![](website.png)
+![](./assets/website.png)
 ### 网页端说明
 我们并没有太多的Web应用开发经验，目前的这个版本仅为了优化游戏体验和方便不熟悉python运行环境的玩家体验我们的项目。如果您有相关的开发经验并且有兴趣和我们一起优化这个应用，欢迎联系并加入我们！
 
