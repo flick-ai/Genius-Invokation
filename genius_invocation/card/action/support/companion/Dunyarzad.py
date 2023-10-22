@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 class Dunyarzad_Entity(Support):
     id: int = 322016
     name = 'Dunyarzad'
+    name_ch = '迪娜泽黛'
     max_usage = 1
     max_count = -1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
@@ -61,6 +62,7 @@ class Dunyarzad(SupportCard):
     '''
     id: int = 322016
     name: str = 'Dunyarzad'
+    name_ch = '迪娜泽黛'
     cost_num = 1
     cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_COMPANION

@@ -4,6 +4,7 @@ from genius_invocation.card.character.characters.import_head import *
 class Pactsworn_Pathclearer(Status):
     '''赛诺 被动状态'''
     name = "Pactsworn Pathclearer"
+    name_ch = "赛诺·盟约之路"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.current_usage = 0

@@ -8,6 +8,7 @@ if TYPE_CHECKING:
 class Fervent_Flames_Entity(Combat_Status):
     id: int = 331302
     name: str = "Fervent_Flames"
+    name_ch = "热诚之火"
 
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
@@ -50,6 +51,7 @@ class Fervent_Flames_Entity(Combat_Status):
 class Fervent_Flames(ActionCard):
     id: int = 331302
     name: str = "Fervent_Flames"
+    name_ch = "热诚之火"
     cost_num = 1
     card_type = ActionCardType.EVENT_ELEMENTAL_RESONANCE.value
     cost_type = CostType.PYRO

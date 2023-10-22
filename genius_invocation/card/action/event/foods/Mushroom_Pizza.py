@@ -10,6 +10,7 @@ if TYPE_CHECKING:
 class Mushroom_Pizza_Entity(Status):
     id: int = 333007
     name: str = "Mushroom Pizza"
+    name_ch = "烤蘑菇披萨"
 
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
@@ -33,6 +34,7 @@ class Mushroom_Pizza(FoodCard):
     name: str = "Mushroom Pizza"
     cost_num = 1
     cost_type = CostType.WHITE
+    name_ch = "烤蘑菇披萨"
 
     def __init__(self) -> None:
         super().__init__()

@@ -9,6 +9,7 @@ if TYPE_CHECKING:
 class Jueyun_Guoba_Entity(Status):
     id: int = 333001
     name: str = 'Jueyun Guoba'
+    name_ch =  "绝云锅巴"
     
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
@@ -35,6 +36,7 @@ class Jueyun_Guoba_Entity(Status):
 class Jueyun_Guoba(FoodCard):
     id: int = 333001
     name: str = 'Jueyun Guoba'
+    name_ch =  "绝云锅巴"
     cost_num = 0
     cost_type = None
 

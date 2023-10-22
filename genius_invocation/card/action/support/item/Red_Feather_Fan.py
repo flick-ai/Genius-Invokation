@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 class Red_Feather_Fan_Entity(Support):
     id: int = 323003
     name = 'Red Feather Fan'
+    name_ch = '红羽团扇'
     max_usage = 1
     max_count = -1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
@@ -55,6 +56,7 @@ class Red_Feather_Fan(SupportCard):
     '''
     id: int = 323003
     name: str = 'Red Feather Fan'
+    name_ch = '红羽团扇'
     cost_num = 2
     cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_ITEM

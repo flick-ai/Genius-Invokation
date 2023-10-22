@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 class Treasure_Seeking_Seelie_Entity(Support):
     id: int = 323004
     name = 'Treasure-Seeking Seelie'
+    name_ch = '寻宝仙灵'
     max_usage = -1
     max_count = 3
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
@@ -37,6 +38,7 @@ class Treasure_Seeking_Seelie(SupportCard):
     '''
     id: int = 323004
     name: str = 'Treasure-Seeking Seelie'
+    name_ch = '寻宝仙灵'
     cost_num = 1
     cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_ITEM

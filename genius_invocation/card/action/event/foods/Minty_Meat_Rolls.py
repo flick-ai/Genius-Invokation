@@ -9,6 +9,7 @@ if TYPE_CHECKING:
 class Minty_Meat_Rolls_Entity(Status):
     id: int = 333008
     name: str = "Minty Meat Rolls"
+    name_ch = "兽肉薄荷卷"
 
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
@@ -44,6 +45,7 @@ class Minty_Meat_Rolls(FoodCard):
     name: str = "Minty Meat Rolls"
     cost_num = 1
     cost_type = CostType.WHITE
+    name_ch = "兽肉薄荷卷"
 
     def __init__(self) -> None:
         super().__init__()

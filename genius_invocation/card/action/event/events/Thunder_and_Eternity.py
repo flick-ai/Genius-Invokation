@@ -7,6 +7,7 @@ if TYPE_CHECKING:
 class Thunder_and_Eternity(ActionCard):
     id: int = 331803
     name: str = 'Thunder and Eternity'
+    name_ch = '雷与永恒'
     cost_num = 0
     cost_type = None
     card_type = ActionCardType.EVENT

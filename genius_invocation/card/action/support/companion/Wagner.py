@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 class Wagner_Entity(Support):
     id: int = 322004
     name = 'Wagner'
+    name_ch = '瓦格纳'
     max_usage = 1
     max_count = -1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
@@ -57,6 +58,7 @@ class Wagner(SupportCard):
     '''
     id: int = 322004
     name: str = 'Wagner'
+    name_ch = '瓦格纳'
     cost_num = 2
     cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_COMPANION

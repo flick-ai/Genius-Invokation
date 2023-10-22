@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 class Master_Zhang_Entity(Support):
     id: int = 322018
     name = 'Master Zhang'
+    name_ch = '老章'
     max_usage = 1
     max_count = -1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
@@ -57,6 +58,7 @@ class Master_Zhang(SupportCard):
     '''
     id: int = 322018
     name: str = 'Master Zhang'
+    name_ch = '老章'
     cost_num = 1
     cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_COMPANION

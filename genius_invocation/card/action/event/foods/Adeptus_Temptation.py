@@ -9,6 +9,7 @@ if TYPE_CHECKING:
 class Adeptus_Temptation_Entity(Status):
     id: int = 333002
     name: str = "Adeptus' Temptation"
+    name_ch: str = "仙跳墙"
     
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
@@ -35,6 +36,7 @@ class Adeptus_Temptation_Entity(Status):
 class Adeptus_Temptation(FoodCard):
     id: int = 333002
     name: str = "Adeptus' Temptation"
+    name_ch: str = "仙跳墙"
     cost_num = 2
     cost_type = CostType.BLACK
 

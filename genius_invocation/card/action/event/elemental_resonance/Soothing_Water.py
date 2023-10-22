@@ -6,7 +6,8 @@ if TYPE_CHECKING:
 
 class Soothing_Water(ActionCard):
     id: int = 331202
-    name: str = "Shattering_Ice"
+    name: str = "Soothing_Water"
+    name_ch = "愈疗之水"
     cost_num = 1
     card_type = ActionCardType.EVENT_ELEMENTAL_RESONANCE.value
     cost_type = CostType.HYDRO
