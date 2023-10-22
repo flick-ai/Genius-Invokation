@@ -6,7 +6,7 @@ if TYPE_CHECKING:
 def Elementals_to_str(elements: List[ElementType]):
     res = ""
     for element in elements:
-        res += str(element.name_ch)+ " "
+        res += str(element.name)+ " "
     if res == "":
         res = "None"
     return res
