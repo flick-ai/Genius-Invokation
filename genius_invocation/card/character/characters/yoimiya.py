@@ -2,11 +2,12 @@ from genius_invocation.card.character.characters.import_head import *
 
 class Firework_FlareUp(NormalAttack):
     '''
-        宵宫
+        烟火打扬
         普通攻击
     '''
     id: int = 0
-    name="Firework Flare-Up"
+    name = "Firework Flare-Up"
+    name_ch = "烟火打扬"
     type: SkillType = SkillType.NORMAL_ATTACK
 
     # damage
@@ -43,11 +44,12 @@ class Firework_FlareUp(NormalAttack):
 
 class Niwabi_FireDance(ElementalSkill):
     '''
-        宵宫
+        焰硝庭火舞
         元素战技
     '''
     id: int = 1
     name="Niwabi Fire-Dance"
+    name_ch = "焰硝庭火舞"
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
     # No damage
@@ -82,11 +84,12 @@ class Niwabi_FireDance(ElementalSkill):
 
 class Ryuukin_Saxifrage(ElementalBurst):
     '''
-        宵宫
+        琉金云间草
         元素爆发
     '''
     id: int = 2
     name = "Ryuukin Saxifrage"
+    name_ch = "琉金云间草"
     type: SkillType = SkillType.ELEMENTAL_BURST
 
     # damage
@@ -121,6 +124,7 @@ class Yoimiya(Character):
     '''宵宫'''
     id: int = 1305
     name: str = 'Yoimiya'
+    name = "宵宫"
     element: ElementType = ElementType.PYRO
     weapon_type: WeaponType = WeaponType.BOW
     country: CountryType = CountryType.INAZUMA
@@ -138,6 +142,7 @@ class Yoimiya(Character):
 
 class Niwabi_Enshou(Status):
     name = "Niwabi Enshou"
+    name_ch = "庭火焰硝"
     def __init__(self, game, from_player: 'GeniusPlayer', from_character: Character=None):
         super().__init__(game, from_player, from_character)
         self.usage = 2
@@ -193,6 +198,7 @@ class Niwabi_Enshou(Status):
 
 class Aurous_Blaze(Combat_Status):
     name = "Aurous Blaze"
+    name_ch = "琉金火光"
     def __init__(self, game, from_player: 'GeniusPlayer', from_character: 'Character'=None):
         super().__init__(game, from_player, from_character)
         self.usage = 2

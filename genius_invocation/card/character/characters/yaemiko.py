@@ -4,7 +4,7 @@ class Spiritfox_SinEater(NormalAttack):
     id = 0
     type = SkillType.NORMAL_ATTACK
     name = "Spiritfox Sin-Eater"
-
+    name_ch = "狐灵食罪式"
     # damage
     damage_type = SkillType.NORMAL_ATTACK
     main_damage_element = ElementType.ELECTRO
@@ -27,7 +27,7 @@ class Spiritfox_SinEater(NormalAttack):
 
     def __init__(self, from_character: 'Character'):
         super().__init__(from_character)
-    
+
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         # 处理伤害
@@ -40,6 +40,7 @@ class Spiritfox_SinEater(NormalAttack):
 class Yakan_Evocation_Sesshou_Sakura(ElementalSkill):
     id = 1
     name = "Yakan Evocation: Sesshou Sakura"
+    name_ch = "野干役咒·杀生樱"
     type = SkillType.ELEMENTAL_SKILL
 
     # damage
@@ -73,6 +74,7 @@ class Yakan_Evocation_Sesshou_Sakura(ElementalSkill):
 class Great_Secret_Art_Tenko_Kenshin(ElementalBurst):
     id = 2
     name = "Great Secret Art: Tenko Kenshin"
+    name_ch = "大密法·天狐显真"
     type = SkillType.ELEMENTAL_BURST
 
     damage_type = SkillType.ELEMENTAL_BURST
@@ -108,6 +110,7 @@ class Great_Secret_Art_Tenko_Kenshin(ElementalBurst):
 class Yae_Miko(Character):
     id = 1408
     name = 'Yae Miko'
+    name_ch = "八重神子"
     element = ElementType.ELECTRO
     weapon_type = WeaponType.CATALYST
     country = CountryType.INAZUMA
@@ -123,6 +126,7 @@ class Yae_Miko(Character):
 
 class Sesshou_Sakura(Summon):
     name = "Sesshou Sakura"
+    name_ch = "杀生樱"
     removable = True
     element = ElementType.ELECTRO
     usage = 3
@@ -156,6 +160,7 @@ class Sesshou_Sakura(Summon):
 
 class Tenko_Thunderbolts(Combat_Status):
     name = "Tenko Thunderbolts"
+    name_ch = "天狐霆雷"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character:'Character'=None):
         super().__init__(game, from_player, from_character)
         self.current_usage = 1
@@ -184,6 +189,7 @@ class Tenko_Thunderbolts(Combat_Status):
 
 class SaveDice_Sakura(Status):
     name = "Save Dice for Sakura"
+    name_ch = "神篱之御荫-效果"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character:'Character'=None):
         super().__init__(game, from_player, from_character)
         self.usage = 1
@@ -196,13 +202,13 @@ class SaveDice_Sakura(Status):
 
     def on_calculate(self, game:'GeniusGame'):
         if game.active_player_index == self.from_player.index:
-            if game.current_dice.use_type is SkillType.ELEMENTAL_SKILL: 
+            if game.current_dice.use_type is SkillType.ELEMENTAL_SKILL:
                 if game.current_dice.from_character == self.from_character:  #Yae Miko use elemental skill, no action card.
                     if self.usage > 0:
                         if game.current_dice.cost[0]['cost_num'] > 0:
                             game.current_dice.cost[0]['cost_num'] -= 2
                             return True
-                    
+
         return False
 
     def on_skill(self, game:'GeniusGame'):
@@ -216,4 +222,3 @@ class SaveDice_Sakura(Status):
             (EventType.CALCULATE_DICE, ZoneType.CHARACTER_ZONE, self.on_calculate),
             (EventType.END_PHASE, ZoneType.CHARACTER_ZONE, self.end_phase)
         ]
-        
