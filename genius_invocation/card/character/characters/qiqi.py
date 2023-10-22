@@ -2,6 +2,7 @@ from genius_invocation.card.character.characters.import_head import *
 
 class Ancient_Sword_Art(NormalAttack):
     name = 'Ancient Sword Art'
+    name_ch = "云来古剑法"
     id: int = 0
     type: SkillType = SkillType.NORMAL_ATTACK
 
@@ -40,6 +41,7 @@ class Ancient_Sword_Art(NormalAttack):
 class Adeptus_Art_Herald_of_Frost(ElementalSkill):
     id = 1
     name = 'Adeptus Art: Herald of Frost'
+    name_ch = "仙法·寒病鬼差"
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
     # damage
@@ -74,6 +76,7 @@ class Adeptus_Art_Herald_of_Frost(ElementalSkill):
 class Adeptus_Art_Preserver_of_Fortune(ElementalBurst):
     id = 2
     name = 'Adeptus Art: Preserver of Fortune'
+    name_ch = "仙法·救苦度厄"
     type: SkillType = SkillType.ELEMENTAL_BURST
 
     # damage
@@ -95,7 +98,7 @@ class Adeptus_Art_Preserver_of_Fortune(ElementalBurst):
 
     def __init__(self, from_character: 'Character'):
         super().__init__(from_character)
-    
+
 
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
@@ -107,18 +110,19 @@ class Adeptus_Art_Preserver_of_Fortune(ElementalBurst):
         if self.from_character.talent:
             if self.from_character.use_revive <2:
                 self.from_character.use_revive += 1
-                
+
                 for i in range(3):
                     char = self.from_character.from_player.character_list[i]
                     if not char.is_alive:
                         char.revive(game)
                         char.health_point = 2
-    
+
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Qiqi(Character):
     id = 1108
     name = 'Qiqi'
+    name_ch = "七七"
     element = ElementType.CRYO
     weapon_type = WeaponType.SWORD
     country = CountryType.LIYUE
@@ -140,6 +144,7 @@ class Qiqi(Character):
 
 class Herald_of_Frost(Summon):
     name = 'Herald of Frost'
+    name_ch = "寒病鬼差"
     element = ElementType.CRYO
     usage = 3
     max_usage = 3
@@ -147,7 +152,7 @@ class Herald_of_Frost(Summon):
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character:'Character'=None):
         super().__init__(game, from_player, from_character)
         self.current_usage = 3
-    
+
     def update(self):
         self.current_usage = max(self.current_usage, self.usage)
 
@@ -180,7 +185,7 @@ class Herald_of_Frost(Summon):
                     ls += 1
                     if ls >= self.from_player.character_num:
                         ls = 0
-                    
+
                 for i in ls:
                     char = self.from_player.character_list[i]
                     dmg_taken = char.max_health_point - char.health_point
@@ -188,7 +193,7 @@ class Herald_of_Frost(Summon):
                         max_dmg_taken = dmg_taken
                         max_taken_char = char
                 max_taken_char.heal(1)
-    
+
     def update_listener_list(self):
         self.listeners = [
             (EventType.END_PHASE, ZoneType.SUMMON_ZONE, self.on_end_phase),
@@ -197,16 +202,17 @@ class Herald_of_Frost(Summon):
 
 class Fortune_Preserving_Talisman(Combat_Status):
     name = 'Fortune-Preserving Talisman'
+    name_ch = "度厄真符"
     id = 1
     usage = 3
     max_usage = 3
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.current_usage = 3
-    
+
     def update(self):
         self.current_usage = max(self.current_usage, self.usage)
-    
+
     def after_skill(self, game: 'GeniusGame'):
         if game.current_skill.from_character.from_player == self.from_player:
             if game.current_skill.from_character.health_point != game.current_skill.from_character.max_health_point:
@@ -214,7 +220,7 @@ class Fortune_Preserving_Talisman(Combat_Status):
                 self.current_usage -= 1
                 if self.current_usage<=0:
                     self.on_destroy(game)
-    
+
     def update_listener_list(self):
         self.listeners = [
             (EventType.AFTER_USE_SKILL, ZoneType.ACTIVE_ZONE, self.after_skill)

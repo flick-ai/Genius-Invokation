@@ -3,6 +3,7 @@ from genius_invocation.card.character.characters.import_head import *
 class Favonius_Bladework_Maid(NormalAttack):
     id = 0
     name = 'Favonius Bladework - Maid'
+    name_ch = "西风剑术·女仆"
     type: SkillType = SkillType.NORMAL_ATTACK
 
     # damage
@@ -35,6 +36,7 @@ class Favonius_Bladework_Maid(NormalAttack):
 class Breastplate(ElementalSkill):
     id = 1
     name = 'Breastplate'
+    name_ch = "护心铠"
     type = SkillType.ELEMENTAL_SKILL
 
     # damage
@@ -63,6 +65,7 @@ class Breastplate(ElementalSkill):
 
 class Sweeping_Time(ElementalBurst):
     name = 'Sweeping Time'
+    name_ch = "大扫除"
     id = 2
     type = SkillType.ELEMENTAL_BURST
 
@@ -91,6 +94,7 @@ class Sweeping_Time(ElementalBurst):
 class Noelle(Character):
     id = 1602
     name = 'Noelle'
+    name_ch = "诺艾尔"
     element = ElementType.GEO
     weapon = WeaponType.CLAYMORE
     country = CountryType.MONDSTADT
@@ -109,6 +113,7 @@ class Noelle(Character):
 
 class Full_Plate(Combat_Shield):
     name = "Full Plate"
+    name_ch = "护体岩铠"
     id = 0
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None):
         super().__init__(game, from_player, from_character)
@@ -144,25 +149,26 @@ class Full_Plate(Combat_Shield):
                     else:
                         self.current_usage -= game.current_damage.main_damage
                         game.current_damage.main_damage = 0
-    
+
     def update_listener_list(self):
         self.listeners = [
             (EventType.AFTER_USE_SKILL, ZoneType.ACTIVE_ZONE_SHIELD, self.after_skill),
             (EventType.DIVIDE_DAMAGE, ZoneType.ACTIVE_ZONE_SHIELD, self.on_dividing),
             (EventType.EXECUTE_DAMAGE, ZoneType.ACTIVE_ZONE_SHIELD, self.on_execute_dmg)
         ]
-    
+
 
 
 class Sweeping_Time_Status(Status):
     name = 'Sweeping Time'
+    name_ch = "大扫除-效果"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.max_usage = 2
         self.usage = 2
         self.current_usage = 2
         self.last_saving_round = -1
-    
+
     def update(self):
         self.current_usage = max(self.usage, self.current_usage)
         self.last_saving_round = -1
@@ -170,7 +176,7 @@ class Sweeping_Time_Status(Status):
     def on_calculation(self, game:"GeniusGame"):
         if self.last_saving_round != game.round:
             if game.active_player_index == self.from_player.index:
-                if game.current_dice.use_type is SkillType.NORMAL_ATTACK: 
+                if game.current_dice.use_type is SkillType.NORMAL_ATTACK:
                     if game.current_dice.from_character == self.from_character:  #Noelle will use normal attack
                         if game.current_dice[0]['cost_num']>0:
                             game.current_dice[0]['cost_num'] -= 1
@@ -208,4 +214,4 @@ class Sweeping_Time_Status(Status):
             (EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, self.on_damage_add),
             (EventType.INFUSION, ZoneType.CHARACTER_ZONE, self.infusion)
         ]
-    
+

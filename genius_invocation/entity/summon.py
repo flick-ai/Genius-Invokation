@@ -31,10 +31,10 @@ class Summon(Entity):
 
     def update(self):
         pass
-    
+
     def add_usage(self, game: 'GeniusGame', count: int):
         self.current_usage += count
-    
+
     def minus_usage(self, game: 'GeniusGame', count: int):
         self.current_usage -= count
         self.current_usage = max(0, self.current_usage)
@@ -43,12 +43,15 @@ class Summon(Entity):
 
     def show(self):
         return self.current_usage
-    
+
 class Burning_Flame(Summon):
-    '''燃烧烈焰'''
+    '''
+        燃烧烈焰
+    '''
     usage = 1
     max_usage = 2
     name = 'Burning Flame'
+    name_ch = "燃烧烈焰"
     removable = True
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character:'Character'=None):
         super().__init__(game, from_player, from_character)
