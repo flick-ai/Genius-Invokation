@@ -193,7 +193,7 @@ As far as we known, the priority is as bellow: 具我们所知，优先级按下
 
 In the same priority, the event registered earlier will be triggered earlier, too. 在同一优先级内，先注册的事件会优先执行。
 
-###4.3  Listen 监听
+### 4.3  Listen 监听
 
 -   Each entity may need to be listened at some specific event timing. 每个实例都有可能需要在某些时刻被监听。
 
