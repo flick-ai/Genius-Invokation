@@ -9,7 +9,7 @@ class ActionCard:
     # 行动牌基本类
     id: int
     name: str
-    name_ch: str
+    name_ch: str = ""
     cost_num: int
     cost_type: CostType
     card_type: ActionCardType

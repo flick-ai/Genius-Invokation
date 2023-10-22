@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 class Mondstadt_Hash_Brown(FoodCard):
     id: int = 333006
     name: str = "Mondstadt Hash Brown"
-    name_sh = "蒙德土豆饼"
+    name_ch = "蒙德土豆饼"
     cost_num = 1
     cost_type = CostType.WHITE
 
