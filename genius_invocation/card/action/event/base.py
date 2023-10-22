@@ -16,7 +16,7 @@ class FoodCard(ActionCard):
         super().__init__()
     
     def on_played(self, game: 'GeniusGame') -> None:
-        if game.current_action.target_ty == ActionTarget.MY_CHARACTER:
+        if game.current_action.target_type == ActionTarget.MY_CHARACTER:
             target = game.current_action.target_idx
             target_character = game.active_player.character_list[target]
             Satisfy_Statue(game, from_player=game.active_player, from_character=target_character)
