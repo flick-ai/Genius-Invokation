@@ -21,7 +21,7 @@ class Timmie_Entity(Support):
     def on_begin(self, game:'GeniusGame'):
         if game.active_player_index == self.from_player.index:
             self.pigeon += 1
-            if self.pigeon == self.max_usage:
+            if self.pigeon == self.max_count:
                 self.from_player.dice_zone.add([DiceType.OMNI.value])
                 self.from_player.get_card(num=1)
                 self.on_destroy(game)
