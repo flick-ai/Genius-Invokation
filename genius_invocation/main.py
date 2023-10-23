@@ -3,14 +3,25 @@
 '''
 from genius_invocation.game.game import GeniusGame
 from genius_invocation.game.action import *
-from genius_invocation.card.action import *
-from genius_invocation.card.character import *
+import genius_invocation.card.action
+import inspect
+import sys
 
 from genius_invocation.utils import *
 from rich import print
 
 if __name__=="__main__":
-    
+
+    available_character = ['Aratakiltto', 'Candace', 'Cyno', 'Dehya', "ElectroHypostasis", 
+                           "Fatui_Pyro_Agent", "Fischl", "Ganyu", "Jadeplume_Terrorshroom", "Keqing", 
+                           "Mona", "Nahida", "Ningguang", "Noelle", "Qiqi",
+                           "Rhodeia_of_Loch", "Shenhe", "Tartaglia", "Xingqiu", "Yae_Miko",
+                           "Yoimiya"]
+    available_card = []
+    for name, obj in inspect.getmembers(genius_invocation.card.action):
+        if inspect.isclass(obj):
+            print(obj)
+
     deck1 = {
     'character': ['Rhodeia_of_Loch', 'Nahida', 'Mona'],
     'action_card': ['Fresh_Wind_of_Freedom','Toss_up','Toss_up','Dunyarzad','Dunyarzad','Chef_Mao','Chef_Mao','Paimon','Paimon',
