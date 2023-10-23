@@ -8,7 +8,7 @@ from rich import print
 
 if __name__=="__main__":
     deck1 = {
-    'character': ['Rhodeia_of_Loch', 'Nahida', 'Fischl'],
+    'character': ['Rhodeia_of_Loch', 'Nahida', 'Mona'],
     'action_card': ['Fresh_Wind_of_Freedom','Toss_up','Toss_up','Dunyarzad','Dunyarzad','Chef_Mao','Chef_Mao','Paimon','Paimon',
                     'Rana','Rana','Liben','Liben','Timmie','Timmie','Mushroom_Pizza','Mushroom_Pizza','Adeptus_Temptation','Adeptus_Temptation',
                     'Teyvat_Fried_Egg','Teyvat_Fried_Egg','Sweet_Madame','Sweet_Madame','Mondstadt_Hash_Brown','Mondstadt_Hash_Brown',
@@ -21,7 +21,7 @@ if __name__=="__main__":
                     'Teyvat_Fried_Egg','Teyvat_Fried_Egg','Sweet_Madame','Sweet_Madame','Mondstadt_Hash_Brown','Mondstadt_Hash_Brown',
                     'Treasure_Seeking_Seelie','Treasure_Seeking_Seelie','Vanarana','Lotus_Flower_Crisp','Lotus_Flower_Crisp']
     }
-    game = GeniusGame(player0_deck=deck1, player1_deck=deck2, seed=2023)
+    game = GeniusGame(player0_deck=deck1, player1_deck=deck2, seed=2025)
 
     while not game.is_end:
         print(game.encode_message())

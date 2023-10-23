@@ -11,7 +11,7 @@ class CountryType(Enum):
     MONDSTADT = 0 # 蒙德
     LIYUE = 1 # 璃月
     INAZUMA = 2 # 稻妻
-    SUNERU = 3 # 须弥
+    SUMERU = 3 # 须弥
     FONTAINE = 4 # 枫丹
     NATLAN = 5 # 纳塔
     SNEZHNAYA = 6 # 至冬

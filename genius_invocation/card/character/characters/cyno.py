@@ -165,7 +165,7 @@ class Cyno(Character):
     name_ch = "赛诺"
     element = ElementType.ELECTRO
     weapon_type: WeaponType = WeaponType.POLEARM
-    country: CountryType = CountryType.SUNERU
+    country: CountryType = CountryType.SUMERU
 
     init_health_point: int = 10
     max_health_point: int = 10
