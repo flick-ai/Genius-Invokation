@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 class Parametric_Transformer_Entity(Support):
     id: int = 323001
     name = 'Parametric Transformer'
+    name_ch = '参量质变仪'
     max_usage = -1
     max_count = 3
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
@@ -36,6 +37,7 @@ class Parametric_Transformer(SupportCard):
     '''
     id: int = 323001
     name: str = 'Parametric Transformer'
+    name_ch = '参量质变仪'
     cost_num = 2
     cost_type = CostType.BLACK
     card_type = ActionCardType.SUPPORT_ITEM

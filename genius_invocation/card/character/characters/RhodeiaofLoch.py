@@ -2,9 +2,12 @@ from genius_invocation.card.character.characters.import_head import *
 
 
 class Squirrel(Summon):
-    '''花鼠'''
+    '''
+        花鼠
+    '''
     id: int = 0
     name: str = 'Squirrel'
+    name_ch = "花鼠"
     element: ElementType = ElementType.HYDRO
     usage: int = 2
     max_usage: int = 2
@@ -51,9 +54,12 @@ class Squirrel(Summon):
 
 
 class Raptor(Summon):
-    '''飞鸢'''
+    '''
+        飞鸢
+    '''
     id: int = 1
     name: str = 'Raptor'
+    name_ch = "飞鸢"
     element: ElementType = ElementType.HYDRO
     usage: int = 3
     max_usage: int = 3
@@ -99,9 +105,12 @@ class Raptor(Summon):
 
 
 class Frog(Summon):
-    '''蛙'''
+    '''
+        蛙
+    '''
     id: int = 2
     name: str = 'Frog'
+    name_ch = "蛙"
     element: ElementType = ElementType.HYDRO
     usage: int = 2
     max_usage: int = 2
@@ -124,7 +133,7 @@ class Frog(Summon):
             game.add_damage(dmg)
             game.resolve_damage()
             self.on_destroy(game)
-    
+
 
     def update(self, game: 'GeniusGame'):
         #TODO: Check if the usage maybe decrease by update.
@@ -136,7 +145,7 @@ class Frog(Summon):
         else:
             self.current_usage = max(self.current_usage,self.usage)
             self.from_player.team_combat_status.has_status(Shield_from_Frog).update()
-    
+
     def add_usage(self, game: 'GeniusGame', count: int):
         self.current_usage += count
         if self.current_usage==count:
@@ -151,7 +160,7 @@ class Frog(Summon):
         self.current_usage = max(0, self.current_usage)
         if self.current_usage == 0:
             self.from_player.team_combat_status.has_status(Shield_from_Frog).on_destroy(game)
-    
+
     def on_destroy(self, game: 'GeniusGame'):
         status = self.from_player.team_combat_status.has_status(Shield_from_Frog)
         if status is not None:
@@ -175,10 +184,11 @@ class Frog(Summon):
 
 class Surge(NormalAttack):
     '''
-    至尊翻涌！
+        至尊翻涌！
     '''
     id = 0
     name = "Surge"
+    name_ch = "翻涌"
     type: SkillType = SkillType.NORMAL_ATTACK
 
     # damage
@@ -221,19 +231,20 @@ def choose_one_summon(Skill: ElementalSkill, game: 'GeniusGame'):
         if Skill.from_character.from_player.summon_zone.has_entity(summon) is None:
             un_summon_list.append(summon)
     if len(un_summon_list) == 0:
-        x = Summon_list[random.randint(0,2)]
+        x = Summon_list[game.random.randint(0,2)]
         Skill.from_character.from_player.summon_zone.has_entity(x).update(game)
     else:
-        x = un_summon_list[random.randint(0,len(un_summon_list)-1)]
+        x = un_summon_list[game.random.randint(0,len(un_summon_list)-1)]
         summon = x(game,Skill.from_character.from_player,Skill.from_character)
         Skill.from_character.from_player.summon_zone.add_entity(summon)
 
 class Oceanid_Mimic_Summoning(ElementalSkill):
     '''
-    小e
+        小e
     '''
     id = 1
     name = "Oceanid Mimic Summoning"
+    name_ch = "纯水幻造"
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
     # damage
@@ -254,7 +265,7 @@ class Oceanid_Mimic_Summoning(ElementalSkill):
 
     def __init__(self, from_character: 'Character'):
         super().__init__(from_character)
-    
+
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         choose_one_summon(self, game)
@@ -263,10 +274,11 @@ class Oceanid_Mimic_Summoning(ElementalSkill):
 
 class The_Myriad_Wilds(ElementalSkill):
     '''
-    大e
+        大e
     '''
     id = 2
     name = "The Myriad Wilds"
+    name_ch = "林野百态"
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
     # damage
@@ -287,18 +299,19 @@ class The_Myriad_Wilds(ElementalSkill):
 
     def __init__(self, from_character: 'Character'):
         super().__init__(from_character)
-    
+
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         for _ in range(2):
             choose_one_summon(self, game)
         self.gain_energy(game)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
-        
+
 
 class Tide_and_Torrent(ElementalBurst):
     id = 3
     name = "Tide and Torrent"
+    name_ch = "潮涌与激流"
     type: SkillType = SkillType.ELEMENTAL_BURST
 
     # damage
@@ -319,7 +332,7 @@ class Tide_and_Torrent(ElementalBurst):
 
     def __init__(self, from_character: 'Character'):
         super().__init__(from_character)
-    
+
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         main_dmg = self.main_damage + self.from_character.from_player.summon_zone.num()*2
@@ -344,6 +357,7 @@ class Tide_and_Torrent(ElementalBurst):
 class Rhodeia_of_Loch(Character):
     id = 2201
     name = "Rhodeia of Loch"
+    name_ch = "纯水精灵·洛蒂娅"
     element = ElementType.HYDRO
     weapon_type = WeaponType.OTHER
     country: CountryType = CountryType.MONSTER
@@ -361,6 +375,7 @@ class Rhodeia_of_Loch(Character):
 
 class Shield_from_Frog(Combat_Status):
     name="Shield from Frog"
+    name_ch = "蛙之盾"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, from_summon:'Summon' = None):
         super().__init__(game, from_player, from_character)
         # USAGE SHOULD ALWAYS SAME WITH SUMMON
@@ -380,7 +395,7 @@ class Shield_from_Frog(Combat_Status):
                 self.current_usage = self.from_summon.current_usage
                 if self.from_summon.current_usage ==0:
                     self.on_destroy(game) # Only destroy the combat_status here
-    
+
     def update_listener_list(self):
         self.listeners = [
             (EventType.EXECUTE_DAMAGE, ZoneType.ACTIVE_ZONE, self.on_damage_execute)

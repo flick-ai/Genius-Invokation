@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 class Chef_Mao_Entity(Support):
     id: int = 322005
     name = 'Chef Mao'
+    name_ch = '卯师傅'
     max_usage = 1
     max_count = -1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
@@ -48,6 +49,7 @@ class Chef_Mao(SupportCard):
     '''
     id: int = 322005
     name: str = 'Chef Mao'
+    name_ch = '卯师傅'
     cost_num = 1
     cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_COMPANION

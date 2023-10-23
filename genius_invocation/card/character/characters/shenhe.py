@@ -4,6 +4,7 @@ class Dawnstar_Piercer(NormalAttack):
     id: int = 0
     type: SkillType = SkillType.NORMAL_ATTACK
     name = "Dawnstar Piercer"
+    name_ch = "踏辰摄斗"
     # damage
     damage_type: SkillType = SkillType.NORMAL_ATTACK
     main_damage_element: ElementType = ElementType.PHYSICAL
@@ -40,6 +41,7 @@ class Dawnstar_Piercer(NormalAttack):
 class Spring_Spirit_Summoning(ElementalSkill):
     id: int = 1
     name = "Spring Spirit Summoning"
+    name_ch = "仰灵威召将役咒"
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
     # damage
@@ -75,6 +77,7 @@ class Spring_Spirit_Summoning(ElementalSkill):
 class Divine_Maidens_Deliverance(ElementalBurst):
     id = 2
     name = "Divine Maiden's Deliverance"
+    name_ch = "神女遣灵真诀"
     type: SkillType = SkillType.ELEMENTAL_BURST
 
     # damage
@@ -109,10 +112,11 @@ class Divine_Maidens_Deliverance(ElementalBurst):
 class Shenhe(Character):
     id: int = 1107
     name = "Shenhe"
+    name_ch = "申鹤"
     element = ElementType.CRYO
     weapon_type: WeaponType = WeaponType.POLEARM
     country: CountryType = CountryType.LIYUE
-    
+
     init_health_point: int = 10
     max_health_point: int = 10
     skill_list = [Dawnstar_Piercer, Spring_Spirit_Summoning, Divine_Maidens_Deliverance]
@@ -127,16 +131,17 @@ class Shenhe(Character):
 class Icy_Quill(Combat_Status):
     id: int = -1
     name: str = "Icy Quill"
+    name_ch = "冰翎"
     def __init__(self, game: 'GeniusGame', from_character: 'Character', from_player: 'GeniusPlayer'):
         super().__init__(game, from_player, from_character)
         self.usage = 3
         self.current_usage = 3
         self.max_usage = 3
         self.last_use_round = -1
-    
+
     def update(self):
         self.current_usage = self.usage
-    
+
     def on_dmg_add(self, game: 'GeniusGame'):
         if not isinstance(game.current_damage.damage_from, Character): return
         if game.current_damage.main_damage_element == ElementType.CRYO:
@@ -157,6 +162,7 @@ class Icy_Quill(Combat_Status):
 
 class Talisman_Spirit(Summon):
     name = "Talisman Spirit"
+    name_ch = "箓灵"
     element: ElementType = ElementType.CRYO
     usage: int = 2
     max_usage: int = 2

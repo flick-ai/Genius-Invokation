@@ -12,6 +12,7 @@ if TYPE_CHECKING:
     from genius_invocation.game.game import GeniusGame
     from genius_invocation.game.player import GeniusPlayer
 from genius_invocation.entity.status import Shield
+from loguru import logger
 def layout(game: 'GeniusGame'):
     layout = Layout()
     layout.split_column(
@@ -117,7 +118,7 @@ def get_character(player: 'GeniusPlayer', idx: int):
             else:
                 col='blue'
             sponsor_message.add_row(
-                f"{status.name}:{status.show()}",
+                f"{status.name}: {status.show()}",
                 style=col,
             )
         if character_list[idx].is_active:

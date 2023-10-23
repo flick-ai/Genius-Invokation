@@ -9,6 +9,7 @@ if TYPE_CHECKING:
 class Northern_Smoked_Chicken_Entity(Status):
     id: int = 333004
     name: str = "Northern Smoked Chicken"
+    name_ch = "北地烟熏鸡"
 
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
@@ -42,6 +43,7 @@ class Northern_Smoked_Chicken_Entity(Status):
 class Northern_Smoked_Chicken(FoodCard):
     id: int = 333004
     name: str = "Northern Smoked Chicken"
+    name_ch = "北地烟熏鸡"
     cost_num = 0
     cost_type = None
 

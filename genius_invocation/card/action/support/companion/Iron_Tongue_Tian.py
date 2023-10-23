@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 class Iron_Tongue_Tian_Entity(Support):
     id: int = 322011
     name = 'Iron_Tongue_Tian'
+    name_ch = '田铁嘴'
     max_usage = 2
     max_count = -1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
@@ -45,6 +46,7 @@ class Iron_Tongue_Tian(SupportCard):
     '''
     id: int = 322011
     name: str = 'Iron Tongue Tian'
+    name_ch = '田铁嘴'
     cost_num = 2
     cost_type = CostType.BLACK
     card_type = ActionCardType.SUPPORT_COMPANION

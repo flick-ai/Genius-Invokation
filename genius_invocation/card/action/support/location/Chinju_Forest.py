@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 class Chinju_Forest_Entity(Support):
     id: int = 321012
     name = 'Chinju Forest'
+    name_ch = '镇守之森'
     max_usage = 3
     max_count = -1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
@@ -40,6 +41,7 @@ class Chinju_Forest(SupportCard):
     '''
     id: int = 321013
     name: str = 'Chinju Forest'
+    name_ch = '镇守之森'
     cost_num = 1
     cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_LOCATION

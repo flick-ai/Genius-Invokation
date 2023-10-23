@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 class NRE_Entity(Support):
     id: int = 323002
     name = 'NRE'
+    name_ch = '便携营养袋'
     max_usage = 1
     max_count = -1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
@@ -49,6 +50,7 @@ class NRE(SupportCard):
     '''
     id: int = 323002
     name: str = 'NRE'
+    name_ch = '便携营养袋'
     cost_num = 1
     cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_ITEM

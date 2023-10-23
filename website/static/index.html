@@ -4,26 +4,26 @@
     <!-- <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" /> -->
     <link rel="stylesheet" href="https://pyscript.net/releases/2022.12.1/pyscript.css" />
     <link rel="stylesheet" href="./style.css" />
-    <script defer src="https://pyscript.net/releases/2022.12.1/pyscript.js"></script>
+    <script defer src="https://pyscript.net/releases/2022.06.1/pyscript.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.3/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.3/js/bootstrap.bundle.min.js"></script>
-    <!-- <py-env>
+    <py-env>
       - './genius_invocation-0.0.1-py3-none-any.whl'
       - numpy
       - './loguru-0.7.2-py3-none-any.whl'
       - './rich-13.6.0-py3-none-any.whl'
-    </py-env> -->
+    </py-env>
   </head>
 
   <body>
-    <py-config>
+    <!-- <py-config>
       packages = [
         './genius_invocation-0.0.1-py3-none-any.whl',
         'numpy',
         './loguru-0.7.2-py3-none-any.whl',
         './rich-13.6.0-py3-none-any.whl']
-    </py-config>
+    </py-config> -->
     
     <div class="wrapper">
       <div class="informationbox">
@@ -46,7 +46,7 @@
       </div>
       
       <div class="player0box"></div>
-      <div class="cardzone player0 item zone"><div class="thetitle">手牌区</div></div>
+      <div class="cardzone player0 item zone"><div class="thetitle">手牌区</div><div class="thetitle"></div></div>
       <div class="handcard player0 item zone"><div class="thetitle"></div></div>
       <div class="support0 player0 item zone"><div class="thetitle clickable">支援区1</div></div>
       <div class="support2 player0 item zone"><div class="thetitle clickable">支援区3</div></div>
@@ -64,7 +64,7 @@
 
       <div class="player1box"></div>
 
-      <div class="cardzone player1 item zone"><div class="thetitle">手牌区</div></div>
+      <div class="cardzone player1 item zone"><div class="thetitle">手牌区</div><div class="thetitle"></div></div>
       <div class="handcard player1 item zone"><div class="thetitle"></div></div>
       <div class="support0 player1 item zone"><div class="thetitle clickable">支援区1</div></div>
       <div class="support2 player1 item zone"><div class="thetitle clickable">支援区3</div></div>

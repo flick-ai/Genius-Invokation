@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 class Kid_Kujirai_Entity(Support):
     id: int = 322014
     name = 'Kid Kujirai'
+    name_ch = '鲸井小弟'
     max_usage = -1
     max_count = -1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
@@ -42,6 +43,7 @@ class Kid_Kujirai(SupportCard):
     '''
     id: int = 322014
     name: str = 'Kid Kujirai'
+    name_ch = '鲸井小弟'
     cost_num = 0
     cost_type = None
     card_type = ActionCardType.SUPPORT_COMPANION

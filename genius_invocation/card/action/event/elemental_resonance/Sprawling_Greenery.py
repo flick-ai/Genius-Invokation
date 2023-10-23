@@ -9,6 +9,7 @@ if TYPE_CHECKING:
 class Sprawling_Greenery_Entity(Combat_Status):
     id: int = 331702
     name: str = "Sprawling_Greenery"
+    name_chr = "蔓生之草"
 
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
@@ -37,6 +38,7 @@ class Sprawling_Greenery_Entity(Combat_Status):
 class Sprawling_Greenery(ActionCard):
     id: int = 331702
     name: str = "Sprawling_Greenery"
+    name_chr = "蔓生之草"
     cost_num = 1
     card_type = ActionCardType.EVENT_ELEMENTAL_RESONANCE.value
     cost_type = CostType.DENDRO
@@ -47,7 +49,10 @@ class Sprawling_Greenery(ActionCard):
 
     def on_played(self, game: 'GeniusGame') -> None:
         target_player = game.active_player
-        target_player.team_combat_status.add_entity(self.elemental_resonance_entity(game, from_player=game.active_player, from_character=None))
+        if target_player.team_combat_status.has_status(self.elemental_resonance_entity):
+            pass
+        else:
+            target_player.team_combat_status.add_entity(self.elemental_resonance_entity(game, from_player=game.active_player, from_character=None))
         dendro_core_status =  target_player.team_combat_status.has_status(Dendro_Core)
         catalyzing_field_status =  target_player.team_combat_status.has_status(Catalyzing_Feild)
         burning_flame_status = target_player.summon_zone.has_entity(Burning_Flame)
@@ -56,4 +61,4 @@ class Sprawling_Greenery(ActionCard):
         if catalyzing_field_status is not None:
             catalyzing_field_status.add_one_usage()
         if burning_flame_status is not None:
-            burning_flame_status.update()
+            burning_flame_status.add_usage(game, count=1)

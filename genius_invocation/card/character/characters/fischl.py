@@ -5,6 +5,7 @@ class Oz(Summon):
     '''奥兹'''
     id: int = 0
     name: str = 'Oz'
+    name_ch = "奥兹"
     element: ElementType = ElementType.ELECTRO
     usage: int = 2
     max_usage: int = 2
@@ -57,6 +58,7 @@ class BoltsOfDownfall(NormalAttack):
     '''
     id: int = 0
     name = "Bolts of Downfall"
+    name_ch = "罪灭之矢"
     type: SkillType = SkillType.NORMAL_ATTACK
 
     # damage
@@ -110,6 +112,7 @@ class Nightrider(ElementalSkill):
     '''
     id: int = 1
     name = "Nightrider"
+    name_ch = "夜巡影翼"
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
     # damage
@@ -146,6 +149,7 @@ class MidnightPhantasmagoria(ElementalBurst):
     id: int = 2
     type: SkillType = SkillType.ELEMENTAL_BURST
     name = "Midnight Phantasmagoria"
+    name_ch = "至夜幻现"
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
     main_damage_element: ElementType = ElementType.ELECTRO
     main_damage: int = 4
@@ -172,6 +176,7 @@ class Fischl(Character):
     '''菲谢尔'''
     id: int = 1401
     name: str = 'Fischl'
+    name_ch = "菲谢尔"
     element: ElementType = ElementType.ELECTRO
     weapon_type: WeaponType = WeaponType.BOW
     country: CountryType = CountryType.MONDSTADT

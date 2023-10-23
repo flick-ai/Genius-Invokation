@@ -28,7 +28,7 @@ async def main():
                     'Treasure_Seeking_Seelie','Treasure_Seeking_Seelie','Vanarana','Lotus_Flower_Crisp','Lotus_Flower_Crisp']
     }
     deck2 = {
-    'character': ['Rhodeia_of_Loch', 'Nahida', 'Fischl'],
+    'character': ['Xingqiu', 'Ganyu', 'Shenhe'],
     'action_card': ['Fresh_Wind_of_Freedom','Toss_up','Toss_up','Dunyarzad','Dunyarzad','Chef_Mao','Chef_Mao','Paimon','Paimon',
                     'Rana','Rana','Liben','Liben','Timmie','Timmie','Mushroom_Pizza','Mushroom_Pizza','Adeptus_Temptation','Adeptus_Temptation',
                     'Teyvat_Fried_Egg','Teyvat_Fried_Egg','Sweet_Madame','Sweet_Madame','Mondstadt_Hash_Brown','Mondstadt_Hash_Brown',
@@ -63,6 +63,11 @@ async def main():
             for idx, item in enumerate(dice_zone):
                 js.document.getElementById(f'{player}_dice{idx}').innerText = ''
                 js.document.getElementById(f'{player}_dice{idx}').style.background = element_to_dice[item]
+
+            card_num = message[i]['card_zone']
+            card_num_place = js.document.getElementsByClassName(f'cardzone {player}')[0]
+            card_num_place = card_num_place.getElementsByClassName('thetitle')[1]
+            card_num_place.innerText = f'{card_num}'
 
             # 召唤物区
             summon_zone = message[i]['summon_zone']

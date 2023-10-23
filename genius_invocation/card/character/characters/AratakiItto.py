@@ -3,6 +3,7 @@ from genius_invocation.card.character.characters.import_head import *
 class Fight_Club_Legend(NormalAttack):
     id: int = 0
     name = "Bolts of Downfall"
+    name_ch = "喧哗屋传说"
     type: SkillType = SkillType.NORMAL_ATTACK
 
     # damage
@@ -34,6 +35,7 @@ class Fight_Club_Legend(NormalAttack):
 class Masatsu_Zetsugi_Akaushi_Burst(ElementalSkill):
     id = 1
     name = "Masatsu Zetsugi: Akaushi Burst"
+    name_ch = "魔杀绝技·赤牛发破!"
     type = SkillType.ELEMENTAL_SKILL
 
     # damage
@@ -63,6 +65,7 @@ class Masatsu_Zetsugi_Akaushi_Burst(ElementalSkill):
 
 class Royal_Descent_Behold_Itto_the_Evil(ElementalBurst):
     name = 'Royal Descent: Behold, Itto the Evil!'
+    name_ch = '最恶鬼王·一斗轰临!!'
     id = 2
     type = SkillType.ELEMENTAL_BURST
 
@@ -90,6 +93,7 @@ class Royal_Descent_Behold_Itto_the_Evil(ElementalBurst):
 class Arataki_Itto(Character):
     id: int = 1605
     name: str = 'Arataki Itto'
+    name_ch = '荒泷一斗'
     element: ElementType = ElementType.GEO
     weapon_type: WeaponType = WeaponType.CLAYMORE
     country: CountryType = CountryType.INAZUMA
@@ -108,8 +112,9 @@ class Arataki_Itto(Character):
         self.talent = talent
 
 class Ushi(Summon):
-    '''牛牛'''
+    '''阿丑'''
     name = 'Ushi'
+    name_ch = '阿丑'
     element = ElementType.GEO
     usage = 1
     removable = False
@@ -193,6 +198,7 @@ class Ushi(Summon):
 
 class Shield_from_Ushi(Combat_Status):
     name = 'Shield from Ushi'
+    name_ch = '阿丑之盾'
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, from_summon:'Summon' = None):
         super().__init__(game, from_player, from_character)
         # USAGE SHOULD ALWAYS SAME WITH SUMMON
@@ -223,6 +229,7 @@ class Shield_from_Ushi(Combat_Status):
 class Raging_Oni_King(Status):
     '''怒目鬼王'''
     name = "Raging Oni King"
+    name_ch = "怒目鬼王"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.max_usage = 2
@@ -273,6 +280,7 @@ class Raging_Oni_King(Status):
 class Superlative_Superstrength(Status):
     '''乱神之怪力'''
     name = "Superlative Superstrength"
+    name_ch = "乱神之怪力"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.max_usage = 3

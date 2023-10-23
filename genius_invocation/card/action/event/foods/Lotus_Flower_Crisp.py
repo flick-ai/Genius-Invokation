@@ -9,6 +9,7 @@ if TYPE_CHECKING:
 class Lotus_Flower_Crisp_Entity(Status):
     id: int = 333003
     name: str = "Lotus Flower Crisp"
+    name_ch = "莲花酥"
 
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
@@ -37,6 +38,7 @@ class Lotus_Flower_Crisp_Entity(Status):
 class Lotus_Flower_Crisp(FoodCard):
     id: int = 333003
     name: str = "Lotus Flower Crisp"
+    name_ch = "莲花酥"
     cost_num = 1
     cost_type = CostType.WHITE
 

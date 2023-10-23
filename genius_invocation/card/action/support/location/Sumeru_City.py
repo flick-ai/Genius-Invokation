@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 class Sumeru_City_Entity(Support):
     id: int = 321010
     name = 'Sumeru City'
+    name_ch = '须弥城'
     max_usage = 1
     max_count = -1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
@@ -69,6 +70,7 @@ class Sumeru_City(SupportCard):
     '''
     id: int = 321010
     name: str = 'Sumeru City'
+    name_ch = '须弥城'
     cost_num = 2
     cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_LOCATION

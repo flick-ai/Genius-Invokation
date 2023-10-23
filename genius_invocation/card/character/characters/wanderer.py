@@ -3,6 +3,7 @@ from genius_invocation.card.character.characters.import_head import *
 class Yuuban_Meigen(NormalAttack):
     id: int = 0
     name = "Yuuban Meigen"
+    name_ch = "行幡鸣弦"
     type: SkillType = SkillType.NORMAL_ATTACK
 
     damage_type: SkillType = SkillType.NORMAL_ATTACK
@@ -25,11 +26,11 @@ class Yuuban_Meigen(NormalAttack):
 
     def __init__(self, from_character: 'Character'):
         super().__init__(from_character)
-    
+
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
-        
-        
+
+
         self.resolve_damage(game)
 
         self.gain_energy(game)
@@ -38,6 +39,7 @@ class Yuuban_Meigen(NormalAttack):
 class Hanega_Song_of_the_Wind(ElementalSkill):
     id = 1
     name = "Hanega: Song of the Wind"
+    name_ch = "羽画·风姿华歌"
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -67,6 +69,7 @@ class Hanega_Song_of_the_Wind(ElementalSkill):
 class Kyougen_Five_Ceremonial_Plays(ElementalBurst):
     id = 2
     name = "Kyougen: Five Ceremonial Plays"
+    name_ch = "狂言·式乐五番"
     type: SkillType = SkillType.ELEMENTAL_BURST
 
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
@@ -85,7 +88,7 @@ class Kyougen_Five_Ceremonial_Plays(ElementalBurst):
 
     def __init__(self, from_character: 'Character') -> None:
         super().__init__(from_character)
-    
+
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
 
@@ -97,6 +100,7 @@ class Kyougen_Five_Ceremonial_Plays(ElementalBurst):
 class Wanderer(Character):
     id = 1506
     name = "Wanderer"
+    name_ch = "流浪者"
     element = ElementType.ANEMO
     weapon_type: WeaponType = WeaponType.CATALYST
     country: CountryType = CountryType.OTHER
@@ -117,15 +121,16 @@ class Windfavored(Status):
     优风倾姿
     '''
     name = "Windfavored"
+    name_ch = "优风倾姿"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character') -> None:
         super().__init__(game, from_player, from_character)
         self.usage = 2
         self.max_usage = 2
         self.current_usage = 2
-    
+
     def update(self):
         self.current_usage = self.usage
-    
+
     def on_dmg_add(self, game: 'GeniusGame') :
         # logger.debug(game.current_damage.damage_from.name)
         # logger.debug(self.from_character.name)
@@ -165,12 +170,13 @@ class Switch(Status):
     '''
     #TODO: Check whether passive switch triggers this status?
     name = "Switch_From_Wanderer"
+    name_ch = "梦迹一风-效果"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character') -> None:
         super().__init__(game, from_player, from_character)
         self.usage = 1
         self.max_usage = 1
         self.current_usage = 1
-    
+
     def update(self):
         self.current_usage = self.usage
 
@@ -207,4 +213,3 @@ class Switch(Status):
             (EventType.ON_CHANGE_CHARACTER, ZoneType.CHARACTER_ZONE, self.on_switch)
         ]
 
-            

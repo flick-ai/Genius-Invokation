@@ -7,6 +7,7 @@ if TYPE_CHECKING:
 class Woven_Weeds(ActionCard):
     id: int = 331701
     name: str = "Woven_Weeds"
+    name_ch = "交织之草"
     cost_num = 0
     card_type = ActionCardType.EVENT_ELEMENTAL_RESONANCE.value
     cost_type = None

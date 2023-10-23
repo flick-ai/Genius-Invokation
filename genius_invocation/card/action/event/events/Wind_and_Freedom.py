@@ -10,6 +10,7 @@ if TYPE_CHECKING:
 class  Wind_and_Freedom_Entity(Combat_Status):
     id: int = 331801
     name: str = 'Wind and Freedom'
+    name_ch = '风与自由'
     def __init__(self, game:'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
     
@@ -32,6 +33,7 @@ class  Wind_and_Freedom_Entity(Combat_Status):
 class Wind_and_Freedom(ActionCard):
     id: int = 331801
     name: str = 'Wind and Freedom'
+    name_ch = '风与自由'
     cost_num = 1
     cost_type = CostType.BLACK
     card_type = ActionCardType.EVENT

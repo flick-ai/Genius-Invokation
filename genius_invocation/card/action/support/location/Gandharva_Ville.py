@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 class Gandharva_Ville_Entity(Support):
     id: int = 321014
     name = 'Gandharva Ville'
+    name_ch = '化城郭'
     max_usage = 3
     max_count = -1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
@@ -38,6 +39,7 @@ class Gandharva_Ville(SupportCard):
     '''
     id: int = 321014
     name: str = 'Gandharva Ville'
+    name_ch = '化城郭'
     cost_num = 1
     cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_LOCATION

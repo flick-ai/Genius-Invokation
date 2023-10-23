@@ -12,6 +12,7 @@ if TYPE_CHECKING:
 class Favonius_Cathedral_Entity(Support):
     id: int = 321006
     name = 'Favonius Cathedral'
+    name_ch = '西风大教堂'
     max_usage = 2
     max_count = -1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
@@ -41,6 +42,7 @@ class Favonius_Cathedral(SupportCard):
     '''
     id: int = 321006
     name: str = 'Favonius Cathedral'
+    name_ch = '西风大教堂'
     cost_num = 2
     cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_LOCATION

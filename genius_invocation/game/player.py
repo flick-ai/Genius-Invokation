@@ -34,7 +34,7 @@ class GeniusPlayer:
                 from_player = self,
                 index = id,
                 from_character = None,
-                talent = True))
+                talent = False))
         self.character_num = len(self.character_list)
 
         # 初始化牌库、起始5张手牌、骰子区
@@ -99,15 +99,15 @@ class GeniusPlayer:
         '''
             基本行动: 投掷骰子
         '''
-        is_omni = True
+        is_omni = False
         if is_basic:
                 if is_different:
-                    return np.random.choice(DICENUM-1, num, replace=False).tolist()
-                return np.random.randint(0, DICENUM-1, num).tolist()
+                    return self.game.random.choice(DICENUM-1, num, replace=False).tolist()
+                return self.game.random.randint(0, DICENUM-1, num).tolist()
         if is_omni:
             return  [7 for i in range(num)]
         else:
-            return np.random.randint(0, DICENUM, num).tolist()
+            return self.game.random.randint(0, DICENUM, num).tolist()
         
 
     def get_card(self, num):

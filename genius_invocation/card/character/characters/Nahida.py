@@ -8,6 +8,7 @@ class Akara(NormalAttack):
     id: int = 0
     type: SkillType = SkillType.NORMAL_ATTACK
     name = "Akara"
+    name_ch = "行相"
     # damage
     damage_type: SkillType = SkillType.NORMAL_ATTACK
     main_damage_element: ElementType = ElementType.DENDRO
@@ -47,6 +48,7 @@ class All_Schemes_to_Know(ElementalSkill):
     '''
     id: int = 1
     name='All Schemes to Know'
+    name_ch = "所闻遍计"
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
     #damage
@@ -107,6 +109,7 @@ class All_Schemes_to_Know_Tathata(ElementalSkill):
     '''
     id: int = 2
     name='All Schemes to Know: Tathata'
+    name_ch = "所闻遍计·真如"
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
     # No damage
@@ -169,6 +172,7 @@ class Illusory_Heart(ElementalBurst):
     '''
     id: int = 3
     name='Illusory Heart'
+    name_ch = "心景幻成"
     type: SkillType = SkillType.ELEMENTAL_BURST
 
     # damage
@@ -203,6 +207,7 @@ class Nahida(Character):
     '''纳西妲'''
     id: int = 1703
     name: str = 'Nahida'
+    name_ch = "纳西妲"
     element: ElementType = ElementType.DENDRO
     weapon_type: WeaponType = WeaponType.CATALYST
     country: CountryType = CountryType.SUNERU
@@ -220,6 +225,7 @@ class Nahida(Character):
 
 class Shrine_of_Maya(Combat_Status):
     name = "Shrine of Maya"
+    name_ch = "摩耶之殿"
     def __init__(self, game, from_player: 'GeniusPlayer', from_character: Character=None):
         super().__init__(game, from_player, from_character)
         self.usage = 2
@@ -284,6 +290,7 @@ class Shrine_of_Maya(Combat_Status):
 
 class Seed_of_Skandha(Status):
     name = "Seed of Skandha"
+    name_ch = "蕴种印"
     # 蕴种印， from_player: 附属一方， from_character: 附属的角色
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)

@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 class Liu_Su_Entity(Support):
     id: int = 322012
     name = 'Liu Su'
+    name_ch = '刘苏'
     max_usage = 2
     max_count = -1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
@@ -51,6 +52,7 @@ class Liu_Su(SupportCard):
     '''
     id: int = 322012
     name: str = 'Liu Su'
+    name_ch = '刘苏'
     cost_num = 1
     cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_COMPANION

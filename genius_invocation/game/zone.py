@@ -196,7 +196,8 @@ class CardZone:
             self.card.append(eval(card_name)())
         self.card_num = len(self.card)
         # 随机固定牌序
-        np.random.shuffle(self.card)
+        self.game = game
+        game.random.shuffle(self.card)
 
     def find_card(self, card_type: 'ActionCardType', num=1):
         '''
@@ -230,7 +231,7 @@ class CardZone:
             将牌放回牌堆
         '''
         for card in card_list:
-            idx = np.random.randint(0, self.card_num+1)
+            idx = self.game.random.randint(0, self.card_num+1)
             self.card.insert(idx, card)
             self.card_num = len(self.card)
 

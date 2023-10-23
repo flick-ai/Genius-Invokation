@@ -15,7 +15,7 @@ class Status(Entity):
     # 状态基本类
     id: int
     name: str
-
+    name_ch: str
 
     def __init__(self, game: 'GeniusGame', from_player:'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
@@ -101,13 +101,14 @@ class Artifact(Equipment):
     def get_artifact_card(self, game: 'GeniusGame'):
         self.on_destroy(game)
         return self.artifact_card
-    
+
     def show(self):
         return self.name
 
 # TODO: Maybe need to move to other places in future
 class Frozen_Status(Status):
     name = 'Frozen'
+    name_ch = "冻结"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.usage = 1
@@ -144,6 +145,7 @@ class Frozen_Status(Status):
 
 class Dendro_Core(Combat_Status):
     name = 'Dendro Core'
+    name_ch = "草原核"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.usage = 1
@@ -152,9 +154,9 @@ class Dendro_Core(Combat_Status):
 
     def update(self):
         self.current_usage = self.usage
-    
+
     def add_one_usage(self):
-        self.current_usage = min(self.current_usage+1, self.max_usage)
+        self.current_usage = self.current_usage+1
 
     def on_damage_add(self, game: 'GeniusGame'):
         if game.current_damage.damage_from is None: return
@@ -172,6 +174,7 @@ class Dendro_Core(Combat_Status):
 
 class Catalyzing_Feild(Combat_Status):
     name = 'Catalyzing Feild'
+    name_ch = "激化领域"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.usage = 2
@@ -182,7 +185,7 @@ class Catalyzing_Feild(Combat_Status):
         self.current_usage = self.usage
 
     def add_one_usage(self):
-        self.current_usage = min(self.current_usage+1, self.max_usage)
+        self.current_usage = self.current_usage+1
 
     def on_damage_add(self, game: 'GeniusGame'):
         if game.current_damage.damage_from is None: return
@@ -199,6 +202,7 @@ class Catalyzing_Feild(Combat_Status):
 class Crystallize_Shield(Combat_Shield):
     id = 12345
     name = "Crystallize Shield"
+    name_ch = "结晶盾"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.usage = 1
@@ -227,6 +231,7 @@ class Crystallize_Shield(Combat_Shield):
 
 class Satisfy_Statue(Status):
     name = "Satisfy"
+    name_ch = "饱腹"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.current_usage = 1
@@ -234,7 +239,8 @@ class Satisfy_Statue(Status):
 
     def update(self):
         self.current_usage = self.usage
-
+    def show(self):
+        return str("╮(╯▽╰)╭")
     def on_destroy(self, game):
         super().on_destroy(game)
         self.from_character.is_satisfy = False

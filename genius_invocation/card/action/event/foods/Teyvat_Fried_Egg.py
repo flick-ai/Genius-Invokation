@@ -9,6 +9,7 @@ if TYPE_CHECKING:
 class NoRevie(Status):
     id: int = 333009
     name: str = "No Revive"
+    name_ch = "不能复活"
 
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
@@ -20,11 +21,12 @@ class NoRevie(Status):
     
     def update_listener_list(self):
         self.listeners = [
-            (EventType.BEGIN_ACTION_PHASE, ZoneType.CHARACTER_ZONE, self.on_begin)
+            (EventType.BEGIN_ACTION_PHASE, ZoneType.ACTIVE_ZONE, self.on_begin)
         ]
 class Teyvat_Fried_Egg(FoodCard):
     id: int = 333009
     name: str = "Teyvat Fried Egg"
+    name_ch = "提瓦特煎蛋"
     cost_num = 2
     cost_type = CostType.WHITE
 

@@ -9,6 +9,7 @@ if TYPE_CHECKING:
 class Sweet_Madame(FoodCard):
     id: int = 333005
     name: str = "Sweet Madame"
+    name_ch = "甜甜花酿鸡"
     cost_num = 0
     cost_type = None
 
