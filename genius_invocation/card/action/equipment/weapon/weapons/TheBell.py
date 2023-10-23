@@ -1,9 +1,7 @@
-from genius_invocation.game.game import GeniusGame
 from genius_invocation.utils import *
 from genius_invocation.card.action.equipment.weapon.base import WeaponCard
 from typing import TYPE_CHECKING
 from genius_invocation.entity.status import Weapon, Combat_Shield
-from genius_invocation.utils import GeniusGame
 
 if TYPE_CHECKING:
     from genius_invocation.game.game import GeniusGame
