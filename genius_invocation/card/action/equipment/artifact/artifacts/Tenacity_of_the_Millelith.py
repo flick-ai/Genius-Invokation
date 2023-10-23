@@ -45,7 +45,7 @@ class Tenacity_of_the_Millelith_Entity(Artifact):
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.AFTER_TAKES_DMG, ZoneType.CHARACTER_ZONE, self.on_after_damage)
+            (EventType.AFTER_TAKES_DMG, ZoneType.CHARACTER_ZONE, self.on_after_damage),
             (EventType.BEGIN_ACTION_PHASE, ZoneType.CHARACTER_ZONE, self.on_begin)
         ]
 
@@ -54,7 +54,7 @@ class Tenacity_of_the_Millelith(ArtifactCard):
     id: int = 312010
     name: str = "Tenacity of the Millelith"
     name_ch = "千岩牢固"
-    cost_num: int = 1
+    cost_num: int = 3
     cost_type: CostType = CostType.WHITE
 
     def __init__(self) -> None:

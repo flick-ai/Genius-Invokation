@@ -19,3 +19,9 @@ class Thunder_and_Eternity(ActionCard):
         num = game.active_player.dice_zone.num()
         game.active_player.dice_zone.remove_all()
         game.active_player.dice_zone.add([7 for i in range(num)])
+
+    def find_target(self, game:'GeniusGame'):
+        if game.active_player.dice_zone.num()>0:
+            return [1]
+        else:
+            return []

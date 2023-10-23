@@ -2,7 +2,6 @@ from genius_invocation.utils import *
 from genius_invocation.card.action.support.base import SupportCard
 from typing import TYPE_CHECKING
 from genius_invocation.entity.support import Support
-from loguru import logger
 
 if TYPE_CHECKING:
     from genius_invocation.game.game import GeniusGame
@@ -23,9 +22,7 @@ class Liyue_Harbor_Wharf_Entity(Support):
         if game.active_player_index == self.from_player.index:
             self.from_player.get_card(num=2)
             self.usage -= 1
-            logger.info(f"Liyue_Harbor_Wharf:{self.from_player.hand_zone.num()},剩余使用次数{self.usage}")
             if self.usage == 0:
-                logger.info(f"Liyue_Harbor_Wharf Destroy")
                 self.on_destroy(game)
 
     def update_listener_list(self):

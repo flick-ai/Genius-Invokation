@@ -3,21 +3,22 @@ from genius_invocation.utils import *
 if TYPE_CHECKING:
     from genius_invocation.game.game import GeniusGame
 
-class Send_Off(ActionCard):
-    id: int = 332013
-    name: str = 'Send Off'
-    name_ch = '送你一程'
+class Starsigns(ActionCard):
+    id: int = 332008
+    name: str = 'Starsigns'
+    name_ch = '星天之兆'
     cost_num = 2
-    cost_type = CostType.WHITE
+    cost_type = CostType.BLACK
     card_type = ActionCardType.EVENT
 
     def __init__(self) -> None:
         super().__init__()
 
     def on_played(self, game: 'GeniusGame'):
-        get_opponent(game).summon_zone.space[game.current_action.target_idx].minus_usage(game ,2)
+        get_my_active_character(game).power += 1
 
     def find_target(self, game: 'GeniusGame'):
-        target = []
-        for i in range(get_opponent(game).summon_zone.num()):
-            target.append(i+5)
+        character = get_my_active_character(game)
+        if character.power != character.max_power:
+            return [game.active_player.active_idx]
+        return []
