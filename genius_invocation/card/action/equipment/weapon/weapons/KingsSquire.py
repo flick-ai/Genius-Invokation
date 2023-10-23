@@ -8,7 +8,7 @@ if TYPE_CHECKING:
 
 
 class StatusOfKingsSquire(Status):
-    name = 'Status Of Kings Squire'
+    name = "Status Of King's Squire"
     name_ch = '王下近侍'
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
@@ -46,6 +46,9 @@ class StatusOfKingsSquire(Status):
 
 # weapons
 class KingsSquire(Weapon):
+    '''王下近侍'''
+    id: int = 311206
+    name: str = "King's Squire"
     def on_damage_add(self, game: 'GeniusGame'):
         if game.current_damage.damage_from == self.from_character:
             if game.current_damage.main_damage_element is not ElementType.PIERCING:
