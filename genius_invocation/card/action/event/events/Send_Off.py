@@ -17,3 +17,7 @@ class Send_Off(ActionCard):
     def on_played(self, game: 'GeniusGame'):
         get_opponent(game).summon_zone.space[game.current_action.target_idx].minus_usage(game ,2)
 
+    def find_target(self, game: 'GeniusGame'):
+        target = []
+        for i in range(get_opponent(game).summon_zone.num()):
+            target.append(i+5)

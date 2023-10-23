@@ -34,4 +34,6 @@ class Leave_it_to_Me(ActionCard):
         super().__init__()
 
     def on_played(self, game: 'GeniusGame'):
-        game.active_player.team_combat_status.add_entity(Switch_Entity(game, game.active_player))
+        if game.active_player.team_combat_status.has_status(Switch_Entity):
+            game.active_player.team_combat_status.add_entity(Switch_Entity(game, game.active_player))
+        
