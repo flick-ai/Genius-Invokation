@@ -59,7 +59,7 @@ class GeniusGame:
             初始化阶段,包括选择起始手牌,选择出战角色
         '''
         # 决定谁方先手
-        first = np.random.choice([0, 1], 1)[0]
+        first = self.random.choice([0, 1], 1)[0]
         self.first_player = first
         # 进入选择起始手牌阶段
         self.game_phase = GamePhase.SET_CARD
