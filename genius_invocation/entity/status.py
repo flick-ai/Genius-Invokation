@@ -15,7 +15,7 @@ class Status(Entity):
     # 状态基本类
     id: int
     name: str
-
+    name_ch: str
 
     def __init__(self, game: 'GeniusGame', from_player:'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
@@ -239,7 +239,8 @@ class Satisfy_Statue(Status):
 
     def update(self):
         self.current_usage = self.usage
-
+    def show(self):
+        return str("╮(╯▽╰)╭")
     def on_destroy(self, game):
         super().on_destroy(game)
         self.from_character.is_satisfy = False
