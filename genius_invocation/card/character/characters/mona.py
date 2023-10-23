@@ -262,8 +262,20 @@ class Mona(Character):
                         # active player is Mona
                         game.is_change_player = False
                         self.last_round = game.round
+
+    def on_dmg_after_reation(self, game:'GeniusGame'):
+        if self.talent:
+            if game.current_damage.damage_from.from_player == self.from_player:
+                if game.current_damage.reaction in [ElementalReactionType.Frozen, 
+                                                ElementalReactionType.Vaporize,
+                                                ElementalReactionType.Bloom,
+                                                ElementalReactionType.Electro_Charged] \
+                    or game.current_damage.swirl_crystallize_type == ElementType.HYDRO:
+                    game.current_damage.main_damage += 2
+
     def update_listener_list(self):
         self.listeners = [
-            (EventType.ON_CHANGE_CHARACTER, ZoneType.CHARACTER_ZONE, self.on_change)
+            (EventType.ON_CHANGE_CHARACTER, ZoneType.CHARACTER_ZONE, self.on_change),
+            (EventType.DAMAGE_ADD_AFTER_REACTION, ZoneType.CHARACTER_ZONE, self.on_dmg_after_reation)
         ]
 

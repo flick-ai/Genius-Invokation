@@ -120,7 +120,7 @@ class Raincutter(ElementalBurst):
 
 class Rain_Sword(Combat_Status):
     name = "Rain Sword"
-    name_ch = "裁雨留虹"
+    name_ch = "雨帘剑"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.max_usage = 2

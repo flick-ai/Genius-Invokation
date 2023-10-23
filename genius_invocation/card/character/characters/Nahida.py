@@ -210,7 +210,7 @@ class Nahida(Character):
     name_ch = "纳西妲"
     element: ElementType = ElementType.DENDRO
     weapon_type: WeaponType = WeaponType.CATALYST
-    country: CountryType = CountryType.SUNERU
+    country: CountryType = CountryType.SUMERU
 
     init_health_point: int = 10
     max_health_point: int = 10
