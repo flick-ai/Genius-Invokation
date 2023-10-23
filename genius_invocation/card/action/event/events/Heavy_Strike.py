@@ -28,10 +28,10 @@ class Status_of_Heavy_Strike(Status):
         self.current_usage = 1
         self.max_usage = 1
         self.usage = 1
-    
+
     def on_begin_phase(self, game:'GeniusGame'):
         self.on_destroy(game)
-    
+
     def om_dmg_add(self, game: 'GeniusGame'):
         if game.current_damage.damage_type == SkillType.NORMAL_ATTACK:
             if game.current_damage.damage_from == self.from_character:
@@ -40,9 +40,12 @@ class Status_of_Heavy_Strike(Status):
                     game.current_damage.main_damage += 1
 
                 self.on_destroy(game)
-                
+
     def update_listener_list(self):
         self.listeners = [
             (EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, self.om_dmg_add),
             (EventType.BEGIN_ACTION_PHASE, ZoneType.CHARACTER_ZONE, self.on_begin_phase)
         ]
+
+    def find_target(game:'GeniusGame'):
+        return [game.active_player.active_idx+2]

@@ -100,7 +100,7 @@ class GeniusPlayer:
         '''
             基本行动: 投掷骰子
         '''
-        is_omni = False
+        is_omni = True
         if is_basic:
                 if is_different:
                     return self.game.random.choice(DICENUM-1, num, replace=False).tolist()
@@ -109,7 +109,7 @@ class GeniusPlayer:
             return  [7 for i in range(num)]
         else:
             return self.game.random.randint(0, DICENUM, num).tolist()
-        
+
 
     def get_card(self, num):
         '''
@@ -218,7 +218,7 @@ class GeniusPlayer:
             2. 行动所需骰子是否足够？
             TODO:我们使用一个3维矩阵来维护,但是实际上这个矩阵十分稀疏,可以考虑使用稀疏矩阵来提升系统系能
         '''
-        
+
         # print(game.game_phase, game.active_player_index, "generate_mask")
         self.action_mask = np.zeros((18, 15, 5)).astype(np.int32)
 

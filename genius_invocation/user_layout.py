@@ -85,7 +85,7 @@ def get_character(player: 'GeniusPlayer', idx: int):
             style=col,
         )
         sponsor_message.add_row(
-            character_list[idx].name,
+            character_list[idx].name_ch,
             style=color,
         )
         sponsor_message.add_row(
@@ -96,7 +96,7 @@ def get_character(player: 'GeniusPlayer', idx: int):
             str(character_list[idx].power),
             style=color,
         )
-        
+
         if character_list[idx].character_zone.weapon_card != None:
             sponsor_message.add_row(
                 character_list[idx].character_zone.weapon_card.show(),
@@ -118,18 +118,18 @@ def get_character(player: 'GeniusPlayer', idx: int):
             else:
                 col='blue'
             sponsor_message.add_row(
-                f"{status.name}: {status.show()}",
+                f"{status.name_ch}: {status.show()}",
                 style=col,
             )
         if character_list[idx].is_active:
             for status in player.team_combat_status.shield:
                 sponsor_message.add_row(
-                    f"{status.name}:{status.show()}",
+                    f"{status.name_ch}:{status.show()}",
                     style='yellow',
                 )
             for status in player.team_combat_status.space:
                 sponsor_message.add_row(
-                    f"{status.name}:{status.show()}",
+                    f"{status.name_ch}:{status.show()}",
                     style='blue',
                 )
     message_panel = Panel(
@@ -162,7 +162,7 @@ def get_hand(player: 'GeniusPlayer'):
     if player.hand_zone.num() != 0:
         for card in player.hand_zone.card:
             sponsor_message.add_row(
-                card.name,
+                card.name_ch,
                 style='blue',
             )
     message_panel = Panel(
@@ -179,7 +179,7 @@ def get_summon(player: 'GeniusPlayer', idx):
     if player.summon_zone.num() > idx:
         summon = player.summon_zone.space[idx]
         sponsor_message.add_row(
-            summon.name,
+            summon.name_ch,
             style=Elements_to_color(summon.element),
         )
         sponsor_message.add_row(
@@ -201,7 +201,7 @@ def get_support(player: 'GeniusPlayer', idx):
     if player.support_zone.num() > idx:
         support = player.support_zone.space[idx]
         sponsor_message.add_row(
-            support.name,
+            support.name_ch,
             style='blue',
         )
         sponsor_message.add_row(
