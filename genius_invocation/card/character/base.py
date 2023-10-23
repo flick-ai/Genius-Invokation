@@ -55,7 +55,7 @@ class CharacterSkill:
         self.from_character.power += self.energy_gain
         self.from_character.power = min(self.from_character.power, self.from_character.max_power)
 
-    def add_status(self, game: 'GeniusGame', STATUS): 
+    def add_status(self, game: 'GeniusGame', STATUS):
         # Add a status in character zone of current character
         # Here status is the "class" of status, is not an instance of status
         status = self.from_character.character_zone.has_entity(STATUS)
@@ -106,7 +106,7 @@ class CharacterSkill:
                 summon.update(game)
             except:
                 summon.update()
-    
+
     def add_combat_shield(self, game: 'GeniusGame', COMBAT_SHIELD):
         # Add a combat shield in active zone of current player
         # Here COMBAT_SHIELD is the "class" of Combat_Shield, is not an instance

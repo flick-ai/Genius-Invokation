@@ -189,13 +189,13 @@ class Electro_Elemental_Infusion(Status):
 
     name = "Electro Infusion"
     name_ch = "雷元素附魔"
-        
+
     def __init__(self, game, from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.usage = 2
         self.current_usage = 2
         self.max_usage = 2
-        
+
         if self.from_character.talent:
             self.usage = 3
             self.current_usage = 3

@@ -45,7 +45,7 @@ class Tenacity_of_the_Millelith_Entity(Artifact):
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.AFTER_TAKES_DMG, ZoneType.CHARACTER_ZONE, self.on_after_damage)
+            (EventType.AFTER_TAKES_DMG, ZoneType.CHARACTER_ZONE, self.on_after_damage),
             (EventType.BEGIN_ACTION_PHASE, ZoneType.CHARACTER_ZONE, self.on_begin)
         ]
 

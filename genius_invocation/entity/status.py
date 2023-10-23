@@ -121,7 +121,7 @@ class Weapon(Equipment):
         self.on_destroy(game)
         return self.weapon_card
     def show(self):
-        return self.name
+        return self.name_ch
 class Artifact(Equipment):
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: "Character"= None, artifact_card: 'Artifact' = None):
         super().__init__(game, from_player, from_character)
@@ -136,7 +136,7 @@ class Artifact(Equipment):
         return self.artifact_card
 
     def show(self):
-        return self.name
+        return self.name_ch
 
 # TODO: Maybe need to move to other places in future
 class Frozen_Status(Status):
