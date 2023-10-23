@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 class Paimon_Entity(Support):
     id: int = 322001
     name = 'Paimon'
+    name_ch = '派蒙'
     max_usage = 2
     max_count = -1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
@@ -39,6 +40,7 @@ class Paimon(SupportCard):
     '''
     id: int = 322001
     name: str = 'Paimon'
+    name_ch = '派蒙'
     cost_num = 3
     cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_COMPANION

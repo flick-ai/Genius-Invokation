@@ -3,6 +3,7 @@ from genius_invocation.card.character.characters.import_head import *
 class Sandstorm_Assault(NormalAttack):
     id: int = 0
     name="Sandstorm Assault"
+    name_ch = "拂金剑斗术"
     type: SkillType = SkillType.NORMAL_ATTACK
 
     # damage
@@ -41,6 +42,7 @@ class Sandstorm_Assault(NormalAttack):
 class Molten_Inferno(ElementalSkill):
     id: int = 1
     name="Monlten Inferno"
+    name_ch = "熔铁流狱"
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
     # No damage
@@ -71,19 +73,13 @@ class Molten_Inferno(ElementalSkill):
         # 召唤物/状态生成
         self.generate_summon(game, Fiery_Sanctum_Field)
         self.gain_energy(game)
-
-        if self.from_character.talent:
-            if self.from_character.character_zone.has_entity(Talent_Status) is None:
-                talent_status = Talent_Status(game, self.from_character.from_player, self.from_character)
-                self.from_character.character_zone.add_entity(talent_status)
-            #TODO: When talent card is written, please move this part of the code into its on_call.
-
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 
 class Leonine_Bite(ElementalBurst):
     id: int = 2
     name = "Leonine Bite"
+    name_ch = "炎啸狮子咬"
     type: SkillType = SkillType.ELEMENTAL_BURST
 
     # damage
@@ -115,6 +111,7 @@ class Leonine_Bite(ElementalBurst):
 
 class Incineration_Drive(ElementalBurst):
     name = "Incineration Drive"
+    name_ch = "焚落踢"
     id = 3
     type = SkillType.ELEMENTAL_BURST
 
@@ -137,6 +134,7 @@ class Incineration_Drive(ElementalBurst):
 
 class Fiery_Sanctum_Field(Summon):
     name = "Fiery Sanctum Field"
+    name_ch = "净焰剑狱领域"
     id = 0
     element = ElementType.PYRO
     usage = 3
@@ -195,26 +193,10 @@ class Fiery_Sanctum_Field(Summon):
         super().__init__(game, from_player, from_character)
         self.current_usage = self.usage
         self.last_round = -1
-
-class Talent_Status(Status):
-    name = "Stalwart and True"
-
-    def __init__(self, game:'GeniusGame', from_player:'GeniusPlayer', from_character:'Character'):
-        super().__init__(game, from_player, from_character)
-    
-    def on_end_phase(self, game:'GeniusGame'):
-        if game.active_player == self.from_player:
-            if self.from_character.health_point <=6:
-                self.from_character.heal(2)
-    
-    def update_listener_list(self):
-        self.listeners = [
-            (EventType.END_PHASE, ZoneType.CHARACTER_ZONE, self.on_end_phase)
-        ]
-
 class Dehya(Character):
     id = 1309
     name = "Dehya"
+    name_ch = "迪希雅"
     element: ElementType = ElementType.PYRO
     weapon_type: WeaponType = WeaponType.CLAYMORE
     country: CountryType = CountryType.SUNERU
@@ -228,14 +210,22 @@ class Dehya(Character):
         self.talent = talent
         self.power = 0
         self.next_skill = Incineration_Drive(self)
-        if self.talent:
-            if self.character_zone.has_entity(Talent_Status) is None:
-                talent_status = Talent_Status(game, self.from_player, self)
-                self.character_zone.add_entity(talent_status)
 
+    def on_end_phase(self, game:'GeniusGame'):
+        if self.talent:
+            if game.active_player == self.from_player:
+                if self.health_point <=6:
+                    self.heal(2)
+
+    def update_listener_list(self):
+        self.listeners = [
+            (EventType.END_PHASE, ZoneType.CHARACTER_ZONE, self.on_end_phase)
+        ]
+    
 
 class Prepare_Incineration_Drive(Status):
     name = "Prepare Incineration Drive"
+    name_ch = "准备技能: 焚落踢"
     def __init__(self, game:'GeniusGame', from_player:'GeniusPlayer', from_character:'Character', next_skill: 'CharacterSkill'):
         super().__init__(game, from_player, from_character)
         self.next_skill = next_skill

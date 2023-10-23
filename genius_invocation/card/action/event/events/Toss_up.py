@@ -7,6 +7,7 @@ if TYPE_CHECKING:
 class Toss_up(ActionCard):
     id: int = 332003
     name: str = 'Toss-up'
+    name_ch = '一掷乾坤'
     cost_num = 0
     cost_type = None
     card_type = ActionCardType.EVENT

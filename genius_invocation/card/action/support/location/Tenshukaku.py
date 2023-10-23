@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 class Tenshukaku_Entity(Support):
     id: int = 321007
     name = 'Tenshukaku'
+    name_ch = '天守阁'
     max_usage = -1
     max_count = -1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
@@ -36,6 +37,7 @@ class Tenshukaku(SupportCard):
     '''
     id: int = 321007
     name: str = 'Tenshukaku'
+    name_ch = '天守阁'
     cost_num = 2
     cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_LOCATION

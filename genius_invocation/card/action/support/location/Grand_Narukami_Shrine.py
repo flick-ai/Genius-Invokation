@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 class Grand_Narukami_Shrine_Entity(Support):
     id: int = 321008
     name = 'Grand Narukami Shrine'
+    name_ch = '鸣神大社'
     max_usage = 3
     max_count = -1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
@@ -39,6 +40,7 @@ class Grand_Narukami_Shrine(SupportCard):
     '''
     id: int = 321008
     name: str = 'Grand Narukami Shrine'
+    name_ch = '鸣神大社'
     cost_num = 2
     cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_LOCATION

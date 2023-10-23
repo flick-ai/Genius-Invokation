@@ -9,6 +9,7 @@ if TYPE_CHECKING:
 
 class Entity:
     name: str
+    name_ch: str = ""
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: "Character"= None):
         self.entity_type: ZoneType
         self.listeners: List(Tuple(EventType, ZoneType, function)) = [] # list of (event_type, event_zone, action) tuples

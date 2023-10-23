@@ -9,6 +9,7 @@ if TYPE_CHECKING:
 class Tandoori_Roast_Chicken_Entity(Status):
     id: int = 333011
     name: str = "Tandoori Roast Chicken"
+    name_ch = "唐杜尔烤鸡"
 
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
@@ -35,6 +36,7 @@ class Tandoori_Roast_Chicken_Entity(Status):
 class Tandoori_Roast_Chicken(FoodCard):
     id: int = 333011
     name: str = "Tandoori Roast Chicken"
+    name_ch = "唐杜尔烤鸡"
     cost_num = 2
     cost_type = CostType.BLACK
 

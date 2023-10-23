@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 class Timmie_Entity(Support):
     id: int = 322007
     name = 'Timmie'
+    name_ch = '提米'
     max_usage = -1
     max_count = 3
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
@@ -20,7 +21,7 @@ class Timmie_Entity(Support):
     def on_begin(self, game:'GeniusGame'):
         if game.active_player_index == self.from_player.index:
             self.pigeon += 1
-            if self.pigeon == self.max_usage:
+            if self.pigeon == self.max_count:
                 self.from_player.dice_zone.add([DiceType.OMNI.value])
                 self.from_player.get_card(num=1)
                 self.on_destroy(game)
@@ -39,6 +40,7 @@ class Timmie(SupportCard):
     '''
     id: int = 322007
     name: str = 'Timmie'
+    name_ch = '提米'
     cost_num = 0
     cost_type = None
     card_type = ActionCardType.SUPPORT_COMPANION

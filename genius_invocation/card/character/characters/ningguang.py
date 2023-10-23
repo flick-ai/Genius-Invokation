@@ -8,6 +8,7 @@ class Sparkling_Scatter(NormalAttack):
     '''
     id: int = 0
     name = "Sparkling Scatter"
+    name_ch = "千金掷"
     type: SkillType = SkillType.NORMAL_ATTACK
 
     #damage
@@ -47,6 +48,7 @@ class Jade_Screen(ElementalSkill):
     '''
     id: int = 1
     name = "Jade Screen"
+    name_ch = "璇玑屏"
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -85,6 +87,7 @@ class Starshatter(ElementalBurst):
     '''
     id: int = 2
     name = "Starshatter"
+    name_ch = "天权崩玉"
     type: SkillType = SkillType.ELEMENTAL_BURST
 
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
@@ -116,6 +119,7 @@ class Starshatter(ElementalBurst):
 class Ningguang(Character):
     id = 1601
     name = "Ningguang"
+    name_ch = "凝光"
     element: ElementType = ElementType.GEO
     weapon_type: WeaponType = WeaponType.CATALYST
     country: CountryType = CountryType.LIYUE
@@ -137,6 +141,7 @@ class Jade_Screen_Status(Combat_Status):
     璇玑屏
     '''
     name = "Jade Screen"
+    name_ch = "璇玑屏"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character' = None):
         super().__init__(game, from_player, from_character)
         self.usage = 2

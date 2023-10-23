@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 class Sangonomiya_Shrine_Entity(Support):
     id: int = 321009
     name = 'Sangonomiya Shrine'
+    name_ch = '珊瑚宫'
     max_usage = 2
     max_count = -1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
@@ -44,6 +45,7 @@ class Sangonomiya_Shrine(SupportCard):
     '''
     id: int = 321009
     name: str = 'Sangonomiya Shrine'
+    name_ch = '珊瑚宫'
     cost_num = 2
     cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_LOCATION

@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 class Tubby_Entity(Support):
     id: int = 322006
     name = 'Tubby'
+    name_ch = '阿圆'
     max_usage = 1
     max_count = -1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
@@ -51,6 +52,7 @@ class Tubby(SupportCard):
     '''
     id: int = 322006
     name: str = 'Tubby'
+    name_ch = '阿圆'
     cost_num = 2
     cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_COMPANION

@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 class Yayoi_Nanatsuki_Entity(Support):
     id: int = 322020
     name = 'Yayoi_Nanatsuki'
+    name_ch = '弥生七月'
     max_usage = 1
     max_count = -1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
@@ -57,6 +58,7 @@ class Yayoi_Nanatsuki(SupportCard):
     '''
     id: int = 322020
     name: str = 'Yayoi Nanatsuki'
+    name_ch = '弥生七月'
     cost_num = 1
     cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_COMPANION

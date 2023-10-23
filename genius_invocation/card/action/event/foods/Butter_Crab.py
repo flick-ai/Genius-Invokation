@@ -9,6 +9,7 @@ if TYPE_CHECKING:
 class Butter_Crab_Entity(Status):
     id: int = 333012
     name: str = "Butter_Crab"
+    name_ch = "黄油蟹蟹"
 
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
@@ -37,6 +38,7 @@ class Butter_Crab_Entity(Status):
 class Butter_Crab(FoodCard):
     id: int = 333012
     name: str = "Butter_Crab"
+    name_ch = "黄油蟹蟹"
     cost_num = 2
     cost_type = CostType.BLACK
 

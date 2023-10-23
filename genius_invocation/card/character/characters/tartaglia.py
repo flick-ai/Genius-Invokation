@@ -6,6 +6,7 @@ class RangedStance(Status):
         远程状态
     '''
     name = "Ranged Stance"
+    name_ch= "远程状态"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
 
@@ -17,6 +18,7 @@ class MeleeStance(Status):
         近战状态
     '''
     name = "Melee Stance"
+    name_ch = "近战状态"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.opponent = None
@@ -118,6 +120,7 @@ class Riptide(Status):
         当角色死亡时, 会调用on_distroy, 这时候先建一个新的断流
     '''
     name = 'Riptide'
+    name_ch = "断流"
     current_usage = MAX_ROUND
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
@@ -195,12 +198,12 @@ class Riptide(Status):
 
 class CuttingTorrent(NormalAttack):
     '''
-        达达利亚
         普通攻击
         断雨
     '''
     id: int = 0
-    name='Cutting Torrent'
+    name = 'Cutting Torrent'
+    name_ch = "断雨"
     type: SkillType = SkillType.NORMAL_ATTACK
 
     # damage
@@ -250,12 +253,12 @@ class CuttingTorrent(NormalAttack):
 
 class FoulLegacy_RagingTide(ElementalSkill):
     '''
-        达达利亚
         元素战技
         魔王武装：狂澜
     '''
     id: int = 1
     name='Foul Legacy: Raging Tide'
+    name_ch = "魔王武装：狂澜"
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -316,7 +319,8 @@ class FlashOfHavoc(ElementalBurst):
         远程状态元素爆发
     '''
     id: int = 3
-    name='Flash of Havoc'
+    name = 'Flash of Havoc'
+    name_ch = "远程状态·魔弹一闪"
     type: SkillType = SkillType.ELEMENTAL_BURST
 
     # No damage
@@ -365,6 +369,7 @@ class LightOfHavoc(ElementalBurst):
     '''
     id: int = 4
     name = 'Light of Havoc'
+    name_ch = "近战状态·尽灭水光"
     type: SkillType = SkillType.ELEMENTAL_BURST
 
     # No damage
@@ -397,6 +402,7 @@ class Havoc_Obliteration(ElementalBurst):
     '''
     id: int = 2
     name = 'Havoc: Obliteration'
+    name_ch = "极恶技·尽灭闪"
     type: SkillType = SkillType.ELEMENTAL_BURST
     cost = [
         {
@@ -417,9 +423,12 @@ class Havoc_Obliteration(ElementalBurst):
 
 
 class Tartaglia(Character):
-    '''达达利亚'''
+    '''
+        达达利亚
+    '''
     id: int = 1204
     name: str = 'Tartaglia'
+    name_ch = "达达利亚"
     element: ElementType = ElementType.HYDRO
     weapon_type: WeaponType = WeaponType.BOW
     country: CountryType = CountryType.FATUI

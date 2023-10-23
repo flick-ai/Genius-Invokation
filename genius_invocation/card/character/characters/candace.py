@@ -3,6 +3,7 @@ from genius_invocation.card.character.characters.import_head import *
 class Gleaming_Spear_Guardian_Stance(NormalAttack):
     id: int = 0
     name = "Gleaming Spear: Guardian Stance"
+    name_ch = "流耀枪术·守势"
     type: SkillType = SkillType.NORMAL_ATTACK
 
     # damage
@@ -34,6 +35,8 @@ class Gleaming_Spear_Guardian_Stance(NormalAttack):
 class Sacred_Rite_Herons_Sanctum(ElementalSkill):
     id: int = 1
     type: SkillType = SkillType.ELEMENTAL_SKILL
+    name = "Sacred Rite: Heron's Sanctum"
+    name_ch = "圣仪·苍鹭庇卫"
 
     # damage
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -63,6 +66,7 @@ class Sacred_Rite_Herons_Sanctum(ElementalSkill):
 
 class Heron_Strike(ElementalSkill):
     name = 'Heron Strike'
+    name_ch = '苍鹭震击'
     id = 3
     type = SkillType.ELEMENTAL_SKILL
 
@@ -84,6 +88,7 @@ class Heron_Strike(ElementalSkill):
 
 class Sacred_Rite_Wagtails_Tide(ElementalBurst):
     name = "Sacred Rite: Wagtail's Tide"
+    name_ch = "圣仪·灰鸰衒潮"
     id = 2
     type = SkillType.ELEMENTAL_BURST
 
@@ -111,6 +116,7 @@ class Sacred_Rite_Wagtails_Tide(ElementalBurst):
 class Candace(Character):
     id = 1207
     name = "Candace"
+    name_ch = "坎蒂丝"
     element = ElementType.HYDRO
     weapon_type = WeaponType.POLEARM
     country = CountryType.SUNERU
@@ -128,6 +134,7 @@ class Candace(Character):
 
 class Heron_Shield(Shield):
     name = "Heron Shield"
+    name_ch = "苍鹭护盾"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character', Next_Skill: 'CharacterSkill'):
         super().__init__(game, from_player, from_character)
         self.skill = Next_Skill
@@ -161,6 +168,7 @@ class Heron_Shield(Shield):
 
 class Prayer_of_the_Crimson_Crown(Combat_Status):
     name = "Prayer of the Crimson Crown"
+    name_ch = "赤冕祝祷"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.usage = 2

@@ -23,13 +23,13 @@ def get_dict(game: 'GeniusGame'):
         player = game.players[idx]
         message[idx]["dice_zone"]: List[str] = [DiceType(dice).name for dice in player.dice_zone.show()] if player.dice_zone.num()>0 else []
         message[idx]["card_zone"]: int = player.card_zone.num() 
-        message[idx]["hand_zone"]: List[str] = [card.name for card in player.hand_zone.card]
-        message[idx]["summon_zone"]: List[List[str]] = [[summon.name,  str(summon.show())]for summon in player.summon_zone.space]
-        message[idx]["support_zone"]: List[List[str]] = [[support.name,  str(support.show())]for support in player.support_zone.space]
+        message[idx]["hand_zone"]: List[str] = [card.name_ch for card in player.hand_zone.card]
+        message[idx]["summon_zone"]: List[List[str]] = [[summon.name_ch,  str(summon.show())]for summon in player.summon_zone.space]
+        message[idx]["support_zone"]: List[List[str]] = [[support.name_ch,  str(support.show())]for support in player.support_zone.space]
         message[idx]["character_zone"] = [{}, {}, {}]
         for i, character in enumerate(player.character_list):
             message[idx]["character_zone"][i]['base'] = [Elementals_to_str(character.elemental_application).strip(),
-             character.name,
+             character.name_ch,
              character.show(),
              str(character.power),
              character.is_active
@@ -40,13 +40,13 @@ def get_dict(game: 'GeniusGame'):
                 message[idx]["character_zone"][i]['artifact'] = character.character_zone.artifact_card.show()
             if character.talent == True:
                 message[idx]["character_zone"][i]['talent'] = "Has Talent"
-            message[idx]["character_zone"][i]['skills'] = [skill.name for skill in character.skills]
-            message[idx]["character_zone"][i]['status'] = [f"{status.name}:{status.show()}" for status in character.character_zone.status_list]
+            message[idx]["character_zone"][i]['skills'] = [skill.name_ch for skill in character.skills]
+            message[idx]["character_zone"][i]['status'] = [f"{status.name_ch}:{status.show()}" for status in character.character_zone.status_list]
             
             if character.is_active:
                 message[idx]["character_zone"][i]['active'] = "Active"
-                message[idx]["character_zone"][i]['shield'] = [f"{status.name}:{status.show()}" for status in player.team_combat_status.shield]
-                message[idx]["character_zone"][i]['active_status'] = [f"{status.name}:{status.show()}" for status in player.team_combat_status.space]
+                message[idx]["character_zone"][i]['shield'] = [f"{status.name_ch}:{status.show()}" for status in player.team_combat_status.shield]
+                message[idx]["character_zone"][i]['active_status'] = [f"{status.name_ch}:{status.show()}" for status in player.team_combat_status.space]
             else:
                 message[idx]["character_zone"][i]['active'] = 'None'
 

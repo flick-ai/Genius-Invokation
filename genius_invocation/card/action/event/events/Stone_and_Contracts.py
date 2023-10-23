@@ -10,6 +10,7 @@ if TYPE_CHECKING:
 class  Stone_and_Contracts_Entity(Combat_Status):
     id: int = 331802
     name: str = 'Stone and Contracts'
+    name_ch = '岩与契约'
     def __init__(self, game:'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
     
@@ -28,6 +29,7 @@ class  Stone_and_Contracts_Entity(Combat_Status):
 class Stone_and_Contracts(ActionCard):
     id: int = 331802
     name: str = 'Stone and Contracts'
+    name_ch = '岩与契约'
     cost_num = 3
     cost_type = CostType.BLACK
     card_type = ActionCardType.EVENT

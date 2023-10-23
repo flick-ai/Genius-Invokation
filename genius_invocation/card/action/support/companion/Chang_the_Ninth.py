@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 class Chang_the_Ninth_Entity(Support):
     id: int = 322009
     name = 'Chang the Ninth'
+    name_ch = '常九爷'
     max_usage = -1
     max_count = 3
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
@@ -57,6 +58,7 @@ class Chang_the_Ninth(SupportCard):
     '''
     id: int = 322009
     name: str = 'Chang the Ninth'
+    name_ch = '常九爷'
     cost_num = 0
     cost_type = None
     card_type = ActionCardType.SUPPORT_COMPANION

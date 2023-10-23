@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 class Rana_Entity(Support):
     id: int = 322017
     name = 'Rana'
+    name_ch = '拉娜'
     max_usage = 1
     max_count = -1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
@@ -51,6 +52,7 @@ class Rana(SupportCard):
     '''
     id: int = 322017
     name: str = 'Rana'
+    name_ch = '拉娜'
     cost_num = 2
     cost_type = CostType.BLACK
     card_type = ActionCardType.SUPPORT_COMPANION

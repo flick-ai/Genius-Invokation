@@ -5,6 +5,7 @@ class Guhua_Style(NormalAttack):
     id: int = 0
     type: SkillType = SkillType.NORMAL_ATTACK
     name = "Guhua Style"
+    name_ch = "古华剑法"
     # damage
     damage_type: SkillType = SkillType.NORMAL_ATTACK
     main_damage_element: ElementType = ElementType.PHYSICAL
@@ -45,6 +46,7 @@ class Fatal_Rainscreen(ElementalSkill):
     '''
     id: int = 1
     name = "Stellar Restoration"
+    name_ch = "画雨笼山"
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
     # damage
@@ -85,6 +87,7 @@ class Raincutter(ElementalBurst):
     '''
     id: int = 2
     name = "Fatal Rainscreen"
+    name_ch = "裁雨留虹"
     type: SkillType = SkillType.ELEMENTAL_BURST
 
     # damage
@@ -117,6 +120,7 @@ class Raincutter(ElementalBurst):
 
 class Rain_Sword(Combat_Status):
     name = "Rain Sword"
+    name_ch = "裁雨留虹"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.max_usage = 2
@@ -131,7 +135,7 @@ class Rain_Sword(Combat_Status):
             self.max_usage = 3
             self.usage = 3
         self.current_usage = max(self.current_usage, self.usage)
-    
+
     def on_execute_dmg(self, game:'GeniusGame'):
         if game.current_damage.damage_to.from_player == self.from_player:
             if game.current_damage.damage_to.is_active:
@@ -141,7 +145,7 @@ class Rain_Sword(Combat_Status):
                         self.current_usage -= 1
                         if self.current_usage <=0:
                             self.on_destroy(game)
-    
+
     def update_listener_list(self):
         self.listeners = [
             (EventType.EXECUTE_DAMAGE, ZoneType.ACTIVE_ZONE, self.on_execute_dmg)
@@ -149,7 +153,7 @@ class Rain_Sword(Combat_Status):
 
 class Rainbow_Bladework(Combat_Status):
     name = "Rainbow Bladework"
-
+    name = "虹剑势"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.max_usage = 3
@@ -182,6 +186,7 @@ class Rainbow_Bladework(Combat_Status):
 class Xingqiu(Character):
     id = 1202
     name = 'Xingqiu'
+    name_ch = "行秋"
     element = ElementType.HYDRO
     weapon_type = WeaponType.SWORD
     country = CountryType.LIYUE

@@ -4,6 +4,7 @@ from genius_invocation.card.character.characters.import_head import *
 class Pactsworn_Pathclearer(Status):
     '''赛诺 被动状态'''
     name = "Pactsworn Pathclearer"
+    name_ch = "启途誓使"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.current_usage = 0
@@ -45,6 +46,7 @@ class Invokers_Spear(NormalAttack):
     id: int = 0
     type: SkillType = SkillType.NORMAL_ATTACK
     name = "Invokers Spear"
+    name_ch = "七圣枪术"
     # damage
     damage_type: SkillType = SkillType.NORMAL_ATTACK
     main_damage_element: ElementType = ElementType.PHYSICAL
@@ -85,6 +87,7 @@ class Secret_Rite_Chasmic_Soulfarer(ElementalSkill):
     '''
     id: int = 1
     name = "Secret Rite: Chasmic Soulfarer"
+    name_ch = "秘仪·律渊渡魂"
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
     # damage
@@ -126,6 +129,7 @@ class Sacred_Rite_Wolfs_Swiftness(ElementalBurst):
     '''
     id = 2
     name="Sacred Rite: Wolf's Swiftness"
+    name_ch = "圣仪·煟煌随狼行"
     type: SkillType = SkillType.ELEMENTAL_BURST
 
     # damage
@@ -158,6 +162,7 @@ class Sacred_Rite_Wolfs_Swiftness(ElementalBurst):
 class Cyno(Character):
     id = 1404
     name = "Cyno"
+    name_ch = "赛诺"
     element = ElementType.ELECTRO
     weapon_type: WeaponType = WeaponType.POLEARM
     country: CountryType = CountryType.SUNERU

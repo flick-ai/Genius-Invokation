@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 class Ellin_Entity(Support):
     id: int = 322010
     name = 'Ellin'
+    name_ch = '艾琳'
     max_usage = 1
     max_count = -1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
@@ -56,6 +57,7 @@ class Ellin(SupportCard):
     '''
     id: int = 322010
     name: str = 'Ellin'
+    name_ch = '艾琳'
     cost_num = 2
     cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_COMPANION

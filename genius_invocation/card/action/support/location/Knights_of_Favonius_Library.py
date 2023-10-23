@@ -12,6 +12,7 @@ if TYPE_CHECKING:
 class Knights_of_Favonius_Library_Entity(Support):
     id: int = 321002
     name = 'Knights of Favonius Library'
+    name_ch = '骑士团图书馆'
     max_usage = -1
     max_count = -1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
@@ -35,6 +36,7 @@ class Knights_of_Favonius_Library(SupportCard):
     '''
     id: int = 321002
     name: str = 'Knights of Favonius Library'
+    name_ch = '骑士团图书馆'
     cost_num = 1
     cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_LOCATION

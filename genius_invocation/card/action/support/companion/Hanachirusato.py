@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 class Hanachirusato_Entity(Support):
     id: int = 322013
     name = 'Hanachirusato'
+    name_ch = '花散里'
     max_usage = -1
     max_count = 3
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
@@ -50,6 +51,7 @@ class Hanachirusato(SupportCard):
     '''
     id: int = 322013
     name: str = 'Hanachirusato'
+    name_ch = '花散里'
     cost_num = 0
     cost_type = None
     card_type = ActionCardType.SUPPORT_COMPANION

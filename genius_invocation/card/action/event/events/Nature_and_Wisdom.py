@@ -7,6 +7,7 @@ if TYPE_CHECKING:
 class Nature_and_Wisdom(ActionCard):
     id: int = 331804
     name: str = 'Nature and Wisdom'
+    name_ch = '草与智慧'
     cost_num = 1
     cost_type = CostType.WHITE
     card_type = ActionCardType.EVENT

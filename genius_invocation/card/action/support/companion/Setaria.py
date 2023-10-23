@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 class Setaria_Entity(Support):
     id: int = 322019
     name = 'Setaria'
+    name_ch = '塞塔蕾'
     max_usage = 3
     max_count = -1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
@@ -39,6 +40,7 @@ class Setaria(SupportCard):
     '''
     id: int = 322019
     name: str = 'Setaria'
+    name_ch = '塞塔蕾'
     cost_num = 1
     cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_COMPANION
