@@ -19,6 +19,8 @@ class ArtifactCard(EquipmentCard):
                                        from_player=game.active_player,
                                        from_character=target_character,
                                        artifact_card=self)
+        if target_character.character_zone.artifact_card != None:
+            target_character.character_zone.artifact_card.on_destroy(game)
         target_character.character_zone.artifact_card = entity
 
     def find_target(self, game: 'GeniusGame'):

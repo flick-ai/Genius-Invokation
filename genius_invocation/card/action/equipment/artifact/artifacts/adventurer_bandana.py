@@ -8,17 +8,38 @@ if TYPE_CHECKING:
     from genius_invocation.game.player import GeniusPlayer
 
 
-class AdventurerBandana_Entity(Artifact):
-    id: int = 0
+class Adventurer_Bandana_Entity(Artifact):
+    id: int = 312001
     name: str = "Adventurer's Bandana"
     name_ch = "冒险家头巾"
+    max_usage = 3
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, artifact_card = None):
         super().__init__(game, from_player, from_character, artifact_card)
+        self.usage = self.max_usage
+        self.round = -1
+
+    def on_after_skill(self, game:'GeniusGame'):
+        if self.round != game.round:
+            self.round = game.round
+            self.usage = self.max_usage
+        if self.usage > 0 :
+            if game.current_skill.from_character == self.from_character:
+                if game.current_skill.type == SkillType.NORMAL_ATTACK:
+                    self.from_character.heal(heal=1)
+                    self.usage -= 1
+
+    def update_listener_list(self):
+        self.listeners = [
+            (EventType.AFTER_USE_SKILL, ZoneType.CHARACTER_ZONE, self.on_after_skill)
+        ]
 
 
-class AdventurerBandana(ArtifactCard):
+
+
+
+class Adventurer_Bandana(ArtifactCard):
     '''冒险家头巾'''
-    id: int = 0
+    id: int = 312001
     name: str = "Adventurer's Bandana"
     name_ch = "冒险家头巾"
     cost_num: int = 1
