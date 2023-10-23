@@ -40,7 +40,7 @@ class Sprawling_Greenery(ActionCard):
     name: str = "Sprawling_Greenery"
     name_chr = "蔓生之草"
     cost_num = 1
-    card_type = ActionCardType.EVENT_ELEMENTAL_RESONANCE.value
+    card_type = ActionCardType.EVENT_ELEMENTAL_RESONANCE
     cost_type = CostType.DENDRO
 
     def __init__(self) -> None:

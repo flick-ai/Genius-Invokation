@@ -9,7 +9,7 @@ class Woven_Weeds(ActionCard):
     name: str = "Woven_Weeds"
     name_ch = "交织之草"
     cost_num = 0
-    card_type = ActionCardType.EVENT_ELEMENTAL_RESONANCE.value
+    card_type = ActionCardType.EVENT_ELEMENTAL_RESONANCE
     cost_type = None
 
     def __init__(self) -> None:
