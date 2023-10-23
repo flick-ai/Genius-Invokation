@@ -63,6 +63,7 @@ class Shield(Status):
         super().__init__(game, from_player, from_character)
     def on_destroy(self, game):
         super().on_destroy(game)
+    
 
 class Combat_Shield(Combat_Status):
     # Combat_Status of shield.
@@ -212,17 +213,6 @@ class Crystallize_Shield(Combat_Shield):
     def update(self):
         if self.current_usage < self.max_usage:
             self.current_usage += 1
-
-    def on_excuete_dmg(self,game: 'GeniusGame'):
-        if game.current_damage.damage_to.from_player == self.from_player:
-            if game.current_damage.damage_to.is_active:
-                if game.current_damage.main_damage >= self.current_usage:
-                    game.current_damage.main_damage -= self.current_usage
-                    self.current_usage = 0
-                    self.on_destroy(game)
-                else:
-                    self.current_usage -= game.current_damage.main_damage
-                    game.current_damage.main_damage = 0
 
     def update_listener_list(self):
         self.listeners = [
