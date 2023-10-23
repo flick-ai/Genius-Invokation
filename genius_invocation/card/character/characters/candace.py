@@ -119,7 +119,7 @@ class Candace(Character):
     name_ch = "坎蒂丝"
     element = ElementType.HYDRO
     weapon_type = WeaponType.POLEARM
-    country = CountryType.SUNERU
+    country = CountryType.SUMERU
 
     init_health_point = 10
     max_health_point = 10
