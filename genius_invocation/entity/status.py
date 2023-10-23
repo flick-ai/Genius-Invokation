@@ -156,7 +156,7 @@ class Dendro_Core(Combat_Status):
         self.current_usage = self.usage
 
     def add_one_usage(self):
-        self.current_usage = min(self.current_usage+1, self.max_usage)
+        self.current_usage = self.current_usage+1
 
     def on_damage_add(self, game: 'GeniusGame'):
         if game.current_damage.damage_from is None: return
@@ -185,7 +185,7 @@ class Catalyzing_Feild(Combat_Status):
         self.current_usage = self.usage
 
     def add_one_usage(self):
-        self.current_usage = min(self.current_usage+1, self.max_usage)
+        self.current_usage = self.current_usage+1
 
     def on_damage_add(self, game: 'GeniusGame'):
         if game.current_damage.damage_from is None: return
