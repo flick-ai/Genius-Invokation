@@ -37,11 +37,11 @@ class Tenacity_of_the_Millelith_Entity(Artifact):
 
     def on_after_damage(self, game:'GeniusGame'):
         if self.round != game.round:
-            self.round = game.round
             if self.from_character.is_active:
                 if game.current_damage.damage_to == self.from_character:
                     element_dice = ElementToDice[self.from_character.element]
                     self.from_player.dice_zone.add([element_dice.value])
+                    self.round = game.round
 
     def update_listener_list(self):
         self.listeners = [

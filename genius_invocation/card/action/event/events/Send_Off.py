@@ -21,3 +21,4 @@ class Send_Off(ActionCard):
         target = []
         for i in range(get_opponent(game).summon_zone.num()):
             target.append(i+5)
+        return target

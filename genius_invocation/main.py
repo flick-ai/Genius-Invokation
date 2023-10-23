@@ -10,6 +10,14 @@ import genius_invocation.card.character.characters as chars
 
 from genius_invocation.utils import *
 from rich import print
+import time
+import argparse
+
+def get_parser():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--test', action='store_true', default=False)
+    args = parser.parse_args()
+    return args
 
 if __name__=="__main__":
 
@@ -22,14 +30,15 @@ if __name__=="__main__":
     for name in available_character_name:
         available_character.append((name, eval("chars."+name).name, eval("chars."+name).name_ch))
 
-    print(available_character)
+    # print(available_character)
     available_card = []
     ignore = [action.ActionCard, action.EquipmentCard, action.WeaponCard, action.TalentCard, action.ArtifactCard, action.SupportCard, action.FoodCard]
     for name, obj in inspect.getmembers(action):
         if inspect.isclass(obj) and obj not in ignore:
             available_card.append((name, obj.name, obj.name_ch))
-    print(available_card)
+    # print(available_card)
 
+    args = get_parser()
     deck1 = {
     'character': ['Rhodeia_of_Loch', 'Yae_Miko' ,'Fatui_Pyro_Agent'],
     'action_card': ['Fresh_Wind_of_Freedom','Dunyarzad','Dunyarzad','Chef_Mao','Chef_Mao','Paimon','Paimon',
@@ -49,7 +58,20 @@ if __name__=="__main__":
     }
     game = GeniusGame(player0_deck=deck1, player1_deck=deck2, seed=2025)
 
-    while not game.is_end:
-        print(game.encode_message())
-        action = Action.from_input(game, jump=False)
-        game.step(action)
+    if args.test:
+        with open("./action.log") as f:
+            log = json.load(f)
+        for i in log:
+            print(game.encode_message())
+            action = Action.from_dict(i)
+            game.step(action)
+        while not game.is_end:
+            print(game.encode_message())
+            action = Action.from_input(game, log, mode='w', jump=False)
+            game.step(action)
+    else:
+        log = []
+        while not game.is_end:
+            print(game.encode_message())
+            action = Action.from_input(game, log, mode='w', jump=False)
+            game.step(action)
