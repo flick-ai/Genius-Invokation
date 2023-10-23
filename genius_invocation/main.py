@@ -3,10 +3,14 @@
 '''
 from genius_invocation.game.game import GeniusGame
 from genius_invocation.game.action import *
+from genius_invocation.card.action import *
+from genius_invocation.card.character import *
+
 from genius_invocation.utils import *
 from rich import print
 
 if __name__=="__main__":
+    
     deck1 = {
     'character': ['Rhodeia_of_Loch', 'Nahida', 'Fischl'],
     'action_card': ['Fresh_Wind_of_Freedom','Toss_up','Toss_up','Dunyarzad','Dunyarzad','Chef_Mao','Chef_Mao','Paimon','Paimon',
