@@ -79,7 +79,7 @@
       
       <div class="summon3 player1 item zone"><div class="thetitle clickable">召唤区4</div></div>
       <div class="dice player1 item zone"><div class="thetitle clickable">骰子区</div></div>
-      <div class="selectcharacter item"></div>
+      <!-- <div class="selectcharacter item"></div> -->
       
       
     </div>
@@ -95,21 +95,28 @@
     <script src="./set_layout.js"> </script>
     <script>
       let available_character = null
+      function modify_object(a){
+        available_character = a
+      }
+
     </script>
-    <py-script>
-      from genius_invocation.web import get_card
-      get_card.get_card()
-    </py-script>
+
     <script>
       const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
       async function get_card() {
         while(true){
           await sleep(1000)
-          console.log(available_character)
+          if(available_character){
+            console.log(available_character.toJs())
+          }
         }
       }
       get_card()
     </script>
+    <py-script>
+      from genius_invocation.web import get_card
+      get_card.get_card()
+    </py-script>
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script> -->
     <py-terminal id="terminal"></py-terminal>
     <py-script>

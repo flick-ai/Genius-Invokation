@@ -124,7 +124,7 @@ class Yoimiya(Character):
     '''宵宫'''
     id: int = 1305
     name: str = 'Yoimiya'
-    name = "宵宫"
+    name_ch = "宵宫"
     element: ElementType = ElementType.PYRO
     weapon_type: WeaponType = WeaponType.BOW
     country: CountryType = CountryType.INAZUMA
