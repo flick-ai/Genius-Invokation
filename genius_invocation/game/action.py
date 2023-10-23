@@ -104,7 +104,14 @@ class Action:
         return Action(action[0], action[1], action[2])
 
     @staticmethod
-    def from_input(game: 'GeniusGame', jump=True):
+    def from_dict(action: dict):
+        '''
+            (1, 1, list(n))
+        '''
+        return Action(action['choice'], action['target'], action['dice'])
+
+    @staticmethod
+    def from_input(game: 'GeniusGame', log=None, mode='a', jump=True):
         mask, use_dice = game.active_player.action_mask[:,:,0], game.active_player.action_mask[:,:,1:]
         choice_dict = {0:'打出本方第1张手牌',
                        1:'打出本方第2张手牌',
@@ -208,9 +215,10 @@ class Action:
                     exit()
                 except:
                     print("您选择的骰子包含重复位置,非法,请重新选择")
-
-        with open("./action.log",'a') as f:
-           json.dump({"choice":choice, "target":target, "dice":dice}, f)
+        if log is not None:
+            log.append({"choice":choice, "target":target, "dice":dice})
+            with open("./action.log", mode) as f:
+                json.dump(log, f, indent=4)
         return Action(choice, target, dice)
 
 def choose_card(card: List[int]):

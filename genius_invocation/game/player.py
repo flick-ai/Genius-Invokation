@@ -312,6 +312,7 @@ class GeniusPlayer:
         self.roll_time = 1
         self.fix_dice = []
         # 事件
+        self.dice_zone.remove_all()
         game.manager.invoke(EventType.BEGIN_ROLL_PHASE, game)
         self.roll_num = self.roll_num - len(self.fix_dice)
         dices = self.fix_dice + self.roll_dice(num=self.roll_num)
@@ -337,9 +338,7 @@ class GeniusPlayer:
         '''
         # 事件
         game.manager.invoke(EventType.END_PHASE, game)
-
         self.roll_time = 2
-        self.dice_zone.remove_all()
         self.get_card(num=2)
 
 
