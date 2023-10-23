@@ -39,7 +39,7 @@ class Shattering_Ice(ActionCard):
     name: str = "Shattering_Ice"
     name_ch = "粉碎之冰"
     cost_num = 1
-    card_type = ActionCardType.EVENT_ELEMENTAL_RESONANCE.value
+    card_type = ActionCardType.EVENT_ELEMENTAL_RESONANCE
     cost_type = CostType.CRYO
 
     def __init__(self) -> None:

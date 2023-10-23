@@ -49,7 +49,7 @@ class Enduring_Rock(ActionCard):
     id: int = 331602
     name: str = "Enduring_Rock"
     cost_num = 1
-    card_type = ActionCardType.EVENT_ELEMENTAL_RESONANCE.value
+    card_type = ActionCardType.EVENT_ELEMENTAL_RESONANCE
     cost_type = CostType.GEO
 
     def __init__(self) -> None:
