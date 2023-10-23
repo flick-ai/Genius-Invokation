@@ -1,4 +1,4 @@
-from utils import *
+from genius_invocation.utils import *
 from typing import TYPE_CHECKING
 from genius_invocation.card.action.equipment.talent.base import TalentCard
 from genius_invocation.card.character.characters.FatuiPyroAgent import Fatui_Pyro_Agent

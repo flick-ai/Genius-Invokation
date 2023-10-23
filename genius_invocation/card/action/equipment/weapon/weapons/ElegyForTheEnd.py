@@ -75,6 +75,7 @@ class ElegyForTheEnd(WeaponCard):
     '''终末嗟叹之诗'''
     id: int = 311205
     name: str = 'Elegy for the End'
+    name_ch = "终末嗟叹之诗"
     weapon_type: WeaponType = WeaponType.BOW
     cost_num: int = 3
     cost_type: CostType = CostType.WHITE

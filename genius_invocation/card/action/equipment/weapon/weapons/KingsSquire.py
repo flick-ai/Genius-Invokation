@@ -45,6 +45,7 @@ class KingsSquire(WeaponCard):
     '''王下近侍'''
     id: int = 311206
     name: str = "King's Squire"
+    name_ch = "王下近侍"
     weapon_type: WeaponType = WeaponType.BOW
     cost_num: int = 3
     cost_type: CostType = CostType.WHITE

@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 class RavenBowWeapon(Weapon):
     id: int = 311201
     name: str = 'Raven Bow'
+    name_ch = '鸦羽弓'
     def on_damage_add(self, game: 'GeniusGame'):
         if game.current_damage.damage_from == self.from_character:
             if game.current_damage.main_damage_element is not ElementType.PIERCING:
@@ -26,6 +27,7 @@ class RavenBow(WeaponCard):
     '''鸦羽弓'''
     id: int = 311201
     name: str = 'Raven Bow'
+    name_ch = '鸦羽弓'
     weapon_type: WeaponType = WeaponType.BOW
     cost_num: int = 2
     cost_type: CostType = CostType.WHITE

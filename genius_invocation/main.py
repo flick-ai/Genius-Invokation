@@ -3,24 +3,32 @@
 '''
 from genius_invocation.game.game import GeniusGame
 from genius_invocation.game.action import *
-import genius_invocation.card.action
+import genius_invocation.card.action as action
 import inspect
 import sys
+import genius_invocation.card.character.characters as chars
 
 from genius_invocation.utils import *
 from rich import print
 
 if __name__=="__main__":
 
-    available_character = ['Aratakiltto', 'Candace', 'Cyno', 'Dehya', "ElectroHypostasis", 
+    available_character_name = ['Arataki_Itto', 'Candace', 'Cyno', 'Dehya', "ElectroHypostasis", 
                            "Fatui_Pyro_Agent", "Fischl", "Ganyu", "Jadeplume_Terrorshroom", "Keqing", 
                            "Mona", "Nahida", "Ningguang", "Noelle", "Qiqi",
                            "Rhodeia_of_Loch", "Shenhe", "Tartaglia", "Xingqiu", "Yae_Miko",
                            "Yoimiya"]
+    available_character = []
+    for name in available_character_name:
+        available_character.append((name, eval("chars."+name).name, eval("chars."+name).name_ch))
+
+    print(available_character)
     available_card = []
-    for name, obj in inspect.getmembers(genius_invocation.card.action):
-        if inspect.isclass(obj):
-            print(obj)
+    ignore = [action.ActionCard, action.EquipmentCard, action.WeaponCard, action.TalentCard, action.ArtifactCard, action.SupportCard, action.FoodCard]
+    for name, obj in inspect.getmembers(action):
+        if inspect.isclass(obj) and obj not in ignore:
+            available_card.append((name, obj.name, obj.name_ch))
+    print(available_card)
 
     deck1 = {
     'character': ['Rhodeia_of_Loch', 'Yae_Miko' ,'Fatui_Pyro_Agent'],
