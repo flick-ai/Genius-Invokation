@@ -1,7 +1,7 @@
 from genius_invocation.card.character.characters.import_head import *
 
 class Ripple_of_Fate(NormalAttack):
-# 因果点破 
+# 因果点破
     name = 'Ripple of Fate'
     name_ch = '因果点破'
     id = 0
@@ -107,7 +107,7 @@ class Stellaris_Phantasm(ElementalBurst):
         self.consume_energy(game)
         self.resolve_damage(game)
         self.add_combat_status(game, Illusory_Bubble)
-        game.manager.invoke(EventType.AFTER_USE_SKILL, game)    
+        game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 
 class Reflection(Summon):
@@ -132,12 +132,12 @@ class Reflection(Summon):
             )
             game.add_damage(dmg)
             game.resolve_damage()
-            
+
             status = self.from_player.team_combat_status.has_status(Shield_from_Refrection)
             if status is not None:
                 status.on_destroy(game)
             self.on_destroy(game)
-    
+
     def update(self, game:'GeniusGame'):
         if self.current_usage == 0:
             self.current_usage = self.usage
@@ -146,14 +146,14 @@ class Reflection(Summon):
             self.from_player.team_combat_status.add_entity(status)
         else:
             pass
-            #No Need to Update            
+            #No Need to Update
 
     def add_usage(self, game: 'GeniusGame', count: int):
         self.current_usage += count
         if self.current_usage == count:
             status = Shield_from_Refrection(game, self.from_player, self.from_character, self)
             self.from_player.team_combat_status.add_entity(status)
-       
+
         self.from_player.team_combat_status.has_status(Shield_from_Refrection).update()
 
     def minus_usage(self, game: 'GeniusGame', count: int):
@@ -162,7 +162,7 @@ class Reflection(Summon):
         self.current_usage = max(0, self.current_usage)
         if self.current_usage == 0:
             self.from_player.team_combat_status.has_status(Shield_from_Refrection).on_destroy(game)
-    
+
     def on_destroy(self, game: 'GeniusGame'):
         status = self.from_player.team_combat_status.has_status(Shield_from_Refrection)
         if status is not None:
@@ -203,7 +203,7 @@ class Shield_from_Refrection(Combat_Status):
                 self.current_usage = self.from_summon.current_usage
                 if self.from_summon.current_usage ==0:
                     self.on_destroy(game) # Only destroy the combat_status here
-    
+
     def update_listener_list(self):
         self.listeners = [
             (EventType.EXECUTE_DAMAGE, ZoneType.ACTIVE_ZONE, self.on_damage_execute)
@@ -221,13 +221,13 @@ class Illusory_Bubble(Combat_Status):
         self.current_usage = 1
         self.usage = 1
         self.max_usage = 1
-    
+
     def on_dealing_damage(self, game: 'GeniusGame'):
         if isinstance(game.current_damage.damage_from, Character):
             if game.current_damage.damage_from.from_player == self.from_player:
                 game.current_damage *= 2
                 self.on_destroy(game)
-    
+
     def update_listener_list(self):
         self.listeners = [
             (EventType.DEALING_DAMAGE, ZoneType.ACTIVE_ZONE, self.on_dealing_damage)
@@ -257,7 +257,7 @@ class Mona(Character):
         # 虚实流动
         if self.last_round != game.round:
             if game.active_player == self.from_player:
-                if game.active_player.index == self.index:
+                if game.active_player.active_idx == self.index:
                     if game.is_change_player:
                         # active player is Mona
                         game.is_change_player = False
@@ -266,5 +266,4 @@ class Mona(Character):
         self.listeners = [
             (EventType.ON_CHANGE_CHARACTER, ZoneType.CHARACTER_ZONE, self.on_change)
         ]
-    
-            
+

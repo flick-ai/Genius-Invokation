@@ -9,7 +9,7 @@ class Soothing_Water(ActionCard):
     name: str = "Soothing_Water"
     name_ch = "愈疗之水"
     cost_num = 1
-    card_type = ActionCardType.EVENT_ELEMENTAL_RESONANCE.value
+    card_type = ActionCardType.EVENT_ELEMENTAL_RESONANCE
     cost_type = CostType.HYDRO
 
     def __init__(self) -> None:

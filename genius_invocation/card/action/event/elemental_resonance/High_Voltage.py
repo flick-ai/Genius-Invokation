@@ -9,7 +9,7 @@ class High_Voltage(ActionCard):
     id: int = 331402
     name: str = "High_Voltage"
     cost_num = 1
-    card_type = ActionCardType.EVENT_ELEMENTAL_RESONANCE.value
+    card_type = ActionCardType.EVENT_ELEMENTAL_RESONANCE
     cost_type = CostType.ELECTRO
 
     def __init__(self) -> None:
