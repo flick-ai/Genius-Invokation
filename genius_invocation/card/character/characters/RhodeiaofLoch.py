@@ -221,10 +221,10 @@ def choose_one_summon(Skill: ElementalSkill, game: 'GeniusGame'):
         if Skill.from_character.from_player.summon_zone.has_entity(summon) is None:
             un_summon_list.append(summon)
     if len(un_summon_list) == 0:
-        x = Summon_list[random.randint(0,2)]
+        x = Summon_list[game.random.randint(0,2)]
         Skill.from_character.from_player.summon_zone.has_entity(x).update(game)
     else:
-        x = un_summon_list[random.randint(0,len(un_summon_list)-1)]
+        x = un_summon_list[game.random.randint(0,len(un_summon_list)-1)]
         summon = x(game,Skill.from_character.from_player,Skill.from_character)
         Skill.from_character.from_player.summon_zone.add_entity(summon)
 
