@@ -13,4 +13,3 @@ from genius_invocation.entity.character import Character
 from genius_invocation.entity.status import Status, Combat_Status, Shield, Combat_Shield
 from genius_invocation.entity.summon import Summon
 from loguru import logger
-import random
