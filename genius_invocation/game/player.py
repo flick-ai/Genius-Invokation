@@ -58,6 +58,7 @@ class GeniusPlayer:
         self.is_after_change: bool
         self.is_quick_change: bool
         self.change_num: int
+        self.last_die_round: int = -1
 
         # 扔骰子基本信息
         self.roll_num: int = 8
