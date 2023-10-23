@@ -207,6 +207,7 @@ class SaveDice_Sakura(Status):
                     if self.usage > 0:
                         if game.current_dice.cost[0]['cost_num'] > 0:
                             game.current_dice.cost[0]['cost_num'] -= 2
+                            game.current_dice.cost[0]['cost_num'] = max(0, game.current_dice.cost[0]['cost_num'])
                             return True
 
         return False
@@ -220,5 +221,6 @@ class SaveDice_Sakura(Status):
     def update_listener_list(self):
         self.listeners = [
             (EventType.CALCULATE_DICE, ZoneType.CHARACTER_ZONE, self.on_calculate),
-            (EventType.END_PHASE, ZoneType.CHARACTER_ZONE, self.end_phase)
+            (EventType.END_PHASE, ZoneType.CHARACTER_ZONE, self.end_phase),
+            (EventType.ON_USE_SKILL, ZoneType.CHARACTER_ZONE, self.on_skill)
         ]
