@@ -14,10 +14,12 @@ class MillennialMovementFarewellSong(Combat_Status):
     '''
     usage: int = 2
     max_usage: int = 2
+    name = "MillennialMovementFarewellSong"
+    name_ch = "千年的大乐章·别离之歌"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.current_usage = self.usage
-    
+
     def on_damage_add(self, game: 'GeniusGame'):
         if isinstance(game.current_damage.damage_from, Character):
             if game.current_damage.damage_from.from_player == self.from_player:
@@ -44,6 +46,7 @@ class ElegyForTheEndWeapon(Weapon):
     '''终末嗟叹之诗'''
     id: int = 311205
     name: str = 'Elegy for the End'
+    name_ch = "终末嗟叹之诗"
     def on_damage_add(self, game: 'GeniusGame'):
         if game.current_damage.damage_from == self.from_character:
             if game.current_damage.main_damage_element is not ElementType.PIERCING:
@@ -59,7 +62,7 @@ class ElegyForTheEndWeapon(Weapon):
                     self.from_player.team_combat_status.add_entity(millennial_movement_farewell_song)
                 else:
                     status.update()
-                
+
 
     def update_listener_list(self):
         self.listeners = [
@@ -79,6 +82,6 @@ class ElegyForTheEnd(WeaponCard):
     def __init__(self) -> None:
         super().__init__()
         self.equipment_entity = ElegyForTheEndWeapon
-    
+
     def on_played(self, game: 'GeniusGame') -> None:
         super().on_played(game)

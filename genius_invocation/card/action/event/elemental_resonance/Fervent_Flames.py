@@ -53,7 +53,7 @@ class Fervent_Flames(ActionCard):
     name: str = "Fervent_Flames"
     name_ch = "热诚之火"
     cost_num = 1
-    card_type = ActionCardType.EVENT_ELEMENTAL_RESONANCE.value
+    card_type = ActionCardType.EVENT_ELEMENTAL_RESONANCE
     cost_type = CostType.PYRO
 
     def __init__(self) -> None:

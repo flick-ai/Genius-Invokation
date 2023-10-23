@@ -27,8 +27,10 @@ class WeaponCard(EquipmentCard):
                                        from_player=game.active_player,
                                        from_character=target_character,
                                        weapon_card=self)
+        if target_character.character_zone.weapon_card != None:
+            target_character.character_zone.weapon_card.on_destroy(game)
         target_character.character_zone.weapon_card = entity
-    
+
     def find_target(self, game: 'GeniusGame'):
         character_idx = []
         for idx, character in enumerate(game.active_player.character_list):
@@ -36,6 +38,6 @@ class WeaponCard(EquipmentCard):
                 if character.weapon_type == self.weapon_type:
                     character_idx.append(idx + 2)
         return character_idx
-    
+
     def on_tuning(self, game: 'GeniusGame'):
         return super().on_tuning(game)

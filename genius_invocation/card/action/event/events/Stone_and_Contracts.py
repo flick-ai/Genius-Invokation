@@ -38,8 +38,11 @@ class Stone_and_Contracts(ActionCard):
         super().__init__()
 
     def on_played(self, game: 'GeniusGame'):
-        game.active_player.team_combat_status.add_entity(Stone_and_Contracts_Entity(
-            game,
-            from_player=game.active_player,
-            from_character=None
-        ))
+        if game.active_player.team_combat_status.has_status(Stone_and_Contracts_Entity):
+            return
+        else:
+            game.active_player.team_combat_status.add_entity(Stone_and_Contracts_Entity(
+                game,
+                from_player=game.active_player,
+                from_character=None
+            ))

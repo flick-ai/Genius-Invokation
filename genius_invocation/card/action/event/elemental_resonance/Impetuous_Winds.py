@@ -7,8 +7,9 @@ if TYPE_CHECKING:
 class Impetuous_Winds(ActionCard):
     id: int = 331502
     name: str = "Impetuous_Winds"
+    name_ch = "迅捷之风"
     cost_num = 1
-    card_type = ActionCardType.EVENT_ELEMENTAL_RESONANCE.value
+    card_type = ActionCardType.EVENT_ELEMENTAL_RESONANCE
     cost_type = CostType.ANEMO
 
     def __init__(self) -> None:

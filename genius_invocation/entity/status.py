@@ -64,6 +64,22 @@ class Shield(Status):
     def on_destroy(self, game):
         super().on_destroy(game)
 
+    def on_excuete_dmg(self,game: 'GeniusGame'):
+        if game.current_damage.main_damage_element != ElementType.PIERCING:
+            if game.current_damage.damage_to == self.from_character:
+                if game.current_damage.main_damage >= self.current_usage:
+                    game.current_damage.main_damage -= self.current_usage
+                    self.current_usage = 0
+                    self.on_destroy(game)
+                else:
+                    self.current_usage -= game.current_damage.main_damage
+                    game.current_damage.main_damage = 0
+
+    def update_listener_list(self):
+        self.listeners = [
+            (EventType.EXECUTE_DAMAGE, ZoneType.CHARACTER_ZONE, self.on_excuete_dmg)
+        ]
+
 class Combat_Shield(Combat_Status):
     # Combat_Status of shield.
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
@@ -71,6 +87,23 @@ class Combat_Shield(Combat_Status):
 
     def on_destroy(self, game):
         super().on_destroy(game)
+
+    def on_excuete_dmg(self,game: 'GeniusGame'):
+        if game.current_damage.main_damage_element != ElementType.PIERCING:
+            if game.current_damage.damage_to.from_player == self.from_player:
+                if game.current_damage.damage_to.is_active:
+                    if game.current_damage.main_damage >= self.current_usage:
+                        game.current_damage.main_damage -= self.current_usage
+                        self.current_usage = 0
+                        self.on_destroy(game)
+                    else:
+                        self.current_usage -= game.current_damage.main_damage
+                        game.current_damage.main_damage = 0
+
+    def update_listener_list(self):
+        self.listeners = [
+            (EventType.EXECUTE_DAMAGE, ZoneType.ACTIVE_ZONE_SHIELD, self.on_excuete_dmg)
+        ]
 class Equipment(Entity):
     pass
 
@@ -156,7 +189,7 @@ class Dendro_Core(Combat_Status):
         self.current_usage = self.usage
 
     def add_one_usage(self):
-        self.current_usage = min(self.current_usage+1, self.max_usage)
+        self.current_usage = self.current_usage+1
 
     def on_damage_add(self, game: 'GeniusGame'):
         if game.current_damage.damage_from is None: return
@@ -185,7 +218,7 @@ class Catalyzing_Feild(Combat_Status):
         self.current_usage = self.usage
 
     def add_one_usage(self):
-        self.current_usage = min(self.current_usage+1, self.max_usage)
+        self.current_usage = self.current_usage+1
 
     def on_damage_add(self, game: 'GeniusGame'):
         if game.current_damage.damage_from is None: return
@@ -212,22 +245,6 @@ class Crystallize_Shield(Combat_Shield):
     def update(self):
         if self.current_usage < self.max_usage:
             self.current_usage += 1
-
-    def on_excuete_dmg(self,game: 'GeniusGame'):
-        if game.current_damage.damage_to.from_player == self.from_player:
-            if game.current_damage.damage_to.is_active:
-                if game.current_damage.main_damage >= self.current_usage:
-                    game.current_damage.main_damage -= self.current_usage
-                    self.current_usage = 0
-                    self.on_destroy(game)
-                else:
-                    self.current_usage -= game.current_damage.main_damage
-                    game.current_damage.main_damage = 0
-
-    def update_listener_list(self):
-        self.listeners = [
-            (EventType.EXECUTE_DAMAGE, ZoneType.ACTIVE_ZONE_SHIELD, self.on_excuete_dmg)
-        ]
 
 class Satisfy_Statue(Status):
     name = "Satisfy"
