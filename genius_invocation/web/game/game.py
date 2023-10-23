@@ -21,12 +21,13 @@ class GeniusGame:
     '''
     主游戏
     '''
-    def __init__(self, player0_deck, player1_deck) -> None:
+    def __init__(self, player0_deck, player1_deck, seed=2023) -> None:
         self.manager = EventManager()
 
         self.num_players = 3
         # self.seed = seed
         # np.random.seed(seed)
+        self.random = np.random.RandomState(seed)
         self.first_player: int
         self.active_player_index: int
         self.active_player: GeniusPlayer # should be ref of player0 or player1
