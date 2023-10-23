@@ -21,7 +21,6 @@ class High_Voltage(ActionCard):
             target_character.power += 1
         else:
             standby_character = get_my_standby_character(game)
-            random.shuffle(standby_character)
             for ch in standby_character:
                 if ch.power < ch.max_power:
                     ch.power += 1
