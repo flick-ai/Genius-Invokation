@@ -1,5 +1,5 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
-
+from genius_invocation.card.character.characters.Fatui_Pyro_Agent import Fatui_Pyro_Agent
 
 class PaidinFull(TalentCard):
     id: int = 223011
@@ -8,8 +8,8 @@ class PaidinFull(TalentCard):
     is_action = True
     cost = [{'cost_num': 3, 'cost_type': 2}]
     cost_power = 0
-    character = FatuiPyroAgent
-    skill_idx: int = -1
+    character = Fatui_Pyro_Agent
+    skill_idx: int = 1
     def __init__(self) -> None:
         super().__init__()
         

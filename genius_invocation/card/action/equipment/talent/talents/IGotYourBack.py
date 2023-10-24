@@ -1,5 +1,5 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
-
+from genius_invocation.card.character.characters.Noelle import Noelle
 
 class IGotYourBack(TalentCard):
     id: int = 216021
@@ -8,8 +8,8 @@ class IGotYourBack(TalentCard):
     is_action = True
     cost = [{'cost_num': 3, 'cost_type': 5}]
     cost_power = 0
-    character = Noel
-    skill_idx: int = -1
+    character = Noelle
+    skill_idx: int = 1
     def __init__(self) -> None:
         super().__init__()
         

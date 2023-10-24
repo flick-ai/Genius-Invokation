@@ -1,5 +1,5 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
-
+from genius_invocation.card.character.characters.Qiqi import Qiqi
 
 class RiteofResurrection(TalentCard):
     id: int = 211081
@@ -9,7 +9,7 @@ class RiteofResurrection(TalentCard):
     cost = [{'cost_num': 5, 'cost_type': 0}]
     cost_power = 3
     character = Qiqi
-    skill_idx: int = -1
+    skill_idx: int = 2
     def __init__(self) -> None:
         super().__init__()
         

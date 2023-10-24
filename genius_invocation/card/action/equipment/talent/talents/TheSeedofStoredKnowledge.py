@@ -1,5 +1,5 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
-
+from genius_invocation.card.character.characters.Nahida import Nahida
 
 class TheSeedofStoredKnowledge(TalentCard):
     id: int = 217031
@@ -8,8 +8,8 @@ class TheSeedofStoredKnowledge(TalentCard):
     is_action = True
     cost = [{'cost_num': 3, 'cost_type': 6}]
     cost_power = 2
-    character = Tighnari
-    skill_idx: int = -1
+    character = Nahida
+    skill_idx: int = 3
     def __init__(self) -> None:
         super().__init__()
         
