@@ -100,12 +100,11 @@ class GeniusPlayer:
         '''
             基本行动: 投掷骰子
         '''
-        is_omni = True
         if is_basic:
                 if is_different:
                     return self.game.random.choice(DICENUM-1, num, replace=False).tolist()
                 return self.game.random.randint(0, DICENUM-1, num).tolist()
-        if is_omni:
+        if self.game.is_omni:
             return  [7 for i in range(num)]
         else:
             return self.game.random.randint(0, DICENUM, num).tolist()

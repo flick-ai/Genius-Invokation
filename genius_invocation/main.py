@@ -56,7 +56,7 @@ if __name__=="__main__":
                     'Lotus_Flower_Crisp','Lotus_Flower_Crisp','Sweet_Madame','Mondstadt_Hash_Brown',
                     'Mushroom_Pizza','Mushroom_Pizza']
     }
-    game = GeniusGame(player0_deck=deck1, player1_deck=deck2, seed=2025)
+    game = GeniusGame(player0_deck=deck1, player1_deck=deck2, seed=2025, is_omni=True)
 
     if args.test:
         with open("./action.log") as f:

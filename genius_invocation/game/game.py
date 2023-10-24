@@ -13,6 +13,7 @@ from rich.console import Console
 from rich.table import Column, Table
 from genius_invocation.user_layout import *
 from genius_invocation.utils_dict import *
+from time import time
 if TYPE_CHECKING:
     from genius_invocation.card.character.base import CharacterSkill
 
@@ -20,11 +21,16 @@ class GeniusGame:
     '''
     主游戏
     '''
-    def __init__(self, player0_deck, player1_deck, seed=2023) -> None:
+    def __init__(self, player0_deck, player1_deck, seed=None, is_omni=False) -> None:
         self.manager = EventManager()
 
+        self.game
         self.num_players = 3
-        self.random = np.random.RandomState(seed)
+        if seed:
+            self.random = np.random.RandomState(seed)
+        else:
+            seed = int(time())
+            self.random = np.random.RandomState(seed)
         self.first_player: int
         self.active_player_index: int
         self.active_player: GeniusPlayer # should be ref of player0 or player1
