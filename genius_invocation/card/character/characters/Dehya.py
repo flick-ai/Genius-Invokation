@@ -1,6 +1,4 @@
 from genius_invocation.card.character.characters.import_head import *
-from genius_invocation.game.game import GeniusGame
-from genius_invocation.utils import GeniusGame
 
 class Sandstorm_Assault(NormalAttack):
     id: int = 0
