@@ -33,10 +33,12 @@ jobs:
     - name: install dependencies
       run: pip3 install numpy loguru rich flask sphinx-rtd-theme
 
+    - run: python3 setup.py install
+
     - name: run unit tests (Mac and Linux)
       if: ${{ matrix.os.arch == 'osx-x64' || matrix.os.arch == 'linux-x64' }}
-      run: for f in test/*.py; do echo "$f"; python "$f"; done
+      run: for f in test/*.py; do echo "$f"; python3 "$f"; done
             
     - name: run unit tests (windows)
       if: ${{ matrix.os.arch == 'win-x64' }}
-      run: foreach($f in ls test -File) {echo $f; python $f}
+      run: foreach($f in ls test -File) {echo $f; python3 $f}
