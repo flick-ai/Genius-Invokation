@@ -5,10 +5,10 @@ from genius_invocation.card.action.equipment.talent.base import TalentCard
 if TYPE_CHECKING:
     from genius_invocation.game.game import GeniusGame
 
-class Paid_in_Full(Character):
-    id: int = 223011
-    name: str = "Paid in Full"
-    name_ch = "悉数讨回"
+class Pounding_Surprise(Character):
+    id: int = 213061
+    name: str = "Pounding Surprise"
+    name_ch = "砰砰礼物"
     is_action = True
     cost = [{'cost_num': 3, 'cost_type': <CostType.PYRO: 2>}]
     cost_power = 0

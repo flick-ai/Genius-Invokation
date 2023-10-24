@@ -243,11 +243,18 @@ class GeniusPlayer:
         # 计算能否打出手牌和烧牌
         for idx, action_card in enumerate(self.hand_zone.card):
             action_card: 'ActionCard'
-            has_target = action_card.find_target(game)
-            has_dice = self.calculate_dice(game, Dice(from_player=self,
-                                                      from_character=None,
-                                                      use_type=action_card.card_type,
-                                                      cost = [{'cost_num':action_card.cost_num, 'cost_type':action_card.cost_type}]))
+            if action_card.card_type == ActionCardType.EQUIPMENT_TALENT:
+                has_target = action_card.find_target(game)
+                has_dice = self.calculate_dice(game, Dice(from_player=self,
+                                                        from_character=None,
+                                                        use_type=action_card.card_type,
+                                                        cost = deepcopy(action_card.cost)))
+            else:
+                has_target = action_card.find_target(game)
+                has_dice = self.calculate_dice(game, Dice(from_player=self,
+                                                        from_character=None,
+                                                        use_type=action_card.card_type,
+                                                        cost = [{'cost_num':action_card.cost_num, 'cost_type':action_card.cost_type}]))
             if has_target is not None and has_dice:
                 for target in has_target:
                     self.action_mask[idx][target][0] = 1

@@ -5,12 +5,12 @@ from genius_invocation.card.action.equipment.talent.base import TalentCard
 if TYPE_CHECKING:
     from genius_invocation.game.game import GeniusGame
 
-class Paid_in_Full(Character):
-    id: int = 223011
-    name: str = "Paid in Full"
-    name_ch = "悉数讨回"
+class Cicin's_Cold_Glare(Character):
+    id: int = 221011
+    name: str = "Cicin's Cold Glare"
+    name_ch = "冰萤寒光"
     is_action = True
-    cost = [{'cost_num': 3, 'cost_type': <CostType.PYRO: 2>}]
+    cost = [{'cost_num': 3, 'cost_type': <CostType.CRYO: 0>}]
     cost_power = 0
     def __init__(self) -> None:
         super().__init__()

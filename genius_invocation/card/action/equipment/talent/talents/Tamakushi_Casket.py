@@ -5,13 +5,13 @@ from genius_invocation.card.action.equipment.talent.base import TalentCard
 if TYPE_CHECKING:
     from genius_invocation.game.game import GeniusGame
 
-class Paid_in_Full(Character):
-    id: int = 223011
-    name: str = "Paid in Full"
-    name_ch = "悉数讨回"
+class Tamakushi_Casket(Character):
+    id: int = 212051
+    name: str = "Tamakushi Casket"
+    name_ch = "匣中玉栉"
     is_action = True
-    cost = [{'cost_num': 3, 'cost_type': <CostType.PYRO: 2>}]
-    cost_power = 0
+    cost = [{'cost_num': 3, 'cost_type': <CostType.HYDRO: 1>}]
+    cost_power = 2
     def __init__(self) -> None:
         super().__init__()
         self.character = 

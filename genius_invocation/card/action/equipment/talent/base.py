@@ -14,6 +14,7 @@ class TalentCard(EquipmentCard):
     '''
     card_type = ActionCardType.EQUIPMENT_TALENT
     is_action: bool = True
+    cost_power: int = 0
     def __init__(self) -> None:
         super().__init__()
         
@@ -29,6 +30,7 @@ class TalentCard(EquipmentCard):
                 if isinstance(character, self.character):
                     return [idx+2]
         else:
-            if isinstance(get_my_active_character(), self.character):
-                return [game.active_player.active_idx+2]
+            if isinstance(get_my_active_character(game), self.character):
+                if get_my_active_character(game).power >= self.cost_power:
+                    return [game.active_player.active_idx+2]
         return []
