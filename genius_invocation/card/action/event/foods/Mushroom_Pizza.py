@@ -42,6 +42,7 @@ class Mushroom_Pizza(FoodCard):
 
     def on_played(self, game: 'GeniusGame'):
         super().on_played(game)
+        self.food_entity = Mushroom_Pizza_Entity
     
     def find_target(self, game: 'GeniusGame'):
         target_list = []

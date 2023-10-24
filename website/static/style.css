@@ -220,11 +220,7 @@
     border-color: #00000000;
   }
 
-  .selectcharacter {
-    grid-column: 1/12;
-    grid-row: 1/5;
-    background: #44444488;
-  }
+ 
   
   .summon0.player1 {
     grid-column: 7/9;
@@ -271,6 +267,11 @@
     text-align: center;
     font-size: 90%;
     color: #fff;
+  }
+
+  .checkdiv {
+    display: flex;
+    flex-direction: column;
   }
 
   .expanditem .expandinner {
@@ -320,6 +321,18 @@
     border-width:2px;
     border-color: #00000000;
   } */
+
+  .selectcharacter {
+    grid-column: 1/12;
+    grid-row: 1/5;
+    background: #44444488;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: minmax(80px, 80px);
+
+  }
   
   .clickable:hover {
     background-color: #FFFFFF33;

@@ -58,7 +58,7 @@ with open(en_json_file) as en, open(cn_json_file, encoding='utf-8') as cn:
             file_data = ""
             for line in t:
                 if re.search("class \(TalentCard\):", line) is not None:
-                    line = line.replace(line, "class %s(Character):\n" % name_strip)
+                    line = line.replace(line, "class %s(TalentCard):\n" % name_strip)
                 if re.search("id: int =", line) is not None:
                     line = line.replace(line, "    id: int = %s\n" % id)
                 if re.search("name: str =", line) is not None:
