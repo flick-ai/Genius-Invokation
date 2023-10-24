@@ -25,7 +25,7 @@ class GeniusGame:
     def __init__(self, player0_deck, player1_deck, seed=None, is_omni=False) -> None:
         self.manager = EventManager()
 
-        self.game
+        self.is_omni = is_omni
         self.num_players = 3
         if seed:
             self.random = np.random.RandomState(seed)
