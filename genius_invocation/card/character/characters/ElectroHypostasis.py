@@ -1,4 +1,7 @@
 from genius_invocation.card.character.characters.import_head import *
+from genius_invocation.game.game import GeniusGame
+from genius_invocation.utils import GeniusGame
+# from genius_invocation.card.character.base import Skill
 
 
 class ElectroCrystalProjection(NormalAttack):
@@ -315,6 +318,20 @@ class ElectroCrystalCore(Status):
             (EventType.CHARACTER_DIE, ZoneType.CHARACTER_ZONE, self.on_character_die)
         ]
 
+class TalentOfElectroHypostasis(CharacterSkill):
+    '''
+        无向之雷被动技能
+    '''
+
+    def on_call(self, game: GeniusGame):
+        self.from_character.heal(3)
+        if not self.from_character.character_zone.has_status(ElectroCrystalCore):
+            electro_crystal_core = ElectroCrystalCore(game=game,
+                                                    from_player=self.from_character.from_player,
+                                                    from_character=self.from_character)
+            self.from_character.character_zone.add_entity(electro_crystal_core)
+
+
 class ElectroHypostasis(Character):
     '''
         无相之雷
@@ -343,3 +360,4 @@ class ElectroHypostasis(Character):
     def __init__(self, game: 'GeniusGame', zone: 'CharacterZone', from_player: 'GeniusPlayer', index: int, from_character=None, talent=False):
         super().__init__(game, zone, from_player, index, from_character)
         self.talent = talent
+        self.talent_skill = TalentOfElectroHypostasis(from_character=self)
