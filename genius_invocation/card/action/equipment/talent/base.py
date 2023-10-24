@@ -20,6 +20,8 @@ class TalentCard(EquipmentCard):
     character: Type
     def __init__(self) -> None:
         super().__init__()
+        for i in range(len(self.cost)):
+            self.cost['cost_type'] = CostType(self.cost['cost_type'])
         
     def on_played(self, game: 'GeniusGame') -> None:
         target_character = game.active_player.character_list[game.current_action.target_idx]

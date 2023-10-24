@@ -23,12 +23,13 @@ with open(en_json_file) as en, open(cn_json_file, encoding='utf-8') as cn:
             continue
         id = card_infos[info]['id']
         name = card_infos[info]['name']
-        name_strip = name.replace(":", "").replace(" ", "_")
+        name_strip = name.replace(":", "").replace(" ", "").replace(",","").replace("'","").replace("-","")
         cn_name = card_infos_cn[info]['name']
         if "GCG_TAG_SLOWLY" in card_infos[info]["tags"].keys():
             is_action = True
         else:
             is_action = False
+        character = card_infos[info]['icon'].split("_")[-1]
         
         cost_power = 0
         cost = []
@@ -37,21 +38,21 @@ with open(en_json_file) as en, open(cn_json_file, encoding='utf-8') as cn:
             if prop.startswith("GCG_COST_ENERGY"):
                 cost_power = props[prop]
             if prop.startswith("GCG_COST_DICE_DENDRO"):
-                cost.append({'cost_num':props[prop], 'cost_type':CostType.DENDRO})
+                cost.append({'cost_num':props[prop], 'cost_type':CostType.DENDRO.value})
             if prop.startswith("GCG_COST_DICE_CRYO"):
-                cost.append({'cost_num':props[prop], 'cost_type':CostType.CRYO})
+                cost.append({'cost_num':props[prop], 'cost_type':CostType.CRYO.value})
             if prop.startswith("GCG_COST_DICE_ELECTRO"):
-                cost.append({'cost_num':props[prop], 'cost_type':CostType.ELECTRO})
+                cost.append({'cost_num':props[prop], 'cost_type':CostType.ELECTRO.value})
             if prop.startswith("GCG_COST_DICE_GEO"):
-                cost.append({'cost_num':props[prop], 'cost_type':CostType.GEO})
+                cost.append({'cost_num':props[prop], 'cost_type':CostType.GEO.value})
             if prop.startswith("GCG_COST_DICE_ANEMO"):
-                cost.append({'cost_num':props[prop], 'cost_type':CostType.ANEMO})
+                cost.append({'cost_num':props[prop], 'cost_type':CostType.ANEMO.value})
             if prop.startswith("GCG_COST_DICE_HYDRO"):
-                cost.append({'cost_num':props[prop], 'cost_type':CostType.HYDRO})
+                cost.append({'cost_num':props[prop], 'cost_type':CostType.HYDRO.value})
             if prop.startswith("GCG_COST_DICE_PYRO"):
-                cost.append({'cost_num':props[prop], 'cost_type':CostType.PYRO})
+                cost.append({'cost_num':props[prop], 'cost_type':CostType.PYRO.value})
             if prop.startswith("GCG_COST_DICE_VOID"):
-                cost.append({'cost_num':props[prop], 'cost_type':CostType.BLACK})   
+                cost.append({'cost_num':props[prop], 'cost_type':CostType.BLACK.value})   
 
         with open(template_file) as t:
             file_data = ""
@@ -67,9 +68,12 @@ with open(en_json_file) as en, open(cn_json_file, encoding='utf-8') as cn:
                 if re.search("is_action: bool =", line) is not None:
                     line = line.replace(line, "    is_action = %s\n" % is_action)
                 if re.search("cost =", line) is not None:
+                    print(cost)
                     line = line.replace(line, "    cost = %s\n" % cost)
                 if re.search("cost_power: int =", line) is not None:
                     line = line.replace(line, "    cost_power = %s\n" % cost_power)
+                if re.search("character =", line) is not None:
+                    line = line.replace(line, "    character = %s\n" % character)
                 file_data += line
 
             # print(file_data)
