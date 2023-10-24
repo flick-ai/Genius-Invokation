@@ -139,6 +139,10 @@ class Yoimiya(Character):
         self.talent = talent
         self.power = 0
         self.talent_skill = self.skills[1]
+    def listen_talent_events(self, game:'GeniusGame'):
+        status = self.character_zone.has_entity(Niwabi_Enshou)
+        if status is not None:
+            self.listen_event(game, EventType.AFTER_USE_SKILL, ZoneType.CHARACTER_ZONE, status.after_skill)
 
 
 class Niwabi_Enshou(Status):
@@ -194,8 +198,9 @@ class Niwabi_Enshou(Status):
         self.listeners = [
             (EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, self.on_execute_damage),
             (EventType.INFUSION, ZoneType.CHARACTER_ZONE, self.infuse),
-            (EventType.AFTER_USE_SKILL, ZoneType.CHARACTER_ZONE, self.after_skill)
         ]
+        if self.from_character.talent:
+            self.listeners.append((EventType.AFTER_USE_SKILL, ZoneType.CHARACTER_ZONE, self.after_skill))
 
 class Aurous_Blaze(Combat_Status):
     name = "Aurous Blaze"

@@ -133,6 +133,10 @@ class Candace(Character):
         self.power = 0
         self.next_skill = Heron_Strike(self)
         self.talent_skill = self.skills[2]
+    def listen_talent_events(self, game: 'GeniusGame'):
+        status = self.from_player.team_combat_status.has_status(Prayer_of_the_Crimson_Crown)
+        if status is not None:
+            self.listen_event(game, EventType.AFTER_USE_SKILL, ZoneType.ACTIVE_ZONE, status.after_skill)
 
 class Heron_Shield(Shield):
     name = "Heron Shield"
@@ -239,7 +243,8 @@ class Prayer_of_the_Crimson_Crown(Combat_Status):
         self.listeners = [
             (EventType.INFUSION, ZoneType.CHARACTER_ZONE, self.infusion),
             (EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, self.on_dmg_add),
-            (EventType.AFTER_USE_SKILL, ZoneType.CHARACTER_ZONE, self.after_skill),
             (EventType.BEGIN_ACTION_PHASE, ZoneType.CHARACTER_ZONE, self.on_begin_phase),
             (EventType.ON_CHANGE_CHARACTER, ZoneType.CHARACTER_ZONE, self.on_switch)
         ]
+        if self.from_character.from_character.talent:
+            self.listeners.append((EventType.AFTER_USE_SKILL, ZoneType.CHARACTER_ZONE, self.after_skill))

@@ -106,9 +106,9 @@ class Jadeplume_Terrorshroom(Character):
     max_power = 2
 
     def __init__(self, game: 'GeniusGame', zone: 'CharacterZone', from_player: 'GeniusPlayer', index:int, from_character = None, talent = False):
+        self.talent = talent
         super().__init__(game, zone, from_player, index, from_character)
         self.power = 0
-        self.talent = talent
         self.talent_skill = self.skills[1]
 
     def init_state(self, game: 'GeniusGame'):
@@ -117,6 +117,10 @@ class Jadeplume_Terrorshroom(Character):
     def revive(self, game: 'GeniusGame'):
         super().revive(game)
         self.init_state(game)
+    
+    def equip_talent(self, game: 'GeniusGame'):
+        self.talent = True
+        self.character_zone.has_entity(Radical_Vitality).equip_talent()
 
 class Radical_Vitality(Status):
     name = "Radical Vitality"

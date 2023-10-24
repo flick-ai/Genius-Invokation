@@ -56,7 +56,25 @@ class Character(Entity):
             被切换到时调用
         '''
         self.from_player.is_after_change = True
+    def refresh_talent(self, game:'GeniusGame'):
+        pass #Maybe some talent can refresh some state repeatly.
+        # Should be implement in subclass.
 
+    def listen_talent_events(self, game:'GeniusGame'):
+        pass
+        # Should be implement in subclass.
+        # Add events that only will be invoked with talent equiped into managers.
+
+    def equip_talent(self, game:'GeniusGame', is_action = True):
+        if self.talent:
+            self.refresh_talent(game)
+            if is_action:
+                self.talent_skill.on_call(game)
+        else:
+            self.talent = True
+            self.listen_talent_events(game)
+            if is_action:
+                self.talent_skill.on_call(game)
 
     def update_listener_list(self):
         self.listeners = [

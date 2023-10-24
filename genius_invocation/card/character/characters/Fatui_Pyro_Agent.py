@@ -139,16 +139,18 @@ class Stealth(Status):
                 self.on_destroy(game)
 
     def infusion(self, game:'GeniusGame'):
-        if self.from_character == game.current_damage.damage_from:
-            if game.current_damage.main_damage_element == ElementType.PHYSICAL:
-                game.current_damage.main_damage_element = ElementType.HYDRO
+        if self.from_character.talent:
+            if self.from_character == game.current_damage.damage_from:
+                if game.current_damage.main_damage_element == ElementType.PHYSICAL:
+                    game.current_damage.main_damage_element = ElementType.HYDRO
     
     def update_listener_list(self):
         self.listeners = [
-            (EventType.INFUSION, ZoneType.CHARACTER_ZONE, self.infusion),
             (EventType.EXECUTE_DAMAGE, ZoneType.CHARACTER_ZONE, self.on_execute_dmg),
             (EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, self.on_dmg_add)
         ]
+        if self.from_character.talent:
+            self.listeners.append((EventType.INFUSION, ZoneType.CHARACTER_ZONE, self.infusion))
     
 class Fatui_Pyro_Agent(Character):
     name = 'Fatui Pyro Agent'
@@ -163,8 +165,18 @@ class Fatui_Pyro_Agent(Character):
     skill_list = [Thrust, Prowl, Blade_Ablastion]
     max_power = 2
     
+    def init_state(self, game: 'GeniusGame'):
+        assert self.character_zone.has_entity(Stealth) is None
+        status = Stealth(game, self.from_player, self)
+        self.character_zone.add_entity(status)
+
     def __init__(self, game: 'GeniusGame', zone: 'CharacterZone', from_player: 'GeniusPlayer', index:int, from_character = None, talent = False):
         super().__init__(game, zone, from_player, index, from_character)
         self.talent = talent
         self.power = 0
         self.talent_skill = self.skills[1]
+
+    def listen_talent_events(self, game: 'GeniusGame'):
+        status = self.character_zone.has_entity(Stealth)
+        if status is not None:
+            self.listen_event(game, EventType.INFUSION, ZoneType.CHARACTER_ZONE, status.infusion)

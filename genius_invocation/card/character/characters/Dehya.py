@@ -212,6 +212,8 @@ class Dehya(Character):
         self.power = 0
         self.next_skill = Incineration_Drive(self)
         self.talent_skill = self.skills[1]
+        if self.talent:
+            self.listen_event(game, EventType.END_PHASE, ZoneType.CHARACTER_ZONE, self.on_end_phase)
 
     def on_end_phase(self, game:'GeniusGame'):
         if self.talent:
@@ -219,11 +221,8 @@ class Dehya(Character):
                 if self.health_point <=6:
                     self.heal(2)
 
-    def update_listener_list(self):
-        self.listeners = [
-            (EventType.END_PHASE, ZoneType.CHARACTER_ZONE, self.on_end_phase)
-        ]
-    
+    def listen_talent_events(self, game: 'GeniusGame'):
+        self.listen_event(game, EventType.END_PHASE, ZoneType.CHARACTER_ZONE, self.on_end_phase)
 
 class Prepare_Incineration_Drive(Status):
     name = "Prepare Incineration Drive"
