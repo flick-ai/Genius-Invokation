@@ -1,6 +1,7 @@
 from genius_invocation.utils import *
 from genius_invocation.card.action.equipment.base import EquipmentCard
 
+from typing import Type
 if TYPE_CHECKING:
     from genius_invocation.game.game import GeniusGame
     from genius_invocation.game.zone import CharacterZone
@@ -14,6 +15,8 @@ class TalentCard(EquipmentCard):
     '''
     card_type = ActionCardType.EQUIPMENT_TALENT
     is_action: bool = True
+    skill_idx: int
+    character: Type
     def __init__(self) -> None:
         super().__init__()
         
@@ -29,6 +32,6 @@ class TalentCard(EquipmentCard):
                 if isinstance(character, self.character):
                     return [idx+2]
         else:
-            if isinstance(get_my_active_character(), self.character):
+            if isinstance(get_my_active_character(game), self.character):
                 return [game.active_player.active_idx+2]
         return []

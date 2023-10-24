@@ -42,12 +42,12 @@ A simulator of the Genius Invokation TCG in Genshin impact
 - [x] 完成了骰子计算系统的实现
 - [x] 完成了本地终端的调试接口
 - [ ] 全部卡片的书写
-    - [ ] 角色卡片进度:16/57
+    - [ ] 角色卡片进度:21/57
     - [ ] 行动卡片进度:
-        - [ ] 天赋进度:0/57
-        - [ ] 装备牌进度:2/58
+        - [ ] 天赋进度:1/57
+        - [ ] 装备牌进度:6/58
         - [x] 支援牌进度:38/38
-        - [ ] 事件牌进度:27/59
+        - [ ] 事件牌进度:41/59
 - [ ] 完成了网页端的调试接口
     - [x] 实现了在网页端的输入调试
     - [x] 实现了在网页端的交互式调试
@@ -59,8 +59,8 @@ A simulator of the Genius Invokation TCG in Genshin impact
 在本环节您将了解到如何在本地终端运行本代码。我们建议您使用conda来创建一个新的环境。
 
 ### `Install environment`
-
-    pip install -r requirments.txt
+    conda create -n GeniusInvokation python==3.11
+    pip install -r requirements.txt
     pip install -e .
 
 

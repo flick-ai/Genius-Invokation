@@ -6,6 +6,7 @@ if TYPE_CHECKING:
     from genius_invocation.game.game import GeniusGame
 
 class Paid_in_Full(TalentCard):
+    id = 223011
     name = 'Paid in Full'
     name_ch = "悉数讨回"
     def __init__(self) -> None:
