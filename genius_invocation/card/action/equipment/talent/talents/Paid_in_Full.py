@@ -14,5 +14,5 @@ class Paid_in_Full(Character):
     cost_power = 0
     def __init__(self) -> None:
         super().__init__()
-        self.character = 
-        self.skill_idx = 
+        self.character = Fatui_Pyro_Agent
+        self.skill_idx = 1

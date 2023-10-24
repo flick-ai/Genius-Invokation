@@ -1,6 +1,7 @@
 from genius_invocation.utils import *
 from genius_invocation.card.action.equipment.base import EquipmentCard
 
+from typing import Type
 if TYPE_CHECKING:
     from genius_invocation.game.game import GeniusGame
     from genius_invocation.game.zone import CharacterZone
@@ -15,6 +16,8 @@ class TalentCard(EquipmentCard):
     card_type = ActionCardType.EQUIPMENT_TALENT
     is_action: bool = True
     cost_power: int = 0
+    skill_idx: int
+    character: Type
     def __init__(self) -> None:
         super().__init__()
         
@@ -22,7 +25,7 @@ class TalentCard(EquipmentCard):
         target_character = game.active_player.character_list[game.current_action.target_idx]
         target_character.talent = True
         if self.is_action:
-            target_character.skill(self.skill_idx)
+            target_character.skills[self.skill_idx].on_call(game)
 
     def find_target(self, game: 'GeniusGame'):
         if not self.is_action:
