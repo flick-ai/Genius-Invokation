@@ -267,6 +267,7 @@ To tackle the difficult calculation of damage, we create the class of `Damage`�
 -   `damage_type`, `main_damage_element`, `main_damage`, `piercing_damage`
 -   `cost`: cost of the dice. 骰子消耗。
 -   `energy_cost`, `energy_gain` 能量消耗与获得。
+-   `is_prepared_skill` 是否是（被）准备的技能。
 
 In `CharacterSkill` class, several *atom operation*s have been implemented.  在该类中已经写好许多原子操作。Some other operation need to implement dependently in the specific character. 更多的操作需要在特定的角色中实现。
 
