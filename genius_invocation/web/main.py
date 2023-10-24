@@ -7,6 +7,7 @@ from genius_invocation.web.utils_dict import get_dict
 import js
 
 
+
 element_to_dice = {
     "CRYO": "rgb(153,255,255)",
     "HYDRO": "rgb(58,90,186)",
@@ -20,6 +21,11 @@ element_to_dice = {
 }
 
 async def main():
+
+    while True:
+        await asyncio.sleep(0.1)
+        break
+        
     deck1 = {
     'character': ['Rhodeia_of_Loch', 'Yae_Miko' ,'Fatui_Pyro_Agent'],
     'action_card': ['Fresh_Wind_of_Freedom','Dunyarzad','Dunyarzad','Chef_Mao','Chef_Mao','Paimon','Paimon',
