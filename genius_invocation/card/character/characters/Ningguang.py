@@ -134,6 +134,7 @@ class Ningguang(Character):
         super().__init__(game, zone, from_player, index, from_character)
         self.talent = talent
         self.power = 0
+        self.talent_skill = self.skills[1]
 
 
 class Jade_Screen_Status(Combat_Status):
@@ -167,7 +168,7 @@ class Jade_Screen_Status(Combat_Status):
             if game.current_damage.damage_type == SkillType.ELEMENTAL_BURST:
                 game.current_damage += 2
 
-        if self.from_character.is_alive and game.current_damage.damage_from is not None and game.current_damage.damage_from.from_player == self.from_player:
+        if self.from_character.talent and game.current_damage.damage_from is not None and game.current_damage.damage_from.from_player == self.from_player:
             if game.current_damage.main_damage_element == ElementType.GEO:
                 game.current_damage.main_damage += 1
 

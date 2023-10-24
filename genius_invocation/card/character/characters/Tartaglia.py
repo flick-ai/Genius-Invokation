@@ -453,6 +453,7 @@ class Tartaglia(Character):
         self.power= 0
 
         self.is_melee_stance = False # 是否为近战状态
+        self.talent_skill = self.skills[1]
 
     def revive(self, game: 'GeniusGame'):
         super().revive(game)

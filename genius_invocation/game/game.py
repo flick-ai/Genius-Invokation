@@ -84,12 +84,13 @@ class GeniusGame:
         elif action.choice_type == ActionChoice.PASS:
             self.is_change_player = True
             active_player.is_pass = True
-            if oppenent_player.is_pass:
-                self.end_phase()
-            else:
-                self.first_player = self.active_player_index
         
         self.manager.invoke(EventType.AFTER_ANY_ACTION, self)
+        if oppenent_player.is_pass:
+            self.end_phase()
+        else:
+            self.first_player = self.active_player_index
+
         if self.is_change_player and (not oppenent_player.is_pass):
             self.change_active_player()
         

@@ -152,6 +152,11 @@ class Keqing(Character):
         super().__init__(game, zone, from_player, index, from_character)
         self.talent = talent
         self.power = 0
+        self.talent_skill = self.skills[1]
+    def listen_talent_events(self, game: 'GeniusGame'):
+        status = self.character_zone.has_entity(Electro_Elemental_Infusion)
+        if status is not None:
+            self.listen_event(game, EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, status.on_dmg_add)
 
 class Lightning_Stiletto(ActionCard):
     id: int = -1 #TODO: CHECK THE ID
@@ -227,5 +232,6 @@ class Electro_Elemental_Infusion(Status):
         self.listeners = [
             (EventType.BEGIN_ACTION_PHASE, ZoneType.CHARACTER_ZONE, self.on_begin),
             (EventType.INFUSION, ZoneType.CHARACTER_ZONE, self.infuse),
-            (EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, self.on_dmg_add)
         ]
+        if self.from_character.talent:
+            self.listeners.append((EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, self.on_dmg_add))

@@ -133,15 +133,15 @@ class Raiden_Shogun(Character):
         self.character_zone.add_entity(status)
     
     def revive(self, game:'GeniusGame'):
-        assert self.character_zone.has_entity(Chakra_Desiderata) is None
-        status = Chakra_Desiderata(game, self.from_player, self)
-        self.character_zone.add_entity(status)
+        super().revive(game)
+        self.init_state(game)
 
 
     def __init__(self, game: 'GeniusGame', zone: 'CharacterZone', from_player: 'GeniusPlayer', index: int, from_character=None, talent=False):
         super().__init__(game, zone, from_player, index, from_character)
         self.power = 0
         self.talent = talent
+        self.talent_skill = self.skills[2]
 
 class Eye_of_Stormy_Judgement(Summon):
     name = "Eye of Stormy Judgement"

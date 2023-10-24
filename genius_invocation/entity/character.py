@@ -31,7 +31,7 @@ class Character(Entity):
     skill_list: List
     power: int
     max_power: int
-
+    talent_skill: 'CharacterSkill'
     # init_state: list() # 初始状态
     def init_state(self, game: 'GeniusGame'):
         '''
@@ -43,7 +43,7 @@ class Character(Entity):
         self.skills = []
         for skill in self.skill_list:
             self.skills.append(skill(self))
-
+        
     def on_begin(self, game: 'GeniusGame'):
         '''
             回合开始时, 刷新所有技能的使用次数
@@ -56,7 +56,25 @@ class Character(Entity):
             被切换到时调用
         '''
         self.from_player.is_after_change = True
+    def refresh_talent(self, game:'GeniusGame'):
+        pass #Maybe some talent can refresh some state repeatly.
+        # Should be implement in subclass.
 
+    def listen_talent_events(self, game:'GeniusGame'):
+        pass
+        # Should be implement in subclass.
+        # Add events that only will be invoked with talent equiped into managers.
+
+    def equip_talent(self, game:'GeniusGame', is_action = True):
+        if self.talent:
+            self.refresh_talent(game)
+            if is_action:
+                self.talent_skill.on_call(game)
+        else:
+            self.talent = True
+            self.listen_talent_events(game)
+            if is_action:
+                self.talent_skill.on_call(game)
 
     def update_listener_list(self):
         self.listeners = [

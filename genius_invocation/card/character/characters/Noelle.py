@@ -110,6 +110,12 @@ class Noelle(Character):
         self.power = 0
         self.talent = talent
         self.heal_last_round = -1
+        self.talent_skill = self.skills[1]
+    
+    def listen_talent_events(self, game:'GeniusGame'):
+        status = self.from_player.team_combat_status.has_shield(Full_Plate)
+        if status:
+            self.listen_event(game, EventType.AFTER_USE_SKILL, ZoneType.ACTIVE_ZONE_SHIELD, status.after_skill)
 
 class Full_Plate(Combat_Shield):
     name = "Full Plate"
@@ -152,10 +158,11 @@ class Full_Plate(Combat_Shield):
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.AFTER_USE_SKILL, ZoneType.ACTIVE_ZONE_SHIELD, self.after_skill),
             (EventType.DIVIDE_DAMAGE, ZoneType.ACTIVE_ZONE_SHIELD, self.on_dividing),
             (EventType.EXECUTE_DAMAGE, ZoneType.ACTIVE_ZONE_SHIELD, self.on_execute_dmg)
         ]
+        if self.from_character.talent:
+            self.listeners.append((EventType.AFTER_USE_SKILL, ZoneType.ACTIVE_ZONE_SHIELD, self.after_skill))
 
 
 

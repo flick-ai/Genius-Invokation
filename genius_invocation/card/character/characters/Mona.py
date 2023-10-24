@@ -252,6 +252,7 @@ class Mona(Character):
         self.power = 0
         self.talent = talent
         self.last_round = -1
+        self.talent_skill = self.skills[2]
 
     def on_change(self, game:'GeniusGame'):
         # 虚实流动
@@ -276,6 +277,9 @@ class Mona(Character):
     def update_listener_list(self):
         self.listeners = [
             (EventType.ON_CHANGE_CHARACTER, ZoneType.CHARACTER_ZONE, self.on_change),
-            (EventType.DAMAGE_ADD_AFTER_REACTION, ZoneType.CHARACTER_ZONE, self.on_dmg_after_reation)
         ]
+        if self.talent:
+            self.listeners.append((EventType.DAMAGE_ADD_AFTER_REACTION, ZoneType.CHARACTER_ZONE, self.on_dmg_after_reation))
 
+    def listen_talent_events(self, game:'GeniusGame'):
+        self.listen_event(game, EventType.DAMAGE_ADD_AFTER_REACTION, ZoneType.CHARACTER_ZONE, self.on_dmg_after_reation)

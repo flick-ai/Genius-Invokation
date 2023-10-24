@@ -110,6 +110,12 @@ class Arataki_Itto(Character):
         super().__init__(game, zone, from_player, index, from_character)
         self.power = 0
         self.talent = talent
+        self.talent_skill = self.skills[0]
+    
+    def listen_talent_events(self, game: 'GeniusGame'):
+        status =  self.character_zone.has_entity(Superlative_Superstrength)
+        if status is not None:
+            self.listen_event(game, EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, status.on_dmg_add)
 
 class Ushi(Summon):
     '''阿丑'''
@@ -326,6 +332,7 @@ class Superlative_Superstrength(Status):
     def update_listener_list(self):
         self.listeners = [
             (EventType.ON_USE_SKILL, ZoneType.CHARACTER_ZONE, self.on_skill),
-            (EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, self.on_dmg_add),
             (EventType.CALCULATE_DICE, ZoneType.CHARACTER_ZONE, self.on_calculation)
         ]
+        if self.from_character.talent:
+            self.listeners.append((EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, self.on_dmg_add))

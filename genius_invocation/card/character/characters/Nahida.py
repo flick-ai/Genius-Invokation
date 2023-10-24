@@ -222,6 +222,7 @@ class Nahida(Character):
         super().__init__(game, zone, from_player, index, from_character)
         self.power = 0
         self.talent = talent
+        self.talent_skill = self.skills[3]
 
 class Shrine_of_Maya(Combat_Status):
     name = "Shrine of Maya"

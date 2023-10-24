@@ -18,6 +18,7 @@ class TheBellWeapon(Weapon):
                 game.current_damage.main_damage += 1
     
     def after_use_skill(self, game: 'GeniusGame'):
+        if self.current_round == game.round: return
         combat_shield = self.from_character.from_player.team_combat_status.has_shield(Shield_of_Bell)
         if combat_shield:
             combat_shield.update()
@@ -29,6 +30,9 @@ class TheBellWeapon(Weapon):
         super().__init__(game, from_player, from_character, weapon_card)
         self.current_round = -1
 
+    def update(self):
+        self.current_round = -1
+        
     def update_listener_list(self):
         self.listeners = [
             (EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, self.on_damage_add),

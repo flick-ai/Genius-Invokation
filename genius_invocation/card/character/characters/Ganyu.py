@@ -236,3 +236,4 @@ class Ganyu(Character):
         self.talent = talent
         self.power = 0
         self.usage_frostflake_arrow = 0
+        self.talent_skill = self.skills[2]

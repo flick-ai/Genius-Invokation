@@ -1,5 +1,6 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
-from genius_invocation.card.character.characters.Jadeplume_Terrorshroom import Jadeplume_Terrorshroom
+from genius_invocation.card.character.characters.Jadeplume_Terrorshroom import *
+
 
 class ProliferatingSpores(TalentCard):
     id: int = 227011
@@ -12,4 +13,3 @@ class ProliferatingSpores(TalentCard):
     skill_idx: int = 1
     def __init__(self) -> None:
         super().__init__()
-        
