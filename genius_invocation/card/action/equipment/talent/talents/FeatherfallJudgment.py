@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class FeatherfallJudgment(Character):
+class FeatherfallJudgment(TalentCard):
     id: int = 214041
     name: str = "Featherfall Judgment"
     name_ch = "落羽的裁择"

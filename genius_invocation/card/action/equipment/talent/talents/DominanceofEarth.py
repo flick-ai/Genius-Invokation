@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class DominanceofEarth(Character):
+class DominanceofEarth(TalentCard):
     id: int = 216031
     name: str = "Dominance of Earth"
     name_ch = "炊金馔玉"

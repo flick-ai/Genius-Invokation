@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class EmbersRekindled(Character):
+class EmbersRekindled(TalentCard):
     id: int = 223021
     name: str = "Embers Rekindled"
     name_ch = "烬火重燃"

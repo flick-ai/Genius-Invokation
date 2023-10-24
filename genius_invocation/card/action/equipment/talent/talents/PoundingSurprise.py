@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class PoundingSurprise(Character):
+class PoundingSurprise(TalentCard):
     id: int = 213061
     name: str = "Pounding Surprise"
     name_ch = "砰砰礼物"

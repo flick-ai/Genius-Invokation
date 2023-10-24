@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class SinofPride(Character):
+class SinofPride(TalentCard):
     id: int = 214061
     name: str = "Sin of Pride"
     name_ch = "我界"

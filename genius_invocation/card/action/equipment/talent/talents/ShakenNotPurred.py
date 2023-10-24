@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class ShakenNotPurred(Character):
+class ShakenNotPurred(TalentCard):
     id: int = 211021
     name: str = "Shaken, Not Purred"
     name_ch = "猫爪冰摇"

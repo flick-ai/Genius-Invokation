@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class FlowingFlame(Character):
+class FlowingFlame(TalentCard):
     id: int = 213011
     name: str = "Flowing Flame"
     name_ch = "流火焦灼"

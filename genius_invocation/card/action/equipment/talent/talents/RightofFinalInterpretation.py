@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class RightofFinalInterpretation(Character):
+class RightofFinalInterpretation(TalentCard):
     id: int = 213081
     name: str = "Right of Final Interpretation"
     name_ch = "最终解释权"

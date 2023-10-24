@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class IGotYourBack(Character):
+class IGotYourBack(TalentCard):
     id: int = 216021
     name: str = "I Got Your Back"
     name_ch = "支援就交给我吧"

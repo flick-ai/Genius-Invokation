@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class Awakening(Character):
+class Awakening(TalentCard):
     id: int = 214021
     name: str = "Awakening"
     name_ch = "觉醒"

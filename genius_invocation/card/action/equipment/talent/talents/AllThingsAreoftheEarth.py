@@ -1,7 +1,8 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class AllThingsAreoftheEarth(Character):
+
+class AllThingsAreoftheEarth(TalentCard):
     id: int = 217051
     name: str = "All Things Are of the Earth"
     name_ch = "在地为化"

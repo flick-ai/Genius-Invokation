@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class BunnyTriggered(Character):
+class BunnyTriggered(TalentCard):
     id: int = 213041
     name: str = "Bunny Triggered"
     name_ch = "一触即发"

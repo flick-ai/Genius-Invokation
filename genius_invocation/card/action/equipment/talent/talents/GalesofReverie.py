@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class GalesofReverie(Character):
+class GalesofReverie(TalentCard):
     id: int = 215061
     name: str = "Gales of Reverie"
     name_ch = "梦迹一风"

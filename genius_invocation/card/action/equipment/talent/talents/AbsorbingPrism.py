@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class AbsorbingPrism(Character):
+class AbsorbingPrism(TalentCard):
     id: int = 224011
     name: str = "Absorbing Prism"
     name_ch = "汲能棱晶"

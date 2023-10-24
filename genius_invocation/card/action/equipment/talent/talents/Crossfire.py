@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class Crossfire(Character):
+class Crossfire(TalentCard):
     id: int = 213021
     name: str = "Crossfire"
     name_ch = "交叉火力"

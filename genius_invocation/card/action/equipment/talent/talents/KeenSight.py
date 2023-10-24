@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class KeenSight(Character):
+class KeenSight(TalentCard):
     id: int = 217021
     name: str = "Keen Sight"
     name_ch = "眼识殊明"

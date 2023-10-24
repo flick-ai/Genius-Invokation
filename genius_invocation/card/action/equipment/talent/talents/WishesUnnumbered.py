@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class WishesUnnumbered(Character):
+class WishesUnnumbered(TalentCard):
     id: int = 214071
     name: str = "Wishes Unnumbered"
     name_ch = "万千的愿望"

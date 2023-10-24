@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class LandsofDandelion(Character):
+class LandsofDandelion(TalentCard):
     id: int = 215021
     name: str = "Lands of Dandelion"
     name_ch = "蒲公英的国土"

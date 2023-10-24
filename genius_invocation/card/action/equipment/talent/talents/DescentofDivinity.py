@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class DescentofDivinity(Character):
+class DescentofDivinity(TalentCard):
     id: int = 216041
     name: str = "Descent of Divinity"
     name_ch = "神性之陨"

@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class LightningStorm(Character):
+class LightningStorm(TalentCard):
     id: int = 214051
     name: str = "Lightning Storm"
     name_ch = "霹雳连霄"

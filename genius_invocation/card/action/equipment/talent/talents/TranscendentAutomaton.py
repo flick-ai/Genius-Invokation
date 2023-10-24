@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class TranscendentAutomaton(Character):
+class TranscendentAutomaton(TalentCard):
     id: int = 225011
     name: str = "Transcendent Automaton"
     name_ch = "机巧神通"

@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class DiscretionarySupplement(Character):
+class DiscretionarySupplement(TalentCard):
     id: int = 214101
     name: str = "Discretionary Supplement"
     name_ch = "酌盈剂虚"

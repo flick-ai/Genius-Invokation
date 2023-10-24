@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class KantenSenmyouBlessing(Character):
+class KantenSenmyouBlessing(TalentCard):
     id: int = 211051
     name: str = "Kanten Senmyou Blessing"
     name_ch = "寒天宣命祝词"

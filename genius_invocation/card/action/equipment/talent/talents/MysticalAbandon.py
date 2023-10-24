@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class MysticalAbandon(Character):
+class MysticalAbandon(TalentCard):
     id: int = 211071
     name: str = "Mystical Abandon"
     name_ch = "忘玄"

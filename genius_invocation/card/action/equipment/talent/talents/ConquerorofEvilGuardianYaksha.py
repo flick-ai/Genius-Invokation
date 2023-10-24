@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class ConquerorofEvilGuardianYaksha(Character):
+class ConquerorofEvilGuardianYaksha(TalentCard):
     id: int = 215041
     name: str = "Conqueror of Evil: Guardian Yaksha"
     name_ch = "降魔·护法夜叉"

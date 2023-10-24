@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class SteadyBreathing(Character):
+class SteadyBreathing(TalentCard):
     id: int = 211041
     name: str = "Steady Breathing"
     name_ch = "吐纳真定"

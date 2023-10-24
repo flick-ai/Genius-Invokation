@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class KyoukaFuushi(Character):
+class KyoukaFuushi(TalentCard):
     id: int = 212061
     name: str = "Kyouka Fuushi"
     name_ch = "镜华风姿"

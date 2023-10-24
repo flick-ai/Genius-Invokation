@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class NaganoharaMeteorSwarm(Character):
+class NaganoharaMeteorSwarm(TalentCard):
     id: int = 213051
     name: str = "Naganohara Meteor Swarm"
     name_ch = "长野原龙势流星群"

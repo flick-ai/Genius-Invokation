@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class PulsatingWitch(Character):
+class PulsatingWitch(TalentCard):
     id: int = 214091
     name: str = "Pulsating Witch"
     name_ch = "脉冲的魔女"

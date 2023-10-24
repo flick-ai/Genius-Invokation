@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class ColdBloodedStrike(Character):
+class ColdBloodedStrike(TalentCard):
     id: int = 211031
     name: str = "Cold-Blooded Strike"
     name_ch = "冷血之剑"

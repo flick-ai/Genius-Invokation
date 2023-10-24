@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class EmbraceofWinds(Character):
+class EmbraceofWinds(TalentCard):
     id: int = 215031
     name: str = "Embrace of Winds"
     name_ch = "绪风之拥"

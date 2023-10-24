@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class PoeticsofFuubutsu(Character):
+class PoeticsofFuubutsu(TalentCard):
     id: int = 215051
     name: str = "Poetics of Fuubutsu"
     name_ch = "风物之诗咏"

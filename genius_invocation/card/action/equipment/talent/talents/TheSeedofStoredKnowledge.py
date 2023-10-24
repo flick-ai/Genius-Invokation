@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class TheSeedofStoredKnowledge(Character):
+class TheSeedofStoredKnowledge(TalentCard):
     id: int = 217031
     name: str = "The Seed of Stored Knowledge"
     name_ch = "心识蕴藏之种"

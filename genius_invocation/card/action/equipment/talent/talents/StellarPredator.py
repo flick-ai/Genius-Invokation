@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class StellarPredator(Character):
+class StellarPredator(TalentCard):
     id: int = 214011
     name: str = "Stellar Predator"
     name_ch = "噬星魔鸦"

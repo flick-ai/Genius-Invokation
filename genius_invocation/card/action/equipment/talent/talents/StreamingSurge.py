@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
+from genius_invocation.card.character.characters.
 
-
-class StreamingSurge(Character):
+class StreamingSurge(TalentCard):
     id: int = 222011
     name: str = "Streaming Surge"
     name_ch = "百川奔流"

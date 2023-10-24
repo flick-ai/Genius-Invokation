@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class ProphecyofSubmersion(Character):
+class ProphecyofSubmersion(TalentCard):
     id: int = 212031
     name: str = "Prophecy of Submersion"
     name_ch = "沉没的预言"

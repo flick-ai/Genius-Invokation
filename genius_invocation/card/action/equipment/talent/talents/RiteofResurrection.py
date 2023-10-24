@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class RiteofResurrection(Character):
+class RiteofResurrection(TalentCard):
     id: int = 211081
     name: str = "Rite of Resurrection"
     name_ch = "起死回骸"

@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class ProliferatingSpores(Character):
+class ProliferatingSpores(TalentCard):
     id: int = 227011
     name: str = "Proliferating Spores"
     name_ch = "孢子增殖"

@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class SanguineRouge(Character):
+class SanguineRouge(TalentCard):
     id: int = 213071
     name: str = "Sanguine Rouge"
     name_ch = "血之灶火"

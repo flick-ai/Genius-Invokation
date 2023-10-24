@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class PaidinFull(Character):
+class PaidinFull(TalentCard):
     id: int = 223011
     name: str = "Paid in Full"
     name_ch = "悉数讨回"

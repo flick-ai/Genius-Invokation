@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class StrategicReserve(Character):
+class StrategicReserve(TalentCard):
     id: int = 216011
     name: str = "Strategic Reserve"
     name_ch = "储之千日，用之一刻"

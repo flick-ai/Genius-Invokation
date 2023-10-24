@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class WellspringofWarLust(Character):
+class WellspringofWarLust(TalentCard):
     id: int = 211061
     name: str = "Wellspring of War-Lust"
     name_ch = "战欲涌现"

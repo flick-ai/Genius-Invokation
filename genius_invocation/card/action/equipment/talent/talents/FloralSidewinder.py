@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class FloralSidewinder(Character):
+class FloralSidewinder(TalentCard):
     id: int = 217011
     name: str = "Floral Sidewinder"
     name_ch = "飞叶迴斜"

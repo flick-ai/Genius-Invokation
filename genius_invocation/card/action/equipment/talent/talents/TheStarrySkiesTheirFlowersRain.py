@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class TheStarrySkiesTheirFlowersRain(Character):
+class TheStarrySkiesTheirFlowersRain(TalentCard):
     id: int = 212081
     name: str = "The Starry Skies Their Flowers Rain"
     name_ch = "星天的花雨"

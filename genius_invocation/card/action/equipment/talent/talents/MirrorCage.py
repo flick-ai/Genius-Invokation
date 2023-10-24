@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class MirrorCage(Character):
+class MirrorCage(TalentCard):
     id: int = 222021
     name: str = "Mirror Cage"
     name_ch = "镜锢之笼"

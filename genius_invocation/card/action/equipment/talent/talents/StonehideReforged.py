@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class StonehideReforged(Character):
+class StonehideReforged(TalentCard):
     id: int = 226011
     name: str = "Stonehide Reforged"
     name_ch = "重铸：岩盔"

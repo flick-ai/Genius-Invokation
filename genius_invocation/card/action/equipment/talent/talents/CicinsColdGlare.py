@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class CicinsColdGlare(Character):
+class CicinsColdGlare(TalentCard):
     id: int = 221011
     name: str = "Cicin's Cold Glare"
     name_ch = "冰萤寒光"

@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class TamakushiCasket(Character):
+class TamakushiCasket(TalentCard):
     id: int = 212051
     name: str = "Tamakushi Casket"
     name_ch = "匣中玉栉"

@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class GloriousSeason(Character):
+class GloriousSeason(TalentCard):
     id: int = 212011
     name: str = "Glorious Season"
     name_ch = "光辉的季节"

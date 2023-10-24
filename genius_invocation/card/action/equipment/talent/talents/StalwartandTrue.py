@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
 
 
-class StalwartandTrue(Character):
+class StalwartandTrue(TalentCard):
     id: int = 213091
     name: str = "Stalwart and True"
     name_ch = "崇诚之真"
