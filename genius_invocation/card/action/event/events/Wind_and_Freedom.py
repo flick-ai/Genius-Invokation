@@ -16,7 +16,8 @@ class  Wind_and_Freedom_Entity(Combat_Status):
     
     def on_after_skill(self, game:'GeniusGame'):
         if game.active_player_index == self.from_player.index:
-            self.from_player.change_to_next_character()
+            if game.current_skill.from_character == self.from_character:
+                self.from_player.change_to_next_character()
     
     def on_end(self, game:'GeniusGame'):
         if game.active_player_index == self.from_player.index:

@@ -56,6 +56,7 @@ class RockPaperScissorsCombo_Paper(ElementalSkill):
     main_damage_element: ElementType = ElementType.ELECTRO
     main_damage: int = 3
     piercing_damage: int = 0
+    is_prepared_skill = True
 
     # cost
     cost = []
@@ -112,7 +113,7 @@ class RockPaperScissorsCombo_Scissors(ElementalSkill):
     main_damage_element: ElementType = ElementType.ELECTRO
     main_damage: int = 2
     piercing_damage: int = 0
-
+    is_prepared_skill = True
     # cost
     cost = []
     energy_cost: int = 0

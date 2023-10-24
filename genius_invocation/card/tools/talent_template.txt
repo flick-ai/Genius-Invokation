@@ -1,0 +1,15 @@
+from genius_invocation.card.action.equipment.talent.import_head import *
+
+
+class (TalentCard):
+    id: int = 
+    name: str = 
+    name_ch: str = 
+    is_action: bool = 
+    cost = 
+    cost_power: int =
+    character = 
+    skill_idx: int = -1
+    def __init__(self) -> None:
+        super().__init__()
+        

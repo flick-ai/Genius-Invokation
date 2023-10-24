@@ -45,7 +45,7 @@ if __name__=="__main__":
                     'Rana','Rana','Liben','Liben','Mushroom_Pizza','Mushroom_Pizza','Adeptus_Temptation',
                     'Adeptus_Temptation','Teyvat_Fried_Egg','Sweet_Madame','Sweet_Madame','Mondstadt_Hash_Brown',
                     'Lotus_Flower_Crisp','Lotus_Flower_Crisp','Strategize','Strategize','Leave_it_to_Me','Leave_it_to_Me',
-                    'Paid_in_Full','Paid_in_Full','Send_Off','Starsigns','Starsigns']
+                    'PaidinFull','PaidinFull','Send_Off','Starsigns','Starsigns']
     }
     deck2 = {
     'character': ['Arataki_Itto', 'Dehya', 'Noelle'],

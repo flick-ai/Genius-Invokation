@@ -119,6 +119,7 @@ class Incineration_Drive(ElementalBurst):
     main_damage_element: ElementType = ElementType.PYRO
     main_damage: int = 3
     piercing_damage: int = 0
+    is_prepared_skill = True
 
     cost =[]
     energy_cost = 0

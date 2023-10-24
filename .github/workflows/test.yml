@@ -1,0 +1,44 @@
+on:
+  workflow_dispatch:
+    inputs: {}
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os.runs-on }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: 
+          - runs-on: windows-latest
+            arch: win-x64
+          - runs-on: macos-latest
+            arch: osx-x64
+          - runs-on: ubuntu-latest
+            arch: linux-x64
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Setup Python
+      uses: actions/setup-python@v4.7.1
+      with:
+        python-version: 3.11
+
+    - name: print python version
+      run: python3 --version
+
+    # The first line of requirements.txt is python=3.11 which isn't recognized by pip,
+    # so I have to list all the dependencies here.
+    - name: install dependencies
+      run: pip3 install numpy loguru rich flask sphinx-rtd-theme
+
+    - run: python3 setup.py install
+
+    - name: run unit tests (Mac and Linux)
+      if: ${{ matrix.os.arch == 'osx-x64' || matrix.os.arch == 'linux-x64' }}
+      run: for f in test/*.py; do echo "$f"; python3 "$f"; done
+            
+    - name: run unit tests (windows)
+      if: ${{ matrix.os.arch == 'win-x64' }}
+      run: foreach($f in ls test -File) {echo $f; python3 $f}

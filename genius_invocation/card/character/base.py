@@ -27,7 +27,7 @@ class CharacterSkill:
     main_damage_element: ElementType
     main_damage: int
     piercing_damage: int
-
+    is_prepared_skill: bool = False
     # cost
     cost: list({'cost_num': int, 'cost_type': CostType})
     energy_cost: int

@@ -132,7 +132,7 @@ class Icy_Quill(Combat_Status):
     id: int = -1
     name: str = "Icy Quill"
     name_ch = "冰翎"
-    def __init__(self, game: 'GeniusGame', from_character: 'Character', from_player: 'GeniusPlayer'):
+    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.usage = 3
         self.current_usage = 3
@@ -190,7 +190,7 @@ class Talisman_Spirit(Summon):
             if game.current_damage.damage_from.from_player == self.from_player:
                 if game.current_damage.main_damage_element == ElementType.CRYO or \
                         game.current_damage.main_damage_element == ElementType.PHYSICAL:
-                    game.current_damage.main_damage_element += 1
+                    game.current_damage.main_damage += 1
 
     def update(self):
         self.current_usage = self.usage
