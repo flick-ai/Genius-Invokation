@@ -74,7 +74,8 @@ class Heron_Strike(ElementalSkill):
     main_damage_element = ElementType.HYDRO
     main_damage = 3
     piercing_damage = 0
-
+    is_prepared_skill = True
+    
     cost =[]
     energy_cost = 0
     energy_gain = 0
