@@ -19,6 +19,11 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
+    - name: Setup Python
+      uses: actions/setup-python@v4.7.1
+      with:
+        python-version: 3.11
+
     - name: print python version
       run: python3 --version
 
@@ -28,7 +33,5 @@ jobs:
       run: pip3 install numpy loguru rich flask sphinx-rtd-theme
 
     - name: run unit tests
-      run: |
-        cd test
-        python3 -m unittest discover --pattern *.py
+      run: python3 -m unittest discover -s ./test/ --pattern *.py
             
