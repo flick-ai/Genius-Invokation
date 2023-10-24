@@ -17,11 +17,11 @@ def get_card():
     js_available_character = {available_character[i][2]: available_character[i][0] for i in range(len(available_character))}
     js.modify_object(create_proxy(js_available_character))
     # print(available_character)
-    available_card = []
-    ignore = [action.ActionCard, action.EquipmentCard, action.WeaponCard, action.TalentCard, action.ArtifactCard, action.SupportCard, action.FoodCard]
-    for name, obj in inspect.getmembers(action):
-        if inspect.isclass(obj) and obj not in ignore:
-            available_card.append((name, obj.name, obj.name_ch))
+    # available_card = []
+    # ignore = [action.ActionCard, action.EquipmentCard, action.WeaponCard, action.TalentCard, action.ArtifactCard, action.SupportCard, action.FoodCard]
+    # for name, obj in inspect.getmembers(action):
+    #     if inspect.isclass(obj) and obj not in ignore:
+    #         available_card.append((name, obj.name, obj.name_ch))
 
 
 

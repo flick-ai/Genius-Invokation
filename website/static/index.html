@@ -79,8 +79,9 @@
       
       <div class="summon3 player1 item zone"><div class="thetitle clickable">召唤区4</div></div>
       <div class="dice player1 item zone"><div class="thetitle clickable">骰子区</div></div>
-      <div class="selectcharacter item" id="selectcharacter"><div class="clickable">确定</div></div>
-      
+      <div class="currentselect item before"><div class="item">请依次选择0、1号玩家的3名角色, 按确定以进行下一玩家的角色选择</div><div class="item" id="currentselect"></div><div class="item clickable charaitem" id="saveselect">选卡和保存卡组功能正在施工, 因此界面比较简陋, 望见谅</div></div>
+      <div class="selectcharacter item before" id="selectcharacter"><div class="clickable item charaitem" id="confirmchara">确定</div></div>
+      <div class="selectcard item before" id="selectcard" style="display: none;"></div>
       
     </div>
     <div class="input">
@@ -95,50 +96,130 @@
     <script src="./set_layout.js"> </script>
     <script>
       let available_character = null
+      let available_card = null
       function modify_object(a){
         available_character = a
+      }
+
+      function load_action_cards(a){
+        available_card = a
       }
 
     </script>
 
     <script>
+      let current_character_choice = new Set()
+      let current_card_choice = new Array()
+      let character_confirm = document.getElementById('confirmchara')
+      character_confirm.addEventListener(
+        "click", ()=>{
+          if (current_character_choice.size != 3){
+            alert('请选择3个角色')
+            return
+          }
+          let data_string = ""
+          for (const item of current_character_choice) {
+            console.log(item)
+            data_string += item + " "
+          }
+          data_string = data_string.trim()
+          document.getElementById('currentselect').innerText = data_string
+          current_character_choice.clear()
+          for (const item of document.getElementsByClassName('charaitem')) {
+            item.classList.remove('selected')
+          }
+        })
+
       const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
-      async function get_card() {
+      async function get_character() {
         while(true){
           await sleep(200)
           if(available_character){
             let resdict = available_character.toJs()
+            available_character = resdict
             console.log(resdict)
-            // let a = {a: 4, b:6}
-            // console.log(a)
-            // available_character = available_character.toJs()
-            for(var key of resdict.keys()) {
-              console.log('111')
+            for(var [key, value] of resdict) {
               let checkdiv = document.createElement('div')
               checkdiv.classList.add('checkdiv')
+              checkdiv.classList.add('item', 'clickable', 'charaitem')
               checkdiv.innerText = key
-              // let checkbox = document.createElement('input')
-              // checkbox.type = 'checkbox'
-              // checkbox.name = 'name'
-              // checkbox.value = resdict[key]
-              // let checklabel = document.createElement('label')
-              // checklabel.innerText = key
-              // checkdiv.appendChild(checkbox)
-              // checkdiv.appendChild(checklabel)
+              let nothing = document.createElement('div')
+              nothing.classList.add('nothing')
+              nothing.innerText = value
+              checkdiv.appendChild(nothing)
+              checkdiv.addEventListener(
+                "click", ()=>{
+                  checkdiv.classList.toggle('selected')
+                  if(checkdiv.classList.contains('selected')){
+                    value = checkdiv.getElementsByClassName('nothing')[0].innerText
+                    current_character_choice.add(value)
+                    console.log(current_character_choice)
+                  }else{
+                    value = checkdiv.getElementsByClassName('nothing')[0].innerText
+                    current_character_choice.delete(value)
+                  }
+                }
+              )
               document.getElementById('selectcharacter').appendChild(checkdiv)
-              // console.log(checkbox)
 
             }
             break
           }
         }
       }
+      async function get_card() {
+        while(true){
+          await sleep(200)
+          if(available_card){
+            let resdict = available_card.toJs()
+            available_card = resdict
+            console.log(resdict)
+            for(var [key, value] of resdict) {
+              let checkdiv = document.createElement('div')
+              checkdiv.classList.add('checkdiv')
+              checkdiv.classList.add('item', 'clickable', 'charaitem')
+              checkdiv.innerText = key
+              let nothing = document.createElement('div')
+              nothing.classList.add('nothing')
+              nothing.innerText = value
+              checkdiv.appendChild(nothing)
+              checkdiv.addEventListener(
+                "click", ()=>{
+                  if(checkdiv.classList.contains('twice')){
+                    checkdiv.classList.remove('twice')
+                    checkdiv.classList.remove('selected')
+                    value = checkdiv.getElementsByClassName('nothing')[0].innerText
+                    current_card_choice = current_card_choice.filter(element => {
+                      return element != value
+                    });
+                    
+                  }else if(checkdiv.classList.contains('selected')){
+                    checkdiv.classList.add('twice')
+                    value = checkdiv.getElementsByClassName('nothing')[0].innerText
+                    current_card_choice.push(value)
+                  }else{
+                    checkdiv.classList.add('selected')
+                    value = checkdiv.getElementsByClassName('nothing')[0].innerText
+                    current_card_choice.push(value)
+                  }
+                  console.log(current_card_choice)
+                }
+              )
+              document.getElementById('selectcard').appendChild(checkdiv)
+
+            }
+            break
+          }
+        }
+      }
+
+      get_character()
       get_card()
     </script>
-    <py-script>
+    <!-- <py-script>
       from genius_invocation.web import get_card
       get_card.get_card()
-    </py-script>
+    </py-script> -->
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script> -->
     <py-terminal id="terminal"></py-terminal>
     <py-script>
