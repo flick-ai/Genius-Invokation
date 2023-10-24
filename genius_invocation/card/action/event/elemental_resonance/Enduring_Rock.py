@@ -8,7 +8,7 @@ if TYPE_CHECKING:
 class Enduring_Rock_Entity(Combat_Status):
     id: int = 331602
     name: str = "Enduring_Rock"
-
+    name_ch = "坚定之岩"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.current_usage = 1
@@ -48,6 +48,7 @@ class Enduring_Rock_Entity(Combat_Status):
 class Enduring_Rock(ActionCard):
     id: int = 331602
     name: str = "Enduring_Rock"
+    name_ch = "坚定之岩"
     cost_num = 1
     card_type = ActionCardType.EVENT_ELEMENTAL_RESONANCE
     cost_type = CostType.GEO

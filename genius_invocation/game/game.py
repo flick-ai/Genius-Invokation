@@ -152,6 +152,7 @@ class GeniusGame:
                     if not char.is_alive:
                         num += 1
                         char.dying(self)
+                        char.from_player.last_die_round = self.round
             if num == 3:
                 print(f"player{1-player.index} is winner!")
                 exit()

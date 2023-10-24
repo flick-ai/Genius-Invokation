@@ -9,6 +9,7 @@ if TYPE_CHECKING:
 class ArtifactCard(EquipmentCard):
     # 圣遗物牌
     artifact_entity: 'Artifact'
+    card_type = ActionCardType.EQUIPMENT_ARTIFACT
     def __init__(self) -> None:
         super().__init__()
 

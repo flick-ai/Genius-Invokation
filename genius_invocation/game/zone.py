@@ -4,7 +4,7 @@ from genius_invocation.utils import *
 from copy import deepcopy
 from genius_invocation.card.action import *
 from genius_invocation.entity.status import Status, Shield, Combat_Shield, Weapon, Artifact, Combat_Status
-from genius_invocation.card.character.characters.keqing import Lightning_Stiletto
+from genius_invocation.card.character.characters.Keqing import Lightning_Stiletto
 
 if TYPE_CHECKING:
     from genius_invocation.entity.entity import Entity

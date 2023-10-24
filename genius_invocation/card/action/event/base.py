@@ -6,15 +6,15 @@ if TYPE_CHECKING:
     from genius_invocation.game.game import GeniusGame
 
 class FoodCard(ActionCard):
-    id: int 
-    name: str 
+    id: int
+    name: str
     cost_num = 0
     cost_type = None
     card_type = ActionCardType.EVENT_FOOD
-    
+
     def __init__(self) -> None:
         super().__init__()
-    
+
     def on_played(self, game: 'GeniusGame') -> None:
         if game.current_action.target_type == ActionTarget.MY_CHARACTER:
             target = game.current_action.target_idx
@@ -35,6 +35,6 @@ class FoodCard(ActionCard):
     def find_target(self, game: 'GeniusGame'):
         target_list = []
         for idx, character in enumerate(game.active_player.character_list):
-            if not character.is_satisfy:
+            if not character.is_satisfy and character.is_alive:
                 target_list.append(idx+2)
         return target_list

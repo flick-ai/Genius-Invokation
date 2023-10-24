@@ -219,6 +219,12 @@
     border-width: 4px;
     border-color: #00000000;
   }
+
+  .selectcharacter {
+    grid-column: 1/12;
+    grid-row: 1/5;
+    background: #44444488;
+  }
   
   .summon0.player1 {
     grid-column: 7/9;

@@ -58,6 +58,7 @@ class GeniusPlayer:
         self.is_after_change: bool
         self.is_quick_change: bool
         self.change_num: int
+        self.last_die_round: int = -1
 
         # 扔骰子基本信息
         self.roll_num: int = 8
@@ -99,7 +100,7 @@ class GeniusPlayer:
         '''
             基本行动: 投掷骰子
         '''
-        is_omni = False
+        is_omni = True
         if is_basic:
                 if is_different:
                     return self.game.random.choice(DICENUM-1, num, replace=False).tolist()
@@ -108,7 +109,7 @@ class GeniusPlayer:
             return  [7 for i in range(num)]
         else:
             return self.game.random.randint(0, DICENUM, num).tolist()
-        
+
 
     def get_card(self, num):
         '''
@@ -217,7 +218,7 @@ class GeniusPlayer:
             2. 行动所需骰子是否足够？
             TODO:我们使用一个3维矩阵来维护,但是实际上这个矩阵十分稀疏,可以考虑使用稀疏矩阵来提升系统系能
         '''
-        
+
         # print(game.game_phase, game.active_player_index, "generate_mask")
         self.action_mask = np.zeros((18, 15, 5)).astype(np.int32)
 
@@ -312,6 +313,7 @@ class GeniusPlayer:
         self.roll_time = 1
         self.fix_dice = []
         # 事件
+        self.dice_zone.remove_all()
         game.manager.invoke(EventType.BEGIN_ROLL_PHASE, game)
         self.roll_num = self.roll_num - len(self.fix_dice)
         dices = self.fix_dice + self.roll_dice(num=self.roll_num)
@@ -337,9 +339,7 @@ class GeniusPlayer:
         '''
         # 事件
         game.manager.invoke(EventType.END_PHASE, game)
-
         self.roll_time = 2
-        self.dice_zone.remove_all()
         self.get_card(num=2)
 
 

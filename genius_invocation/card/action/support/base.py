@@ -17,7 +17,7 @@ class SupportCard(ActionCard):
 
         idx = game.current_action.target_idx
         game.active_player.support_zone.add_entity(entity=self.entity, idx=idx)
-        logger.info(f"Put {self.name} into {game.active_player.index} Support Zone")
+        # logger.info(f"Put {self.name} into {game.active_player.index} Support Zone")
 
     def find_target(self, game: 'GeniusGame'):
         num = game.active_player.support_zone.num()

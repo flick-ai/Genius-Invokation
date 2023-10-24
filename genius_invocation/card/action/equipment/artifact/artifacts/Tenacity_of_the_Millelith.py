@@ -37,15 +37,15 @@ class Tenacity_of_the_Millelith_Entity(Artifact):
 
     def on_after_damage(self, game:'GeniusGame'):
         if self.round != game.round:
-            self.round = game.round
             if self.from_character.is_active:
                 if game.current_damage.damage_to == self.from_character:
                     element_dice = ElementToDice[self.from_character.element]
                     self.from_player.dice_zone.add([element_dice.value])
+                    self.round = game.round
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.AFTER_TAKES_DMG, ZoneType.CHARACTER_ZONE, self.on_after_damage)
+            (EventType.AFTER_TAKES_DMG, ZoneType.CHARACTER_ZONE, self.on_after_damage),
             (EventType.BEGIN_ACTION_PHASE, ZoneType.CHARACTER_ZONE, self.on_begin)
         ]
 
@@ -54,7 +54,7 @@ class Tenacity_of_the_Millelith(ArtifactCard):
     id: int = 312010
     name: str = "Tenacity of the Millelith"
     name_ch = "千岩牢固"
-    cost_num: int = 1
+    cost_num: int = 3
     cost_type: CostType = CostType.WHITE
 
     def __init__(self) -> None:
