@@ -19,11 +19,16 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
+    - name: print python version
+      run: python3 --version
+
     # The first line of requirements.txt is python=3.11 which isn't recognized by pip,
     # so I have to list all the dependencies here.
     - name: install dependencies
       run: pip3 install numpy loguru rich flask sphinx-rtd-theme
 
     - name: run unit tests
-      uses: PrajjawalBanati/Python-actions@0.0.1
+      run: |
+        cd test
+        python3 -m unittest discover --pattern *.py
             
