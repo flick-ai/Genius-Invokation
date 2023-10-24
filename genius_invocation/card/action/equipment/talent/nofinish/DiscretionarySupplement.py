@@ -1,5 +1,5 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
-
+from genius_invocation.card.character.characters.Dori import * 
 
 class DiscretionarySupplement(TalentCard):
     id: int = 214101
@@ -9,7 +9,6 @@ class DiscretionarySupplement(TalentCard):
     cost = [{'cost_num': 3, 'cost_type': 3}]
     cost_power = 2
     character = Dori
-    skill_idx: int = -1
     def __init__(self) -> None:
         super().__init__()
         

@@ -18,6 +18,9 @@ class Adventurer_Bandana_Entity(Artifact):
         self.usage = self.max_usage
         self.round = -1
 
+    def update(self):
+        self.usage = self.max_usage
+
     def on_after_skill(self, game:'GeniusGame'):
         if self.round != game.round:
             self.round = game.round
@@ -47,7 +50,7 @@ class Adventurer_Bandana(ArtifactCard):
 
     def __init__(self) -> None:
         super().__init__()
-        self.artifact_entity = AdventurerBandana_Entity
+        self.artifact_entity = Adventurer_Bandana_Entity
 
     def on_played(self, game: 'GeniusGame') -> None:
         super().on_played(game)

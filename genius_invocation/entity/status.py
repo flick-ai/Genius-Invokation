@@ -120,6 +120,10 @@ class Weapon(Equipment):
     def get_weapon_card(self, game: 'GeniusGame'):
         self.on_destroy(game)
         return self.weapon_card
+    
+    def change(self, game, target):
+        self.from_character = target
+
     def show(self):
         return self.name_ch
 class Artifact(Equipment):
