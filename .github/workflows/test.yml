@@ -7,6 +7,7 @@ jobs:
     runs-on: ${{ matrix.os.runs-on }}
 
     strategy:
+      fail-fast: false
       matrix:
         os: 
           - runs-on: windows-latest
@@ -32,6 +33,10 @@ jobs:
     - name: install dependencies
       run: pip3 install numpy loguru rich flask sphinx-rtd-theme
 
-    - name: run unit tests
-      run: python3 -m unittest discover -s ./test/ --pattern *.py
+    - name: run unit tests (Mac and Linux)
+      if: ${{ matrix.os.arch == 'osx-x64' || matrix.os.arch == 'linux-x64' }}
+      run: for f in test/*.py; do echo "$f"; python "$f"; done
             
+    - name: run unit tests (windows)
+      if: ${{ matrix.os.arch == 'win-x64' }}
+      run: foreach($f in ls test -File) {echo $f; python $f}
