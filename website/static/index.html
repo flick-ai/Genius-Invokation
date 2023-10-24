@@ -79,7 +79,7 @@
       
       <div class="summon3 player1 item zone"><div class="thetitle clickable">召唤区4</div></div>
       <div class="dice player1 item zone"><div class="thetitle clickable">骰子区</div></div>
-      <!-- <div class="selectcharacter item"></div> -->
+      <!-- <div class="selectcharacter item" id="selectcharacter"></div> -->
       
       
     </div>
@@ -101,18 +101,39 @@
 
     </script>
 
-    <script>
+    <!-- <script>
       const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
       async function get_card() {
         while(true){
           await sleep(1000)
           if(available_character){
-            console.log(available_character.toJs())
+            let resdict = available_character.toJs()
+            console.log(resdict)
+            // let a = {a: 4, b:6}
+            // console.log(a)
+            // available_character = available_character.toJs()
+            for(var key of resdict.keys()) {
+              console.log('111')
+              let checkdiv = document.createElement('div')
+              checkdiv.classList.add('checkdiv')
+              let checkbox = document.createElement('input')
+              checkbox.type = 'checkbox'
+              checkbox.name = 'name'
+              checkbox.value = resdict[key]
+              let checklabel = document.createElement('label')
+              checklabel.innerText = key
+              checkdiv.appendChild(checkbox)
+              checkdiv.appendChild(checklabel)
+              document.getElementById('selectcharacter').appendChild(checkdiv)
+              // console.log(checkbox)
+
+            }
+            break
           }
         }
       }
       get_card()
-    </script>
+    </script> -->
     <py-script>
       from genius_invocation.web import get_card
       get_card.get_card()
