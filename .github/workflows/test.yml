@@ -1,0 +1,29 @@
+on:
+  workflow_dispatch:
+    inputs: {}
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os.runs-on }}
+
+    strategy:
+      matrix:
+        os: 
+          - runs-on: windows-latest
+            arch: win-x64
+          - runs-on: macos-latest
+            arch: osx-x64
+          - runs-on: ubuntu-latest
+            arch: linux-x64
+
+    steps:
+    - uses: actions/checkout@v1
+
+    # The first line of requirements.txt is python=3.11 which isn't recognized by pip,
+    # so I have to list all the dependencies here.
+    - name: install dependencies
+      run: pip3 install numpy loguru rich flask sphinx-rtd-theme
+
+    - name: run unit tests
+      uses: PrajjawalBanati/Python-actions@0.0.1
+            
