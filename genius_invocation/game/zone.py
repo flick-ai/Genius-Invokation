@@ -340,7 +340,7 @@ class CharacterZone:
             self.artifact_card = None
         for status in self.status_list:
             status.on_destroy(game)
-            del(status)
+            # del(status)
         self.status_list = []
 class ActiveZone:
     '''

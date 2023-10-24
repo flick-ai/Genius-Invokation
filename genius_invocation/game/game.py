@@ -113,8 +113,8 @@ class GeniusGame:
         while len(self.damage_list) >0:
             self.current_damage = self.damage_list.pop(0)
             self.current_damage.on_damage(self)
-            logger.debug(f"len of damage list {len(self.damage_list)}")
-            del(self.current_damage)
+            # logger.debug(f"len of damage list {len(self.damage_list)}")
+            # del(self.current_damage)
             self.current_damage = None
 
         self.check_dying() # TODO: Not Implement yet.
@@ -208,9 +208,8 @@ class GeniusGame:
         '''
             选择出战角色
         '''
-        self.active_player.choose_character(action)
-
         if self.special_phase is None:
+            self.active_player.choose_character(action)
             self.change_active_player()
             if self.active_player_index == self.first_player:
                 self.roll_phase()

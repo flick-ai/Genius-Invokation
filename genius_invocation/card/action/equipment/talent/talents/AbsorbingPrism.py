@@ -9,13 +9,7 @@ class AbsorbingPrism(TalentCard):
     cost = [{'cost_num': 3, 'cost_type': 3}]
     cost_power = 0
     character = ElectroHypostasis
-    skill_idx: int = -1
     def __init__(self) -> None:
         super().__init__()
 
-    def on_played(self, game: 'GeniusGame') -> None:
-        target_character = game.active_player.character_list[game.current_action.target_idx]
-        target_character.talent = True
-        target_character.talent_skill.on_call(game)
-        
         
