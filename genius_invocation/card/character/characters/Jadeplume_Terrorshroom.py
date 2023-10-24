@@ -57,10 +57,6 @@ class Volatile_Spore_Cloud(ElementalSkill):
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         self.resolve_damage(game)
-
-        if self.from_character.talent:
-            self.from_character.character_zone.has_entity(Radical_Vitality).equip_talent()
-            # TODO: when add talent card, add this statement to that on_call, And Remove it.
         self.gain_energy(game)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
@@ -113,6 +109,7 @@ class Jadeplume_Terrorshroom(Character):
         super().__init__(game, zone, from_player, index, from_character)
         self.power = 0
         self.talent = talent
+        self.talent_skill = self.skills[1]
 
     def init_state(self, game: 'GeniusGame'):
         self.character_zone.add_entity(Radical_Vitality(game, self.from_player, self))

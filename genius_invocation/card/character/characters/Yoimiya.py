@@ -138,6 +138,7 @@ class Yoimiya(Character):
         super().__init__(game, zone, from_player, index, from_character)
         self.talent = talent
         self.power = 0
+        self.talent_skill = self.skills[1]
 
 
 class Niwabi_Enshou(Status):

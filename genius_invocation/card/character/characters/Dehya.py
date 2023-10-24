@@ -211,6 +211,7 @@ class Dehya(Character):
         self.talent = talent
         self.power = 0
         self.next_skill = Incineration_Drive(self)
+        self.talent_skill = self.skills[1]
 
     def on_end_phase(self, game:'GeniusGame'):
         if self.talent:

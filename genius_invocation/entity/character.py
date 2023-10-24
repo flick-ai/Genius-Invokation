@@ -31,7 +31,7 @@ class Character(Entity):
     skill_list: List
     power: int
     max_power: int
-
+    talent_skill: 'CharacterSkill'
     # init_state: list() # 初始状态
     def init_state(self, game: 'GeniusGame'):
         '''
@@ -43,7 +43,7 @@ class Character(Entity):
         self.skills = []
         for skill in self.skill_list:
             self.skills.append(skill(self))
-
+        
     def on_begin(self, game: 'GeniusGame'):
         '''
             回合开始时, 刷新所有技能的使用次数

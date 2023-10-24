@@ -322,7 +322,6 @@ class TalentOfElectroHypostasis(CharacterSkill):
     '''
         无向之雷被动技能
     '''
-
     def on_call(self, game: GeniusGame):
         self.from_character.heal(3)
         if not self.from_character.character_zone.has_status(ElectroCrystalCore):

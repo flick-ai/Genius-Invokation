@@ -371,6 +371,7 @@ class Rhodeia_of_Loch(Character):
         super().__init__(game, zone, from_player, index, from_character)
         self.power = 0
         self.talent = talent
+        self.talent_skill = self.skills[3]
 
 
 class Shield_from_Frog(Combat_Status):

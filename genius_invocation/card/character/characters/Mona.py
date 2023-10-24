@@ -252,6 +252,7 @@ class Mona(Character):
         self.power = 0
         self.talent = talent
         self.last_round = -1
+        self.talent_skill = self.skills[2]
 
     def on_change(self, game:'GeniusGame'):
         # 虚实流动

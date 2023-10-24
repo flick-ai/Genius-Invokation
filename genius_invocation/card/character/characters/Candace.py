@@ -132,6 +132,7 @@ class Candace(Character):
         self.talent = talent
         self.power = 0
         self.next_skill = Heron_Strike(self)
+        self.talent_skill = self.skills[2]
 
 class Heron_Shield(Shield):
     name = "Heron Shield"

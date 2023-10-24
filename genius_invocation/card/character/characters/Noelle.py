@@ -110,6 +110,7 @@ class Noelle(Character):
         self.power = 0
         self.talent = talent
         self.heal_last_round = -1
+        self.talent_skill = self.skills[1]
 
 class Full_Plate(Combat_Shield):
     name = "Full Plate"

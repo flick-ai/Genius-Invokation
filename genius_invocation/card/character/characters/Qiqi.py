@@ -141,6 +141,7 @@ class Qiqi(Character):
         self.talent = talent
         self.power = 0
         self.use_revive = 0
+        self.talent_skill = self.skills[2]
 
 class Herald_of_Frost(Summon):
     name = 'Herald of Frost'
