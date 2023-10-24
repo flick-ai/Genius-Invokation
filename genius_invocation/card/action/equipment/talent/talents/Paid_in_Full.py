@@ -9,6 +9,8 @@ class Paid_in_Full(TalentCard):
     id = 223011
     name = 'Paid in Full'
     name_ch = "悉数讨回"
+    cost_num = 3
+    cost_type = CostType.PYRO
     def __init__(self) -> None:
         super().__init__()
         self.character = Fatui_Pyro_Agent

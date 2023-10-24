@@ -24,7 +24,7 @@ class TalentCard(EquipmentCard):
         target_character = game.active_player.character_list[game.current_action.target_idx]
         target_character.talent = True
         if self.is_action:
-            target_character.skill(self.skill_idx)
+            target_character.skills[self.skill_idx].on_call(game)
 
     def find_target(self, game: 'GeniusGame'):
         if not self.is_action:
