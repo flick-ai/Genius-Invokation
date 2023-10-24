@@ -1,5 +1,5 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
-
+from genius_invocation.card.character.characters.Kokomi import * 
 
 class TamakushiCasket(TalentCard):
     id: int = 212051
@@ -9,7 +9,6 @@ class TamakushiCasket(TalentCard):
     cost = [{'cost_num': 3, 'cost_type': 1}]
     cost_power = 2
     character = Kokomi
-    skill_idx: int = -1
     def __init__(self) -> None:
         super().__init__()
         

@@ -208,9 +208,8 @@ class GeniusGame:
         '''
             选择出战角色
         '''
-        self.active_player.choose_character(action)
-
         if self.special_phase is None:
+            self.active_player.choose_character(action)
             self.change_active_player()
             if self.active_player_index == self.first_player:
                 self.roll_phase()

@@ -1,5 +1,5 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
-
+from genius_invocation.card.character.characters.DeaconFire import * 
 
 class EmbersRekindled(TalentCard):
     id: int = 223021
@@ -9,7 +9,6 @@ class EmbersRekindled(TalentCard):
     cost = [{'cost_num': 2, 'cost_type': 2}]
     cost_power = 0
     character = DeaconFire
-    skill_idx: int = -1
     def __init__(self) -> None:
         super().__init__()
         

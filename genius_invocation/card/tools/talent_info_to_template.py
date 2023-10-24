@@ -5,7 +5,7 @@ from genius_invocation.utils import *
 en_json_file = "card_info_ambr_en.json"
 cn_json_file = "card_info_ambr_cn.json"
 template_file = "talent_template.txt"
-target_file = "../action/equipment/talent/talents"
+target_file = "../action/equipment/talent/nofinish"
 
 with open(en_json_file) as en, open(cn_json_file, encoding='utf-8') as cn:
     card_data = json.load(en)
@@ -57,6 +57,8 @@ with open(en_json_file) as en, open(cn_json_file, encoding='utf-8') as cn:
         with open(template_file) as t:
             file_data = ""
             for line in t:
+                if re.search("from genius_invocation.card.character.characters. import *", line) is not None:
+                    line = line.replace(line, "from genius_invocation.card.character.characters.%s import * \n" % character)
                 if re.search("class \(TalentCard\):", line) is not None:
                     line = line.replace(line, "class %s(TalentCard):\n" % name_strip)
                 if re.search("id: int =", line) is not None:
@@ -68,7 +70,6 @@ with open(en_json_file) as en, open(cn_json_file, encoding='utf-8') as cn:
                 if re.search("is_action: bool =", line) is not None:
                     line = line.replace(line, "    is_action = %s\n" % is_action)
                 if re.search("cost =", line) is not None:
-                    print(cost)
                     line = line.replace(line, "    cost = %s\n" % cost)
                 if re.search("cost_power: int =", line) is not None:
                     line = line.replace(line, "    cost_power = %s\n" % cost_power)

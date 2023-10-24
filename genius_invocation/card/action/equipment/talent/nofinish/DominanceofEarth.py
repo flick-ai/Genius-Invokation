@@ -1,5 +1,5 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
-
+from genius_invocation.card.character.characters.Zhongli import * 
 
 class DominanceofEarth(TalentCard):
     id: int = 216031
@@ -9,7 +9,6 @@ class DominanceofEarth(TalentCard):
     cost = [{'cost_num': 5, 'cost_type': 5}]
     cost_power = 0
     character = Zhongli
-    skill_idx: int = -1
     def __init__(self) -> None:
         super().__init__()
         

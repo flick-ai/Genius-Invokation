@@ -234,11 +234,18 @@ class GeniusPlayer:
             self.action_mask[17][14][1] = self.hand_zone.num()
             return
         if game.game_phase == GamePhase.SET_CHARACTER:
-            for idx, character in enumerate(self.character_list):
-                character: Character
-                if character.is_alive and not character.is_active:
-                    self.action_mask[14][idx+2][0] = 1
-            return
+            if game.special_phase != None:
+                has_target = game.special_phase.refind_target(game)
+                if has_target != None:
+                    for target in has_target:
+                        self.action_mask[14][target+2][0] = 1
+                return 
+            else:
+                for idx, character in enumerate(self.character_list):
+                    character: Character
+                    if character.is_alive and not character.is_active:
+                        self.action_mask[14][idx+2][0] = 1
+                return
 
         # 计算能否打出手牌和烧牌
         for idx, action_card in enumerate(self.hand_zone.card):
@@ -290,18 +297,22 @@ class GeniusPlayer:
                     self.action_mask[idx+10][0][i*2+2] = cost['cost_type'].value
 
         # 计算能否切换角色
-        has_dice = self.calculate_dice(game, Dice(from_player=self,
-                                                  from_character=None,
-                                                  use_type=SwitchType.CHANGE_CHARACTER,
-                                                  cost=[{'cost_num':1, 'cost_type':CostType.BLACK}]))
-        if has_dice:
-            for idx, character in enumerate(self.character_list):
-                character: Character
-                if character.is_alive and not character.is_active:
-                    self.action_mask[14][idx+2][0] = 1
-                for i, cost in enumerate(game.current_dice.cost):
-                        self.action_mask[14][idx+2][i*2+1] = cost['cost_num']
-                        self.action_mask[14][idx+2][i*2+2] = cost['cost_type'].value
+        for idx, character in enumerate(self.character_list):
+            character: Character
+            if character.is_active:
+                continue
+            has_dice = self.calculate_dice(game, Dice(from_player=self,
+                                                from_character=get_my_active_character(game),
+                                                to_character=character,
+                                                use_type=SwitchType.CHANGE_CHARACTER,
+                                                cost=[{'cost_num':1, 'cost_type':CostType.BLACK}]))
+            if not has_dice:
+                continue
+            if character.is_alive:
+                self.action_mask[14][idx+2][0] = 1
+            for i, cost in enumerate(game.current_dice.cost):
+                    self.action_mask[14][idx+2][i*2+1] = cost['cost_num']
+                    self.action_mask[14][idx+2][i*2+2] = cost['cost_type'].value
 
     def calculate_dice(self, game: 'GeniusGame', dice: Dice):
         '''

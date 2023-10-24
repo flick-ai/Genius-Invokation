@@ -1,5 +1,5 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
-
+from genius_invocation.card.character.characters. import *
 
 class (TalentCard):
     id: int = 
@@ -9,7 +9,6 @@ class (TalentCard):
     cost = 
     cost_power: int =
     character = 
-    skill_idx: int = -1
     def __init__(self) -> None:
         super().__init__()
         
