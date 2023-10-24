@@ -65,7 +65,7 @@ class TestShenhe(TestBase, unittest.TestCase):
         ]
         self.run_actions_double(player0_actions, player1_actions)
         
-        #对方角色1受到3点伤害，被击倒。此时按照test_utils.passive_action的行为应切换至角色1
+        #对方角色1受到3点伤害，剩余生命值为7
         self.assertEqual(self.game.players[1].character_list[1].health_point, 7)
         self.assertEqual(self.game.players[1].character_list[1].elemental_application, [])
 
