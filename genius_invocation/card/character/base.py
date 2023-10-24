@@ -47,7 +47,6 @@ class CharacterSkill:
         game.add_damage(Damage.create_damage(game, self.damage_type, self.main_damage_element,
                               self.main_damage + add_main_damage,
                               self.piercing_damage + add_piercing_damage,
-                              # TODO: 可能需要改一下调用的接口
                               self.from_character, get_opponent_active_character(game),
                               self.is_plunging_attack, self.is_charged_attack))
         game.resolve_damage()
@@ -137,7 +136,6 @@ class NormalAttack(CharacterSkill):
 
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
-        # TODO: 判断是否为重击
         game.manager.invoke(EventType.ON_USE_SKILL, game)
 
 

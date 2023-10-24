@@ -151,8 +151,7 @@ class GeniusGame:
                         char.dying(self)
                         if player.active_idx == idx:
                             Active_Die(player).on_call(self, idx)
-        #TODO: Not Implement yet.
-        # pass
+
 
     def step(self, action: 'Action'):
         '''
