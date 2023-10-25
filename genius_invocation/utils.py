@@ -319,8 +319,6 @@ def select_card(characters: List['Character'], all_action_card: List['ActionCard
         same_country[character.country] = same_country.get(character.country, 0) + 1
         all_weapon_type[character.weapon_type] = all_weapon_type.get(character.weapon_type, 0) + 1
 
-    import ipdb
-    ipdb.set_trace()
     all_action_card  = sorted(all_action_card, key=lambda x:x[-1].id)
     for class_name, name, name_ch, action_card in all_action_card:
         match action_card.card_type:
