@@ -125,6 +125,8 @@ class Character(Entity):
         self.power = 0
         self.elemental_attach = None
         self.character_zone.clear(game)
+        for action in self.registered_events:
+            action.remove()
 
     def revive(self, game: 'GeniusGame'):
         # Basic revive.
