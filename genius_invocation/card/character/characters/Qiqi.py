@@ -149,7 +149,8 @@ class Herald_of_Frost(Summon):
     element = ElementType.CRYO
     usage = 3
     max_usage = 3
-
+    removable = True
+    
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character:'Character'=None):
         super().__init__(game, from_player, from_character)
         self.current_usage = 3
