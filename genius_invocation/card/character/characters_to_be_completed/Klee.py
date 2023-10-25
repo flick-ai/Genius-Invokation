@@ -1,5 +1,20 @@
 from genius_invocation.card.character.characters.import_head import *
 
+class Kaboom(NormalAttack):
+    id: int = 13061
+    name = "Kaboom!"
+    name_ch = "砰砰"
+    type: SkillType = SkillType.NORMAL_ATTACK
+    damage_type: SkillType = SkillType.NORMAL_ATTACK
+    main_damage_element: ElementType = ElementType.PYRO
+    main_damage: int = 1
+    piercing_damage: int = 0
+    cost = [{'cost_num':1, 'cost_type':CostType.PYRO}, {'cost_num':2, "cost_type":CostType.BLACK}]
+    energy_cost: int = 0
+    energy_gain: int = 1
+
+    def on_call(self, game: GeniusGame):
+        return super().on_call(game)
 
 class Klee(Character):
     id: int = 1306
