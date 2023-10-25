@@ -45,7 +45,7 @@ A simulator of the Genius Invokation TCG in Genshin impact
     - [ ] 角色卡片进度:23/57
     - [x] 行动卡片进度:
         - [x] 天赋进度:57/57
-        - [x] 装备牌进度:58/58
+        - [x] 装备牌进度:56/56
         - [x] 支援牌进度:38/38
         - [x] 事件牌进度:57/57
 - [ ] 完成了网页端的调试接口
