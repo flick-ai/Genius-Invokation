@@ -1,5 +1,5 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
-from genius_invocation.card.character.characters.Mona import Mona
+from genius_invocation.card.character.characters.Mona import * 
 
 class ProphecyofSubmersion(TalentCard):
     id: int = 212031
@@ -9,7 +9,6 @@ class ProphecyofSubmersion(TalentCard):
     cost = [{'cost_num': 3, 'cost_type': 1}]
     cost_power = 3
     character = Mona
-    skill_idx: int = 2
     def __init__(self) -> None:
         super().__init__()
         

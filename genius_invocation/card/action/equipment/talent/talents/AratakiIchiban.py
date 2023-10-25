@@ -1,5 +1,5 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
-from genius_invocation.card.character.characters.Arataki_Itto import Arataki_Itto
+from genius_invocation.card.character.characters.Arataki_Itto import *
 
 class AratakiIchiban(TalentCard):
     id: int = 216051
@@ -9,7 +9,5 @@ class AratakiIchiban(TalentCard):
     cost = [{'cost_num': 1, 'cost_type': 5}, {'cost_num': 2, 'cost_type': 8}]
     cost_power = 0
     character = Arataki_Itto
-    skill_idx: int = 0
     def __init__(self) -> None:
         super().__init__()
-        
