@@ -1,6 +1,7 @@
 from typing import TYPE_CHECKING, List
 from genius_invocation.utils import *
 from genius_invocation.entity.entity import Entity
+from genius_invocation.event.heal import Heal
 from genius_invocation.event.Elemental_Reaction import *
 if TYPE_CHECKING:
     from genius_invocation.game.game import GeniusGame
@@ -99,11 +100,22 @@ class Character(Entity):
         super().__init__(game, from_player, from_character)
         self.init_state(game)
 
-    def heal(self, heal: int):
+    def heal(self, heal: int, game:'GeniusGame'):
         if self.is_alive:
             self.health_point += heal
             if self.health_point > self.max_health_point:
+                heal = heal + self.health_point - self.max_health_point 
                 self.health_point = self.max_health_point
+            game.current_heal = Heal(heal=heal, target_character=self)
+            game.manager.invoke(EventType.AFTER_HEAL, game)
+    
+    def get_power(self, power:int):
+        if self.is_alive:
+            self.power = min(self.power+power, self.max_power)
+
+    def loose_power(self, power:int):
+        if self.is_alive:
+            self.power = max(self.power-power, 0)
 
     def dying(self, game: 'GeniusGame'):
         assert self.is_alive==False

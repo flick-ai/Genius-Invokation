@@ -193,7 +193,7 @@ class Herald_of_Frost(Summon):
                     if dmg_taken > max_dmg_taken:
                         max_dmg_taken = dmg_taken
                         max_taken_char = char
-                max_taken_char.heal(1)
+                max_taken_char.heal(1,game=game)
 
     def update_listener_list(self):
         self.listeners = [
@@ -217,7 +217,7 @@ class Fortune_Preserving_Talisman(Combat_Status):
     def after_skill(self, game: 'GeniusGame'):
         if game.current_skill.from_character.from_player == self.from_player:
             if game.current_skill.from_character.health_point != game.current_skill.from_character.max_health_point:
-                game.current_skill.from_character.heal(2)
+                game.current_skill.from_character.heal(2,game=game)
                 self.current_usage -= 1
                 if self.current_usage<=0:
                     self.on_destroy(game)

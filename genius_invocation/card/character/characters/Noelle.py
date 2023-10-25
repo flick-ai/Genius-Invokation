@@ -137,7 +137,7 @@ class Full_Plate(Combat_Shield):
                     self.from_character.heal_last_round = game.round
                     for chars in self.from_character.from_player.character_list:
                         if chars.is_alive:
-                            chars.heal(1)
+                            chars.heal(1,game=game)
     def on_dividing(self, game:"GeniusGame"):
         if game.current_damage.main_damage_element == ElementType.PHYSICAL:
             if game.current_damage.damage_to.from_player == self.from_player:

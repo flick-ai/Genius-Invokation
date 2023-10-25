@@ -2,13 +2,15 @@ from genius_invocation.utils import *
 from genius_invocation.card.action.equipment.artifact.base import ArtifactCard
 from genius_invocation.entity.status import Artifact, Shield
 from typing import TYPE_CHECKING
+
 if TYPE_CHECKING:
     from genius_invocation.game.game import GeniusGame
     from genius_invocation.game.player import GeniusPlayer
 
-class Shield_of_Tenacity_of_the_Millelith(Shield):
-    name = "Shield_of_Tenacity_of_the_Millelith"
-    name_ch = "千岩之盾"
+
+class UnmovableMountain(Shield):
+    name = "Unmovable Mountain"
+    name_ch = "重嶂不移"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.current_usage = 3
@@ -16,21 +18,19 @@ class Shield_of_Tenacity_of_the_Millelith(Shield):
     def update(self):
         self.current_usage = 3
 
-
-class Tenacity_of_the_Millelith_Entity(Artifact):
-    id: int = 312010
+class TenacityoftheMillelithEntity(Artifact):
     name: str = "Tenacity of the Millelith"
     name_ch = "千岩牢固"
-    max_usage = 3
+    max_usage = 1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, artifact_card = None):
         super().__init__(game, from_player, from_character, artifact_card)
         self.round = -1
 
     def on_begin(self, game: 'GeniusGame'):
         if game.active_player == self.from_player:
-            has_shield = self.from_character.character_zone.has_entity(Shield_of_Tenacity_of_the_Millelith)
+            has_shield = self.from_character.character_zone.has_entity(UnmovableMountain)
             if not has_shield:
-                shield = Shield_of_Tenacity_of_the_Millelith(game, from_player=self.from_player, from_character=self.from_character)
+                shield = UnmovableMountain(game, from_player=self.from_player, from_character=self.from_character)
                 self.from_character.character_zone.add_entity(shield)
             else:
                 has_shield.update()
@@ -50,7 +50,9 @@ class Tenacity_of_the_Millelith_Entity(Artifact):
         ]
 
 
-class Tenacity_of_the_Millelith(ArtifactCard):
+
+
+class TenacityoftheMillelith(ArtifactCard):
     id: int = 312010
     name: str = "Tenacity of the Millelith"
     name_ch = "千岩牢固"
@@ -59,10 +61,8 @@ class Tenacity_of_the_Millelith(ArtifactCard):
 
     def __init__(self) -> None:
         super().__init__()
-        self.artifact_entity = Tenacity_of_the_Millelith_Entity
+        self.artifact_entity = TenacityoftheMillelithEntity
 
     def on_played(self, game: 'GeniusGame') -> None:
         super().on_played(game)
-
-        # self.usages = defaultdict(int)
 

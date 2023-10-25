@@ -260,7 +260,7 @@ class Dehya(Character):
         if self.talent:
             if game.active_player == self.from_player:
                 if self.health_point <=6:
-                    self.heal(2)
+                    self.heal(2,game=game)
 
     def listen_talent_events(self, game: 'GeniusGame'):
         self.listen_event(game, EventType.END_PHASE, ZoneType.CHARACTER_ZONE, self.on_end_phase)

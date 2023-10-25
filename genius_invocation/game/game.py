@@ -8,6 +8,7 @@ from genius_invocation.event.events import EventManager
 from genius_invocation.card.character.base import Damage
 from genius_invocation.card.action.base import ActionCard
 from genius_invocation.game.zone import Dice
+from genius_invocation.event.heal import Heal
 from loguru import logger
 from rich.console import Console
 from rich.table import Column, Table
@@ -41,6 +42,8 @@ class GeniusGame:
         self.special_phase = None
         self.round: int = 0
 
+        self.current_die: Character = None
+        self.current_heal: Heal = None
         self.current_dice: Dice = None
         self.current_action: Action = None
         self.current_damage: Damage = None
@@ -125,7 +128,7 @@ class GeniusGame:
             # del(self.current_damage)
             self.current_damage = None
 
-        self.check_dying() # TODO: Not Implement yet.
+        self.check_dying()
 
     def suffer_current_damage(self):
         target = self.current_damage.damage_to
@@ -157,11 +160,13 @@ class GeniusGame:
                     continue
                 if char.health_point <= 0:
                     char.is_alive = False
-                    self.manager.invoke(EventType.CHARACTER_DIE, self)
+                    self.manager.invoke(EventType.CHARACTER_WILL_DIE, self)
                     if not char.is_alive:
                         num += 1
                         char.dying(self)
                         char.from_player.last_die_round = self.round
+                        self.current_die = char
+                        self.manager.invoke(EventType.CHARACTER_DIE, self)
             if num == 3:
                 print(f"player{1-player.index} is winner!")
                 exit()

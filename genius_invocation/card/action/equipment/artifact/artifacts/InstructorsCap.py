@@ -8,10 +8,9 @@ if TYPE_CHECKING:
     from genius_invocation.game.player import GeniusPlayer
 
 
-class Adventurer_Bandana_Entity(Artifact):
-    id: int = 312001
-    name: str = "Adventurer's Bandana"
-    name_ch = "冒险家头巾"
+class InstructorsCapEntity(Artifact):
+    name: str = "Instructor's Cap"
+    name_ch = "教官的帽子"
     max_usage = 3
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, artifact_card = None):
         super().__init__(game, from_player, from_character, artifact_card)
@@ -21,39 +20,35 @@ class Adventurer_Bandana_Entity(Artifact):
     def update(self):
         self.usage = self.max_usage
 
-    def on_after_skill(self, game:'GeniusGame'):
+    def on_damage(self, game:'GeniusGame'):
         if self.round != game.round:
             self.round = game.round
             self.usage = self.max_usage
         if self.usage > 0 :
-            if game.current_skill.from_character == self.from_character:
-                if game.current_skill.type == SkillType.NORMAL_ATTACK:
-                    self.from_character.heal(heal=1)
+            if game.current_damage.reaction != None:
+                if game.current_damage.damage_from == self.from_character:
+                    dicetype = ElementToDice(self.from_character.element)
+                    self.from_player.dice_zone.add([dicetype.value])
                     self.usage -= 1
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.AFTER_USE_SKILL, ZoneType.CHARACTER_ZONE, self.on_after_skill)
+            (EventType.EXECUTE_DAMAGE, ZoneType.CHARACTER_ZONE, self.on_damage)
         ]
 
 
 
-
-
-class Adventurer_Bandana(ArtifactCard):
-    '''冒险家头巾'''
-    id: int = 312001
-    name: str = "Adventurer's Bandana"
-    name_ch = "冒险家头巾"
-    cost_num: int = 1
-    cost_type: CostType = CostType.WHITE
+class InstructorsCap(ArtifactCard):
+    id: int = 312005
+    name: str = "Instructor's Cap"
+    name_ch = "教官的帽子"
+    cost_num: int = 2
+    cost_type: CostType = CostType.BLACK
 
     def __init__(self) -> None:
         super().__init__()
-        self.artifact_entity = Adventurer_Bandana_Entity
+        self.artifact_entity = InstructorsCapEntity
 
     def on_played(self, game: 'GeniusGame') -> None:
         super().on_played(game)
-
-        # self.usages = defaultdict(int)
 
