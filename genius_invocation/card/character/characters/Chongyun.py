@@ -66,10 +66,17 @@ class FrostField(Combat_Status):
             if game.current_damage.damage_from.from_character.weapon_type in [WeaponType.SWORD, WeaponType.POLEARM, WeaponType.CLAYMORE]:
                 if game.current_damage.damage_type == SkillType.NORMAL_ATTACK:
                     game.current_damage.main_damage += 1
+    
+    def on_begin(self, game:'GeniusGame'):
+        if game.active_player == self.from_player:
+            self.current_usage -= 1
+            if self.current_usage <= 0:
+                self.on_destroy(game)
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.INFUSION, ZoneType.ACTIVE_ZONE, self.on_infuse)
+            (EventType.INFUSION, ZoneType.ACTIVE_ZONE, self.on_infuse),
+            (EventType.BEGIN_ACTION_PHASE, ZoneType.ACTIVE_ZONE, self.on_begin)
         ]
 
 class CloudPartingStar(ElementalBurst):
