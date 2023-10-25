@@ -346,7 +346,7 @@ def select_card(characters: List['Character'], all_action_card: List['ActionCard
                 if same_element.get(action_card.element, 0) > 2:
                     available_action_card['SPECIAL_EVENT'].append((class_name, name, name_ch))
             case ActionCardType.EVENT_COUNTRY:
-                if same_element.get(action_card.country, 0) > 2:
+                if same_country.get(action_card.country, 0) > 2:
                     available_action_card['SPECIAL_EVENT'].append((class_name, name, name_ch))
     return available_action_card
 

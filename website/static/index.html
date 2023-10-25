@@ -130,6 +130,7 @@
       async function get_card() {
         while(true){
           if(available_card){
+            console.log(available_card)
             let resdict = available_card.toJs()
             available_card = resdict
             console.log(resdict)
