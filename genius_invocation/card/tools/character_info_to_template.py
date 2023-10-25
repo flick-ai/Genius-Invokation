@@ -1,5 +1,5 @@
 import re, os
-from genius_invocation.card.character.characters.import_head import *
+from genius_invocation.card.character.import_head import *
 
 
 en_json_file = "card_info_ambr_en.json"

@@ -1,4 +1,4 @@
-from genius_invocation.card.character.characters.import_head import *
+from genius_invocation.card.character.import_head import *
 
 class Ancient_Sword_Art(NormalAttack):
     name = 'Ancient Sword Art'

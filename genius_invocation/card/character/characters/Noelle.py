@@ -1,4 +1,4 @@
-from genius_invocation.card.character.characters.import_head import *
+from genius_invocation.card.character.import_head import *
 
 class Favonius_Bladework_Maid(NormalAttack):
     id = 0
