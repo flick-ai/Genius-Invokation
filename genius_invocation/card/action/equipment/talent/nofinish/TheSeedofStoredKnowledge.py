@@ -1,5 +1,5 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
-from genius_invocation.card.character.characters.Tighnari import * 
+from genius_invocation.card.character.characters.Tighnari import *
 
 class TheSeedofStoredKnowledge(TalentCard):
     id: int = 217031
@@ -11,4 +11,3 @@ class TheSeedofStoredKnowledge(TalentCard):
     character = Tighnari
     def __init__(self) -> None:
         super().__init__()
-        
