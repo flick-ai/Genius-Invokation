@@ -301,7 +301,7 @@ def Elements_to_color(ele: ElementType):
             return "rgb(255,255,255)"
         case ElementType.PIERCING:
             return "rgb(255,255,255)"
-        
+
 
 from genius_invocation.card.action import *
 import genius_invocation.card.character.characters as chars
@@ -311,14 +311,13 @@ def select_card(characters: List['Character'], all_action_card: List['ActionCard
     same_element = {}
     all_character = []
     available_action_card = defaultdict(list)
-    
+
     for character in characters:
         character = eval('chars.'+character)
         all_character.append(character.__name__)
         same_element[character.element] = same_element.get(character.element, 0) + 1
         same_country[character.country] = same_country.get(character.country, 0) + 1
         all_weapon_type[character.weapon_type] = all_weapon_type.get(character.weapon_type, 0) + 1
-
 
     all_action_card  = sorted(all_action_card, key=lambda x:x[-1].id)
     for class_name, name, name_ch, action_card in all_action_card:
@@ -344,10 +343,10 @@ def select_card(characters: List['Character'], all_action_card: List['ActionCard
             case ActionCardType.EVENT_ARCANE_LEGEND:
                 available_action_card['SPECIAL EVENT'].append((class_name, name, name_ch))
             case ActionCardType.EVENT_ELEMENTAL_RESONANCE:
-                if same_element.get(action_card.element, 0) > 2:
+                if same_element.get(action_card.element, 0) >= 2:
                     available_action_card['SPECIAL EVENT'].append((class_name, name, name_ch))
             case ActionCardType.EVENT_COUNTRY:
-                if same_element.get(action_card.country, 0) > 2:
+                if same_country.get(action_card.country, 0) >= 2:
                     available_action_card['SPECIAL EVENT'].append((class_name, name, name_ch))
     return available_action_card
 

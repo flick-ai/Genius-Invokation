@@ -17,16 +17,11 @@ import os
 def get_parser():
     parser = argparse.ArgumentParser()
     parser.add_argument('--test', action='store_true', default=False)
+    parser.add_argument('--fix', action='store_true', default=False)
     args = parser.parse_args()
     return args
 
 def test_select():
-    available_character_name = ['Arataki_Itto', 'Candace', 'Cyno', 'Dehya', "ElectroHypostasis", 
-                           "Fatui_Pyro_Agent", "Fischl", "Ganyu", "Jadeplume_Terrorshroom", "Keqing", 
-                           "Mona", "Nahida", "Ningguang", "Noelle", "Qiqi",
-                           "Rhodeia_of_Loch", "Shenhe", "Tartaglia", "Xingqiu", "Yae_Miko",
-                           "Yoimiya"]
-    
     # 输出所有角色
     package_dir = "./card/character/characters"
     available_character_name = [f[:-3] for f in os.listdir(package_dir) if f.endswith(".py") and f != "__init__.py" and f != "import_head.py"]
@@ -55,13 +50,16 @@ def test_select():
         available_name = [f[:-3] for f in os.listdir(package_dir) if f.endswith(".py") and f != "__init__.py" and f != "import_head.py"]
         print(package_dir, len(available_name))
 
-    # 测试选择卡函数 
-    available_card = select_card(['Rhodeia_of_Loch', 'Yae_Miko' ,'Fatui_Pyro_Agent'], available_card)
+    # 测试选择卡函数
+    available_card = select_card(['Ganyu', 'Keqing' ,'Qiqi'], available_card)
+    print(available_card['SPECIAL EVENT'])
+    exit()
 
 
 if __name__=="__main__":
-    test_select()
     args = get_parser()
+    if args.fix:
+        test_select()
     deck1 = {
     'character': ['Rhodeia_of_Loch', 'Yae_Miko' ,'Fatui_Pyro_Agent'],
     'action_card': ['Fresh_Wind_of_Freedom','Dunyarzad','Dunyarzad','Chef_Mao','Chef_Mao','Paimon','Paimon',
