@@ -1,4 +1,4 @@
-from genius_invocation.card.character.characters.import_head import *
+from genius_invocation.card.character.import_head import *
 
 class Firework_FlareUp(NormalAttack):
     '''
@@ -142,7 +142,7 @@ class Yoimiya(Character):
     def listen_talent_events(self, game:'GeniusGame'):
         status = self.character_zone.has_entity(Niwabi_Enshou)
         if status is not None:
-            self.listen_event(game, EventType.AFTER_USE_SKILL, ZoneType.CHARACTER_ZONE, status.after_skill)
+            status.listen_event(game, EventType.AFTER_USE_SKILL, ZoneType.CHARACTER_ZONE, status.after_skill)
 
 
 class Niwabi_Enshou(Status):

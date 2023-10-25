@@ -1,4 +1,4 @@
-from genius_invocation.card.character.characters.import_head import *
+from genius_invocation.card.character.import_head import *
 
 class Fight_Club_Legend(NormalAttack):
     id: int = 0
@@ -115,7 +115,7 @@ class Arataki_Itto(Character):
     def listen_talent_events(self, game: 'GeniusGame'):
         status =  self.character_zone.has_entity(Superlative_Superstrength)
         if status is not None:
-            self.listen_event(game, EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, status.on_dmg_add)
+            status.listen_event(game, EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, status.on_dmg_add)
 
 class Ushi(Summon):
     '''阿丑'''

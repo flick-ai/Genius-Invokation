@@ -1,4 +1,4 @@
-from genius_invocation.card.character.characters.import_head import *
+from genius_invocation.card.character.import_head import *
 
 class Favonius_Bladework_Maid(NormalAttack):
     id = 0
@@ -115,7 +115,7 @@ class Noelle(Character):
     def listen_talent_events(self, game:'GeniusGame'):
         status = self.from_player.team_combat_status.has_shield(Full_Plate)
         if status:
-            self.listen_event(game, EventType.AFTER_USE_SKILL, ZoneType.ACTIVE_ZONE_SHIELD, status.after_skill)
+            status.listen_event(game, EventType.AFTER_USE_SKILL, ZoneType.ACTIVE_ZONE_SHIELD, status.after_skill)
 
 class Full_Plate(Combat_Shield):
     name = "Full Plate"

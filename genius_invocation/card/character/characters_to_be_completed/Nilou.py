@@ -1,13 +1,13 @@
 from genius_invocation.card.character.import_head import *
 
 
-class Bennett(Character):
-    id: int = 1303
-    name: str = "Bennett"
-    name_ch = "班尼特"
-    element: ElementType = ElementType.PYRO
+class Nilou(Character):
+    id: int = 1208
+    name: str = "Nilou"
+    name_ch = "妮露"
+    element: ElementType = ElementType.HYDRO
     weapon_type: WeaponType = WeaponType.SWORD
-    country: CountryType = CountryType.MONDSTADT
+    country: CountryType = CountryType.SUNERU
     init_health_point: int = 10
     max_health_point: int = 10
     skill_list: List = []
@@ -17,3 +17,4 @@ class Bennett(Character):
         super().__init__(game, zone, from_player, index, from_character)
         self.power = 0
         self.talent = talent
+

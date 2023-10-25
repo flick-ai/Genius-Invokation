@@ -1,4 +1,4 @@
-from genius_invocation.card.character.characters.import_head import *
+from genius_invocation.card.character.import_head import *
 
 class Gleaming_Spear_Guardian_Stance(NormalAttack):
     id: int = 0
@@ -136,7 +136,7 @@ class Candace(Character):
     def listen_talent_events(self, game: 'GeniusGame'):
         status = self.from_player.team_combat_status.has_status(Prayer_of_the_Crimson_Crown)
         if status is not None:
-            self.listen_event(game, EventType.AFTER_USE_SKILL, ZoneType.ACTIVE_ZONE, status.after_skill)
+            status.listen_event(game, EventType.AFTER_USE_SKILL, ZoneType.ACTIVE_ZONE, status.after_skill)
 
 class Heron_Shield(Shield):
     name = "Heron Shield"

@@ -1,13 +1,13 @@
 from genius_invocation.card.character.import_head import *
 
 
-class Bennett(Character):
-    id: int = 1303
-    name: str = "Bennett"
-    name_ch = "班尼特"
-    element: ElementType = ElementType.PYRO
-    weapon_type: WeaponType = WeaponType.SWORD
-    country: CountryType = CountryType.MONDSTADT
+class Dori(Character):
+    id: int = 1410
+    name: str = "Dori"
+    name_ch = "多莉"
+    element: ElementType = ElementType.ELECTRO
+    weapon_type: WeaponType = WeaponType.CLAYMORE
+    country: CountryType = CountryType.SUNERU
     init_health_point: int = 10
     max_health_point: int = 10
     skill_list: List = []
@@ -17,3 +17,4 @@ class Bennett(Character):
         super().__init__(game, zone, from_player, index, from_character)
         self.power = 0
         self.talent = talent
+

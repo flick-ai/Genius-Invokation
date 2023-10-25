@@ -1,4 +1,4 @@
-from genius_invocation.card.character.characters.import_head import *
+from genius_invocation.card.character.import_head import *
 
 class Thrust(NormalAttack):
 # 突刺
@@ -179,4 +179,4 @@ class Fatui_Pyro_Agent(Character):
     def listen_talent_events(self, game: 'GeniusGame'):
         status = self.character_zone.has_entity(Stealth)
         if status is not None:
-            self.listen_event(game, EventType.INFUSION, ZoneType.CHARACTER_ZONE, status.infusion)
+            status.listen_event(game, EventType.INFUSION, ZoneType.CHARACTER_ZONE, status.infusion)
