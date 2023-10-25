@@ -51,6 +51,8 @@ def test_select():
 
     # 测试选择卡函数
     available_card = select_card(['Ganyu', 'Keqing' ,'Qiqi'], available_card)
+    print(available_card['SPECIAL EVENT'])
+    exit()
 
 
 if __name__=="__main__":
