@@ -3,44 +3,5 @@
         "choice": 17,
         "target": 14,
         "dice": []
-    },
-    {
-        "choice": 17,
-        "target": 14,
-        "dice": []
-    },
-    {
-        "choice": 14,
-        "target": 4,
-        "dice": []
-    },
-    {
-        "choice": 14,
-        "target": 4,
-        "dice": []
-    },
-    {
-        "choice": 16,
-        "target": 13,
-        "dice": []
-    },
-    {
-        "choice": 16,
-        "target": 13,
-        "dice": []
-    },
-    {
-        "choice": 15,
-        "target": 1,
-        "dice": []
-    },
-    {
-        "choice": 0,
-        "target": 4,
-        "dice": [
-            0,
-            1,
-            2
-        ]
     }
 ]

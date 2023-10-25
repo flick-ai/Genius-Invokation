@@ -8,6 +8,7 @@ class Soothing_Water(ActionCard):
     id: int = 331202
     name: str = "Soothing_Water"
     name_ch = "愈疗之水"
+    elment = ElementType.HYDRO
     cost_num = 1
     card_type = ActionCardType.EVENT_ELEMENTAL_RESONANCE
     cost_type = CostType.HYDRO

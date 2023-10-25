@@ -49,6 +49,7 @@ class Enduring_Rock(ActionCard):
     id: int = 331602
     name: str = "Enduring_Rock"
     name_ch = "坚定之岩"
+    elment = ElementType.GEO
     cost_num = 1
     card_type = ActionCardType.EVENT_ELEMENTAL_RESONANCE
     cost_type = CostType.GEO

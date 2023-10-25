@@ -35,9 +35,10 @@ class Wind_and_Freedom(ActionCard):
     id: int = 331801
     name: str = 'Wind and Freedom'
     name_ch = '风与自由'
+    country = CountryType.MONDSTADT
     cost_num = 1
     cost_type = CostType.BLACK
-    card_type = ActionCardType.EVENT
+    card_type = ActionCardType.EVENT_COUNTRY
 
     def __init__(self) -> None:
         super().__init__()
