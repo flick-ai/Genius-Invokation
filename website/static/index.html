@@ -108,6 +108,111 @@
     </script>
 
     <script>
+      
+      let cardtype = ["WEAPON_TALENT", "ARTIFACT", "SUPPORT", "SPECIAL_EVENT", "EVENT"]
+      let cardtypename = ["武器和天赋", "圣遗物",  "支援","特殊事件", "事件"]
+      for(let i = 0; i<5; i++){
+        let cardtypebox = document.createElement('div')
+        cardtypebox.classList.add('selectcardinner')
+        cardtypebox.classList.add('item')
+        let cardtypeboxtitle = document.createElement('div')
+        cardtypeboxtitle.classList.add('item')
+        cardtypeboxtitle.innerText = cardtypename[i]
+        let cardtypeboxcontent = document.createElement('div')
+        cardtypeboxcontent.classList.add('item')
+        cardtypeboxcontent.classList.add('selectcardinnercontent')
+        cardtypeboxcontent.id = cardtype[i]
+        cardtypebox.appendChild(cardtypeboxtitle)
+        cardtypebox.appendChild(cardtypeboxcontent)
+        document.getElementById("selectcard").appendChild(cardtypebox)
+      }
+
+      async function get_card() {
+        while(true){
+          if(available_card){
+            let resdict = available_card.toJs()
+            available_card = resdict
+            console.log(resdict)
+            let cur_idx = 0
+            for(var [name, cardlist] of resdict){
+              let cardtypeboxcontent = document.getElementById(cardtype[cur_idx])
+              for(let i = 0; i<cardlist.length; i++){
+                let card = cardlist[i]
+                let checkdiv = document.createElement('div')
+                checkdiv.classList.add('checkdiv', 'item', 'clickable', 'charaitem')
+                checkdiv.innerText = card[2]
+                let nothing = document.createElement('div')
+                nothing.classList.add('nothing')
+                nothing.innerText = card[0]
+                checkdiv.appendChild(nothing)
+                checkdiv.addEventListener(
+                  "click", ()=>{
+                  if(checkdiv.classList.contains('twice')){
+                    checkdiv.classList.remove('twice')
+                    checkdiv.classList.remove('selected')
+                    value = checkdiv.getElementsByClassName('nothing')[0].innerText
+                    current_card_choice = current_card_choice.filter(element => {
+                      return element != value
+                    });
+                    
+                  }else if(checkdiv.classList.contains('selected')){
+                    checkdiv.classList.add('twice')
+                    value = checkdiv.getElementsByClassName('nothing')[0].innerText
+                    current_card_choice.push(value)
+                  }else{
+                    checkdiv.classList.add('selected')
+                    value = checkdiv.getElementsByClassName('nothing')[0].innerText
+                    current_card_choice.push(value)
+                  }
+                  card_confirm.innerText = '确定手牌(' + current_card_choice.length + '/30)'
+                 
+                  }
+                )
+                cardtypeboxcontent.appendChild(checkdiv)
+              }
+              cur_idx += 1
+            }
+            // for(var [key, value] of resdict) {
+            //   let checkdiv = document.createElement('div')
+            //   checkdiv.classList.add('checkdiv')
+            //   checkdiv.classList.add('item', 'clickable', 'charaitem')
+            //   checkdiv.innerText = key
+            //   let nothing = document.createElement('div')
+            //   nothing.classList.add('nothing')
+            //   nothing.innerText = value
+            //   checkdiv.appendChild(nothing)
+            //   checkdiv.addEventListener(
+            //     "click", ()=>{
+            //       if(checkdiv.classList.contains('twice')){
+            //         checkdiv.classList.remove('twice')
+            //         checkdiv.classList.remove('selected')
+            //         value = checkdiv.getElementsByClassName('nothing')[0].innerText
+            //         current_card_choice = current_card_choice.filter(element => {
+            //           return element != value
+            //         });
+                    
+            //       }else if(checkdiv.classList.contains('selected')){
+            //         checkdiv.classList.add('twice')
+            //         value = checkdiv.getElementsByClassName('nothing')[0].innerText
+            //         current_card_choice.push(value)
+            //       }else{
+            //         checkdiv.classList.add('selected')
+            //         value = checkdiv.getElementsByClassName('nothing')[0].innerText
+            //         current_card_choice.push(value)
+            //       }
+            //       card_confirm.innerText = '确定手牌(' + current_card_choice.length + '/30)'
+                  
+            //     }
+            //   )
+            //   document.getElementById('selectcard').appendChild(checkdiv)
+
+            // }
+            // break
+          }
+          await sleep(200)
+        }
+      }
+
       let current_character_choice = new Set()
       let current_card_choice = new Array()
       let character_confirm = document.getElementById('confirmchara')
@@ -132,6 +237,7 @@
           }
           character_confirm.style.display = 'none'
           card_confirm.style.display = 'flex'
+          get_card()
         })
       
       
@@ -183,55 +289,10 @@
           }
         }
       }
-      async function get_card() {
-        while(true){
-          await sleep(200)
-          if(available_card){
-            let resdict = available_card.toJs()
-            available_card = resdict
-            console.log(resdict)
-            for(var [key, value] of resdict) {
-              let checkdiv = document.createElement('div')
-              checkdiv.classList.add('checkdiv')
-              checkdiv.classList.add('item', 'clickable', 'charaitem')
-              checkdiv.innerText = key
-              let nothing = document.createElement('div')
-              nothing.classList.add('nothing')
-              nothing.innerText = value
-              checkdiv.appendChild(nothing)
-              checkdiv.addEventListener(
-                "click", ()=>{
-                  if(checkdiv.classList.contains('twice')){
-                    checkdiv.classList.remove('twice')
-                    checkdiv.classList.remove('selected')
-                    value = checkdiv.getElementsByClassName('nothing')[0].innerText
-                    current_card_choice = current_card_choice.filter(element => {
-                      return element != value
-                    });
-                    
-                  }else if(checkdiv.classList.contains('selected')){
-                    checkdiv.classList.add('twice')
-                    value = checkdiv.getElementsByClassName('nothing')[0].innerText
-                    current_card_choice.push(value)
-                  }else{
-                    checkdiv.classList.add('selected')
-                    value = checkdiv.getElementsByClassName('nothing')[0].innerText
-                    current_card_choice.push(value)
-                  }
-                  card_confirm.innerText = '确定手牌(' + current_card_choice.length + '/30)'
-                  
-                }
-              )
-              document.getElementById('selectcard').appendChild(checkdiv)
-
-            }
-            break
-          }
-        }
-      }
+      
 
       get_character()
-      get_card()
+      // get_card()
     </script>
     <!-- <py-script>
       from genius_invocation.web import get_card

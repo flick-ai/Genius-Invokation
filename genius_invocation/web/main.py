@@ -34,10 +34,13 @@ async def main():
     ignore = [actioncard.ActionCard, actioncard.EquipmentCard, actioncard.WeaponCard, actioncard.TalentCard, actioncard.ArtifactCard, actioncard.SupportCard, actioncard.FoodCard]
     for name, obj in inspect.getmembers(actioncard):
         if inspect.isclass(obj) and obj not in ignore:
-            available_card.append((name, obj.name, obj.name_ch))
+            available_card.append((name, obj.name, obj.name_ch, obj))
 
-    js_available_card = {available_card[i][2]: available_card[i][0] for i in range(len(available_card))}
-    js.load_action_cards(create_proxy(js_available_card))
+    
+    
+
+    # js_available_card = {available_card[i][2]: available_card[i][0] for i in range(len(available_card))}
+    # js.load_action_cards(create_proxy(js_available_card))
     select = []
     cur_idx = 0
     while True:
@@ -45,6 +48,8 @@ async def main():
         if js.document.getElementById('currentselect').innerText != '':
             select.append(js.document.getElementById('currentselect').innerText.split(' '))
             js.document.getElementById('currentselect').innerText = ''
+            current_available_card = select_card(select[cur_idx], available_card)
+            js.load_action_cards(create_proxy(current_available_card))
             cur_idx += 1
         if cur_idx == 2:
             for item in js.document.getElementsByClassName('before'):

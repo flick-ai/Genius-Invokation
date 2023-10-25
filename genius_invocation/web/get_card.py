@@ -5,10 +5,10 @@ import js
 from pyodide import create_proxy, to_js
 
 def get_card():
-    available_character_name = ['Arataki_Itto', 'Candace', 'Cyno', 'Dehya', "ElectroHypostasis", 
+    available_character_name = ['Arataki_Itto', 'Candace', 'Cyno', 'Dehya', "ElectroHypostasis", "Eula", 
                             "Fatui_Pyro_Agent", "Fischl", "Ganyu", "Jadeplume_Terrorshroom", "Keqing", 
-                            "Mona", "Nahida", "Ningguang", "Noelle", "Qiqi",
-                            "Rhodeia_of_Loch", "Shenhe", "Tartaglia", "Xingqiu", "Yae_Miko",
+                            "Mona", "Nahida", "Ningguang", "Noelle", "Qiqi", "Raiden_Shogun",
+                            "Rhodeia_of_Loch", "Shenhe", "Tartaglia", "Wanderer", "Xingqiu", "Yae_Miko",
                             "Yoimiya"]
     available_character = []
     for name in available_character_name:

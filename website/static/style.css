@@ -426,12 +426,26 @@
   }
 
   .selectcard {
-    grid-column: 1/4;
+    grid-column: 1/12;
     grid-row: 5/10;
     background: #444444aa;
     z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    /* overflow: scroll; */
+  }
+
+
+
+  .selectcardinner {
     display: flex;
     overflow: scroll;
+  }
+
+  .selectcardinnercontent {
+    display: flex;
+    overflow: scroll;
+    font-size: 85%;
   }
 
   .twice:hover {
