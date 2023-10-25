@@ -11,7 +11,7 @@ class CountryType(Enum):
     MONDSTADT = 0 # 蒙德
     LIYUE = 1 # 璃月
     INAZUMA = 2 # 稻妻
-    SUNERU = 3 # 须弥
+    SUMERU = 3 # 须弥
     FONTAINE = 4 # 枫丹
     NATLAN = 5 # 纳塔
     SNEZHNAYA = 6 # 至冬
@@ -109,6 +109,7 @@ class ActionCardType(Enum):
     EVENT_FOOD = 7
     EVENT_ELEMENTAL_RESONANCE = 8
     EVENT_ARCANE_LEGEND = 9
+    EVENT_COUNTRY = 10
 
 class ZoneType(Enum):
     CHARACTER_ZONE = 0
@@ -138,12 +139,15 @@ class EventType(Enum):
     DIVIDE_DAMAGE = 21 # 诺艾尔!
     EXECUTE_DAMAGE = 15
     CHARACTER_DIE = 16
+    CHARACTER_WILL_DIE = 17
 
-    BEFORE_ANY_ACTION = 17
-    AFTER_ANY_ACTION = 18
-    ON_SUMMON_REMOVE = 19
+    BEFORE_ANY_ACTION = 18
+    AFTER_ANY_ACTION = 19
+    ON_SUMMON_REMOVE = 20
 
-    ELEMENTAL_APPLICATION_REATION = 20
+    ELEMENTAL_APPLICATION_REATION = 21
+    AFTER_HEAL = 22
+
 class SwitchType(Enum):
     CHANGE_CHARACTER = 0
 
@@ -180,10 +184,12 @@ CostToDice = {
 utility functions
 '''
 from typing import TYPE_CHECKING
+from collections import defaultdict
 if TYPE_CHECKING:
     from genius_invocation.game.game import GeniusGame
     from genius_invocation.entity.character import Character
     from genius_invocation.game.player import GeniusPlayer
+    from genius_invocation.card.action import ActionCard
 
 
 # get characters
@@ -295,3 +301,57 @@ def Elements_to_color(ele: ElementType):
             return "rgb(255,255,255)"
         case ElementType.PIERCING:
             return "rgb(255,255,255)"
+        
+
+from genius_invocation.card.action import *
+import genius_invocation.card.character.characters as chars
+def select_card(characters: List['Character'], all_action_card: List['ActionCard']):
+    all_weapon_type = {}
+    same_country = {}
+    same_element = {}
+    all_character = []
+    available_action_card = defaultdict(list)
+    
+    for character in characters:
+        character = eval('chars.'+character)
+        all_character.append(character.__name__)
+        same_element[character.element] = same_element.get(character.element, 0) + 1
+        same_country[character.country] = same_country.get(character.country, 0) + 1
+        all_weapon_type[character.weapon_type] = all_weapon_type.get(character.weapon_type, 0) + 1
+
+
+    all_action_card  = sorted(all_action_card, key=lambda x:x[-1].id)
+    for class_name, name, name_ch, action_card in all_action_card:
+        match action_card.card_type:
+            case ActionCardType.EQUIPMENT_ARTIFACT:
+                available_action_card['ARTIFACT'].append((class_name, name, name_ch))
+            case ActionCardType.EQUIPMENT_WEAPON:
+                if action_card.weapon_type in all_weapon_type:
+                    available_action_card['WEAPON and TALENT'].append((class_name, name, name_ch))
+            case ActionCardType.EQUIPMENT_TALENT:
+                if action_card.character.__name__ in all_character:
+                    available_action_card['WEAPON and TALENT'].append((class_name, name, name_ch))
+            case ActionCardType.SUPPORT_COMPANION:
+                available_action_card['SUPPORT'].append((class_name, name, name_ch))
+            case ActionCardType.SUPPORT_ITEM:
+                available_action_card['SUPPORT'].append((class_name, name, name_ch))
+            case ActionCardType.SUPPORT_COMPANION:
+                available_action_card['SUPPORT'].append((class_name, name, name_ch))
+            case ActionCardType.EVENT_FOOD:
+                available_action_card['EVENT'].append((class_name, name, name_ch))
+            case ActionCardType.EVENT:
+                available_action_card['EVENT'].append((class_name, name, name_ch))
+            case ActionCardType.EVENT_ARCANE_LEGEND:
+                available_action_card['SPECIAL EVENT'].append((class_name, name, name_ch))
+            case ActionCardType.EVENT_ELEMENTAL_RESONANCE:
+                if same_element.get(action_card.element, 0) > 2:
+                    available_action_card['SPECIAL EVENT'].append((class_name, name, name_ch))
+            case ActionCardType.EVENT_COUNTRY:
+                if same_element.get(action_card.country, 0) > 2:
+                    available_action_card['SPECIAL EVENT'].append((class_name, name, name_ch))
+    return available_action_card
+
+
+        
+    
+    

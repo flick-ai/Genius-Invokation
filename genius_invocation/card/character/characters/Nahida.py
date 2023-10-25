@@ -210,7 +210,7 @@ class Nahida(Character):
     name_ch = "纳西妲"
     element: ElementType = ElementType.DENDRO
     weapon_type: WeaponType = WeaponType.CATALYST
-    country: CountryType = CountryType.SUNERU
+    country: CountryType = CountryType.SUMERU
 
     init_health_point: int = 10
     max_health_point: int = 10
@@ -222,6 +222,7 @@ class Nahida(Character):
         super().__init__(game, zone, from_player, index, from_character)
         self.power = 0
         self.talent = talent
+        self.talent_skill = self.skills[3]
 
 class Shrine_of_Maya(Combat_Status):
     name = "Shrine of Maya"

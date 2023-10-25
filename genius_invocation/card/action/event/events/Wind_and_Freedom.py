@@ -16,7 +16,8 @@ class  Wind_and_Freedom_Entity(Combat_Status):
     
     def on_after_skill(self, game:'GeniusGame'):
         if game.active_player_index == self.from_player.index:
-            self.from_player.change_to_next_character()
+            if game.current_skill.from_character == self.from_character:
+                self.from_player.change_to_next_character()
     
     def on_end(self, game:'GeniusGame'):
         if game.active_player_index == self.from_player.index:
@@ -34,9 +35,10 @@ class Wind_and_Freedom(ActionCard):
     id: int = 331801
     name: str = 'Wind and Freedom'
     name_ch = '风与自由'
+    country = CountryType.MONDSTADT
     cost_num = 1
     cost_type = CostType.BLACK
-    card_type = ActionCardType.EVENT
+    card_type = ActionCardType.EVENT_COUNTRY
 
     def __init__(self) -> None:
         super().__init__()

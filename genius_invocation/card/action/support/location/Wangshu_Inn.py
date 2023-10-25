@@ -27,7 +27,7 @@ class Wangshu_Inn_Entity(Support):
                 injured[idx] = character.max_health_point - character.health_point
             max_injured = injured.argmax()
             if injured.max() > 0:
-                standby_character[max_injured].heal(heal=2)
+                standby_character[max_injured].heal(heal=2,game=game)
                 self.usage -= 1
                 if self.usage == 0:
                     self.on_destroy(game)

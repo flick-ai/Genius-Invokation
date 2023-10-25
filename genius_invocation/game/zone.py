@@ -4,7 +4,7 @@ from genius_invocation.utils import *
 from copy import deepcopy
 from genius_invocation.card.action import *
 from genius_invocation.entity.status import Status, Shield, Combat_Shield, Weapon, Artifact, Combat_Status
-from genius_invocation.card.character.characters.keqing import Lightning_Stiletto
+from genius_invocation.card.character.characters.Keqing import Lightning_Stiletto
 
 if TYPE_CHECKING:
     from genius_invocation.entity.entity import Entity
@@ -19,10 +19,11 @@ class Dice:
     '''
         计算骰子的维护类
     '''
-    def __init__(self, from_player, from_character, use_type, cost) -> None:
+    def __init__(self, from_player, from_character, use_type, cost, to_character=None) -> None:
         self.cost: list({'cost_num': int, 'cost_type': CostType}) = cost
         self.from_player = from_player
         self.from_character: Character = from_character
+        self.to_character: Character = to_character
         self.use_type = use_type
         self.origin_cost = cost
 
@@ -340,7 +341,7 @@ class CharacterZone:
             self.artifact_card = None
         for status in self.status_list:
             status.on_destroy(game)
-            del(status)
+            # del(status)
         self.status_list = []
 class ActiveZone:
     '''

@@ -7,12 +7,26 @@ if TYPE_CHECKING:
     from genius_invocation.game.game import GeniusGame
 
 
-class StatusOfKingsSquire(Status):
-    
+class StatusOfSummeru(Status):
+    name = "Status Of Summeru's Weapon"
+    name_ch = '须弥武器状态'
+    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
+        super().__init__(game, from_player, from_character)
+        self.current_usage = 1
+        
     def on_calculate(self, game: 'GeniusGame'):
-        if game.current_damage.damage_from is self.from_player.character:
-            game.current_damage.main_damage += 1
-
+        if game.active_player_index == self.from_player.index:
+            if game.current_dice.use_type is SkillType.ELEMENTAL_SKILL:
+                if game.current_dice.from_character == self.from_character:
+                    if game.current_dice.cost[0]['cost_num']>0:
+                        game.current_dice.cost[0]['cost_num'] -= 2
+                        game.current_dice.cost[0]['cost_num'] = max(0, game.current_dice.cost[0]['cost_num'])
+                        return True
+        return False
+    
+    def on_skill(self, game: 'GeniusGame'):
+        if self.on_calculate(game):
+            self.on_destroy(game)                        
         
     def on_end_phase(self, game: 'GeniusGame'):
         '''
@@ -23,13 +37,17 @@ class StatusOfKingsSquire(Status):
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.END_PHASE, ZoneType.CHARACTER_ZONE, self.on_end_phase)
+            (EventType.END_PHASE, ZoneType.CHARACTER_ZONE, self.on_end_phase),
+            (EventType.CALCULATE_DICE, ZoneType.CHARACTER_ZONE, self.on_calculate),
+            (EventType.ON_USE_SKILL, ZoneType.CHARACTER_ZONE, self.on_skill)
         ]
 
 
 
 # weapons
-class RavenBowWeapon(Weapon):
+class KingsSquire(Weapon):
+    name: str = "King's Squire"
+    name_ch = "王下近侍"
     def on_damage_add(self, game: 'GeniusGame'):
         if game.current_damage.damage_from == self.from_character:
             if game.current_damage.main_damage_element is not ElementType.PIERCING:
@@ -45,17 +63,20 @@ class KingsSquire(WeaponCard):
     '''王下近侍'''
     id: int = 311206
     name: str = "King's Squire"
+    name_ch = "王下近侍"
     weapon_type: WeaponType = WeaponType.BOW
     cost_num: int = 3
     cost_type: CostType = CostType.WHITE
-
+    
     def __init__(self) -> None:
         super().__init__()
-    
+        self.equipment_entity = KingsSquire
+
     def on_played(self, game: 'GeniusGame') -> None:
         super().on_played(game)
         idx = game.current_action.target_idx
         target_character = game.active_player.character_list[idx]
-        status = StatusOfKingsSquire(game, game.active_player, target_character)
-        target_character.character_zone.add_entity(status)
+        if target_character.character_zone.has_entity(StatusOfSummeru) == None:
+            status = StatusOfSummeru(game, game.active_player, target_character)
+            target_character.character_zone.add_entity(status)
 

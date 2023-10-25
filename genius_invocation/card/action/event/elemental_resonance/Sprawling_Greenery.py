@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 class Sprawling_Greenery_Entity(Combat_Status):
     id: int = 331702
     name: str = "Sprawling_Greenery"
-    name_chr = "蔓生之草"
+    name_ch = "蔓生之草"
 
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
@@ -38,9 +38,10 @@ class Sprawling_Greenery_Entity(Combat_Status):
 class Sprawling_Greenery(ActionCard):
     id: int = 331702
     name: str = "Sprawling_Greenery"
-    name_chr = "蔓生之草"
+    name_ch = "蔓生之草"
+    element = ElementType.DENDRO
     cost_num = 1
-    card_type = ActionCardType.EVENT_ELEMENTAL_RESONANCE.value
+    card_type = ActionCardType.EVENT_ELEMENTAL_RESONANCE
     cost_type = CostType.DENDRO
 
     def __init__(self) -> None:

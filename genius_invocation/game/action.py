@@ -5,6 +5,7 @@
 
 from genius_invocation.utils import *
 import genius_invocation.user_input as user_input
+from loguru import logger
 
 '''
     choice action (1 dim)
@@ -103,7 +104,14 @@ class Action:
         return Action(action[0], action[1], action[2])
 
     @staticmethod
-    def from_input(game: 'GeniusGame', jump=True):
+    def from_dict(action: dict):
+        '''
+            (1, 1, list(n))
+        '''
+        return Action(action['choice'], action['target'], action['dice'])
+
+    @staticmethod
+    def from_input(game: 'GeniusGame', log=None, mode='a', jump=True):
         mask, use_dice = game.active_player.action_mask[:,:,0], game.active_player.action_mask[:,:,1:]
         choice_dict = {0:'打出本方第1张手牌',
                        1:'打出本方第2张手牌',
@@ -149,14 +157,14 @@ class Action:
                        2:'选择角色0',
                        3:'选择角色1',
                        4:'选择角色2',
-                       5:'选择对手0号召唤',
-                       6:'选择对手1号召唤',
-                       7:'选择对手2号召唤',
-                       8:'选择对手3号召唤',
-                       9:'选择本方0号支援',
-                       10:'选择本方1号支援',
-                       11:'选择本方2号支援',
-                       12:'选择本方3号支援',
+                       5:'选择0号召唤',
+                       6:'选择1号召唤',
+                       7:'选择2号召唤',
+                       8:'选择3号召唤',
+                       9:'选择0号支援',
+                       10:'选择1号支援',
+                       11:'选择2号支援',
+                       12:'选择3号支援',
                        13:'选择操作本方骰子',
                        14:'选择操作本方手牌'}
         target_prompt = '根据您选择的行动，您可以选择以下目标(按确认以提交或清空选择):\n'
@@ -177,25 +185,9 @@ class Action:
         if choice == 16:
             list_prompt = f'您需要选择重新投掷的骰子的位置,形式如0 1 2所示,数值应该在{0}-{use_dice[choice][target][0]-1}之间:'
             dice = user_input.get_special_rng_mul_sel(list_prompt, min=0, max=use_dice[choice][target][0]-1)
-            if False:
-                if dice == '':
-                    dice = []
-                else:
-                    dice = [int(i) for i in dice.split(' ')]
-                if check_duplicate_dice(dice):
-                    print("您选择的骰子包含重复位置,非法,默认您选择[]")
-                    dice = []
         elif choice == 17:
             list_prompt = f'您需要选择重新获取的手牌的位置,形式如0 1 2所示,数值应该在{0}-{use_dice[choice][target][0]-1}之间:'
             dice = user_input.get_special_rng_mul_sel(list_prompt, min=0, max=use_dice[choice][target][0]-1)
-            if False:
-                if dice == '':
-                    dice = []
-                else:
-                    dice = [int(i) for i in dice.split(' ')]
-                if check_duplicate_dice(dice):
-                    print("您选择的手牌包含重复位置,非法,默认您选择[]")
-                    dice = []
         elif use_dice.sum() == 0:
             dice = []
         else:  # what is this?
@@ -223,8 +215,10 @@ class Action:
                     exit()
                 except:
                     print("您选择的骰子包含重复位置,非法,请重新选择")
-
-
+        if log is not None:
+            log.append({"choice":choice, "target":target, "dice":dice})
+            with open("./action.log", mode) as f:
+                json.dump(log, f, indent=4)
         return Action(choice, target, dice)
 
 def choose_card(card: List[int]):

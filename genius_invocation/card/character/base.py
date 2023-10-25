@@ -27,7 +27,7 @@ class CharacterSkill:
     main_damage_element: ElementType
     main_damage: int
     piercing_damage: int
-
+    is_prepared_skill: bool = False
     # cost
     cost: list({'cost_num': int, 'cost_type': CostType})
     energy_cost: int
@@ -47,7 +47,6 @@ class CharacterSkill:
         game.add_damage(Damage.create_damage(game, self.damage_type, self.main_damage_element,
                               self.main_damage + add_main_damage,
                               self.piercing_damage + add_piercing_damage,
-                              # TODO: 可能需要改一下调用的接口
                               self.from_character, get_opponent_active_character(game),
                               self.is_plunging_attack, self.is_charged_attack))
         game.resolve_damage()
@@ -55,7 +54,7 @@ class CharacterSkill:
         self.from_character.power += self.energy_gain
         self.from_character.power = min(self.from_character.power, self.from_character.max_power)
 
-    def add_status(self, game: 'GeniusGame', STATUS): 
+    def add_status(self, game: 'GeniusGame', STATUS):
         # Add a status in character zone of current character
         # Here status is the "class" of status, is not an instance of status
         status = self.from_character.character_zone.has_entity(STATUS)
@@ -106,7 +105,7 @@ class CharacterSkill:
                 summon.update(game)
             except:
                 summon.update()
-    
+
     def add_combat_shield(self, game: 'GeniusGame', COMBAT_SHIELD):
         # Add a combat shield in active zone of current player
         # Here COMBAT_SHIELD is the "class" of Combat_Shield, is not an instance
@@ -137,7 +136,6 @@ class NormalAttack(CharacterSkill):
 
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
-        # TODO: 判断是否为重击
         game.manager.invoke(EventType.ON_USE_SKILL, game)
 
 

@@ -30,9 +30,10 @@ class Stone_and_Contracts(ActionCard):
     id: int = 331802
     name: str = 'Stone and Contracts'
     name_ch = '岩与契约'
+    country = CountryType.LIYUE
     cost_num = 3
     cost_type = CostType.BLACK
-    card_type = ActionCardType.EVENT
+    card_type = ActionCardType.EVENT_COUNTRY
 
     def __init__(self) -> None:
         super().__init__()

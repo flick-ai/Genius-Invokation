@@ -58,6 +58,7 @@ class GeniusPlayer:
         self.is_after_change: bool
         self.is_quick_change: bool
         self.change_num: int
+        self.last_die_round: int = -1
 
         # 扔骰子基本信息
         self.roll_num: int = 8
@@ -99,16 +100,15 @@ class GeniusPlayer:
         '''
             基本行动: 投掷骰子
         '''
-        is_omni = False
         if is_basic:
                 if is_different:
                     return self.game.random.choice(DICENUM-1, num, replace=False).tolist()
                 return self.game.random.randint(0, DICENUM-1, num).tolist()
-        if is_omni:
+        if self.game.is_omni:
             return  [7 for i in range(num)]
         else:
             return self.game.random.randint(0, DICENUM, num).tolist()
-        
+
 
     def get_card(self, num):
         '''
@@ -175,10 +175,16 @@ class GeniusPlayer:
         if game.current_action.target_type == ActionTarget.DICE_REGION:
             card.on_tuning(game)
         else:
-            game.current_dice = Dice(from_player=self,
-                                from_character=None,
-                                use_type=card.card_type,
-                                cost = [{'cost_num':card.cost_num, 'cost_type':card.cost_type}])
+            if card.card_type == ActionCardType.EQUIPMENT_TALENT:
+                game.current_dice= Dice(from_player=self,
+                                        from_character=None,
+                                        use_type=card.card_type,
+                                        cost = deepcopy(card.cost))
+            else:
+                game.current_dice = Dice(from_player=self,
+                                    from_character=None,
+                                    use_type=card.card_type,
+                                    cost = [{'cost_num':card.cost_num, 'cost_type':card.cost_type}])
             game.manager.invoke(EventType.ON_PLAY_CARD, game)
             card.on_played(game)
         game.current_card = None #Finish use the card.
@@ -217,7 +223,7 @@ class GeniusPlayer:
             2. 行动所需骰子是否足够？
             TODO:我们使用一个3维矩阵来维护,但是实际上这个矩阵十分稀疏,可以考虑使用稀疏矩阵来提升系统系能
         '''
-        
+
         # print(game.game_phase, game.active_player_index, "generate_mask")
         self.action_mask = np.zeros((18, 15, 5)).astype(np.int32)
 
@@ -233,20 +239,34 @@ class GeniusPlayer:
             self.action_mask[17][14][1] = self.hand_zone.num()
             return
         if game.game_phase == GamePhase.SET_CHARACTER:
-            for idx, character in enumerate(self.character_list):
-                character: Character
-                if character.is_alive and not character.is_active:
-                    self.action_mask[14][idx+2][0] = 1
-            return
+            if game.special_phase != None:
+                has_target = game.special_phase.refind_target(game)
+                if has_target != None:
+                    for target in has_target:
+                        self.action_mask[14][target+2][0] = 1
+                return 
+            else:
+                for idx, character in enumerate(self.character_list):
+                    character: Character
+                    if character.is_alive and not character.is_active:
+                        self.action_mask[14][idx+2][0] = 1
+                return
 
         # 计算能否打出手牌和烧牌
         for idx, action_card in enumerate(self.hand_zone.card):
             action_card: 'ActionCard'
-            has_target = action_card.find_target(game)
-            has_dice = self.calculate_dice(game, Dice(from_player=self,
-                                                      from_character=None,
-                                                      use_type=action_card.card_type,
-                                                      cost = [{'cost_num':action_card.cost_num, 'cost_type':action_card.cost_type}]))
+            if action_card.card_type == ActionCardType.EQUIPMENT_TALENT:
+                has_target = action_card.find_target(game)
+                has_dice = self.calculate_dice(game, Dice(from_player=self,
+                                                        from_character=None,
+                                                        use_type=action_card.card_type,
+                                                        cost = deepcopy(action_card.cost)))
+            else:
+                has_target = action_card.find_target(game)
+                has_dice = self.calculate_dice(game, Dice(from_player=self,
+                                                        from_character=None,
+                                                        use_type=action_card.card_type,
+                                                        cost = [{'cost_num':action_card.cost_num, 'cost_type':action_card.cost_type}]))
             if has_target is not None and has_dice:
                 for target in has_target:
                     self.action_mask[idx][target][0] = 1
@@ -282,18 +302,22 @@ class GeniusPlayer:
                     self.action_mask[idx+10][0][i*2+2] = cost['cost_type'].value
 
         # 计算能否切换角色
-        has_dice = self.calculate_dice(game, Dice(from_player=self,
-                                                  from_character=None,
-                                                  use_type=SwitchType.CHANGE_CHARACTER,
-                                                  cost=[{'cost_num':1, 'cost_type':CostType.BLACK}]))
-        if has_dice:
-            for idx, character in enumerate(self.character_list):
-                character: Character
-                if character.is_alive and not character.is_active:
-                    self.action_mask[14][idx+2][0] = 1
-                for i, cost in enumerate(game.current_dice.cost):
-                        self.action_mask[14][idx+2][i*2+1] = cost['cost_num']
-                        self.action_mask[14][idx+2][i*2+2] = cost['cost_type'].value
+        for idx, character in enumerate(self.character_list):
+            character: Character
+            if character.is_active:
+                continue
+            has_dice = self.calculate_dice(game, Dice(from_player=self,
+                                                from_character=get_my_active_character(game),
+                                                to_character=character,
+                                                use_type=SwitchType.CHANGE_CHARACTER,
+                                                cost=[{'cost_num':1, 'cost_type':CostType.BLACK}]))
+            if not has_dice:
+                continue
+            if character.is_alive:
+                self.action_mask[14][idx+2][0] = 1
+            for i, cost in enumerate(game.current_dice.cost):
+                    self.action_mask[14][idx+2][i*2+1] = cost['cost_num']
+                    self.action_mask[14][idx+2][i*2+2] = cost['cost_type'].value
 
     def calculate_dice(self, game: 'GeniusGame', dice: Dice):
         '''
@@ -312,6 +336,7 @@ class GeniusPlayer:
         self.roll_time = 1
         self.fix_dice = []
         # 事件
+        self.dice_zone.remove_all()
         game.manager.invoke(EventType.BEGIN_ROLL_PHASE, game)
         self.roll_num = self.roll_num - len(self.fix_dice)
         dices = self.fix_dice + self.roll_dice(num=self.roll_num)
@@ -337,9 +362,7 @@ class GeniusPlayer:
         '''
         # 事件
         game.manager.invoke(EventType.END_PHASE, game)
-
         self.roll_time = 2
-        self.dice_zone.remove_all()
         self.get_card(num=2)
 
 

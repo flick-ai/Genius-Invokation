@@ -1,4 +1,5 @@
 from genius_invocation.card.character.characters.import_head import *
+# from genius_invocation.card.character.base import Skill
 
 
 class ElectroCrystalProjection(NormalAttack):
@@ -56,6 +57,7 @@ class RockPaperScissorsCombo_Paper(ElementalSkill):
     main_damage_element: ElementType = ElementType.ELECTRO
     main_damage: int = 3
     piercing_damage: int = 0
+    is_prepared_skill = True
 
     # cost
     cost = []
@@ -112,7 +114,7 @@ class RockPaperScissorsCombo_Scissors(ElementalSkill):
     main_damage_element: ElementType = ElementType.ELECTRO
     main_damage: int = 2
     piercing_damage: int = 0
-
+    is_prepared_skill = True
     # cost
     cost = []
     energy_cost: int = 0
@@ -314,6 +316,19 @@ class ElectroCrystalCore(Status):
             (EventType.CHARACTER_DIE, ZoneType.CHARACTER_ZONE, self.on_character_die)
         ]
 
+class TalentOfElectroHypostasis(CharacterSkill):
+    '''
+        无向之雷被动技能
+    '''
+    def on_call(self, game: 'GeniusGame'):
+        self.from_character.heal(3,game=game)
+        if not self.from_character.character_zone.has_entity(ElectroCrystalCore):
+            electro_crystal_core = ElectroCrystalCore(game=game,
+                                                    from_player=self.from_character.from_player,
+                                                    from_character=self.from_character)
+            self.from_character.character_zone.add_entity(electro_crystal_core)
+
+
 class ElectroHypostasis(Character):
     '''
         无相之雷
@@ -342,3 +357,4 @@ class ElectroHypostasis(Character):
     def __init__(self, game: 'GeniusGame', zone: 'CharacterZone', from_player: 'GeniusPlayer', index: int, from_character=None, talent=False):
         super().__init__(game, zone, from_player, index, from_character)
         self.talent = talent
+        self.talent_skill = TalentOfElectroHypostasis(from_character=self)

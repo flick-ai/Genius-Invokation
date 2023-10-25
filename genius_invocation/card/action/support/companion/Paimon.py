@@ -22,9 +22,7 @@ class Paimon_Entity(Support):
         if game.active_player_index == self.from_player.index:
             self.from_player.dice_zone.add([DiceType.OMNI.value, DiceType.OMNI.value,])
             self.usage -= 1
-            logger.info(f"Paimon:{self.from_player.dice_zone.num()},剩余使用次数{self.usage}")
             if self.usage == 0:
-                logger.info(f"Paimon Destroy")
                 self.on_destroy(game)
 
     def update_listener_list(self):

@@ -13,7 +13,7 @@ class Shattering_Ice_Entity(Status):
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.current_usage = 1
-    
+
     def on_damage_add(self, game: 'GeniusGame'):
         if game.current_damage.damage_from == self.from_character:
             if game.current_damage.main_damage_element == ElementType.PIERCING:
@@ -38,8 +38,9 @@ class Shattering_Ice(ActionCard):
     id: int = 331102
     name: str = "Shattering_Ice"
     name_ch = "粉碎之冰"
+    element = ElementType.CRYO
     cost_num = 1
-    card_type = ActionCardType.EVENT_ELEMENTAL_RESONANCE.value
+    card_type = ActionCardType.EVENT_ELEMENTAL_RESONANCE
     cost_type = CostType.CRYO
 
     def __init__(self) -> None:
@@ -48,4 +49,7 @@ class Shattering_Ice(ActionCard):
 
     def on_played(self, game: 'GeniusGame') -> None:
         target_character = get_active_character(game, game.active_player.index)
-        target_character.character_zone.add_entity(self.elemental_resonance_entity(game, from_player=game.active_player, from_character=target_character))
+        if target_character.character_zone.has_entity(self.elemental_resonance_entity):
+            return
+        else:
+            target_character.character_zone.add_entity(self.elemental_resonance_entity(game, from_player=game.active_player, from_character=target_character))

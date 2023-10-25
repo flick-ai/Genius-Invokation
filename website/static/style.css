@@ -35,6 +35,7 @@
 .wrapper {
     display: grid;
     grid-template-columns: 1fr 0.4fr 0.4fr 1fr 1fr 1fr 0.4fr 0.4fr 0.6fr 0.8fr 0.8fr;
+    grid-template-rows: repeat(9, 1fr);
     grid-gap: 2px;
     /* grid-auto-rows: minmax(80px, 90px);
      */
@@ -219,6 +220,8 @@
     border-width: 4px;
     border-color: #00000000;
   }
+
+ 
   
   .summon0.player1 {
     grid-column: 7/9;
@@ -265,6 +268,11 @@
     text-align: center;
     font-size: 90%;
     color: #fff;
+  }
+
+  .checkdiv {
+    display: flex;
+    flex-direction: column;
   }
 
   .expanditem .expandinner {
@@ -314,6 +322,34 @@
     border-width:2px;
     border-color: #00000000;
   } */
+
+  
+  .nothing{
+    display: none;
+  }
+  .selectcharacter {
+    grid-column: 1/12;
+    grid-row: 2/5;
+    background: #444444aa;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: minmax(80px, 80px);
+
+  }
+
+  .currentselect {
+    grid-column: 1/12;
+    grid-row: 1/2;
+    background: #444444aa;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    grid-template-columns: repeat(6, 1fr);
+    /* grid-auto-rows: minmax(80px, 80px); */
+
+  }
   
   .clickable:hover {
     background-color: #FFFFFF33;
@@ -369,3 +405,37 @@
     margin: 4px 0 4px 4px;
     color: #444;
   }
+
+  #confirmchara {
+    color: #f90;
+  }
+
+  #saveselect {
+    grid-column: 6/7;
+  }
+
+  .charaitem {
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .twice {
+    background: #FFFF0088;
+  }
+
+  .selectcard {
+    grid-column: 1/4;
+    grid-row: 5/10;
+    background: #444444aa;
+    z-index: 1;
+    display: flex;
+    overflow: scroll;
+  }
+
+  .twice:hover {
+    background: #FFFF0044;
+  }
+
+  

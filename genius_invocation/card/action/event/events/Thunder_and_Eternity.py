@@ -8,9 +8,10 @@ class Thunder_and_Eternity(ActionCard):
     id: int = 331803
     name: str = 'Thunder and Eternity'
     name_ch = '雷与永恒'
+    country = CountryType.INAZUMA
     cost_num = 0
     cost_type = None
-    card_type = ActionCardType.EVENT
+    card_type = ActionCardType.EVENT_COUNTRY
 
     def __init__(self) -> None:
         super().__init__()
@@ -19,3 +20,9 @@ class Thunder_and_Eternity(ActionCard):
         num = game.active_player.dice_zone.num()
         game.active_player.dice_zone.remove_all()
         game.active_player.dice_zone.add([7 for i in range(num)])
+
+    def find_target(self, game:'GeniusGame'):
+        if game.active_player.dice_zone.num()>0:
+            return [1]
+        else:
+            return []

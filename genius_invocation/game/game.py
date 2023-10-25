@@ -8,11 +8,13 @@ from genius_invocation.event.events import EventManager
 from genius_invocation.card.character.base import Damage
 from genius_invocation.card.action.base import ActionCard
 from genius_invocation.game.zone import Dice
+from genius_invocation.event.heal import Heal
 from loguru import logger
 from rich.console import Console
 from rich.table import Column, Table
 from genius_invocation.user_layout import *
 from genius_invocation.utils_dict import *
+from time import time
 if TYPE_CHECKING:
     from genius_invocation.card.character.base import CharacterSkill
 
@@ -20,11 +22,16 @@ class GeniusGame:
     '''
     主游戏
     '''
-    def __init__(self, player0_deck, player1_deck, seed=2023) -> None:
+    def __init__(self, player0_deck, player1_deck, seed=None, is_omni=False) -> None:
         self.manager = EventManager()
 
+        self.is_omni = is_omni
         self.num_players = 3
-        self.random = np.random.RandomState(seed)
+        if seed:
+            self.random = np.random.RandomState(seed)
+        else:
+            seed = int(time())
+            self.random = np.random.RandomState(seed)
         self.first_player: int
         self.active_player_index: int
         self.active_player: GeniusPlayer # should be ref of player0 or player1
@@ -35,6 +42,8 @@ class GeniusGame:
         self.special_phase = None
         self.round: int = 0
 
+        self.current_die: Character = None
+        self.current_heal: Heal = None
         self.current_dice: Dice = None
         self.current_action: Action = None
         self.current_damage: Damage = None
@@ -84,12 +93,15 @@ class GeniusGame:
         elif action.choice_type == ActionChoice.PASS:
             self.is_change_player = True
             active_player.is_pass = True
+            
+        self.manager.invoke(EventType.AFTER_ANY_ACTION, self)
+
+        if active_player.is_pass:
             if oppenent_player.is_pass:
                 self.end_phase()
             else:
                 self.first_player = self.active_player_index
         
-        self.manager.invoke(EventType.AFTER_ANY_ACTION, self)
         if self.is_change_player and (not oppenent_player.is_pass):
             self.change_active_player()
         
@@ -112,11 +124,11 @@ class GeniusGame:
         while len(self.damage_list) >0:
             self.current_damage = self.damage_list.pop(0)
             self.current_damage.on_damage(self)
-            logger.debug(f"len of damage list {len(self.damage_list)}")
-            del(self.current_damage)
+            # logger.debug(f"len of damage list {len(self.damage_list)}")
+            # del(self.current_damage)
             self.current_damage = None
 
-        self.check_dying() # TODO: Not Implement yet.
+        self.check_dying()
 
     def suffer_current_damage(self):
         target = self.current_damage.damage_to
@@ -148,10 +160,13 @@ class GeniusGame:
                     continue
                 if char.health_point <= 0:
                     char.is_alive = False
-                    self.manager.invoke(EventType.CHARACTER_DIE, self)
+                    self.manager.invoke(EventType.CHARACTER_WILL_DIE, self)
                     if not char.is_alive:
                         num += 1
                         char.dying(self)
+                        char.from_player.last_die_round = self.round
+                        self.current_die = char
+                        self.manager.invoke(EventType.CHARACTER_DIE, self)
             if num == 3:
                 print(f"player{1-player.index} is winner!")
                 exit()
@@ -206,9 +221,8 @@ class GeniusGame:
         '''
             选择出战角色
         '''
-        self.active_player.choose_character(action)
-
         if self.special_phase is None:
+            self.active_player.choose_character(action)
             self.change_active_player()
             if self.active_player_index == self.first_player:
                 self.roll_phase()
