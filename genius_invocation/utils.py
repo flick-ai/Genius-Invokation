@@ -301,10 +301,13 @@ def select_card(characters: List['Character'], all_action_card: List['ActionCard
     all_wepon_type = {}
     same_country = {}
     same_element = {}
+    available_action = {}
     
     for character in characters:
         same_element[character.element] = same_element.get(character.element, 0) + 1
         same_country[character.country] = same_country.get(character.country, 0) + 1
         all_wepon_type[character.weapon_type] = all_wepon_type.get(character.weapon_type, 0) + 1
+
+    # for action_card in 
     
     
