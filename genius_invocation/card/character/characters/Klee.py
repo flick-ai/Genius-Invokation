@@ -160,4 +160,4 @@ class Klee(Character):
         super().__init__(game, zone, from_player, index, from_character)
         self.power = 0
         self.talent = talent
-        self.talent_skill = self.skill_list[1]
+        self.talent_skill = self.skills[1]

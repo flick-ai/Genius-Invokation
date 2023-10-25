@@ -27,9 +27,14 @@ class Chang_the_Ninth_Entity(Support):
             self.is_calculate =True
         elif damage.main_damage_element == ElementType.PIERCING or damage.piercing_damage > 0:
             self.is_calculate =True
+
     def on_attach_reaction(self, game:'GeniusGame'):
         self.is_calculate = True
+
     def on_skill(self, game:'GeniusGame'):
+        self.is_calculate = False
+
+    def on_begin(self, game:'GeniusGame'):
         self.is_calculate = False
 
     def on_after_skill(self, game:'GeniusGame'):
@@ -42,6 +47,7 @@ class Chang_the_Ninth_Entity(Support):
         
     def update_listener_list(self):
         self.listeners = [
+            (EventType.BEGIN_ACTION_PHASE, ZoneType.SUPPORT_ZONE, self.on_begin),
             (EventType.EXECUTE_DAMAGE, ZoneType.SUPPORT_ZONE, self.on_damage),
             (EventType.BEFORE_ANY_ACTION, ZoneType.SUPPORT_ZONE, self.on_skill),
             (EventType.AFTER_USE_SKILL, ZoneType.SUPPORT_ZONE, self.on_after_skill),

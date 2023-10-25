@@ -107,7 +107,7 @@ class Diluc(Character):
         self.power = 0
         self.use_element_skill = 0
         self.talent = talent
-        self.talent_skill = self.skill_list[1]
+        self.talent_skill = self.skills[1]
     
     def on_begin(self, game: 'GeniusGame'):
         super().on_begin(game)

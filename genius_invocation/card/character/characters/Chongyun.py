@@ -114,7 +114,7 @@ class Chongyun(Character):
         super().__init__(game, zone, from_player, index, from_character)
         self.power = 0
         self.talent = talent
-        self.talent_skill = self.skill_list[1]
+        self.talent_skill = self.skills[1]
     
     def listen_talent_events(self, game: 'GeniusGame'):
         status = self.from_player.team_combat_status.has_status(FrostField)
