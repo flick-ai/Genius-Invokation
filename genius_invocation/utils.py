@@ -352,6 +352,8 @@ def select_card(characters: List['Character'], all_action_card: List['ActionCard
     return available_action_card
 
 
-        
-    
-    
+def decode_enum(dct):
+    if "enum_type" in dct and "enum_name" in dct:
+        enum_type = globals()[dct["enum_type"]]
+        return enum_type[dct["enum_name"]]
+    return dct
