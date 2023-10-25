@@ -71,9 +71,10 @@ class Abyssal_Summons(ActionCard):
     id: int = 332015
     name: str = 'Abyssal Summons'
     name_ch = '深渊的呼唤'
+    country = CountryType.MONSTER
     cost_num = 2
     cost_type = CostType.WHITE
-    card_type = ActionCardType.EVENT
+    card_type = ActionCardType.EVENT_COUNTRY
 
     def __init__(self) -> None:
         super().__init__()

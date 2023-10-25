@@ -14,6 +14,7 @@ from rich.table import Column, Table
 from genius_invocation.user_layout import *
 import js
 from js import prompt, alert
+from time import time
 if TYPE_CHECKING:
     from genius_invocation.card.character.base import CharacterSkill
 
@@ -21,13 +22,16 @@ class GeniusGame:
     '''
     主游戏
     '''
-    def __init__(self, player0_deck, player1_deck, seed=2023) -> None:
+    def __init__(self, player0_deck, player1_deck, seed=None, is_omni=False) -> None:
         self.manager = EventManager()
 
+        self.is_omni = is_omni
         self.num_players = 3
-        # self.seed = seed
-        # np.random.seed(seed)
-        self.random = np.random.RandomState(seed)
+        if seed:
+            self.random = np.random.RandomState(seed)
+        else:
+            seed = int(time())
+            self.random = np.random.RandomState(seed)
         self.first_player: int
         self.active_player_index: int
         self.active_player: GeniusPlayer # should be ref of player0 or player1
@@ -87,15 +91,16 @@ class GeniusGame:
         elif action.choice_type == ActionChoice.PASS:
             self.is_change_player = True
             active_player.is_pass = True
-            if oppenent_player.is_pass:
-                self.end_phase()
-            else:
-                self.first_player = self.active_player_index
 
         self.manager.invoke(EventType.AFTER_ANY_ACTION, self)
+        if oppenent_player.is_pass:
+            self.end_phase()
+        else:
+            self.first_player = self.active_player_index
+
         if self.is_change_player and (not oppenent_player.is_pass):
             self.change_active_player()
-
+        
         oppenent_player = self.players[1 - self.active_player_index]
         self.manager.invoke(EventType.BEFORE_ANY_ACTION, self)
         while self.active_player.prepared_skill is not None:
@@ -107,6 +112,7 @@ class GeniusGame:
             self.active_player.prepared_skill.on_call(self)
             if not oppenent_player.is_pass:
                 self.change_active_player()
+
     def add_damage(self, damage: Damage):
         self.damage_list.append(damage)
 
@@ -185,9 +191,8 @@ class GeniusGame:
         '''
             选择出战角色
         '''
-        self.active_player.choose_character(action)
-
         if self.special_phase is None:
+            self.active_player.choose_character(action)
             self.change_active_player()
             if self.active_player_index == self.first_player:
                 self.roll_phase()
@@ -199,7 +204,6 @@ class GeniusGame:
         '''
             选择重新投掷的骰子
         '''
-
         self.active_player.choose_dice(action)
         self.active_player.roll_time -= 1
         if self.active_player.roll_time == 0:
@@ -229,11 +233,11 @@ class GeniusGame:
         '''
             进入交替行动阶段
         '''
-        self.active_player.begin_action_phase(self)
-        self.change_active_player()
-        self.active_player.begin_action_phase(self)
-        self.change_active_player()
 
+        self.active_player.begin_action_phase(self)
+        self.change_active_player()
+        self.active_player.begin_action_phase(self)
+        self.change_active_player()
         self.game_phase = GamePhase.ACTION_PHASE
 
     def end_phase(self):
@@ -259,11 +263,9 @@ class GeniusGame:
         '''
         return layout(self)
 
-
     def change_active_player(self):
         self.active_player_index = 1 - self.active_player_index
         self.active_player = self.players[self.active_player_index]
-
 
 
 

@@ -8,6 +8,7 @@ class Woven_Stone(ActionCard):
     id: int = 331601
     name: str = "Woven_Stone"
     name_ch = "交织之岩"
+    element = ElementType.GEO
     cost_num = 0
     card_type = ActionCardType.EVENT_ELEMENTAL_RESONANCE
     cost_type = None

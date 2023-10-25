@@ -1,92 +1,397 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <!-- <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" /> -->
+    <link rel="stylesheet" href="./pyscript.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <script defer src="./pyscript.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script> -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.3/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.3/js/bootstrap.bundle.min.js"></script>
   </head>
+
   <body>
-    <div id="aaa" style="width: 600px; height: 500px;">
+    <py-config>
+      packages = [
+        './genius_invocation-0.0.1-py3-none-any.whl',
+        'numpy',
+        './loguru-0.7.2-py3-none-any.whl',
+        './rich-13.6.0-py3-none-any.whl']
+    </py-config>
+    
+    <div class="wrapper">
+      <div class="informationbox">
+        <div class="confirm item topclick clickable" id="confirm_action">
+          确认行动
+        </div>
+        <div class="current item topclick">
+          <div>当前行动:</div><div id="current_choice"></div>
+        </div>
+        <div class="information item">
+          <div class="thetitle">对局信息</div>
+          <div id="information"></div>
+        </div>
+        <div class="changecharacter item topclick clickable">
+          切换角色
+        </div>
+        <div class="passround item topclick clickable">
+          结束回合
+        </div>
+      </div>
+      
+      <div class="player0box"></div>
+      <div class="cardzone player0 item zone"><div class="thetitle">手牌区</div><div class="thetitle"></div></div>
+      <div class="handcard player0 item zone"><div class="thetitle"></div></div>
+      <div class="support0 player0 item zone"><div class="thetitle clickable">支援区1</div></div>
+      <div class="support2 player0 item zone"><div class="thetitle clickable">支援区3</div></div>
+      <div class="support1 player0 item zone"><div class="thetitle clickable">支援区2</div></div>
+      <div class="support3 player0 item zone"><div class="thetitle clickable">支援区4</div></div>
+      <div class="character0 player0 item zone"><div class="thetitle clickable">角色1</div></div>
+      <div class="character1 player0 item zone"><div class="thetitle clickable">角色2</div></div>
+      <div class="character2 player0 item zone"><div class="thetitle clickable">角色3</div></div>
+      <div class="summon0 player0 item zone"><div class="thetitle clickable">召唤区1</div></div>
+      <div class="summon2 player0 item zone"><div class="thetitle clickable">召唤区3</div></div>
+      <div class="summon1 player0 item zone"><div class="thetitle clickable">召唤区2</div></div>
+      <div class="summon3 player0 item zone"><div class="thetitle clickable">召唤区4</div></div>
+      <div class="dice player0 item zone"><div class="thetitle clickable">骰子区</div></div>
+      <div class="prompt item" id="prompt"></div>
+
+      <div class="player1box"></div>
+
+      <div class="cardzone player1 item zone"><div class="thetitle">手牌区</div><div class="thetitle"></div></div>
+      <div class="handcard player1 item zone"><div class="thetitle"></div></div>
+      <div class="support0 player1 item zone"><div class="thetitle clickable">支援区1</div></div>
+      <div class="support2 player1 item zone"><div class="thetitle clickable">支援区3</div></div>
+      <div class="support1 player1 item zone"><div class="thetitle clickable">支援区2</div></div>
+      <div class="support3 player1 item zone"><div class="thetitle clickable">支援区4</div></div>
+      <div class="character0 player1 item zone"><div class="thetitle clickable">角色1</div></div>
+      <div class="character1 player1 item zone"><div class="thetitle clickable">角色2</div></div>
+      <div class="character2 player1 item zone"><div class="thetitle clickable">角色3</div></div>
+      <div class="summon0 player1 item zone"><div class="thetitle clickable">召唤区1</div></div>
+      <div class="summon2 player1 item zone"><div class="thetitle clickable">召唤区3</div></div>
+      <div class="summon1 player1 item zone"><div class="thetitle clickable">召唤区2</div></div>
+      
+      <div class="summon3 player1 item zone"><div class="thetitle clickable">召唤区4</div></div>
+      <div class="dice player1 item zone"><div class="thetitle clickable">骰子区</div></div>
+      
+      
     </div>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
-    <script type="text/javascript">
-      async function main() {
-        let pyodide = await loadPyodide();
-        let text = "";
-        await pyodide.loadPackage("micropip");
-        await pyodide.loadPackage("numpy");
-        pyodide.setStdin({ stdin: () => prompt() })
-        class StringWriter {
+    <div class="input">
+      <!-- <div id="prompt">></div> -->
+      <!-- <input type="text" id="input_text"></input> -->
+      <div id="input_result" style="display:none"></div>
+      <!-- <button id="input_button">Input</button> -->
+      <div id="error_text" style="display:none"></div>
+      <!-- <div id="current_choice"></div> -->
+      <div id="current_dice" style="display:none"></div>
+    </div>
+    <script>
 
-          constructor(out) {
-            this.out = out;
-            this.output = [];
-          }
+      let current_choice = ""
+      let current_choice_set = new Set()
+      let current_dice = ""
+      let current_dice_set = new Set()
+      function update_set(set, data){
+        if (set.has(data)){
+          set.delete(data)
+        } else {
+          set.add(data)
+        }
+        let data_string = ""
+        for (const item of set) {
+          data_string += item + " "
+        }
+        return data_string.trim()
+      }
+      let current_choice_text = document.getElementById("current_choice")
+      let current_dice_text = document.getElementById("current_dice")
+      let current_target = ""
 
-          write(buffer) {
-            // for (let val of buffer) {
-            //   // if (val === 10 /* charCode('\n') */) {
-            //   //   this.out(textdecoder.decode(new Uint8Array(this.output)));
-            //   //   this.output = [];
-            //   // } else if (val !== 0) {
-            //   //   // val == 0 would cut text output off in the middle.
-            //   //   this.output.push(val);
-            //   // }
-            //   if (val !== 0){
-            //     this.output.push(val);
-            //   } else {
-            //     this.out(textdecoder.decode(new Uint8Array(this.output)));
-            //     this.output = [];
-            //     console.log("aaa")
-            //   }
-            // }
+      // 切换角色和结束回合
+      let change_character = document.getElementsByClassName("changecharacter")[0]
+      change_character.addEventListener(
+        "click", ()=>{
+          change_character.classList.toggle("selected")
+          current_choice = update_set(current_choice_set, "14")
+          current_choice_text.innerText = current_choice
 
-            this.out += new TextDecoder().decode(new Uint8Array(buffer));
-            document.getElementById('aaa').innerText = this.out;
-            // window.location.reload();
-            console.log(new TextDecoder().decode(new Uint8Array(buffer)));
-            // await sleep(1000)
-            return buffer.length;
-          }
-
-          fsync() {
-            if (this.output && this.output.length > 0) {
-              this.out(textdecoder.decode(new Uint8Array(this.output)));
-              this.output = [];
-              console.log("bbb")
-            }
+          // 不需要确认
+          document.getElementById("input_result").innerText = current_choice + 't'
+          current_choice_text.innerText = ""
+          current_choice_set.clear()
+          current_choice = ""
+          clicker = document.getElementsByClassName("clickable")
+          for (let i = 0; i < clicker.length; i++) {
+            clicker[i].classList.remove("selected")
           }
         }
-        pyodide.setStdout(new StringWriter(text))
-        // pyodide.setStdout({ batched: (x) => {output += x; console.log(output); document.getElementById('aaa').innerText=output} })
-        // pyodide.setStdout({ write: (x) => { output = String.fromCharCode(x); console.log(output); document.getElementById('aaa').innerText=output; return 0;}})
-        const micropip = pyodide.pyimport("micropip");
-        await micropip.install('https://files.pythonhosted.org/packages/03/0a/4f6fed21aa246c6b49b561ca55facacc2a44b87d65b8b92362a8e99ba202/loguru-0.7.2-py3-none-any.whl')
-        await micropip.install('https://files.pythonhosted.org/packages/be/2a/4e62ff633612f746f88618852a626bbe24226eba5e7ac90e91dcfd6a414e/rich-13.6.0-py3-none-any.whl')
-        await micropip.install("genius_invocation-0.0.1-py3-none-any.whl");
-        await pyodide.runPythonAsync(`
-        from genius_invocation import main
-        main.main()
-        `)
-      //   await pyodide.runPython(`
-      //   from genius_invocation.game.game import GeniusGame
-      //   from genius_invocation.game.action import *
-      //   from genius_invocation.utils import *
-      //   from rich import print
+      )
+      let passround = document.getElementsByClassName("passround")[0]
+      passround.addEventListener(
+        "click", ()=>{
+          passround.classList.toggle("selected")
+          current_choice = update_set(current_choice_set, "15")
+          current_choice_text.innerText = current_choice
 
-      //   deck1 = {
-      //       'character': ['Rhodeia_of_Loch', 'Nahida', 'Tartaglia'],
-      //       'action_card': ['Liben' for i in range(30)]
-      //   }
-      //   deck2 = {
-      //       'character': ['Cyno', 'Wanderer', 'Yoimiya'],
-      //       'action_card': ['Liben' for i in range(30)]
-      //   }
-      // `);
-      //   await pyodide.runPython(`
-      //   game = GeniusGame(player0_deck=deck1, player1_deck=deck2)
-      //   information = []
-      //   `);
-      //   console.log('success')
+          // 不需要确认
+          document.getElementById("input_result").innerText = current_choice + 't'
+          current_choice_text.innerText = ""
+          current_choice_set.clear()
+          current_choice = ""
+          clicker = document.getElementsByClassName("clickable")
+          for (let i = 0; i < clicker.length; i++) {
+            clicker[i].classList.remove("selected")
+          }
+        }
+      )
+
+      // 手牌区
+
+      for (let index = 0; index < 2; index++) {
+        let handcard_player = document.getElementsByClassName(`handcard player${index}`)[0]
+        let handcard_inner = document.createElement('div');
+        handcard_inner.className = 'handcardinner';
+        handcard_player.appendChild(handcard_inner);
+        for (let i = 0; i < 10; i++) {
+          let card = document.createElement("div")
+          card.classList.add("handcard")
+          card.classList.add("clickable")
+          card.id = `player${index}_card` + i
+          card.innerText = ""
+          card.addEventListener(
+            "click", ()=>{
+              card.classList.toggle("selected")
+              // current_choice = `${i}`
+              current_choice = update_set(current_choice_set, `${i}`)
+              current_choice_text.innerText = current_choice
+            }
+          )
+          handcard_inner.appendChild(card)
+        }
+
+        // 骰子区
+        let dice_player = document.getElementsByClassName(`dice player${index}`)[0]
+        let dice_inner = document.createElement('div');
+        dice_inner.className = 'diceinner';
+        dice_player.appendChild(dice_inner);
+        let dice_name = dice_player.getElementsByClassName("thetitle")[0]
+        dice_name.addEventListener(
+          "click", ()=>{
+            dice_name.classList.toggle("selected")
+            current_choice = update_set(current_choice_set, "13")
+            current_choice_text.innerText = current_choice
+          }
+        )
+        for (let i = 0; i < 16; i++) {
+          let newDiv = document.createElement('div');
+          newDiv.className = 'gridItem';
+          newDiv.classList.add("diceitem", "clickable")
+          newDiv.addEventListener(
+              "click", ()=>{
+                newDiv.classList.toggle("selected")
+                current_choice = update_set(current_choice_set, `${i}`)
+                current_choice_text.innerText = current_choice
+              }
+            )
+          newDiv.id = `player${index}_dice` + i
+          newDiv.textContent = "";
+          dice_inner.appendChild(newDiv);
+        }
+
+        let confirm_btn = document.createElement("div")
+        confirm_btn.classList.add("item", "clickable")
+        confirm_btn.addEventListener(
+            "click", ()=>{
+            document.getElementById("input_result").innerText = current_choice + 't'
+            current_choice_text.innerText = ""
+            current_choice_set.clear()
+            current_choice = ""
+            clicker = document.getElementsByClassName("clickable")
+            for (let i = 0; i < clicker.length; i++) {
+              clicker[i].classList.remove("selected")
+            }
+          }
+        )
+        confirm_btn.innerText = "确认"
+        dice_player.appendChild(confirm_btn)
+
+        // 支援区
+        for (let support_idx = 0; support_idx < 4; support_idx++) {
+          support_zone = document.getElementsByClassName(`support${support_idx} player${index}`)[0]
+          let support_name = support_zone.getElementsByClassName("thetitle")[0]
+          support_name.addEventListener(
+            "click", ()=>{
+              support_name.classList.toggle("selected")
+              current_choice = update_set(current_choice_set, `${support_idx + 9}`)
+              current_choice_text.innerText = current_choice
+            }
+          )
+          support_inner = document.createElement('div');
+          support_inner.classList.add("inneritem")
+          // support_inner.className = 'supportinner';
+          support_zone.appendChild(support_inner);
+
+        }
+
+        // 召唤区
+        for (let summon_idx = 0; summon_idx < 4; summon_idx++) {
+          summon_zone = document.getElementsByClassName(`summon${summon_idx} player${index}`)[0]
+          let summon_name = summon_zone.getElementsByClassName("thetitle")[0]
+          summon_name.addEventListener(
+            "click", ()=>{
+              summon_name.classList.toggle("selected")
+              current_choice = update_set(current_choice_set, `${summon_idx + 5}`)
+              current_choice_text.innerText = current_choice
+            }
+          )
+          let summon_inner = document.createElement('div');
+          summon_inner.classList.add("inneritem")
+          // summon_name = document.createElement('div');
+          summon_zone.appendChild(summon_inner);
+        }
+
+        // 角色区
+        for (let chara_idx = 0; chara_idx < 3; chara_idx++) {
+          chara_zone = document.getElementsByClassName(`character${chara_idx} player${index}`)[0]
+          let chara_name = chara_zone.getElementsByClassName("thetitle")[0]
+          chara_name.addEventListener(
+            "click", ()=>{
+              chara_name.classList.toggle("selected")
+              current_choice = update_set(current_choice_set, `${chara_idx + 2}`)
+              current_choice_text.innerText = current_choice
+            }
+          )
+          let basebar = document.createElement("div")
+          basebar.classList.add("basebar")
+          let health_circle = document.createElement("div")
+          health_circle.classList.add("health", "circle")
+          health_circle.id = `player${index}_character${chara_idx}_health`
+          let energy_circle = document.createElement("div")
+          energy_circle.classList.add("energy", "circle")
+          energy_circle.id = `player${index}_character${chara_idx}_power`
+          let elemnt_circle = document.createElement("div")
+          elemnt_circle.classList.add("element", "circle")
+          elemnt_circle.id = `player${index}_character${chara_idx}_element`
+
+          basebar.appendChild(health_circle)
+          basebar.appendChild(energy_circle)
+          basebar.appendChild(elemnt_circle)
+          chara_zone.appendChild(basebar)
+
+          let equipbar = document.createElement("div")
+          equipbar.classList.add("basebar")
+          let weapon_circle = document.createElement("div")
+          weapon_circle.classList.add("equip", "circle")
+          weapon_circle.id = `player${index}_character${chara_idx}_weapon`
+          weapon_circle.innerText = "W"
+
+
+          let artifact_circle = document.createElement("div")
+          artifact_circle.classList.add("equip", "circle")
+          artifact_circle.id = `player${index}_character${chara_idx}_artifact`
+          artifact_circle.innerText = "A"
+
+
+          let talent_circle = document.createElement("div")
+          talent_circle.classList.add("equip", "circle")
+          talent_circle.id = `player${index}_character${chara_idx}_talent`
+          talent_circle.innerText = "T"
+
+
+          equipbar.appendChild(weapon_circle)
+          equipbar.appendChild(artifact_circle)
+          equipbar.appendChild(talent_circle)
+          chara_zone.appendChild(equipbar)
+
+          let skill_list = document.createElement("div")
+          skill_list.classList.add("contain")
+          for (let i = 0; i < 4; i++) {
+            let skill = document.createElement("div")
+            skill.id = `player${index}_character${chara_idx}_skill` + i
+            skill.classList.add("skill", "clickable")
+            skill.innerText = ""
+            skill.addEventListener(
+              "click", ()=>{
+                skill.classList.toggle("selected")
+                current_choice = update_set(current_choice_set, `${i+10}`)
+                current_choice_text.innerText = current_choice
+              }
+            )
+            skill_list.appendChild(skill)
+          }
+          chara_zone.appendChild(skill_list)
+          let chara_state_box = document.createElement("div")
+          let chara_state = document.createElement("div")
+          chara_state.classList.add("expanditem")
+          chara_state.innerText = "角色状态"
+
+          chara_state.id = `player${index}_character${chara_idx}_state`
+          
+
+
+          let chara_state_inner = document.createElement("div")
+          chara_state_inner.classList.add("expandinner")
+
+          chara_state_inner.id = `player${index}_character${chara_idx}_state_inner`
+
+          chara_state_inner.innerText = "角色状态"
+          chara_state.appendChild(chara_state_inner)
+
+          chara_state_box.appendChild(chara_state)
+
+          chara_zone.appendChild(chara_state_box)
+
+          // let 
+
+          // let group_shield = document.createElement("div")
+          // group_shield.classList.add("expanditem")
+          // group_shield.id = `player${index}_character${chara_idx}_group_shield`
+          // group_shield.innerText = "护盾(出战)"
+          // chara_zone.appendChild(group_shield)
+          let group_shield_box = document.createElement("div")
+          let group_state = document.createElement("div")
+          group_state.classList.add("expanditem")
+          group_state.id = `player${index}_character${chara_idx}_group_state`
+          group_state.innerText = "出战状态"
+          
+          let group_state_inner = document.createElement("div")
+          group_state_inner.classList.add("expandinner")
+          group_state_inner.id = `player${index}_character${chara_idx}_group_state_inner`
+          group_state_inner.innerText = "出战状态"
+          group_state.appendChild(group_state_inner)
+          group_shield_box.appendChild(group_state)
+          chara_zone.appendChild(group_shield_box)
+          
+
+        }
+
       }
-      main();
+
+      let confirm_action = document.getElementById("confirm_action")
+      confirm_action.addEventListener(
+        "click", ()=>{
+          document.getElementById("input_result").innerText = current_choice + 't'
+          current_choice_text.innerText = ""
+          current_choice_set.clear()
+          current_choice = ""
+          clicker = document.getElementsByClassName("clickable")
+          for (let i = 0; i < clicker.length; i++) {
+            clicker[i].classList.remove("selected")
+          }
+        }
+      )
+      // tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      // tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
     </script>
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script> -->
+    <py-terminal id="terminal"></py-terminal>
+    <py-script>
+      from genius_invocation.web import main
+      import js
+      import asyncio
+      js.document.getElementById("terminal").classList.add('py-terminal-hidden')
+      asyncio.ensure_future(main.main())
+    </py-script>
+    
   </body>
 </html>

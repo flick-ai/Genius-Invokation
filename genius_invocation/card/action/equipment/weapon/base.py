@@ -15,6 +15,7 @@ class WeaponCard(EquipmentCard):
     # 武器牌
     weapon_type:'WeaponType'
     equipment_entity: 'Weapon'
+    card_type = ActionCardType.EQUIPMENT_WEAPON
     def __init__(self) -> None:
         super().__init__()
         self.card_type = ActionCardType.EQUIPMENT_WEAPON

@@ -8,6 +8,7 @@ class Woven_Weeds(ActionCard):
     id: int = 331701
     name: str = "Woven_Weeds"
     name_ch = "交织之草"
+    element = ElementType.DENDRO
     cost_num = 0
     card_type = ActionCardType.EVENT_ELEMENTAL_RESONANCE
     cost_type = None

@@ -18,7 +18,7 @@ class Enduring_Rock_Entity(Combat_Status):
     def after_any_action(self, game: 'GeniusGame'):
         if self.is_trigger == True:
             combat_shield = self.from_player.team_combat_status.has_shield(Combat_Shield)
-            print(combat_shield)
+            # print(combat_shield)
             if combat_shield is not None:
                 combat_shield.current_usage += 3
             if self.current_usage <=0:
@@ -49,6 +49,7 @@ class Enduring_Rock(ActionCard):
     id: int = 331602
     name: str = "Enduring_Rock"
     name_ch = "坚定之岩"
+    element = ElementType.GEO
     cost_num = 1
     card_type = ActionCardType.EVENT_ELEMENTAL_RESONANCE
     cost_type = CostType.GEO

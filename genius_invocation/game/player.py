@@ -100,12 +100,11 @@ class GeniusPlayer:
         '''
             基本行动: 投掷骰子
         '''
-        is_omni = True
         if is_basic:
                 if is_different:
                     return self.game.random.choice(DICENUM-1, num, replace=False).tolist()
                 return self.game.random.randint(0, DICENUM-1, num).tolist()
-        if is_omni:
+        if self.game.is_omni:
             return  [7 for i in range(num)]
         else:
             return self.game.random.randint(0, DICENUM, num).tolist()
@@ -176,10 +175,16 @@ class GeniusPlayer:
         if game.current_action.target_type == ActionTarget.DICE_REGION:
             card.on_tuning(game)
         else:
-            game.current_dice = Dice(from_player=self,
-                                from_character=None,
-                                use_type=card.card_type,
-                                cost = [{'cost_num':card.cost_num, 'cost_type':card.cost_type}])
+            if card.card_type == ActionCardType.EQUIPMENT_TALENT:
+                game.current_dice= Dice(from_player=self,
+                                        from_character=None,
+                                        use_type=card.card_type,
+                                        cost = deepcopy(card.cost))
+            else:
+                game.current_dice = Dice(from_player=self,
+                                    from_character=None,
+                                    use_type=card.card_type,
+                                    cost = [{'cost_num':card.cost_num, 'cost_type':card.cost_type}])
             game.manager.invoke(EventType.ON_PLAY_CARD, game)
             card.on_played(game)
         game.current_card = None #Finish use the card.

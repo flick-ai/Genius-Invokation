@@ -12,6 +12,7 @@ from genius_invocation.utils import *
 from rich import print
 import time
 import argparse
+import os
 
 def get_parser():
     parser = argparse.ArgumentParser()
@@ -20,23 +21,42 @@ def get_parser():
     return args
 
 if __name__=="__main__":
+    # available_character_name = ['Arataki_Itto', 'Candace', 'Cyno', 'Dehya', "ElectroHypostasis", 
+    #                        "Fatui_Pyro_Agent", "Fischl", "Ganyu", "Jadeplume_Terrorshroom", "Keqing", 
+    #                        "Mona", "Nahida", "Ningguang", "Noelle", "Qiqi",
+    #                        "Rhodeia_of_Loch", "Shenhe", "Tartaglia", "Xingqiu", "Yae_Miko",
+    #                        "Yoimiya"]
+    
+    # # 输出所有角色
+    # package_dir = "./card/character/characters"
+    # available_character_name = [f[:-3] for f in os.listdir(package_dir) if f.endswith(".py") and f != "__init__.py" and f != "import_head.py"]
+    # available_character = []
+    # for name in available_character_name:
+    #     available_character.append((name, eval("chars."+name).name, eval("chars."+name).name_ch, eval("chars."+name)))
+    # print(len(available_character))
 
-    available_character_name = ['Arataki_Itto', 'Candace', 'Cyno', 'Dehya', "ElectroHypostasis", 
-                           "Fatui_Pyro_Agent", "Fischl", "Ganyu", "Jadeplume_Terrorshroom", "Keqing", 
-                           "Mona", "Nahida", "Ningguang", "Noelle", "Qiqi",
-                           "Rhodeia_of_Loch", "Shenhe", "Tartaglia", "Xingqiu", "Yae_Miko",
-                           "Yoimiya"]
-    available_character = []
-    for name in available_character_name:
-        available_character.append((name, eval("chars."+name).name, eval("chars."+name).name_ch))
+    # # 输出所有行动牌
+    # available_card = []
+    # ignore = [action.ActionCard, action.EquipmentCard, action.WeaponCard, action.TalentCard, action.ArtifactCard, action.SupportCard, action.FoodCard]
+    # for name, obj in inspect.getmembers(action):
+    #     if inspect.isclass(obj) and obj not in ignore:
+    #         available_card.append((name, obj.name, obj.name_ch, obj))
+    # print(len(available_card))
 
-    # print(available_character)
-    available_card = []
-    ignore = [action.ActionCard, action.EquipmentCard, action.WeaponCard, action.TalentCard, action.ArtifactCard, action.SupportCard, action.FoodCard]
-    for name, obj in inspect.getmembers(action):
-        if inspect.isclass(obj) and obj not in ignore:
-            available_card.append((name, obj.name, obj.name_ch))
-    # print(available_card)
+    # # 输出每个类行动牌数量
+    # package_dirs = ["./card/character/characters","./card/action/support/companion",
+    #                 "./card/action/support/item","./card/action/support/location",
+    #                 "./card/action/event/events","./card/action/event/foods",
+    #                 "./card/action/event/elemental_resonance", "./card/action/event/arcane_legend",
+    #                 "./card/action/equipment/artifact/artifacts",
+    #                 "./card/action/equipment/talent/talents",
+    #                 "./card/action/equipment/weapon/weapons"]
+    # for package_dir in package_dirs:
+    #     available_name = [f[:-3] for f in os.listdir(package_dir) if f.endswith(".py") and f != "__init__.py" and f != "import_head.py"]
+    #     print(package_dir, len(available_name))
+
+    # # 测试选择卡函数 
+    # select_card(['Rhodeia_of_Loch', 'Yae_Miko' ,'Fatui_Pyro_Agent'], available_card)
 
     args = get_parser()
     deck1 = {
@@ -49,14 +69,14 @@ if __name__=="__main__":
     }
     deck2 = {
     'character': ['Arataki_Itto', 'Dehya', 'Noelle'],
-    'action_card': ['Tenacity_of_the_Millelith','Tenacity_of_the_Millelith','TheBell','TheBell','Paimon','Paimon',
+    'action_card': ['TenacityoftheMillelith','TenacityoftheMillelith','TheBell','TheBell','Paimon','Paimon',
                     'Chef_Mao','Chef_Mao','Liben','Liben','Dunyarzad','Dunyarzad','Fresh_Wind_of_Freedom',
                     'Woven_Stone','Woven_Stone','Enduring_Rock','Enduring_Rock','Strategize','Strategize',
                     'Leave_it_to_Me','Send_Off','Heavy_Strike','Heavy_Strike','Adeptus_Temptation',
                     'Lotus_Flower_Crisp','Lotus_Flower_Crisp','Sweet_Madame','Mondstadt_Hash_Brown',
                     'Mushroom_Pizza','Mushroom_Pizza']
     }
-    game = GeniusGame(player0_deck=deck1, player1_deck=deck2, seed=2025)
+    game = GeniusGame(player0_deck=deck1, player1_deck=deck2, seed=2026, is_omni=True)
 
     if args.test:
         with open("./action.log") as f:

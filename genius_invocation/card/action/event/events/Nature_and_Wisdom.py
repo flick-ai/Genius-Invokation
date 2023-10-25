@@ -8,9 +8,10 @@ class Nature_and_Wisdom(ActionCard):
     id: int = 331804
     name: str = 'Nature and Wisdom'
     name_ch = '草与智慧'
+    country = CountryType.SUMERU
     cost_num = 1
     cost_type = CostType.WHITE
-    card_type = ActionCardType.EVENT
+    card_type = ActionCardType.EVENT_COUNTRY
 
     def __init__(self) -> None:
         super().__init__()

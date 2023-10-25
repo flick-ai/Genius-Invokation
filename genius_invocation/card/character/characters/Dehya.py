@@ -1,6 +1,4 @@
 from genius_invocation.card.character.characters.import_head import *
-from genius_invocation.game.game import GeniusGame
-from genius_invocation.utils import GeniusGame
 
 class Sandstorm_Assault(NormalAttack):
     id: int = 0
@@ -262,7 +260,7 @@ class Dehya(Character):
         if self.talent:
             if game.active_player == self.from_player:
                 if self.health_point <=6:
-                    self.heal(2)
+                    self.heal(2,game=game)
 
     def listen_talent_events(self, game: 'GeniusGame'):
         self.listen_event(game, EventType.END_PHASE, ZoneType.CHARACTER_ZONE, self.on_end_phase)

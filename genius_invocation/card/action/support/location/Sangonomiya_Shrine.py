@@ -27,7 +27,7 @@ class Sangonomiya_Shrine_Entity(Support):
                     break
             if need_heal:
                 for character in self.from_player.character_list:
-                    character.heal(heal=1)
+                    character.heal(heal=1,game=game)
                 self.usage -= 1
                 if self.usage == 0:
                     self.on_destroy(game)

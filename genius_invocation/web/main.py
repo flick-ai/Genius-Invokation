@@ -2,9 +2,16 @@
 from genius_invocation.web.game.game import GeniusGame
 from genius_invocation.web.game.action import *
 from genius_invocation.utils import *
+import genius_invocation.card.action as actioncard
 from genius_invocation.user_layout import layout
 from genius_invocation.web.utils_dict import get_dict
 import js
+from pyodide import create_proxy
+
+from genius_invocation.web.get_card import get_card
+
+import inspect
+
 
 
 element_to_dice = {
@@ -20,16 +27,41 @@ element_to_dice = {
 }
 
 async def main():
+
+    get_card()
+
+    available_card = []
+    ignore = [actioncard.ActionCard, actioncard.EquipmentCard, actioncard.WeaponCard, actioncard.TalentCard, actioncard.ArtifactCard, actioncard.SupportCard, actioncard.FoodCard]
+    for name, obj in inspect.getmembers(actioncard):
+        if inspect.isclass(obj) and obj not in ignore:
+            available_card.append((name, obj.name, obj.name_ch))
+
+    js_available_card = {available_card[i][2]: available_card[i][0] for i in range(len(available_card))}
+    js.load_action_cards(create_proxy(js_available_card))
+    select = []
+    cur_idx = 0
+    while True:
+        await asyncio.sleep(0.1)
+        if js.document.getElementById('currentselect').innerText != '':
+            select.append(js.document.getElementById('currentselect').innerText.split(' '))
+            js.document.getElementById('currentselect').innerText = ''
+            cur_idx += 1
+        if cur_idx == 2:
+            for item in js.document.getElementsByClassName('before'):
+                item.style.display = 'none'
+            break
+    
+    print(select)
     deck1 = {
-    'character': ['Rhodeia_of_Loch', 'Yae_Miko' ,'Fatui_Pyro_Agent'],
+    'character': select[0],
     'action_card': ['Fresh_Wind_of_Freedom','Dunyarzad','Dunyarzad','Chef_Mao','Chef_Mao','Paimon','Paimon',
                     'Rana','Rana','Liben','Liben','Mushroom_Pizza','Mushroom_Pizza','Adeptus_Temptation',
                     'Adeptus_Temptation','Teyvat_Fried_Egg','Sweet_Madame','Sweet_Madame','Mondstadt_Hash_Brown',
                     'Lotus_Flower_Crisp','Lotus_Flower_Crisp','Strategize','Strategize','Leave_it_to_Me','Leave_it_to_Me',
-                    'Paid_in_Full','Paid_in_Full','Send_Off','Starsigns','Starsigns']
+                    'PaidinFull','PaidinFull','Send_Off','Starsigns','Starsigns']
     }
     deck2 = {
-    'character': ['Arataki_Itto', 'Dehya', 'Noelle'],
+    'character': select[1],
     'action_card': ['Tenacity_of_the_Millelith','Tenacity_of_the_Millelith','TheBell','TheBell','Paimon','Paimon',
                     'Chef_Mao','Chef_Mao','Liben','Liben','Dunyarzad','Dunyarzad','Fresh_Wind_of_Freedom',
                     'Woven_Stone','Woven_Stone','Enduring_Rock','Enduring_Rock','Strategize','Strategize',
