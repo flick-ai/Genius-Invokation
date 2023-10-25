@@ -8,6 +8,7 @@ class Woven_Thunder(ActionCard):
     id: int = 331401
     name: str = "Woven_Thunder"
     name_ch = "交织之雷"
+    elment = ElementType.ELECTRO
     cost_num = 0
     card_type = ActionCardType.EVENT_ELEMENTAL_RESONANCE
     cost_type = None

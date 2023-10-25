@@ -8,6 +8,7 @@ class Woven_Winds(ActionCard):
     id: int = 331501
     name: str = "Woven_Winds"
     name_ch = "交织之风"
+    elment = ElementType.ANEMO
     cost_num = 0
     card_type = ActionCardType.EVENT_ELEMENTAL_RESONANCE
     cost_type = None

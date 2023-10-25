@@ -9,6 +9,7 @@ class High_Voltage(ActionCard):
     id: int = 331402
     name: str = "High_Voltage"
     name_ch = "强能之雷"
+    elment = ElementType.ELECTRO
     cost_num = 1
     card_type = ActionCardType.EVENT_ELEMENTAL_RESONANCE
     cost_type = CostType.ELECTRO
