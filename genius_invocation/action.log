@@ -2,202 +2,21 @@
     {
         "choice": 17,
         "target": 14,
-        "dice": [
-            4,
-            3,
-            2,
-            1,
-            0
-        ]
+        "dice": []
     },
     {
         "choice": 17,
         "target": 14,
-        "dice": [
-            4,
-            3,
-            2
-        ]
-    },
-    {
-        "choice": 14,
-        "target": 2,
-        "dice": []
-    },
-    {
-        "choice": 14,
-        "target": 3,
-        "dice": []
-    },
-    {
-        "choice": 16,
-        "target": 13,
-        "dice": []
-    },
-    {
-        "choice": 16,
-        "target": 13,
-        "dice": []
-    },
-    {
-        "choice": 11,
-        "target": 0,
-        "dice": [
-            2,
-            1,
-            0
-        ]
-    },
-    {
-        "choice": 11,
-        "target": 0,
-        "dice": [
-            2,
-            1,
-            0
-        ]
-    },
-    {
-        "choice": 14,
-        "target": 3,
-        "dice": [
-            0
-        ]
-    },
-    {
-        "choice": 2,
-        "target": 9,
-        "dice": [
-            0
-        ]
-    },
-    {
-        "choice": 1,
-        "target": 10,
-        "dice": []
-    },
-    {
-        "choice": 0,
-        "target": 2,
-        "dice": [
-            2,
-            1,
-            0
-        ]
-    },
-    {
-        "choice": 15,
-        "target": 1,
-        "dice": []
-    },
-    {
-        "choice": 11,
-        "target": 0,
-        "dice": [
-            2,
-            1,
-            0
-        ]
-    },
-    {
-        "choice": 2,
-        "target": 1,
-        "dice": [
-            0
-        ]
-    },
-    {
-        "choice": 15,
-        "target": 1,
-        "dice": []
-    },
-    {
-        "choice": 16,
-        "target": 13,
-        "dice": []
-    },
-    {
-        "choice": 16,
-        "target": 13,
-        "dice": []
-    },
-    {
-        "choice": 14,
-        "target": 2,
-        "dice": [
-            0
-        ]
-    },
-    {
-        "choice": 14,
-        "target": 2,
-        "dice": [
-            0
-        ]
-    },
-    {
-        "choice": 11,
-        "target": 0,
-        "dice": [
-            2,
-            1,
-            0
-        ]
-    },
-    {
-        "choice": 2,
-        "target": 9,
-        "dice": [
-            0
-        ]
-    },
-    {
-        "choice": 1,
-        "target": 10,
-        "dice": []
-    },
-    {
-        "choice": 1,
-        "target": 11,
-        "dice": [
-            0
-        ]
-    },
-    {
-        "choice": 12,
-        "target": 0,
-        "dice": [
-            4,
-            3,
-            2,
-            1,
-            0
-        ]
-    },
-    {
-        "choice": 11,
-        "target": 0,
-        "dice": [
-            2,
-            1,
-            0
-        ]
-    },
-    {
-        "choice": 15,
-        "target": 1,
         "dice": []
     },
     {
         "choice": 14,
         "target": 4,
-        "dice": [
-            0
-        ]
+        "dice": []
     },
     {
-        "choice": 15,
-        "target": 1,
+        "choice": 14,
+        "target": 4,
         "dice": []
     },
     {
@@ -209,48 +28,6 @@
         "choice": 16,
         "target": 13,
         "dice": []
-    },
-    {
-        "choice": 11,
-        "target": 0,
-        "dice": [
-            2,
-            1,
-            0
-        ]
-    },
-    {
-        "choice": 2,
-        "target": 1,
-        "dice": [
-            0
-        ]
-    },
-    {
-        "choice": 11,
-        "target": 0,
-        "dice": [
-            2,
-            1,
-            0
-        ]
-    },
-    {
-        "choice": 13,
-        "target": 0,
-        "dice": [
-            2,
-            1,
-            0
-        ]
-    },
-    {
-        "choice": 0,
-        "target": 11,
-        "dice": [
-            1,
-            0
-        ]
     },
     {
         "choice": 15,
@@ -259,73 +36,7 @@
     },
     {
         "choice": 0,
-        "target": 12,
-        "dice": [
-            1,
-            0
-        ]
-    },
-    {
-        "choice": 15,
-        "target": 1,
-        "dice": []
-    },
-    {
-        "choice": 16,
-        "target": 13,
-        "dice": []
-    },
-    {
-        "choice": 16,
-        "target": 13,
-        "dice": []
-    },
-    {
-        "choice": 11,
-        "target": 0,
-        "dice": [
-            2,
-            1,
-            0
-        ]
-    },
-    {
-        "choice": 11,
-        "target": 0,
-        "dice": [
-            2,
-            1,
-            0
-        ]
-    },
-    {
-        "choice": 12,
-        "target": 0,
-        "dice": [
-            2,
-            1,
-            0
-        ]
-    },
-    {
-        "choice": 4,
-        "target": 1,
-        "dice": [
-            1,
-            0
-        ]
-    },
-    {
-        "choice": 4,
-        "target": 3,
-        "dice": [
-            1,
-            0
-        ]
-    },
-    {
-        "choice": 12,
-        "target": 0,
+        "target": 4,
         "dice": [
             0,
             1,
