@@ -178,13 +178,17 @@ def get_summon(player: 'GeniusPlayer', idx):
     sponsor_message.add_column(no_wrap=True)
     if player.summon_zone.num() > idx:
         summon = player.summon_zone.space[idx]
+        try:
+            this_element = summon.infuse_element
+        except:
+            this_element = summon.element
         sponsor_message.add_row(
             summon.name_ch,
-            style=Elements_to_color(summon.element),
+            style=Elements_to_color(this_element),
         )
         sponsor_message.add_row(
             str(summon.show()),
-            style=Elements_to_color(summon.element),
+            style=Elements_to_color(this_element),
         )
     message_panel = Panel(
         Align.center(

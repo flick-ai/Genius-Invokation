@@ -130,11 +130,13 @@ class Sesshou_Sakura(Summon):
     name_ch = "杀生樱"
     removable = True
     element = ElementType.ELECTRO
-    usage = 3
-    max_usage = 6
+
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character:'Character'=None):
         super().__init__(game, from_player, from_character)
+        self.usage = 3
+        self.max_usage = 6
         self.current_usage = self.usage
+
     def update(self):
         self.current_usage = max(self.current_usage, min(self.max_usage, self.current_usage + 3)) # TODO: Check update
     def on_end_phase(self, game: 'GeniusGame'):
@@ -195,7 +197,6 @@ class SaveDice_Sakura(Status):
         super().__init__(game, from_player, from_character)
         self.usage = 1
         self.current_usage = 1
-        self.max_usage = 1
 
     def update(self):
         assert False

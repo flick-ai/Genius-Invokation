@@ -86,8 +86,8 @@ class Feather_Spreading(ElementalBurst):
         self.consume_energy(game)
         status = self.from_character.character_zone.has_entity(Radical_Vitality)
         addition_dmg = status.current_usage
-        status.current_usage = 0
         self.resolve_damage(game, add_main_damage=addition_dmg)
+        status.current_usage = 0
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 

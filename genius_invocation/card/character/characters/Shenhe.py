@@ -137,7 +137,6 @@ class Icy_Quill(Combat_Status):
         super().__init__(game, from_player, from_character)
         self.usage = 3
         self.current_usage = 3
-        self.max_usage = 3
         self.last_use_round = -1
 
     def update(self):
@@ -165,8 +164,6 @@ class Talisman_Spirit(Summon):
     name = "Talisman Spirit"
     name_ch = "箓灵"
     element: ElementType = ElementType.CRYO
-    usage: int = 2
-    max_usage: int = 2
     removable = True
 
     def on_end_phase(self, game: 'GeniusGame'):
@@ -204,3 +201,5 @@ class Talisman_Spirit(Summon):
 
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player=from_player, from_character=from_character)
+        self.usage = 2
+        self.current_usage = 2
