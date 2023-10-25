@@ -39,7 +39,7 @@ class Sprawling_Greenery(ActionCard):
     id: int = 331702
     name: str = "Sprawling_Greenery"
     name_ch = "蔓生之草"
-    elment = ElementType.DENDRO
+    element = ElementType.DENDRO
     cost_num = 1
     card_type = ActionCardType.EVENT_ELEMENTAL_RESONANCE
     cost_type = CostType.DENDRO

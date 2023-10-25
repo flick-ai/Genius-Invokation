@@ -4,7 +4,7 @@ from genius_invocation.utils import *
 
 en_json_file = "card_info_ambr_en.json"
 cn_json_file = "card_info_ambr_cn.json"
-template_file = "artifact_template.txt"
+template_file = "weapon_template.txt"
 target_file = "../action/equipment/weapon/1"
 
 with open(en_json_file) as en, open(cn_json_file, encoding='utf-8') as cn:
@@ -29,11 +29,18 @@ with open(en_json_file) as en, open(cn_json_file, encoding='utf-8') as cn:
         cn_name = card_infos_cn[info]['name']
         
         weapon_type = None
-        match card_infos[info]["tags"].keys()[1]:
+        match list(card_infos[info]["tags"].keys())[1]:
             case "GCG_TAG_WEAPON_BOW":
                 weapon_type = WeaponType.BOW
             case "GCG_TAG_WEAPON_CATALYST":
                 weapon_type = WeaponType.CATALYST
+            case "GCG_TAG_WEAPON_CLAYMORE":
+                weapon_type = WeaponType.CLAYMORE
+            case "GCG_TAG_WEAPON_POLE":
+                weapon_type = WeaponType.POLEARM
+            case "GCG_TAG_WEAPON_SWORD":
+                weapon_type = WeaponType.SWORD
+
         cost_num = 0
         cost_type = None
         props = card_infos[info]['props']
@@ -55,11 +62,12 @@ with open(en_json_file) as en, open(cn_json_file, encoding='utf-8') as cn:
                     line = line.replace(line, "    name: str = \"%s\"\n" % name)
                 if re.search("name_ch =", line) is not None:
                     line = line.replace(line, "    name_ch = \"%s\"\n" % cn_name)
-                
+                if re.search("weapon_type: WeaponType = ", line) is not None:
+                    line = line.replace(line, "    weapon_type: WeaponType = %s\n" % weapon_type)
                 if re.search("cost_num: int = ", line) is not None:
                     line = line.replace(line, "    cost_num: int = %s\n" % cost_num)
-                if re.search("class Weapin\(Weapon\)", line) is not None:
-                    line = line.replace(line, "class %sWeapin(Weapon):\n" % name_strip)
+                if re.search("class Weapon\(Weapon\)", line) is not None:
+                    line = line.replace(line, "class %sWeapon(Weapon):\n" % name_strip)
                 if re.search("cost_type: CostType = ", line) is not None:
                     line = line.replace(line, "    cost_type: CostType = %s\n" % cost_type)
                 if re.search("self.equipment_entity = Weapon", line) is not None:

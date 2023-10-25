@@ -30,13 +30,13 @@ if __name__=="__main__":
     for name in available_character_name:
         available_character.append((name, eval("chars."+name).name, eval("chars."+name).name_ch, eval("chars."+name)))
 
-    print(available_character)
+    print(len(available_character))
     available_card = []
     ignore = [action.ActionCard, action.EquipmentCard, action.WeaponCard, action.TalentCard, action.ArtifactCard, action.SupportCard, action.FoodCard]
     for name, obj in inspect.getmembers(action):
         if inspect.isclass(obj) and obj not in ignore:
             available_card.append((name, obj.name, obj.name_ch, obj))
-    print(available_card)
+    print(len(available_card))
 
     select_card(['Rhodeia_of_Loch', 'Yae_Miko' ,'Fatui_Pyro_Agent'], available_card)
 

@@ -27,7 +27,7 @@ class InstructorsCapEntity(Artifact):
         if self.usage > 0 :
             if game.current_damage.reaction != None:
                 if game.current_damage.damage_from == self.from_character:
-                    dicetype = ElementToDice(self.from_character.element)
+                    dicetype = ElementToDice[self.from_character.element]
                     self.from_player.dice_zone.add([dicetype.value])
                     self.usage -= 1
 

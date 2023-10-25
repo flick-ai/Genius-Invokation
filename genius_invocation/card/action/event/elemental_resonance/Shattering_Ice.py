@@ -38,7 +38,7 @@ class Shattering_Ice(ActionCard):
     id: int = 331102
     name: str = "Shattering_Ice"
     name_ch = "粉碎之冰"
-    elment = ElementType.CRYO
+    element = ElementType.CRYO
     cost_num = 1
     card_type = ActionCardType.EVENT_ELEMENTAL_RESONANCE
     cost_type = CostType.CRYO

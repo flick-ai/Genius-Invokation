@@ -344,7 +344,7 @@ def select_card(characters: List['Character'], all_action_card: List['ActionCard
             case ActionCardType.EVENT_ARCANE_LEGEND:
                 available_action_card['SPECIAL EVENT'].append((class_name, name, name_ch))
             case ActionCardType.EVENT_ELEMENTAL_RESONANCE:
-                if same_element.get(action_card.elment, 0) > 2:
+                if same_element.get(action_card.element, 0) > 2:
                     available_action_card['SPECIAL EVENT'].append((class_name, name, name_ch))
             case ActionCardType.EVENT_COUNTRY:
                 if same_element.get(action_card.country, 0) > 2:

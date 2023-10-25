@@ -8,7 +8,7 @@ class Impetuous_Winds(ActionCard):
     id: int = 331502
     name: str = "Impetuous_Winds"
     name_ch = "迅捷之风"
-    elment = ElementType.ANEMO
+    element = ElementType.ANEMO
     cost_num = 1
     card_type = ActionCardType.EVENT_ELEMENTAL_RESONANCE
     cost_type = CostType.ANEMO

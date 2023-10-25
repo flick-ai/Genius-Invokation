@@ -7,9 +7,9 @@ if TYPE_CHECKING:
     from genius_invocation.game.game import GeniusGame
 
 
-class StatusOfKingsSquire(Status):
-    name = "Status Of King's Squire"
-    name_ch = '王下近侍'
+class StatusOfSummeru(Status):
+    name = "Status Of Summeru's Weapon"
+    name_ch = '须弥武器状态'
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.current_usage = 1
@@ -46,9 +46,8 @@ class StatusOfKingsSquire(Status):
 
 # weapons
 class KingsSquire(Weapon):
-    '''王下近侍'''
-    id: int = 311206
     name: str = "King's Squire"
+    name_ch = "王下近侍"
     def on_damage_add(self, game: 'GeniusGame'):
         if game.current_damage.damage_from == self.from_character:
             if game.current_damage.main_damage_element is not ElementType.PIERCING:
@@ -77,6 +76,7 @@ class KingsSquire(WeaponCard):
         super().on_played(game)
         idx = game.current_action.target_idx
         target_character = game.active_player.character_list[idx]
-        status = StatusOfKingsSquire(game, game.active_player, target_character)
-        target_character.character_zone.add_entity(status)
+        if target_character.character_zone.has_entity(StatusOfSummeru) == None:
+            status = StatusOfSummeru(game, game.active_player, target_character)
+            target_character.character_zone.add_entity(status)
 
