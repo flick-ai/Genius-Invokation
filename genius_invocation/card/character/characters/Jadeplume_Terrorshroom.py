@@ -118,10 +118,9 @@ class Jadeplume_Terrorshroom(Character):
         super().revive(game)
         self.init_state(game)
     
-    def equip_talent(self, game: 'GeniusGame'):
-        self.talent = True
+    def listen_talent_events(self, game: 'GeniusGame'):
         self.character_zone.has_entity(Radical_Vitality).equip_talent()
-
+   
 class Radical_Vitality(Status):
     name = "Radical Vitality"
     name_ch = "活化激能"

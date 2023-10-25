@@ -156,7 +156,7 @@ class Keqing(Character):
     def listen_talent_events(self, game: 'GeniusGame'):
         status = self.character_zone.has_entity(Electro_Elemental_Infusion)
         if status is not None:
-            self.listen_event(game, EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, status.on_dmg_add)
+            status.listen_event(game, EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, status.on_dmg_add)
 
 class Lightning_Stiletto(ActionCard):
     id: int = -1 #TODO: CHECK THE ID
