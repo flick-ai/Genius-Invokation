@@ -7,8 +7,6 @@ class Oz(Summon):
     name: str = 'Oz'
     name_ch = "奥兹"
     element: ElementType = ElementType.ELECTRO
-    usage: int = 2
-    max_usage: int = 2
     removable: bool = True
 
     def on_end_phase(self, game: 'GeniusGame'):
@@ -48,7 +46,8 @@ class Oz(Summon):
 
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
-
+        self.usage = 2
+        self.current_usage = 2
 
 class BoltsOfDownfall(NormalAttack):
     '''

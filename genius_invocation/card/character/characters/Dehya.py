@@ -138,8 +138,6 @@ class Fiery_Sanctum_Field(Summon):
     name_ch = "净焰剑狱领域"
     id = 0
     element = ElementType.PYRO
-    usage = 3
-    max_usage = 3
     removable = True
 
     def begin_round(self, game: 'GeniusGame'):
@@ -191,6 +189,7 @@ class Fiery_Sanctum_Field(Summon):
 
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
+        self.usage = 3
         self.current_usage = self.usage
         assert self.from_player.team_combat_status.has_status(Shield_from_Fiery_Sanctum) is None
         status = Shield_from_Fiery_Sanctum(game, self.from_player, self.from_character, self)
@@ -205,7 +204,6 @@ class Shield_from_Fiery_Sanctum(Combat_Status):
         self.from_summon = from_summon
         self.current_usage = 1
         self.usage = 1
-        self.max_usage = 1
 
     def on_execute_dmg(self, game:"GeniusGame"):
         if self.from_character.is_active: return

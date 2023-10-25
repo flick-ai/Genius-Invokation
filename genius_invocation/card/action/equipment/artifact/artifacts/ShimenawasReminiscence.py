@@ -60,7 +60,7 @@ class ShimenawasReminiscenceEntity(Artifact):
     
     def update_listener_list(self):
         self.listeners = [
-            (EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, self.on_add_damage)
+            (EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, self.on_add_damage),
             (EventType.ON_USE_SKILL, ZoneType.CHARACTER_ZONE, self.on_skill),
             (EventType.ON_PLAY_CARD, ZoneType.CHARACTER_ZONE, self.on_play),
             (EventType.CALCULATE_DICE, ZoneType.CHARACTER_ZONE, self.on_calculate),

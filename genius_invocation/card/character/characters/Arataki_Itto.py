@@ -122,9 +122,7 @@ class Ushi(Summon):
     name = 'Ushi'
     name_ch = '阿丑'
     element = ElementType.GEO
-    usage = 1
     removable = False
-    max_usage = 1
 
     def on_end_phase(self, game: 'GeniusGame'):
         if game.active_player == self.from_player:
@@ -190,7 +188,9 @@ class Ushi(Summon):
 
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
+        self.usage = 1
         self.current_usage = self.usage
+
         self.add_strength = False
         assert self.from_player.team_combat_status.has_status(Shield_from_Ushi) is None
         status = Shield_from_Ushi(game, self.from_player, self.from_character, self)
@@ -211,7 +211,6 @@ class Shield_from_Ushi(Combat_Status):
         self.from_summon = from_summon
         self.current_usage = self.from_summon.current_usage
         self.usage = self.from_summon.usage
-        self.max_usage = self.from_summon.max_usage
 
     def on_damage_execute(self, game:'GeniusGame'):
         if self.from_summon.current_usage <=0: return
@@ -238,7 +237,6 @@ class Raging_Oni_King(Status):
     name_ch = "怒目鬼王"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
-        self.max_usage = 2
         self.usage = 2
         self.current_usage = 2
         self.current_round = -1

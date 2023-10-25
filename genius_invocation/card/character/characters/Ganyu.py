@@ -148,7 +148,6 @@ class Ice_Lotus(Combat_Status):
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character' = None):
         super().__init__(game, from_player, from_character)
         self.usage = 2
-        self.max_usage = 2
         self.current_usage = 2
 
     def update(self):
@@ -174,8 +173,6 @@ class Sacred_Cryo_Pearl(Summon):
     name = "Sacred Cryo Pearl"
     name_ch = "冰灵珠"
     element = ElementType.CRYO
-    usage = 2
-    max_usage = 2
     removable = True
 
     def on_end_phase(self, game: 'GeniusGame'):
@@ -215,7 +212,8 @@ class Sacred_Cryo_Pearl(Summon):
 
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
-
+        self.usage = 2
+        self.current_usage = 2
 
 class Ganyu(Character):
     id = 1101

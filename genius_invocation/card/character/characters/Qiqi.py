@@ -147,13 +147,12 @@ class Herald_of_Frost(Summon):
     name = 'Herald of Frost'
     name_ch = "寒病鬼差"
     element = ElementType.CRYO
-    usage = 3
-    max_usage = 3
     removable = True
     
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character:'Character'=None):
         super().__init__(game, from_player, from_character)
-        self.current_usage = 3
+        self.current_usage = 3    
+        self.usage = 3
 
     def update(self):
         self.current_usage = max(self.current_usage, self.usage)
@@ -206,11 +205,10 @@ class Fortune_Preserving_Talisman(Combat_Status):
     name = 'Fortune-Preserving Talisman'
     name_ch = "度厄真符"
     id = 1
-    usage = 3
-    max_usage = 3
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.current_usage = 3
+        self.usage = 3
 
     def update(self):
         self.current_usage = max(self.current_usage, self.usage)

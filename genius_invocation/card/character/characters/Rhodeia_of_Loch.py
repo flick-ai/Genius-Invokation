@@ -9,8 +9,6 @@ class Squirrel(Summon):
     name: str = 'Squirrel'
     name_ch = "花鼠"
     element: ElementType = ElementType.HYDRO
-    usage: int = 2
-    max_usage: int = 2
     removable = True
 
     def on_end_phase(self, game: 'GeniusGame'):
@@ -51,6 +49,8 @@ class Squirrel(Summon):
 
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
+        self.usage = 2
+        self.current_usage = 2
 
 
 class Raptor(Summon):
@@ -61,8 +61,6 @@ class Raptor(Summon):
     name: str = 'Raptor'
     name_ch = "飞鸢"
     element: ElementType = ElementType.HYDRO
-    usage: int = 3
-    max_usage: int = 3
     removable = True
     def on_end_phase(self, game: 'GeniusGame'):
         '''
@@ -102,6 +100,8 @@ class Raptor(Summon):
 
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
+        self.usage: int = 3
+        self.current_usage: int = 3
 
 
 class Frog(Summon):
@@ -112,8 +112,6 @@ class Frog(Summon):
     name: str = 'Frog'
     name_ch = "蛙"
     element: ElementType = ElementType.HYDRO
-    usage: int = 2
-    max_usage: int = 2
     removable = False
     def on_end_phase(self, game: 'GeniusGame'):
         '''
@@ -177,6 +175,8 @@ class Frog(Summon):
 
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
+        self.usage: int = 2
+        self.current_usage = 2
         status = Shield_from_Frog(game,self.from_player,self.from_character,self)
         self.from_player.team_combat_status.add_entity(status)
 
@@ -383,7 +383,6 @@ class Shield_from_Frog(Combat_Status):
         self.from_summon = from_summon
         self.current_usage = self.from_summon.current_usage
         self.usage = self.from_summon.usage
-        self.max_usage = self.from_summon.max_usage
 
     def on_damage_execute(self, game:'GeniusGame'):
         if self.from_summon.current_usage <=0: return

@@ -148,10 +148,10 @@ class Eye_of_Stormy_Judgement(Summon):
     name_ch = "雷罚恶曜之眼"
     removable = True
     element = ElementType.ELECTRO
-    usage = 3
-    max_usage = 3
+
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character:'Character'=None):
         super().__init__(game, from_player, from_character)
+        self.usage = 3
         self.current_usage = self.usage
 
     def update(self):

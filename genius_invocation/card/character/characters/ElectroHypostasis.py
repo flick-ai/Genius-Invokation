@@ -206,11 +206,10 @@ class ChainsOfWardingThunder(Summon):
     name = 'Chains of Warding Thunder'
     name_ch = '雷锁镇域'
     element: ElementType = ElementType.ELECTRO
-    usage: int = 2
-    max_usage: int = 2
     removable = True
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
+        self.usage = 2
         self.current_usage = self.usage
         self.used_this_round = 1
 

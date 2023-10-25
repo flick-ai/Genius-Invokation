@@ -115,9 +115,7 @@ class Reflection(Summon):
     name = 'Reflection'
     name_ch = '虚影'
     element = ElementType.HYDRO
-    usage = 1
     removable = False
-    max_usage = 1
 
     def on_end_phase(self, game: 'GeniusGame'):
         if game.active_player == self.from_player:
@@ -171,6 +169,7 @@ class Reflection(Summon):
 
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
+        self.usage = 1
         self.current_usage = self.usage
         assert self.from_player.team_combat_status.has_status(Shield_from_Refrection) is None
         status = Shield_from_Refrection(game, self.from_player, self.from_character, self)
@@ -190,7 +189,6 @@ class Shield_from_Refrection(Combat_Status):
         self.from_summon = from_summon
         self.current_usage = self.from_summon.current_usage
         self.usage = self.from_summon.usage
-        self.max_usage = self.from_summon.max_usage
 
     def on_damage_execute(self, game:'GeniusGame'):
         if self.from_summon.current_usage <=0: return
@@ -220,7 +218,6 @@ class Illusory_Bubble(Combat_Status):
         super().__init__(game, from_player, from_character)
         self.current_usage = 1
         self.usage = 1
-        self.max_usage = 1
 
     def on_dealing_damage(self, game: 'GeniusGame'):
         if isinstance(game.current_damage.damage_from, Character):
