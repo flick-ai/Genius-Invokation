@@ -79,8 +79,8 @@
       
       <div class="summon3 player1 item zone"><div class="thetitle clickable">召唤区4</div></div>
       <div class="dice player1 item zone"><div class="thetitle clickable">骰子区</div></div>
-      <div class="currentselect item before"><div class="item">当前行动</div><div class="item" id="currentselect"></div><div class="item clickable charaitem" id="saveselect">保存卡组</div></div>
-      <div class="selectcharacter item before" id="selectcharacter"><div class="clickable item charaitem" id="confirmchara">确定</div></div>
+      <div class="currentselect item before"><div class="clickable item charaitem" id="confirmchara">确定角色</div><div class="clickable item charaitem" id="confirmcard">确定手牌</div><div class="item" id="currentselect"></div><div class="item clickable charaitem" id="saveselect">保存卡组</div></div>
+      <div class="selectcharacter item before" id="selectcharacter"></div>
       <div class="selectcard item before" id="selectcard"></div>
       
     </div>
@@ -111,6 +111,8 @@
       let current_character_choice = new Set()
       let current_card_choice = new Array()
       let character_confirm = document.getElementById('confirmchara')
+      let card_confirm = document.getElementById('confirmcard')
+      card_confirm.style.display = 'none'
       character_confirm.addEventListener(
         "click", ()=>{
           if (current_character_choice.size != 3){
@@ -128,7 +130,21 @@
           for (const item of document.getElementsByClassName('charaitem')) {
             item.classList.remove('selected')
           }
+          character_confirm.style.display = 'none'
+          card_confirm.style.display = 'flex'
         })
+      
+      
+      card_confirm.addEventListener(
+        "click", ()=>{
+          if (current_card_choice.length != 30){
+            alert('请选择30张手牌')
+            return
+          }
+          let data_string = ""
+
+        }
+      )
 
       const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
       async function get_character() {
@@ -202,7 +218,8 @@
                     value = checkdiv.getElementsByClassName('nothing')[0].innerText
                     current_card_choice.push(value)
                   }
-                  console.log(current_card_choice)
+                  card_confirm.innerText = '确定手牌(' + current_card_choice.length + '/30)'
+                  
                 }
               )
               document.getElementById('selectcard').appendChild(checkdiv)
