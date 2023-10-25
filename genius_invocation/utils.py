@@ -184,6 +184,7 @@ if TYPE_CHECKING:
     from genius_invocation.game.game import GeniusGame
     from genius_invocation.entity.character import Character
     from genius_invocation.game.player import GeniusPlayer
+    from genius_invocation.card.action import ActionCard
 
 
 # get characters
@@ -295,3 +296,15 @@ def Elements_to_color(ele: ElementType):
             return "rgb(255,255,255)"
         case ElementType.PIERCING:
             return "rgb(255,255,255)"
+        
+def select_card(characters: List['Character'], all_action_card: List['ActionCard']):
+    all_wepon_type = {}
+    same_country = {}
+    same_element = {}
+    
+    for character in characters:
+        same_element[character.element] = same_element.get(character.element, 0) + 1
+        same_country[character.country] = same_country.get(character.country, 0) + 1
+        all_wepon_type[character.weapon_type] = all_wepon_type.get(character.weapon_type, 0) + 1
+    
+    
