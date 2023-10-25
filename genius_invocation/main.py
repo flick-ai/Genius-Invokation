@@ -17,6 +17,7 @@ import os
 def get_parser():
     parser = argparse.ArgumentParser()
     parser.add_argument('--test', action='store_true', default=False)
+    parser.add_argument('--fix', action='store_true', default=False)
     args = parser.parse_args()
     return args
 
@@ -56,8 +57,9 @@ def test_select():
 
 
 if __name__=="__main__":
-    test_select()
     args = get_parser()
+    if args.fix:
+        test_select()
     deck1 = {
     'character': ['Rhodeia_of_Loch', 'Yae_Miko' ,'Fatui_Pyro_Agent'],
     'action_card': ['Fresh_Wind_of_Freedom','Dunyarzad','Dunyarzad','Chef_Mao','Chef_Mao','Paimon','Paimon',
