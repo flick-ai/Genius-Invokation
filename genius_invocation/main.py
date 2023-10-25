@@ -20,44 +20,47 @@ def get_parser():
     args = parser.parse_args()
     return args
 
-if __name__=="__main__":
-    # available_character_name = ['Arataki_Itto', 'Candace', 'Cyno', 'Dehya', "ElectroHypostasis", 
-    #                        "Fatui_Pyro_Agent", "Fischl", "Ganyu", "Jadeplume_Terrorshroom", "Keqing", 
-    #                        "Mona", "Nahida", "Ningguang", "Noelle", "Qiqi",
-    #                        "Rhodeia_of_Loch", "Shenhe", "Tartaglia", "Xingqiu", "Yae_Miko",
-    #                        "Yoimiya"]
+def test_select():
+    available_character_name = ['Arataki_Itto', 'Candace', 'Cyno', 'Dehya', "ElectroHypostasis", 
+                           "Fatui_Pyro_Agent", "Fischl", "Ganyu", "Jadeplume_Terrorshroom", "Keqing", 
+                           "Mona", "Nahida", "Ningguang", "Noelle", "Qiqi",
+                           "Rhodeia_of_Loch", "Shenhe", "Tartaglia", "Xingqiu", "Yae_Miko",
+                           "Yoimiya"]
     
-    # # 输出所有角色
-    # package_dir = "./card/character/characters"
-    # available_character_name = [f[:-3] for f in os.listdir(package_dir) if f.endswith(".py") and f != "__init__.py" and f != "import_head.py"]
-    # available_character = []
-    # for name in available_character_name:
-    #     available_character.append((name, eval("chars."+name).name, eval("chars."+name).name_ch, eval("chars."+name)))
-    # print(len(available_character))
+    # 输出所有角色
+    package_dir = "./card/character/characters"
+    available_character_name = [f[:-3] for f in os.listdir(package_dir) if f.endswith(".py") and f != "__init__.py" and f != "import_head.py"]
+    available_character = []
+    for name in available_character_name:
+        available_character.append((name, eval("chars."+name).name, eval("chars."+name).name_ch, eval("chars."+name)))
+    print(len(available_character))
 
-    # # 输出所有行动牌
-    # available_card = []
-    # ignore = [action.ActionCard, action.EquipmentCard, action.WeaponCard, action.TalentCard, action.ArtifactCard, action.SupportCard, action.FoodCard]
-    # for name, obj in inspect.getmembers(action):
-    #     if inspect.isclass(obj) and obj not in ignore:
-    #         available_card.append((name, obj.name, obj.name_ch, obj))
-    # print(len(available_card))
+    # 输出所有行动牌
+    available_card = []
+    ignore = [action.ActionCard, action.EquipmentCard, action.WeaponCard, action.TalentCard, action.ArtifactCard, action.SupportCard, action.FoodCard]
+    for name, obj in inspect.getmembers(action):
+        if inspect.isclass(obj) and obj not in ignore:
+            available_card.append((name, obj.name, obj.name_ch, obj))
+    print(len(available_card))
 
-    # # 输出每个类行动牌数量
-    # package_dirs = ["./card/character/characters","./card/action/support/companion",
-    #                 "./card/action/support/item","./card/action/support/location",
-    #                 "./card/action/event/events","./card/action/event/foods",
-    #                 "./card/action/event/elemental_resonance", "./card/action/event/arcane_legend",
-    #                 "./card/action/equipment/artifact/artifacts",
-    #                 "./card/action/equipment/talent/talents",
-    #                 "./card/action/equipment/weapon/weapons"]
-    # for package_dir in package_dirs:
-    #     available_name = [f[:-3] for f in os.listdir(package_dir) if f.endswith(".py") and f != "__init__.py" and f != "import_head.py"]
-    #     print(package_dir, len(available_name))
+    # 输出每个类行动牌数量
+    package_dirs = ["./card/character/characters","./card/action/support/companion",
+                    "./card/action/support/item","./card/action/support/location",
+                    "./card/action/event/events","./card/action/event/foods",
+                    "./card/action/event/elemental_resonance", "./card/action/event/arcane_legend",
+                    "./card/action/equipment/artifact/artifacts",
+                    "./card/action/equipment/talent/talents",
+                    "./card/action/equipment/weapon/weapons"]
+    for package_dir in package_dirs:
+        available_name = [f[:-3] for f in os.listdir(package_dir) if f.endswith(".py") and f != "__init__.py" and f != "import_head.py"]
+        print(package_dir, len(available_name))
 
-    # # 测试选择卡函数 
-    # select_card(['Rhodeia_of_Loch', 'Yae_Miko' ,'Fatui_Pyro_Agent'], available_card)
+    # 测试选择卡函数 
+    available_card = select_card(['Rhodeia_of_Loch', 'Yae_Miko' ,'Fatui_Pyro_Agent'], available_card)
 
+
+if __name__=="__main__":
+    test_select()
     args = get_parser()
     deck1 = {
     'character': ['Rhodeia_of_Loch', 'Yae_Miko' ,'Fatui_Pyro_Agent'],

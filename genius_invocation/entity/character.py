@@ -67,15 +67,16 @@ class Character(Entity):
         # Add events that only will be invoked with talent equiped into managers.
 
     def equip_talent(self, game:'GeniusGame', is_action = True):
+        # TODO 是不是应该先执行动作再listen？有些状态还没生成
         if self.talent:
             self.refresh_talent(game)
             if is_action:
                 self.talent_skill.on_call(game)
         else:
             self.talent = True
-            self.listen_talent_events(game)
             if is_action:
                 self.talent_skill.on_call(game)
+            self.listen_talent_events(game)
 
     def update_listener_list(self):
         self.listeners = [
@@ -125,6 +126,8 @@ class Character(Entity):
         self.power = 0
         self.elemental_attach = None
         self.character_zone.clear(game)
+        for action in self.registered_events:
+            action.remove()
 
     def revive(self, game: 'GeniusGame'):
         # Basic revive.

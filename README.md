@@ -42,7 +42,7 @@ A simulator of the Genius Invokation TCG in Genshin impact
 - [x] 完成了骰子计算系统的实现
 - [x] 完成了本地终端的调试接口
 - [ ] 全部卡片的书写
-    - [ ] 角色卡片进度:23/57
+    - [ ] 角色卡片进度:30/57
     - [x] 行动卡片进度:
         - [x] 天赋进度:57/57
         - [x] 装备牌进度:56/56
