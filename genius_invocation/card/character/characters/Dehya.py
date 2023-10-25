@@ -100,7 +100,8 @@ class Leonine_Bite(ElementalBurst):
 
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
-        self.gain_energy(game)
+        self.consume_energy(game)
+        game.resolve_damage()
         Next_Skill = self.from_character.next_skill
         prepare_status = Prepare_Incineration_Drive(game, self.from_character.from_player, self.from_character, Next_Skill)
         assert self.from_character.character_zone.has_entity(Prepare_Incineration_Drive) is None
