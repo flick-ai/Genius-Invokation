@@ -1,7 +1,7 @@
 from genius_invocation.card.character.import_head import *
 
 class Gleaming_Spear_Guardian_Stance(NormalAttack):
-    id: int = 0
+    id: int = 120701
     name = "Gleaming Spear: Guardian Stance"
     name_ch = "流耀枪术·守势"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -33,7 +33,7 @@ class Gleaming_Spear_Guardian_Stance(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Sacred_Rite_Herons_Sanctum(ElementalSkill):
-    id: int = 1
+    id: int = 120702
     type: SkillType = SkillType.ELEMENTAL_SKILL
     name = "Sacred Rite: Heron's Sanctum"
     name_ch = "圣仪·苍鹭庇卫"
@@ -67,7 +67,7 @@ class Sacred_Rite_Herons_Sanctum(ElementalSkill):
 class Heron_Strike(ElementalSkill):
     name = 'Heron Strike'
     name_ch = '苍鹭震击'
-    id = 3
+    id = 120704
     type = SkillType.ELEMENTAL_SKILL
 
     damage_type= SkillType.ELEMENTAL_SKILL
@@ -90,7 +90,7 @@ class Heron_Strike(ElementalSkill):
 class Sacred_Rite_Wagtails_Tide(ElementalBurst):
     name = "Sacred Rite: Wagtail's Tide"
     name_ch = "圣仪·灰鸰衒潮"
-    id = 2
+    id = 120703
     type = SkillType.ELEMENTAL_BURST
 
     damage_type= SkillType.ELEMENTAL_SKILL
