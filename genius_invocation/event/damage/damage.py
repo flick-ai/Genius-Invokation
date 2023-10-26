@@ -64,7 +64,7 @@ class Damage:
         self.after_damage(game)
         if self.reaction == ElementalReactionType.Overloaded:
             if self.damage_to.is_active:
-                game.has_overload = self.damage_to.from_player
+                game.is_overload = self.damage_to.from_player
 
 
     def damage_add_after_reaction(self, game:'GeniusGame'):
