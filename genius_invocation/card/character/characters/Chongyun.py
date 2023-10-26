@@ -66,7 +66,7 @@ class FrostField(Combat_Status):
             if game.current_damage.damage_from.from_character.weapon_type in [WeaponType.SWORD, WeaponType.POLEARM, WeaponType.CLAYMORE]:
                 if game.current_damage.damage_type == SkillType.NORMAL_ATTACK:
                     game.current_damage.main_damage += 1
-    
+
     def on_begin(self, game:'GeniusGame'):
         if game.active_player == self.from_player:
             self.current_usage -= 1
@@ -117,7 +117,7 @@ class Chongyun(Character):
         self.power = 0
         self.talent = talent
         self.talent_skill = self.skills[1]
-    
+
     def listen_talent_events(self, game: 'GeniusGame'):
         status = self.from_player.team_combat_status.has_status(FrostField)
         if status is not None:
