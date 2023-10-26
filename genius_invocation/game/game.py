@@ -53,6 +53,7 @@ class GeniusGame:
         self.damage_list: List[Damage] = []
         self.is_change_player: bool
         self.is_end: bool = False
+        self.is_overload:GeniusPlayer = None
 
         self.init_game()
 
@@ -138,6 +139,11 @@ class GeniusGame:
             # del(self.current_damage)
             self.current_damage = None
 
+        if self.is_overload != None:
+            self.is_overload.change_to_next_character()
+            self.is_overload = None
+        self.manager.invoke(EventType.SPECIAL_SWITCH, self)
+        self.manager.invoke(EventType.FINAL_EXECUTE, self)
         self.check_dying()
 
     def suffer_current_damage(self):

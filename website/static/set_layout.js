@@ -196,17 +196,35 @@ for (let index = 0; index < 2; index++) {
     weapon_circle.id = `player${index}_character${chara_idx}_weapon`
     weapon_circle.innerText = "W"
 
+    let waapon_circle_inner = document.createElement("div")
+    waapon_circle_inner.classList.add("equipexpandinner")
+    waapon_circle_inner.id = `player${index}_character${chara_idx}_weapon_inner`
+    waapon_circle_inner.innerText = "武器"
+    weapon_circle.appendChild(waapon_circle_inner)
+
 
     let artifact_circle = document.createElement("div")
     artifact_circle.classList.add("equip", "circle")
     artifact_circle.id = `player${index}_character${chara_idx}_artifact`
     artifact_circle.innerText = "A"
 
+    let artifact_circle_inner = document.createElement("div")
+    artifact_circle_inner.classList.add("equipexpandinner")
+    artifact_circle_inner.id = `player${index}_character${chara_idx}_artifact_inner`
+    artifact_circle_inner.innerText = "圣遗物"
+    artifact_circle.appendChild(artifact_circle_inner)
+
 
     let talent_circle = document.createElement("div")
     talent_circle.classList.add("equip", "circle")
     talent_circle.id = `player${index}_character${chara_idx}_talent`
     talent_circle.innerText = "T"
+
+    let talent_circle_inner = document.createElement("div")
+    talent_circle_inner.classList.add("equipexpandinner")
+    talent_circle_inner.id = `player${index}_character${chara_idx}_talent_inner`
+    talent_circle_inner.innerText = "天赋"
+    talent_circle.appendChild(talent_circle_inner)
 
 
     equipbar.appendChild(weapon_circle)

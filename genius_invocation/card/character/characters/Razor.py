@@ -1,10 +1,11 @@
 from genius_invocation.card.character.import_head import *
 
 
-class KhandaBarrierBuster(NormalAttack):
-    id: int = 17021
-    name = "Khanda Barrier-Buster"
-    name_ch = "藏蕴破障"
+
+class SteelFang(NormalAttack):
+    id: int = 14021
+    name = "Steel Fang"
+    name_ch = "钢脊"
     type: SkillType = SkillType.NORMAL_ATTACK
     damage_type: SkillType = SkillType.NORMAL_ATTACK
     main_damage_element: ElementType = ElementType.PHYSICAL
@@ -19,10 +20,10 @@ class KhandaBarrierBuster(NormalAttack):
         self.gain_energy(game)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
-class VijnanaPhalaMine(ElementalSkill):
-    id: int = 17022
-    name = "Vijnana-Phala Mine"
-    name_ch = "识果种雷"
+class ClawandThundert(ElementalSkill):
+    id: int = 14022
+    name = "Claw and Thunder"
+    name_ch = "利爪与苍雷"
     type: SkillType = SkillType.ELEMENTAL_SKILL
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
     main_damage_element: ElementType = ElementType.ELECTRO
@@ -43,9 +44,9 @@ class VijnanaPhalaMine(ElementalSkill):
                         char.get_power(power=1)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
-class VijnanaSuffusion(Status):
-    name = "Vijnana Suffusion"
-    name_ch = " 通塞识"
+class TheWolfWithin(Status):
+    name = "The Wolf Within"
+    name_ch = "雷狼"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None):
         super().__init__(game, from_player, from_character)
         self.max_usage = 2
@@ -81,10 +82,10 @@ class VijnanaSuffusion(Status):
             (EventType.BEGIN_ACTION_PHASE, ZoneType.CHARACTER_ZONE, self.on_begin)
         ]
 
-class FashionersTanglevineShaft(ElementalBurst):
-    id: int = 17023
-    name = "Fashioner's Tanglevine Shaft"
-    name_ch = "造生缠藤箭"
+class LightningFang(ElementalBurst):
+    id: int = 14023
+    name = "Lightning Fang"
+    name_ch = "雷牙"
     type: SkillType = SkillType.ELEMENTAL_BURST
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
     main_damage_element: ElementType = ElementType.ELECTRO
@@ -101,19 +102,20 @@ class FashionersTanglevineShaft(ElementalBurst):
         self.add_status(TheWolfWithin(game, self.from_character.from_player, self.from_character))
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
-class Tighnari(Character):
-    id: int = 1702
-    name: str = "Tighnari"
-    name_ch = "提纳里"
-    element: ElementType = ElementType.DENDRO
-    weapon_type: WeaponType = WeaponType.BOW
-    country: CountryType = CountryType.SUNERU
+class Razor(Character):
+    id: int = 1402
+    name: str = "Razor"
+    name_ch = "雷泽"
+    element: ElementType = ElementType.ELECTRO
+    weapon_type: WeaponType = WeaponType.CLAYMORE
+    country: CountryType = CountryType.MONDSTADT
     init_health_point: int = 10
     max_health_point: int = 10
-    skill_list: List = []
+    skill_list: List = [SteelFang, ClawandThundert, LightningFang]
     max_power: int = 2
 
     def __init__(self, game: 'GeniusGame', zone: 'CharacterZone', from_player: 'GeniusPlayer', index: int, from_character=None, talent=False):
         super().__init__(game, zone, from_player, index, from_character)
         self.power = 0
         self.talent = talent
+        self.talent_skill = self.skills[1]

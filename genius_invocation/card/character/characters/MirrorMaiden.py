@@ -70,7 +70,7 @@ class Refraction(Status):
         self.current_usage = self.max_usage
 
     def on_add_damage(self, game:'GeniusGame'):
-        if game.current_damage.damage_to == self.from_player:
+        if game.current_damage.damage_to == self.from_character:
             if game.current_damage.main_damage_element == ElementType.HYDRO:
                 game.current_damage.main_damage += 1
 
@@ -142,6 +142,6 @@ class MirrorMaiden(Character):
 
     def listen_talent_events(self, game: 'GeniusGame'):
         if self.refraction_target != None:
-            status = self.refraction_target.character_zone.has_status(Refraction)
+            status = self.refraction_target.character_zone.has_entity(Refraction)
             status.listen_event(game, EventType.CALCULATE_DICE, ZoneType.CHARACTER_ZONE, status.on_calculate_dice)
             status.listen_event(game, EventType.ON_CHANGE_CHARACTER, ZoneType.CHARACTER_ZONE, status.on_swich)

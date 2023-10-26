@@ -27,8 +27,7 @@ class AdventurersBandanaEntity(Artifact):
         if self.usage > 0 :
             if game.current_skill.from_character == self.from_character:
                 if game.current_skill.type == SkillType.NORMAL_ATTACK:
-                    for character in game.active_player.character_list:
-                        self.from_character.heal(heal=1,game=game)
+                    self.from_character.heal(heal=1,game=game)
                     self.usage -= 1
 
     def update_listener_list(self):
