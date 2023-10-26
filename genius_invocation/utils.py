@@ -138,7 +138,7 @@ class EventType(Enum):
     # ON_REACTION = 14 # Elemental Reaction based event. Maybe trigger sth, or just add DMG.
     DIVIDE_DAMAGE = 14 # 诺艾尔!
     EXECUTE_DAMAGE = 15
-    AFTER_TAKES_DMG = 16
+    # AFTER_TAKES_DMG = 16
     SPECIAL_SWITCH = 17
     FINAL_EXECUTE = 18
     

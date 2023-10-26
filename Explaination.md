@@ -243,8 +243,8 @@ To tackle the difficult calculation of damage, we create the class of `Damage`�
     -   **Damage Execute**: Calculate the status, shield etc's effect on damage reduction. 计算状态、盾提供的减伤。
     -   **Suffer Damage**: The characters suffer the final damage. 承受最终伤害。
     -   If triggered overload on active character, switch the active character to the next. 若在出战角色触发超载，则切换出战角色。
-
-    -   Now it is the time `AFTER_TAKE_DMG`， 轮到`AFTER_TAKE_DMG`结算。Maybe there are more damage need to add in the list to resolve together. 之后触发受到伤害后事件，处理可能的更多放在伤害列表中的伤害。e.g. Nahida。
+    -   TO BE UPDATED.
+    <!-- -   Now it is the time `AFTER_TAKE_DMG`， 轮到`AFTER_TAKE_DMG`结算。Maybe there are more damage need to add in the list to resolve together. 之后触发受到伤害后事件，处理可能的更多放在伤害列表中的伤害。e.g. Nahida。 -->
 
       
 
