@@ -310,7 +310,7 @@ class ElectroCrystalCore(Status):
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.CHARACTER_DIE, ZoneType.CHARACTER_ZONE, self.on_character_die)
+            (EventType.CHARACTER_WILL_DIE, ZoneType.CHARACTER_ZONE, self.on_character_die)
         ]
 
 class TalentOfElectroHypostasis(CharacterSkill):
