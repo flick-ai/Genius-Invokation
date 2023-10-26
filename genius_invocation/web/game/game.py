@@ -8,6 +8,7 @@ from genius_invocation.event.events import EventManager
 from genius_invocation.card.character.base import Damage
 from genius_invocation.card.action.base import ActionCard
 from genius_invocation.game.zone import Dice
+from genius_invocation.event.heal import Heal
 from loguru import logger
 from rich.console import Console
 from rich.table import Column, Table
@@ -42,6 +43,8 @@ class GeniusGame:
         self.special_phase = None
         self.round: int = 0
 
+        self.current_die: Character = None
+        self.current_heal: Heal = None
         self.current_dice: Dice = None
         self.current_action: Action = None
         self.current_damage: Damage = None
@@ -51,6 +54,7 @@ class GeniusGame:
         self.damage_list: List[Damage] = []
         self.is_change_player: bool
         self.is_end: bool = False
+        self.is_overload:GeniusPlayer = None
 
         self.init_game()
 
@@ -71,6 +75,15 @@ class GeniusGame:
         self.active_player = self.players[first]
         self.active_player.generate_mask(self)
 
+    def reset_current(self):
+        self.current_skill = None
+        self.current_damage = None
+        self.current_dice = None
+        self.current_action = None
+        self.current_card = None
+        self.current_dice = None
+        self.current_heal = None
+        self.current_switch = {"from": None, "to": None}
     def resolve_action(self, action: 'Action'):
         '''
             处理行动信息
@@ -91,13 +104,13 @@ class GeniusGame:
         elif action.choice_type == ActionChoice.PASS:
             self.is_change_player = True
             active_player.is_pass = True
-
         self.manager.invoke(EventType.AFTER_ANY_ACTION, self)
-        if oppenent_player.is_pass:
-            self.end_phase()
-        else:
-            self.first_player = self.active_player_index
-
+        self.reset_current()
+        if active_player.is_pass:
+            if oppenent_player.is_pass:
+                self.end_phase()
+            else:
+                self.first_player = self.active_player_index
         if self.is_change_player and (not oppenent_player.is_pass):
             self.change_active_player()
         
@@ -124,7 +137,12 @@ class GeniusGame:
             # del(self.current_damage)
             self.current_damage = None
 
-        self.check_dying() # TODO: Not Implement yet.
+        if self.is_overload != None:
+            self.is_overload.change_to_next_character()
+            self.is_overload = None
+        self.manager.invoke(EventType.SPECIAL_SWITCH, self)
+        self.manager.invoke(EventType.FINAL_EXECUTE, self)
+        self.check_dying()
 
     def suffer_current_damage(self):
         target = self.current_damage.damage_to

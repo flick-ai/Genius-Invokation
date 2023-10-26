@@ -139,7 +139,7 @@ class Sprout(Combat_Status):
             if game.current_damage.damage_from.from_player == self.from_player:
                 if game.current_damage.reaction in [ElementalReactionType.Bloom, ElementalReactionType.Burning, ElementalReactionType.Quicken]:
                     self.is_use = True
-    def after_skill(self, game:GeniusGame):
+    def after_skill(self, game:'GeniusGame'):
         if self.is_use:
             dmg = Damage.create_damage(
                 game,
