@@ -27,7 +27,7 @@ class Sucrose(Character):
 
     def update_listener_list(self):
         super().update_listener_list()
-        self.listeners.append((EventType.ON_SPECIAL_SWITCH, ZoneType.CHARACTER_ZONE, self.special_switch))
+        self.listeners.append((EventType.SPECIAL_SWITCH, ZoneType.CHARACTER_ZONE, self.special_switch))
 
 
 class Wind_Spirit_Creation(NormalAttack):
