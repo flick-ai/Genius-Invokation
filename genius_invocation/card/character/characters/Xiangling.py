@@ -79,7 +79,7 @@ class Pyronado(ElementalBurst):
     name_ch = '旋火轮'
     id = 130203
     type: SkillType = SkillType.ELEMENTAL_BURST
-# damage
+    # damage
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
     main_damage_element: ElementType = ElementType.PYRO
     main_damage: int = 3

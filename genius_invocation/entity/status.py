@@ -20,7 +20,7 @@ class Status(Entity):
     def __init__(self, game: 'GeniusGame', from_player:'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.usage: int #生成时的可用次数
-        self.max_usage: int #Maybe changed by Talent.
+        # self.max_usage: int #Maybe No Use except some special status. Please add it in subclass.
         self.current_usage: int
 
     def on_destroy(self, game):
@@ -44,7 +44,7 @@ class Combat_Status(Entity):
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.usage: int #生成时的可用次数
-        self.max_usage: int #Maybe changed by Talent.
+        # self.max_usage: int #Maybe No Use except some special status. Please add it in subclass.
         self.current_usage: int
 
     def on_destroy(self, game):

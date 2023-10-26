@@ -72,6 +72,16 @@ class GeniusGame:
         self.active_player_index = first
         self.active_player = self.players[first]
         self.active_player.generate_mask(self)
+        
+    def reset_current(self):
+        self.current_skill = None
+        self.current_damage = None
+        self.current_dice = None
+        self.current_action = None
+        self.current_card = None
+        self.current_dice = None
+        self.current_heal = None
+        self.current_switch = {"from": None, "to": None}
 
     def resolve_action(self, action: 'Action'):
         '''
@@ -95,7 +105,7 @@ class GeniusGame:
             active_player.is_pass = True
             
         self.manager.invoke(EventType.AFTER_ANY_ACTION, self)
-
+        self.reset_current()
         if active_player.is_pass:
             if oppenent_player.is_pass:
                 self.end_phase()

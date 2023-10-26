@@ -13,10 +13,10 @@ class UnmovableMountain(Shield):
     name_ch = "重嶂不移"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
-        self.current_usage = 3
+        self.current_usage = 2
 
     def update(self):
-        self.current_usage = 3
+        self.current_usage = 2 
 
 class TenacityoftheMillelithEntity(Artifact):
     name: str = "Tenacity of the Millelith"
