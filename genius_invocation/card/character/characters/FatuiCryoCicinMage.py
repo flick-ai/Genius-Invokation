@@ -3,7 +3,7 @@ from genius_invocation.card.character.import_head import *
 class Cicin_Icicle(NormalAttack):
     name = 'Cicin Icicle'
     name_ch = "冰萤棱锥"
-    id = 210101
+    id = 21011
     type: SkillType = SkillType.NORMAL_ATTACK
 
     # damage
@@ -45,7 +45,7 @@ class Cicin_Icicle(NormalAttack):
 class Misty_Summons(ElementalSkill):
     name = 'Misty Summons'
     name_ch = '雾虚摇唤'
-    id = 210102
+    id = 21012
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
     # damage
@@ -81,7 +81,7 @@ class Misty_Summons(ElementalSkill):
 class Blizzard(ElementalBurst):
     name = 'Blizzard'
     name_ch = '冰枝白花'
-    id = 210103
+    id = 21013
     type: SkillType = SkillType.ELEMENTAL_BURST
 
     # damage

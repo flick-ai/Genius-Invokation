@@ -43,7 +43,7 @@ class Invokers_Spear(NormalAttack):
     赛诺
     普通攻击
     '''
-    id: int = 0
+    id: int = 14041
     type: SkillType = SkillType.NORMAL_ATTACK
     name = "Invokers Spear"
     name_ch = "七圣枪术"
@@ -85,7 +85,7 @@ class Secret_Rite_Chasmic_Soulfarer(ElementalSkill):
     赛诺
     元素战技
     '''
-    id: int = 1
+    id: int = 14042
     name = "Secret Rite: Chasmic Soulfarer"
     name_ch = "秘仪·律渊渡魂"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -127,7 +127,7 @@ class Sacred_Rite_Wolfs_Swiftness(ElementalBurst):
     赛诺
     元素爆发
     '''
-    id = 2
+    id = 14043
     name="Sacred Rite: Wolf's Swiftness"
     name_ch = "圣仪·煟煌随狼行"
     type: SkillType = SkillType.ELEMENTAL_BURST

@@ -6,7 +6,7 @@ class ElectroCrystalProjection(NormalAttack):
     '''
         雷晶投射
     '''
-    id: int = 0
+    id: int = 24011
     type: SkillType = SkillType.NORMAL_ATTACK
     name = "Electro Crystal Projection"
     name_ch = "雷晶投射"
@@ -49,7 +49,6 @@ class RockPaperScissorsCombo_Paper(ElementalSkill):
     '''
     name = 'Rock-Paper-Scissors Combo: Paper'
     name_ch = '猜拳三连击·布'
-    id: int = 11
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
     # damage
@@ -106,7 +105,6 @@ class RockPaperScissorsCombo_Scissors(ElementalSkill):
     '''
     name = 'Rock-Paper-Scissors Combo: Scissors'
     name_ch = '猜拳三连击·剪刀'
-    id: int = 12
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
     # damage
@@ -165,7 +163,7 @@ class RockPaperScissorsCambo(ElementalSkill):
     '''
         猜拳三连击
     '''
-    id: int = 1
+    id: int = 24012
     type: SkillType = SkillType.ELEMENTAL_SKILL
     name = 'Rock-Paper-Scissors Combo'
     name_ch = '猜拳三连击'
@@ -264,7 +262,7 @@ class LightningLockdown(ElementalBurst):
         元素爆发
         雳霆镇锁
     '''
-    id: int = 2
+    id: int = 24013
     type: SkillType = SkillType.ELEMENTAL_BURST
     name = 'Lightning Lockdown'
     name_ch = '雳霆镇锁'

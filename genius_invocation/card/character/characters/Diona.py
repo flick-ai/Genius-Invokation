@@ -3,7 +3,7 @@ from genius_invocation.card.character.import_head import *
 class Katzlein_Style(NormalAttack):
     name = "Kätzlein Style"
     name_ch = '猎人射术'
-    id: int = 110201
+    id: int = 11021
     type: SkillType = SkillType.NORMAL_ATTACK
 
     # damage
@@ -42,7 +42,7 @@ class Katzlein_Style(NormalAttack):
 class Icy_Paws(ElementalSkill):
     name = "Icy Paws"
     name_ch = '猫爪冻冻'
-    id = 110202
+    id = 11022
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
     # damage
@@ -78,7 +78,7 @@ class Icy_Paws(ElementalSkill):
 class Signature_Mix(ElementalBurst):
     name = "Signature Mix"
     name_ch = '最烈特调'
-    id = 110203
+    id = 11023
     type = SkillType.ELEMENTAL_BURST
 
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
