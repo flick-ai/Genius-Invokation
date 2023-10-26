@@ -68,15 +68,15 @@ if __name__=="__main__":
                     'Lotus_Flower_Crisp','Lotus_Flower_Crisp','Strategize','Strategize','Leave_it_to_Me','Leave_it_to_Me',
                     'PaidinFull','PaidinFull','Send_Off','Starsigns','Starsigns']
     }
-    deck2 = {
-    'character': ['Arataki_Itto', 'Dehya', 'Noelle'],
-    'action_card': ['TenacityoftheMillelith','TenacityoftheMillelith','TheBell','TheBell','Paimon','Paimon',
-                    'Chef_Mao','Chef_Mao','Liben','Liben','Dunyarzad','Dunyarzad','Fresh_Wind_of_Freedom',
-                    'Woven_Stone','Woven_Stone','Enduring_Rock','Enduring_Rock','Strategize','Strategize',
-                    'Leave_it_to_Me','Send_Off','Heavy_Strike','Heavy_Strike','Adeptus_Temptation',
-                    'Lotus_Flower_Crisp','Lotus_Flower_Crisp','Sweet_Madame','Mondstadt_Hash_Brown',
-                    'Mushroom_Pizza','Mushroom_Pizza']
-    }
+    # deck2 = {
+    # 'character': ['Arataki_Itto', 'Dehya', 'Noelle'],
+    # 'action_card': ['TenacityoftheMillelith','TenacityoftheMillelith','TheBell','TheBell','Paimon','Paimon',
+    #                 'Chef_Mao','Chef_Mao','Liben','Liben','Dunyarzad','Dunyarzad','Fresh_Wind_of_Freedom',
+    #                 'Woven_Stone','Woven_Stone','Enduring_Rock','Enduring_Rock','Strategize','Strategize',
+    #                 'Leave_it_to_Me','Send_Off','Heavy_Strike','Heavy_Strike','Adeptus_Temptation',
+    #                 'Lotus_Flower_Crisp','Lotus_Flower_Crisp','Sweet_Madame','Mondstadt_Hash_Brown',
+    #                 'Mushroom_Pizza','Mushroom_Pizza']
+    # }
     game = GeniusGame(player0_deck=deck1, player1_deck=deck2, seed=2026, is_omni=True)
 
     if args.test:
