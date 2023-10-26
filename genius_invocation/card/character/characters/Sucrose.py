@@ -17,6 +17,17 @@ class Sucrose(Character):
         super().__init__(game, zone, from_player, index, from_character)
         self.power = 0
         self.talent = talent
+        self.need_to_switch = False
+
+    def special_switch(self, game: 'GeniusGame'):
+        if self.need_to_switch:
+            self.need_to_switch = False
+            opponent = get_opponent(self.from_character.from_player.index)
+            opponent.change_to_previous_character(game)
+
+    def update_listener_list(self):
+        super().update_listener_list()
+        self.listeners.append((EventType.ON_SPECIAL_SWITCH, ZoneType.CHARACTER_ZONE, self.special_switch))
 
 
 class Wind_Spirit_Creation(NormalAttack):
@@ -76,10 +87,12 @@ class Astable_Anemohypostasis_Creation_6308(ElementalSkill):
 
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
+
+        # 会在special switch里调用
+        self.from_character.need_to_switch = True
         self.resolve_damage(game)
         self.gain_energy(game)
-        opponent = get_opponent(self.from_character.from_player.index)
-        opponent.change_to_previous_character(game)
+
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 
