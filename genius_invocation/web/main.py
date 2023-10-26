@@ -145,6 +145,31 @@ async def main():
                 js.document.getElementById(f'{player}_character{idx}_power').innerText = item['base'][3]
                 for skill_idx, skill in enumerate(item['skills']):
                     js.document.getElementById(f'{player}_character{idx}_skill{skill_idx}').innerText = skill
+                weapon_card = item.get('weapon', None)
+                if weapon_card is None:
+                    js.document.getElementById(f'{player}_character{idx}_weapon').style.background = '#DDDDDD'
+                    js.document.getElementById(f'{player}_character{idx}_weapon_inner').innerText = '武器\n(空)'
+                else:
+                    js.document.getElementById(f'{player}_character{idx}_weapon').style.background = '#888888'
+                    js.document.getElementById(f'{player}_character{idx}_weapon_inner').innerText = '武器\n' + weapon_card
+
+                artifact_card = item.get('artifact', None)
+                if artifact_card is None:
+                    js.document.getElementById(f'{player}_character{idx}_artifact').style.background = '#DDDDDD'
+                    js.document.getElementById(f'{player}_character{idx}_artifact_inner').innerText = '圣遗物\n(空)'
+                else:
+                    js.document.getElementById(f'{player}_character{idx}_artifact').style.background = '#888888'
+                    js.document.getElementById(f'{player}_character{idx}_artifact_inner').innerText = '圣遗物\n' + artifact_card
+                
+                talent = item.get('talent', None)
+                if talent is None:
+                    js.document.getElementById(f'{player}_character{idx}_talent').style.background = '#DDDDDD'
+                    js.document.getElementById(f'{player}_character{idx}_talent_inner').innerText = '天赋\n(空)'
+                else:
+                    js.document.getElementById(f'{player}_character{idx}_talent').style.background = '#888888'
+                    js.document.getElementById(f'{player}_character{idx}_talent_inner').innerText = '天赋\n' + talent
+
+
 
                 if len(item['status']) == 0:
                     chara_state = '角色状态\n(空)'
