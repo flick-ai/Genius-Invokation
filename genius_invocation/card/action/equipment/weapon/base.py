@@ -24,10 +24,10 @@ class WeaponCard(EquipmentCard):
     def on_played(self, game: 'GeniusGame') -> None:
         idx = game.current_action.target_idx
         target_character = game.active_player.character_list[idx]
-        entity = self.equipment_entity(game=game,
-                                       from_player=game.active_player,
-                                       from_character=target_character,
-                                       weapon_card=self)
+        entity = self.equipment_entity(game,
+                                       game.active_player,
+                                       target_character,
+                                       self)
         if target_character.character_zone.weapon_card != None:
             target_character.character_zone.weapon_card.on_destroy(game)
         target_character.character_zone.weapon_card = entity

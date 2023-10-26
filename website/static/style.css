@@ -275,7 +275,11 @@
     flex-direction: column;
   }
 
-  .expanditem .expandinner {
+  .equip:hover .equipexpandinner{
+    display: block;
+  }
+
+  .expandinner {
     background-color: #44444488;
     width:120px;
     position: absolute;
@@ -327,11 +331,17 @@
   .nothing{
     display: none;
   }
-  .selectcharacter {
+  .selectcharacterouter {
     grid-column: 1/12;
     grid-row: 2/5;
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
     background: #444444aa;
     z-index: 1;
+  }
+  .selectcharacter {
+
     display: grid;
     place-items: center;
     grid-template-columns: repeat(12, 1fr);
@@ -394,6 +404,7 @@
     background-color: #BBBBBB;
   }
   .equip {
+    position: relative;
     background-color: #DDDDDD;
   }
 
@@ -421,9 +432,14 @@
   .charaitem {
     height: 100%;
     width: 100%;
+
     justify-content: center;
     align-items: center;
   }
+/* 
+  .charainneritem {
+    font-size: 80%;
+  } */
 
   .carditem {
     height: 100%;
@@ -446,6 +462,18 @@
     /* overflow: scroll; */
   }
 
+  .equipexpandinner{
+    background-color: #44444488;
+    width:120px;
+    position: absolute;
+    left: 0px;
+    top: 35px;
+    z-index: 1;
+    color: #fff;
+    border-radius: 10%;
+    display: none;
+    font-size: 90%;
+  }
 
 
   .selectcardinner {
