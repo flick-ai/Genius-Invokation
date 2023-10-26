@@ -156,10 +156,11 @@ class Diona(Character):
     country: CountryType = CountryType.MONDSTADT
     init_health_point: int = 10
     max_health_point: int = 10
-    skill_list: List = []
+    skill_list: List = [Katzlein_Style, Icy_Paws, Signature_Mix]
     max_power: int = 3
 
     def __init__(self, game: 'GeniusGame', zone: 'CharacterZone', from_player: 'GeniusPlayer', index: int, from_character=None, talent=False):
         super().__init__(game, zone, from_player, index, from_character)
         self.power = 0
         self.talent = talent
+        self.talent_skill = self.skills[1]
