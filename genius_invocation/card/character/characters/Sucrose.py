@@ -115,7 +115,8 @@ class Large_Wind_Spirit(Summon):
     def damage_add(self, game: 'GeniusGame'):
         if game.current_damage.damage_from.from_player == self.from_player:
             if self.from_character.talent and self.infuse_element != ElementType.ANEMO:
-                game.current_damage.main_damage += 1
+                if game.current_damage.main_damage_element == self.infuse_element:
+                    game.current_damage.main_damage += 1
 
     def on_reaction(self, game:'GeniusGame'):
         if isinstance(game.current_damage.damage_from, Character) or isinstance(game.current_damage.damage_from, Summon):

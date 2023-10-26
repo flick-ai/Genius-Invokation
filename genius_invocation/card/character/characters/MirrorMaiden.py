@@ -89,7 +89,7 @@ class Refraction(Status):
             if game.current_dice.from_character == self.from_character:
                 game.current_dice.cost[0]['cost_num'] += 1
 
-    def on_swich(self, game):
+    def on_switch(self, game):
         self.on_calculate_dice(game)
 
     def update_listener_list(self):
@@ -99,7 +99,7 @@ class Refraction(Status):
         ]
         if self.from_character.talent:
             self.listeners.append(EventType.CALCULATE_DICE, ZoneType.CHARACTER_ZONE, self.on_calculate_dice)
-            self.listeners.append(EventType.ON_CHANGE_CHARACTER, ZoneType.CHARACTER_ZONE, self.on_swich)
+            self.listeners.append(EventType.ON_CHANGE_CHARACTER, ZoneType.CHARACTER_ZONE, self.on_switch)
 
 
 class RippledReflection(ElementalBurst):
@@ -144,4 +144,4 @@ class MirrorMaiden(Character):
         if self.refraction_target != None:
             status = self.refraction_target.character_zone.has_entity(Refraction)
             status.listen_event(game, EventType.CALCULATE_DICE, ZoneType.CHARACTER_ZONE, status.on_calculate_dice)
-            status.listen_event(game, EventType.ON_CHANGE_CHARACTER, ZoneType.CHARACTER_ZONE, status.on_swich)
+            status.listen_event(game, EventType.ON_CHANGE_CHARACTER, ZoneType.CHARACTER_ZONE, status.on_switch)

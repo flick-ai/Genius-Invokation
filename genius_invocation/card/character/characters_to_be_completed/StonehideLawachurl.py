@@ -115,7 +115,6 @@ class StonehideLawachurl(Character):
         self.power = 0
         self.talent = talent
         self.talent_skill = self.skills[2]
-        self.skill_target = None
 
     def init_state(self, game: 'GeniusGame'):
         status = InfusedStonehide(game, self.from_player, self)
@@ -124,7 +123,12 @@ class StonehideLawachurl(Character):
     def reget_InfusedStonehide(self, game: 'GeniusGame'):
         if self.talent:
             if game.current_skill.from_character == self:
-                if not self.skill_target.is_alive:
-                    pass
+                if not get_opponent_active_character(game).is_alive:
+                    status = self.character_zone.has_entity(InfusedStonehide)
+                    if status is None:
+                        status = InfusedStonehide(game, self.from_player, self)
+                        self.character_zone.add_entity(status)
+                    else:
+                        status.update()
 
         
