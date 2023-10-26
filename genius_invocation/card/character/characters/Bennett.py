@@ -114,11 +114,16 @@ class Inspiration_Field(Combat_Status):
         if game.current_skill.from_character.from_player == self.from_player:
             if game.current_skill.from_character.health_point <=6:
                 game.current_skill.from_character.heal(2, game)
-
+    def on_begin(self, game:'GeniusGame'):
+        if game.active_player == self.from_player:
+            self.current_usage -=1
+            if self.current_usage <=0:
+                self.on_destroy(game)
     def update_listener_list(self):
         self.listeners = [
             (EventType.DAMAGE_ADD, ZoneType.ACTIVE_ZONE, self.add_dmg),
-            (EventType.AFTER_ANY_ACTION, ZoneType.ACTIVE_ZONE, self.heal)
+            (EventType.AFTER_ANY_ACTION, ZoneType.ACTIVE_ZONE, self.heal),
+            (EventType.BEGIN_ACTION_PHASE, ZoneType.ACTIVE_ZONE, self.on_begin)
         ]
 class Bennett(Character):
     id: int = 1303
