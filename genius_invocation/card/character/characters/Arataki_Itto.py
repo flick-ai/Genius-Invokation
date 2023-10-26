@@ -138,7 +138,7 @@ class Ushi(Summon):
                 status.on_destroy(game)
             self.on_destroy(game)
     
-    def after_take_dmg(self, game: 'GeniusGame'):
+    def execute_dmg(self, game: 'GeniusGame'):
         if self.add_strength: return
         if game.current_damage.damage_to.from_player == self.from_player:
             self.add_strength = True
@@ -194,7 +194,7 @@ class Ushi(Summon):
     def update_listener_list(self):
         self.listeners = [
             (EventType.END_PHASE, ZoneType.ACTIVE_ZONE, self.on_end_phase),
-            (EventType.AFTER_TAKES_DMG, ZoneType.ACTIVE_ZONE, self.after_take_dmg),
+            (EventType.EXECUTE_DAMAGE, ZoneType.ACTIVE_ZONE, self.execute_dmg),
         ]
 
 class Shield_from_Ushi(Combat_Status):
