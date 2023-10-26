@@ -279,7 +279,8 @@ class KaedeharaKazuha(Character):
                 self.last_swirl = None
 
     def update_listener_list(self):
-        self.listeners = [
+        super().update_listener_list()
+        self.listeners += [
             (EventType.EXECUTE_DAMAGE, ZoneType.CHARACTER_ZONE, self.on_excute_dmg)
         ]
 

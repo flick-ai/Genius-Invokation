@@ -1,5 +1,5 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
-from genius_invocation.card.character.characters.Ayato import * 
+from genius_invocation.card.character.characters.Ayato import *
 
 class KyoukaFuushi(TalentCard):
     id: int = 212061
@@ -11,4 +11,3 @@ class KyoukaFuushi(TalentCard):
     character = Ayato
     def __init__(self) -> None:
         super().__init__()
-        

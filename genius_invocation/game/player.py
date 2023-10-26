@@ -163,7 +163,7 @@ class GeniusPlayer:
                                  use_type=skill.type,
                                  cost=deepcopy(skill.cost))
         self.character_list[self.active_idx].skill(idx, game)
-        
+
     def play_card(self, game: 'GeniusGame'):
         '''
             标准行动: 打出手牌/调和手牌
@@ -194,14 +194,16 @@ class GeniusPlayer:
             标准行动: 切换角色
         '''
         self.use_dice(game)
+        idx = game.current_action.target_idx
+        target_char = self.character_list[idx]
         game.current_dice = Dice(from_player=self,
                                  from_character=None,
                                  use_type=SwitchType.CHANGE_CHARACTER,
-                                 cost=[{'cost_num':1, 'cost_type':CostType.BLACK}])
+                                 cost=[{'cost_num':1, 'cost_type':CostType.BLACK}],
+                                 to_character=target_char)
         self.change_num += 1
         self.is_quick_change = False
         game.manager.invoke(EventType.ON_CHANGE_CHARACTER, game)
-        idx = game.current_action.target_idx
         self.change_to_id(idx)
         if self.is_quick_change:
             game.is_change_player = False

@@ -2,7 +2,7 @@ from genius_invocation.card.character.import_head import *
 
 
 class Guhua_Style(NormalAttack):
-    id: int = 0
+    id: int = 120201
     type: SkillType = SkillType.NORMAL_ATTACK
     name = "Guhua Style"
     name_ch = "古华剑法"
@@ -44,7 +44,7 @@ class Fatal_Rainscreen(ElementalSkill):
     行秋
     元素战技
     '''
-    id: int = 1
+    id: int = 120202
     name = "Stellar Restoration"
     name_ch = "画雨笼山"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -85,7 +85,7 @@ class Raincutter(ElementalBurst):
     行秋
     元素爆发
     '''
-    id: int = 2
+    id: int = 120203
     name = "Fatal Rainscreen"
     name_ch = "裁雨留虹"
     type: SkillType = SkillType.ELEMENTAL_BURST
@@ -123,16 +123,14 @@ class Rain_Sword(Combat_Status):
     name_ch = "雨帘剑"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
-        self.max_usage = 2
         self.usage = 2
         if self.from_character.talent:
-            self.max_usage = 3
             self.usage = 3
+        self.current_usage = self.usage
 
         self.current_usage = self.usage
     def update(self):
         if self.from_character.talent:
-            self.max_usage = 3
             self.usage = 3
         self.current_usage = max(self.current_usage, self.usage)
 
@@ -156,7 +154,6 @@ class Rainbow_Bladework(Combat_Status):
     name = "虹剑势"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
-        self.max_usage = 3
         self.usage = 3
         self.current_usage = self.usage
 
