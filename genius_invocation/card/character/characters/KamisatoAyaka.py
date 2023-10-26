@@ -201,7 +201,7 @@ class KamisatoAyaka(Character):
     country: CountryType = CountryType.INAZUMA
     init_health_point: int = 10
     max_health_point: int = 10
-    skill_list: List = []
+    skill_list: List = [KamisatoArt_Kabuki, KamisatoArt_Hyouka, KamisatoArt_Soumetsu]
     max_power: int = 3
 
     def __init__(self, game: 'GeniusGame', zone: 'CharacterZone', from_player: 'GeniusPlayer', index: int, from_character=None, talent=False):

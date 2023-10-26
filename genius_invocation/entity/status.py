@@ -30,7 +30,7 @@ class Status(Entity):
 
     def update(self):
         # All states can be update, maybe need to re-implement in subclass
-        pass
+        self.current_usage = max(self.current_usage, self.usage)
 
     def show(self):
         try:
