@@ -272,7 +272,8 @@ class Mona(Character):
                     game.current_damage.main_damage += 2
 
     def update_listener_list(self):
-        self.listeners = [
+        super().update_listener_list()
+        self.listeners += [
             (EventType.ON_CHANGE_CHARACTER, ZoneType.CHARACTER_ZONE, self.on_change),
         ]
         if self.talent:

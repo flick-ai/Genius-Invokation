@@ -28,7 +28,7 @@ class Summon(Entity):
         self.from_player.summon_zone.remove(self)
 
     def update(self):
-        pass
+        self.current_usage = max(self.current_usage, self.usage)
 
     def add_usage(self, game: 'GeniusGame', count: int):
         self.current_usage += count

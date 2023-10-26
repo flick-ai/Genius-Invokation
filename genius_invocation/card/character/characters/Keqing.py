@@ -199,12 +199,10 @@ class Electro_Elemental_Infusion(Status):
         super().__init__(game, from_player, from_character)
         self.usage = 2
         self.current_usage = 2
-        self.max_usage = 2
 
         if self.from_character.talent:
             self.usage = 3
             self.current_usage = 3
-            self.max_usage = 3
 
     def update(self):
         if self.from_character.talent:
