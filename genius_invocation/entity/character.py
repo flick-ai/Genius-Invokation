@@ -74,9 +74,10 @@ class Character(Entity):
                 self.talent_skill.on_call(game)
         else:
             self.talent = True
+            self.listen_talent_events(game)
             if is_action:
                 self.talent_skill.on_call(game)
-            self.listen_talent_events(game)
+           
 
     def update_listener_list(self):
         self.listeners = [

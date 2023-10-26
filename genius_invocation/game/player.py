@@ -163,7 +163,7 @@ class GeniusPlayer:
                                  use_type=skill.type,
                                  cost=deepcopy(skill.cost))
         self.character_list[self.active_idx].skill(idx, game)
-
+        
     def play_card(self, game: 'GeniusGame'):
         '''
             标准行动: 打出手牌/调和手牌

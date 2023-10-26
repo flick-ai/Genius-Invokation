@@ -124,7 +124,7 @@ class Raiden_Shogun(Character):
     country: CountryType = CountryType.INAZUMA
     init_health_point: int = 10
     max_health_point: int = 10
-    skill_list: List = []
+    skill_list: List = [Origin, Transcendence_Baleful_Omen, Secret_Art_Musou_Shinsetsu]
     max_power: int = 2
 
     def init_state(self, game: 'GeniusGame'):

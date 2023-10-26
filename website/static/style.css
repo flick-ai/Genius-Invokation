@@ -414,7 +414,18 @@
     grid-column: 6/7;
   }
 
+  #loadselect {
+    grid-column: 5/6;
+  }
+
   .charaitem {
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .carditem {
     height: 100%;
     width: 100%;
     justify-content: center;
@@ -450,6 +461,10 @@
 
   .twice:hover {
     background: #FFFF0044;
+  }
+
+  #hasselected {
+    grid-column: 2 / 5;
   }
 
   

@@ -78,6 +78,8 @@ class FrostField(Combat_Status):
             (EventType.INFUSION, ZoneType.ACTIVE_ZONE, self.on_infuse),
             (EventType.BEGIN_ACTION_PHASE, ZoneType.ACTIVE_ZONE, self.on_begin)
         ]
+        if self.from_character.talent:
+            self.listeners.append(EventType.DAMAGE_ADD, ZoneType.ACTIVE_ZONE, self.on_add_damage)
 
 class CloudPartingStar(ElementalBurst):
     id: int = 11043

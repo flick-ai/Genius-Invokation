@@ -70,6 +70,9 @@ class MelodyLoop(Summon):
         self.listeners = [
             (EventType.END_PHASE, ZoneType.SUMMON_ZONE, self.on_end_phase)
         ]
+        if self.from_character.talent:
+            self.listeners.append((EventType.CALCULATE_DICE, ZoneType.SUMMON_ZONE, self.on_calculate_dice))
+            self.listeners.append((EventType.ON_CHANGE_CHARACTER, ZoneType.SUMMON_ZONE, self.on_switch))
     
     def on_calculate_dice(self, game: 'GeniusGame'):
         if game.round != self.talent_round:

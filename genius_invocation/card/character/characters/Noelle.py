@@ -96,8 +96,9 @@ class Noelle(Character):
     name = 'Noelle'
     name_ch = "诺艾尔"
     element = ElementType.GEO
-    weapon = WeaponType.CLAYMORE
+    weapon_type = WeaponType.CLAYMORE
     country = CountryType.MONDSTADT
+
     init_health_point: int = 10
     max_health_point: int = 10
     skill_list: List = [

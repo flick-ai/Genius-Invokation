@@ -79,7 +79,7 @@ class Pyronado(ElementalBurst):
     name_ch = '旋火轮'
     id = 130203
     type: SkillType = SkillType.ELEMENTAL_BURST
-# damage
+    # damage
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
     main_damage_element: ElementType = ElementType.PYRO
     main_damage: int = 3
@@ -173,10 +173,11 @@ class Xiangling(Character):
     country: CountryType = CountryType.LIYUE
     init_health_point: int = 10
     max_health_point: int = 10
-    skill_list: List = []
+    skill_list: List = [Dough_Fu, Guoba_Attack, Pyronado]
     max_power: int = 2
 
     def __init__(self, game: 'GeniusGame', zone: 'CharacterZone', from_player: 'GeniusPlayer', index: int, from_character=None, talent=False):
         super().__init__(game, zone, from_player, index, from_character)
         self.power = 0
         self.talent = talent
+        self.talent_skill = self.skills[1]
