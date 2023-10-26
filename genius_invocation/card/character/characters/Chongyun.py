@@ -35,7 +35,7 @@ class LayeredFrost(ElementalSkill):
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         self.resolve_damage(game)
-        self.add_status(game, FrostField)
+        self.add_combat_status(game, FrostField)
         self.gain_energy(game)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
