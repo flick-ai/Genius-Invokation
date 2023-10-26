@@ -20,7 +20,7 @@ class Venti(Character):
 
 class Divine_Marksmanship(NormalAttack):
     name = "Divine Marksmanship"
-    name_ch = ""
+    name_ch = "神代射术"
     id = 150301
     type: SkillType = SkillType.NORMAL_ATTACK
     damage_type: SkillType = SkillType.NORMAL_ATTACK
@@ -56,7 +56,7 @@ class Divine_Marksmanship(NormalAttack):
 
 class Stormzone(Combat_Status):
     name = "Stormzone"
-    name_ch = ""
+    name_ch = "风域"
     max_usage = 1
 
     def __init__(self, game: GeniusGame, from_player: GeniusPlayer, from_character=None):
@@ -109,7 +109,7 @@ class Stormzone(Combat_Status):
 
 class Skyward_Sonnet(ElementalSkill):
     name = "Skyward Sonnet"
-    name_ch = ""
+    name_ch = "高天之歌"
     id = 150302
     type: SkillType = SkillType.ELEMENTAL_SKILL
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -143,7 +143,7 @@ class Skyward_Sonnet(ElementalSkill):
 
 class Stormeye(Summon):
     name = "Stormeye"
-    name_ch = ""
+    name_ch = "暴风之眼"
     removable = True
     element = ElementType.ANEMO
 
@@ -200,7 +200,7 @@ class Stormeye(Summon):
 
 class Wind_s_Grand_Ode(ElementalBurst):
     name = "Wind's Grand Ode"
-    name_ch = ""
+    name_ch = "风神之诗"
     id = 150303
     type: SkillType = SkillType.ELEMENTAL_BURST
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
