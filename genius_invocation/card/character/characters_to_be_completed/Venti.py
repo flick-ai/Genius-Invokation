@@ -48,7 +48,11 @@ class Divine_Marksmanship(NormalAttack):
     def __init__(self, from_character: 'Character') -> None:
         super().__init__(from_character)
 
+<<<<<<< HEAD
+    def on_call(self, game: 'GeniusGame'):
+=======
     def on_call(self, game: GeniusGame):
+>>>>>>> 7b7a319ad0820fd4b646c29f6a28ef79a15a6e09
         super().on_call(game)
 
         self.resolve_damage(game)
@@ -57,7 +61,48 @@ class Divine_Marksmanship(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 
+<<<<<<< HEAD
+class Stormzone(Combat_Status):
+    name = "Stormzone"
+
+
+class Skyward_Sonnet(ElementalSkill):
+    name = "Skyward Sonnet"
+    name_ch = ""
+    id = 150302
+    type: SkillType = SkillType.ELEMENTAL_SKILL
+    damage_type: SkillType = SkillType.ELEMENTAL_SKILL
+    main_damage_element: ElementType = ElementType.ANEMO
+    main_damage: int = 2
+    piercing_damage: int = 0
+
+    cost = [
+        {
+            'cost_num': 3,
+            'cost_type': CostType.ANEMO
+        }
+    ]
+
+    energy_cost: int = 0
+    energy_gain: int = 1
+
+    def __init__(self, from_character: 'Character') -> None:
+        super().__init__(from_character)
+
+    def add_status(self, game: GeniusGame, STATUS):
+        pass
+        
+    def on_call(self, game: 'GeniusGame'):
+        super().on_call(game)
+
+        self.resolve_damage(game)
+        
+        self.gain_energy(game)
+
+        game.manager.invoke(EventType.AFTER_USE_SKILL, game)
+=======
 class 
+>>>>>>> 7b7a319ad0820fd4b646c29f6a28ef79a15a6e09
 
 
 

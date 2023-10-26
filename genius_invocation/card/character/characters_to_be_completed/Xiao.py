@@ -125,5 +125,9 @@ class Yaksha_s_Mask(Status):
     def infusion(self, game: 'GeniusGame'):
         if game.current_damage.damage_from == self.from_character:
             if game.current_damage.main_damage_element == ElementType.DENDRO:
+<<<<<<< HEAD
+                pass
+=======
                 
+>>>>>>> 7b7a319ad0820fd4b646c29f6a28ef79a15a6e09
             # if game.current_damage.is_plunging_attack
