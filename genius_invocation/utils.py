@@ -326,10 +326,10 @@ def select_card(characters: List['Character'], all_action_card: List['ActionCard
                 available_action_card['ARTIFACT'].append((class_name, name, name_ch))
             case ActionCardType.EQUIPMENT_WEAPON:
                 if action_card.weapon_type in all_weapon_type:
-                    available_action_card['WEAPON and TALENT'].append((class_name, name, name_ch))
+                    available_action_card['WEAPON_TALENT'].append((class_name, name, name_ch))
             case ActionCardType.EQUIPMENT_TALENT:
                 if action_card.character.__name__ in all_character:
-                    available_action_card['WEAPON and TALENT'].append((class_name, name, name_ch))
+                    available_action_card['WEAPON_TALENT'].append((class_name, name, name_ch))
             case ActionCardType.SUPPORT_COMPANION:
                 available_action_card['SUPPORT'].append((class_name, name, name_ch))
             case ActionCardType.SUPPORT_ITEM:
@@ -341,13 +341,13 @@ def select_card(characters: List['Character'], all_action_card: List['ActionCard
             case ActionCardType.EVENT:
                 available_action_card['EVENT'].append((class_name, name, name_ch))
             case ActionCardType.EVENT_ARCANE_LEGEND:
-                available_action_card['SPECIAL EVENT'].append((class_name, name, name_ch))
+                available_action_card['SPECIAL_EVENT'].append((class_name, name, name_ch))
             case ActionCardType.EVENT_ELEMENTAL_RESONANCE:
                 if same_element.get(action_card.element, 0) >= 2:
-                    available_action_card['SPECIAL EVENT'].append((class_name, name, name_ch))
+                    available_action_card['SPECIAL_EVENT'].append((class_name, name, name_ch))
             case ActionCardType.EVENT_COUNTRY:
                 if same_country.get(action_card.country, 0) >= 2:
-                    available_action_card['SPECIAL EVENT'].append((class_name, name, name_ch))
+                    available_action_card['SPECIAL_EVENT'].append((class_name, name, name_ch))
     return available_action_card
 
 

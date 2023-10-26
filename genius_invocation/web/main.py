@@ -34,19 +34,33 @@ async def main():
     ignore = [actioncard.ActionCard, actioncard.EquipmentCard, actioncard.WeaponCard, actioncard.TalentCard, actioncard.ArtifactCard, actioncard.SupportCard, actioncard.FoodCard]
     for name, obj in inspect.getmembers(actioncard):
         if inspect.isclass(obj) and obj not in ignore:
-            available_card.append((name, obj.name, obj.name_ch))
+            available_card.append((name, obj.name, obj.name_ch, obj))
 
-    js_available_card = {available_card[i][2]: available_card[i][0] for i in range(len(available_card))}
-    js.load_action_cards(create_proxy(js_available_card))
+    
+    
+
+    # js_available_card = {available_card[i][2]: available_card[i][0] for i in range(len(available_card))}
+    # js.load_action_cards(create_proxy(js_available_card))
     select = []
+    card_select = []
     cur_idx = 0
     while True:
         await asyncio.sleep(0.1)
         if js.document.getElementById('currentselect').innerText != '':
             select.append(js.document.getElementById('currentselect').innerText.split(' '))
             js.document.getElementById('currentselect').innerText = ''
+            current_available_card = select_card(select[cur_idx], available_card)
+            js.load_action_cards(create_proxy(current_available_card))
+        if js.document.getElementById('current_select_card').innerText != '':
+            card_select.append(js.document.getElementById('current_select_card').innerText.split(' '))
+            js.document.getElementById('current_select_card').innerText = ''
             cur_idx += 1
         if cur_idx == 2:
+
+            break
+    while True:
+        await asyncio.sleep(0.1)
+        if js.document.getElementById('gamestatus').innerText != '':
             for item in js.document.getElementsByClassName('before'):
                 item.style.display = 'none'
             break
@@ -54,20 +68,11 @@ async def main():
     print(select)
     deck1 = {
     'character': select[0],
-    'action_card': ['Fresh_Wind_of_Freedom','Dunyarzad','Dunyarzad','Chef_Mao','Chef_Mao','Paimon','Paimon',
-                    'Rana','Rana','Liben','Liben','Mushroom_Pizza','Mushroom_Pizza','Adeptus_Temptation',
-                    'Adeptus_Temptation','Teyvat_Fried_Egg','Sweet_Madame','Sweet_Madame','Mondstadt_Hash_Brown',
-                    'Lotus_Flower_Crisp','Lotus_Flower_Crisp','Strategize','Strategize','Leave_it_to_Me','Leave_it_to_Me',
-                    'PaidinFull','PaidinFull','Send_Off','Starsigns','Starsigns']
+    'action_card': card_select[0]
     }
     deck2 = {
     'character': select[1],
-    'action_card': ['Tenacity_of_the_Millelith','Tenacity_of_the_Millelith','TheBell','TheBell','Paimon','Paimon',
-                    'Chef_Mao','Chef_Mao','Liben','Liben','Dunyarzad','Dunyarzad','Fresh_Wind_of_Freedom',
-                    'Woven_Stone','Woven_Stone','Enduring_Rock','Enduring_Rock','Strategize','Strategize',
-                    'Leave_it_to_Me','Send_Off','Heavy_Strike','Heavy_Strike','Adeptus_Temptation',
-                    'Lotus_Flower_Crisp','Lotus_Flower_Crisp','Sweet_Madame','Mondstadt_Hash_Brown',
-                    'Mushroom_Pizza','Mushroom_Pizza']
+    'action_card': card_select[1]
     }
     game = GeniusGame(player0_deck=deck1, player1_deck=deck2)
     information = []
