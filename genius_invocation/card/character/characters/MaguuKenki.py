@@ -187,7 +187,7 @@ class MaguuKenki(Character):
     country: CountryType = CountryType.MONSTER
     init_health_point: int = 10
     max_health_point: int = 10
-    skill_list: List = []
+    skill_list: List = [Ichimonji, BlusteringBlade, FrostyAssault, PseudoTenguSweeper]
     max_power: int = 3
 
     def __init__(self, game: 'GeniusGame', zone: 'CharacterZone', from_player: 'GeniusPlayer', index: int, from_character=None, talent=False):
