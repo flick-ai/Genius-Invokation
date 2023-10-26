@@ -72,13 +72,13 @@ class Character(Entity):
             self.refresh_talent(game)
             if is_action:
                 self.talent_skill.on_call(game)
-            game.change_active_player=is_action
+            game.is_change_player=is_action
         else:
             self.talent = True
             self.listen_talent_events(game)
             if is_action:
                 self.talent_skill.on_call(game)
-            game.change_active_player=is_action
+            game.is_change_player=is_action
 
            
 
