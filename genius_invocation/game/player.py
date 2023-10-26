@@ -13,7 +13,6 @@ from genius_invocation.entity.entity import Entity
 from genius_invocation.card.action import ActionCard
 from genius_invocation.card.character import CharacterSkill
 from copy import deepcopy
-from genius_invocation.game.game import Active_Die
 
 if TYPE_CHECKING:
     from genius_invocation.game.game import GeniusGame
@@ -242,8 +241,9 @@ class GeniusPlayer:
             self.action_mask[17][14][1] = self.hand_zone.num()
             return
         if game.game_phase == GamePhase.SET_CHARACTER:
-            if game.special_phase != None and not isinstance(game.special_phase, Active_Die):
+            if game.special_phase != None and isinstance(game.special_phase, ActionCard):
                 has_target = game.special_phase.refind_target(game)
+                game.special_phase.on_finished(game)
                 if has_target != None:
                     for target in has_target:
                         self.action_mask[14][target+2][0] = 1
