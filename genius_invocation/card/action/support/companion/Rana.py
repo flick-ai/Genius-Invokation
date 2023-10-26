@@ -54,7 +54,7 @@ class Rana(SupportCard):
     name: str = 'Rana'
     name_ch = '拉娜'
     cost_num = 2
-    cost_type = CostType.BLACK
+    cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_COMPANION
 
     def __init__(self) -> None:

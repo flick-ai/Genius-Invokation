@@ -26,7 +26,7 @@ class Enduring_Rock_Entity(Combat_Status):
         else:
             return
 
-    def after_takes_dmg(self, game: 'GeniusGame'):
+    def on_execute_dmg(self, game: 'GeniusGame'):
         if game.current_damage.damage_from == get_active_character(game, self.from_player.index) or game.current_damage.damage_from in get_my_standby_character(game):
             if game.current_damage.main_damage_element == ElementType.GEO:
                 self.is_trigger = True
@@ -40,7 +40,7 @@ class Enduring_Rock_Entity(Combat_Status):
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.AFTER_TAKES_DMG, ZoneType.ACTIVE_ZONE, self.after_takes_dmg),
+            (EventType.EXECUTE_DAMAGE, ZoneType.ACTIVE_ZONE, self.on_execute_dmg),
             (EventType.AFTER_ANY_ACTION, ZoneType.ACTIVE_ZONE, self.after_any_action),
             (EventType.BEGIN_ROLL_PHASE, ZoneType.ACTIVE_ZONE, self.on_end)
         ]

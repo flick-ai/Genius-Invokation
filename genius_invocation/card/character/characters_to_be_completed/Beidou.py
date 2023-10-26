@@ -1,6 +1,8 @@
 from genius_invocation.card.character.import_head import *
 
 
+
+
 class Beidou(Character):
     id: int = 1405
     name: str = "Beidou"

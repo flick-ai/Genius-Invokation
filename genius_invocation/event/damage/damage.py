@@ -63,8 +63,8 @@ class Damage:
         game.suffer_current_damage()
         if self.reaction == ElementalReactionType.Overloaded:
             if self.damage_to.is_active:
-                self.damage_to.from_player.change_to_next_character()
-        self.after_damage(game)
+                game.is_overload = self.damage_to.from_player
+
 
     def damage_add_after_reaction(self, game:'GeniusGame'):
         game.manager.invoke(EventType.DAMAGE_ADD_AFTER_REACTION, game)
@@ -72,10 +72,8 @@ class Damage:
         game.manager.invoke(EventType.INFUSION, game)
     def damage_add(self, game: 'GeniusGame'):
         logger.debug(f"Before Damage Add: {game.current_damage.main_damage}")
-        # import ipdb; ipdb.set_trace()
         game.manager.invoke(EventType.DAMAGE_ADD, game)
         logger.debug(f"After Damage Add: {game.current_damage.main_damage}")
-
     def damage_dealing(self, game: 'GeniusGame'):
         game.manager.invoke(EventType.DEALING_DAMAGE, game)
     def damage_divide(self, game: 'GeniusGame'):
@@ -84,11 +82,7 @@ class Damage:
         logger.debug(f"Before Damage Execute: {game.current_damage.main_damage}")
         game.manager.invoke(EventType.EXECUTE_DAMAGE, game)
         logger.debug(f"After Damage Execute: {game.current_damage.main_damage}")
-
-
-    def after_damage(self, game: 'GeniusGame'):
-        game.manager.invoke(EventType.AFTER_TAKES_DMG, game)
-        pass
+        
 
     # def cal_damage(self, game: 'GeniusGame'): NO USE
     #     # 元素类型转化 On_Infusion
