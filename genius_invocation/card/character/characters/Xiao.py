@@ -1,24 +1,6 @@
 from genius_invocation.card.character.import_head import *
 
 
-class Xiao(Character):
-    id: int = 1504
-    name: str = "Xiao"
-    name_ch = "魈"
-    element: ElementType = ElementType.ANEMO
-    weapon_type: WeaponType = WeaponType.POLEARM
-    country: CountryType = CountryType.LIYUE
-    init_health_point: int = 10
-    max_health_point: int = 10
-    skill_list: List = []
-    max_power: int = 2
-
-    def __init__(self, game: 'GeniusGame', zone: 'CharacterZone', from_player: 'GeniusPlayer', index: int, from_character=None, talent=False):
-        super().__init__(game, zone, from_player, index, from_character)
-        self.power = 0
-        self.talent = talent
-
-
 
 class Whirlwind_Thrust(NormalAttack):
     name = "Whirlwind Thrust"
@@ -185,3 +167,21 @@ class Bane_of_All_Evil(ElementalBurst):
         self.generate_summon(game, Yaksha_s_Mask)
 
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
+
+
+class Xiao(Character):
+    id: int = 1504
+    name: str = "Xiao"
+    name_ch = "魈"
+    element: ElementType = ElementType.ANEMO
+    weapon_type: WeaponType = WeaponType.POLEARM
+    country: CountryType = CountryType.LIYUE
+    init_health_point: int = 10
+    max_health_point: int = 10
+    skill_list: List = [Whirlwind_Thrust, Lemniscatic_Wind_Cycling, Bane_of_All_Evil]
+    max_power: int = 2
+
+    def __init__(self, game: 'GeniusGame', zone: 'CharacterZone', from_player: 'GeniusPlayer', index: int, from_character=None, talent=False):
+        super().__init__(game, zone, from_player, index, from_character)
+        self.power = 0
+        self.talent = talent
