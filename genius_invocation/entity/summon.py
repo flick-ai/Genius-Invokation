@@ -15,7 +15,6 @@ class Summon(Entity):
     id: int
     name: str
     element: ElementType
-    skills: list
     removable: bool # 是否能拔掉，若是盾、光降之剑，则在结束回合时按自己的方式爆炸。
 
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character:'Character'=None):
