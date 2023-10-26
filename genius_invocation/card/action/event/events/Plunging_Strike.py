@@ -4,7 +4,7 @@ if TYPE_CHECKING:
     from genius_invocation.game.game import GeniusGame
 
 class Plunging_Strike(ActionCard):
-    id: int = 3320017
+    id: int = 332017
     name: str = 'Plunging Strike'
     name_ch = '下落斩'
     cost_num = 3
