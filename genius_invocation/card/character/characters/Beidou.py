@@ -1,5 +1,6 @@
 from genius_invocation.card.character.import_head import *
 
+
 class Oceanborne(NormalAttack):
     id: int = 14051
     name = "Oceanborne"
@@ -84,6 +85,8 @@ class TidecallerSurfEmbrace(Shield):
                 else:
                     self.current_usage -= game.current_damage.main_damage
                     game.current_damage.main_damage = 0
+                if self.from_character.talent:
+                    self.from_character.execute_dmg = 1
 
     def update_listener_list(self):
         self.listeners = [
@@ -110,20 +113,14 @@ class Stormbreaker(ElementalBurst):
         self.add_combat_status(game, ThunderbeastsTarge)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
-class ThunderbeastsTarge(Status):
+class ThunderbeastsTarge(Combat_Status):
     name = "Thunderbeast's Targe"
     name_ch =  "雷兽之盾"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.usage = 2
-        if self.from_character.talent:
-            self.usage = 3
-        self.current_usage = self.usage
-
         self.current_usage = self.usage
     def update(self):
-        if self.from_character.talent:
-            self.usage = 3
         self.current_usage = max(self.current_usage, self.usage)
 
     def on_execute_dmg(self, game:'GeniusGame'):
@@ -132,13 +129,32 @@ class ThunderbeastsTarge(Status):
                 if game.current_damage.main_damage_element != ElementType.PIERCING:
                     if game.current_damage.main_damage >= 3:
                         game.current_damage.main_damage -= 1
-                        self.current_usage -= 1
-                        if self.current_usage <=0:
-                            self.on_destroy(game)
+    def after_skill(self, game: 'GeniusGame'):
+        if game.current_skill.from_character.from_player == self.from_player:
+            if game.current_skill.type == SkillType.NORMAL_ATTACK:
+                dmg = Damage.create_damage(
+                    game,
+                    damage_type=SkillType.OTHER,
+                    main_damage_element=ElementType.ELECTRO,
+                    main_damage=1,
+                    piercing_damage=0,
+                    damage_from=self,
+                    damage_to=get_opponent_active_character(game),
+                )
+                game.add_damage(dmg)
+                game.resolve_damage()
+    
+    def on_begin(self, game: 'GeniusGame'):
+        if game.active_player == self.from_player:
+            self.current_usage -= 1
+            if self.current_usage <=0:
+                self.on_destroy(game)
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.EXECUTE_DAMAGE, ZoneType.ACTIVE_ZONE, self.on_execute_dmg)
+            (EventType.EXECUTE_DAMAGE, ZoneType.ACTIVE_ZONE, self.on_execute_dmg),
+            (EventType.AFTER_USE_SKILL, ZoneType.ACTIVE_ZONE, self.after_skill),
+            (EventType.BEGIN_ACTION_PHASE, ZoneType.ACTIVE_ZONE, self.on_begin),
         ]
 
 class Beidou(Character):
@@ -158,3 +174,27 @@ class Beidou(Character):
         self.talent = talent
         self.talent_skill = self.skills[1]
         self.next_skill = Wavestrider(self)
+        self.last_talent_round = -1
+        self.execute_dmg = 0
+    
+    def on_begin(self, game: 'GeniusGame'):
+        super().on_begin(game)
+        self.execute_dmg = 0
+
+    def on_calculate(self, game: 'GeniusGame'):
+        if self.last_talent_round != game.round and self.execute_dmg>0:
+            if game.active_player == self.from_player:
+                if game.current_dice.use_type is SkillType.NORMAL_ATTACK:
+                    if game.current_dice.from_character == self:  #Beidou will use normal attack
+                        if game.current_dice[1]['cost_num'] >0:
+                            game.current_dice[1]['cost_num'] -= 1
+                            return True
+        return False
+
+    def on_skill(self, game: "GeniusGame"):
+        if self.on_calculate(game):
+            self.last_talent_round = game.round
+
+    def listen_talent_events(self, game: 'GeniusGame'):
+        self.listen_event(game, EventType.CALCULATE_DICE, ZoneType.CHARACTER_ZONE, self.on_calculate)
+        self.listen_event(game, EventType.ON_USE_SKILL, ZoneType.CHARACTER_ZONE, self.on_skill)
