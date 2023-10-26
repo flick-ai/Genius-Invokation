@@ -61,10 +61,9 @@ class Damage:
         self.damage_divide(game)
         self.damage_execute(game)
         game.suffer_current_damage()
-        self.after_damage(game)
         if self.reaction == ElementalReactionType.Overloaded:
             if self.damage_to.is_active:
-                game.has_overload = self.damage_to.from_player
+                game.is_overload = self.damage_to.from_player
 
 
     def damage_add_after_reaction(self, game:'GeniusGame'):
@@ -83,8 +82,6 @@ class Damage:
         logger.debug(f"Before Damage Execute: {game.current_damage.main_damage}")
         game.manager.invoke(EventType.EXECUTE_DAMAGE, game)
         logger.debug(f"After Damage Execute: {game.current_damage.main_damage}")
-    def after_damage(self, game: 'GeniusGame'):
-        game.manager.invoke(EventType.AFTER_TAKES_DMG, game)
         
 
     # def cal_damage(self, game: 'GeniusGame'): NO USE

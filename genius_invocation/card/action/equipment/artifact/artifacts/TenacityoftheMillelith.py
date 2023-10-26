@@ -25,6 +25,7 @@ class TenacityoftheMillelithEntity(Artifact):
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, artifact_card = None):
         super().__init__(game, from_player, from_character, artifact_card)
         self.round = -1
+        self.return_dice = False
 
     def on_begin(self, game: 'GeniusGame'):
         if game.active_player == self.from_player:
@@ -37,15 +38,22 @@ class TenacityoftheMillelithEntity(Artifact):
 
     def on_after_damage(self, game:'GeniusGame'):
         if self.round != game.round:
+            if game.current_damage.damage_to == self.from_character:
+                self.return_dice = True
+                self.round = game.round
+
+    def on_final_excute(self, game:'GeniusGame'):
+        if self.return_dice:
             if self.from_character.is_active and self.from_character.is_alive:
-                if game.current_damage.damage_to == self.from_character:
-                    element_dice = ElementToDice[self.from_character.element]
-                    self.from_player.dice_zone.add([element_dice.value])
-                    self.round = game.round
+                element_dice = ElementToDice[self.from_character.element]
+                self.from_player.dice_zone.add([element_dice.value])
+                self.return_dice = False
+                    
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.AFTER_TAKES_DMG, ZoneType.CHARACTER_ZONE, self.on_after_damage),
+            (EventType.EXECUTE_DAMAGE, ZoneType.CHARACTER_ZONE, self.on_after_damage),
+            (EventType.FINAL_EXECUTE, ZoneType.CHARACTER_ZONE, self.on_final_excute),
             (EventType.BEGIN_ACTION_PHASE, ZoneType.CHARACTER_ZONE, self.on_begin)
         ]
 

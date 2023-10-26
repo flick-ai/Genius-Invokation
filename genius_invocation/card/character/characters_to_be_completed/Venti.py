@@ -48,7 +48,11 @@ class Divine_Marksmanship(NormalAttack):
     def __init__(self, from_character: 'Character') -> None:
         super().__init__(from_character)
 
+<<<<<<< HEAD
     def on_call(self, game: 'GeniusGame'):
+=======
+    def on_call(self, game: GeniusGame):
+>>>>>>> 7b7a319ad0820fd4b646c29f6a28ef79a15a6e09
         super().on_call(game)
 
         self.resolve_damage(game)
@@ -57,6 +61,7 @@ class Divine_Marksmanship(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 
+<<<<<<< HEAD
 class Stormzone(Combat_Status):
     name = "Stormzone"
 
@@ -95,6 +100,9 @@ class Skyward_Sonnet(ElementalSkill):
         self.gain_energy(game)
 
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
+=======
+class 
+>>>>>>> 7b7a319ad0820fd4b646c29f6a28ef79a15a6e09
 
 
 
