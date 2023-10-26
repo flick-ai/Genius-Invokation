@@ -4,7 +4,7 @@ from genius_invocation.card.character.import_head import *
 class Favonius_Bladework_Edel(NormalAttack):
     name = 'Favonius Bladework-Edel'
     name_ch = "西风剑术·宗室"
-    id: int = 110601
+    id: int = 11061
     type: SkillType = SkillType.NORMAL_ATTACK
 
     # damage
@@ -45,7 +45,7 @@ class Favonius_Bladework_Edel(NormalAttack):
 
 
 class Icetide_Veortex(ElementalSkill):
-    id = 110602
+    id = 11062
     name = "Icetide Vortex"
     name_ch = "冰潮的涡旋"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -92,7 +92,7 @@ class Icetide_Veortex(ElementalSkill):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Glacial_Illumination(ElementalBurst):
-    id = 110603
+    id = 11063
     name = 'Glacial Illumination'
     name_ch = "凝浪之光剑"
     type: SkillType = SkillType.ELEMENTAL_BURST

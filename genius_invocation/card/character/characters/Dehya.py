@@ -1,7 +1,7 @@
 from genius_invocation.card.character.import_head import *
 
 class Sandstorm_Assault(NormalAttack):
-    id: int = 0
+    id: int = 13091
     name="Sandstorm Assault"
     name_ch = "拂金剑斗术"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -40,7 +40,7 @@ class Sandstorm_Assault(NormalAttack):
 
 
 class Molten_Inferno(ElementalSkill):
-    id: int = 1
+    id: int = 13092
     name="Monlten Inferno"
     name_ch = "熔铁流狱"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -77,7 +77,7 @@ class Molten_Inferno(ElementalSkill):
 
 
 class Leonine_Bite(ElementalBurst):
-    id: int = 2
+    id: int = 13093
     name = "Leonine Bite"
     name_ch = "炎啸狮子咬"
     type: SkillType = SkillType.ELEMENTAL_BURST
@@ -113,7 +113,7 @@ class Leonine_Bite(ElementalBurst):
 class Incineration_Drive(ElementalBurst):
     name = "Incineration Drive"
     name_ch = "焚落踢"
-    id = 3
+    id = 13094
     type = SkillType.ELEMENTAL_BURST
 
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
@@ -137,7 +137,6 @@ class Incineration_Drive(ElementalBurst):
 class Fiery_Sanctum_Field(Summon):
     name = "Fiery Sanctum Field"
     name_ch = "净焰剑狱领域"
-    id = 0
     element = ElementType.PYRO
     removable = True
 

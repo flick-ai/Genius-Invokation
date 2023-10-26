@@ -2,7 +2,7 @@ from genius_invocation.card.character.import_head import *
 
 class Thrust(NormalAttack):
 # 突刺
-    id = 0
+    id = 23011
     name = 'Thrust'
     name_ch = '突刺'
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -44,7 +44,7 @@ class Prowl(ElementalSkill):
     #伺机而动
     name = 'Prowl'
     name_ch = '伺机而动'
-    id = 1
+    id = 23012
 
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
@@ -79,7 +79,7 @@ class Blade_Ablastion(ElementalBurst):
     #焚毁之风
     name = 'Blade Ablastion'
     name_ch = '焚毁之风'
-    id = 2
+    id = 23013
     type = SkillType.ELEMENTAL_BURST
 
     damage_type: SkillType = SkillType.ELEMENTAL_BURST

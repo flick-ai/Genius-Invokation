@@ -1,7 +1,4 @@
 from genius_invocation.card.character.import_head import *
-from genius_invocation.game.game import GeniusGame
-from genius_invocation.game.player import GeniusPlayer
-from genius_invocation.utils import GeniusGame, GeniusPlayer
 
 
 

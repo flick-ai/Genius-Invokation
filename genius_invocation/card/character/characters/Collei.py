@@ -1,7 +1,7 @@
 from genius_invocation.card.character.import_head import *
 
 class Supplicants_Bowmanship(NormalAttack):
-    id = 170101
+    id = 17011
     name = "Supplicant's Bowmanship"
     name_ch = "祈颂射艺"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -34,7 +34,7 @@ class Supplicants_Bowmanship(NormalAttack):
 
 
 class Floral_Brush(ElementalSkill):
-    id = 170102
+    id = 17012
     name = "Floral Brush"
     name_ch = "拂花偈叶"
     type = SkillType.ELEMENTAL_SKILL
@@ -69,7 +69,7 @@ class Floral_Brush(ElementalSkill):
 class TrumpCard_Kitty(ElementalBurst):
     name = 'Trump-Card Kitty'
     name_ch = "猫猫秘宝"
-    id = 170103
+    id = 17013
     type = SkillType.ELEMENTAL_BURST
 
     damage_type = SkillType.ELEMENTAL_BURST
@@ -139,7 +139,7 @@ class Sprout(Combat_Status):
             if game.current_damage.damage_from.from_player == self.from_player:
                 if game.current_damage.reaction in [ElementalReactionType.Bloom, ElementalReactionType.Burning, ElementalReactionType.Quicken]:
                     self.is_use = True
-    def after_skill(self, game:GeniusGame):
+    def after_skill(self, game:'GeniusGame'):
         if self.is_use:
             dmg = Damage.create_damage(
                 game,

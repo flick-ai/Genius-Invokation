@@ -68,6 +68,10 @@ if __name__=="__main__":
                     'Lotus_Flower_Crisp','Lotus_Flower_Crisp','Strategize','Strategize','Leave_it_to_Me','Leave_it_to_Me',
                     'PaidinFull','PaidinFull','Send_Off','Starsigns','Starsigns']
     }
+    deck2 = {
+    'character': ['Klee', 'Lisa', 'Noelle'],
+    'action_card': ['PulsatingWitch' for i in range(30)]
+    }
     # deck2 = {
     # 'character': ['Arataki_Itto', 'Dehya', 'Noelle'],
     # 'action_card': ['TenacityoftheMillelith','TenacityoftheMillelith','TheBell','TheBell','Paimon','Paimon',
