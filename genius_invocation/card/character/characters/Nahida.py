@@ -5,7 +5,7 @@ class Akara(NormalAttack):
         纳西妲
         普通攻击
     '''
-    id: int = 0
+    id: int = 17031
     type: SkillType = SkillType.NORMAL_ATTACK
     name = "Akara"
     name_ch = "行相"
@@ -46,7 +46,7 @@ class All_Schemes_to_Know(ElementalSkill):
         纳西妲
         元素战技 1 小e
     '''
-    id: int = 1
+    id: int = 17032
     name='All Schemes to Know'
     name_ch = "所闻遍计"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -107,7 +107,7 @@ class All_Schemes_to_Know_Tathata(ElementalSkill):
         纳西妲
         元素战技 2 大e
     '''
-    id: int = 2
+    id: int = 17033
     name='All Schemes to Know: Tathata'
     name_ch = "所闻遍计·真如"
     type: SkillType = SkillType.ELEMENTAL_SKILL

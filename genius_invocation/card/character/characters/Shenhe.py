@@ -1,7 +1,7 @@
 from genius_invocation.card.character.import_head import *
 
 class Dawnstar_Piercer(NormalAttack):
-    id: int = 0
+    id: int = 11071
     type: SkillType = SkillType.NORMAL_ATTACK
     name = "Dawnstar Piercer"
     name_ch = "踏辰摄斗"
@@ -39,7 +39,7 @@ class Dawnstar_Piercer(NormalAttack):
 
 
 class Spring_Spirit_Summoning(ElementalSkill):
-    id: int = 1
+    id: int = 11072
     name = "Spring Spirit Summoning"
     name_ch = "仰灵威召将役咒"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -75,7 +75,7 @@ class Spring_Spirit_Summoning(ElementalSkill):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Divine_Maidens_Deliverance(ElementalBurst):
-    id = 2
+    id = 11073
     name = "Divine Maiden's Deliverance"
     name_ch = "神女遣灵真诀"
     type: SkillType = SkillType.ELEMENTAL_BURST

@@ -3,7 +3,7 @@ from genius_invocation.card.character.import_head import *
 class KamisatoArt_Marobashi(NormalAttack):
     name = 'Kamisato Art: Marobashi'
     name_ch = "神里流·转"
-    id = 120601
+    id = 12061
     type: SkillType = SkillType.NORMAL_ATTACK
 
     # damage
@@ -34,7 +34,7 @@ class KamisatoArt_Marobashi(NormalAttack):
 
 
 class KamisatoArt_Kyouka(ElementalSkill):
-    id = 120602
+    id = 12062
     name = 'Kamisato Art: Kyouka'
     name_ch = "神里流·镜花"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -72,7 +72,7 @@ class KamisatoArt_Kyouka(ElementalSkill):
 class KamisatoArt_Suiyuu(ElementalBurst):
     name = 'Kamisato Art: Suiyuu'
     name_ch = '神里流·水囿'
-    id = 120603
+    id = 12063
     type: SkillType = SkillType.ELEMENTAL_BURST
 
     # damage

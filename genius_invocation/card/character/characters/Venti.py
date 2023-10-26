@@ -4,7 +4,7 @@ from genius_invocation.card.character.import_head import *
 class Divine_Marksmanship(NormalAttack):
     name = "Divine Marksmanship"
     name_ch = "神代射术"
-    id = 150301
+    id = 15031
     type: SkillType = SkillType.NORMAL_ATTACK
     damage_type: SkillType = SkillType.NORMAL_ATTACK
     main_damage_element: ElementType = ElementType.PHYSICAL
@@ -40,7 +40,6 @@ class Divine_Marksmanship(NormalAttack):
 class Stormzone(Combat_Status):
     name = "Stormzone"
     name_ch = "风域"
-    max_usage = 1
 
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
@@ -93,7 +92,7 @@ class Stormzone(Combat_Status):
 class Skyward_Sonnet(ElementalSkill):
     name = "Skyward Sonnet"
     name_ch = "高天之歌"
-    id = 150302
+    id = 15032
     type: SkillType = SkillType.ELEMENTAL_SKILL
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
     main_damage_element: ElementType = ElementType.ANEMO
@@ -184,7 +183,7 @@ class Stormeye(Summon):
 class Wind_s_Grand_Ode(ElementalBurst):
     name = "Wind's Grand Ode"
     name_ch = "风神之诗"
-    id = 150303
+    id = 15033
     type: SkillType = SkillType.ELEMENTAL_BURST
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
     main_damage_element: ElementType = ElementType.ANEMO

@@ -186,7 +186,7 @@ class Surge(NormalAttack):
     '''
         至尊翻涌！
     '''
-    id = 0
+    id = 22011
     name = "Surge"
     name_ch = "翻涌"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -242,7 +242,7 @@ class Oceanid_Mimic_Summoning(ElementalSkill):
     '''
         小e
     '''
-    id = 1
+    id = 22012
     name = "Oceanid Mimic Summoning"
     name_ch = "纯水幻造"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -276,7 +276,7 @@ class The_Myriad_Wilds(ElementalSkill):
     '''
         大e
     '''
-    id = 2
+    id = 22013
     name = "The Myriad Wilds"
     name_ch = "林野百态"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -309,7 +309,7 @@ class The_Myriad_Wilds(ElementalSkill):
 
 
 class Tide_and_Torrent(ElementalBurst):
-    id = 3
+    id = 22014
     name = "Tide and Torrent"
     name_ch = "潮涌与激流"
     type: SkillType = SkillType.ELEMENTAL_BURST

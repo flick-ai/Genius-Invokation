@@ -6,7 +6,7 @@ class Sparkling_Scatter(NormalAttack):
     凝光
     普通攻击
     '''
-    id: int = 0
+    id: int = 16011
     name = "Sparkling Scatter"
     name_ch = "千金掷"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -46,7 +46,7 @@ class Jade_Screen(ElementalSkill):
     '''
     凝光元素战技
     '''
-    id: int = 1
+    id: int = 16012
     name = "Jade Screen"
     name_ch = "璇玑屏"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -85,7 +85,7 @@ class Starshatter(ElementalBurst):
     '''
     凝光元素爆发
     '''
-    id: int = 2
+    id: int = 16013
     name = "Starshatter"
     name_ch = "天权崩玉"
     type: SkillType = SkillType.ELEMENTAL_BURST

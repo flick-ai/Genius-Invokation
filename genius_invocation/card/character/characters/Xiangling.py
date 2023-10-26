@@ -3,7 +3,7 @@ from genius_invocation.card.character.import_head import *
 class Dough_Fu(NormalAttack):
     name = 'Dough-Fu'
     name_ch = '白案功夫'
-    id = 130201
+    id = 13021
     type: SkillType = SkillType.NORMAL_ATTACK
 
     # damage
@@ -42,7 +42,7 @@ class Dough_Fu(NormalAttack):
 class Guoba_Attack(ElementalSkill):
     name = 'Guoba Attack'
     name_ch = '锅巴出击'
-    id = 130202
+    id = 13022
     type: SkillType = SkillType.ELEMENTAL_SKILL
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
     main_damage_element: ElementType = ElementType.PYRO
@@ -77,7 +77,7 @@ class Guoba_Attack(ElementalSkill):
 class Pyronado(ElementalBurst):
     name = 'Pyronado'
     name_ch = '旋火轮'
-    id = 130203
+    id = 13023
     type: SkillType = SkillType.ELEMENTAL_BURST
     # damage
     damage_type: SkillType = SkillType.ELEMENTAL_BURST

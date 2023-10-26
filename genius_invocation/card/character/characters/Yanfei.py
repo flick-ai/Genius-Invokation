@@ -3,7 +3,7 @@ from genius_invocation.card.character.import_head import *
 class Seal_of_Approval(NormalAttack):
     name = "Seal of Approval"
     name_ch = "火漆制印"
-    id = 130801
+    id = 13081
     type: SkillType = SkillType.NORMAL_ATTACK
     damage_type: SkillType = SkillType.NORMAL_ATTACK
     main_damage_element: ElementType = ElementType.PYRO
@@ -28,7 +28,7 @@ class Seal_of_Approval(NormalAttack):
 
 
 class Signed_Edict(ElementalSkill):
-    id = 130802
+    id = 13082
     name = "Signed Edict"
     name_ch = "丹书立约"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -51,7 +51,7 @@ class Signed_Edict(ElementalSkill):
 class Done_Deal(ElementalBurst):
     name = "Done Deal"
     name_ch = "凭此结契"
-    id = 130803
+    id = 13083
     type: SkillType = SkillType.ELEMENTAL_BURST
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
     main_damage_element: ElementType = ElementType.PYRO

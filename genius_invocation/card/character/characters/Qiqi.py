@@ -3,7 +3,7 @@ from genius_invocation.card.character.import_head import *
 class Ancient_Sword_Art(NormalAttack):
     name = 'Ancient Sword Art'
     name_ch = "云来古剑法"
-    id: int = 0
+    id: int = 11081
     type: SkillType = SkillType.NORMAL_ATTACK
 
     # damage
@@ -39,7 +39,7 @@ class Ancient_Sword_Art(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Adeptus_Art_Herald_of_Frost(ElementalSkill):
-    id = 1
+    id = 11082
     name = 'Adeptus Art: Herald of Frost'
     name_ch = "仙法·寒病鬼差"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -74,7 +74,7 @@ class Adeptus_Art_Herald_of_Frost(ElementalSkill):
 
 
 class Adeptus_Art_Preserver_of_Fortune(ElementalBurst):
-    id = 2
+    id = 11083
     name = 'Adeptus Art: Preserver of Fortune'
     name_ch = "仙法·救苦度厄"
     type: SkillType = SkillType.ELEMENTAL_BURST

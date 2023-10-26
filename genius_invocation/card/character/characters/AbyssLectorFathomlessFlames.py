@@ -3,7 +3,7 @@ from genius_invocation.card.character.import_head import *
 class Flame_of_Salvation(NormalAttack):
     name = "Flame of Salvation"
     name_ch = "振救之焰"
-    id = 230201
+    id = 23021
     type: SkillType = SkillType.NORMAL_ATTACK
     damage_type: SkillType = SkillType.NORMAL_ATTACK
     main_damage_element: ElementType = ElementType.PYRO
@@ -23,7 +23,7 @@ class Flame_of_Salvation(NormalAttack):
 class Searing_Precept(ElementalSkill):
     name = "Searing Precept"
     name_ch = "炽烈箴言"
-    id = 230202
+    id = 23022
     type: SkillType = SkillType.ELEMENTAL_SKILL
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
     main_damage_element: ElementType = ElementType.PYRO
@@ -42,7 +42,7 @@ class Searing_Precept(ElementalSkill):
 class Ominous_Star(ElementalBurst):
     name = "Ominous Star"
     name_ch = "天陨预兆"
-    id = 230203
+    id = 23023
     type: SkillType = SkillType.ELEMENTAL_BURST
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
     main_damage_element: ElementType = ElementType.PYRO

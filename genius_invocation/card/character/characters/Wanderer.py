@@ -1,7 +1,7 @@
 from genius_invocation.card.character.import_head import *
 
 class Yuuban_Meigen(NormalAttack):
-    id: int = 0
+    id: int = 15061
     name = "Yuuban Meigen"
     name_ch = "行幡鸣弦"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -37,7 +37,7 @@ class Yuuban_Meigen(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Hanega_Song_of_the_Wind(ElementalSkill):
-    id = 1
+    id = 15062
     name = "Hanega: Song of the Wind"
     name_ch = "羽画·风姿华歌"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -67,7 +67,7 @@ class Hanega_Song_of_the_Wind(ElementalSkill):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Kyougen_Five_Ceremonial_Plays(ElementalBurst):
-    id = 2
+    id = 15063
     name = "Kyougen: Five Ceremonial Plays"
     name_ch = "狂言·式乐五番"
     type: SkillType = SkillType.ELEMENTAL_BURST

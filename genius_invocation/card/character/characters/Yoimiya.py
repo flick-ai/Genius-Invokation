@@ -5,7 +5,7 @@ class Firework_FlareUp(NormalAttack):
         烟火打扬
         普通攻击
     '''
-    id: int = 0
+    id: int = 13051
     name = "Firework Flare-Up"
     name_ch = "烟火打扬"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -47,7 +47,7 @@ class Niwabi_FireDance(ElementalSkill):
         焰硝庭火舞
         元素战技
     '''
-    id: int = 1
+    id: int = 13052
     name="Niwabi Fire-Dance"
     name_ch = "焰硝庭火舞"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -87,7 +87,7 @@ class Ryuukin_Saxifrage(ElementalBurst):
         琉金云间草
         元素爆发
     '''
-    id: int = 2
+    id: int = 13053
     name = "Ryuukin Saxifrage"
     name_ch = "琉金云间草"
     type: SkillType = SkillType.ELEMENTAL_BURST

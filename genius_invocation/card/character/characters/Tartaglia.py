@@ -201,7 +201,7 @@ class CuttingTorrent(NormalAttack):
         普通攻击
         断雨
     '''
-    id: int = 0
+    id: int = 12041
     name = 'Cutting Torrent'
     name_ch = "断雨"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -256,7 +256,7 @@ class FoulLegacy_RagingTide(ElementalSkill):
         元素战技
         魔王武装：狂澜
     '''
-    id: int = 1
+    id: int = 12042
     name='Foul Legacy: Raging Tide'
     name_ch = "魔王武装：狂澜"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -400,7 +400,7 @@ class LightOfHavoc(ElementalBurst):
 class Havoc_Obliteration(ElementalBurst):
     '''
     '''
-    id: int = 2
+    id: int = 12043
     name = 'Havoc: Obliteration'
     name_ch = "极恶技·尽灭闪"
     type: SkillType = SkillType.ELEMENTAL_BURST

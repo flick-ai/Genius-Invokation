@@ -3,7 +3,7 @@ from genius_invocation.card.character.import_head import *
 class The_Shape_of_Water(NormalAttack):
     name = 'The Shape of Water'
     name_ch = '水有常形'
-    id = 120501
+    id = 12051
     type: SkillType = SkillType.NORMAL_ATTACK
     damage_type: SkillType = SkillType.NORMAL_ATTACK
     main_damage_element: ElementType = ElementType.HYDRO
@@ -23,7 +23,7 @@ class The_Shape_of_Water(NormalAttack):
 class Kurages_Oath(ElementalSkill):
     name = "Kurage's Oath"
     name_ch = "海月之誓"
-    id = 120502
+    id = 12052
     type: SkillType = SkillType.ELEMENTAL_SKILL
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
     main_damage_element: ElementType = ElementType.HYDRO
@@ -44,7 +44,7 @@ class Kurages_Oath(ElementalSkill):
 class Nereids_Ascension(ElementalBurst):
     name = "Nereid's Ascension"
     name_ch = "海人化羽"
-    id = 120503
+    id = 12053
     type: SkillType = SkillType.ELEMENTAL_BURST
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
     main_damage_element: ElementType = ElementType.HYDRO
