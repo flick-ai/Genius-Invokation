@@ -75,7 +75,7 @@ class Dandelion_Field(Summon):
     removable = True
     element = ElementType.ANEMO
 
-    def __init__(self, game: GeniusGame, from_player: GeniusPlayer, from_character: Character = None):
+    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character' = None):
         super().__init__(game, from_player, from_character)
         self.usage = 2
         self.current_usage = 2
