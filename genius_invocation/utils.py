@@ -334,7 +334,7 @@ def select_card(characters: List['Character'], all_action_card: List['ActionCard
             case ActionCardType.EQUIPMENT_TALENT:
                 if action_card.character.__name__ in all_character:
                     available_action_card['WEAPON_TALENT'].append((class_name, name, name_ch))
-            case ActionCardType.SUPPORT_COMPANION:
+            case ActionCardType.SUPPORT_LOCATION:
                 available_action_card['SUPPORT'].append((class_name, name, name_ch))
             case ActionCardType.SUPPORT_ITEM:
                 available_action_card['SUPPORT'].append((class_name, name, name_ch))
