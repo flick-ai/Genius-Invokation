@@ -17,3 +17,11 @@ class Jean(Character):
         super().__init__(game, zone, from_player, index, from_character)
         self.power = 0
         self.talent = talent
+
+
+class Favonius_ladework(NormalAttack):
+    id: 150201
+    name = "Favonius ladework"
+    name_ch = "西风剑法"
+    type: SkillType = SkillType.NORMAL_ATTACK
+    
