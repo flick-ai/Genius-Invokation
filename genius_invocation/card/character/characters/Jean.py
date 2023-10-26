@@ -140,7 +140,7 @@ class Dandelion_Breeze(ElementalBurst):
         self.consume_energy(game)
         for character in self.from_character.from_player.character_list:
             if character.is_alive:
-                character.heal(1, game)
+                character.heal(2, game)
         self.generate_summon(game, Dandelion_Field)
 
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
