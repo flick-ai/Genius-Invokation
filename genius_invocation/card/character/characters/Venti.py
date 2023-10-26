@@ -59,14 +59,14 @@ class Stormzone(Combat_Status):
     name_ch = "风域"
     max_usage = 1
 
-    def __init__(self, game: GeniusGame, from_player: GeniusPlayer, from_character=None):
+    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.usage = 2
         self.current_usage = 2
         self.is_triggered = False
 
 
-    def update(self, game: GeniusGame):
+    def update(self, game: 'GeniusGame'):
         self.current_usage = max(self.current_usage, self.usage)
 
     def on_calculate(self, game:'GeniusGame'):
@@ -147,7 +147,7 @@ class Stormeye(Summon):
     removable = True
     element = ElementType.ANEMO
 
-    def __init__(self, game: GeniusGame, from_player: GeniusPlayer, from_character: Character = None):
+    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character' = None):
         super().__init__(game, from_player, from_character)
         self.usage = 2
         self.current_usage = 2

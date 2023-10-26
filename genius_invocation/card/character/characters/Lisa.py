@@ -47,7 +47,7 @@ class Conductive(Status):
 
     def on_end_phase(self, game: 'GeniusGame'):
         if game.active_player == self.from_player:
-            self.current_usage += 1
+            self.update()
             if self.current_usage <= 0:
                 self.on_destroy(game)
 
@@ -59,7 +59,7 @@ class Conductive(Status):
 
 
 class Lightning_Touch(NormalAttack):
-    id: int = 0
+    id: int = 14091
     name = "Lightning Touch"
     name_ch = "指尖风暴"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -97,7 +97,7 @@ class Lightning_Touch(NormalAttack):
 
 
 class Violet_Arc(ElementalSkill):
-    id: int = 1
+    id: int = 14092
     name = "Violet Arc"
     name_ch = "苍雷"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -118,7 +118,7 @@ class Violet_Arc(ElementalSkill):
         super().on_call(game)
         status = Conductive.check_status(game)
         self.resolve_damage(game)
-        if status is not None:
+        if status is None:
             Conductive.add_status(game)
         self.gain_energy(game)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
@@ -163,7 +163,7 @@ class Lightning_Rose_Summon(Summon):
 
 
 class Lightning_Rose(ElementalBurst):
-    id: int = 2
+    id: int = 14093
     name = "Lightning Rose"
     name_ch = "蔷薇的雷光"
     type: SkillType = SkillType.ELEMENTAL_BURST
@@ -182,8 +182,9 @@ class Lightning_Rose(ElementalBurst):
 
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
+        self.consume_energy(game)
         self.resolve_damage(game)
-        self.gain_energy(game)
+        self.generate_summon(game, Lightning_Rose_Summon)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 
