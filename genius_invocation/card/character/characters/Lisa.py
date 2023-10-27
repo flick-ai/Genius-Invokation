@@ -169,7 +169,7 @@ class Lightning_Rose(ElementalBurst):
     type: SkillType = SkillType.ELEMENTAL_BURST
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
     main_damage_element: ElementType = ElementType.ELECTRO
-    main_damage: int = 3
+    main_damage: int = 2
     piercing_damage: int = 0
     cost = [
         {
