@@ -283,7 +283,6 @@ class GeniusPlayer:
                                                      from_character=None,
                                                      use_type=SwitchType.ELEMENTAL_RESONANCE,
                                                      cost = [{'cost_num':1, 'cost_type':active_dice}]))
-            print(active_dice.value)
             if can_tune:
                 self.action_mask[idx][13][0] = 1
                 self.action_mask[idx][13][1] = 1
