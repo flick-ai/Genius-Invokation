@@ -23,7 +23,7 @@ class Liben_Entity(Support):
             dices = self.from_player.dice_zone.show()
             if dices is None:
                 return
-            omni_num = dices.count(7)
+            omni_num = dices.count(DiceType.OMNI.value)
             put_into = []
             #
             for idx, dice in enumerate(dices):
@@ -36,7 +36,7 @@ class Liben_Entity(Support):
             if omni_num > 1:
                 dices = self.from_player.dice_zone.show()
                 for idx, dice in enumerate(dices):
-                    if dice == 7:
+                    if dice == DiceType.OMNI.value:
                         self.from_player.dice_zone.remove([idx])
                         put_into.append(dice)
                         if len(put_into) + len(self.dice) == self.max_count:

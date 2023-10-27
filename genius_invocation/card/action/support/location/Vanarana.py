@@ -37,7 +37,7 @@ class Vanarana_Entity(Support):
         sum_dice = dices.sum(axis=0)[:-1]
         for i in range(DICENUM-1):
             sort_map[i] += 10 * sum_dice[i]
-        sort_map[7] = 0
+        sort_map[DiceType.OMNI.value] = 0
         return sort_map
 
     def on_begin(self, game:'GeniusGame'):
