@@ -3,7 +3,7 @@ from genius_invocation.card.character.import_head import *
 class Garyuu_Bladework(NormalAttack):
     name = 'Garyuu Bladework'
     name_ch = "我流剑术"
-    id = 150501
+    id = 15051
     type: SkillType = SkillType.NORMAL_ATTACK
     damage_type: SkillType = SkillType.NORMAL_ATTACK
     main_damage_element: ElementType = ElementType.PHYSICAL
@@ -39,7 +39,7 @@ class Garyuu_Bladework(NormalAttack):
 class Chihayaburu(ElementalSkill):
     name = 'Chihayaburu'
     name_ch = "千早振る"
-    id = 150502
+    id = 15052
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -76,7 +76,7 @@ class Chihayaburu(ElementalSkill):
 class Kazuha_Slash(ElementalBurst):
     name = 'Kazuha Slash'
     name_ch = "万叶之一刀"
-    id = 150503
+    id = 15053
     type: SkillType = SkillType.ELEMENTAL_BURST
 
     damage_type: SkillType = SkillType.ELEMENTAL_BURST

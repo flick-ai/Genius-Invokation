@@ -4,7 +4,7 @@ class Ripple_of_Fate(NormalAttack):
 # 因果点破
     name = 'Ripple of Fate'
     name_ch = '因果点破'
-    id = 0
+    id = 12031
     type: SkillType = SkillType.NORMAL_ATTACK
 
     # damage
@@ -44,7 +44,7 @@ class Mirror_Reflection_of_Doom(ElementalSkill):
 # 水中幻愿
     name = 'Mirror Reflection of Doom'
     name_ch = '水中幻愿'
-    id = 1
+    id = 12032
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
     # damage
@@ -80,7 +80,7 @@ class Stellaris_Phantasm(ElementalBurst):
 # 星命定轨
     name = 'Stellaris Phantasm'
     name_ch = '星命定轨'
-    id = 2
+    id = 12033
     type: SkillType = SkillType.ELEMENTAL_BURST
 
     # damage

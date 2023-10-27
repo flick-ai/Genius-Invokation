@@ -5,7 +5,7 @@ class Yunlai_Swordsmanship(NormalAttack):
     刻晴
     普通攻击
     '''
-    id: int = 0
+    id: int = 14031
     type: SkillType = SkillType.NORMAL_ATTACK
     name = "Yunlai Swordsmanship"
     name_ch = "云来剑法"
@@ -46,7 +46,7 @@ class StellarRestoration(ElementalSkill):
     刻晴
     元素战技
     '''
-    id: int = 1
+    id: int = 14032
     name = "Stellar Restoration"
     name_ch = "星斗归位"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -102,7 +102,7 @@ class StarwardSword(ElementalBurst):
     刻晴
     天街巡游!
     '''
-    id = 2
+    id = 14033
     name="Starward Sword"
     name_ch = "天街巡游"
     type: SkillType = SkillType.ELEMENTAL_BURST

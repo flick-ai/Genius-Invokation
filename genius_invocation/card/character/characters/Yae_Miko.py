@@ -1,7 +1,7 @@
 from genius_invocation.card.character.import_head import *
 
 class Spiritfox_SinEater(NormalAttack):
-    id = 0
+    id = 14081
     type = SkillType.NORMAL_ATTACK
     name = "Spiritfox Sin-Eater"
     name_ch = "狐灵食罪式"
@@ -38,7 +38,7 @@ class Spiritfox_SinEater(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Yakan_Evocation_Sesshou_Sakura(ElementalSkill):
-    id = 1
+    id = 14082
     name = "Yakan Evocation: Sesshou Sakura"
     name_ch = "野干役咒·杀生樱"
     type = SkillType.ELEMENTAL_SKILL
@@ -72,7 +72,7 @@ class Yakan_Evocation_Sesshou_Sakura(ElementalSkill):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Great_Secret_Art_Tenko_Kenshin(ElementalBurst):
-    id = 2
+    id = 14083
     name = "Great Secret Art: Tenko Kenshin"
     name_ch = "大密法·天狐显真"
     type = SkillType.ELEMENTAL_BURST

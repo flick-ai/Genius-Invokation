@@ -3,7 +3,7 @@ from genius_invocation.card.character.import_head import *
 class Secret_Spear_of_Wangsheng(NormalAttack):
     name = 'Secret Spear of Wangsheng'
     name_ch = '往生秘传枪法'
-    id = 130701
+    id = 13071
     type: SkillType = SkillType.NORMAL_ATTACK
 
     # damage
@@ -42,7 +42,7 @@ class Secret_Spear_of_Wangsheng(NormalAttack):
 class Guide_to_Afterlife(ElementalSkill):
     name = 'Guide to Afterlife'
     name_ch = '蝶引来生'
-    id = 130702
+    id = 13072
 
     type: SkillType = SkillType.ELEMENTAL_SKILL
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -74,7 +74,7 @@ class Guide_to_Afterlife(ElementalSkill):
 class Spirit_Soother(ElementalBurst):
     name = 'Spirit Soother'
     name_ch = '安神秘法'
-    id = 130703
+    id = 13073
     type: SkillType = SkillType.ELEMENTAL_BURST
 
     # damage

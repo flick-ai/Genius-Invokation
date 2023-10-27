@@ -1,27 +1,10 @@
 from genius_invocation.card.character.import_head import *
 
 
-class Venti(Character):
-    id: int = 1503
-    name: str = "Venti"
-    name_ch = "温迪"
-    element: ElementType = ElementType.ANEMO
-    weapon_type: WeaponType = WeaponType.BOW
-    country: CountryType = CountryType.MONDSTADT
-    init_health_point: int = 10
-    max_health_point: int = 10
-    skill_list: List = []
-    max_power: int = 2
-
-    def __init__(self, game: 'GeniusGame', zone: 'CharacterZone', from_player: 'GeniusPlayer', index: int, from_character=None, talent=False):
-        super().__init__(game, zone, from_player, index, from_character)
-        self.power = 0
-        self.talent = talent
-
 class Divine_Marksmanship(NormalAttack):
     name = "Divine Marksmanship"
     name_ch = "神代射术"
-    id = 150301
+    id = 15031
     type: SkillType = SkillType.NORMAL_ATTACK
     damage_type: SkillType = SkillType.NORMAL_ATTACK
     main_damage_element: ElementType = ElementType.PHYSICAL
@@ -57,7 +40,6 @@ class Divine_Marksmanship(NormalAttack):
 class Stormzone(Combat_Status):
     name = "Stormzone"
     name_ch = "风域"
-    max_usage = 1
 
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
@@ -110,7 +92,7 @@ class Stormzone(Combat_Status):
 class Skyward_Sonnet(ElementalSkill):
     name = "Skyward Sonnet"
     name_ch = "高天之歌"
-    id = 150302
+    id = 15032
     type: SkillType = SkillType.ELEMENTAL_SKILL
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
     main_damage_element: ElementType = ElementType.ANEMO
@@ -201,7 +183,7 @@ class Stormeye(Summon):
 class Wind_s_Grand_Ode(ElementalBurst):
     name = "Wind's Grand Ode"
     name_ch = "风神之诗"
-    id = 150303
+    id = 15033
     type: SkillType = SkillType.ELEMENTAL_BURST
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
     main_damage_element: ElementType = ElementType.ANEMO
@@ -229,3 +211,21 @@ class Wind_s_Grand_Ode(ElementalBurst):
         self.resolve_damage(game)
         
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
+
+
+class Venti(Character):
+    id: int = 1503
+    name: str = "Venti"
+    name_ch = "温迪"
+    element: ElementType = ElementType.ANEMO
+    weapon_type: WeaponType = WeaponType.BOW
+    country: CountryType = CountryType.MONDSTADT
+    init_health_point: int = 10
+    max_health_point: int = 10
+    skill_list: List = [Divine_Marksmanship, Skyward_Sonnet, Wind_s_Grand_Ode]
+    max_power: int = 2
+
+    def __init__(self, game: 'GeniusGame', zone: 'CharacterZone', from_player: 'GeniusPlayer', index: int, from_character=None, talent=False):
+        super().__init__(game, zone, from_player, index, from_character)
+        self.power = 0
+        self.talent = talent

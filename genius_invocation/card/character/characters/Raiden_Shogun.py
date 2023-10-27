@@ -4,7 +4,7 @@ from genius_invocation.card.character.import_head import *
 class Origin(NormalAttack):
     name = 'Origin'
     name_ch = '源流'
-    id: int = 0
+    id: int = 14071
     type: SkillType = SkillType.NORMAL_ATTACK
 
     # damage
@@ -40,7 +40,7 @@ class Origin(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Transcendence_Baleful_Omen(ElementalSkill):
-    id = 1
+    id = 14072
     name = "Transcendence: Baleful Omen"
     name_ch = "神变·恶曜开眼"
     type = SkillType.ELEMENTAL_SKILL
@@ -74,7 +74,7 @@ class Transcendence_Baleful_Omen(ElementalSkill):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Secret_Art_Musou_Shinsetsu(ElementalBurst):
-    id = 2
+    id = 14073
     name="Secret Art: Musou Shinsetsu"
     name_ch = "奥义·梦想真说"
     type: SkillType = SkillType.ELEMENTAL_BURST

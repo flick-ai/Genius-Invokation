@@ -1,7 +1,7 @@
 from genius_invocation.card.character.import_head import *
 
 class Favonius_Bladework_Maid(NormalAttack):
-    id = 0
+    id = 16021
     name = 'Favonius Bladework - Maid'
     name_ch = "西风剑术·女仆"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -34,7 +34,7 @@ class Favonius_Bladework_Maid(NormalAttack):
 
 
 class Breastplate(ElementalSkill):
-    id = 1
+    id = 16022
     name = 'Breastplate'
     name_ch = "护心铠"
     type = SkillType.ELEMENTAL_SKILL
@@ -66,7 +66,7 @@ class Breastplate(ElementalSkill):
 class Sweeping_Time(ElementalBurst):
     name = 'Sweeping Time'
     name_ch = "大扫除"
-    id = 2
+    id = 16023
     type = SkillType.ELEMENTAL_BURST
 
     damage_type = SkillType.ELEMENTAL_BURST

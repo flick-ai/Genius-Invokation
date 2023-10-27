@@ -2,7 +2,7 @@ from genius_invocation.card.character.import_head import *
 
 
 class Guhua_Style(NormalAttack):
-    id: int = 120201
+    id: int = 12021
     type: SkillType = SkillType.NORMAL_ATTACK
     name = "Guhua Style"
     name_ch = "古华剑法"
@@ -44,7 +44,7 @@ class Fatal_Rainscreen(ElementalSkill):
     行秋
     元素战技
     '''
-    id: int = 120202
+    id: int = 12022
     name = "Stellar Restoration"
     name_ch = "画雨笼山"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -85,7 +85,7 @@ class Raincutter(ElementalBurst):
     行秋
     元素爆发
     '''
-    id: int = 120203
+    id: int = 12023
     name = "Fatal Rainscreen"
     name_ch = "裁雨留虹"
     type: SkillType = SkillType.ELEMENTAL_BURST

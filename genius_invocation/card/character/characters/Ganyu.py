@@ -3,7 +3,7 @@ from genius_invocation.card.character.import_head import *
 class Liutian_Archery(NormalAttack):
     name = 'Liutian Archery'
     name_ch = "流天射术"
-    id: int = 110101
+    id: int = 11011
     type: SkillType = SkillType.NORMAL_ATTACK
 
     # damage
@@ -40,7 +40,7 @@ class Liutian_Archery(NormalAttack):
 
 
 class Trail_of_the_Qilin(ElementalSkill):
-    id = 110102
+    id = 11012
     name = 'Trail of the Qilin'
     name_ch = "山泽麟迹"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -78,7 +78,7 @@ class Trail_of_the_Qilin(ElementalSkill):
 class Frostflake_Arrow(NormalAttack):
     name = 'Frostflake Arrow'
     name_ch = "霜华矢"
-    id: int = 110103
+    id: int = 11013
     type: SkillType = SkillType.NORMAL_ATTACK
 
     # damage
@@ -115,7 +115,7 @@ class Frostflake_Arrow(NormalAttack):
 
 
 class Celestial_Shower(ElementalBurst):
-    id = 110104
+    id = 11014
     name = 'Celestial Shower'
     name_ch = "降众天华"
     type = SkillType.ELEMENTAL_BURST

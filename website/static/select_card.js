@@ -76,6 +76,7 @@ loadcard.addEventListener(
         loadcard.style.display = 'flex'
         loadcard.innerText = '读取卡组' + `(角色${select_character_result.length})`
     } else if (select_character_result.length == 2){
+        loadcard.style.display = 'none'
         character_confirm.style.display = 'none'
         startgame.style.display = 'flex'
     }

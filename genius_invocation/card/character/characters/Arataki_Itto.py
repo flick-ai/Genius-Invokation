@@ -1,7 +1,7 @@
 from genius_invocation.card.character.import_head import *
 
 class Fight_Club_Legend(NormalAttack):
-    id: int = 0
+    id: int = 16051
     name = "Bolts of Downfall"
     name_ch = "喧哗屋传说"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -33,7 +33,7 @@ class Fight_Club_Legend(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Masatsu_Zetsugi_Akaushi_Burst(ElementalSkill):
-    id = 1
+    id = 16052
     name = "Masatsu Zetsugi: Akaushi Burst"
     name_ch = "魔杀绝技·赤牛发破!"
     type = SkillType.ELEMENTAL_SKILL
@@ -66,7 +66,7 @@ class Masatsu_Zetsugi_Akaushi_Burst(ElementalSkill):
 class Royal_Descent_Behold_Itto_the_Evil(ElementalBurst):
     name = 'Royal Descent: Behold, Itto the Evil!'
     name_ch = '最恶鬼王·一斗轰临!!'
-    id = 2
+    id = 16053
     type = SkillType.ELEMENTAL_BURST
 
     damage_type = SkillType.ELEMENTAL_BURST
