@@ -69,7 +69,7 @@ if __name__=="__main__":
                     'PaidinFull','PaidinFull','Send_Off','Starsigns','Starsigns']
     }
     deck2 = {
-    'character': ['Klee', 'Lisa', 'Noelle'],
+    'character': ['Klee', 'Lisa', 'Qiqi'],
     'action_card': ['PulsatingWitch' for i in range(30)]
     }
     # deck2 = {
@@ -81,7 +81,7 @@ if __name__=="__main__":
     #                 'Lotus_Flower_Crisp','Lotus_Flower_Crisp','Sweet_Madame','Mondstadt_Hash_Brown',
     #                 'Mushroom_Pizza','Mushroom_Pizza']
     # }
-    game = GeniusGame(player0_deck=deck1, player1_deck=deck2, seed=2026, is_omni=True)
+    game = GeniusGame(player0_deck=deck1, player1_deck=deck2, seed=2026, is_omni=False)
 
     if args.test:
         with open("./action.log") as f:

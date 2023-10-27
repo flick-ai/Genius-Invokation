@@ -362,7 +362,7 @@ class Rhodeia_of_Loch(Character):
     weapon_type = WeaponType.OTHER
     country: CountryType = CountryType.MONSTER
 
-    init_health_point = 10
+    init_health_point = 1
     max_health_point = 10
     skill_list = [Surge,Oceanid_Mimic_Summoning,The_Myriad_Wilds,Tide_and_Torrent]
     max_power = 3

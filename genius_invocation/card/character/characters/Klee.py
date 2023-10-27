@@ -56,7 +56,7 @@ class ExplosiveSpark(Status):
         if game.active_player_index == self.from_player.index:
             if game.current_dice.use_type == SkillType.NORMAL_ATTACK:
                 if game.current_dice.from_character == self.from_character:
-                    if self.usage > 0:
+                    if self.current_usage > 0:
                         if game.current_dice.cost[0]['cost_num'] > 0:
                             game.current_dice.cost[0]['cost_num'] -= 1
                             return True
@@ -66,7 +66,7 @@ class ExplosiveSpark(Status):
         return False
     
     def on_skill(self, game:"GeniusGame"):
-        self.on_calculation(game)
+        self.on_calculate_dice(game)
             
     def on_dmg_add(self, game:"GeniusGame"):
         if game.current_damage.damage_from == self.from_character:
@@ -80,7 +80,7 @@ class ExplosiveSpark(Status):
     def update_listener_list(self):
         self.listeners = [
             (EventType.ON_USE_SKILL, ZoneType.CHARACTER_ZONE, self.on_skill),
-            (EventType.CALCULATE_DICE, ZoneType.CHARACTER_ZONE, self.on_calculation),
+            (EventType.CALCULATE_DICE, ZoneType.CHARACTER_ZONE, self.on_calculate_dice),
             (EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, self.on_dmg_add)
         ]
 

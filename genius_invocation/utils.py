@@ -40,14 +40,15 @@ class CostType(Enum):
     BLACK = 8 # 任意
 
 class DiceType(Enum):
-    CRYO = 0 # 冰
-    HYDRO = 1 # 水
-    PYRO = 2 # 火
-    ELECTRO = 3 # 雷
-    ANEMO = 4 # 风
-    GEO = 5 # 岩
-    DENDRO = 6 # 草
-    OMNI = 7 # 万能
+    OMNI = 0 # 万能
+    CRYO = 1 # 冰
+    HYDRO = 2 # 水
+    PYRO = 3 # 火
+    ELECTRO = 4 # 雷
+    ANEMO = 5 # 风
+    GEO = 6 # 岩
+    DENDRO = 7 # 草
+
 
 class ElementType(Enum):
     CRYO = 0 # 冰
@@ -154,6 +155,7 @@ class EventType(Enum):
 
 class SwitchType(Enum):
     CHANGE_CHARACTER = 0
+    ELEMENTAL_RESONANCE = 1
 
 class ElementalReactionType(Enum):
     Frozen = 0
@@ -169,19 +171,19 @@ class ElementalReactionType(Enum):
     Crystallize = 10
 
 DiceToElement = {
-    DiceType(i): ElementType(i) for i in range(7)
+    DiceType(i+1): ElementType(i) for i in range(7)
 }
 
 ElementToDice = {
-    ElementType(i): DiceType(i) for i in range(7)
+    ElementType(i): DiceType(i+1) for i in range(7)
 }
 
 DiceToCost = {
-    DiceType(i): CostType(i) for i in range(7)
+    DiceType(i+1): CostType(i) for i in range(7)
 }
 
 CostToDice = {
-    CostType(i): DiceType(i) for i in range(7)
+    CostType(i): DiceType(i+1) for i in range(7)
 }
 
 '''

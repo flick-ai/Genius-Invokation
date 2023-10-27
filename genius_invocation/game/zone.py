@@ -70,7 +70,7 @@ class DiceZone:
             return
         dices = sorted(dices, key=lambda x:self.sort_map[x], reverse=True)
         for idx, dice in enumerate(dices):
-            if dice != 7:
+            if dice != DiceType.OMNI.value:
                 self.space[self.dice_num][-1] = dice
                 self.space[self.dice_num][dice] = 1
             else:
@@ -119,7 +119,7 @@ class DiceZone:
         if is_zero == True:
             return True
 
-        if dice.use_type == 'elemental tuning':
+        if dice.use_type == SwitchType.ELEMENTAL_RESONANCE:
             return self.dice_num - self.space[:, dice.cost[0]['cost_type'].value].sum() > 0
         is_cost = 0
         for cost in dice.cost:
@@ -147,9 +147,9 @@ class DiceZone:
         if not len(choose_dice) == cost_num:
             return False
         if cost_type < 0:
-            cost = CostType(-cost_type)
+            cost = DiceType(-cost_type)
             for dice in choose_dice:
-                if DiceType(dice) == CostToDice[cost]:
+                if DiceType(dice) == cost or DiceType(dice)==DiceType.OMNI:
                     return False
         else:
             cost = CostType(cost_type)

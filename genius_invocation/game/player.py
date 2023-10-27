@@ -277,16 +277,18 @@ class GeniusPlayer:
                         self.action_mask[idx][target][i*2+1] = cost['cost_num']
                         self.action_mask[idx][target][i*2+2] = cost['cost_type'].value if cost['cost_type'] is not None else 0
 
-            active_dice = DiceToCost[ElementToDice[self.character_list[self.active_idx].element]]
+
+            active_dice = ElementToDice[self.character_list[self.active_idx].element]
             can_tune = self.dice_zone.calculate_dice(Dice(from_player=self,
                                                      from_character=None,
-                                                     use_type='elemental tuning',
+                                                     use_type=SwitchType.ELEMENTAL_RESONANCE,
                                                      cost = [{'cost_num':1, 'cost_type':active_dice}]))
+            print(active_dice.value)
             if can_tune:
                 self.action_mask[idx][13][0] = 1
                 self.action_mask[idx][13][1] = 1
-                self.action_mask[idx][13][2] = - active_dice.value
-
+                self.action_mask[idx][13][2] = - (active_dice.value)
+        
 
         # 计算能否使用技能
         for idx, skill in enumerate(self.character_list[self.active_idx].skills):

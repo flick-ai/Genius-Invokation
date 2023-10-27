@@ -11,12 +11,12 @@
     },
     {
         "choice": 14,
-        "target": 3,
+        "target": 4,
         "dice": []
     },
     {
         "choice": 14,
-        "target": 3,
+        "target": 4,
         "dice": []
     },
     {
@@ -30,54 +30,16 @@
         "dice": []
     },
     {
-        "choice": 10,
-        "target": 0,
+        "choice": 0,
+        "target": 13,
         "dice": [
-            2,
-            1,
-            0
+            1
         ]
     },
     {
-        "choice": 15,
-        "target": 1,
-        "dice": []
-    },
-    {
-        "choice": 11,
-        "target": 0,
-        "dice": [
-            2,
-            1,
-            0
-        ]
-    },
-    {
-        "choice": 15,
-        "target": 1,
-        "dice": []
-    },
-    {
-        "choice": 16,
+        "choice": 0,
         "target": 13,
-        "dice": []
-    },
-    {
-        "choice": 16,
-        "target": 13,
-        "dice": []
-    },
-    {
-        "choice": 15,
-        "target": 1,
-        "dice": []
-    },
-    {
-        "choice": 12,
-        "target": 0,
         "dice": [
-            0,
-            1,
             2
         ]
     }

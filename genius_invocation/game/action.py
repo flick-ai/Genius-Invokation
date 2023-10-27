@@ -198,7 +198,7 @@ class Action:
                         cost_num = use_dice[choice][target][i*2]
                         if cost_num != 0:
                             if use_dice[choice][target][i*2+1] < 0:
-                                cost_type = CostType(-use_dice[choice][target][i*2+1])
+                                cost_type = DiceType(-use_dice[choice][target][i*2+1])
                                 list_prompt = f'您需要选择使用的{cost_num}个非{cost_type}骰子的位置,形式如0 1 2所示:'
                             else:
                                 cost_type = CostType(use_dice[choice][target][i*2+1])

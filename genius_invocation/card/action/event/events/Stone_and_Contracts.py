@@ -16,7 +16,7 @@ class  Stone_and_Contracts_Entity(Combat_Status):
     
     def on_begin(self, game:'GeniusGame'):
         if game.active_player_index == self.from_player.index:
-            self.from_player.dice_zone.add([7,7,7])
+            self.from_player.dice_zone.add([DiceType.OMNI.value,DiceType.OMNI.value,DiceType.OMNI.value])
             self.on_destroy(self)
         
     def update_listener_list(self):

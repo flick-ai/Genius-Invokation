@@ -237,6 +237,7 @@ class GeniusGame:
         '''
             选择出战角色
         '''
+        self.current_action = action
         if self.special_phase is None:
             self.active_player.choose_character(action)
             self.change_active_player()
@@ -334,6 +335,8 @@ class Active_Die:
         game.step(action)
 
     def on_finished(self, game: 'GeniusGame'):
+        game.active_player.choose_character(game.current_action)
+        game.change_active_player()
         game.game_phase = self.now_phase
         game.special_phase = None
         game.active_player_index = self.activate_player_index
