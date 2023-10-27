@@ -41,4 +41,4 @@ jobs:
             
     - name: run unit tests (windows)
       if: ${{ matrix.os.arch == 'win-x64' }}
-      run: foreach($f in ls test -File) {echo $f; python3 $f}
+      run: foreach($f in ls test/*.py -File) {echo $f; python3 $f}

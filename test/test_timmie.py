@@ -1,3 +1,9 @@
+"""
+game_version: 4.1
+card_involved:
+- Timmie
+"""
+
 import unittest
 from typing import List, Dict, Tuple, Optional, Union
 
