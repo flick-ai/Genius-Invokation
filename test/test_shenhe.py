@@ -1,3 +1,9 @@
+"""
+game_version: 4.1
+card_involved:
+- Shenhe
+"""
+
 import unittest
 from typing import List, Dict, Tuple, Optional, Union
 
@@ -16,6 +22,7 @@ class TestShenhe(TestBase, unittest.TestCase):
         'character': ['Rhodeia_of_Loch', 'Nahida', 'Fischl'],
         'action_card': ['Timmie'] * 30
     }
+    is_omni = True
 
     def test(self):
         self.initialize_game()
@@ -24,7 +31,6 @@ class TestShenhe(TestBase, unittest.TestCase):
             choose_character(0),#选择出战角色
             #第1回合
             choose_dice_empty(),#投掷骰子
-            Action(0, 9, []),#打出雷与永恒
             Action(11, 0, [0, 1, 2])#E
         ]
         self.run_actions_for_player(player0_actions, 0)
@@ -43,7 +49,6 @@ class TestShenhe(TestBase, unittest.TestCase):
             end_round(),#结束回合
             #第2回合
             choose_dice_empty(),#投掷骰子
-            Action(0, 9, []),#打出雷与永恒
             Action(12, 0, [0, 1, 2])#Q
         ]
         player1_actions = [

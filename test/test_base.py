@@ -20,15 +20,22 @@ class TestBase(metaclass=abc.ABCMeta):
 
     game:GeniusGame = None
 
-    def test(self):
-        pass
-    
+    #游戏参数
+    #随机数种子。默认none为使用系统时间作为种子
+    seed:Optional[int] = None
+    #是否全万能
+    is_omni:bool = False
+
     #可能会用到的工具函数
     def initialize_game(self):
         '''
         初始化游戏
         '''
-        self.game = GeniusGame(player0_deck=self.player0_deck, player1_deck=self.player1_deck)
+        self.game = GeniusGame(
+            player0_deck=self.player0_deck, 
+            player1_deck=self.player1_deck, 
+            seed=self.seed, 
+            is_omni=self.is_omni)
 
     def run_actions_single(
         self, 
@@ -57,9 +64,9 @@ class TestBase(metaclass=abc.ABCMeta):
             except StopIteration:
                 break
             self.game.step(action)
-            #print(action.choice, action.target, action.choice_list)
-            #import rich
-            #rich.print(self.game.encode_message())
+            print(action.choice, action.target, action.choice_list)
+            import rich
+            rich.print(self.game.encode_message())
             #input()
     
     def run_actions_for_player(
@@ -83,9 +90,9 @@ class TestBase(metaclass=abc.ABCMeta):
             else: 
                 action = passive_action(game)
                 game.step(action)
-            #print(action.choice, action.target, action.choice_list)
-            #import rich
-            #rich.print(self.game.encode_message())
+            print(action.choice, action.target, action.choice_list)
+            import rich
+            rich.print(self.game.encode_message())
             #input()
 
 
