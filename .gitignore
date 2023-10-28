@@ -9,3 +9,5 @@ dist/*
 ```
 index_*.html
 website/static/genius_invocation-0.0.1-py3-none-any.whl
+*.log
+genius_invocation/*.log
