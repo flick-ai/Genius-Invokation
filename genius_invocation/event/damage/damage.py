@@ -82,7 +82,7 @@ class Damage:
         logger.debug(f"Before Damage Execute: {game.current_damage.main_damage}")
         game.manager.invoke(EventType.EXECUTE_DAMAGE, game)
         logger.debug(f"After Damage Execute: {game.current_damage.main_damage}")
-        
+
 
     # def cal_damage(self, game: 'GeniusGame'): NO USE
     #     # 元素类型转化 On_Infusion

@@ -73,7 +73,7 @@ class GeniusGame:
         self.active_player_index = first
         self.active_player = self.players[first]
         self.active_player.generate_mask(self)
-        
+
     def reset_current(self):
         self.current_skill = None
         self.current_damage = None
@@ -104,7 +104,7 @@ class GeniusGame:
         elif action.choice_type == ActionChoice.PASS:
             self.is_change_player = True
             active_player.is_pass = True
-            
+
         self.manager.invoke(EventType.AFTER_ANY_ACTION, self)
         self.reset_current()
         if active_player.is_pass:
@@ -112,10 +112,10 @@ class GeniusGame:
                 self.end_phase()
             else:
                 self.first_player = self.active_player_index
-        
+
         if self.is_change_player and (not oppenent_player.is_pass):
             self.change_active_player()
-        
+
         oppenent_player = self.players[1 - self.active_player_index]
         self.manager.invoke(EventType.BEFORE_ANY_ACTION, self)
         while self.active_player.prepared_skill is not None:
@@ -142,6 +142,7 @@ class GeniusGame:
         if self.is_overload != None:
             self.is_overload.change_to_next_character()
             self.is_overload = None
+        self.manager.invoke(EventType.CHARACTER_WILL_DIE, self)
         self.manager.invoke(EventType.SPECIAL_SWITCH, self)
         self.manager.invoke(EventType.FINAL_EXECUTE, self)
         self.check_dying()
@@ -176,13 +177,13 @@ class GeniusGame:
                     continue
                 if char.health_point <= 0:
                     char.is_alive = False
-                    self.manager.invoke(EventType.CHARACTER_WILL_DIE, self)
-                    if not char.is_alive:
-                        num += 1
-                        char.dying(self)
-                        char.from_player.last_die_round = self.round
-                        self.current_die = char
-                        self.manager.invoke(EventType.CHARACTER_DIE, self)
+                    # self.manager.invoke(EventType.CHARACTER_WILL_DIE, self)
+                    # if not char.is_alive:
+                    num += 1
+                    char.dying(self)
+                    char.from_player.last_die_round = self.round
+                    self.current_die = char
+                    self.manager.invoke(EventType.CHARACTER_DIE, self)
             if num == 3:
                 print(f"player{1-player.index} is winner!")
                 exit()

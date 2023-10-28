@@ -303,7 +303,7 @@ class ElectroCrystalCore(Status):
         '''
             角色死亡时
         '''
-        if not self.from_character.is_alive:
+        if not self.from_character.is_alive or self.from_character.health_point<=0:
             self.from_character.is_alive = True
             self.from_character.health_point = 1
             self.on_destroy(game)
