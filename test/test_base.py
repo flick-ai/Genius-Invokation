@@ -5,7 +5,7 @@ from typing import List, Dict, Tuple, Optional, Union
 from genius_invocation.game.game import GeniusGame
 from genius_invocation.game.action import *
 from genius_invocation.utils import *
-from test_utils import *
+from test.test_utils import *
 
 class TestBase(metaclass=abc.ABCMeta):
     #玩家卡组
@@ -45,10 +45,7 @@ class TestBase(metaclass=abc.ABCMeta):
         '''
         for action in actions:
             self.game.step(action)
-            #print(action.choice, action.target, action.choice_list)
-            #import rich
-            #rich.print(self.game.encode_message())
-            #input()
+            logger.debug("choice: %s, target: %s, choice_list: %s" % (action.choice, action.target, action.choice_list))
     
     def run_actions_double(
         self, 
@@ -64,10 +61,7 @@ class TestBase(metaclass=abc.ABCMeta):
             except StopIteration:
                 break
             self.game.step(action)
-            print(action.choice, action.target, action.choice_list)
-            import rich
-            rich.print(self.game.encode_message())
-            #input()
+            logger.debug("choice: %s, target: %s, choice_list: %s" % (action.choice, action.target, action.choice_list))
     
     def run_actions_for_player(
         self,
@@ -80,7 +74,7 @@ class TestBase(metaclass=abc.ABCMeta):
         game = self.game
         action_iterator = iter(actions)
         action:Optional[Action] = None
-        while not(self.game.is_end):
+        while not self.game.is_end:
             if game.active_player_index == player_index:
                 try:
                     action = action_iterator.__next__()
@@ -90,9 +84,6 @@ class TestBase(metaclass=abc.ABCMeta):
             else: 
                 action = passive_action(game)
                 game.step(action)
-            print(action.choice, action.target, action.choice_list)
-            import rich
-            rich.print(self.game.encode_message())
-            #input()
-
+            logger.debug("Player%s take action" % game.active_player_index)
+            logger.debug("choice: %s, target: %s, choice_list: %s" % (action.choice, action.target, action.choice_list))
 
