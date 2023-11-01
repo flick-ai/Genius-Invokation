@@ -50,7 +50,11 @@ class ExplosiveSpark(Status):
         if self.from_character.talent:
             self.usage = 2
             self.current_usage += 1
-
+    def update(self):
+        if self.from_character.talent:
+            self.usage = 2
+        self.current_usage = max(self.current_usage, self.usage)
+        
     def on_calculate_dice(self, game:'GeniusGame'):
         if self.from_player.dice_zone.num()%2 != 0:
             return False
