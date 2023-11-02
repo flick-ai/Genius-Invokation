@@ -74,7 +74,7 @@ class Scarlet_Seal(Status):
     name_ch = '丹火印'
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character:'Character'):
         super().__init__(game, from_player, from_character)
-        self.max_usage = 1
+        self.usage = 1
         self.current_usage = 1
     
     def on_dmg_add(self, game:"GeniusGame"):
@@ -95,7 +95,7 @@ class Brilliance(Status):
     name_ch = '灼灼'
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character:'Character'):
         super().__init__(game, from_player, from_character)
-        self.max_usage = 2
+        self.usage = 2
         self.current_usage = 2
         self.use_round = -1
     
@@ -122,7 +122,7 @@ class Brilliance(Status):
         return False
     
     def on_skill(self, game:"GeniusGame"):
-        if self.on_calculation(game):
+        if self.on_calculate_dice(game):
             self.use_round = game.round
     def update_listener_list(self):
         self.listeners = [

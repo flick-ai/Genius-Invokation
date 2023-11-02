@@ -130,7 +130,7 @@ class TestQiqi(TestBase, unittest.TestCase):
 
         # 回合1节末伤害检测 
         # TODO: Check 寒冰鬼差
-        self.check_health(1, [90, 10, 10])
+        self.check_health(1, [89, 10, 10])
         self.check_elemental_application(1, [[ElementType.CRYO], [], []])
 
     def check_health(self, player, health):

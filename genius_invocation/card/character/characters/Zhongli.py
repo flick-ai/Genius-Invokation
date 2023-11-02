@@ -132,7 +132,7 @@ class PlanetBefall(ElementalBurst):
 
         target = get_opponent_active_character(game)
         target_zone = get_opponent_active_character(game).character_zone
-        state = target_zone.has_status(Petrification)
+        state = target_zone.has_entity(Petrification)
         if state != None:
             state.update()
         else:
