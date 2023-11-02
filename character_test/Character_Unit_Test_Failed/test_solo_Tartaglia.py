@@ -57,43 +57,43 @@ class TestShenhe(TestBase, unittest.TestCase):
 
         self.run_actions_for_player(skill_action_list[1], 0)  # 第一个E技能
         self.check_health(1, [95, 9, 10])
-        self.check_elemental_application(1, [[ElementType.CRYO], [], []])
+        self.check_elemental_application(1, [[ElementType.HYDRO], [], []])
         self.assertEqual(self.game.players[0].dice_zone.num(), 5)
         self.game.players[0].dice_zone.add([7] * 3)
 
         self.run_actions_for_player(skill_action_list[1], 0)  # 第二个E技能，如果没有，则重复释放
         self.check_health(1, [92, 8, 10])
-        self.check_elemental_application(1, [[ElementType.CRYO], [], []])
+        self.check_elemental_application(1, [[ElementType.HYDRO], [], []])
         self.assertEqual(self.game.players[0].dice_zone.num(), 5)
         self.game.players[0].dice_zone.add([7] * 3)
 
         self.run_actions_for_player(skill_action_list[2], 0)  # Q技能
-        self.check_health(1, [85, 8, 10])
-        self.check_elemental_application(1, [[ElementType.CRYO], [], []])
+        self.check_health(1, [84, 8, 10])
+        self.check_elemental_application(1, [[ElementType.HYDRO], [], []])
         self.assertEqual(self.game.players[0].dice_zone.num(), 5)
         self.game.players[0].dice_zone.add([7] * 3)
 
         self.run_actions_for_player(skill_action_list[0], 0)  # 平a
-        self.check_health(1, [83, 8, 10])
-        self.check_elemental_application(1, [[ElementType.CRYO], [], []])
+        self.check_health(1, [82, 8, 10])
+        self.check_elemental_application(1, [[ElementType.HYDRO], [], []])
         self.assertEqual(self.game.players[0].dice_zone.num(), 5)
         self.game.players[0].dice_zone.add([7] * 3)
 
         self.run_actions_for_player(skill_action_list[1], 0)  # 第一个E技能
-        self.check_health(1, [81, 8, 10])
-        self.check_elemental_application(1, [[ElementType.CRYO], [], []])
+        self.check_health(1, [80, 8, 10])
+        self.check_elemental_application(1, [[ElementType.HYDRO], [], []])
         self.assertEqual(self.game.players[0].dice_zone.num(), 5)
         self.game.players[0].dice_zone.add([7] * 3)
 
         self.run_actions_for_player(skill_action_list[1], 0)  # 第二个E技能，如果没有，则重复释放
-        self.check_health(1, [79, 8, 10])
-        self.check_elemental_application(1, [[ElementType.CRYO], [], []])
+        self.check_health(1, [78, 8, 10])
+        self.check_elemental_application(1, [[ElementType.HYDRO], [], []])
         self.assertEqual(self.game.players[0].dice_zone.num(), 5)
         self.game.players[0].dice_zone.add([7] * 3)
 
         self.run_actions_for_player(skill_action_list[2], 0)  # Q技能
-        self.check_health(1, [72, 10, 10])
-        self.check_elemental_application(1, [[ElementType.CRYO], [], []])
+        self.check_health(1, [71, 10, 10])
+        self.check_elemental_application(1, [[ElementType.HYDRO], [], []])
         self.assertEqual(self.game.players[0].dice_zone.num(), 5)
         self.game.players[0].dice_zone.add([7] * 3)
 
@@ -111,7 +111,7 @@ class TestShenhe(TestBase, unittest.TestCase):
 
         # 回合1节末伤害检测
         self.check_health(1, [72, 8, 10])
-        self.check_elemental_application(1, [[ElementType.CRYO], [], []])
+        self.check_elemental_application(1, [[ElementType.HYDRO], [], []])
 
     def check_health(self, player, health):
         for i in range(len(health)):

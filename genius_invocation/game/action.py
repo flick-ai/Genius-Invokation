@@ -167,7 +167,7 @@ class Action:
                        12:'选择3号支援',
                        13:'选择操作本方骰子',
                        14:'选择操作本方手牌'}
-        target_prompt = '根据您选择的行动，您可以选择以下目标(按确认以提交或清空选择):\n'
+        target_prompt = '根据您选择的行动，您可以选择以下目标\n'
         target_list = []
         last_target = -1
         for i in range(15):

@@ -25,6 +25,7 @@ class MeleeStance(Status):
         self.usage = 2
         self.max_usage = 2
         self.current_usage = 2
+        self.usage_this_turn = 0
 
     def update(self):
         self.current_usage = self.usage
@@ -48,19 +49,21 @@ class MeleeStance(Status):
         return None
 
 
-    def on_use_skill(self, game: 'GeniusGame'):
-        '''
-            用于在使用技能后，判断角色是否有断流
-            目前on_use_skill仅用于达达利亚
-        '''
-        active_index = game.active_player.active_idx
-        if self.from_character == game.active_player.character_list[active_index]:
-            opponent = get_opponent_active_character(game)
-            if opponent.character_zone.has_entity(Riptide) is not None:
-                '''
-                    当前攻击的角色具有断流
-                '''
-                self.opponent = opponent
+    # def on_use_skill(self, game: 'GeniusGame'):
+    #     '''
+    #         用于在使用技能后，判断角色是否有断流
+    #         目前on_use_skill仅用于达达利亚
+    #     '''
+    #     print("on_use_skill")
+    #     active_index = game.active_player.active_idx
+    #     if self.from_character == game.active_player.character_list[active_index]:
+    #         opponent = get_opponent_active_character(game)
+    #         if opponent.character_zone.has_entity(Riptide) is not None:
+    #             '''
+    #                 当前攻击的角色具有断流
+    #             '''
+    #             print("当前攻击的角色具有断流")
+    #             self.opponent = opponent
 
 
     def on_after_use_skill(self, game: 'GeniusGame'):
@@ -68,20 +71,22 @@ class MeleeStance(Status):
             近战状态的达达利亚对已附属有断流的角色使用技能后:
             对下一个敌方后台角色造成1点穿透伤害
         '''
-        if self.opponent:
-            next_character = self.find_next_alive_character(self.opponent)
-            if next_character:
-                game.add_damage(Damage.create_damage(game,
-                    damage_type=SkillType.OTHER,
-                    main_damage_element=ElementType.PIERCING,
-                    main_damage=1,
-                    piercing_damage=0,
-                    damage_from=self.from_character,
-                    damage_to=next_character,
-                    is_plunging_attack=False,
-                    is_charged_attack=False))
-                game.resolve_damage()
-            self.opponent = None
+        if self.from_character == game.current_skill.from_character:
+            if self.from_character.opponent:
+                next_character = self.find_next_alive_character(self.from_character.opponent)
+                if next_character and self.usage_this_turn < 2:
+                    game.add_damage(Damage.create_damage(game,
+                        damage_type=SkillType.OTHER,
+                        main_damage_element=ElementType.PIERCING,
+                        main_damage=1,
+                        piercing_damage=0,
+                        damage_from=self.from_character,
+                        damage_to=next_character,
+                        is_plunging_attack=False,
+                        is_charged_attack=False))
+                    game.resolve_damage()
+                    self.usage_this_turn += 1
+                # self.opponent = None
 
 
 
@@ -91,6 +96,7 @@ class MeleeStance(Status):
         '''
         if game.active_player == self.from_character.from_player:
             self.current_usage -= 1
+            self.usage_this_turn = 0
             if self.current_usage <= 0:
                 self.on_destroy(game)
                 self.from_character.is_melee_stance = False
@@ -107,7 +113,7 @@ class MeleeStance(Status):
         '''
         self.listeners = [
             (EventType.AFTER_USE_SKILL, ZoneType.CHARACTER_ZONE, self.on_after_use_skill),
-            (EventType.ON_USE_SKILL, ZoneType.CHARACTER_ZONE, self.on_use_skill),
+            # (EventType.ON_USE_SKILL, ZoneType.CHARACTER_ZONE, self.on_use_skill),
             (EventType.BEGIN_ACTION_PHASE, ZoneType.CHARACTER_ZONE, self.on_begin_phase),
             (EventType.INFUSION, ZoneType.CHARACTER_ZONE, self.infuse)
         ]
@@ -231,14 +237,20 @@ class CuttingTorrent(NormalAttack):
         # 处理伤害
         # 记录一下target
         target = get_opponent_active_character(game)
+        if target.character_zone.has_entity(Riptide) is not None:
+            self.from_character.opponent = target
         self.resolve_damage(game)
+        logger.info("达达利亚的攻击")
 
         # 如果达达利亚的攻击为重击：对目标角色附属断流
         if self.is_charged_attack:
 
+            logger.info("达达利亚的攻击为重击")
+
             if target.is_alive:
                 status = target.character_zone.has_entity(Riptide)
                 if not status:
+                    logger.info("对目标角色附属断流")
                     riptide = Riptide(game=game,
                                     from_player=target.from_player,
                                     from_character=target)
@@ -248,6 +260,7 @@ class CuttingTorrent(NormalAttack):
         self.gain_energy(game)
         # after skill
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
+        self.from_character.opponent = None
 
 
 
@@ -296,6 +309,8 @@ class FoulLegacy_RagingTide(ElementalSkill):
         self.add_status(game)
         # 记录一下target
         target = get_opponent_active_character(game)
+        if target.character_zone.has_entity(Riptide) is not None:
+            self.from_character.opponent = target
         # 处理伤害
         self.resolve_damage(game)
         # 使目标角色附属断流
@@ -310,6 +325,7 @@ class FoulLegacy_RagingTide(ElementalSkill):
         self.gain_energy(game)
         # after skill
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
+        self.from_character.opponent = None
 
 
 
@@ -346,6 +362,8 @@ class FlashOfHavoc(ElementalBurst):
 
         # 记录一下target
         target = get_opponent_active_character(game)
+        if target.character_zone.has_entity(Riptide) is not None:
+            self.from_character.opponent = target
         # 处理伤害
         self.resolve_damage(game)
         # 返还2点能量
@@ -360,6 +378,7 @@ class FlashOfHavoc(ElementalBurst):
                                   from_character=target)
                 target.character_zone.add_entity(riptide)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
+        self.from_character.opponent = None
 
 
 class LightOfHavoc(ElementalBurst):
@@ -393,9 +412,15 @@ class LightOfHavoc(ElementalBurst):
         # 消耗能量
         self.consume_energy(game)
 
+        target = get_opponent_active_character(game)
+        if target.character_zone.has_entity(Riptide) is not None:
+            self.from_character.opponent = target
+
         # 处理伤害
         self.resolve_damage(game)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
+
+        self.from_character.opponent = None
 
 class Havoc_Obliteration(ElementalBurst):
     '''
@@ -454,6 +479,7 @@ class Tartaglia(Character):
 
         self.is_melee_stance = False # 是否为近战状态
         self.talent_skill = self.skills[1]
+        self.opponent = None
 
     def revive(self, game: 'GeniusGame'):
         super().revive(game)
