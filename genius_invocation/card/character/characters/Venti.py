@@ -148,9 +148,19 @@ class Stormeye(Summon):
     def special_switch(self, game:'GeniusGame'):
         if self.need_to_switch:
             self.need_to_switch = False
-            opponent = get_opponent(self.from_player.index)
-            opponent.change_to_previous_character(game)
-
+            assert game.active_player == self.from_player
+            opponent = get_opponent(game)
+            active_id = self.from_player.active_idx
+            target_idx = -1
+            min_delta = 66
+            for id, char in enumerate(opponent.character_list):
+                if not char.is_alive: continue
+                delta = abs(id - active_id)
+                if delta < min_delta:
+                    min_delta = delta
+                    target_idx = id
+            if target_idx != -1:
+                opponent.change_to_id(target_idx)
     def end_phase(self, game: 'GeniusGame'):
         if game.active_player == self.from_player:
            dmg = Damage.create_damage(
