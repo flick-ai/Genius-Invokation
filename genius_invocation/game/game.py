@@ -52,6 +52,7 @@ class GeniusGame:
         self.current_card: ActionCard = None
         self.damage_list: List[Damage] = []
         self.is_change_player: bool
+        #TODO: CHECK THE INITIALIZE OF IS_CHANGE_PLAYER
         self.is_end: bool = False
         self.is_overload:GeniusPlayer = None
 
