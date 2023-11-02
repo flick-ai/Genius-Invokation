@@ -5,26 +5,6 @@ from character_test.test_base import TestBase
 from character_test.test_utils import *
 from genius_invocation.game.action import *
 
-'''
-Error
-Traceback (most recent call last):
-  File "E:\GitHub\Genius-Invokation\test\test_character_solo\test_solo_MirrorMaiden.py", line 50, in test
-    self.run_actions_for_player(skill_action_list[1], 0)  # 第一个E技能
-  File "E:\GitHub\Genius-Invokation\test\test_base.py", line 83, in run_actions_for_player
-    game.step(action)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\game\game.py", line 221, in step
-    self.resolve_action(action)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\game\game.py", line 100, in resolve_action
-    active_player.use_skill(self)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\game\player.py", line 165, in use_skill
-    self.character_list[self.active_idx].skill(idx, game)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\entity\character.py", line 91, in skill
-    self.skills[skill].on_call(game)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\card\character\characters\MirrorMaiden.py", line 44, in on_call
-    target.character_zone.add_entity(Refraction(game, from_player=get_opponent(game), from_character=target, is_talent=self.from_character.talent))
-TypeError: Refraction.__init__() got an unexpected keyword argument 'is_talent'
-'''
-
 class TestMirrorMaiden(TestBase, unittest.TestCase):
     player0_deck: Dict[str, List[str]] ={
         'character': ['MirrorMaiden'],

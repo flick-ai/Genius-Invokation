@@ -5,16 +5,6 @@ from character_test.test_base import TestBase
 from character_test.test_utils import *
 from genius_invocation.game.action import *
 
-'''
-雷眼增加大招伤害未实装
-Traceback (most recent call last):
-  File "E:\GitHub\Genius-Invokation\test\test_character_solo\test_solo_Raiden_Shogun.py", line 63, in test
-    self.check_health(1, [94, 10, 10])
-  File "E:\GitHub\Genius-Invokation\test\test_character_solo\test_solo_Raiden_Shogun.py", line 110, in check_health
-    self.assertEqual(self.game.players[player].character_list[i].health_point, health[i])
-AssertionError: 95 != 94
-'''
-
 class TestRaiden_Shogun(TestBase, unittest.TestCase):
     player0_deck: Dict[str, List[str]] ={
         'character': ['Raiden_Shogun'],

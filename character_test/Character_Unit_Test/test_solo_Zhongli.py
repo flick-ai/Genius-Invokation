@@ -5,26 +5,6 @@ from character_test.test_base import TestBase
 from character_test.test_utils import *
 from genius_invocation.game.action import *
 
-'''
-Error
-Traceback (most recent call last):
-  File "E:\GitHub\Genius-Invokation\test\test_character_solo\test_solo_Zhongli.py", line 63, in test
-    self.run_actions_for_player(skill_action_list[3], 0)
-  File "E:\GitHub\Genius-Invokation\test\test_base.py", line 83, in run_actions_for_player
-    game.step(action)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\game\game.py", line 221, in step
-    self.resolve_action(action)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\game\game.py", line 100, in resolve_action
-    active_player.use_skill(self)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\game\player.py", line 165, in use_skill
-    self.character_list[self.active_idx].skill(idx, game)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\entity\character.py", line 91, in skill
-    self.skills[skill].on_call(game)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\card\character\characters\Zhongli.py", line 135, in on_call
-    state = target_zone.has_status(Petrification)
-AttributeError: 'CharacterZone' object has no attribute 'has_status'
-'''
-
 class TestZhongli(TestBase, unittest.TestCase):
     player0_deck: Dict[str, List[str]] ={
         'character': ['Zhongli'],

@@ -5,22 +5,6 @@ from character_test.test_base import TestBase
 from character_test.test_utils import *
 from genius_invocation.game.action import *
 
-'''
-Error
-Traceback (most recent call last):
-  File "E:\GitHub\Genius-Invokation\test\test_character_solo\test_solo_KamisatoAyaka.py", line 21, in test
-    self.initialize_game()
-  File "E:\GitHub\Genius-Invokation\test\test_base.py", line 34, in initialize_game
-    self.game = GeniusGame(
-  File "E:\GitHub\Genius-Invokation\genius_invocation\game\game.py", line 38, in __init__
-    player0 = GeniusPlayer(self, player0_deck, 0)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\game\player.py", line 31, in __init__
-    self.character_list.append(eval("chars."+name)(
-  File "E:\GitHub\Genius-Invokation\genius_invocation\card\character\characters\KamisatoAyaka.py", line 211, in __init__
-    self.passive_skill = KamisatoArt_Senho(game, self)
-TypeError: CharacterSkill.__init__() takes 2 positional arguments but 3 were given
-'''
-
 class TestKamisatoAyaka(TestBase, unittest.TestCase):
     player0_deck: Dict[str, List[str]] ={
         'character': ['KamisatoAyaka'],

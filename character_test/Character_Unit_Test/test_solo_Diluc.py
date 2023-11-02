@@ -5,15 +5,6 @@ from character_test.test_base import TestBase
 from character_test.test_utils import *
 from genius_invocation.game.action import *
 
-'''  三段e增伤为2点，目前实现为三段e增伤1点
-Traceback (most recent call last):
-  File "E:\GitHub\Genius-Invokation\test\test_character_solo\test_solo_Diluc.py", line 75, in test
-    self.check_health(1, [77, 10, 10])
-  File "E:\GitHub\Genius-Invokation\test\test_character_solo\test_solo_Diluc.py", line 110, in check_health
-    self.assertEqual(self.game.players[player].character_list[i].health_point, health[i])
-AssertionError: 78 != 77
-'''
-
 class TestDiluc(TestBase, unittest.TestCase):
     player0_deck: Dict[str, List[str]] ={
         'character': ['Diluc'],

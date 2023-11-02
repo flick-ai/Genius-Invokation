@@ -5,25 +5,6 @@ from character_test.test_base import TestBase
 from character_test.test_utils import *
 from genius_invocation.game.action import *
 
-'''Error
-Traceback (most recent call last):
-  File "E:\GitHub\Genius-Invokation\test\test_character_solo\test_solo_Razor.py", line 62, in test
-    self.run_actions_for_player(skill_action_list[2], 0)  # Q技能
-  File "E:\GitHub\Genius-Invokation\test\test_base.py", line 83, in run_actions_for_player
-    game.step(action)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\game\game.py", line 221, in step
-    self.resolve_action(action)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\game\game.py", line 100, in resolve_action
-    active_player.use_skill(self)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\game\player.py", line 165, in use_skill
-    self.character_list[self.active_idx].skill(idx, game)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\entity\character.py", line 91, in skill
-    self.skills[skill].on_call(game)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\card\character\characters\Razor.py", line 102, in on_call
-    self.add_status(TheWolfWithin(game, self.from_character.from_player, self.from_character))
-TypeError: CharacterSkill.add_status() missing 1 required positional argument: 'STATUS'
-'''
-
 class TestRazor(TestBase, unittest.TestCase):
     player0_deck: Dict[str, List[str]] ={
         'character': ['Razor'],

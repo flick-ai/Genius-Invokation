@@ -5,32 +5,6 @@ from character_test.test_base import TestBase
 from character_test.test_utils import *
 from genius_invocation.game.action import *
 
-'''
-Error
-Traceback (most recent call last):
-  File "E:\GitHub\Genius-Invokation\test\test_character_solo\test_solo_Yaoyao.py", line 95, in test
-    self.run_actions_for_player(player1_init_actions, 1)
-  File "E:\GitHub\Genius-Invokation\test\test_base.py", line 86, in run_actions_for_player
-    game.step(action)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\game\game.py", line 221, in step
-    self.resolve_action(action)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\game\game.py", line 112, in resolve_action
-    self.end_phase()
-  File "E:\GitHub\Genius-Invokation\genius_invocation\game\game.py", line 302, in end_phase
-    self.active_player.end_phase(self)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\game\player.py", line 368, in end_phase
-    game.manager.invoke(EventType.END_PHASE, game)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\event\events.py", line 84, in invoke
-    self.events[event_type](zone_type)(game)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\event\events.py", line 61, in __call__
-    listener(game)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\event\events.py", line 23, in __call__
-    self.action(game)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\card\character\characters\Yaoyao.py", line 75, in on_end_phase
-    for idx, char in characters:
-TypeError: cannot unpack non-iterable Yaoyao object
-
-'''
 # Todo: 大招切人效果未测试
 
 class TestYaoyao(TestBase, unittest.TestCase):

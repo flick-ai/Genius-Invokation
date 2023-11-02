@@ -5,36 +5,6 @@ from character_test.test_base import TestBase
 from character_test.test_utils import *
 from genius_invocation.game.action import *
 
-'''Error
-Traceback (most recent call last):
-  File "E:\GitHub\Genius-Invokation\genius_invocation\card\character\base.py", line 66, in add_status
-    status.update(game)
-TypeError: Status.update() takes 1 positional argument but 2 were given
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "E:\GitHub\Genius-Invokation\test\test_character_solo\test_solo_Yanfei.py", line 56, in test
-    self.run_actions_for_player(skill_action_list[1], 0)  # 第二个E技能，如果没有，则重复释放
-  File "E:\GitHub\Genius-Invokation\test\test_base.py", line 83, in run_actions_for_player
-    game.step(action)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\game\game.py", line 221, in step
-    self.resolve_action(action)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\game\game.py", line 100, in resolve_action
-    active_player.use_skill(self)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\game\player.py", line 165, in use_skill
-    self.character_list[self.active_idx].skill(idx, game)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\entity\character.py", line 91, in skill
-    self.skills[skill].on_call(game)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\card\character\characters\Yanfei.py", line 46, in on_call
-    self.add_status(game, Scarlet_Seal)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\card\character\base.py", line 68, in add_status
-    status.update()
-  File "E:\GitHub\Genius-Invokation\genius_invocation\entity\status.py", line 33, in update
-    self.current_usage = max(self.current_usage, self.usage)
-AttributeError: 'Scarlet_Seal' object has no attribute 'usage'
-'''
-
 class TestYanfei(TestBase, unittest.TestCase):
     player0_deck: Dict[str, List[str]] ={
         'character': ['Yanfei'],

@@ -5,34 +5,6 @@ from character_test.test_base import TestBase
 from character_test.test_utils import *
 from genius_invocation.game.action import *
 
-'''
-Error
-Traceback (most recent call last):
-  File "E:\GitHub\Genius-Invokation\test\Character_Unit_Test_Failed\test_solo_Qiqi.py", line 69, in test
-    self.run_actions_for_player(skill_action_list[0], 0)  # 平a
-  File "E:\GitHub\Genius-Invokation\test\test_base.py", line 83, in run_actions_for_player
-    game.step(action)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\game\game.py", line 221, in step
-    self.resolve_action(action)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\game\game.py", line 100, in resolve_action
-    active_player.use_skill(self)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\game\player.py", line 165, in use_skill
-    self.character_list[self.active_idx].skill(idx, game)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\entity\character.py", line 91, in skill
-    self.skills[skill].on_call(game)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\card\character\characters\Qiqi.py", line 39, in on_call
-    game.manager.invoke(EventType.AFTER_USE_SKILL, game)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\event\events.py", line 84, in invoke
-    self.events[event_type](zone_type)(game)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\event\events.py", line 61, in __call__
-    listener(game)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\event\events.py", line 23, in __call__
-    self.action(game)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\card\character\characters\Qiqi.py", line 186, in after_skill
-    ls += 1
-TypeError: 'int' object is not iterable
-'''
-
 class TestQiqi(TestBase, unittest.TestCase):
     player0_deck: Dict[str, List[str]] ={
         'character': ['Qiqi'],

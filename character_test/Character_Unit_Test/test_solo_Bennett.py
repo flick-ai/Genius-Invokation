@@ -5,27 +5,6 @@ from character_test.test_base import TestBase
 from character_test.test_utils import *
 from genius_invocation.game.action import *
 
-''' 用例报错
-Traceback (most recent call last):
-  File "E:\GitHub\Genius-Invokation\test\test_character_solo\test_solo_Bennett.py", line 94, in test
-    self.run_actions_for_player(player1_init_actions, 1)
-  File "E:\GitHub\Genius-Invokation\test\test_base.py", line 83, in run_actions_for_player
-    game.step(action)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\game\game.py", line 221, in step
-    self.resolve_action(action)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\game\game.py", line 108, in resolve_action
-    self.manager.invoke(EventType.AFTER_ANY_ACTION, self)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\event\events.py", line 84, in invoke
-    self.events[event_type](zone_type)(game)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\event\events.py", line 61, in __call__
-    listener(game)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\event\events.py", line 23, in __call__
-    self.action(game)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\card\character\characters\Bennett.py", line 114, in heal
-    if game.current_skill.from_character.from_player == self.from_player:
-AttributeError: 'NoneType' object has no attribute 'from_character'
-'''
-
 class TestBennett(TestBase, unittest.TestCase):
     player0_deck: Dict[str, List[str]] ={
         'character': ['Bennett'],

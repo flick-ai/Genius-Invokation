@@ -5,16 +5,6 @@ from character_test.test_base import TestBase
 from character_test.test_utils import *
 from genius_invocation.game.action import *
 
-'''
-香菱放大当回合不触发旋火轮
-Traceback (most recent call last):
-  File "E:\GitHub\Genius-Invokation\test\test_character_solo\test_solo_Xiangling.py", line 63, in test
-    self.check_health(1, [95, 10, 10])
-  File "E:\GitHub\Genius-Invokation\test\test_character_solo\test_solo_Xiangling.py", line 110, in check_health
-    self.assertEqual(self.game.players[player].character_list[i].health_point, health[i])
-AssertionError: 93 != 95
-'''
-
 class TestXiangling(TestBase, unittest.TestCase):
     player0_deck: Dict[str, List[str]] ={
         'character': ['Xiangling'],
