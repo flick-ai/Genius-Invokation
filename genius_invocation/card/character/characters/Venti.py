@@ -160,7 +160,8 @@ class Stormeye(Summon):
                     min_delta = delta
                     target_idx = id
             if target_idx != -1:
-                opponent.change_to_id(target_idx)
+                if opponent.active_idx != target_idx:
+                    opponent.change_to_id(target_idx)
     def end_phase(self, game: 'GeniusGame'):
         if game.active_player == self.from_player:
            dmg = Damage.create_damage(
