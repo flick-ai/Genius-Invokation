@@ -174,7 +174,7 @@ class KamisatoAyato(Character):
     init_health_point: int = 10
     max_health_point: int = 10
     skill_list: List = [KamisatoArt_Marobashi, KamisatoArt_Kyouka, KamisatoArt_Suiyuu]
-    max_power: int = 3
+    max_power: int = 2
 
     def __init__(self, game: 'GeniusGame', zone: 'CharacterZone', from_player: 'GeniusPlayer', index: int, from_character=None, talent=False):
         super().__init__(game, zone, from_player, index, from_character)
