@@ -1,7 +1,6 @@
 from genius_invocation.utils import *
 from genius_invocation.entity.entity import Entity
 from typing import TYPE_CHECKING, List, Tuple
-from genius_invocation.event.damage import Damage
 
 if TYPE_CHECKING:
     from genius_invocation.game.game import GeniusGame
@@ -63,6 +62,7 @@ class Burning_Flame(Summon):
 
     def on_end_phase(self, game: 'GeniusGame'):
         if game.active_player == self.from_player:
+            from genius_invocation.event.damage import Damage
             dmg = Damage.create_damage(
                 game,
                 damage_type=SkillType.SUMMON,
