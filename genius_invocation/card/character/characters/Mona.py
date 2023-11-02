@@ -222,7 +222,7 @@ class Illusory_Bubble(Combat_Status):
     def on_dealing_damage(self, game: 'GeniusGame'):
         if isinstance(game.current_damage.damage_from, Character):
             if game.current_damage.damage_from.from_player == self.from_player:
-                game.current_damage *= 2
+                game.current_damage.main_damage *= 2
                 self.on_destroy(game)
 
     def update_listener_list(self):

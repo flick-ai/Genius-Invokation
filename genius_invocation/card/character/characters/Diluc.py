@@ -36,7 +36,7 @@ class SearingOnslaught(ElementalSkill):
         super().on_call(game)
         self.from_character.use_element_skill += 1
         if self.from_character.use_element_skill == 3:
-            self.resolve_damage(game, add_main_damage=1)
+            self.resolve_damage(game, add_main_damage=2)
         else:
             self.resolve_damage(game)
         self.gain_energy(game)

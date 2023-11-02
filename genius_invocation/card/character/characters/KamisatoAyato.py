@@ -78,7 +78,7 @@ class KamisatoArt_Suiyuu(ElementalBurst):
     # damage
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
     main_damage_element: ElementType = ElementType.HYDRO
-    main_damage: int = 3
+    main_damage: int = 1
     piercing_damage: int = 0
 
     # cost
@@ -88,7 +88,7 @@ class KamisatoArt_Suiyuu(ElementalBurst):
             'cost_type': CostType.HYDRO
         },
     ]
-    energy_cost: int = 3
+    energy_cost: int = 2
     energy_gain: int = 0
 
     def __init__(self, from_character: 'Character'):

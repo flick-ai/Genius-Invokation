@@ -41,7 +41,7 @@ class InfluxBlast(ElementalSkill):
         status = target.character_zone.has_entity(Refraction)
         self.from_character.refraction_target = target
         if not status:
-            target.character_zone.add_entity(Refraction(game, from_player=get_opponent(game), from_character=target, is_talent=self.from_character.talent))
+            target.character_zone.add_entity(Refraction(game, from_player=get_opponent(game), from_character=target, belong_to=self.from_character))
         else:
             status.update()
         for char in get_opponent_standby_character(game):

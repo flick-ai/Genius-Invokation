@@ -95,6 +95,7 @@ class Dandelion_Field(Summon):
                 game,
                 damage_type=SkillType.SUMMON,
                 main_damage=2,
+                main_damage_element=self.element,
                 piercing_damage=0,
                 damage_from=self,
                 damage_to=get_opponent_active_character(game),
@@ -167,8 +168,8 @@ class Jean(Character):
     def special_switch(self, game: 'GeniusGame'):
         if self.need_to_switch:
             self.need_to_switch = False
-            opponent = get_opponent(self.from_character.from_player.index)
-            opponent.change_to_next_character(game)
+            opponent = get_opponent(game) # During special_switch, the active player is always me.
+            opponent.change_to_next_character()
 
     def update_listener_list(self):
         super().update_listener_list()

@@ -176,8 +176,8 @@ class Sucrose(Character):
     def special_switch(self, game: 'GeniusGame'):
         if self.need_to_switch:
             self.need_to_switch = False
-            opponent = get_opponent(self.from_character.from_player.index)
-            opponent.change_to_previous_character(game)
+            opponent = get_opponent(game) #During special switch, the opponent is the active player
+            opponent.change_to_previous_character()
 
     def update_listener_list(self):
         super().update_listener_list()

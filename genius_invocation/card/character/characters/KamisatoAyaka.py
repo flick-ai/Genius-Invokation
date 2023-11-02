@@ -208,7 +208,7 @@ class KamisatoAyaka(Character):
         super().__init__(game, zone, from_player, index, from_character)
         self.power = 0
         self.talent = talent
-        self.passive_skill = KamisatoArt_Senho(game, self)
+        self.passive_skill = KamisatoArt_Senho(self)
         self.save_switch_dice_round = -1
         if self.talent:
             self.listen_talent_events(game)
@@ -216,7 +216,7 @@ class KamisatoAyaka(Character):
 
     def on_switched_to(self):
         super().on_switched_to()
-        self.passive_skill.on_call(self.from_character.from_player.game)
+        self.passive_skill.on_call(self.from_player.game)
 
     def calculation_dice(self, game:'GeniusGame'):
         if not self.talent: return False

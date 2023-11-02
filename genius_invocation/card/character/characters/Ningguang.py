@@ -166,7 +166,7 @@ class Jade_Screen_Status(Combat_Status):
     def on_damage_add(self, game: 'GeniusGame'):
         if game.current_damage.damage_from == self.from_character:
             if game.current_damage.damage_type == SkillType.ELEMENTAL_BURST:
-                game.current_damage += 2
+                game.current_damage.main_damage += 2
 
         if self.from_character.talent and game.current_damage.damage_from is not None and game.current_damage.damage_from.from_player == self.from_player:
             if game.current_damage.main_damage_element == ElementType.GEO:
