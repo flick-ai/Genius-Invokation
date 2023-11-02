@@ -5,38 +5,6 @@ from character_test.test_base import TestBase
 from character_test.test_utils import *
 from genius_invocation.game.action import *
 
-'''
-Error
-Traceback (most recent call last):
-  File "E:\GitHub\Genius-Invokation\test\test_character_solo\test_solo_Sucrose.py", line 50, in test
-    self.run_actions_for_player(skill_action_list[1], 0)  # 第一个E技能
-  File "E:\GitHub\Genius-Invokation\test\test_base.py", line 83, in run_actions_for_player
-    game.step(action)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\game\game.py", line 221, in step
-    self.resolve_action(action)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\game\game.py", line 100, in resolve_action
-    active_player.use_skill(self)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\game\player.py", line 165, in use_skill
-    self.character_list[self.active_idx].skill(idx, game)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\entity\character.py", line 91, in skill
-    self.skills[skill].on_call(game)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\card\character\characters\Sucrose.py", line 67, in on_call
-    self.resolve_damage(game)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\card\character\base.py", line 52, in resolve_damage
-    game.resolve_damage()
-  File "E:\GitHub\Genius-Invokation\genius_invocation\game\game.py", line 146, in resolve_damage
-    self.manager.invoke(EventType.SPECIAL_SWITCH, self)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\event\events.py", line 84, in invoke
-    self.events[event_type](zone_type)(game)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\event\events.py", line 61, in __call__
-    listener(game)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\event\events.py", line 23, in __call__
-    self.action(game)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\card\character\characters\Sucrose.py", line 179, in special_switch
-    opponent = get_opponent(self.from_character.from_player.index)
-AttributeError: 'NoneType' object has no attribute 'from_player'
-'''
-
 class TestSucrose(TestBase, unittest.TestCase):
     player0_deck: Dict[str, List[str]] ={
         'character': ['Sucrose'],

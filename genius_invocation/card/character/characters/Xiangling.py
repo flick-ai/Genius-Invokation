@@ -114,6 +114,7 @@ class Pyronado_Combat_Status(Combat_Status):
     def update(self):
         self.current_usage = max(self.current_usage, self.usage)
     def after_skill(self, game:'GeniusGame'):
+        if game.current_skill.from_character == self.from_character and game.current_skill.type == SkillType.ELEMENTAL_BURST: return
         if game.current_skill.from_character.from_player == self.from_player:
             dmg = Damage.create_damage(
                 game,

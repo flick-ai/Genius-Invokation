@@ -5,37 +5,9 @@ from character_test.test_base import TestBase
 from character_test.test_utils import *
 from genius_invocation.game.action import *
 
-'''
-Error
-Traceback (most recent call last):
-  File "E:\GitHub\Genius-Invokation\test\Character_Unit_Test_Failed\test_solo_Qiqi.py", line 69, in test
-    self.run_actions_for_player(skill_action_list[0], 0)  # 平a
-  File "E:\GitHub\Genius-Invokation\test\test_base.py", line 83, in run_actions_for_player
-    game.step(action)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\game\game.py", line 221, in step
-    self.resolve_action(action)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\game\game.py", line 100, in resolve_action
-    active_player.use_skill(self)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\game\player.py", line 165, in use_skill
-    self.character_list[self.active_idx].skill(idx, game)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\entity\character.py", line 91, in skill
-    self.skills[skill].on_call(game)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\card\character\characters\Qiqi.py", line 39, in on_call
-    game.manager.invoke(EventType.AFTER_USE_SKILL, game)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\event\events.py", line 84, in invoke
-    self.events[event_type](zone_type)(game)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\event\events.py", line 61, in __call__
-    listener(game)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\event\events.py", line 23, in __call__
-    self.action(game)
-  File "E:\GitHub\Genius-Invokation\genius_invocation\card\character\characters\Qiqi.py", line 186, in after_skill
-    ls += 1
-TypeError: 'int' object is not iterable
-'''
-
-class TestQiqi(TestBase, unittest.TestCase):
+class TestYanfei(TestBase, unittest.TestCase):
     player0_deck: Dict[str, List[str]] ={
-        'character': ['Qiqi'],
+        'character': ['Yanfei'],
         'action_card': ['Thunder_and_Eternity'] * 30
     }
     player1_deck: Dict[str, List[str]] = {
@@ -69,50 +41,50 @@ class TestQiqi(TestBase, unittest.TestCase):
 
         # 用例执行 回合1:我方行动，对方空过 （伤害测试）
         self.run_actions_for_player(skill_action_list[0], 0)  # 平a
-        self.check_health(1, [98, 10, 10])
-        self.check_elemental_application(1, [[], [], []])
+        self.check_health(1, [99, 10, 10])
+        self.check_elemental_application(1, [[ElementType.PYRO], [], []])
         self.assertEqual(self.game.players[0].dice_zone.num(), 5)
         self.game.players[0].dice_zone.add([7] * 3)
 
         self.run_actions_for_player(skill_action_list[1], 0)  # 第一个E技能
-        self.check_health(1, [98, 10, 10])
-        self.check_elemental_application(1, [[], [], []])
-        self.assertEqual(self.game.players[0].dice_zone.num(), 5)
-        self.game.players[0].dice_zone.add([7] * 3)
-
-        self.run_actions_for_player(skill_action_list[1], 0)  # 第二个E技能，如果没有，则重复释放
-        self.check_health(1, [98, 10, 10])
-        self.check_elemental_application(1, [[], [], []])
-        self.assertEqual(self.game.players[0].dice_zone.num(), 5)
-        self.game.players[0].dice_zone.add([7] * 3)
-
-        self.run_actions_for_player(skill_action_list[2], 0)  # Q技能
-        self.check_health(1, [95, 10, 10])
-        self.check_elemental_application(1, [[ElementType.CRYO], [], []])
-        self.assertEqual(self.game.players[0].dice_zone.num(), 5)
-        self.game.players[0].dice_zone.add([7] * 3)
-
-        self.run_actions_for_player(skill_action_list[0], 0)  # 平a
-        self.check_health(1, [93, 10, 10])
-        self.check_elemental_application(1, [[ElementType.CRYO], [], []])
-        self.assertEqual(self.game.players[0].dice_zone.num(), 5)
-        self.game.players[0].dice_zone.add([7] * 3)
-
-        self.run_actions_for_player(skill_action_list[1], 0)  # 第一个E技能
-        self.check_health(1, [93, 10, 10])
-        self.check_elemental_application(1, [[ElementType.CRYO], [], []])
+        self.check_health(1, [96, 10, 10])
+        self.check_elemental_application(1, [[ElementType.PYRO], [], []])
         self.assertEqual(self.game.players[0].dice_zone.num(), 5)
         self.game.players[0].dice_zone.add([7] * 3)
 
         self.run_actions_for_player(skill_action_list[1], 0)  # 第二个E技能，如果没有，则重复释放
         self.check_health(1, [93, 10, 10])
-        self.check_elemental_application(1, [[ElementType.CRYO], [], []])
+        self.check_elemental_application(1, [[ElementType.PYRO], [], []])
         self.assertEqual(self.game.players[0].dice_zone.num(), 5)
         self.game.players[0].dice_zone.add([7] * 3)
 
         self.run_actions_for_player(skill_action_list[2], 0)  # Q技能
         self.check_health(1, [90, 10, 10])
-        self.check_elemental_application(1, [[ElementType.CRYO], [], []])
+        self.check_elemental_application(1, [[ElementType.PYRO], [], []])
+        self.assertEqual(self.game.players[0].dice_zone.num(), 5)
+        self.game.players[0].dice_zone.add([7] * 3)
+
+        self.run_actions_for_player(skill_action_list[0], 0)  # 平a
+        self.check_health(1, [87, 10, 10])
+        self.check_elemental_application(1, [[ElementType.PYRO], [], []])
+        self.assertEqual(self.game.players[0].dice_zone.num(), 5)
+        self.game.players[0].dice_zone.add([7] * 3)
+
+        self.run_actions_for_player(skill_action_list[1], 0)  # 第一个E技能
+        self.check_health(1, [84, 10, 10])
+        self.check_elemental_application(1, [[ElementType.PYRO], [], []])
+        self.assertEqual(self.game.players[0].dice_zone.num(), 5)
+        self.game.players[0].dice_zone.add([7] * 3)
+
+        self.run_actions_for_player(skill_action_list[1], 0)  # 第二个E技能，如果没有，则重复释放
+        self.check_health(1, [81, 10, 10])
+        self.check_elemental_application(1, [[ElementType.PYRO], [], []])
+        self.assertEqual(self.game.players[0].dice_zone.num(), 5)
+        self.game.players[0].dice_zone.add([7] * 3)
+
+        self.run_actions_for_player(skill_action_list[2], 0)  # Q技能
+        self.check_health(1, [78, 10, 10])
+        self.check_elemental_application(1, [[ElementType.PYRO], [], []])
         self.assertEqual(self.game.players[0].dice_zone.num(), 5)
         self.game.players[0].dice_zone.add([7] * 3)
 
@@ -128,10 +100,9 @@ class TestQiqi(TestBase, unittest.TestCase):
         self.assertEqual(self.game.players[0].character_list[0].health_point, 6)
         self.assertEqual(self.game.players[0].character_list[0].elemental_application, [])
 
-        # 回合1节末伤害检测 
-        # TODO: Check 寒冰鬼差
-        self.check_health(1, [90, 10, 10])
-        self.check_elemental_application(1, [[ElementType.CRYO], [], []])
+        # 回合1节末伤害检测
+        self.check_health(1, [78, 10, 10])
+        self.check_elemental_application(1, [[ElementType.PYRO], [], []])
 
     def check_health(self, player, health):
         for i in range(len(health)):

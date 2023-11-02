@@ -5,14 +5,6 @@ from character_test.test_base import TestBase
 from character_test.test_utils import *
 from genius_invocation.game.action import *
 
-''' 琉金火光不协同自身攻击，或者庭火焰硝可用次数为2
-Traceback (most recent call last):
-  File "E:\GitHub\Genius-Invokation\test\test_character_solo\test_solo_Yoimiya.py", line 75, in test
-    self.check_health(1, [87, 10, 10])
-  File "E:\GitHub\Genius-Invokation\test\test_character_solo\test_solo_Yoimiya.py", line 104, in check_health
-    self.assertEqual(self.game.players[player].character_list[i].health_point, health[i])
-AssertionError: 86 != 87
-'''
 # Todo: 琉金火光协同队友攻击
 
 class TestYoimiya(TestBase, unittest.TestCase):

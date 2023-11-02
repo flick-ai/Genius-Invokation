@@ -5,10 +5,6 @@ from character_test.test_base import TestBase
 from character_test.test_utils import *
 from genius_invocation.game.action import *
 
-'''
-绫人大招直伤1点
-'''
-
 class TestKamisatoAyato(TestBase, unittest.TestCase):
     player0_deck: Dict[str, List[str]] ={
         'character': ['KamisatoAyato'],

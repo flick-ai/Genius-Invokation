@@ -5,19 +5,9 @@ from character_test.test_base import TestBase
 from character_test.test_utils import *
 from genius_invocation.game.action import *
 
-'''
-香菱放大当回合不触发旋火轮
-Traceback (most recent call last):
-  File "E:\GitHub\Genius-Invokation\test\test_character_solo\test_solo_Xiangling.py", line 63, in test
-    self.check_health(1, [95, 10, 10])
-  File "E:\GitHub\Genius-Invokation\test\test_character_solo\test_solo_Xiangling.py", line 110, in check_health
-    self.assertEqual(self.game.players[player].character_list[i].health_point, health[i])
-AssertionError: 93 != 95
-'''
-
-class TestXiangling(TestBase, unittest.TestCase):
+class TestQiqi(TestBase, unittest.TestCase):
     player0_deck: Dict[str, List[str]] ={
-        'character': ['Xiangling'],
+        'character': ['Qiqi'],
         'action_card': ['Thunder_and_Eternity'] * 30
     }
     player1_deck: Dict[str, List[str]] = {
@@ -70,31 +60,31 @@ class TestXiangling(TestBase, unittest.TestCase):
 
         self.run_actions_for_player(skill_action_list[2], 0)  # Q技能
         self.check_health(1, [95, 10, 10])
-        self.check_elemental_application(1, [[ElementType.PYRO], [], []])
+        self.check_elemental_application(1, [[ElementType.CRYO], [], []])
         self.assertEqual(self.game.players[0].dice_zone.num(), 5)
         self.game.players[0].dice_zone.add([7] * 3)
 
         self.run_actions_for_player(skill_action_list[0], 0)  # 平a
-        self.check_health(1, [91, 10, 10])
-        self.check_elemental_application(1, [[ElementType.PYRO], [], []])
+        self.check_health(1, [93, 10, 10])
+        self.check_elemental_application(1, [[ElementType.CRYO], [], []])
         self.assertEqual(self.game.players[0].dice_zone.num(), 5)
         self.game.players[0].dice_zone.add([7] * 3)
 
         self.run_actions_for_player(skill_action_list[1], 0)  # 第一个E技能
-        self.check_health(1, [89, 10, 10])
-        self.check_elemental_application(1, [[ElementType.PYRO], [], []])
+        self.check_health(1, [93, 10, 10])
+        self.check_elemental_application(1, [[ElementType.CRYO], [], []])
         self.assertEqual(self.game.players[0].dice_zone.num(), 5)
         self.game.players[0].dice_zone.add([7] * 3)
 
         self.run_actions_for_player(skill_action_list[1], 0)  # 第二个E技能，如果没有，则重复释放
-        self.check_health(1, [89, 10, 10])
-        self.check_elemental_application(1, [[ElementType.PYRO], [], []])
+        self.check_health(1, [93, 10, 10])
+        self.check_elemental_application(1, [[ElementType.CRYO], [], []])
         self.assertEqual(self.game.players[0].dice_zone.num(), 5)
         self.game.players[0].dice_zone.add([7] * 3)
 
         self.run_actions_for_player(skill_action_list[2], 0)  # Q技能
-        self.check_health(1, [86, 10, 10])
-        self.check_elemental_application(1, [[ElementType.PYRO], [], []])
+        self.check_health(1, [90, 10, 10])
+        self.check_elemental_application(1, [[ElementType.CRYO], [], []])
         self.assertEqual(self.game.players[0].dice_zone.num(), 5)
         self.game.players[0].dice_zone.add([7] * 3)
 
@@ -110,9 +100,10 @@ class TestXiangling(TestBase, unittest.TestCase):
         self.assertEqual(self.game.players[0].character_list[0].health_point, 6)
         self.assertEqual(self.game.players[0].character_list[0].elemental_application, [])
 
-        # 回合1节末伤害检测
-        self.check_health(1, [87, 10, 10])
-        self.check_elemental_application(1, [[ElementType.PYRO], [], []])
+        # 回合1节末伤害检测 
+        # TODO: Check 寒冰鬼差
+        self.check_health(1, [89, 10, 10])
+        self.check_elemental_application(1, [[ElementType.CRYO], [], []])
 
     def check_health(self, player, health):
         for i in range(len(health)):
