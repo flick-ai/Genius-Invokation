@@ -6,7 +6,8 @@ class MirrorCage(TalentCard):
     name: str = "Mirror Cage"
     name_ch = "镜锢之笼"
     is_action = True
-    cost = [{'cost_num': 4, 'cost_type': 1}]
+    # 4.2更新
+    cost = [{'cost_num': 3, 'cost_type': 1}]
     cost_power = 0
     character = MirrorMaiden
     def __init__(self) -> None:

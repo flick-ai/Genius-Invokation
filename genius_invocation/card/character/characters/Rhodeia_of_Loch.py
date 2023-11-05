@@ -317,7 +317,8 @@ class Tide_and_Torrent(ElementalBurst):
     # damage
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
     main_damage_element: ElementType = ElementType.HYDRO
-    main_damage: int = 2
+    # 4.2更新
+    main_damage: int = 4
     piercing_damage: int = 0
 
     cost = [
@@ -335,7 +336,7 @@ class Tide_and_Torrent(ElementalBurst):
 
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
-        main_dmg = self.main_damage + self.from_character.from_player.summon_zone.num()*2
+        main_dmg = self.main_damage + self.from_character.from_player.summon_zone.num()*1
         dmg = Damage.create_damage(
             game,
             damage_type=SkillType.ELEMENTAL_BURST,

@@ -139,7 +139,7 @@ class CrowfeatherCover(Status):
                     if self.from_character.element == ElementType.ELECTRO:
                         damage_add += 1
                 game.current_damage.main_damage += damage_add
-                
+
     def update_listener_list(self):
         self.listeners = [
             (EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, self.on_add_damage),
@@ -182,4 +182,5 @@ class KujouSara(Character):
         super().__init__(game, zone, from_player, index, from_character)
         self.power = 0
         self.talent = talent
-        self.talent_skill = self.skills[2]
+        # 4.2更新
+        self.talent_skill = self.skills[1]

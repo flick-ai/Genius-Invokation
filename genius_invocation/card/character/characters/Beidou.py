@@ -70,7 +70,7 @@ class TidecallerSurfEmbrace(Shield):
     def on_call(self, game: 'GeniusGame'):
         self.skill.on_call(game)
         self.on_destroy(game)
- 
+
     def after_change(self,game:'GeniusGame'):
         if game.current_switch["from"] == self.from_character:
             self.from_character.from_player.prepared_skill = None
@@ -85,8 +85,8 @@ class TidecallerSurfEmbrace(Shield):
                 else:
                     self.current_usage -= game.current_damage.main_damage
                     game.current_damage.main_damage = 0
-                if self.from_character.talent:
-                    self.from_character.execute_dmg = 1
+                # if self.from_character.talent:
+                #     self.from_character.execute_dmg = 1
 
     def update_listener_list(self):
         self.listeners = [
@@ -143,7 +143,7 @@ class ThunderbeastsTarge(Combat_Status):
                 )
                 game.add_damage(dmg)
                 game.resolve_damage()
-    
+
     def on_begin(self, game: 'GeniusGame'):
         if game.active_player == self.from_player:
             self.current_usage -= 1
@@ -175,14 +175,15 @@ class Beidou(Character):
         self.talent_skill = self.skills[1]
         self.next_skill = Wavestrider(self)
         self.last_talent_round = -1
-        self.execute_dmg = 0
-    
-    def on_begin(self, game: 'GeniusGame'):
-        super().on_begin(game)
-        self.execute_dmg = 0
+        # self.execute_dmg = 0
+
+    # def on_begin(self, game: 'GeniusGame'):
+    #     super().on_begin(game)
+    #     self.execute_dmg = 0
 
     def on_calculate(self, game: 'GeniusGame'):
-        if self.last_talent_round != game.round and self.execute_dmg>0:
+        # 4.2更新
+        if self.last_talent_round != game.round:
             if game.active_player == self.from_player:
                 if game.current_dice.use_type is SkillType.NORMAL_ATTACK:
                     if game.current_dice.from_character == self:  #Beidou will use normal attack

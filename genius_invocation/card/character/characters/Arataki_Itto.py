@@ -71,7 +71,8 @@ class Royal_Descent_Behold_Itto_the_Evil(ElementalBurst):
 
     damage_type = SkillType.ELEMENTAL_BURST
     main_damage_element = ElementType.GEO
-    main_damage = 5
+    # 4.2更新
+    main_damage = 4
     piercing_damage = 0
 
     cost = [
@@ -111,7 +112,7 @@ class Arataki_Itto(Character):
         self.power = 0
         self.talent = talent
         self.talent_skill = self.skills[0]
-    
+
 class Ushi(Summon):
     '''阿丑'''
     name = 'Ushi'
@@ -132,12 +133,12 @@ class Ushi(Summon):
             )
             game.add_damage(dmg)
             game.resolve_damage()
-            
+
             status = self.from_player.team_combat_status.has_status(Shield_from_Ushi)
             if status is not None:
                 status.on_destroy(game)
             self.on_destroy(game)
-    
+
     def execute_dmg(self, game: 'GeniusGame'):
         if self.add_strength: return
         if game.current_damage.damage_to.from_player == self.from_player:
@@ -157,7 +158,7 @@ class Ushi(Summon):
             self.from_player.team_combat_status.add_entity(status)
         else:
             pass
-            #No Need to Update            
+            #No Need to Update
         self.add_strength = False
 
     def add_usage(self, game: 'GeniusGame', count: int):
@@ -165,7 +166,7 @@ class Ushi(Summon):
         if self.current_usage == count:
             status = Shield_from_Ushi(game, self.from_player, self.from_character, self)
             self.from_player.team_combat_status.add_entity(status)
-       
+
         self.from_player.team_combat_status.has_status(Shield_from_Ushi).update()
 
     def minus_usage(self, game: 'GeniusGame', count: int):
@@ -174,7 +175,7 @@ class Ushi(Summon):
         self.current_usage = max(0, self.current_usage)
         if self.current_usage == 0:
             self.from_player.team_combat_status.has_status(Shield_from_Ushi).on_destroy(game)
-    
+
     def on_destroy(self, game: 'GeniusGame'):
         status = self.from_player.team_combat_status.has_status(Shield_from_Ushi)
         if status is not None:
@@ -218,7 +219,7 @@ class Shield_from_Ushi(Combat_Status):
                 self.current_usage = self.from_summon.current_usage
                 if self.from_summon.current_usage ==0:
                     self.on_destroy(game) # Only destroy the combat_status here
-    
+
     def update_listener_list(self):
         self.listeners = [
             (EventType.EXECUTE_DAMAGE, ZoneType.ACTIVE_ZONE, self.on_damage_execute)
@@ -238,7 +239,7 @@ class Raging_Oni_King(Status):
 
     def update(self):
         self.current_usage = max(self.current_usage, self.usage)
-    
+
     def after_skill(self, game:"GeniusGame"):
         if game.current_skill.from_character == self.from_character:
             if game.current_skill.type == SkillType.NORMAL_ATTACK:
@@ -254,18 +255,19 @@ class Raging_Oni_King(Status):
         if game.current_damage.damage_from == self.from_character:
             if game.current_damage.main_damage_element == ElementType.PHYSICAL:
                 game.current_damage.main_damage_element = ElementType.GEO
-    
+
     def on_dmg_add(self, game:'GeniusGame'):
         if game.current_damage.damage_from == self.from_character:
             if game.current_damage.damage_type == SkillType.NORMAL_ATTACK:
-                game.current_damage.main_damage += 2
-    
+                # 4.2更新
+                game.current_damage.main_damage += 1
+
     def on_begin_phase(self, game:'GeniusGame'):
         if game.active_player == self.from_player:
             self.current_usage -= 1
             if self.current_usage <= 0:
                 self.on_destroy(game)
-    
+
     def update_listener_list(self):
         self.listeners = [
             (EventType.AFTER_USE_SKILL, ZoneType.CHARACTER_ZONE, self.after_skill),
@@ -285,15 +287,15 @@ class Superlative_Superstrength(Status):
         self.max_usage = 3
         self.usage = 1
         self.current_usage = 1
-    
+
     def update(self):
         self.current_usage = min(self.max_usage, self.current_usage + self.usage)
-    
+
     def on_calculation(self, game:"GeniusGame"):
         if self.current_usage<2: return False
         if self.from_player.dice_zone.num()%2!=0: return False
         if game.active_player_index == self.from_player.index:
-            if game.current_dice.use_type is SkillType.NORMAL_ATTACK: 
+            if game.current_dice.use_type is SkillType.NORMAL_ATTACK:
                 if game.current_dice.from_character == self.from_character:  #Ito use normal attack, Ito
                     if self.usage > 0:
                         if game.current_dice.cost[1]['cost_num'] > 0:
@@ -306,10 +308,10 @@ class Superlative_Superstrength(Status):
                             game.current_dice.cost[1]['cost_num'] -= 1
                             return True
         return False
-                    
+
     def on_skill(self, game:"GeniusGame"):
         self.on_calculation(game)
-            
+
     def on_dmg_add(self, game:"GeniusGame"):
         if game.current_damage.damage_from == self.from_character:
             if game.current_damage.damage_type == SkillType.NORMAL_ATTACK:
@@ -321,7 +323,7 @@ class Superlative_Superstrength(Status):
                     self.current_usage -= 1
                     if self.current_usage <=0:
                         self.on_destroy(game)
-    
+
     def update_listener_list(self):
         self.listeners = [
             (EventType.ON_USE_SKILL, ZoneType.CHARACTER_ZONE, self.on_skill),

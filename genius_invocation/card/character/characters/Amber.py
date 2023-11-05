@@ -100,12 +100,13 @@ class BaronBunny(Summon):
 
     def on_after_skill(self, game: 'GeniusGame'):
         if game.current_skill.from_character == self.from_character:
+            # 4.2更新
             if game.current_skill.type == SkillType.NORMAL_ATTACK:
                 dmg = Damage.create_damage(
                     game,
                     damage_type=SkillType.SUMMON,
                     main_damage_element=self.element,
-                    main_damage=3,
+                    main_damage=4,
                     piercing_damage=0,
                     damage_from=self,
                     damage_to=get_opponent_active_character(game),
@@ -191,7 +192,7 @@ class Amber(Character):
         self.talent_skill = self.skills[1]
 
     def listen_talent_events(self, game: 'GeniusGame'):
-        status = self.from_player.team_combat_status.has_status(BaronBunny)
+        status = self.from_player.summon_zone.has_entity(BaronBunny)
         if status is not None:
             status.listen_event(game, EventType.AFTER_USE_SKILL, ZoneType.SUMMON_ZONE, status.on_after_skill)
 

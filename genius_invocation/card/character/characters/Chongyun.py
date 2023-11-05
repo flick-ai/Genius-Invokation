@@ -46,13 +46,14 @@ class FrostField(Combat_Status):
         super().__init__(game, from_player, from_character)
         self.max_usage = 2
         self.current_usage = 2
-        if self.from_character.talent:
-            self.max_usage += 1
-            self.current_usage += 1
+        # 4.2更新
+        # if self.from_character.talent:
+        #     self.max_usage += 1
+        #     self.current_usage += 1
 
     def update(self):
-        if self.from_character.talent:
-            self.max_usage = 3
+        # if self.from_character.talent:
+        #     self.max_usage = 3
         self.current_usage = self.max_usage
 
     def on_infuse(self, game:'GeniusGame'):

@@ -18,8 +18,10 @@ class Joyous_Celebration(ActionCard):
     def on_played(self, game: 'GeniusGame') -> None:
         element = get_my_active_character(game).element
         for character in game.active_player.character_list:
-            character.elemental_attach(game, element)
-    
+            # 4.2更新
+            if len(character.elemental_application)>0:
+                character.elemental_attach(game, element)
+
     def find_target(self, game: 'GeniusGame'):
         if game.active_player.play_arcane_legend:
             return []

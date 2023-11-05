@@ -74,17 +74,28 @@ class Scarlet_Seal(Status):
     name_ch = '丹火印'
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character:'Character'):
         super().__init__(game, from_player, from_character)
-        self.usage = 1
+        self.usage = 2
         self.current_usage = 1
-    
+
+    # 4.2更新
+    def update(self):
+        self.current_usage = min(self.current_usage+1, self.usage)
+
     def on_dmg_add(self, game:"GeniusGame"):
         if game.current_damage.damage_from == self.from_character:
             if game.current_damage.damage_type == SkillType.NORMAL_ATTACK:
                 if game.current_damage.is_charged_attack:
                     game.current_damage.main_damage += 2
                     self.current_usage -= 1
+                    # 4.2更新
+                    if self.from_character.talent:
+                        if game.current_damage.is_charged_attack:
+                            if game.current_damage.damage_to.health_point <= 6:
+                                game.current_damage.main_damage += 1
+                        self.from_player.get_card(num=1)
                     if self.current_usage <=0:
                         self.on_destroy(game)
+
     def update_listener_list(self):
         self.listeners = [
             (EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, self.on_dmg_add)
@@ -98,13 +109,13 @@ class Brilliance(Status):
         self.usage = 2
         self.current_usage = 2
         self.use_round = -1
-    
+
     def on_begin(self, game: 'GeniusGame'):
         if game.active_player == self.from_player:
             self.current_usage -= 1
             if self.current_usage<=0:
                 self.on_destroy(game)
-    
+
     def on_calculate_dice(self, game:'GeniusGame'):
         if self.use_round == game.round: return False
         if self.from_player.dice_zone.num()%2 != 0:
@@ -120,7 +131,7 @@ class Brilliance(Status):
                             game.current_dice.cost[1]['cost_num'] -= 1
                             return True
         return False
-    
+
     def on_skill(self, game:"GeniusGame"):
         if self.on_calculate_dice(game):
             self.use_round = game.round
@@ -130,7 +141,7 @@ class Brilliance(Status):
             (EventType.CALCULATE_DICE, ZoneType.CHARACTER_ZONE, self.on_calculate_dice),
             (EventType.ON_USE_SKILL, ZoneType.CHARACTER_ZONE, self.on_skill)
         ]
-            
+
 
 
 class Yanfei(Character):

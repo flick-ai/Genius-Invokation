@@ -94,7 +94,7 @@ class Dandelion_Field(Summon):
             dmg = Damage.create_damage(
                 game,
                 damage_type=SkillType.SUMMON,
-                main_damage=2,
+                main_damage=1,
                 main_damage_element=self.element,
                 piercing_damage=0,
                 damage_from=self,
@@ -129,7 +129,8 @@ class Dandelion_Breeze(ElementalBurst):
             'cost_type': CostType.ANEMO
         }
     ]
-    energy_cost: int = 3
+    # 4.2更新
+    energy_cost: int = 2
     energy_gain: int = 0
 
     def __init__(self, from_character: 'Character') -> None:

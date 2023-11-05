@@ -247,7 +247,7 @@ class GeniusPlayer:
                 if has_target != None:
                     for target in has_target:
                         self.action_mask[14][target+2][0] = 1
-                return 
+                return
             else:
                 for idx, character in enumerate(self.character_list):
                     character: Character
@@ -260,10 +260,13 @@ class GeniusPlayer:
             action_card: 'ActionCard'
             if action_card.card_type == ActionCardType.EQUIPMENT_TALENT:
                 has_target = action_card.find_target(game)
-                has_dice = self.calculate_dice(game, Dice(from_player=self,
-                                                        from_character=None,
-                                                        use_type=action_card.card_type,
-                                                        cost = deepcopy(action_card.cost)))
+                if self.character_list[self.active_idx].power >= action_card.cost_power:
+                    has_dice = self.calculate_dice(game, Dice(from_player=self,
+                                                            from_character=None,
+                                                            use_type=action_card.card_type,
+                                                            cost = deepcopy(action_card.cost)))
+                else:
+                    has_dice = False
             else:
                 has_target = action_card.find_target(game)
                 has_dice = self.calculate_dice(game, Dice(from_player=self,
@@ -287,7 +290,7 @@ class GeniusPlayer:
                 self.action_mask[idx][13][0] = 1
                 self.action_mask[idx][13][1] = 1
                 self.action_mask[idx][13][2] = - (active_dice.value)
-        
+
 
         # 计算能否使用技能
         for idx, skill in enumerate(self.character_list[self.active_idx].skills):
@@ -298,7 +301,7 @@ class GeniusPlayer:
                                                       cost=deepcopy(skill.cost)))
             can_use = not self.character_list[self.active_idx].is_frozen
             if skill.type == SkillType.ELEMENTAL_BURST:
-                can_use = self.character_list[self.active_idx].max_power == self.character_list[self.active_idx].power
+                can_use = can_use and self.character_list[self.active_idx].max_power == self.character_list[self.active_idx].power
             if can_use and has_dice:
                 self.action_mask[idx+10][0][0] = 1
                 for i, cost in enumerate(game.current_dice.cost):

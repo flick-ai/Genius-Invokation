@@ -6,10 +6,10 @@ class AbsorbingPrism(TalentCard):
     name: str = "Absorbing Prism"
     name_ch = "汲能棱晶"
     is_action = True
-    cost = [{'cost_num': 3, 'cost_type': 3}]
+    # 4.2更新
+    cost = [{'cost_num': 2, 'cost_type': 3}]
     cost_power = 0
     character = ElectroHypostasis
     def __init__(self) -> None:
         super().__init__()
 
-        

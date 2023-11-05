@@ -6,8 +6,9 @@ class SinofPride(TalentCard):
     name: str = "Sin of Pride"
     name_ch = "我界"
     is_action = True
-    cost = [{'cost_num': 4, 'cost_type': 3}]
-    cost_power = 2
+    # 4.2更新
+    cost = [{'cost_num': 3, 'cost_type': 3}]
+    cost_power = 0
     character = KujouSara
     def __init__(self) -> None:
         super().__init__()

@@ -29,6 +29,10 @@ class Pactsworn_Pathclearer(Status):
         if game.current_damage.damage_from == self.from_character:
             if self.current_usage>=4:
                 game.current_damage.main_damage += 2
+            # 4.2更新
+            if game.current_damage.damage_type == SkillType.ELEMENTAL_SKILL:
+                if self.current_usage % 2 == 0:
+                    game.current_damage.main_damage += 1
 
     def update_listener_list(self):
         self.listeners = [
@@ -181,7 +185,7 @@ class Cyno(Character):
         self.talent = talent
         self.power = 0
         self.talent_skill = self.skills[1]
-        
+
     def revive(self, game: 'GeniusGame'):
         super().revive(game)
         self.init_state(game)

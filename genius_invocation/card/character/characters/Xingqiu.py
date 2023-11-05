@@ -123,6 +123,11 @@ class Rain_Sword(Combat_Status):
     name_ch = "雨帘剑"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
+        # 4.2更新
+        self.max_damage = 3
+        if self.from_character.talent:
+            self.max_damage = 2
+
         self.usage = 2
         if self.from_character.talent:
             self.usage = 3
@@ -132,13 +137,14 @@ class Rain_Sword(Combat_Status):
     def update(self):
         if self.from_character.talent:
             self.usage = 3
+            self.max_damage = 2
         self.current_usage = max(self.current_usage, self.usage)
 
     def on_execute_dmg(self, game:'GeniusGame'):
         if game.current_damage.damage_to.from_player == self.from_player:
             if game.current_damage.damage_to.is_active:
                 if game.current_damage.main_damage_element != ElementType.PIERCING:
-                    if game.current_damage.main_damage >= 3:
+                    if game.current_damage.main_damage >= self.max_damage:
                         game.current_damage.main_damage -= 1
                         self.current_usage -= 1
                         if self.current_usage <=0:

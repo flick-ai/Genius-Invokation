@@ -62,10 +62,15 @@ class Nereids_Ascension(ElementalBurst):
             if character.is_alive:
                 character.heal(heal=1, game=game)
         self.add_status(game, Ceremonial_Garment)
+        # 4.2更新
         if self.from_character.talent:
             summon = self.from_character.from_player.summon_zone.has_entity(Bake_Kurage)
             if summon is not None:
-                summon.update()
+                summon.add_usage(game, 1)
+            else:
+                summon = Bake_Kurage(game, self.from_character.from_player, self.from_character, 1)
+                self.from_character.from_player.summon_zone.add_entity(summon)
+
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 
@@ -74,10 +79,11 @@ class Bake_Kurage(Summon):
     name_ch = '化海月'
     element = ElementType.HYDRO
     removable = True
-    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
+    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None, usage=2):
         super().__init__(game, from_player, from_character)
-        self.usage: int = 2
-        self.current_usage: int = 2
+        self.usage: int = usage
+        self.current_usage: int = usage
+
     def end_phase(self, game:'GeniusGame'):
         if game.active_player == self.from_player:
             dmg = Damage.create_damage(

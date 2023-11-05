@@ -36,7 +36,8 @@ class ClawandThundert(ElementalSkill):
         super().on_call(game)
         self.resolve_damage(game)
         self.gain_energy(game)
-        if self.from_character.talent:
+        if self.from_character.talent and self.from_character.use_round != game.round:
+            self.from_character.use_round = game.round
             characters = [get_my_active_character(game)] + get_my_standby_character(game)
             for char in characters:
                 if char.element == ElementType.ELECTRO:
@@ -119,3 +120,5 @@ class Razor(Character):
         self.power = 0
         self.talent = talent
         self.talent_skill = self.skills[1]
+        # 4.2更新
+        self.use_round = -1

@@ -135,8 +135,9 @@ class Icy_Quill(Combat_Status):
     name_ch = "冰翎"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
-        self.usage = 3
-        self.current_usage = 3
+        # 4.2更新
+        self.usage = 2
+        self.current_usage = 2
         self.last_use_round = -1
 
     def update(self):

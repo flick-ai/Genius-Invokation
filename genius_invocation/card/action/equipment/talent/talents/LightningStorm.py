@@ -1,5 +1,5 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
-from genius_invocation.card.character.characters.Beidou import * 
+from genius_invocation.card.character.characters.Beidou import *
 
 class LightningStorm(TalentCard):
     id: int = 214051
@@ -11,4 +11,3 @@ class LightningStorm(TalentCard):
     character = Beidou
     def __init__(self) -> None:
         super().__init__()
-        
