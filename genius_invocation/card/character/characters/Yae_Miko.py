@@ -155,10 +155,27 @@ class Sesshou_Sakura(Summon):
             self.current_usage -= 1
         if(self.current_usage <= 0):
             self.on_destroy(game)
+    def after_action(self, game:'GeniusGame'):
+        if self.current_usage <=3: return
+        if game.active_player == self.from_player:
+            if game.active_player.is_pass:
+                self.current_usage -= 1
+                dmg = Damage.create_damage(
+                    game,
+                    damage_type=SkillType.SUMMON,
+                    main_damage_element=self.element,
+                    main_damage=1,
+                    piercing_damage=0,
+                    damage_from=self,
+                    damage_to=get_opponent_active_character(game),
+                )
+                game.add_damage(dmg)
+                game.resolve_damage()
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.END_PHASE, ZoneType.SUMMON_ZONE, self.on_end_phase)
+            (EventType.END_PHASE, ZoneType.SUMMON_ZONE, self.on_end_phase),
+            (EventType.AFTER_ANY_ACTION, ZoneType.SUMMON_ZONE, self.after_action)
         ]
 
 class Tenko_Thunderbolts(Combat_Status):
