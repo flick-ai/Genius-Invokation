@@ -101,7 +101,7 @@ class Spirit_Soother(ElementalBurst):
             self.from_character.heal(3)
         else:
             self.resolve_damage(game)
-            self.from_character.heal(2)
+            self.from_character.heal(2, game)
        
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
@@ -124,7 +124,7 @@ class Paramita_Papilio(Status):
     def dmg_add(self, game:'GeniusGame'):
         if game.current_damage.damage_from == self.from_character:
             if game.current_damage.main_damage_element == ElementType.PYRO:
-                game.current_damage += 1
+                game.current_damage.main_damage += 1
     def execute_dmg(self, game:'GeniusGame'):
         if game.current_damage.damage_from == self.from_character:
             if game.current_damage.is_charged_attack:
@@ -150,6 +150,7 @@ class Blood_Blossom(Status):
         self.current_usage = 1
     def end_phase(self, game:'GeniusGame'):
         if game.active_player == self.from_player:
+            import ipdb; ipdb.set_trace()
             dmg = Damage.create_damage(
                 game, 
                 damage_type=SkillType.OTHER,

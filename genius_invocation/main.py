@@ -82,6 +82,11 @@ if __name__=="__main__":
     #                 'Mushroom_Pizza','Mushroom_Pizza']
     # }
     game = GeniusGame(player0_deck=deck1, player1_deck=deck2, seed=2026, is_omni=False)
+    with open("save_data.pickle", "wb+") as f:
+        pickle.dump(game, f)
+
+    with open("save_data.pickle", "rb+") as f:
+        game = pickle.load(f)
 
     if args.test:
         with open("./action.log") as f:

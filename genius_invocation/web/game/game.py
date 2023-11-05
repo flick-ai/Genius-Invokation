@@ -209,7 +209,9 @@ class GeniusGame:
         '''
             选择出战角色
         '''
+        self.current_action = action
         if self.special_phase is None:
+            print(action)
             self.active_player.choose_character(action)
             self.change_active_player()
             if self.active_player_index == self.first_player:
@@ -315,9 +317,12 @@ class Active_Die:
         while True:
             res = prompt(f"玩家{die_player.index}角色{idx}死亡, 请输入下一个出战角色的序号(0, 1, 2):")
             if res in ['0', '1', '2'] and res in available_idx:
+                print(res, int(res)+2)
                 return Action(14, int(res)+2, dice=[])
 
     def on_finished(self, game: 'GeniusGame'):
+        game.active_player.choose_character(game.current_action)
+        game.change_active_player()
         game.game_phase = self.now_phase
         game.special_phase = None
         game.active_player_index = self.activate_player_index

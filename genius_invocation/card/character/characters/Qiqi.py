@@ -177,15 +177,15 @@ class Herald_of_Frost(Summon):
     def after_skill(self, game:'GeniusGame'):
         if game.current_skill.from_character==self.from_character:
             if game.current_skill.type == SkillType.NORMAL_ATTACK:
-                max_dmg_taken = 0
+                max_dmg_taken = -1
                 max_taken_char = None
                 ls: List[int] = []
                 id = self.from_player.active_idx
                 for i in range(self.from_player.character_num):
                     ls.append(id)
-                    ls += 1
-                    if ls >= self.from_player.character_num:
-                        ls = 0
+                    id += 1
+                    if id >= self.from_player.character_num:
+                        id = 0
 
                 for i in ls:
                     char = self.from_player.character_list[i]

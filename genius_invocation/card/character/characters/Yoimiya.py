@@ -165,6 +165,11 @@ class Niwabi_Enshou(Status):
             if game.current_damage.damage_type == SkillType.NORMAL_ATTACK:
                 game.current_damage.main_damage += 1
                 self.is_use = True
+                if not self.from_character.talent:
+                    self.is_use = False
+                    self.current_usage -= 1
+                    if self.current_usage <= 0:
+                        self.on_destroy(game)
 
     def after_skill(self, game:'GeniusGame'):
         # if game.current_damage is None:

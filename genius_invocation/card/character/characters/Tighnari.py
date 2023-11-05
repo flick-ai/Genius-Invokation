@@ -26,7 +26,7 @@ class VijnanaPhalaMine(ElementalSkill):
     type: SkillType = SkillType.ELEMENTAL_SKILL
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
     main_damage_element: ElementType = ElementType.DENDRO
-    main_damage: int = 3
+    main_damage: int = 2
     piercing_damage: int = 0
     cost = [{'cost_num':2, 'cost_type':CostType.DENDRO}]
     energy_cost: int = 0
@@ -45,6 +45,7 @@ class VijnanaSuffusion(Status):
         super().__init__(game, from_player, from_character)
         self.max_usage = 2
         self.current_usage = 2
+        self.is_use = False
 
     def update(self):
         self.current_usage = max(self.max_usage, self.current_usage)
@@ -54,13 +55,17 @@ class VijnanaSuffusion(Status):
             if game.current_damage.damage_type == SkillType.NORMAL_ATTACK:
                 if game.current_damage.is_charged_attack:
                     if game.current_damage.main_damage_element == ElementType.PHYSICAL:
-                        game.current_damage.main_damage_element = ElementType.CRYO
+                        game.current_damage.main_damage_element = ElementType.DENDRO
                         self.current_usage -= 1
                         self.is_use = True
     
     def on_after_any(self, game:'GeniusGame'):
         if self.is_use:
-            self.from_player.summon_zone.add_entity(ClusterbloomArrow(game, from_player=self.from_player, from_character=self.from_character))
+            summon = self.from_player.summon_zone.has_entity(ClusterbloomArrow)
+            if summon is None:
+                self.from_player.summon_zone.add_entity(ClusterbloomArrow(game, from_player=self.from_player, from_character=self.from_character))
+            else:
+                summon.update()
             self.is_use = False
             if self.current_usage <= 0:
                 self.on_destroy(game)
@@ -167,7 +172,7 @@ class Tighnari(Character):
         super().__init__(game, zone, from_player, index, from_character)
         self.power = 0
         self.talent = talent
-        self.talent_skill = self.init_skill[1]
+        self.talent_skill = self.skills[1]
     
     def listen_talent_events(self, game: 'GeniusGame'):
         status = self.from_player.team_combat_status.has_status(VijnanaSuffusion)

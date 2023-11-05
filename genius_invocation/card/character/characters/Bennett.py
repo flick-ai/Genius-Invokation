@@ -111,6 +111,8 @@ class Inspiration_Field(Combat_Status):
                     if game.current_damage.main_damage_element != ElementType.PIERCING:
                         game.current_damage.main_damage += 2
     def heal(self, game:'GeniusGame'):
+        # import ipdb; ipdb.set_trace()
+        if game.current_skill is None: return
         if game.current_skill.from_character.from_player == self.from_player:
             if game.current_skill.from_character.health_point <=6:
                 game.current_skill.from_character.heal(2, game)

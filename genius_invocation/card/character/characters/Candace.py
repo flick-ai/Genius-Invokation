@@ -246,5 +246,5 @@ class Prayer_of_the_Crimson_Crown(Combat_Status):
             (EventType.BEGIN_ACTION_PHASE, ZoneType.ACTIVE_ZONE, self.on_begin_phase),
             (EventType.ON_CHANGE_CHARACTER, ZoneType.ACTIVE_ZONE, self.on_switch)
         ]
-        if self.from_character.from_character.talent:
+        if self.from_character.talent:
             self.listeners.append((EventType.AFTER_USE_SKILL, ZoneType.ACTIVE_ZONE, self.after_skill))

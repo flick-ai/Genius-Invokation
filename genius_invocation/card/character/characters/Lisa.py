@@ -41,7 +41,7 @@ class Conductive(Status):
     def on_add_damage(self, game: 'GeniusGame'):
         if game.current_damage.damage_to != self.from_character:
             return
-        if game.current_skill.name == "Violet Arc":
+        if isinstance(game.current_skill,Violet_Arc):
             game.current_damage.main_damage += self.current_usage
             self.on_destroy(game)
 

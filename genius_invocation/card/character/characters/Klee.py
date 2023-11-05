@@ -45,11 +45,16 @@ class ExplosiveSpark(Status):
     name_ch = "爆裂火花"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character:'Character'):
         super().__init__(game, from_player, from_character)
-        self.max_usage = 1
+        self.usage = 1
         self.current_usage = 1
         if self.from_character.talent:
+            self.usage = 2
             self.current_usage += 1
-
+    def update(self):
+        if self.from_character.talent:
+            self.usage = 2
+        self.current_usage = max(self.current_usage, self.usage)
+        
     def on_calculate_dice(self, game:'GeniusGame'):
         if self.from_player.dice_zone.num()%2 != 0:
             return False
@@ -115,11 +120,11 @@ class SparksnSplashStatus(Combat_Status):
     name_ch = "轰轰火花"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None):
         super().__init__(game, from_player, from_character)
-        self.max_usage = 2
+        self.usage = 2
         self.current_usage = 2
 
     def update(self):
-        self.current_usage = self.max_usage
+        self.current_usage = self.usage
 
     def on_after_skill(self, game:'GeniusGame'):
         if game.active_player == self.from_player:

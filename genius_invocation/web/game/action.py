@@ -149,17 +149,17 @@ async def from_input(game: 'GeniusGame'):
                     2:'选择角色0',
                     3:'选择角色1',
                     4:'选择角色2',
-                    5:'选择对手0号召唤',
-                    6:'选择对手1号召唤',
-                    7:'选择对手2号召唤',
-                    8:'选择对手3号召唤',
-                    9:'选择本方0号支援',
-                    10:'选择本方1号支援',
-                    11:'选择本方2号支援',
-                    12:'选择本方3号支援',
+                    5:'选择1号召唤',
+                    6:'选择2号召唤',
+                    7:'选择3号召唤',
+                    8:'选择4号召唤',
+                    9:'选择1号支援',
+                    10:'选择2号支援',
+                    11:'选择3号支援',
+                    12:'选择4号支援',
                     13:'选择操作本方骰子',
                     14:'选择操作本方手牌'}
-    target_prompt = '根据您选择的行动，您可以选择以下目标:\n'
+    target_prompt = '根据您选择的行动，您可以选择以下目标(按确认以提交或清空选择):\n'
     target_list = []
     last_target = -1
     for i in range(15):
@@ -208,7 +208,7 @@ async def from_input(game: 'GeniusGame'):
                     cost_num = use_dice[choice][target][i*2]
                     if cost_num != 0:
                         if use_dice[choice][target][i*2+1] < 0:
-                            cost_type = CostType(-use_dice[choice][target][i*2+1])
+                            cost_type = DiceType(-use_dice[choice][target][i*2+1])
                             list_prompt = f'您需要选择使用的{cost_num}个非{cost_type}骰子的位置'
                         else:
                             cost_type = CostType(use_dice[choice][target][i*2+1])

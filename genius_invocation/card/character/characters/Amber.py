@@ -50,6 +50,8 @@ class BaronBunny(Summon):
         super().__init__(game, from_player, from_character)
         self.usage = 1
         self.current_usage = self.usage
+        status = ShieldfromBaron(game,self.from_player,self.from_character,self)
+        self.from_player.team_combat_status.add_entity(status)
 
     def on_end_phase(self, game: 'GeniusGame'):
         if game.active_player == self.from_player:

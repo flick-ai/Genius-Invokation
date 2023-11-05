@@ -72,7 +72,7 @@ class ShadowswordLoneGale(Summon):
 
     def on_use(self, game:'GeniusGame'):
         if game.current_skill.damage_type == SkillType.ELEMENTAL_BURST:
-            if game.current_damage.damage_to.from_player == self.from_player:
+            if game.current_skill.from_character == self.from_character:
                 dmg = Damage.create_damage(
                     game,
                     damage_type=SkillType.SUMMON,
@@ -82,6 +82,8 @@ class ShadowswordLoneGale(Summon):
                     damage_from=self,
                     damage_to=get_opponent_active_character(game),
                 )
+                game.add_damage(dmg)
+                game.resolve_damage()
 
     def update_listener_list(self):
         self.listeners = [
@@ -121,7 +123,7 @@ class ShadowswordGallopingFrost(Summon):
 
     def on_use(self, game:'GeniusGame'):
         if game.current_skill.damage_type == SkillType.ELEMENTAL_BURST:
-            if game.current_damage.damage_to.from_player == self.from_player:
+            if game.current_skill.from_character == self.from_character:
                 dmg = Damage.create_damage(
                     game,
                     damage_type=SkillType.SUMMON,
@@ -131,6 +133,8 @@ class ShadowswordGallopingFrost(Summon):
                     damage_from=self,
                     damage_to=get_opponent_active_character(game),
                 )
+                game.add_damage(dmg)
+                game.resolve_damage()
 
     def update_listener_list(self):
         self.listeners = [

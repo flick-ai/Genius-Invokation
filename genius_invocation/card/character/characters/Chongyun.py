@@ -57,9 +57,10 @@ class FrostField(Combat_Status):
 
     def on_infuse(self, game:'GeniusGame'):
         if game.current_damage.damage_from.from_player == self.from_player:
-            if game.current_damage.damage_from.from_character.weapon_type in [WeaponType.SWORD, WeaponType.POLEARM, WeaponType.CLAYMORE]:
-                if game.current_damage.main_damage_element == ElementType.PHYSICAL:
-                    game.current_damage.main_damage_element = ElementType.CRYO
+            if isinstance(game.current_damage.damage_from, Character):
+                if game.current_damage.damage_from.weapon_type in [WeaponType.SWORD, WeaponType.POLEARM, WeaponType.CLAYMORE]:
+                    if game.current_damage.main_damage_element == ElementType.PHYSICAL:
+                        game.current_damage.main_damage_element = ElementType.CRYO
 
     def on_add_damage(self, game:'GeniusGame'):
         if game.current_damage.damage_from.from_player == self.from_player:

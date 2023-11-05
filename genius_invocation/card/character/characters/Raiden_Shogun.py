@@ -175,7 +175,7 @@ class Eye_of_Stormy_Judgement(Summon):
 
     def on_dmg_add(self, game:'GeniusGame'):
         if game.current_damage.damage_type == SkillType.ELEMENTAL_BURST:
-            if game.current_damage.damage_to.from_player == self.from_player:
+            if game.current_damage.damage_from.from_player == self.from_player:
                 game.current_damage.main_damage += 1
                 # TODO: Check Dehya's Elemental Burst, Here assume that will gain 1 additional damage per attack.
     

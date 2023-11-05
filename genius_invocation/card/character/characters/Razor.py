@@ -56,8 +56,8 @@ class TheWolfWithin(Status):
         self.current_usage = max(self.max_usage, self.current_usage)
 
     def on_after_skill(self, game:'GeniusGame'):
-        if game.current_damage.damage_from == self.from_character:
-            if game.current_damage.damage_type == SkillType.NORMAL_ATTACK or game.current_damage.damage_type == SkillType.ELEMENTAL_SKILL:
+        if game.current_skill.from_character == self.from_character:
+            if game.current_skill.type == SkillType.NORMAL_ATTACK or game.current_skill.type == SkillType.ELEMENTAL_SKILL:
                 dmg = Damage.create_damage(
                     game,
                     damage_type=SkillType.OTHER,
@@ -99,7 +99,7 @@ class LightningFang(ElementalBurst):
         super().on_call(game)
         self.consume_energy(game)
         self.resolve_damage(game)
-        self.add_status(TheWolfWithin(game, self.from_character.from_player, self.from_character))
+        self.add_status(game, TheWolfWithin)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Razor(Character):

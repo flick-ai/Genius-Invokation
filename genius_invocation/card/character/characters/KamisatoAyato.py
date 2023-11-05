@@ -78,7 +78,7 @@ class KamisatoArt_Suiyuu(ElementalBurst):
     # damage
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
     main_damage_element: ElementType = ElementType.HYDRO
-    main_damage: int = 3
+    main_damage: int = 1
     piercing_damage: int = 0
 
     # cost
@@ -88,7 +88,7 @@ class KamisatoArt_Suiyuu(ElementalBurst):
             'cost_type': CostType.HYDRO
         },
     ]
-    energy_cost: int = 3
+    energy_cost: int = 2
     energy_gain: int = 0
 
     def __init__(self, from_character: 'Character'):
@@ -174,7 +174,7 @@ class KamisatoAyato(Character):
     init_health_point: int = 10
     max_health_point: int = 10
     skill_list: List = [KamisatoArt_Marobashi, KamisatoArt_Kyouka, KamisatoArt_Suiyuu]
-    max_power: int = 3
+    max_power: int = 2
 
     def __init__(self, game: 'GeniusGame', zone: 'CharacterZone', from_player: 'GeniusPlayer', index: int, from_character=None, talent=False):
         super().__init__(game, zone, from_player, index, from_character)

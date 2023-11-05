@@ -143,7 +143,7 @@ class Full_Plate(Combat_Shield):
         if game.current_damage.main_damage_element == ElementType.PHYSICAL:
             if game.current_damage.damage_to.from_player == self.from_player:
                 if game.current_damage.damage_to.is_active:
-                    game.current_damage = (game.current_damage + 1)//2
+                    game.current_damage.main_damage = (game.current_damage.main_damage + 1)//2
 
     def on_execute_dmg(self, game:'GeniusGame'):
         if game.current_damage.damage_to.from_player == self.from_player:
@@ -186,11 +186,11 @@ class Sweeping_Time_Status(Status):
             if game.active_player_index == self.from_player.index:
                 if game.current_dice.use_type is SkillType.NORMAL_ATTACK:
                     if game.current_dice.from_character == self.from_character:  #Noelle will use normal attack
-                        if game.current_dice[0]['cost_num']>0:
-                            game.current_dice[0]['cost_num'] -= 1
+                        if game.current_dice.cost[0]['cost_num']>0:
+                            game.current_dice.cost[0]['cost_num'] -= 1
                             return True
-                        elif game.current_dice[1]['cost_num'] >0:
-                            game.current_dice[1]['cost_num'] -= 1
+                        elif game.current_dice.cost[1]['cost_num'] >0:
+                            game.current_dice.cost[1]['cost_num'] -= 1
                             return True
         return False
 

@@ -72,7 +72,7 @@ class Yuegui(Summon):
             max_idx = -1
             max_damage = -1
             characters = [get_my_active_character(game)] + get_my_standby_character(game)
-            for idx, char in characters:
+            for idx, char in enumerate(characters):
                 if char.max_health_point - char.health_point > max_damage:
                     max_idx = idx
             target = self.from_player.character_list[max_idx]
