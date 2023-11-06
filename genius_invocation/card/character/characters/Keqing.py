@@ -158,17 +158,24 @@ class Keqing(Character):
         if status is not None:
             status.listen_event(game, EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, status.on_dmg_add)
 
-class Lightning_Stiletto(ActionCard):
+class Lightning_Stiletto(TalentCard):
     id: int = -1 #TODO: CHECK THE ID
     name: str = 'Lightning Stiletto'
     name_ch = "雷楔"
     cost_num = 3
-    cost_type = CostType.ELECTRO
-    card_type = ActionCardType.EVENT
-
+    is_action = True
+    # cost_type = CostType.ELECTRO
+    # card_type = ActionCardType.EVENT
+    cost = [{'cost_num': 3, 'cost_type': 3}]
+    cost_power = 0
+    character=Keqing
     def __init__(self) -> None:
         super().__init__()
-
+        
+    def find_target(self, game:'GeniusGame'):
+        char = get_character_with_name(game.active_player, Keqing)
+        return [char.index+2]
+    
     def on_played(self, game: 'GeniusGame'):
         super().on_played(game)
         char = get_character_with_name(game.active_player, Keqing)
