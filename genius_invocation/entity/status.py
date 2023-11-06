@@ -46,7 +46,9 @@ class Combat_Status(Entity):
         self.usage: int #生成时的可用次数
         # self.max_usage: int #Maybe No Use except some special status. Please add it in subclass.
         self.current_usage: int
-
+    def update(self):
+        # All states can be update, maybe need to re-implement in subclass
+        self.current_usage = max(self.current_usage, self.usage)
     def on_destroy(self, game):
         super().on_destroy(game)
         self.from_player.team_combat_status.remove_entity(self)
