@@ -174,7 +174,10 @@ class Lightning_Stiletto(TalentCard):
         
     def find_target(self, game:'GeniusGame'):
         char = get_character_with_name(game.active_player, Keqing)
-        return [char.index+2]
+        if char.is_alive:
+            return [char.index+2]
+        else:
+            return []
     
     def on_played(self, game: 'GeniusGame'):
         super().on_played(game)
