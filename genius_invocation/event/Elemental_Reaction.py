@@ -72,7 +72,7 @@ def Bloom(game: 'GeniusGame', player_id: int, target_idx: int):
         if summon is not None:
             summon.update()
         else:
-            game.players[1-player_id].summon_zone.add_entity(Burning_Flame(game, game.players[1-player_id], None))
+            game.players[1-player_id].summon_zone.add_entity(BountifulCore(game, game.players[1-player_id], None))
         logger.info("Trigger Elemental_Reaction: Special Bloom")
 
 def Overloaded(game: 'GeniusGame', player_id: int, target_idx: int):

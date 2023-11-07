@@ -117,11 +117,15 @@ class Nilou(Character):
         self.talent = talent
         self.talent_skill = self.skills[1]
 
-        all_element = []
+        HYDRO = False
+        DEN = False
+        OTHER = True
         for character in self.from_player.character_list:
-            all_element.append(character.element)
-        if len(all_element)==2 and ElementType.HYDRO in all_element and ElementType.DENDRO in all_element:
-            self.satisfy_element = True
-        else:
-            self.satisfy_element = False
+            if character.element == ElementType.HYDRO:
+                HYDRO = True
+            elif character.element == ElementType.DENDRO:
+                DEN = True
+            else:
+                OTHER = False
+        self.satisfy_element:bool = HYDRO and DEN and OTHER
 

@@ -100,6 +100,8 @@ class BountifulCore(Summon):
     
     def check_nilou(self):
         status = self.from_player.team_combat_status.has_status(GoldenChalice)
+        if status is None:
+            return False
         return status.from_character.talent
 
     def on_end_phase(self, game: 'GeniusGame'):
