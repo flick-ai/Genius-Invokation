@@ -57,8 +57,10 @@ class ListenerList(object):
 
     def __call__(self, game: 'GeniusGame') -> None:
         listener = self.head.next
+        tail_before = self.tail.before
         while listener!=self.tail:
             listener(game)
+            if listener == tail_before: break # DEBUG： Burning_Flame will not trigger when it is generated during summon_zone, end_phase.
             listener = listener.next
 
 
