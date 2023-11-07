@@ -104,10 +104,11 @@ class Inspiration_Field(Combat_Status):
         super().__init__(game, from_player, from_character)
         self.current_usage = 2
         self.usage = 2
+        self.talent = self.from_character.talent
     def add_dmg(self, game:'GeniusGame'):
         if isinstance(game.current_damage.damage_from, Character):
             if game.current_damage.damage_from.from_player == self.from_player:
-                if game.current_damage.damage_from.health_point >=7 or self.from_character.talent:
+                if game.current_damage.damage_from.health_point >=7 or self.talent:
                     if game.current_damage.main_damage_element != ElementType.PIERCING:
                         game.current_damage.main_damage += 2
     def heal(self, game:'GeniusGame'):
@@ -121,6 +122,9 @@ class Inspiration_Field(Combat_Status):
             self.current_usage -=1
             if self.current_usage <=0:
                 self.on_destroy(game)
+    def update(self):
+        self.current_usage = max(self.usage, self.current_usage)
+        self.talent = self.from_character.talent
     def update_listener_list(self):
         self.listeners = [
             (EventType.DAMAGE_ADD, ZoneType.ACTIVE_ZONE, self.add_dmg),

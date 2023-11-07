@@ -109,6 +109,7 @@ class Stormbreaker(ElementalBurst):
 
     def on_call(self, game:'GeniusGame'):
         super().on_call(game)
+        self.consume_energy(game)
         self.resolve_damage(game)
         self.add_combat_status(game, ThunderbeastsTarge)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)

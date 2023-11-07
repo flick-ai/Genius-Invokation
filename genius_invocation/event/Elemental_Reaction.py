@@ -59,12 +59,21 @@ def Bloom(game: 'GeniusGame', player_id: int, target_idx: int):
     '''
     game.players[player_id].character_list[target_idx].elemental_application.pop(0)
 
-    status = game.players[1-player_id].team_combat_status.has_status(Dendro_Core)
-    if status is not None:
-        status.update()
+    special_status = game.players[1-player_id].team_combat_status.has_status(GoldenChalice)
+    if special_status is None:
+        status = game.players[1-player_id].team_combat_status.has_status(Dendro_Core)
+        if status is not None:
+            status.update()
+        else:
+            game.players[1-player_id].team_combat_status.add_entity(Dendro_Core(game, game.players[1-player_id], None))
+        logger.info("Trigger Elemental_Reaction: Bloom")
     else:
-        game.players[1-player_id].team_combat_status.add_entity(Dendro_Core(game, game.players[1-player_id], None))
-    logger.info("Trigger Elemental_Reaction: Bloom")
+        summon = game.players[1-player_id].summon_zone.has_entity(BountifulCore)
+        if summon is not None:
+            summon.update()
+        else:
+            game.players[1-player_id].summon_zone.add_entity(BountifulCore(game, game.players[1-player_id], None))
+        logger.info("Trigger Elemental_Reaction: Special Bloom")
 
 def Overloaded(game: 'GeniusGame', player_id: int, target_idx: int):
     '''

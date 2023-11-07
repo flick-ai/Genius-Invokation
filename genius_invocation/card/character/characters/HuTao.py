@@ -150,7 +150,6 @@ class Blood_Blossom(Status):
         self.current_usage = 1
     def end_phase(self, game:'GeniusGame'):
         if game.active_player == self.from_player:
-            import ipdb; ipdb.set_trace()
             dmg = Damage.create_damage(
                 game, 
                 damage_type=SkillType.OTHER,

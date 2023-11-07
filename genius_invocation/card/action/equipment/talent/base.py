@@ -1,6 +1,5 @@
 from genius_invocation.utils import *
 from genius_invocation.card.action.equipment.base import EquipmentCard
-from genius_invocation.card.character.base import CharacterSkill
 from typing import Type
 if TYPE_CHECKING:
     from genius_invocation.game.game import GeniusGame
