@@ -131,7 +131,7 @@ class Dori(Character):
     name_ch = "多莉"
     element: ElementType = ElementType.ELECTRO
     weapon_type: WeaponType = WeaponType.CLAYMORE
-    country: CountryType = CountryType.SUNERU
+    country: CountryType = CountryType.SUMERU
     init_health_point: int = 10
     max_health_point: int = 10
     skill_list: List = [MarvelousSwordDance, TroubleshooterCannon, Alcazarzaray]
