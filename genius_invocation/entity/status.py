@@ -278,6 +278,13 @@ class Satisfy_Statue(Status):
             (EventType.BEGIN_ACTION_PHASE, ZoneType.CHARACTER_ZONE, self.on_begin_phase),
         ]
 
+class GoldenChalice(Combat_Status):
+    name = "Golden Chalice's Bounty"
+    name_ch = "金杯的丰馈"
+    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
+        super().__init__(game, from_player, from_character)
+        self.usage = MAX_ROUND
+        self.current_usage = self.usage
 
 
 
