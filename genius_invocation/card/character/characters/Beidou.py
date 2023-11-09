@@ -56,7 +56,7 @@ class Wavestrider(ElementalSkill):
     def on_call(self, game:'GeniusGame'):
         super().on_call(game)
         self.resolve_damage(game)
-        game.manager.invoke(EventType.AFTER_USE_SKILL, game)
+        # game.manager.invoke(EventType.AFTER_USE_SKILL, game)
         self.from_character.from_player.prepared_skill = None
 
 class TidecallerSurfEmbrace(Shield):

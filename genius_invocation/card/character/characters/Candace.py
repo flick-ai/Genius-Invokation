@@ -75,7 +75,7 @@ class Heron_Strike(ElementalSkill):
     main_damage = 3
     piercing_damage = 0
     is_prepared_skill = True
-    
+
     cost =[]
     energy_cost = 0
     energy_gain = 0
@@ -83,7 +83,7 @@ class Heron_Strike(ElementalSkill):
     def on_call(self, game:'GeniusGame'):
         super().on_call(game)
         self.resolve_damage(game)
-        game.manager.invoke(EventType.AFTER_USE_SKILL, game)
+        # game.manager.invoke(EventType.AFTER_USE_SKILL, game)
         self.from_character.from_player.prepared_skill = None
 
 
@@ -149,7 +149,7 @@ class Heron_Shield(Shield):
     def on_call(self, game: 'GeniusGame'):
         self.skill.on_call(game)
         self.on_destroy(game)
-        #Check when the shield disappear. Answer: the same point of damage, even the shield is 0. 
+        #Check when the shield disappear. Answer: the same point of damage, even the shield is 0.
         #In this implement, the prepare_status is destroy after the stage of after_skill in the process of on_call.
     def after_change(self,game:'GeniusGame'):
         if game.current_switch["from"] == self.from_character:
@@ -182,14 +182,14 @@ class Prayer_of_the_Crimson_Crown(Combat_Status):
         self.current_usage = 2
         self.additional_damage_round = -1
         self.last_switch_round = -1
-    
+
     def infusion(self, game:'GeniusGame'):
         if isinstance(game.current_damage.damage_from, Character):
             if game.current_damage.damage_from.from_player == self.from_player:
                 if game.current_damage.damage_from.weapon_type in [WeaponType.SWORD, WeaponType.CLAYMORE, WeaponType.POLEARM]:
                     if game.current_damage.main_damage_element == ElementType.PHYSICAL:
                         game.current_damage.main_damage_element = ElementType.HYDRO
-    
+
     def on_dmg_add(self, game:'GeniusGame'):
         if isinstance(game.current_damage.damage_from, Character):
             if game.current_damage.damage_from.from_player == self.from_player:
@@ -213,7 +213,7 @@ class Prayer_of_the_Crimson_Crown(Combat_Status):
             )
             game.add_damage(dmg)
             game.resolve_damage()
-    
+
     def on_switch(self, game:'GeniusGame'):
         if self.last_switch_round == game.round: return
         if game.active_player != self.from_player: return
@@ -229,16 +229,16 @@ class Prayer_of_the_Crimson_Crown(Combat_Status):
         game.add_damage(dmg)
         game.resolve_damage()
         self.last_switch_round = game.round
-    
+
     def on_begin_phase(self, game:'GeniusGame'):
         if game.active_player == self.from_player:
             self.current_usage -= 1
             if self.current_usage == 0:
                 self.on_destroy(game)
-    
+
     def update(self):
         self.current_usage = self.usage
-    
+
     def update_listener_list(self):
         self.listeners = [
             (EventType.INFUSION, ZoneType.ACTIVE_ZONE, self.infusion),

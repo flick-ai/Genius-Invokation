@@ -129,7 +129,7 @@ class Incineration_Drive(ElementalBurst):
     def on_call(self, game:'GeniusGame'):
         super().on_call(game)
         self.resolve_damage(game)
-        game.manager.invoke(EventType.AFTER_USE_SKILL, game)
+        # game.manager.invoke(EventType.AFTER_USE_SKILL, game)
         self.from_character.from_player.prepared_skill = None
 
 
@@ -161,7 +161,7 @@ class Fiery_Sanctum_Field(Summon):
             self.current_usage -= 1
             if self.current_usage <=0:
                 self.on_destroy(game)
-    
+
     def update(self):
         self.current_usage = max(self.current_usage, self.usage)
         self.last_round = -1
@@ -177,7 +177,7 @@ class Fiery_Sanctum_Field(Summon):
         if status is not None:
             status.on_destroy(game)
         super().on_destroy(game)
-    
+
     def minus_usage(self, game: 'GeniusGame', count: int):
         self.current_usage -= count
         self.current_usage = max(0, self.current_usage)

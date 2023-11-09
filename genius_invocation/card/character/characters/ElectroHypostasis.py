@@ -67,7 +67,7 @@ class RockPaperScissorsCombo_Paper(ElementalSkill):
         super().on_call(game)
         # 处理伤害
         self.resolve_damage(game)
-        game.manager.invoke(EventType.AFTER_USE_SKILL, game)
+        # game.manager.invoke(EventType.AFTER_USE_SKILL, game)
         self.from_character.from_player.prepared_skill = None
 
 
@@ -127,7 +127,7 @@ class RockPaperScissorsCombo_Scissors(ElementalSkill):
                                      from_character=self.from_character)
         self.from_character.character_zone.add_entity(prepare_paper)
         self.from_character.from_player.prepared_skill = prepare_paper
-        game.manager.invoke(EventType.AFTER_USE_SKILL, game)
+        # game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class PrepareScissors(Status):
     '''
