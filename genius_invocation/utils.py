@@ -308,57 +308,47 @@ def Elements_to_color(ele: ElementType):
         case ElementType.PIERCING:
             return "rgb(255,255,255)"
 
-
-from genius_invocation.card.action import *
-import genius_invocation.card.character.characters as chars
-def select_card(characters: List['Character'], all_action_card: List['ActionCard']):
-    all_weapon_type = {}
-    same_country = {}
-    same_element = {}
-    all_character = []
-    available_action_card = defaultdict(list)
-
-    for character in characters:
-        character = eval('chars.'+character)
-        all_character.append(character.__name__)
-        same_element[character.element] = same_element.get(character.element, 0) + 1
-        same_country[character.country] = same_country.get(character.country, 0) + 1
-        all_weapon_type[character.weapon_type] = all_weapon_type.get(character.weapon_type, 0) + 1
-
-    all_action_card  = sorted(all_action_card, key=lambda x:x[-1].id)
-    for class_name, name, name_ch, action_card in all_action_card:
-        match action_card.card_type:
-            case ActionCardType.EQUIPMENT_ARTIFACT:
-                available_action_card['ARTIFACT'].append((class_name, name, name_ch))
-            case ActionCardType.EQUIPMENT_WEAPON:
-                if action_card.weapon_type in all_weapon_type:
-                    available_action_card['WEAPON_TALENT'].append((class_name, name, name_ch))
-            case ActionCardType.EQUIPMENT_TALENT:
-                if action_card.character.__name__ in all_character:
-                    available_action_card['WEAPON_TALENT'].append((class_name, name, name_ch))
-            case ActionCardType.SUPPORT_LOCATION:
-                available_action_card['SUPPORT'].append((class_name, name, name_ch))
-            case ActionCardType.SUPPORT_ITEM:
-                available_action_card['SUPPORT'].append((class_name, name, name_ch))
-            case ActionCardType.SUPPORT_COMPANION:
-                available_action_card['SUPPORT'].append((class_name, name, name_ch))
-            case ActionCardType.EVENT_FOOD:
-                available_action_card['EVENT'].append((class_name, name, name_ch))
-            case ActionCardType.EVENT:
-                available_action_card['EVENT'].append((class_name, name, name_ch))
-            case ActionCardType.EVENT_ARCANE_LEGEND:
-                available_action_card['ARCANE_LEGEND'].append((class_name, name, name_ch))
-            case ActionCardType.EVENT_ELEMENTAL_RESONANCE:
-                if same_element.get(action_card.element, 0) >= 2:
-                    available_action_card['EVENT'].append((class_name, name, name_ch))
-            case ActionCardType.EVENT_COUNTRY:
-                if same_country.get(action_card.country, 0) >= 2:
-                    available_action_card['EVENT'].append((class_name, name, name_ch))
-    return available_action_card
-
-
 def decode_enum(dct):
     if "enum_type" in dct and "enum_name" in dct:
         enum_type = globals()[dct["enum_type"]]
         return enum_type[dct["enum_name"]]
     return dct
+
+import base64
+def code_to_name(code, maps):
+    binary = base64.b64decode(code)
+    bb = []
+    for b in binary:
+        bb.append((256 + b - binary[-1]) % 256)
+    bb = bb[:-1]
+    binary = bb[::2] + bb[1::2]
+    res = ''
+    for i in binary:
+        res += '{:08b} '.format(i)
+    res = res.replace(' ', '')
+    decode = []
+    for i in range(0, len(res), 12):
+        decode.append(int(res[i:i+12], 2))
+    res = decode[:-1]
+    print([maps[x-1][1] for x in res])
+    return [maps[x-1][0] for x in res]
+
+def name_to_code(name, maps, checksum=0):
+    binary = ''
+    for i in name:
+        idx = maps.index(i)
+        if idx == -1:
+            binary += '{:012b} '.format(0)
+        binary += '{:012b} '.format(idx + 1)
+    binary = binary.replace(' ', '')
+    b8 = []
+    for i in range(0, len(binary), 8):
+        b8.append(int(binary[i:i+8], 2))
+    b8[-1] = b8[-1] * 16
+    uint = list(zip(b8[:25], b8[25:]))
+    uint = [list(x) for x in uint]
+    uint = sum(uint, start = [])
+    uint.append(0)
+    uint = [(x + checksum) % 256 for x in uint]
+    res = base64.b64encode(bytes(uint)).decode()
+    return res

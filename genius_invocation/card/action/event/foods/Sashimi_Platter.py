@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 class Sashimi_Platter_Entity(Status):
     id: int = 333010
     name: str = 'Sashimi Platter'
-    name_chr = '刺身拼盘'
+    name_ch = '刺身拼盘'
     
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
@@ -33,7 +33,7 @@ class Sashimi_Platter_Entity(Status):
 class Sashimi_Platter(FoodCard):
     id: int = 333010
     name: str = 'Sashimi Platter'
-    name_chr = '刺身拼盘'
+    name_ch = '刺身拼盘'
     cost_num = 1
     cost_type = CostType.WHITE
 

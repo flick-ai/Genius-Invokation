@@ -36,7 +36,7 @@ class Status(Entity):
         try:
             return str(self.current_usage)
         except:
-            return "^(._.)<^"
+            return "^(._.)^"
 
 class Combat_Status(Entity):
     id: int
@@ -57,7 +57,7 @@ class Combat_Status(Entity):
         try:
             return str(self.current_usage)
         except:
-            return "^(._.)<^"
+            return "^(._.)^"
 
 class Shield(Status):
     # Status of shield (Only for single character)

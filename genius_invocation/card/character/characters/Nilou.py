@@ -108,7 +108,7 @@ class Nilou(Character):
     country: CountryType = CountryType.SUMERU
     init_health_point: int = 10
     max_health_point: int = 10
-    skill_list: List = []
+    skill_list: List = [DanceofSamser, DanceofHaftkarsvar, DanceofAbzendegi]
     max_power: int = 2
 
     def __init__(self, game: 'GeniusGame', zone: 'CharacterZone', from_player: 'GeniusPlayer', index: int, from_character=None, talent=False):

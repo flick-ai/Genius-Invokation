@@ -17,7 +17,7 @@ class SmallPYRO_Entity(SmallElement):
 
      
 
-class SSmallPYRO(ArtifactCard):
+class SmallPYRO(ArtifactCard):
     id: int = 312301
     name: str = "Witch's Scorching Hat"
     name_ch = "焦灼的魔女帽"

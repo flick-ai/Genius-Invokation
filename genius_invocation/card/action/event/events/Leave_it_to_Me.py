@@ -7,7 +7,7 @@ if TYPE_CHECKING:
 class Switch_Entity(Combat_Status):
     id: int = 332006
     name = 'Leave it to me!'
-    name_ch = '交给我吧'
+    name_ch = '交给我吧！'
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.current_usage = 1
@@ -25,7 +25,7 @@ class Switch_Entity(Combat_Status):
 class Leave_it_to_Me(ActionCard):
     id: int = 332006
     name: str = 'Leave it to Me!'
-    name_ch = '交给我吧'
+    name_ch = '交给我吧！'
     cost_num =0
     cost_type = None
     card_type = ActionCardType.EVENT

@@ -1,4 +1,5 @@
 from genius_invocation.card.character.import_head import *
+from genius_invocation.card.action.equipment.talent.base import TalentCard
 
 class Yunlai_Swordsmanship(NormalAttack):
     '''

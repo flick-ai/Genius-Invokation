@@ -21,7 +21,7 @@ class Pankration_Entity(Combat_Status):
         ]
 
 class Pankration(ActionCard):
-    id: int = 332022
+    id: int = 332023
     name: str = 'Pankration!'
     name_ch = '拳力斗技！'
     cost_num = 0
