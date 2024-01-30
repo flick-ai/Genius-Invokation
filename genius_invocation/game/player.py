@@ -26,6 +26,8 @@ class GeniusPlayer:
         self.index = idx
         self.active_idx = -1
         self.character_list: List[Character] = []
+        self.element_list: List[ElementType] = []
+        self.element_set: set()
         for id, name in enumerate(deck['character']):
             zone = CharacterZone(game, self)
             self.character_list.append(eval("chars."+name)(
@@ -36,7 +38,7 @@ class GeniusPlayer:
                 from_character = None,
                 talent = False))
         self.character_num = len(self.character_list)
-
+        self.update_element_list()
         # 初始化牌库、起始5张手牌、骰子区
         self.card_zone: CardZone = CardZone(game, self, deck['action_card']) # 牌库区
         self.hand_zone: HandZone = HandZone(game, self) # 手牌区
@@ -69,6 +71,13 @@ class GeniusPlayer:
 
         # Mask
         self.action_mask: np.array
+
+    def update_element_list(self):
+        ''' Only For La Signora right now. Refresh the element list, which may be used by some skills and talents.'''
+        self.element_list = []
+        for char in self.character_list:
+            self.element_list.append(char.element)
+        self.element_set = set(self.element_list)
 
     def choose_card(self, action: 'Action'):
         '''

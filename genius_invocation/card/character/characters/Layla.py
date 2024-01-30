@@ -172,7 +172,7 @@ class Dream_of_the_StarStream_Shaker(ElementalBurst):
 class Celestial_Dreamsphere(Summon):
     name = "Celestial Dreamsphere"
     name_ch = "PASS"
-    id:int = 13054
+    id:int = 11094
     element: ElementType = ElementType.ELECTRO
     removable: bool = True
 

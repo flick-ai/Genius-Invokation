@@ -2,7 +2,7 @@ from genius_invocation.card.action.equipment.talent.import_head import *
 from genius_invocation.card.character.characters.Layla import *
 
 class LightsRemit(TalentCard):
-    id: int=114514
+    id: int=211091
     name: str = "Light's Remit"
     name_ch = "归芒携信"
     is_action = True
