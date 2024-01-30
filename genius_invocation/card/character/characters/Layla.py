@@ -1,7 +1,7 @@
 from genius_invocation.card.character.import_head import *
 
 class Sward_of_the_Radiant_Path(NormalAttack):
-    id: int = 13051
+    id: int = 11091
     name = "Sward of the Radiant Path"
     name_ch = "熠辉轨度剑"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -43,7 +43,7 @@ class Nights_of_Formal_Focus(ElementalSkill):
         垂裳端凝之夜
         元素战技
     '''
-    id: int = 13052
+    id: int = 11092
     name="Nights of Formal Focus"
     name_ch = "垂裳端凝之夜"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -133,17 +133,17 @@ class Shooting_Star(Combat_Status):
 
 class Dream_of_the_StarStream_Shaker(ElementalBurst):
     '''
-        琉金云间草
+        星流摇床之梦
         元素爆发
     '''
-    id: int = 13053
-    name = "Ryuukin Saxifrage"
-    name_ch = "琉金云间草"
+    id: int = 11093
+    name = " Dream of the Star-Stream Shaker"
+    name_ch = "星流摇床之梦"
     type: SkillType = SkillType.ELEMENTAL_BURST
 
     # damage
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
-    main_damage_element: ElementType = ElementType.PYRO
+    main_damage_element: ElementType = ElementType.CRYO
     main_damage: int = 3
     piercing_damage: int = 0
 
@@ -151,7 +151,7 @@ class Dream_of_the_StarStream_Shaker(ElementalBurst):
     cost = [
         {
             'cost_num': 3,
-            'cost_type': CostType.PYRO
+            'cost_type': CostType.CRYO
         },
     ]
     energy_cost: int = 2
@@ -213,7 +213,7 @@ class Celestial_Dreamsphere(Summon):
 
 class Layla(Character):
     '''莱依拉'''
-    id: int = 1305
+    id: int = 1109
     name: str = 'Layla'
     name_ch = "莱依拉"
     element: ElementType = ElementType.CRYO
