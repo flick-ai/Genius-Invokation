@@ -160,8 +160,8 @@ class Fatui_Pyro_Agent(Character):
     element: ElementType = ElementType.PYRO
     weapon_type: WeaponType = WeaponType.OTHER
     country: CountryType = CountryType.FATUI
-    init_health_point: int = 10
-    max_health_point: int = 10
+    init_health_point: int = 9
+    max_health_point: int = 9
     skill_list = [Thrust, Prowl, Blade_Ablastion]
     max_power = 2
     
