@@ -243,6 +243,7 @@ class Dehya(Character):
     element: ElementType = ElementType.PYRO
     weapon_type: WeaponType = WeaponType.CLAYMORE
     country: CountryType = CountryType.SUMERU
+    country_list: List[CountryType] = [CountryType.SUMERU, CountryType.EREMITES]
     init_health_point: int = 10
     max_health_point: int = 10
     skill_list = [Sandstorm_Assault, Molten_Inferno, Leonine_Bite]

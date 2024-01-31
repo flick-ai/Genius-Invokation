@@ -18,7 +18,8 @@ class CountryType(Enum):
     FATUI = 7 # 愚人众
     HILICHURL = 8 # 丘丘人
     MONSTER = 9 # 怪物
-    OTHER = 10 # 其他
+    EREMITES = 10 # 镀金旅团
+    OTHER = 11 # 其他
 
 class WeaponType(Enum):
     SWORD = 0 # 单手剑
