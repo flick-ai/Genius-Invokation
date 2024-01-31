@@ -146,7 +146,6 @@ class Bewildering_Lights(ElementalSkill):
     name_ch = "眩惑光戏法"
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
-    # No damage
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
     main_damage_element: ElementType = ElementType.PYRO
     main_damage: int = 3

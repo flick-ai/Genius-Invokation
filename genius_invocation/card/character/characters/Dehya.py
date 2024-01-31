@@ -162,9 +162,11 @@ class Fiery_Sanctum_Field(Summon):
             if self.current_usage <=0:
                 self.on_destroy(game)
 
-    def update(self):
+    def update(self, game:'GeniusGame'):
         self.current_usage = max(self.current_usage, self.usage)
-        self.last_round = -1
+        if self.from_player.team_combat_status.has_status(Shield_from_Fiery_Sanctum) is None:
+            status = Shield_from_Fiery_Sanctum(game, self.from_player, self.from_character, self)
+            self.from_player.team_combat_status.add_entity(status)
 
     def update_listener_list(self):
         self.listeners = [
@@ -196,6 +198,7 @@ class Fiery_Sanctum_Field(Summon):
         self.from_player.team_combat_status.add_entity(status)
 
 class Shield_from_Fiery_Sanctum(Combat_Status):
+    '''The from_charater of this shield should always be Dehya'''
     name = "Shield from Fiery Sanctum"
     name_ch = "净焰剑狱领域护盾"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, from_summon:'Summon' = None):
@@ -207,7 +210,7 @@ class Shield_from_Fiery_Sanctum(Combat_Status):
 
     def on_execute_dmg(self, game:"GeniusGame"):
         if self.from_character.is_active: return
-        if not self.from_character.is_active: return
+        if not self.from_character.is_alive: return
         if game.current_damage.damage_to != self.from_player: return
         if game.current_damage.main_damage <= 0: return
         if game.current_damage.main_damage_element == ElementType.PIERCING: return
@@ -230,7 +233,7 @@ class Shield_from_Fiery_Sanctum(Combat_Status):
             (EventType.EXECUTE_DAMAGE, ZoneType.ACTIVE_ZONE, self.on_execute_dmg)
         ]
     def update(self):
-        self.current_usage = self.from_summon.current_usage
+        self.current_usage = 1
 
 
 class Dehya(Character):

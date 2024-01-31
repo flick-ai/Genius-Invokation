@@ -164,6 +164,7 @@ class Jean(Character):
         super().__init__(game, zone, from_player, index, from_character)
         self.power = 0
         self.talent = talent
+        self.talent_skill = self.skills[2]
         self.need_to_switch = False
 
     def special_switch(self, game: 'GeniusGame'):
