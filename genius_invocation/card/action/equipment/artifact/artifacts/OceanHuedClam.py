@@ -16,7 +16,7 @@ class OceanHuedClamEntity(Artifact):
         super().__init__(game, from_player, from_character, artifact_card)
         self.heal = 0
         self.usage = 0
-        self.from_character.heal(heal=3, game=game)
+        self.from_character.heal(heal=2, game=game)
 
     def update(self):
         pass

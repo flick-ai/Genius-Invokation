@@ -166,4 +166,4 @@ class Yelan(Character):
             self.from_player.fix_dice += [dice_type.value] * len(self.from_player.element_set)
     
     def listen_talent_events(self, game: 'GeniusGame'):
-        self.listen_event(game, EventType.BEGIN_ROLL_PHASE, self.on_begin)
+        self.listen_event(game, EventType.BEGIN_ROLL_PHASE, ZoneType.CHARACTER_ZONE, self.on_begin)

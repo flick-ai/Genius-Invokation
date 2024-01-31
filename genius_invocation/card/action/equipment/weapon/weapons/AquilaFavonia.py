@@ -25,7 +25,7 @@ class AquilaFavoniaWeapon(Weapon):
         if self.round != game.round:
             self.round = game.round
             self.usage = self.max_usage
-        if game.current_skill.from_character.from_player != self.from_player:
+        if game.current_skill.from_character.from_player != self.from_player and self.from_character.is_active:
             if self.usage > 0:
                 self.from_character.heal(heal=1, game=game)
                 self.usage -= 1

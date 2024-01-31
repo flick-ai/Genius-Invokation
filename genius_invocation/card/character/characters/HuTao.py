@@ -98,7 +98,7 @@ class Spirit_Soother(ElementalBurst):
         self.consume_energy(game)
         if self.from_character.health_point<=6:
             self.resolve_damage(game,add_main_damage=1)
-            self.from_character.heal(3)
+            self.from_character.heal(3, game)
         else:
             self.resolve_damage(game)
             self.from_character.heal(2, game)

@@ -97,7 +97,11 @@ def select_card(characters: List['Character'], all_action_card: List['ActionCard
         character = eval('chars.'+character)
         all_character.append(character.__name__)
         same_element[character.element] = same_element.get(character.element, 0) + 1
-        same_country[character.country] = same_country.get(character.country, 0) + 1
+        if hasattr(character, 'country_list'):
+            for country in character.country_list:
+                same_country[country] = same_country.get(country, 0) + 1
+        else:
+            same_country[character.country] = same_country.get(character.country, 0) + 1
         all_weapon_type[character.weapon_type] = all_weapon_type.get(character.weapon_type, 0) + 1
 
     all_action_card  = sorted(all_action_card, key=lambda x:x[-1].id)

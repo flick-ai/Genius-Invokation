@@ -92,7 +92,7 @@ class Leonine_Bite(ElementalBurst):
     cost = [
         {
             'cost_num': 4,
-            'cost_type': CostType.HYDRO
+            'cost_type': CostType.PYRO
         }
     ]
     energy_cost=2
