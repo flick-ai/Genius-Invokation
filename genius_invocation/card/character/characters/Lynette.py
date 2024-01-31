@@ -234,7 +234,7 @@ class Magic_Trick_Astonishing_Shift(ElementalBurst):
 class Lynette(Character):
     id: int = 1508
     name: str = "Lynette"
-    name_ch = "林尼特"
+    name_ch = "琳妮特"
     element: ElementType = ElementType.ANEMO
     weapon_type: WeaponType = WeaponType.SWORD
     country: CountryType = CountryType.FONTAINE
