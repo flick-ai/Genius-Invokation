@@ -130,6 +130,15 @@ class Prop_Surplus(Status):
     def update(self):
         self.current_usage = min(self.usage, self.current_usage + 1)
     
+    def after_skill(self, game: "GeniusGame"):
+        if game.current_skill.from_character == self.from_character and game.current_skill.type == ElementalSkill:
+            self.from_character.heal(self.current_usage, game)
+            self.on_destroy(game)
+    
+    def update_listener_list(self):
+        self.listeners = [
+            (EventType.AFTER_USE_SKILL, ZoneType.CHARACTER_ZONE, self.after_skill)
+        ]
 
 class Bewildering_Lights(ElementalSkill):
     id: int = 13103
@@ -161,12 +170,8 @@ class Bewildering_Lights(ElementalSkill):
         stacks = 0
         status = self.from_character.has_status(Prop_Surplus)
         if status is not None:
-            stacks = status.current_usage
-            status.on_destroy(game)
-    
+            stacks = status.current_usage    
         self.resolve_damage(game, add_main_damage=stacks)
-        if stacks > 0:
-            self.from_character.heal(stacks, game)
         self.gain_energy(game)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
