@@ -105,7 +105,8 @@ class Fiery_Rebirth(Status):
         '''
         if not self.from_character.is_alive:
             self.from_character.is_alive = True
-            self.from_character.health_point = 3
+            self.from_character.health_point = 0
+            self.from_character.heal(3, game)
             #TODO: check whether this operation is belongs to heal?
             if self.set_talent:
                 shield = Aegis_of_Abyssal_Flame(game, self.from_player, self.from_character)

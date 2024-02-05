@@ -115,6 +115,9 @@ class Bogglecat_Box(Summon):
         self.usage = 2
         self.current_usage = 2
         self.infuse_element = ElementType.ANEMO
+        if self.from_player.team_combat_status.has_status(Shield_from_Booglecat_Box) is None:
+            status = Shield_from_Booglecat_Box(game, self.from_player, self.from_character, self)
+            self.from_player.team_combat_status.add_entity(status)
 
     def begin_round(self, game: 'GeniusGame'):
         if self.from_player.team_combat_status.has_status(Shield_from_Booglecat_Box) is None:
@@ -127,7 +130,7 @@ class Bogglecat_Box(Summon):
             status = Shield_from_Booglecat_Box(game, self.from_player, self.from_character, self)
             self.from_player.team_combat_status.add_entity(status)
 
-    def on_excuete_dmg(self, game:'GeniusGame'):
+    def on_execute_dmg(self, game:'GeniusGame'):
         if self.infuse_element == ElementType.ANEMO:
             if game.current_damage.damage_to.from_player == self.from_player \
                 and game.current_damage.main_damage_element in [ElementType.CRYO, ElementType.HYDRO, ElementType.PYRO, ElementType.ELECTRO]:
@@ -161,7 +164,7 @@ class Bogglecat_Box(Summon):
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.EXECUTE_DAMAGE, ZoneType.SUMMON_ZONE, self.on_excuete_dmg),
+            (EventType.EXECUTE_DAMAGE, ZoneType.SUMMON_ZONE, self.on_execute_dmg),
             (EventType.END_PHASE, ZoneType.SUMMON_ZONE, self.end_phase),
             (EventType.BEGIN_ACTION_PHASE, ZoneType.SUMMON_ZONE, self.begin_round)
         ]
@@ -169,12 +172,6 @@ class Bogglecat_Box(Summon):
 class Shield_from_Booglecat_Box(Combat_Status):
     name = 'Shield from Booglecat Box'
     name_ch = '猫猫盒之盾'
-    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, from_summon:'Summon' = None):
-        super().__init__(game, from_player, from_character)
-        # USAGE SHOULD ALWAYS SAME WITH SUMMON
-        self.from_summon = from_summon
-        self.current_usage = self.from_summon.current_usage
-        self.usage = self.from_summon.usage
 
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, from_summon:'Summon' = None):
         super().__init__(game, from_player, from_character)
@@ -184,8 +181,8 @@ class Shield_from_Booglecat_Box(Combat_Status):
         self.usage = 1
 
     def on_execute_dmg(self, game:"GeniusGame"):
-        if self.from_character.is_active: return
-        if game.current_damage.damage_to != self.from_player: return
+        if not game.current_damage.damage_to.is_active: return
+        if game.current_damage.damage_to.from_player != self.from_player: return
         if game.current_damage.main_damage <= 0: return
         if game.current_damage.main_damage_element == ElementType.PIERCING: return
         game.current_damage.main_damage -= 1

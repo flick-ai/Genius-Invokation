@@ -73,7 +73,7 @@ class Yuegui(Summon):
             max_damage = -1
             characters = [get_my_active_character(game)] + get_my_standby_character(game)
             for idx, char in enumerate(characters):
-                if char.max_health_point - char.health_point > max_damage:
+                if char.is_alive and char.max_health_point - char.health_point > max_damage:
                     max_idx = idx
             target = self.from_player.character_list[max_idx]
             target.heal(heal=heal, game=game)
@@ -126,7 +126,7 @@ class AdeptalLegacy(Combat_Status):
 
             dmg = Damage.create_damage(
                 game,
-                damage_type=SkillType.SUMMON,
+                damage_type=SkillType.OTHER,
                 main_damage_element=ElementType.DENDRO,
                 main_damage=damage,
                 piercing_damage=0,
@@ -145,7 +145,7 @@ class AdeptalLegacy(Combat_Status):
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.AFTER_CHANGE_CHARACTER, ZoneType.SUMMON_ZONE, self.on_swich),
+            (EventType.AFTER_CHANGE_CHARACTER, ZoneType.ACTIVE_ZONE, self.on_swich),
         ]
 
 

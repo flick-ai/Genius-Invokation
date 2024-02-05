@@ -23,8 +23,8 @@ if TYPE_CHECKING:
 class GeniusPlayer:
     def __init__(self, game: 'GeniusGame', deck, idx) -> None:
         # 初始化角色状态区
-        self.index = idx
-        self.active_idx = -1
+        self.index: int = idx
+        self.active_idx: int = -1
         self.character_list: List[Character] = []
         self.element_list: List[ElementType] = []
         self.element_set: set()

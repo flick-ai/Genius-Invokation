@@ -135,7 +135,7 @@ class SeamlessShield(Combat_Shield):
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.EXECUTE_DAMAGE, ZoneType.ACTIVE_ZONE_SHIELD, self.on_excuete_dmg)
+            (EventType.EXECUTE_DAMAGE, ZoneType.ACTIVE_ZONE_SHIELD, self.on_execute_dmg)
         ]
 
 class HolisticRevivification(ElementalBurst):

@@ -28,7 +28,7 @@ class VijnanaPhalaMine(ElementalSkill):
     main_damage_element: ElementType = ElementType.DENDRO
     main_damage: int = 2
     piercing_damage: int = 0
-    cost = [{'cost_num':2, 'cost_type':CostType.DENDRO}]
+    cost = [{'cost_num':3, 'cost_type':CostType.DENDRO}]
     energy_cost: int = 0
     energy_gain: int = 1
     def on_call(self, game: 'GeniusGame'):
@@ -40,15 +40,15 @@ class VijnanaPhalaMine(ElementalSkill):
 
 class VijnanaSuffusion(Status):
     name = "Vijnana Suffusion"
-    name_ch = " 通塞识"
+    name_ch = "通塞识"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None):
         super().__init__(game, from_player, from_character)
-        self.max_usage = 2
+        self.usage = 2
         self.current_usage = 2
         self.is_use = False
 
     def update(self):
-        self.current_usage = max(self.max_usage, self.current_usage)
+        self.current_usage = max(self.usage, self.current_usage)
 
     def on_infuse(self, game:'GeniusGame'):
         if game.current_damage.damage_from == self.from_character:

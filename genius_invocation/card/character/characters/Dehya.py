@@ -198,7 +198,7 @@ class Fiery_Sanctum_Field(Summon):
         self.from_player.team_combat_status.add_entity(status)
 
 class Shield_from_Fiery_Sanctum(Combat_Status):
-    '''The from_charater of this shield should always be Dehya'''
+    '''The from_character of this shield should always be Dehya'''
     name = "Shield from Fiery Sanctum"
     name_ch = "净焰剑狱领域护盾"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, from_summon:'Summon' = None):

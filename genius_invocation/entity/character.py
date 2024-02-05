@@ -126,9 +126,10 @@ class Character(Entity):
         assert self.is_alive==False
         self.is_frozen = False
         self.is_active = False
+        self.is_satisfy = False
         self.talent = False
         self.power = 0
-        self.elemental_attach = None
+        self.elemental_application = []
         self.character_zone.clear(game)
         for action in self.registered_events:
             action.remove()

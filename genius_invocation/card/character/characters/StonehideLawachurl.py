@@ -115,20 +115,43 @@ class StonehideLawachurl(Character):
         self.power = 0
         self.talent = talent
         self.talent_skill = self.skills[2]
+        self.last_skill = False
+        if self.talent:
+            self.listen_talent_events(game)
 
     def init_state(self, game: 'GeniusGame'):
         status = InfusedStonehide(game, self.from_player, self)
         self.character_zone.add_entity(status)
 
-    def reget_InfusedStonehide(self, game: 'GeniusGame'):
-        if self.talent:
-            if game.current_skill.from_character == self:
-                if not get_opponent_active_character(game).is_alive:
-                    status = self.character_zone.has_entity(InfusedStonehide)
-                    if status is None:
-                        status = InfusedStonehide(game, self.from_player, self)
-                        self.character_zone.add_entity(status)
-                    else:
-                        status.update()
+    # def reget_InfusedStonehide(self, game: 'GeniusGame'):
+    #     if self.talent:
+    #         if game.current_skill.from_character == self:
+    #             if not get_opponent_active_character(game).is_alive:
+    #                 status = self.character_zone.has_entity(InfusedStonehide)
+    #                 if status is None:
+    #                     status = InfusedStonehide(game, self.from_player, self)
+    #                     self.character_zone.add_entity(status)
+    #                 else:
+    #                     status.update()
 
+    def on_die(self, game: 'GeniusGame'):
+        if game.current_die.from_player != self.from_player:
+            if self.last_skill:
+                status = self.character_zone.has_entity(InfusedStonehide)
+                if status is None:
+                    status = InfusedStonehide(game, self.from_player, self)
+                    self.character_zone.add_entity(status)
+                else:
+                    status.update()
         
+
+
+    def on_use_skill(self, game: 'GeniusGame'):
+        if game.current_skill.from_character == self:
+            self.last_skill = True
+        else:
+            self.last_skill = False
+    
+    def listen_talent_events(self, game: 'GeniusGame'):
+        self.listen_event(game, EventType.ON_USE_SKILL, ZoneType.CHARACTER_ZONE, self.on_use_skill)
+        self.listen_event(game, EventType.CHARACTER_DIE, ZoneType.CHARACTER_ZONE, self.on_die)

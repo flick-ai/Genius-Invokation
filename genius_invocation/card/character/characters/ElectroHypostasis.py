@@ -305,7 +305,8 @@ class ElectroCrystalCore(Status):
         '''
         if not self.from_character.is_alive or self.from_character.health_point<=0:
             self.from_character.is_alive = True
-            self.from_character.health_point = 1
+            self.from_character.health_point = 0
+            self.from_character.heal(1, game)
             self.on_destroy(game)
 
     def update_listener_list(self):

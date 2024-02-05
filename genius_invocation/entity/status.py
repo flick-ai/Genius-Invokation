@@ -66,7 +66,7 @@ class Shield(Status):
     def on_destroy(self, game):
         super().on_destroy(game)
 
-    def on_excuete_dmg(self,game: 'GeniusGame'):
+    def on_execute_dmg(self,game: 'GeniusGame'):
         if game.current_damage.main_damage_element != ElementType.PIERCING:
             if game.current_damage.damage_to == self.from_character:
                 if game.current_damage.main_damage >= self.current_usage:
@@ -79,7 +79,7 @@ class Shield(Status):
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.EXECUTE_DAMAGE, ZoneType.CHARACTER_ZONE, self.on_excuete_dmg)
+            (EventType.EXECUTE_DAMAGE, ZoneType.CHARACTER_ZONE, self.on_execute_dmg)
         ]
 
 class Combat_Shield(Combat_Status):
@@ -90,7 +90,7 @@ class Combat_Shield(Combat_Status):
     def on_destroy(self, game):
         super().on_destroy(game)
 
-    def on_excuete_dmg(self,game: 'GeniusGame'):
+    def on_execute_dmg(self,game: 'GeniusGame'):
         if game.current_damage.main_damage_element != ElementType.PIERCING:
             if game.current_damage.damage_to.from_player == self.from_player:
                 if game.current_damage.damage_to.is_active:
@@ -104,7 +104,7 @@ class Combat_Shield(Combat_Status):
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.EXECUTE_DAMAGE, ZoneType.ACTIVE_ZONE_SHIELD, self.on_excuete_dmg)
+            (EventType.EXECUTE_DAMAGE, ZoneType.ACTIVE_ZONE_SHIELD, self.on_execute_dmg)
         ]
 class Equipment(Entity):
     pass

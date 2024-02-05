@@ -21,6 +21,7 @@ class GamblersEarringsEntity(Artifact):
             if game.current_die.from_player != self.from_player:
                 if self.from_character.is_active:
                     self.from_player.dice_zone.add([DiceType.OMNI.value, DiceType.OMNI.value])
+                    self.usage -= 1
 
     def update_listener_list(self):
         self.listeners = [
