@@ -249,10 +249,10 @@ class IceSealed_Crimson_Witch_of_Embers(Status):
 
 
 
-class A(NormalAttack):
+class Crimson_Lotus_Moth(NormalAttack):
     id: int = 21024
-    name = "A"
-    name_ch = "火A"
+    name = "Crimson Lotus Moth"
+    name_ch = "红莲之蛾"
     type: SkillType = SkillType.NORMAL_ATTACK
     damage_type: SkillType = SkillType.NORMAL_ATTACK
     main_damage_element: ElementType = ElementType.PYRO
@@ -268,10 +268,10 @@ class A(NormalAttack):
         self.gain_energy(game)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
-class B(ElementalSkill):
+class Decimating_Lash(ElementalSkill):
     id: int = 21025
-    name = "B"
-    name_ch = "火E"
+    name = "Decimating Lash"
+    name_ch = "烬灭之鞭"
     type: SkillType = SkillType.ELEMENTAL_SKILL
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
     main_damage_element: ElementType = ElementType.PYRO
@@ -293,10 +293,10 @@ class B(ElementalSkill):
         self.gain_energy(game)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
-class C(ElementalBurst):
+class Whirling_Blaze(ElementalBurst):
     id: int = 21026
-    name = "C"
-    name_ch = "火Q"
+    name = "Whirling Blaze"
+    name_ch = "燃焰旋织"
     type: SkillType = SkillType.ELEMENTAL_BURST
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
     main_damage_element: ElementType = ElementType.PYRO
@@ -323,7 +323,7 @@ class Crimson_Witch_of_Embers(Character):
     country: CountryType = CountryType.FATUI
     init_health_point: int = 10
     max_health_point: int = 10
-    skill_list: List = [A, B, C]
+    skill_list: List = [Crimson_Lotus_Moth, Decimating_Lash, Whirling_Blaze]
     max_power: int = 2
 
     def __init__(self, game: 'GeniusGame', zone: 'CharacterZone', from_player: 'GeniusPlayer', index: int, from_character=None, talent=False, power= 0, health_point = 10, is_active=False, is_alive= True, is_frozen = False, is_satisfy = False, elemental_application = []):
