@@ -45,7 +45,7 @@ class TempestuousBarrage(ElementalSkill):
 class TotalCollapse(Status):
     name = "Total Collapse"
     name_ch = "坍毁"
-    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, dvalin: Dvalin = None):
+    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, dvalin: 'Dvalin' = None):
         super().__init__(game, from_player, from_character)
         self.usage = 1
         self.current_usage = 1
