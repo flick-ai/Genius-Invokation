@@ -16,7 +16,7 @@ class UnmovableMountain(Shield):
         self.current_usage = 2
 
     def update(self):
-        self.current_usage = 2 
+        self.current_usage = 2
 
 class TenacityoftheMillelithEntity(Artifact):
     name: str = "Tenacity of the Millelith"
@@ -48,7 +48,7 @@ class TenacityoftheMillelithEntity(Artifact):
                 element_dice = ElementToDice[self.from_character.element]
                 self.from_player.dice_zone.add([element_dice.value])
                 self.return_dice = False
-                    
+
 
     def update_listener_list(self):
         self.listeners = [
