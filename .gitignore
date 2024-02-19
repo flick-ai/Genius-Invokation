@@ -6,9 +6,10 @@ rlcard/*
 build/*
 dist/*
 *.egg-info/*
+*.log
+genius_invocation/*.log
+genius_invocation/save_data.pickle
 ```
 index_*.html
 website/static/genius_invocation-0.0.1-py3-none-any.whl
-*.log
-genius_invocation/*.log
-genius_invocation/*.pickle
+
