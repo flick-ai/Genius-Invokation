@@ -1,7 +1,4 @@
 from genius_invocation.card.character.import_head import *
-from genius_invocation.game.action import Action
-from genius_invocation.game.game import GeniusGame
-from genius_invocation.utils import EventType, GeniusGame, ZoneType
 
 class ThunderousWingslash(NormalAttack):
     id: int = 24021
