@@ -25,7 +25,7 @@ class AuraofMajesty(ElementalSkill):
     name_ch = "磅礴之气"
     type: SkillType = SkillType.ELEMENTAL_SKILL
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
-    main_damage_element: ElementType = ElementType.Geo
+    main_damage_element: ElementType = ElementType.GEO
     main_damage: int = 3
     piercing_damage: int = 0
     cost = [{'cost_num':3, 'cost_type':CostType.GEO}]
