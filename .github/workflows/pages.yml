@@ -18,7 +18,7 @@ jobs:
       with:
         python-version: 3.11
     - name: install dependencies
-      run: pip3 install numpy loguru rich flask sphinx-rtd-theme
+      run: pip3 install numpy loguru rich flask sphinx-rtd-theme wheel
     - run: python3 setup.py install
     - name: Build website
       run: |
