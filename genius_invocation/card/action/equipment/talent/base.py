@@ -14,6 +14,7 @@ class TalentCard(EquipmentCard):
     '''
     card_type = ActionCardType.EQUIPMENT_TALENT
     is_action: bool = True
+    is_equip: bool = True
     cost_power: int = 0
     character: Type
     cost: list[dict]
@@ -24,7 +25,7 @@ class TalentCard(EquipmentCard):
         
     def on_played(self, game: 'GeniusGame') -> None:
         target_character = game.active_player.character_list[game.current_action.target_idx]
-        target_character.equip_talent(game, self.is_action)
+        target_character.equip_talent(game, self.is_action, self)
 
     def find_target(self, game: 'GeniusGame'):
         if not self.is_action:
@@ -36,3 +37,9 @@ class TalentCard(EquipmentCard):
                 if get_my_active_character(game).power >= self.cost_power:
                     return [game.active_player.active_idx+2]
         return []
+    
+    def count_cost(self):
+        if self.is_equip:
+            return sum([cost['cost_num'] for cost in self.cost])
+        else:
+            return 0

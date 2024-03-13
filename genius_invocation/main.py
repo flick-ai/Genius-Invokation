@@ -63,7 +63,8 @@ def test_select():
 
     # 输出所有行动牌
     available_card = []
-    ignore = [action.ActionCard, action.EquipmentCard, action.WeaponCard, action.TalentCard, action.ArtifactCard, action.SupportCard, action.FoodCard]
+    # ignore = [action.ActionCard, action.EquipmentCard, action.WeaponCard, action.TalentCard, action.ArtifactCard, action.SupportCard, action.FoodCard]
+    ignore = []
     for name, obj in inspect.getmembers(action):
         if inspect.isclass(obj) and obj not in ignore:
             available_card.append((name, obj.name, obj.name_ch, obj))

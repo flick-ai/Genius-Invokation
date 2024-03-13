@@ -230,6 +230,9 @@ def choose_one_summon(Skill: ElementalSkill, game: 'GeniusGame'):
     for summon in Summon_list:
         if Skill.from_character.from_player.summon_zone.has_entity(summon) is None:
             un_summon_list.append(summon)
+    if len(un_summon_list) <= 1:
+        # Already has 2 summons, do Nothing! Trying to summon the remaining but can not do that!
+        return
     if len(un_summon_list) == 0:
         x = Summon_list[game.random.randint(0,2)]
         Skill.from_character.from_player.summon_zone.has_entity(x).update(game)

@@ -106,12 +106,14 @@ class Combat_Shield(Combat_Status):
         self.listeners = [
             (EventType.EXECUTE_DAMAGE, ZoneType.ACTIVE_ZONE_SHIELD, self.on_execute_dmg)
         ]
+
+from genius_invocation.card.action.equipment.weapon.base import WeaponCard
 class Equipment(Entity):
     pass
 
 class Weapon(Equipment):
     # 武器实体
-    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: "Character"= None, weapon_card: 'Weapon' = None):
+    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: "Character"= None, weapon_card: 'WeaponCard' = None):
         super().__init__(game, from_player, from_character)
         self.weapon_card = weapon_card
 
@@ -120,6 +122,7 @@ class Weapon(Equipment):
         self.from_character.character_zone.weapon_card = None
 
     def get_weapon_card(self, game: 'GeniusGame'):
+        '''Get the weapon card from the character to hands.'''
         self.on_destroy(game)
         return self.weapon_card
     
@@ -128,8 +131,13 @@ class Weapon(Equipment):
 
     def show(self):
         return self.name_ch
+
+    def count_cost(self):
+        return self.weapon_card.cost_num
+
+from genius_invocation.card.action.equipment.artifact.base import ArtifactCard
 class Artifact(Equipment):
-    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: "Character"= None, artifact_card: 'Artifact' = None):
+    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: "Character"= None, artifact_card: 'ArtifactCard' = None):
         super().__init__(game, from_player, from_character)
         self.artifact_card = artifact_card
 
@@ -143,6 +151,9 @@ class Artifact(Equipment):
 
     def show(self):
         return self.name_ch
+    
+    def count_cost(self):
+        return self.artifact_card.cost_num
 
 # TODO: Maybe need to move to other places in future
 class Frozen_Status(Status):

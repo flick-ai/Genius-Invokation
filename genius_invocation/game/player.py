@@ -27,7 +27,7 @@ class GeniusPlayer:
         self.active_idx: int = -1
         self.character_list: List[Character] = []
         self.element_list: List[ElementType] = []
-        self.element_set: set()
+        self.element_set: set = set()
         for id, name in enumerate(deck['character']):
             zone = CharacterZone(game, self)
             self.character_list.append(eval("chars."+name)(

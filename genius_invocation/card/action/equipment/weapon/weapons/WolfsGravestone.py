@@ -10,11 +10,6 @@ if TYPE_CHECKING:
 class WolfsGravestoneWeapon(Weapon):
     name: str = "Wolf's Gravestone"
     name_ch = "狼的末路"
-    max_usage = 1
-    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, artifact_card = None):
-        super().__init__(game, from_player, from_character, artifact_card)
-        self.usage = self.max_usage
-        self.round = -1
 
     def on_add_damage(self, game:'GeniusGame'):
         if game.current_damage.damage_from == self.from_character:

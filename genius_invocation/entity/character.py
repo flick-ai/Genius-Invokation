@@ -11,7 +11,7 @@ if TYPE_CHECKING:
     from genius_invocation.event.events import ListenerNode
     from genius_invocation.card.character import CharacterSkill
     from genius_invocation.entity.status import Status
-
+    from genius_invocation.card.action.equipment.talent.base import TalentCard
 class Character(Entity):
     # 角色基本类
     id: int #Identity document, 卡牌的编号，可能用来喂给state for RL。
@@ -66,7 +66,7 @@ class Character(Entity):
         # Should be implement in subclass.
         # Add events that only will be invoked with talent equiped into managers.
 
-    def equip_talent(self, game:'GeniusGame', is_action = True):
+    def equip_talent(self, game:'GeniusGame', is_action = True, talent_card:'TalentCard' = None):
         # TODO 是不是应该先执行动作再listen？有些状态还没生成
         if self.talent:
             self.refresh_talent(game)
@@ -76,6 +76,8 @@ class Character(Entity):
         else:
             self.talent = True
             self.listen_talent_events(game)
+            self.from_character.character_zone.talent_card = talent_card
+            
             if is_action:
                 self.talent_skill.on_call(game)
             game.is_change_player=is_action
