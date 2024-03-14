@@ -8,6 +8,8 @@ if TYPE_CHECKING:
     from genius_invocation.game.action import Action
     from genius_invocation.event.events import ListenerNode
     from genius_invocation.game.player import GeniusPlayer
+    from genius_invocation.card.action.equipment.weapon.base import WeaponCard
+    from genius_invocation.card.action.equipment.artifact.base import ArtifactCard
 
 #TODO: FINISH THE ENTITIES
 
@@ -107,7 +109,7 @@ class Combat_Shield(Combat_Status):
             (EventType.EXECUTE_DAMAGE, ZoneType.ACTIVE_ZONE_SHIELD, self.on_execute_dmg)
         ]
 
-from genius_invocation.card.action.equipment.weapon.base import WeaponCard
+
 class Equipment(Entity):
     pass
 
@@ -135,7 +137,7 @@ class Weapon(Equipment):
     def count_cost(self):
         return self.weapon_card.cost_num
 
-from genius_invocation.card.action.equipment.artifact.base import ArtifactCard
+
 class Artifact(Equipment):
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: "Character"= None, artifact_card: 'ArtifactCard' = None):
         super().__init__(game, from_player, from_character)
