@@ -112,6 +112,12 @@ class Action:
 
     @staticmethod
     def from_input(game: 'GeniusGame', log=None, mode='a', jump=True):
+        if game.incoming_state:
+            true_active_player = game.active_player
+            true_active_player_index = game.active_player_index
+            game.active_player = game.incoming_state.active_player
+            game.active_player_index = game.incoming_state.active_player_index
+
         mask, use_dice = game.active_player.action_mask[:,:,0], game.active_player.action_mask[:,:,1:]
         choice_dict = {0:'打出本方第1张手牌',
                        1:'打出本方第2张手牌',
@@ -219,6 +225,10 @@ class Action:
             log.append({"choice":choice, "target":target, "dice":dice})
             with open("./action.log", mode) as f:
                 json.dump(log, f, indent=4)
+        
+        if game.incoming_state:
+            game.active_player = true_active_player
+            game.active_player_index = true_active_player_index
         return Action(choice, target, dice)
 
 def choose_card(card: List[int]):

@@ -184,6 +184,10 @@ if __name__=="__main__":
     else:
         log = []
         while not game.is_end:
-            print(game.encode_message())
+            if game.incoming_state:
+                print(game.incoming_state.encode_message())
+            else:
+                print(game.encode_message())
+            print(game)
             action = Action.from_input(game, log, mode='w', jump=False)
             game.step(action)

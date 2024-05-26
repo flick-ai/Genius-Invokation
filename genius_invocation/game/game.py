@@ -1,5 +1,6 @@
 from typing import List, TYPE_CHECKING
 import numpy as np
+from copy import deepcopy
 from genius_invocation.utils import *
 from collections import defaultdict
 from genius_invocation.game.action import Action
@@ -32,6 +33,13 @@ class GeniusGame:
         else:
             seed = int(time())
             self.random = np.random.RandomState(seed)
+        self.root_game: GeniusGame = self
+        self.incoming_action_list: list[Action] = []
+        self.incoming_action_list_index: int = 0
+        self.incoming_state: GeniusGame|None = None
+        self.action_list: list[Action] = []
+        self.is_dying = False
+        self.prev_action: Action = None
         self.first_player: int
         self.active_player_index: int
         self.active_player: GeniusPlayer # should be ref of player0 or player1
@@ -41,7 +49,7 @@ class GeniusGame:
         self.game_phase: GamePhase
         self.special_phase = None
         self.round: int = 0
-
+        self.planed_game = {}
         self.current_die: Character = None
         self.current_heal: Heal = None
         self.current_dice: Dice = None
@@ -51,13 +59,94 @@ class GeniusGame:
         self.current_skill: CharacterSkill = None
         self.current_card: ActionCard = None
         self.damage_list: List[Damage] = []
-        self.is_change_player: bool
+        self.is_change_player: bool = False
         #TODO: CHECK THE INITIALIZE OF IS_CHANGE_PLAYER
         self.is_end: bool = False
         self.is_overload:GeniusPlayer = None
 
         self.init_game()
 
+    def copy_game(self):
+        '''
+            复制游戏
+        '''
+        # game = GeniusGame(deepcopy(self.players[0].deck), deepcopy(self.players[1].deck))
+        game = deepcopy(self)
+        game.root_game = self.root_game
+        # game.root_game = deepcopy(self.root_game)
+        # game.manager = deepcopy(self.manager)
+        # game.is_omni = deepcopy(self.is_omni)
+        # game.is_dying = deepcopy(self.is_dying)
+        # game.action_list = deepcopy(self.action_list)
+        # game.num_players = deepcopy(self.num_players)
+        # game.random = deepcopy(self.random)
+        # game.incoming_action_list = deepcopy(self.incoming_action_list)
+        # game.first_player = self.first_player
+        # game.active_player_index = self.active_player_index
+        # game.active_player = self.active_player
+        # game.players = [self.players[0].copy_player(), self.players[1].copy_player()]
+        # game.game_phase = self.game_phase
+        # game.special_phase = self.special_phase
+        # game.round = self.round
+        # game.current_die = self.current_die
+        # game.current_heal = self.current_heal
+        # game.current_dice = self.current_dice
+        # game.current_action = self.current_action
+        # game.current_damage = self.current_damage
+        # game.current_switch = self.current_switch
+        # game.current_skill = self.current_skill
+        # game.current_card = self.current_card
+        # game.damage_list = self.damage_list
+        # game.is_change_player = self.is_change_player
+        # game.is_end = self.is_end
+        # game.is_overload = self.is_overload
+        return game
+    
+    def resolve_game(self, game: 'GeniusGame'):
+        '''
+            处理游戏信息
+        '''
+        self.manager = game.manager
+        self.is_omni = game.is_omni
+        self.is_dying = game.is_dying
+        self.action_list = game.action_list
+        self.num_players = game.num_players
+        self.random = game.random
+        self.incoming_action_list = game.incoming_action_list
+        self.first_player = game.first_player
+        self.active_player_index = game.active_player_index
+        self.active_player = game.active_player
+        self.players = game.players
+        self.game_phase = game.game_phase
+        self.special_phase = game.special_phase
+        self.round = game.round
+        self.current_die = game.current_die
+        self.current_heal = game.current_heal
+        self.current_dice = game.current_dice
+        self.current_action = game.current_action
+        self.current_damage = game.current_damage
+        self.current_switch = game.current_switch
+        self.current_skill = game.current_skill
+        self.current_card = game.current_card
+        self.damage_list = game.damage_list
+        self.is_change_player = game.is_change_player
+        self.is_end = game.is_end
+        self.is_overload = game.is_overload
+        self.root_game = self
+        self.prev_action = game.prev_action
+
+    def forward_action_step(self, action: 'Action'):
+        '''
+            前进一步
+        '''
+        
+
+
+        
+    
+    def planning(self, action, die_action=None):
+        self.die_action = die_action
+        self.step(action)
 
     def reset(self):
         pass
@@ -90,7 +179,7 @@ class GeniusGame:
             处理行动信息
         '''
         self.current_action = action
-        oppenent_player = self.players[1 - self.active_player_index]
+        opponent_player = self.players[1 - self.active_player_index]
         active_player = self.active_player
 
         if action.choice_type == ActionChoice.HAND_CARD:
@@ -109,15 +198,15 @@ class GeniusGame:
         self.manager.invoke(EventType.AFTER_ANY_ACTION, self)
         self.reset_current()
         if active_player.is_pass:
-            if oppenent_player.is_pass:
+            if opponent_player.is_pass:
                 self.end_phase()
             else:
                 self.first_player = self.active_player_index
 
-        if self.is_change_player and (not oppenent_player.is_pass):
+        if self.is_change_player and (not opponent_player.is_pass):
             self.change_active_player()
 
-        oppenent_player = self.players[1 - self.active_player_index]
+        opponent_player = self.players[1 - self.active_player_index]
         self.manager.invoke(EventType.BEFORE_ANY_ACTION, self)
         while self.active_player.prepared_skill is not None:
             character = self.active_player.prepared_skill.from_character
@@ -126,7 +215,7 @@ class GeniusGame:
             if character.is_frozen:
                 break
             self.active_player.prepared_skill.on_call(self)
-            if not oppenent_player.is_pass:
+            if not opponent_player.is_pass:
                 self.change_active_player()
 
     def add_damage(self, damage: Damage):
@@ -189,6 +278,11 @@ class GeniusGame:
                 print(f"player{1-player.index} is winner!")
                 exit()
             if not player.character_list[player.active_idx].is_alive:
+                
+                # for char in player.character_list:
+                #     if char.is_alive:
+                #         char.is_active = True
+                #         break
                 Active_Die(player).on_call(self)
             # num = 0
             # for idx, char in enumerate(player.character_list):
@@ -211,17 +305,52 @@ class GeniusGame:
         '''
         回合轮次
         '''
-        match self.game_phase:
-            case GamePhase.SET_CARD:
-                self.set_hand_card(action)
-            case GamePhase.SET_CHARACTER:
-                self.set_active_character(action)
-            case GamePhase.ROLL_PHASE:
-                self.set_reroll_dice(action)
-            case GamePhase.ACTION_PHASE:
-                self.resolve_action(action)
+        if self.is_dying:
+            print(self.is_dying)
+            self.incoming_action_list.append(action)
+            action = self.prev_action
+            print(self.incoming_action_list)
+        if self.root_game == self:
+            game_for_plan = self.copy_game()
+            print(self, game_for_plan)
+            self.is_dying = False
 
-        self.active_player.generate_mask(self)
+            match game_for_plan.game_phase:
+                case GamePhase.SET_CARD:
+                    game_for_plan.set_hand_card(action)
+                case GamePhase.SET_CHARACTER:
+                    game_for_plan.set_active_character(action)
+                case GamePhase.ROLL_PHASE:
+                    game_for_plan.set_reroll_dice(action)
+                case GamePhase.ACTION_PHASE:
+                    game_for_plan.resolve_action(action)
+            
+            # print(self, game_for_plan)
+            print(self.is_dying)
+            if not self.is_dying:
+                print("resolve game")
+                self.resolve_game(game_for_plan)
+                self.active_player.generate_mask(self)
+                self.incoming_action_list = []
+                self.incoming_action_list_index = 0
+                self.is_dying = False
+                self.incoming_state = None
+            self.prev_action = action
+        else:
+            match self.game_phase:
+                case GamePhase.SET_CARD:
+                    self.set_hand_card(action)
+                case GamePhase.SET_CHARACTER:
+                    self.set_active_character(action)
+                case GamePhase.ROLL_PHASE:
+                    self.set_reroll_dice(action)
+                case GamePhase.ACTION_PHASE:
+                    self.resolve_action(action)
+        
+        # else:
+            
+
+        
 
     def set_hand_card(self, action):
         '''
@@ -326,6 +455,46 @@ class Active_Die:
         self.activate_player_index: int
 
     def on_call(self, game: 'GeniusGame'):
+        self.now_phase = game.game_phase
+        game.game_phase = GamePhase.SET_CHARACTER
+        self.activate_player_index = game.active_player_index
+        if game.active_player != self.die_player:
+            game.change_active_player()
+        game.special_phase = self
+        print("hey")
+        if len(game.incoming_action_list) == game.incoming_action_list_index:
+            # 模拟到最近一个没有action的节点，记录下来当前的state，然后继续模拟下去
+            print("case 1", game.root_game)
+            game.root_game.is_dying = True
+            game.active_player.generate_mask(game)
+            # game.root_game.active_player.action_mask = deepcopy(game.active_player.action_mask)
+            game.root_game.incoming_state = game.copy_game()
+            game.incoming_action_list_index += 1
+            for i in range(3):
+                if game.active_player.action_mask[14][i+2][0] == 1:
+                    game.step(Action(14, i+2, []))
+                    break
+
+        elif len(game.incoming_action_list) < game.incoming_action_list_index:
+            print("case 2", game.root_game)
+            game.root_game.is_dying = True
+            game.active_player.generate_mask(game)
+            game.incoming_action_list_index += 1
+            for i in range(3):
+                if game.active_player.action_mask[14][i+2][0] == 1:
+                    game.step(Action(14, i+2, []))
+                    break
+        else:
+            # 有预先给出的action，按照给出的action模拟
+            print("case 3")
+            action = game.incoming_action_list[game.incoming_action_list_index]
+            game.incoming_action_list_index += 1
+            game.step(action)      
+
+
+        # game.step(action)
+
+    def on_call_old(self, game: 'GeniusGame'):
         self.now_phase = game.game_phase
         game.game_phase = GamePhase.SET_CHARACTER
         self.activate_player_index = game.active_player_index
