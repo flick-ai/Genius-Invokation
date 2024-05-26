@@ -1,0 +1,39 @@
+on:
+  push:
+    branches:
+    - main
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup Python
+      uses: actions/setup-python@v4.7.1
+      with:
+        python-version: 3.11
+    - name: install dependencies
+      run: pip3 install numpy loguru rich flask sphinx-rtd-theme wheel
+    - run: python3 setup.py install
+    - name: Build website
+      run: |
+        python3 setup.py bdist_wheel
+        cp ./dist/*.whl ./website/static
+    - uses: actions/upload-pages-artifact@v1
+      with:
+        path: "./website/static"
+        
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/deploy-pages@v1
+        id: deployment

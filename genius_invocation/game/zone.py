@@ -289,6 +289,7 @@ class SupportZone:
     def __init__(self, game: 'GeniusGame', player: 'GeniusPlayer') -> None:
         self.game = game
         self.space: List[Support] = []
+        self.distroy_count = 0
 
     def check_full(self):
         return len(self.space) == MAX_SUPPORT
@@ -296,11 +297,13 @@ class SupportZone:
     def destroy(self, entity: 'Support'):
         idx = self.space.index(entity)
         self.space.pop(idx)
+        self.distroy_count += 1
 
     def add_entity(self, entity, idx):
         if self.check_full():
             # 如果支援区已经满了
             self.space[idx].on_destroy(self.game)
+            self.distroy_count += 1
         self.space.append(entity)
 
     def num(self):
@@ -314,7 +317,7 @@ class CharacterZone:
     def __init__(self, game: 'GeniusGame', player: 'GeniusPlayer') -> None:
         self.weapon_card: Weapon = None
         self.artifact_card: Artifact = None
-        # self.talent_card: Talent
+        self.talent_card: TalentCard = None
         self.status_list: List['Status'] = [] # Including status from weapon and artifact
 
     def remove_entity(self, entity: 'Entity'):

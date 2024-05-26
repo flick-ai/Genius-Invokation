@@ -26,7 +26,7 @@ class TheBellWeapon(Weapon):
             combat_shield = Shield_of_Bell(game, self.from_character.from_player, self.from_character)
             self.from_character.from_player.team_combat_status.add_entity(combat_shield)
 
-    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: "Character"= None, weapon_card: 'Weapon' = None):
+    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: "Character"= None, weapon_card: 'WeaponCard' = None):
         super().__init__(game, from_player, from_character, weapon_card)
         self.current_round = -1
 

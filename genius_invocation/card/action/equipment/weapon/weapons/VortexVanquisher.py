@@ -12,8 +12,8 @@ class VortexVanquisherWeapon(Weapon):
     name: str = "Vortex Vanquisher"
     name_ch = "贯虹之槊"
     max_usage = 1
-    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'= None, artifact_card = None):
-        super().__init__(game, from_player, from_character, artifact_card)
+    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'= None, weapon_card = None):
+        super().__init__(game, from_player, from_character, weapon_card)
         self.usage = self.max_usage
         self.round = -1
 

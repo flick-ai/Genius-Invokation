@@ -82,8 +82,7 @@ def test_select():
         print(package_dir, len(available_name))
 
     # 测试选择卡函数
-    available_card = select_card(['Ganyu', 'Keqing' ,'Qiqi'], available_card)
-    print(available_card['SPECIAL EVENT'])
+    available_card = select_card(['Ganyu', 'Keqing' ,'Lynette'], available_card)
     exit()
 
 def select_card(characters: List['Character'], all_action_card: List['ActionCard']):

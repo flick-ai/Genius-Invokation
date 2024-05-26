@@ -2,6 +2,7 @@
 from genius_invocation.web.game.game import GeniusGame
 from genius_invocation.web.game.action import *
 from genius_invocation.utils import *
+from genius_invocation.main import select_card
 import genius_invocation.card.action as actioncard
 from genius_invocation.user_layout import layout
 from genius_invocation.web.utils_dict import get_dict
