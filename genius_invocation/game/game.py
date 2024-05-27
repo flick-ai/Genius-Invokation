@@ -63,6 +63,7 @@ class GeniusGame:
         #TODO: CHECK THE INITIALIZE OF IS_CHANGE_PLAYER
         self.is_end: bool = False
         self.is_overload:GeniusPlayer = None
+        self.can_play_card = True
 
         self.init_game()
 

@@ -195,7 +195,11 @@ class GeniusPlayer:
                                     use_type=card.card_type,
                                     cost = [{'cost_num':card.cost_num, 'cost_type':card.cost_type}])
             game.manager.invoke(EventType.ON_PLAY_CARD, game)
-            card.on_played(game)
+
+            if game.can_play_card:
+                card.on_played(game)
+            else:
+                game.can_play_card = True
         game.current_card = None #Finish use the card.
 
     def change_character(self, game: 'GeniusGame'):

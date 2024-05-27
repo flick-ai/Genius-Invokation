@@ -144,8 +144,6 @@ class StonehideLawachurl(Character):
                 else:
                     status.update()
         
-
-
     def on_use_skill(self, game: 'GeniusGame'):
         if game.current_skill.from_character == self:
             self.last_skill = True
