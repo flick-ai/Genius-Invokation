@@ -7,7 +7,7 @@ if TYPE_CHECKING:
 
 class InEveryHouseaStove(ActionCard):
     id: int = 330005
-    name: name = "In Every House a Stove"
+    name = "In Every House a Stove"
     name_ch = "万家灶火"
     cost_num = 0
     cost_type = None
@@ -16,10 +16,13 @@ class InEveryHouseaStove(ActionCard):
         super().__init__()
 
     def on_played(self, game: 'GeniusGame') -> None:
-        game.active_player.get_card(num=min(4, game.round))
+        # 更新,回合-1
+        game.active_player.get_card(num=min(4, game.round - 1))
 
     def find_target(self, game: 'GeniusGame'):
         if game.active_player.play_arcane_legend:
             return []
         else:
+            if game.round == 1:
+                return []
             return [1]

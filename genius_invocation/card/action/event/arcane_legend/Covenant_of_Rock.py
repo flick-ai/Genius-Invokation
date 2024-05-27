@@ -7,7 +7,7 @@ if TYPE_CHECKING:
 
 class Covenant_of_Rock(ActionCard):
     id: int = 330002
-    name: name = "Covenant of Rock"
+    name = "Covenant of Rock"
     name_ch = "磐岩盟契"
     cost_num = 0
     cost_type = None

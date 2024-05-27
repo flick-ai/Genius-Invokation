@@ -5,44 +5,49 @@ if TYPE_CHECKING:
     from genius_invocation.game.game import GeniusGame
     from genius_invocation.game.player import GeniusPlayer
 
-class Fresh_Wind_of_Freedom_Entity(Combat_Status):
-    id: int = 330004
-    name = "Fresh Wind of Freedom"
-    name_ch = "自由的新风"
+class Passing_of_Judgment_Entity(Combat_Status):
+    id: int = 330005
+    name = "Passing of Judgment"
+    name_ch = "裁定之时"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
+        self.usage = 3
 
-    # 更新：大鹤归
-    def on_after_skill(self, game:'GeniusGame'):
+    def on_play(self, game:'GeniusGame'):
         if game.active_player_index == self.from_player.index:
-            if game.current_skill.from_character == self.from_character:
-                self.from_player.change_to_next_character()
-
+            if game.current_card.card_type in [ActionCardType.EVENT,
+                                  ActionCardType.EVENT_ARCANE_LEGEND,
+                                  ActionCardType.EVENT_COUNTRY,
+                                  ActionCardType.EVENT_ELEMENTAL_RESONANCE,
+                                  ActionCardType.EVENT_FOOD]:
+                self.usage -= 1
+                game.can_play_card = False
+                
     def on_end(self, game:'GeniusGame'):
         if game.active_player_index == self.from_player.index:
            self.on_destroy(game)
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.AFTER_USE_SKILL, ZoneType.ACTIVE_ZONE, self.on_after_skill),
+            (EventType.ON_PLAY_CARD, ZoneType.ACTIVE_ZONE, self.on_play),
             (EventType.END_PHASE, ZoneType.ACTIVE_ZONE, self.on_end),
         ]
 
 
-class Fresh_Wind_of_Freedom(ActionCard):
-    id: int = 330004
-    name = "Fresh Wind of Freedom"
-    name_ch = "自由的新风"
-    cost_num = 0
-    cost_type = None
+class Passing_of_Judgment(ActionCard):
+    id: int = 330005
+    name = "Passing of Judgment"
+    name_ch = "裁定之时"
+    cost_num = 1
+    cost_type = CostType.WHITE
     card_type = ActionCardType.EVENT_ARCANE_LEGEND
     def __init__(self) -> None:
         super().__init__()
 
     def on_played(self, game: 'GeniusGame') -> None:
-        game.active_player.team_combat_status.add_entity(Fresh_Wind_of_Freedom_Entity(
+        game.active_player.team_combat_status.add_entity(Passing_of_Judgment_Entity(
             game,
-            from_player=game.active_player,
+            from_player=get_opponent(game),
             from_character=None
         ))
     

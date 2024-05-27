@@ -7,7 +7,7 @@ if TYPE_CHECKING:
 
 class Ancient_Courtyard_Entity(Status):
     id: int = 330001
-    name: name = "Ancien Courtyard"
+    name = "Ancien Courtyard"
     name_ch = "旧时庭园"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
