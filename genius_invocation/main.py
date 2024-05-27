@@ -22,6 +22,8 @@ def get_parser():
     parser.add_argument('--test', action='store_true', default=False)
     parser.add_argument('--fix', action='store_true', default=False)
     parser.add_argument('--code', action='store_true', default=False)
+    parser.add_argument('--save', action='store_true', default=False)
+    parser.add_argument('--seed', type=int, default=2026)
     args = parser.parse_args()
     return args
 
@@ -162,7 +164,7 @@ if __name__=="__main__":
     #                 'Lotus_Flower_Crisp','Lotus_Flower_Crisp','Sweet_Madame','Mondstadt_Hash_Brown',
     #                 'Mushroom_Pizza','Mushroom_Pizza']
     # }
-    game = GeniusGame(player0_deck=deck1, player1_deck=deck2, seed=2026, is_omni=False)
+    game = GeniusGame(player0_deck=deck1, player1_deck=deck2, seed=args.seed, is_omni=False)
     with open("save_data.pickle", "wb+") as f:
         pickle.dump(game, f)
 
@@ -190,3 +192,7 @@ if __name__=="__main__":
             print(game)
             action = Action.from_input(game, log, mode='w', jump=False)
             game.step(action)
+            # save log
+            if args.save:
+                with open("./action.log", "w") as f:
+                    json.dump(log, f, indent=4)
