@@ -305,14 +305,17 @@ class GeniusGame:
         '''
         回合轮次
         '''
-        if self.is_dying:
-            print(self.is_dying)
-            self.incoming_action_list.append(action)
-            action = self.prev_action
-            print(self.incoming_action_list)
+
         if self.root_game == self:
+            logger.info("in main game")
+            if self.is_dying:
+                logger.info(self.is_dying)
+                self.incoming_action_list.append(action)
+                action = self.prev_action
+                logger.info(self.incoming_action_list)
+        
             game_for_plan = self.copy_game()
-            print(self, game_for_plan)
+            (self, game_for_plan)
             self.is_dying = False
 
             match game_for_plan.game_phase:
@@ -326,9 +329,9 @@ class GeniusGame:
                     game_for_plan.resolve_action(action)
             
             # print(self, game_for_plan)
-            print(self.is_dying)
+            logger.info(self.is_dying)
             if not self.is_dying:
-                print("resolve game")
+                logger.info("resolve game")
                 self.resolve_game(game_for_plan)
                 self.active_player.generate_mask(self)
                 self.incoming_action_list = []
@@ -337,6 +340,7 @@ class GeniusGame:
                 self.incoming_state = None
             self.prev_action = action
         else:
+            logger.info("in plan game")
             match self.game_phase:
                 case GamePhase.SET_CARD:
                     self.set_hand_card(action)
@@ -461,10 +465,10 @@ class Active_Die:
         if game.active_player != self.die_player:
             game.change_active_player()
         game.special_phase = self
-        print("hey")
+        # print("hey")
         if len(game.incoming_action_list) == game.incoming_action_list_index:
             # 模拟到最近一个没有action的节点，记录下来当前的state，然后继续模拟下去
-            print("case 1", game.root_game)
+            # print("case 1", game.root_game)
             game.root_game.is_dying = True
             game.active_player.generate_mask(game)
             # game.root_game.active_player.action_mask = deepcopy(game.active_player.action_mask)
@@ -476,7 +480,7 @@ class Active_Die:
                     break
 
         elif len(game.incoming_action_list) < game.incoming_action_list_index:
-            print("case 2", game.root_game)
+            # print("case 2", game.root_game)
             game.root_game.is_dying = True
             game.active_player.generate_mask(game)
             game.incoming_action_list_index += 1
@@ -486,8 +490,10 @@ class Active_Die:
                     break
         else:
             # 有预先给出的action，按照给出的action模拟
-            print("case 3")
+            # print("case 3")
+            # print(game.incoming_action_list, game.incoming_action_list_index)
             action = game.incoming_action_list[game.incoming_action_list_index]
+            # print(action.target, action.target_idx)
             game.incoming_action_list_index += 1
             game.step(action)      
 
