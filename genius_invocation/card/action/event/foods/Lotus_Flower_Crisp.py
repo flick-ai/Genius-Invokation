@@ -16,7 +16,7 @@ class Lotus_Flower_Crisp_Entity(Status):
         self.current_usage = 1
 
     def on_begin(self, game: 'GeniusGame'):
-        if game.current_damage.damage_from == self.from_character:
+        if game.active_player_index == self.from_player.index:
             self.on_destroy(game)
 
     def on_damage_execute(self, game: 'GeniusGame'):
@@ -49,4 +49,3 @@ class Lotus_Flower_Crisp(FoodCard):
     def on_played(self, game: 'GeniusGame'):
         super().on_played(game)
 
-    

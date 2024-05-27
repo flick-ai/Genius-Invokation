@@ -10,18 +10,18 @@ class Sashimi_Platter_Entity(Status):
     id: int = 333010
     name: str = 'Sashimi Platter'
     name_ch = '刺身拼盘'
-    
+
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.current_usage = 1
-    
+
     def on_damage_add(self, game: 'GeniusGame'):
         if game.current_damage.damage_from == self.from_character:
             if game.current_damage.damage_type == SkillType.NORMAL_ATTACK:
                 game.current_damage.main_damage += 1
 
     def on_begin(self, game: 'GeniusGame'):
-        if game.current_damage.damage_from == self.from_character:
+        if game.active_player_index == self.from_player.index:
             self.on_destroy(game)
 
     def update_listener_list(self):
@@ -44,4 +44,3 @@ class Sashimi_Platter(FoodCard):
     def on_played(self, game: 'GeniusGame'):
         super().on_played(game)
 
-    

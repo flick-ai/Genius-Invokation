@@ -16,9 +16,9 @@ class NoRevie(Status):
         self.current_usage = 1
 
     def on_begin(self, game: 'GeniusGame'):
-        if game.current_damage.damage_from == self.from_character:
+        if game.active_player_index == self.from_player.index:
             self.on_destroy(game)
-    
+
     def update_listener_list(self):
         self.listeners = [
             (EventType.BEGIN_ACTION_PHASE, ZoneType.ACTIVE_ZONE, self.on_begin)
@@ -40,9 +40,9 @@ class Teyvat_Fried_Egg(FoodCard):
         target_character.revive(game)
         Satisfy_Statue(game, from_player=game.active_player, from_character=target_character)
         target_character.character_zone.add_entity(Satisfy_Statue)
-           
+
         game.active_player.team_combat_status.add_entity(self.food_entity(game, from_player=game.active_player, from_character=target_character))
-    
+
     def find_target(self, game: 'GeniusGame'):
         target_list = []
         status = game.active_player.team_combat_status.has_status(NoRevie)
@@ -51,4 +51,3 @@ class Teyvat_Fried_Egg(FoodCard):
                 if not character.is_alive:
                     target_list.append(idx+2)
         return target_list
-    

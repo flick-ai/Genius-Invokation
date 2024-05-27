@@ -102,7 +102,7 @@ class GeniusGame:
         # game.is_end = self.is_end
         # game.is_overload = self.is_overload
         return game
-    
+
     def resolve_game(self, game: 'GeniusGame'):
         '''
             处理游戏信息
@@ -140,11 +140,11 @@ class GeniusGame:
         '''
             前进一步
         '''
-        
 
 
-        
-    
+
+
+
     def planning(self, action, die_action=None):
         self.die_action = die_action
         self.step(action)
@@ -279,7 +279,7 @@ class GeniusGame:
                 print(f"player{1-player.index} is winner!")
                 exit()
             if not player.character_list[player.active_idx].is_alive:
-                
+
                 # for char in player.character_list:
                 #     if char.is_alive:
                 #         char.is_active = True
@@ -314,7 +314,7 @@ class GeniusGame:
                 self.incoming_action_list.append(action)
                 action = self.prev_action
                 logger.info(self.incoming_action_list)
-        
+
             game_for_plan = self.copy_game()
             (self, game_for_plan)
             self.is_dying = False
@@ -328,7 +328,7 @@ class GeniusGame:
                     game_for_plan.set_reroll_dice(action)
                 case GamePhase.ACTION_PHASE:
                     game_for_plan.resolve_action(action)
-            
+
             # print(self, game_for_plan)
             logger.info(self.is_dying)
             if not self.is_dying:
@@ -351,11 +351,11 @@ class GeniusGame:
                     self.set_reroll_dice(action)
                 case GamePhase.ACTION_PHASE:
                     self.resolve_action(action)
-        
-        # else:
-            
 
-        
+        # else:
+
+
+
 
     def set_hand_card(self, action):
         '''
@@ -496,7 +496,7 @@ class Active_Die:
             action = game.incoming_action_list[game.incoming_action_list_index]
             # print(action.target, action.target_idx)
             game.incoming_action_list_index += 1
-            game.step(action)      
+            game.step(action)
 
 
         # game.step(action)

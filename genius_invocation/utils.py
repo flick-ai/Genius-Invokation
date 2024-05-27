@@ -132,7 +132,7 @@ class EventType(Enum):
     AFTER_CHANGE_CHARACTER = 8
     END_PHASE = 9
 
-    
+
     DAMAGE_ADD = 10
     DAMAGE_ADD_AFTER_REACTION = 11 #AFTER REACTION, DMG ADD
     DEALING_DAMAGE = 12 # Mona only right now
@@ -143,7 +143,7 @@ class EventType(Enum):
     # AFTER_TAKES_DMG = 16
     SPECIAL_SWITCH = 17
     FINAL_EXECUTE = 18
-    
+
     CHARACTER_DIE = 20
     CHARACTER_WILL_DIE = 19
 
@@ -153,6 +153,8 @@ class EventType(Enum):
 
     ELEMENTAL_APPLICATION_REATION = 24
     AFTER_HEAL = 25
+    # 捷德
+    ON_SUPPORT_REMOVE = 26
 
 class SwitchType(Enum):
     CHANGE_CHARACTER = 0

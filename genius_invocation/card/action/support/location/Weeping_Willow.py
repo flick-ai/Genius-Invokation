@@ -8,22 +8,23 @@ if TYPE_CHECKING:
     from genius_invocation.game.player import GeniusPlayer
 
 
-class Liyue_Harbor_Wharf_Entity(Support):
-    id: int = 322001
-    name = 'Liyue Haroboe Wharf'
-    name_ch = '璃月港口'
+class Weeping_Willow_Entity(Support):
+    id: int = 322016
+    name = 'Weeping Willow of the Lake'
+    name_ch = '湖中垂柳'
     max_usage = 2
-    max_count = -1
+    max_count = 2
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.usage = self.max_usage
 
     def on_end(self, game:'GeniusGame'):
         if game.active_player_index == self.from_player.index:
-            self.from_player.get_card(num=2)
-            self.usage -= 1
-            if self.usage == 0:
-                self.on_destroy(game)
+            if self.from_player.hand_zone.num < self.max_count:
+                self.from_player.get_card(num=2)
+                self.usage -= 1
+                if self.usage == 0:
+                    self.on_destroy(game)
 
     def update_listener_list(self):
         self.listeners = [
@@ -32,14 +33,11 @@ class Liyue_Harbor_Wharf_Entity(Support):
     def show(self):
         return str(self.usage)
 
-class Liyue_Harbor_Wharf(SupportCard):
-    '''
-        璃月港口
-    '''
-    id: int = 321001
-    name: str = 'Liyue Harbor Wharf'
-    name_ch = '璃月港口'
-    cost_num = 2
+class Weeping_Willow_Wharf(SupportCard):
+    id: int = 321016
+    name: str = 'Weeping Willow of the Lake'
+    name_ch = '湖中垂柳'
+    cost_num = 1
     cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_LOCATION
 
@@ -48,5 +46,5 @@ class Liyue_Harbor_Wharf(SupportCard):
         self.entity = None
 
     def on_played(self, game: 'GeniusGame') -> None:
-        self.entity = Liyue_Harbor_Wharf_Entity(game, from_player=game.active_player)
+        self.entity = Weeping_Willow_Entity(game, from_player=game.active_player)
         super().on_played(game)

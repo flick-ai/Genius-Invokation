@@ -6,6 +6,8 @@ from genius_invocation.card.action import *
 from genius_invocation.entity.status import Status, Shield, Combat_Shield, Weapon, Artifact, Combat_Status
 from genius_invocation.card.character.characters.Keqing import Lightning_Stiletto
 
+import random
+
 if TYPE_CHECKING:
     from genius_invocation.entity.entity import Entity
     from genius_invocation.game.player import GeniusPlayer
@@ -187,6 +189,36 @@ class DiceZone:
         '''
         return self.dice_num
 
+def evenly_insert(source_list, insert_list):
+    result = []
+    len_source = len(source_list)
+    len_insert = len(insert_list)
+    avg_interval = len_source // (len_insert + 1)  # 平均间隔
+    remainder = len_source % (len_insert + 1)  # 余数，用于处理不能整除的情况
+    insert_index = avg_interval
+
+    for i, item in enumerate(source_list):
+        result.append(item)
+        if i + 1 == insert_index:
+            if insert_list:  # 检查插入列表是否为空
+                result.extend(insert_list.pop(0))
+                # 更新插入位置
+                insert_index += avg_interval
+                if remainder:
+                    insert_index += 1
+                    remainder -= 1
+    return result
+
+def random_insert(source_list, insert_list):
+    result = source_list.copy()
+    insert_indices = random.sample(range(len(source_list)+1), len(insert_list))
+    insert_indices.sort(reverse=True)  # 对插入位置进行排序，确保从后向前插入
+
+    for index in insert_indices:
+        result.insert(index, insert_list.pop())
+
+    return result
+
 class CardZone:
     '''
         牌堆区,
@@ -238,6 +270,31 @@ class CardZone:
             idx = self.game.random.randint(0, self.card_num+1)
             self.card.insert(idx, card)
             self.card_num = len(self.card)
+
+    def place_evenly(self, card_list: List):
+        '''
+            将牌平均放回牌堆
+        '''
+        result = evenly_insert(self.card, card_list)
+        self.card = result
+        self.card_num = len(self.card)
+
+    def place_randomly(self, card_list: List):
+        '''
+            将牌随机放回牌堆
+        '''
+        result = evenly_insert(self.card, card_list)
+        self.card = result
+        self.card_num = len(self.card)
+
+    def insert_randomly(self, card, num=0):
+        '''
+            随机插入单张牌
+        '''
+        num = self.card_num if num == 0 else num
+        idx = random.randint(self.card_num+1-num, self.card_num+1)
+        self.card.insert(idx, card)
+        self.card_num = len(self.card)
 
     def num(self):
         return len(self.card)
@@ -298,12 +355,12 @@ class SupportZone:
         idx = self.space.index(entity)
         self.space.pop(idx)
         self.distroy_count += 1
+        self.game.manager.invoke(EventType.ON_SUPPORT_REMOVE, self.game)
 
     def add_entity(self, entity, idx):
         if self.check_full():
             # 如果支援区已经满了
             self.space[idx].on_destroy(self.game)
-            self.distroy_count += 1
         self.space.append(entity)
 
     def num(self):
@@ -425,6 +482,13 @@ class HandZone:
                 break
             self.card.append(card)
             self.card = sorted(self.card, key=lambda card: card.id)
+
+    def add_card_by_name(self, card_names):
+        '''
+            通过名字获取牌
+        '''
+        for card_name in card_names:
+            self.add(eval(card_name)())
 
     def num(self):
         return len(self.card)

@@ -80,6 +80,8 @@ class Damage:
         game.manager.invoke(EventType.DIVIDE_DAMAGE, game)
     def damage_execute(self, game: 'GeniusGame'):
         logger.debug(f"Before Damage Execute: {game.current_damage.main_damage}")
+        damage_type = game.current_damage.damage_type
+        self.damage_to.from_player.suffer_damage_type[damage_type] = self.damage_to.from_player.suffer_damage_type.get(damage_type, 0) + 1
         game.manager.invoke(EventType.EXECUTE_DAMAGE, game)
         logger.debug(f"After Damage Execute: {game.current_damage.main_damage}")
 

@@ -72,6 +72,9 @@ class GeniusPlayer:
         # Mask
         self.action_mask: np.array
 
+        # Damage Type
+        self.suffer_damage_type = {}
+
     def update_element_list(self):
         ''' Only For La Signora right now. Refresh the element list, which may be used by some skills and talents.'''
         self.element_list = []
