@@ -1,6 +1,4 @@
 from genius_invocation.card.character.import_head import *
-from genius_invocation.game.game import GeniusGame
-from genius_invocation.utils import GeniusGame
 
 class Cool_Color_Capture(NormalAttack):
     name = 'Cool-Color Capture'
