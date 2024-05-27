@@ -50,7 +50,7 @@ class TotalCollapse(Status):
         self.usage = 1
         self.current_usage = 1
         self.dvalin = dvalin
-    
+
     def update(self):
         self.current_usage = self.usage
 
@@ -59,7 +59,7 @@ class TotalCollapse(Status):
             if game.current_damage.main_damage_element in [ElementType.PHYSICAL, ElementType.ANEMO]:
                 game.current_damage.main_damage += 2
                 self.on_destroy(game)
-    
+
     def on_destroy(self, game: 'GeniusGame'):
         super().on_destroy(game)
         if self.dvalin.talent:
@@ -74,7 +74,7 @@ class TotalCollapse(Status):
                         state.update()
                     else:
                         opponent.character_zone.add_entity(TotalCollapse(game, from_player=get_opponent(game), from_character=opponent, dvalin=self.from_character))
-    
+
     def update_listener_list(self):
         self.listeners = [
             (EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, self.on_add_dmg)
@@ -97,7 +97,7 @@ class DvalinsCleansing(ElementalSkill):
         super().on_call(game)
         self.resolve_damage(game)
         self.gain_energy(game)
-        
+
         prepare_Perpetual_Cleansing = Prepare_PerpetualCleansing(game, self.from_character, self.from_character)
         self.from_character.character_zone.add_entity(prepare_Perpetual_Cleansing)
         self.from_character.from_player.prepared_skill = prepare_Perpetual_Cleansing
@@ -123,13 +123,13 @@ class PerpetualCleansing(ElementalSkill):
         targets = get_opponent_standby_character(game)
         if len(targets):
             target = targets[0]
-            game.add_damage(Damage.create_damage(game, self.damage_type, self.main_damage_element, 
+            game.add_damage(Damage.create_damage(game, self.damage_type, self.main_damage_element,
                                                  self.main_damage,
                                                  self.piercing_damage,
                                                  self.from_character,
                                                  target))
             game.resolve_damage()
-        else:   
+        else:
             self.resolve_damage(game)
         prepare_Ultimate_Cleansing = Prepare_UltimateCleansing(game=game,
                                      from_player=self.from_character.from_player,
@@ -182,13 +182,13 @@ class UltimateCleansing(ElementalSkill):
         targets = get_opponent_standby_character(game)
         if len(targets):
             target = targets[-1]
-            game.add_damage(Damage.create_damage(game, self.damage_type, self.main_damage_element, 
+            game.add_damage(Damage.create_damage(game, self.damage_type, self.main_damage_element,
                                                  self.main_damage,
                                                  self.piercing_damage,
                                                  self.from_character,
                                                  target))
             game.resolve_damage()
-        else:   
+        else:
             self.resolve_damage(game)
         self.from_character.from_player.prepared_skill = None
 
@@ -245,8 +245,8 @@ class CaelestinumFinaleTermini(ElementalBurst):
 
 class Dvalin(Character):
     id: int = 2502
-    name: str = "Maguu Kenki"
-    name_ch = "魔偶剑鬼"
+    name: str = "Dvalin"
+    name_ch = "特瓦林"
     element: ElementType = ElementType.ANEMO
     weapon_type: WeaponType = WeaponType.OTHER
     country: CountryType = CountryType.MONSTER
