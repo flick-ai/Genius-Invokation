@@ -118,7 +118,7 @@ class Equitable_Judgement(NormalAttack):
                               self.from_character, self.from_character,
                               ))
             game.resolve_damage()
-            game.manager.invoke(EventType.AFTER_USE_SKILL, game)
+            
         else:
             self.resolve_damage(game)
 
