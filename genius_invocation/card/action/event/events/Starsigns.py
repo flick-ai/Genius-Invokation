@@ -20,5 +20,5 @@ class Starsigns(ActionCard):
     def find_target(self, game: 'GeniusGame'):
         character = get_my_active_character(game)
         if character.power != character.max_power:
-            return [game.active_player.active_idx]
+            return [game.active_player.active_idx+2]
         return []

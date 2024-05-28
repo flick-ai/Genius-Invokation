@@ -24,8 +24,9 @@ class Timaeus_Entity(Support):
             if game.current_dice.use_type == ActionCardType.EQUIPMENT_ARTIFACT:
                 if self.usage > 0:
                     if game.current_dice.cost[0]['cost_num'] > 0 and game.current_dice.cost[0] <= self.transmutation_material:
+                        need = game.current_dice.cost[0]['cost_num']
                         game.current_dice.cost[0]['cost_num'] = 0
-                        return game.current_dice.cost[0]
+                        return need
         return False
 
     def on_use(self, game:'GeniusGame'):
@@ -49,7 +50,7 @@ class Timaeus_Entity(Support):
             (EventType.ON_CHANGE_CHARACTER, ZoneType.SUPPORT_ZONE, self.on_use),
             (EventType.BEGIN_ACTION_PHASE, ZoneType.SUPPORT_ZONE, self.on_begin)
         ]
-    
+
     def show(self):
         return str(self.transmutation_material)
 

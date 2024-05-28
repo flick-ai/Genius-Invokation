@@ -358,6 +358,9 @@ class SupportZone:
         self.distroy_count += 1
         self.game.manager.invoke(EventType.ON_SUPPORT_REMOVE, self.game)
 
+    def destroy_by_idx(self, idx):
+        self.space[idx].on_destroy(self.game)
+
     def add_entity(self, entity, idx):
         if self.check_full():
             # 如果支援区已经满了

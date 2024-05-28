@@ -58,6 +58,7 @@ class GeniusGame:
         self.current_switch: dict(Character) = {"from": None, "to": None}
         self.current_skill: CharacterSkill = None
         self.current_card: ActionCard = None
+        self.current_remove_from: Character = None
         self.damage_list: List[Damage] = []
         self.is_change_player: bool = False
         self.current_attach_reaction: ElementalReactionType = None # Save the reaction type when attachment (no dmg). Will be reset after the invoking of the event. keep None.
@@ -130,6 +131,7 @@ class GeniusGame:
         self.current_switch = game.current_switch
         self.current_skill = game.current_skill
         self.current_card = game.current_card
+        self.current_remove_from = game.current_remove_from
         self.damage_list = game.damage_list
         self.is_change_player = game.is_change_player
         self.is_end = game.is_end
@@ -174,6 +176,7 @@ class GeniusGame:
         self.current_card = None
         self.current_dice = None
         self.current_heal = None
+        self.current_remove_from = None
         self.current_switch = {"from": None, "to": None}
 
     def resolve_action(self, action: 'Action'):
@@ -437,6 +440,7 @@ class GeniusGame:
         self.change_active_player()
         self.active_player.end_phase(self)
         self.change_active_player()
+        self.manager.invoke(EventType.FINAL_END, self)
 
         # 进入下一个回合
         self.roll_phase()

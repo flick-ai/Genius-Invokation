@@ -153,10 +153,12 @@ class EventType(Enum):
 
     ELEMENTAL_APPLICATION_REATION = 24
     AFTER_HEAL = 25
-    # 捷德
+    # 召唤物移除
     ON_SUPPORT_REMOVE = 26
     # 重置计数
     FINAL_END = 27
+    # 装备弃置
+    ON_EQUIP_REMOVE = 28
 
 class SwitchType(Enum):
     CHANGE_CHARACTER = 0

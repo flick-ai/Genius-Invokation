@@ -41,5 +41,5 @@ class FourLeaf(ActionCard):
     def find_target(self, game: 'GeniusGame'):
         target = []
         for idx, character in enumerate(game.active_player.character_list):
-            target.append(idx)
+            target.append(idx+2)
         return target

@@ -15,11 +15,11 @@ class Distant_Storm(Status):
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.usage = 1
-                
+
     def on_end(self, game:'GeniusGame'):
         if game.active_player_index == self.from_player.index:
-            damage = Damage.create_damage(game, 
-                                          damage_type=SkillType.SUMMON, 
+            damage = Damage.create_damage(game,
+                                          damage_type=SkillType.SUMMON,
                                           main_damage_element=ElementType.PIERCING,
                                           main_damage=2,
                                           piercing_damage=0,
@@ -43,18 +43,17 @@ class Seirai_Island_Entity(Support):
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.usage = self.max_usage
-    
+
     def on_heal(self, game:'GeniusGame'):
         game.current_heal.heal_to_character.add_status(
-            Distant_Storm(game, 
-                          game.current_heal.heal_to_player, 
+            Distant_Storm(game,
+                          game.current_heal.heal_to_player,
                           game.current_heal.heal_to_character))
-    
+
     def on_end(self, game:'GeniusGame'):
-        if game.active_player_index == self.from_player.index:
-            self.usage -= 1
-            if self.usage == 0:
-                self.on_destroy(game)   
+        self.usage -= 1
+        if self.usage == 0:
+            self.on_destroy(game)
 
     def update_listener_list(self):
         self.listeners = [

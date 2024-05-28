@@ -51,13 +51,13 @@ class Blessing(ActionCard):
                 if has_same:
                     target.append(idx)
         return target
-    
+
     def refind_target(self, game:'GeniusGame'):
         target = []
         for idx, character in game.active_player.character_list:
             if character.character_zone.artifact_card == None and idx != self.artifact_from:
-                target.append(idx)
+                target.append(idx+2)
         return target
 
-        
+
 

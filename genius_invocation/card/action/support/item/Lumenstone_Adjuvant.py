@@ -34,8 +34,7 @@ class Lumenstone_Adjuvant_Entity(Support):
                             self.on_destroy(game)
 
     def on_end(self, game:'GeniusGame'):
-        if game.active_player_index == self.from_player.index:
-            self.count = 0
+        self.count = 0
 
 
     def update_listener_list(self):

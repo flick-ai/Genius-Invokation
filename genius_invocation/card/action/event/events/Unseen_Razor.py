@@ -18,7 +18,7 @@ class Razor(Combat_Status):
                     game.current_dice.cost[0]['cost_num'] = max(game.current_dice.cost[0]['cost_num']-2, 0)
                     return True
         return False
-    
+
     def on_play_card(self, game:'GeniusGame'):
         if self.on_calculate(game):
             self.on_destroy(game)
@@ -55,5 +55,5 @@ class Unseen_Razor(ActionCard):
         target = []
         for idx, character in enumerate(game.active_player.character_list):
             if character.character_zone.weapon_card != None:
-                target.append(idx)
+                target.append(idx+2)
         return target

@@ -130,6 +130,10 @@ class Character(Entity):
         self.is_frozen = False
         self.is_active = False
         self.is_satisfy = False
+        if self.talent:
+            game.current_remove_from = self.from_character
+            game.manager.invoke(EventType.ON_EQUIP_REMOVE, game)
+            game.current_remove_from = None
         self.talent = False
         self.power = 0
         self.elemental_application = []

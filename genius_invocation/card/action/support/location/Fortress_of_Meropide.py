@@ -24,7 +24,7 @@ class Strictly_Prohibited(Combat_Status):
                                   ActionCardType.EVENT_FOOD]:
                 self.usage -= 1
                 game.can_play_card = False
-                
+
     def on_end(self, game:'GeniusGame'):
         if game.active_player_index == self.from_player.index:
            self.on_destroy(game)
@@ -48,23 +48,25 @@ class Fortress_of_Meropide_Entity(Support):
         if game.active_player_index == self.from_player.index:
             if game.current_damage.damage_to == get_my_active_character(game):
                 self.prohibition = min(self.max_count, self.prohibition+1)
-    
+
     def on_heal(self, game:'GeniusGame'):
         if game.active_player_index == self.from_player.index:
             if game.current_heal.heal_to_character == get_my_active_character(game):
                 self.prohibition = min(self.max_count, self.prohibition+1)
-    
+
     def on_begin(self, game:'GeniusGame'):
         if game.active_player_index == self.from_player.index:
             if self.prohibition == self.max_count:
                 self.prohibition = 0
-                game.current_damage.main_damage = 0
-
+                get_opponent(game).team_combat_status.add_entity(
+                    Strictly_Prohibited(game, get_opponent(game))
+                )
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.EXECUTE_DAMAGE, ZoneType.SUPPORT_ZONE, self.on_damage)
-            (EventType.AFTER_HEAL, ZoneType.SUPPORT_ZONE, self.on_heal)
+            (EventType.EXECUTE_DAMAGE, ZoneType.SUPPORT_ZONE, self.on_damage),
+            (EventType.AFTER_HEAL, ZoneType.SUPPORT_ZONE, self.on_heal),
+            (EventType.BEGIN_ACTION_PHASE, ZoneType.SUPPORT_ZONE, self.on_begin),
         ]
     def show(self):
         return str(self.usage)

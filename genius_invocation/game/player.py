@@ -396,7 +396,6 @@ class GeniusPlayer:
         game.manager.invoke(EventType.END_PHASE, game)
         self.roll_time = 2
         self.get_card(num=2)
-        game.manager.invoke(EventType.FINAL_END, game)
 
 
 
