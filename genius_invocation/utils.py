@@ -275,6 +275,13 @@ def get_player_from_character(
 )->'GeniusPlayer':
     return character.from_player
 
+# def get_character_zone(game: 'GeniusGame', character_index):
+#     if character_index == 0:
+#         return ZoneType.CHARACTER_ZONE_0
+#     elif character_index == 1:
+#         return ZoneType.CHARACTER_ZONE_1
+#     elif character_index == 2:
+#         return ZoneType.CHARACTER_ZONE_2
 
 import json
 def print_information(log_info, log_file='./debug.json'):

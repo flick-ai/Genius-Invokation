@@ -7,37 +7,41 @@ if TYPE_CHECKING:
     from genius_invocation.game.game import GeniusGame
 
 
-class FruitofFulfillmentWeapon(Weapon):
-    name: str = "Fruit of Fulfillment"
-    name_ch = "盈满之实"
-    max_usage = 1
+class LostPrayertotheSacredWindsWeapon(Weapon):
+    name: str = "Lost Prayer to the Sacred Winds"
+    name_ch =  "四风原典"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, weapon_card = None):
         super().__init__(game, from_player, from_character, weapon_card)
-        game.active_player.get_card(num=2)
+        self.bonus_DMG = 0
 
     def on_damage_add(self, game: 'GeniusGame'):
         if game.current_damage.damage_from == self.from_character:
             if game.current_damage.main_damage_element is not ElementType.PIERCING:
-                game.current_damage.main_damage += 1
+                game.current_damage.main_damage += self.bonus_DMG
+
+    def on_end(self, game: 'GeniusGame'):
+        if game.active_player_index == self.from_player.index:
+            self.bonus_DMG += 1
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, self.on_damage_add)
+            (EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, self.on_damage_add),
+            (EventType.END_PHASE, ZoneType.CHARACTER_ZONE, self.on_end)
         ]
 
 
 
-class FruitofFulfillment(WeaponCard):
-    id: int = 311105
-    name: str = "Fruit of Fulfillment"
-    name_ch = "盈满之实"
+class LostPrayertotheSacredWinds(WeaponCard):
+    id: int = 311106
+    name: str = "Lost Prayer to the Sacred Winds"
+    name_ch = "四风原典"
     weapon_type: WeaponType = WeaponType.CATALYST
     cost_num: int = 3
-    cost_type: CostType = CostType.BLACK
+    cost_type: CostType = CostType.WHITE
 
     def __init__(self) -> None:
         super().__init__()
-        self.equipment_entity = FruitofFulfillmentWeapon
+        self.equipment_entity = LostPrayertotheSacredWindsWeapon
 
     def on_played(self, game: 'GeniusGame') -> None:
         super().on_played(game)
