@@ -228,7 +228,9 @@ class Character(Entity):
                 case ElementType.DENDRO:
                     self.elemental_application.append(element)
         if Reaction is not None:
+            game.current_attach_reaction = Reaction
             game.manager.invoke(EventType.ELEMENTAL_APPLICATION_REATION, game)
+            game.current_attach_reaction = None
         
         if Reaction == ElementalReactionType.Overloaded:
             if self.is_active:
