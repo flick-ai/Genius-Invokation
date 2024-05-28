@@ -1,4 +1,4 @@
-from typing import List, TYPE_CHECKING
+from typing import List, TYPE_CHECKING, Optional
 import numpy as np
 from copy import deepcopy
 from genius_invocation.utils import *
@@ -60,6 +60,7 @@ class GeniusGame:
         self.current_card: ActionCard = None
         self.damage_list: List[Damage] = []
         self.is_change_player: bool = False
+        self.current_attach_reaction: ElementalReactionType = None # Save the reaction type when attachment (no dmg). Will be reset after the invoking of the event. keep None.
         #TODO: CHECK THE INITIALIZE OF IS_CHANGE_PLAYER
         self.is_end: bool = False
         self.is_overload:GeniusPlayer = None
