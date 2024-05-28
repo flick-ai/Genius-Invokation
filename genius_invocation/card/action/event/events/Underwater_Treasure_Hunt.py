@@ -18,7 +18,7 @@ class Undersea_Treasure(ActionCard):
 
 
 class Underwater_Treasure_Hunt(ActionCard):
-    id: int = 332021
+    id: int = 332031
     name: str = 'Underwater Treasure Hunt'
     name_ch = '海中寻宝'
     cost_num = 2

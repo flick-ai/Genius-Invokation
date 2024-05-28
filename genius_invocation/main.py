@@ -154,7 +154,7 @@ if __name__=="__main__":
     }
     deck2 = {
     'character': ['Neuvillette', 'Lisa', 'Qiqi'],
-    'action_card': ['PulsatingWitch' for i in range(30)]
+    'action_card': ['HeirtotheAncientSeasAuthority' for i in range(30)]
     }
     # deck2 = {
     # 'character': ['Arataki_Itto', 'Dehya', 'Noelle'],
