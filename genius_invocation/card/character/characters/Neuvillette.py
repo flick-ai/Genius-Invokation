@@ -118,7 +118,7 @@ class Equitable_Judgement(NormalAttack):
                               self.from_character, self.from_character,
                               ))
             game.resolve_damage()
-            game.manager.invoke(EventType.AFTER_USE_SKILL, game)
+
         else:
             self.resolve_damage(game)
 
@@ -212,7 +212,7 @@ class Past_Draconic_Glories(Status):
         self.current_usage: int = 2
 
     def dmg_add(self, game: 'GeniusGame'):
-        if game.current_damage.damage_from == self.from_character:
+        if game.current_damage.damage_from == self.from_character and game.current_damage.damage_to!=self.from_character:
             game.current_damage.main_damage += 1
             self.current_usage -= 1
             if self.current_usage <= 0:
