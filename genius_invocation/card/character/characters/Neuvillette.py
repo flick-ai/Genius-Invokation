@@ -1,7 +1,4 @@
 from genius_invocation.card.character.import_head import *
-from genius_invocation.event.Elemental_Reaction import GeniusGame
-from genius_invocation.game.game import GeniusGame
-from genius_invocation.utils import GeniusGame
 
 class As_Water_Seeks_Equilibrium(NormalAttack):
     name = 'As Water Seeks Equilibrium'
