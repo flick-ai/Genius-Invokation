@@ -27,7 +27,7 @@ class Ancient_Courtyard_Entity(Status):
 
 class Ancient_Courtyard(ActionCard):
     id: int = 330001
-    name: name = "Ancien Courtyard"
+    name = "Ancien Courtyard"
     name_ch = "旧时庭园"
     cost_num = 0
     cost_type = None

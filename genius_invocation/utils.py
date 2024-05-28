@@ -155,6 +155,8 @@ class EventType(Enum):
     AFTER_HEAL = 25
     # 捷德
     ON_SUPPORT_REMOVE = 26
+    # 重置计数
+    FINAL_END = 27
 
 class SwitchType(Enum):
     CHANGE_CHARACTER = 0

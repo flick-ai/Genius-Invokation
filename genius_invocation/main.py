@@ -28,7 +28,7 @@ def get_parser():
     return args
 
 def test_code():
-    code = 'ArEBvTQMAcHRvk0NB3HxyH0OCKHR4p4PCxEx46QPDCEx9bQQDEFB9rURDLKRDLwRDPEB'
+    code = 'ASAA4gsPAwAQ8UwPBBDA9MIPDEAg9cYPDGBg/MkPDMGQC9EQDbEQDt4QDuEQEeERDjAA'
     card = get_card()
     name = code_to_name(code, card)
     character_card = name[0:3]
