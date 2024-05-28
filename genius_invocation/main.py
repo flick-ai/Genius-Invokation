@@ -23,6 +23,7 @@ def get_parser():
     parser.add_argument('--fix', action='store_true', default=False)
     parser.add_argument('--code', action='store_true', default=False)
     parser.add_argument('--save', action='store_true', default=False)
+    parser.add_argument('--omni', action='store_true', default=False)
     parser.add_argument('--seed', type=int, default=2026)
     args = parser.parse_args()
     return args
@@ -152,7 +153,7 @@ if __name__=="__main__":
                     'PaidinFull','PaidinFull','Send_Off','Starsigns','Starsigns']
     }
     deck2 = {
-    'character': ['Klee', 'Lisa', 'Qiqi'],
+    'character': ['Neuvillette', 'Lisa', 'Qiqi'],
     'action_card': ['PulsatingWitch' for i in range(30)]
     }
     # deck2 = {
@@ -164,7 +165,7 @@ if __name__=="__main__":
     #                 'Lotus_Flower_Crisp','Lotus_Flower_Crisp','Sweet_Madame','Mondstadt_Hash_Brown',
     #                 'Mushroom_Pizza','Mushroom_Pizza']
     # }
-    game = GeniusGame(player0_deck=deck1, player1_deck=deck2, seed=args.seed, is_omni=False)
+    game = GeniusGame(player0_deck=deck1, player1_deck=deck2, seed=args.seed, is_omni=args.omni)
     with open("save_data.pickle", "wb+") as f:
         pickle.dump(game, f)
 

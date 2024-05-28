@@ -120,7 +120,7 @@ class GeniusPlayer:
                     return self.game.random.choice(DICENUM-1, num, replace=False).tolist()
                 return self.game.random.randint(0, DICENUM-1, num).tolist()
         if self.game.is_omni:
-            return  [7 for i in range(num)]
+            return  [DiceType.OMNI.value for i in range(num)]
         else:
             return self.game.random.randint(0, DICENUM, num).tolist()
 

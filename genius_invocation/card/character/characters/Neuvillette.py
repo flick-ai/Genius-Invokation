@@ -67,26 +67,26 @@ class O_Tides_I_Have_Returned(ElementalBurst):
 class Sourcewater_Dropout(Combat_Status):
     name = "Sourcewater Dropout"
     name_ch = "源水之滴"
-    
+
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.usage: int = 3
         self.current_usage: int = 1
     def update(self, game: 'GeniusGame'):
         self.current_usage = min(self.current_usage+1, self.usage)
-    
+
     def after_skill(self, game:'GeniusGame'):
         if game.current_skill.from_character == self.from_character:
             if game.current_skill.type == SkillType.NORMAL_ATTACK:
-                self.current_usage -= 1
-                self.from_character.heal(2, game)
-                Next_Skill = self.from_character.next_skill
-                prepare_status = Prepare_Equitable_Judgement(game, self.from_player, self.from_character, Next_Skill)
-                assert self.from_character.character_zone.has_entity(Prepare_Equitable_Judgement) is None
-                self.from_character.character_zone.add_entity(prepare_status)
-                self.from_character.from_player.prepared_skill = prepare_status
-                if self.current_usage <= 0:
-                    self.on_destroy(game)
+                if self.from_character.character_zone.has_entity(Prepare_Equitable_Judgement) is None:
+                    self.current_usage -= 1
+                    self.from_character.heal(2, game)
+                    Next_Skill = self.from_character.next_skill
+                    prepare_status = Prepare_Equitable_Judgement(game, self.from_player, self.from_character, Next_Skill)
+                    self.from_character.character_zone.add_entity(prepare_status)
+                    self.from_character.from_player.prepared_skill = prepare_status
+                    if self.current_usage <= 0:
+                        self.on_destroy(game)
     def update_listener_list(self):
         self.listeners = [
             (EventType.AFTER_USE_SKILL, ZoneType.ACTIVE_ZONE, self.after_skill)
@@ -132,7 +132,7 @@ class Prepare_Equitable_Judgement(Status):
         super().__init__(game, from_player, from_character)
         self.usage: int = 1
         self.current_usage: int = 0
-    
+
     def __init__(self, game:'GeniusGame', from_player:'GeniusPlayer', from_character:'Character', next_skill: 'CharacterSkill'):
         super().__init__(game, from_player, from_character)
         self.next_skill = next_skill
@@ -189,7 +189,7 @@ class Neuvillette(Character):
                                                 ElementalReactionType.Bloom,
                                                 ElementalReactionType.Electro_Charged]:
                     self.add_status(game)
-    
+
     def listen_talent_events(self, game: 'GeniusGame'):
         self.listen_event(game, EventType.DAMAGE_ADD_AFTER_REACTION, ZoneType.CHARACTER_ZONE, self.on_damage_add_after_reaction)
         self.listen_event(game, EventType.ELEMENTAL_APPLICATION_REATION, ZoneType.CHARACTER_ZONE, self.on_attach_reaction)
