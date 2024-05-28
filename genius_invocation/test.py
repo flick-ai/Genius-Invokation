@@ -10,14 +10,9 @@
 #     def run(self):
 #         self.game.run()
 import os
+from utils import *
 
 if __name__ == '__main__':
-    package_dir = "./card/character/characters"
-    available_character_name = [f[:-3] for f in os.listdir(package_dir) if f.endswith(".py") and f != "__init__.py" and f != "import_head.py"]
-    available_character = []
-    for name in available_character_name:
-        print(name)
-        available_character.append((name, eval("chars."+name).name_ch, eval("chars."+name).id))
-    available_card = []
+    print(ActionCardType.EVENT_ARCANE_LEGEND in ActionCardType)
 
 

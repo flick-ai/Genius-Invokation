@@ -77,7 +77,7 @@ class DepthClarion_Dice(ElementalBurst):
     type: SkillType = SkillType.ELEMENTAL_BURST
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
     main_damage_element: ElementType = ElementType.HYDRO
-    main_damage: int = 1
+    main_damage: int = 3
     piercing_damage: int = 0
     cost = [{'cost_num':3, 'cost_type':CostType.HYDRO}]
     energy_cost: int = 3
@@ -108,7 +108,7 @@ class Exquisite_Throw(Combat_Status):
                     game,
                     damage_type=SkillType.OTHER,
                     main_damage_element=ElementType.HYDRO,
-                    main_damage=2,
+                    main_damage=1,
                     piercing_damage=0,
                     damage_from=self,
                     damage_to=get_opponent_active_character(game),

@@ -21,13 +21,14 @@ class Dice:
     '''
         计算骰子的维护类
     '''
-    def __init__(self, from_player, from_character, use_type, cost, to_character=None) -> None:
+    def __init__(self, from_player, from_character, use_type, cost, to_character=None, name=None) -> None:
         self.cost: list({'cost_num': int, 'cost_type': CostType}) = cost
         self.from_player = from_player
         self.from_character: Character = from_character
         self.to_character: Character = to_character
         self.use_type = use_type
         self.origin_cost = cost
+        self.name = name
 
 class DiceZone:
     '''

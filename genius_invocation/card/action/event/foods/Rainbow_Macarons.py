@@ -26,7 +26,7 @@ class Rainbow_Macarons_Entity(Status):
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.EXECUTE_DAMAGE, ZoneType.CHARACTER_ZONE, self.on_damage),
+            (EventType.FINAL_EXECUTE, ZoneType.CHARACTER_ZONE, self.on_damage),
         ]
 
 class Rainbow_Macarons(FoodCard):
