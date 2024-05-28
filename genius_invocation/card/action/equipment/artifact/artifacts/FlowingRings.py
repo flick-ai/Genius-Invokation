@@ -8,39 +8,37 @@ if TYPE_CHECKING:
     from genius_invocation.game.player import GeniusPlayer
 
 
-class ShadowoftheSandKingEntity(Artifact):
-    name: str = "Shadow of the Sand King"
-    name_ch = "沙王的投影"
-    max_usage = 1
+class FlowingRingsEntity(Artifact):
+    name: str = "Flowing Rings"
+    name_ch = "浮溯之珏"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, artifact_card = None):
         super().__init__(game, from_player, from_character, artifact_card)
-        self.from_player.get_card(num=1)
         self.usage_round = -1
 
-    def on_damage(self, game:'GeniusGame'):
+    def after_skill(self, game:'GeniusGame'):
         if self.usage_round != game.round:
-            if game.current_damage.damage_to.from_player != self.from_player:
-                if game.current_damage.reaction != None:
+            if game.current_skill.type == SkillType.NORMAL_ATTACK:
+                if game.current_skill.from_character == self.from_character:
                     self.from_player.get_card(num=1)
                     self.usage_round = game.round
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.EXECUTE_DAMAGE, ZoneType.CHARACTER_ZONE, self.on_damage),
+            (EventType.AFTER_USE_SKILL, ZoneType.CHARACTER_ZONE, self.after_skill),
         ]
 
 
 
-class ShadowoftheSandKing(ArtifactCard):
-    id: int = 312017
-    name: str = "Shadow of the Sand King"
-    name_ch = "沙王的投影"
-    cost_num: int = 1
-    cost_type: CostType = CostType.WHITE
+class FlowingRings(ArtifactCard):
+    id: int = 312019
+    name: str = "Flowing Rings"
+    name_ch = "浮溯之珏"
+    cost_num: int = 0
+    cost_type: CostType = None
 
     def __init__(self) -> None:
         super().__init__()
-        self.artifact_entity = ShadowoftheSandKingEntity
+        self.artifact_entity = FlowingRingsEntity
 
     def on_played(self, game: 'GeniusGame') -> None:
         super().on_played(game)

@@ -8,39 +8,43 @@ if TYPE_CHECKING:
     from genius_invocation.game.player import GeniusPlayer
 
 
-class ShadowoftheSandKingEntity(Artifact):
-    name: str = "Shadow of the Sand King"
-    name_ch = "沙王的投影"
-    max_usage = 1
+class VourukashasGlowEntity(Artifact):
+    name: str =  "Vourukasha's Glow"
+    name_ch = "花海甘露之光"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, artifact_card = None):
         super().__init__(game, from_player, from_character, artifact_card)
-        self.from_player.get_card(num=1)
         self.usage_round = -1
 
-    def on_damage(self, game:'GeniusGame'):
+    def after_damage(self, game:'GeniusGame'):
         if self.usage_round != game.round:
-            if game.current_damage.damage_to.from_player != self.from_player:
-                if game.current_damage.reaction != None:
+            if game.current_damage.damage_to == self.from_character:
+                if self.from_character.is_active:
                     self.from_player.get_card(num=1)
                     self.usage_round = game.round
 
+    def on_end(self, game: 'GeniusGame'):
+        if game.active_player_index == self.from_player.index:
+            if self.usage_round == game.round:
+                self.from_character.heal(1, game)
+
     def update_listener_list(self):
         self.listeners = [
-            (EventType.EXECUTE_DAMAGE, ZoneType.CHARACTER_ZONE, self.on_damage),
+            (EventType.FINAL_EXECUTE, ZoneType.CHARACTER_ZONE, self.after_damage),
+            (EventType.END_PHASE, ZoneType.CHARACTER_ZONE, self.on_end)
         ]
 
 
 
-class ShadowoftheSandKing(ArtifactCard):
-    id: int = 312017
-    name: str = "Shadow of the Sand King"
-    name_ch = "沙王的投影"
+class VourukashasGlow(ArtifactCard):
+    id: int = 312022
+    name: str = "Vourukasha's Glow"
+    name_ch = "花海甘露之光"
     cost_num: int = 1
     cost_type: CostType = CostType.WHITE
 
     def __init__(self) -> None:
         super().__init__()
-        self.artifact_entity = ShadowoftheSandKingEntity
+        self.artifact_entity = VourukashasGlowEntity
 
     def on_played(self, game: 'GeniusGame') -> None:
         super().on_played(game)

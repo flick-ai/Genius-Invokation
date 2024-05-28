@@ -47,10 +47,14 @@ class Sand_and_Dreams(Status):
         if self.on_calculate(game):
             self.on_destroy(game)
 
+    def on_play(self, game:'GeniusGame'):
+        if self.on_calculate(game):
+            self.on_destroy(game)
 
     def update_listener_list(self):
         self.listeners = [
             (EventType.ON_USE_SKILL, ZoneType.SUPPORT_ZONE, self.on_skill),
+            (EventType.ON_PLAY_CARD, ZoneType.SUPPORT_ZONE, self.on_play),
             (EventType.CALCULATE_DICE, ZoneType.SUPPORT_ZONE, self.on_calculate),
         ]
 
