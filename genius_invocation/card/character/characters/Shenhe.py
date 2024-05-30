@@ -186,7 +186,7 @@ class Talisman_Spirit(Summon):
 
     def on_dmg_add(self, game:'GeniusGame'):
         if game.current_damage.damage_from is not None:
-            if game.current_damage.damage_from.from_player == self.from_player:
+            if game.current_damage.damage_to.from_player != self.from_player:
                 if game.current_damage.main_damage_element == ElementType.CRYO or \
                         game.current_damage.main_damage_element == ElementType.PHYSICAL:
                     game.current_damage.main_damage += 1
