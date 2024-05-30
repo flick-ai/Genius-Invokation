@@ -1,4 +1,4 @@
-from typing import List, TYPE_CHECKING
+from typing import List, TYPE_CHECKING, Dict
 import numpy as np
 from genius_invocation.utils import *
 from collections import defaultdict
@@ -48,7 +48,7 @@ class GeniusGame:
         self.current_dice: Dice = None
         self.current_action: Action = None
         self.current_damage: Damage = None
-        self.current_switch: dict(Character) = {"from": None, "to": None}
+        self.current_switch: Dict[str, Character] = {"from": None, "to": None}
         self.current_skill: CharacterSkill = None
         self.current_card: ActionCard = None
         self.damage_list: List[Damage] = []

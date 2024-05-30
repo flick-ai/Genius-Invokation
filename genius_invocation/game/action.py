@@ -43,7 +43,7 @@ class Action:
     def __init__(self, choice, target, dice) -> None:
         self.choice: int = choice
         self.target: int = target
-        self.choice_list: list(int) = dice
+        self.choice_list: List[int] = dice
 
         self.choice_type: ActionChoice
         self.target_type: ActionTarget

@@ -1,4 +1,4 @@
-from typing import List, TYPE_CHECKING
+from typing import List, TYPE_CHECKING, Dict, Union
 import numpy as np
 from genius_invocation.utils import *
 from copy import deepcopy
@@ -22,7 +22,7 @@ class Dice:
         计算骰子的维护类
     '''
     def __init__(self, from_player, from_character, use_type, cost, to_character=None, name=None) -> None:
-        self.cost: list({'cost_num': int, 'cost_type': CostType}) = cost
+        self.cost: List[Dict[str, Union[int, CostType]]] = cost # 'cost_num', 'cost_type'
         self.from_player = from_player
         self.from_character: Character = from_character
         self.to_character: Character = to_character

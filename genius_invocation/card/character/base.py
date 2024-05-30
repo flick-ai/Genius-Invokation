@@ -1,5 +1,5 @@
 from genius_invocation.utils import *
-from typing import List, TYPE_CHECKING
+from typing import List, TYPE_CHECKING, Dict, Union
 from genius_invocation.event.damage import Damage
 from genius_invocation.event.heal import Heal
 from genius_invocation.entity.entity import Entity
@@ -29,7 +29,7 @@ class CharacterSkill:
     piercing_damage: int
     is_prepared_skill: bool = False
     # cost
-    cost: list({'cost_num': int, 'cost_type': CostType})
+    cost: List[Dict[str, Union[int, CostType]]] = [{'cost_num': 0, 'cost_type': CostType.BLACK}]
     energy_cost: int
     energy_gain: int
 

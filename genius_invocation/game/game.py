@@ -1,4 +1,4 @@
-from typing import List, TYPE_CHECKING, Optional
+from typing import List, TYPE_CHECKING, Optional, Dict
 import numpy as np
 from copy import deepcopy
 from genius_invocation.utils import *
@@ -55,7 +55,7 @@ class GeniusGame:
         self.current_dice: Dice = None
         self.current_action: Action = None
         self.current_damage: Damage = None
-        self.current_switch: dict(Character) = {"from": None, "to": None}
+        self.current_switch: Dict[str, Character] = {"from": None, "to": None}
         self.current_skill: CharacterSkill = None
         self.current_card: ActionCard = None
         self.current_remove_from: Character = None
@@ -129,6 +129,7 @@ class GeniusGame:
         self.current_action = game.current_action
         self.current_damage = game.current_damage
         self.current_switch = game.current_switch
+        self.current_attach_reaction = game.current_attach_reaction
         self.current_skill = game.current_skill
         self.current_card = game.current_card
         self.current_remove_from = game.current_remove_from
@@ -178,6 +179,7 @@ class GeniusGame:
         self.current_heal = None
         self.current_remove_from = None
         self.current_switch = {"from": None, "to": None}
+        self.current_attach_reaction = None
 
     def resolve_action(self, action: 'Action'):
         '''
