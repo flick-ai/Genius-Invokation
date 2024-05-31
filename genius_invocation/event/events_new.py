@@ -45,31 +45,29 @@ class ListenerCircle(object):
     def append(self, listener: ListenerNode) -> ListenerNode:
         pass
 
-    def __call__(self, game: 'GeniusGame') -> None:
-        player_index = game.active_player_index
-        player0_character_index = get_active_character(game, 0)
-        player1_character_index = get_active_character(game, 1)
+    def __call__(self, game: 'GeniusGame', character_index=None) -> None:
+        pass
 
 
 
 class ListenerCircles(object):
     def __init__(self, need_character=False) -> None:
-        self.player0_lisnter = ListenerCircle(need_character=need_character)
-        self.player1_lisnter = ListenerCircle(need_character=need_character)
+        self.needs_character = need_character
+        self.player_lisnters = [ListenerCircle(need_character=need_character) for _ in range(2)]
 
     def append_action(self, action, player_index, character_index) -> ListenerNode:
-        if player_index == 0:
-            return self.player0_lisnter.append_action(action, character_index)
-        else:
-            return self.player1_lisnter.append_action(action, character_index)
+        self.player_lisnters[player_index].append_action(action, character_index)
 
     def append(self, listener: ListenerNode) -> ListenerNode:
         pass
 
     def __call__(self, game: 'GeniusGame') -> None:
         player_index = game.active_player_index
-        self.
+        player0_character_index = get_active_character(game, 0) if self.needs_character else None
+        player1_character_index = get_active_character(game, 1) if self.needs_character else None
 
+        self.player_lisnters[player_index](game, player0_character_index)
+        self.player_lisnters[1 - player_index](game, player1_character_index)
 
 
 

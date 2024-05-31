@@ -23,11 +23,15 @@ class Entity:
         pass
 
     def listen_all(self, game: 'GeniusGame'):
+        player_index = self.from_player.index
+        character_index = self.from_character.index if self.from_character is not None else None
         for event_name, event_type, action in self.listeners:
-            self.registered_events.append(game.manager.listen(event_name, event_type, action))
+            self.registered_events.append(game.manager.listen(event_name, event_type, action, player_index, character_index))
 
     def listen_event(self, game:'GeniusGame', event_name: EventType, event_type: ZoneType, action: 'Action'):
-        self.registered_events.append(game.manager.listen(event_name, event_type, action))
+        player_index = self.from_player.index
+        character_index = self.from_character.index if self.from_character is not None else None
+        self.registered_events.append(game.manager.listen(event_name, event_type, action, player_index, character_index))
 
     def on_destroy(self, game):
         for action in self.registered_events:
