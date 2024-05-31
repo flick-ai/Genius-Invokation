@@ -37,10 +37,30 @@ class Event:
 
 class ListenerCircle(object):
     def __init__(self, need_character=False) -> None:
-        pass
+        self.need_character = need_character
+        self.head = ListenerNode(None)
+        self.head.next = self.head
+        self.head.before = self.head
+        self.tail = self.head
+        if self.need_character:
+            self.character_heads = [ListenerNode(None) for _ in range(3)]
+            self.character_tails = [self.character_heads[(i + 1) % 3] for i in range(3)]
+            for i in range(3):
+                self.character_heads[i].next = self.character_heads[(i + 1) % 3]
+                self.character_heads[i].before = self.character_heads[(i - 1) % 3]
+        
 
     def append_action(self, action, character_index=None) -> ListenerNode:
-        pass
+        if character_index:
+            node = ListenerNode(action, self.character_tails[character_index].before, self.character_tails[character_index])
+            self.character_tails[character_index].before.next = node
+            self.character_tails[character_index].before = node
+            return node
+        else:
+            node = ListenerNode(action, self.tail.before, self.tail)
+            self.tail.before.next = node
+            self.tail.before = node
+            return node
 
     def append(self, listener: ListenerNode) -> ListenerNode:
         pass
