@@ -36,7 +36,7 @@ class Event:
         return self.listeners[zone_type]
 
 class ListenerCircle(object):
-    def __init__(self) -> None:
+    def __init__(self, need_character=False) -> None:
         pass
 
     def append_action(self, action, character_index=None) -> ListenerNode:
@@ -53,19 +53,22 @@ class ListenerCircle(object):
 
 
 class ListenerCircles(object):
-    def __init__(self, actions, need_character=False) -> None:
-        pass
+    def __init__(self, need_character=False) -> None:
+        self.player0_lisnter = ListenerCircle(need_character=need_character)
+        self.player1_lisnter = ListenerCircle(need_character=need_character)
 
     def append_action(self, action, player_index, character_index) -> ListenerNode:
-        pass
+        if player_index == 0:
+            return self.player0_lisnter.append_action(action, character_index)
+        else:
+            return self.player1_lisnter.append_action(action, character_index)
 
     def append(self, listener: ListenerNode) -> ListenerNode:
         pass
 
     def __call__(self, game: 'GeniusGame') -> None:
         player_index = game.active_player_index
-        player0_character_index = get_active_character(game, 0)
-        player1_character_index = get_active_character(game, 1)
+        self.
 
 
 
