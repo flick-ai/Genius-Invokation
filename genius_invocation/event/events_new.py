@@ -66,7 +66,20 @@ class ListenerCircle(object):
         pass
 
     def __call__(self, game: 'GeniusGame', character_index=None) -> None:
-        pass
+        if not character_index:
+            listener = self.head.next
+            tail_before = self.tail.before
+            while listener != self.tail:
+                listener(game, character_index)
+                if listener == tail_before: break
+                listener = listener.next
+        else:
+            listener = self.character_heads[character_index].next
+            tail_before = self.character_heads[character_index].before
+            while listener != self.character_heads[character_index]:
+                listener(game, character_index)
+                if listener == tail_before: break
+                listener = listener.next
 
 
 
