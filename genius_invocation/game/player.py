@@ -72,6 +72,12 @@ class GeniusPlayer:
         # Mask
         self.action_mask: np.array
 
+        # Damage Type
+        self.suffer_damage_type = []
+
+        # Play cards
+        self.played_cards = []
+
     def update_element_list(self):
         ''' Only For La Signora right now. Refresh the element list, which may be used by some skills and talents.'''
         self.element_list = []
@@ -114,7 +120,7 @@ class GeniusPlayer:
                     return self.game.random.choice(DICENUM-1, num, replace=False).tolist()
                 return self.game.random.randint(0, DICENUM-1, num).tolist()
         if self.game.is_omni:
-            return  [7 for i in range(num)]
+            return  [DiceType.OMNI.value for i in range(num)]
         else:
             return self.game.random.randint(0, DICENUM, num).tolist()
 
@@ -184,15 +190,19 @@ class GeniusPlayer:
         if game.current_action.target_type == ActionTarget.DICE_REGION:
             card.on_tuning(game)
         else:
+            if card.name not in self.played_cards:
+                self.played_cards.append(card.name)
             if card.card_type == ActionCardType.EQUIPMENT_TALENT:
                 game.current_dice= Dice(from_player=self,
                                         from_character=None,
                                         use_type=card.card_type,
+                                        name = card.name,
                                         cost = deepcopy(card.cost))
             else:
                 game.current_dice = Dice(from_player=self,
                                     from_character=None,
                                     use_type=card.card_type,
+                                    name = card.name,
                                     cost = [{'cost_num':card.cost_num, 'cost_type':card.cost_type}])
             game.manager.invoke(EventType.ON_PLAY_CARD, game)
 
@@ -277,6 +287,7 @@ class GeniusPlayer:
                     has_dice = self.calculate_dice(game, Dice(from_player=self,
                                                             from_character=None,
                                                             use_type=action_card.card_type,
+                                                            name=action_card.name,
                                                             cost = deepcopy(action_card.cost)))
                 else:
                     has_dice = False
@@ -285,6 +296,7 @@ class GeniusPlayer:
                 has_dice = self.calculate_dice(game, Dice(from_player=self,
                                                         from_character=None,
                                                         use_type=action_card.card_type,
+                                                        name=action_card.name,
                                                         cost = [{'cost_num':action_card.cost_num, 'cost_type':action_card.cost_type}]))
             if has_target is not None and has_dice:
                 for target in has_target:

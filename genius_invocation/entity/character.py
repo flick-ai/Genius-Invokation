@@ -16,6 +16,7 @@ class Character(Entity):
     # 角色基本类
     id: int #Identity document, 卡牌的编号，可能用来喂给state for RL。
     name: str
+    tags: List[any] # Including element, weapon type, country, etc. #TODO: Add tags to every card if necessary, instead of element, weapon type, country.
     element: ElementType
     weapon_type: WeaponType
     country: CountryType
@@ -44,7 +45,7 @@ class Character(Entity):
         self.skills = []
         for skill in self.skill_list:
             self.skills.append(skill(self))
-        
+
     def on_begin(self, game: 'GeniusGame'):
         '''
             回合开始时, 刷新所有技能的使用次数
@@ -76,13 +77,13 @@ class Character(Entity):
         else:
             self.talent = True
             self.listen_talent_events(game)
-            self.from_character.character_zone.talent_card = talent_card
-            
+            self.character_zone.talent_card = talent_card
+
             if is_action:
                 self.talent_skill.on_call(game)
             game.is_change_player=is_action
 
-           
+
 
     def update_listener_list(self):
         self.listeners = [
@@ -111,11 +112,11 @@ class Character(Entity):
         if self.is_alive:
             self.health_point += heal
             if self.health_point > self.max_health_point:
-                heal = heal + self.health_point - self.max_health_point 
+                heal = heal + self.health_point - self.max_health_point
                 self.health_point = self.max_health_point
             game.current_heal = Heal(heal=heal, target_character=self)
             game.manager.invoke(EventType.AFTER_HEAL, game)
-    
+
     def get_power(self, power:int):
         if self.is_alive:
             self.power = min(self.power+power, self.max_power)
@@ -129,6 +130,10 @@ class Character(Entity):
         self.is_frozen = False
         self.is_active = False
         self.is_satisfy = False
+        if self.talent:
+            game.current_remove_from = self.from_character
+            game.manager.invoke(EventType.ON_EQUIP_REMOVE, game)
+            game.current_remove_from = None
         self.talent = False
         self.power = 0
         self.elemental_application = []
@@ -150,7 +155,7 @@ class Character(Entity):
         if len(self.elemental_application) == 0:
             self.elemental_application.append(element)
             return
-        
+
         attached = self.elemental_application[0]
         Reaction = None
         targetplayer_id = self.from_player.index
@@ -227,8 +232,10 @@ class Character(Entity):
                 case ElementType.DENDRO:
                     self.elemental_application.append(element)
         if Reaction is not None:
+            game.current_attach_reaction = Reaction
             game.manager.invoke(EventType.ELEMENTAL_APPLICATION_REATION, game)
-        
+            game.current_attach_reaction = None
+
         if Reaction == ElementalReactionType.Overloaded:
             if self.is_active:
                 self.from_player.change_to_next_character()

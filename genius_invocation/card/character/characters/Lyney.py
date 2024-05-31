@@ -77,7 +77,7 @@ class Prop_Arrow(NormalAttack):
                               self.from_character, self.from_character,
                               ))
             game.resolve_damage()
-            game.manager.invoke(EventType.AFTER_USE_SKILL, game)
+        game.manager.invoke(EventType.AFTER_USE_SKILL, game)
         self.gain_energy(game)
 
 class GrinMalkin_Hat(Summon):

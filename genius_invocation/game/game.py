@@ -1,4 +1,4 @@
-from typing import List, TYPE_CHECKING
+from typing import List, TYPE_CHECKING, Optional, Dict
 import numpy as np
 from copy import deepcopy
 from genius_invocation.utils import *
@@ -55,11 +55,13 @@ class GeniusGame:
         self.current_dice: Dice = None
         self.current_action: Action = None
         self.current_damage: Damage = None
-        self.current_switch: dict(Character) = {"from": None, "to": None}
+        self.current_switch: Dict[str, Character] = {"from": None, "to": None}
         self.current_skill: CharacterSkill = None
         self.current_card: ActionCard = None
+        self.current_remove_from: Character = None
         self.damage_list: List[Damage] = []
         self.is_change_player: bool = False
+        self.current_attach_reaction: ElementalReactionType = None # Save the reaction type when attachment (no dmg). Will be reset after the invoking of the event. keep None.
         #TODO: CHECK THE INITIALIZE OF IS_CHANGE_PLAYER
         self.is_end: bool = False
         self.is_overload:GeniusPlayer = None
@@ -75,7 +77,7 @@ class GeniusGame:
         game = deepcopy(self)
         game.root_game = self.root_game
         return game
-    
+
     def resolve_game(self, game: 'GeniusGame'):
         '''
             处理游戏信息
@@ -100,8 +102,10 @@ class GeniusGame:
         self.current_action = game.current_action
         self.current_damage = game.current_damage
         self.current_switch = game.current_switch
+        self.current_attach_reaction = game.current_attach_reaction
         self.current_skill = game.current_skill
         self.current_card = game.current_card
+        self.current_remove_from = game.current_remove_from
         self.damage_list = game.damage_list
         self.is_change_player = game.is_change_player
         self.is_end = game.is_end
@@ -113,11 +117,11 @@ class GeniusGame:
         '''
             前进一步
         '''
-        
 
 
-        
-    
+
+
+
     def planning(self, action, die_action=None):
         self.die_action = die_action
         self.step(action)
@@ -146,7 +150,9 @@ class GeniusGame:
         self.current_card = None
         self.current_dice = None
         self.current_heal = None
+        self.current_remove_from = None
         self.current_switch = {"from": None, "to": None}
+        self.current_attach_reaction = None
 
     def resolve_action(self, action: 'Action'):
         '''
@@ -252,7 +258,7 @@ class GeniusGame:
                 print(f"player{1-player.index} is winner!")
                 exit()
             if not player.character_list[player.active_idx].is_alive:
-                
+
                 # for char in player.character_list:
                 #     if char.is_alive:
                 #         char.is_active = True
@@ -287,7 +293,7 @@ class GeniusGame:
                 self.incoming_action_list.append(action)
                 action = self.prev_action
                 logger.info(self.incoming_action_list)
-        
+
             game_for_plan = self.copy_game()
             (self, game_for_plan)
             self.is_dying = False
@@ -301,7 +307,7 @@ class GeniusGame:
                     game_for_plan.set_reroll_dice(action)
                 case GamePhase.ACTION_PHASE:
                     game_for_plan.resolve_action(action)
-            
+
             # print(self, game_for_plan)
             logger.info(self.is_dying)
             if not self.is_dying:
@@ -324,11 +330,11 @@ class GeniusGame:
                     self.set_reroll_dice(action)
                 case GamePhase.ACTION_PHASE:
                     self.resolve_action(action)
-        
-        # else:
-            
 
-        
+        # else:
+
+
+
 
     def set_hand_card(self, action):
         '''
@@ -409,6 +415,7 @@ class GeniusGame:
         self.change_active_player()
         self.active_player.end_phase(self)
         self.change_active_player()
+        self.manager.invoke(EventType.FINAL_END, self)
 
         # 进入下一个回合
         self.roll_phase()
@@ -469,7 +476,7 @@ class Active_Die:
             action = game.incoming_action_list[game.incoming_action_list_index]
             # print(action.target, action.target_idx)
             game.incoming_action_list_index += 1
-            game.step(action)      
+            game.step(action)
 
 
         # game.step(action)

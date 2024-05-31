@@ -14,7 +14,7 @@ class Tandoori_Roast_Chicken_Entity(Status):
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.current_usage = 1
-    
+
     def on_damage_add(self, game: 'GeniusGame'):
         if game.current_damage.damage_from == self.from_character:
             if game.current_damage.damage_type == SkillType.ELEMENTAL_SKILL:
@@ -24,7 +24,7 @@ class Tandoori_Roast_Chicken_Entity(Status):
                     self.on_destroy(game)
 
     def on_begin(self, game: 'GeniusGame'):
-        if game.current_damage.damage_from == self.from_character:
+        if game.active_player_index == self.from_player.index:
             self.on_destroy(game)
 
     def update_listener_list(self):
@@ -46,8 +46,14 @@ class Tandoori_Roast_Chicken(FoodCard):
 
     def on_played(self, game: 'GeniusGame'):
         super().on_played(game)
-    
-    def find_target(self, game: 'GeniusGame'):
-        return [1]
 
-    
+    def find_target(self, game: 'GeniusGame'):
+        flag = True
+        for _, character in enumerate(game.active_player.character_list):
+            if character.is_alive and character.is_satisfy:
+                flag = False
+                break
+        if flag:
+            return [1]
+        return []
+

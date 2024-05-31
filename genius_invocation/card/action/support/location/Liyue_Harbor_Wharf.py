@@ -18,7 +18,7 @@ class Liyue_Harbor_Wharf_Entity(Support):
         super().__init__(game, from_player, from_character)
         self.usage = self.max_usage
 
-    def on_begin(self, game:'GeniusGame'):
+    def on_end(self, game:'GeniusGame'):
         if game.active_player_index == self.from_player.index:
             self.from_player.get_card(num=2)
             self.usage -= 1
@@ -27,7 +27,7 @@ class Liyue_Harbor_Wharf_Entity(Support):
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.BEGIN_ACTION_PHASE, ZoneType.SUPPORT_ZONE, self.on_begin),
+            (EventType.END_PHASE, ZoneType.SUPPORT_ZONE, self.on_end),
         ]
     def show(self):
         return str(self.usage)

@@ -13,8 +13,7 @@ class FruitofFulfillmentWeapon(Weapon):
     max_usage = 1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, weapon_card = None):
         super().__init__(game, from_player, from_character, weapon_card)
-        self.usage = self.max_usage
-        self.round = -1
+        game.active_player.get_card(num=2)
 
     def on_damage_add(self, game: 'GeniusGame'):
         if game.current_damage.damage_from == self.from_character:
@@ -39,8 +38,7 @@ class FruitofFulfillment(WeaponCard):
     def __init__(self) -> None:
         super().__init__()
         self.equipment_entity = FruitofFulfillmentWeapon
-    
+
     def on_played(self, game: 'GeniusGame') -> None:
         super().on_played(game)
-        game.active_player.get_card(num=2)
 

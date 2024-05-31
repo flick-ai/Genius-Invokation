@@ -111,7 +111,11 @@ class Combat_Shield(Combat_Status):
 
 
 class Equipment(Entity):
-    pass
+    def on_destroy(self, game):
+        super().on_destroy(game)
+        game.current_remove_from = self.from_character
+        game.manager.invoke(EventType.ON_EQUIP_REMOVE, game)
+        game.current_remove_from = None
 
 class Weapon(Equipment):
     # 武器实体
@@ -127,7 +131,7 @@ class Weapon(Equipment):
         '''Get the weapon card from the character to hands.'''
         self.on_destroy(game)
         return self.weapon_card
-    
+
     def change(self, game, target):
         self.from_character = target
 
@@ -145,7 +149,7 @@ class Artifact(Equipment):
 
     def on_destroy(self, game):
         super().on_destroy(game)
-        self.from_character.character_zone.weapon_card = None
+        self.from_character.character_zone.artifact_card = None
 
     def get_artifact_card(self, game: 'GeniusGame'):
         self.on_destroy(game)
@@ -153,7 +157,7 @@ class Artifact(Equipment):
 
     def show(self):
         return self.name_ch
-    
+
     def count_cost(self):
         return self.artifact_card.cost_num
 

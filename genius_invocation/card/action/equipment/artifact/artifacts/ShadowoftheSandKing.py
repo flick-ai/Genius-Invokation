@@ -17,12 +17,12 @@ class ShadowoftheSandKingEntity(Artifact):
         self.from_player.get_card(num=1)
         self.usage_round = -1
 
-    def on_after_heal(self, game:'GeniusGame'):
-        if self.from_character.is_active:
+    def on_damage(self, game:'GeniusGame'):
+        if self.usage_round != game.round:
             if game.current_damage.damage_to.from_player != self.from_player:
                 if game.current_damage.reaction != None:
                     self.from_player.get_card(num=1)
-
+                    self.usage_round = game.round
 
     def update_listener_list(self):
         self.listeners = [

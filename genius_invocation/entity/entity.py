@@ -28,13 +28,13 @@ class Entity:
 
     def listen_event(self, game:'GeniusGame', event_name: EventType, event_type: ZoneType, action: 'Action'):
         self.registered_events.append(game.manager.listen(event_name, event_type, action))
-        
+
     def on_destroy(self, game):
         for action in self.registered_events:
             action.remove()
 
     def update(self):
         pass
-    
+
     def show(self):
         return self.name

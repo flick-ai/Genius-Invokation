@@ -132,7 +132,7 @@ class EventType(Enum):
     AFTER_CHANGE_CHARACTER = 8
     END_PHASE = 9
 
-    
+
     DAMAGE_ADD = 10
     DAMAGE_ADD_AFTER_REACTION = 11 #AFTER REACTION, DMG ADD
     DEALING_DAMAGE = 12 # Mona only right now
@@ -143,7 +143,7 @@ class EventType(Enum):
     # AFTER_TAKES_DMG = 16
     SPECIAL_SWITCH = 17
     FINAL_EXECUTE = 18
-    
+
     CHARACTER_DIE = 20
     CHARACTER_WILL_DIE = 19
 
@@ -153,6 +153,12 @@ class EventType(Enum):
 
     ELEMENTAL_APPLICATION_REATION = 24
     AFTER_HEAL = 25
+    # 召唤物移除
+    ON_SUPPORT_REMOVE = 26
+    # 重置计数
+    FINAL_END = 27
+    # 装备弃置
+    ON_EQUIP_REMOVE = 28
 
 class SwitchType(Enum):
     CHANGE_CHARACTER = 0
@@ -269,6 +275,13 @@ def get_player_from_character(
 )->'GeniusPlayer':
     return character.from_player
 
+# def get_character_zone(game: 'GeniusGame', character_index):
+#     if character_index == 0:
+#         return ZoneType.CHARACTER_ZONE_0
+#     elif character_index == 1:
+#         return ZoneType.CHARACTER_ZONE_1
+#     elif character_index == 2:
+#         return ZoneType.CHARACTER_ZONE_2
 
 import json
 def print_information(log_info, log_file='./debug.json'):

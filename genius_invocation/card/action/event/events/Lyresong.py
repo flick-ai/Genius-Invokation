@@ -55,5 +55,5 @@ class Lyresong(ActionCard):
         target = []
         for idx, character in enumerate(game.active_player.character_list):
             if character.character_zone.artifact_card != None:
-                target.append(idx)
+                target.append(idx+2)
         return target

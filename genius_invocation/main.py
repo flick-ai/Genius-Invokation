@@ -23,12 +23,13 @@ def get_parser():
     parser.add_argument('--fix', action='store_true', default=False)
     parser.add_argument('--code', action='store_true', default=False)
     parser.add_argument('--save', action='store_true', default=False)
+    parser.add_argument('--omni', action='store_true', default=False)
     parser.add_argument('--seed', type=int, default=2026)
     args = parser.parse_args()
     return args
 
 def test_code():
-    code = 'ArEBvTQMAcHRvk0NB3HxyH0OCKHR4p4PCxEx46QPDCEx9bQQDEFB9rURDLKRDLwRDPEB'
+    code = 'ASAA4gsPAwAQ8UwPBBDA9MIPDEAg9cYPDGBg/MkPDMGQC9EQDbEQDt4QDuEQEeERDjAA'
     card = get_card()
     name = code_to_name(code, card)
     character_card = name[0:3]
@@ -162,8 +163,8 @@ if __name__=="__main__":
                     'PaidinFull','PaidinFull','Send_Off','Starsigns','Starsigns']
     }
     deck2 = {
-    'character': ['Klee', 'Lisa', 'Qiqi'],
-    'action_card': ['PulsatingWitch' for i in range(30)]
+    'character': ['Neuvillette', 'Lisa', 'Qiqi'],
+    'action_card': ['HeirtotheAncientSeasAuthority' for i in range(30)]
     }
     # deck2 = {
     # 'character': ['Arataki_Itto', 'Dehya', 'Noelle'],
@@ -174,7 +175,7 @@ if __name__=="__main__":
     #                 'Lotus_Flower_Crisp','Lotus_Flower_Crisp','Sweet_Madame','Mondstadt_Hash_Brown',
     #                 'Mushroom_Pizza','Mushroom_Pizza']
     # }
-    game = GeniusGame(player0_deck=deck1, player1_deck=deck2, seed=args.seed, is_omni=False)
+    game = GeniusGame(player0_deck=deck1, player1_deck=deck2, seed=args.seed, is_omni=args.omni)
     with open("save_data.pickle", "wb+") as f:
         pickle.dump(game, f)
 

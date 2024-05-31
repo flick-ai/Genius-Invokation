@@ -1,6 +1,6 @@
 from genius_invocation.card.character.base import Damage
 from collections import defaultdict
-from typing import Any, List, TYPE_CHECKING
+from typing import Any, List, TYPE_CHECKING, Dict
 from genius_invocation.utils import *
 from loguru import logger
 if TYPE_CHECKING:
@@ -25,7 +25,7 @@ class ListenerNode:
 
 class Event:
     def __init__(self) -> None:
-        self.listeners: dict(ListenerList) = {}
+        self.listeners: Dict[ZoneType, ListenerList] = {}
         for zone_type in ZoneType:
             self.listeners[zone_type] = ListenerList([])
 

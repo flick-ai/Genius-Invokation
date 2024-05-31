@@ -51,12 +51,12 @@ class Master_of_Weaponry(ActionCard):
                 if has_same:
                     target.append(idx)
         return target
-    
+
     def refind_target(self, game:'GeniusGame'):
         target = []
         for idx, character in game.active_player.character_list:
             if character.character_zone.weapon_card == None and character.weapon_type == self.artifact.weapon_card.weapon_type and idx != self.artifact_from:
-                target.append(idx)
+                target.append(idx+2)
         return target
-        
+
 

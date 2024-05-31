@@ -23,5 +23,5 @@ class Plunging_Strike(ActionCard):
         target = []
         for idx, character in enumerate(game.active_player.character_list):
             if not character.is_active and character.is_alive and not character.is_frozen:
-                target.append(idx)
+                target.append(idx+2)
         return target

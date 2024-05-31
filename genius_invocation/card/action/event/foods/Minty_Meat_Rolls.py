@@ -30,7 +30,7 @@ class Minty_Meat_Rolls_Entity(Status):
                 self.on_destroy(game)
 
     def on_begin(self, game: 'GeniusGame'):
-        if game.current_damage.damage_from == self.from_character:
+        if game.active_player_index == self.from_player.index:
             self.on_destroy(game)
 
     def update_listener_list(self):
@@ -54,4 +54,3 @@ class Minty_Meat_Rolls(FoodCard):
     def on_played(self, game: 'GeniusGame'):
         super().on_played(game)
 
-    

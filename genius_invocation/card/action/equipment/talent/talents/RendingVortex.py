@@ -1,7 +1,7 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
-from genius_invocation.card.character.characters.Dvalin import * 
+from genius_invocation.card.character.characters.Dvalin import *
 
-class PulsatingWitch(TalentCard):
+class RendingVortex(TalentCard):
     id: int = 225021
     name: str = "Rending Vortex"
     name_ch = "毁裂风涡"
@@ -11,4 +11,3 @@ class PulsatingWitch(TalentCard):
     character = Dvalin
     def __init__(self) -> None:
         super().__init__()
-        

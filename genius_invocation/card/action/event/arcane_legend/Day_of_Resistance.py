@@ -12,11 +12,11 @@ class Day_of_Resistance_Entity(Status):
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.usage = 4
-                
+
     def on_end(self, game:'GeniusGame'):
         if game.active_player_index == self.from_player.index:
            self.on_destroy(game)
-    
+
     def on_damage_execute(self, game: 'GeniusGame'):
         if game.current_damage.damage_to == self.from_character:
             if game.current_damage.main_damage_element == ElementType.PIERCING:
@@ -46,12 +46,13 @@ class Day_of_Resistance(ActionCard):
         super().__init__()
 
     def on_played(self, game: 'GeniusGame') -> None:
-        game.active_player.team_combat_status.add_entity(Day_of_Resistance_Entity(
+        active_character = get_my_active_character(game)
+        active_character.character_zone.add_entity(Day_of_Resistance_Entity(
             game,
             from_player=game.active_player,
-            from_character=get_my_active_character(game),
+            from_character=active_character,
         ))
-    
+
     def find_target(self, game: 'GeniusGame'):
         if game.active_player.play_arcane_legend:
             return []
