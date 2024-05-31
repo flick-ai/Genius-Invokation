@@ -15,7 +15,7 @@ class Starsigns(ActionCard):
         super().__init__()
 
     def on_played(self, game: 'GeniusGame'):
-        get_my_active_character(game).power += 1
+        get_my_active_character(game).get_power(power=1)
 
     def find_target(self, game: 'GeniusGame'):
         character = get_my_active_character(game)

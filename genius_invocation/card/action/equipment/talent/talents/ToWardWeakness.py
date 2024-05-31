@@ -1,5 +1,5 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
-from genius_invocation.card.character.characters.KukiShinobu import * 
+from genius_invocation.card.character.characters.KukiShinobu import *
 
 class ToWardWeakness(TalentCard):
     id: int = 214111
@@ -11,4 +11,3 @@ class ToWardWeakness(TalentCard):
     character = KukiShinobu
     def __init__(self) -> None:
         super().__init__()
-        

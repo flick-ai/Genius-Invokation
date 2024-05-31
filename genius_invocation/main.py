@@ -7,6 +7,7 @@ import genius_invocation.card.action as action
 import inspect
 import sys
 import genius_invocation.card.character.characters as chars
+import genius_invocation.card.action.equipment.talent as talents
 
 from genius_invocation.utils import *
 from rich import print
@@ -61,8 +62,12 @@ def test_select():
     available_character_name = [f[:-3] for f in os.listdir(package_dir) if f.endswith(".py") and f != "__init__.py" and f != "import_head.py"]
     available_character = []
     for name in available_character_name:
-        available_character.append((name, eval("chars."+name).name, eval("chars."+name).name_ch, eval("chars."+name)))
+        available_character.append((name, eval("chars."+name).name, eval("chars."+name).name_ch, eval("chars."+name).id))
     print(len(available_character))
+
+
+    for character in sorted(available_character, key=lambda x:x[-1]):
+        print(character[2])
 
     # 输出所有行动牌
     available_card = []
@@ -83,6 +88,15 @@ def test_select():
     for package_dir in package_dirs:
         available_name = [f[:-3] for f in os.listdir(package_dir) if f.endswith(".py") and f != "__init__.py" and f != "import_head.py"]
         print(package_dir, len(available_name))
+        # 测试天赋的归属
+        if package_dir == "./card/action/equipment/talent/talents":
+            all_talents = [eval('talents.'+talent).character.__name__ for talent in available_name]
+            for talent in all_talents:
+                if talent not in available_character_name:
+                    print("{} not has character".format(talent))
+            for character in available_character_name:
+                if character not in all_talents:
+                    print("{} not has talent".format(character))
 
     # 测试选择卡函数
     available_card = select_card(['Ganyu', 'Keqing' ,'Lynette'], available_card)

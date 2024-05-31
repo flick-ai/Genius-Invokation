@@ -141,15 +141,15 @@ class KukiShinobu(Character):
             self.from_character.health_point = 0
             self.from_character.heal(1, game)
             self.talent_round = game.round
-    
+
     def dmg_add(self, game:'GeniusGame'):
         if self.health_point<=5 and game.current_damage.damage_from == self and game.current_damage.damage_to.from_player!=self.from_player:
             game.current_damage.main_damage += 1
-    
+
     def listen_talent_events(self, game: 'GeniusGame'):
         self.listen_event(game, EventType.CHARACTER_WILL_DIE, ZoneType.CHARACTER_ZONE, self.on_character_die)
         self.listen_event(game, EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, self.dmg_add)
-        
+
 class Grass_Ring_of_Sanctification(Combat_Status):
     name = "Grass Ring of Sanctification"
     name_ch = "雷草之轮"
@@ -197,7 +197,7 @@ class Grass_Ring_of_Sanctification(Combat_Status):
                     max_dmg_taken = dmg_taken
                     max_taken_char = char
             max_taken_char.heal(1,game=game)
-            
+
             self.current_usage -= 1
             if(self.current_usage <= 0):
                 self.on_destroy(game)

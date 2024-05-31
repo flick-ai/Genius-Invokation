@@ -23,6 +23,7 @@ class Calxs_Arts(ActionCard):
             if add_power == 2:
                 break
         active_character = get_my_active_character(game)
-        active_character.power = min(active_character.max_power, active_character.power+add_power)
-        
-        
+        active_character.get_power(power=add_power)
+        # active_character.power = min(active_character.max_power, active_character.power+add_power)
+
+
