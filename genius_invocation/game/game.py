@@ -76,33 +76,6 @@ class GeniusGame:
         # game = GeniusGame(deepcopy(self.players[0].deck), deepcopy(self.players[1].deck))
         game = deepcopy(self)
         game.root_game = self.root_game
-        # game.root_game = deepcopy(self.root_game)
-        # game.manager = deepcopy(self.manager)
-        # game.is_omni = deepcopy(self.is_omni)
-        # game.is_dying = deepcopy(self.is_dying)
-        # game.action_list = deepcopy(self.action_list)
-        # game.num_players = deepcopy(self.num_players)
-        # game.random = deepcopy(self.random)
-        # game.incoming_action_list = deepcopy(self.incoming_action_list)
-        # game.first_player = self.first_player
-        # game.active_player_index = self.active_player_index
-        # game.active_player = self.active_player
-        # game.players = [self.players[0].copy_player(), self.players[1].copy_player()]
-        # game.game_phase = self.game_phase
-        # game.special_phase = self.special_phase
-        # game.round = self.round
-        # game.current_die = self.current_die
-        # game.current_heal = self.current_heal
-        # game.current_dice = self.current_dice
-        # game.current_action = self.current_action
-        # game.current_damage = self.current_damage
-        # game.current_switch = self.current_switch
-        # game.current_skill = self.current_skill
-        # game.current_card = self.current_card
-        # game.damage_list = self.damage_list
-        # game.is_change_player = self.is_change_player
-        # game.is_end = self.is_end
-        # game.is_overload = self.is_overload
         return game
 
     def resolve_game(self, game: 'GeniusGame'):

@@ -137,6 +137,16 @@ def select_card(characters: List['Character'], all_action_card: List['ActionCard
                     available_action_card['EVENT'].append((class_name, name, name_ch))
     return available_action_card
 
+def code_to_deck(code):
+    card = get_card()
+    name = code_to_name(code, card)
+    character_card = name[0:3]
+    action_card = name[3:]
+    deck = {
+        'character': character_card,
+        'action_card': action_card
+    }
+    return deck
 
 if __name__=="__main__":
     args = get_parser()
