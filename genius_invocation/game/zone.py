@@ -397,7 +397,10 @@ class CharacterZone:
         return None
 
     def add_entity(self, entity: 'Status'):
-        self.status_list.append(entity)
+        if self.has_entity(entity) is not None:
+            self.has_entity(entity).update()
+        else:
+            self.status_list.append(entity)
 
     def clear(self, game:'GeniusGame'):
         if self.weapon_card is not None:
@@ -456,9 +459,15 @@ class ActiveZone:
     def add_entity(self, entity: 'Entity'):
         # When using add_entity, please make sure that the same kind of entity is not exisits in the list.
         if isinstance(entity, Combat_Shield):
-            self.shield.append(entity)
+            if self.has_shield(entity) is None:
+                self.shield.append(entity)
+            else:
+                self.has_shield(entity).update()
         else:
-            self.space.append(entity)
+            if self.has_status(entity) is None:
+                self.space.append(entity)
+            else:
+                self.has_status(entity).update()
 
 class HandZone:
     '''
