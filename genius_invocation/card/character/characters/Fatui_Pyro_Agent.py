@@ -142,8 +142,8 @@ class Stealth(Status):
         if self.from_character.talent:
             if self.from_character == game.current_damage.damage_from:
                 if game.current_damage.main_damage_element == ElementType.PHYSICAL:
-                    game.current_damage.main_damage_element = ElementType.HYDRO
-    
+                    game.current_damage.main_damage_element = ElementType.PYRO
+
     def update_listener_list(self):
         self.listeners = [
             (EventType.EXECUTE_DAMAGE, ZoneType.CHARACTER_ZONE, self.on_execute_dmg),
@@ -151,7 +151,7 @@ class Stealth(Status):
         ]
         if self.from_character.talent:
             self.listeners.append((EventType.INFUSION, ZoneType.CHARACTER_ZONE, self.infusion))
-    
+
 class Fatui_Pyro_Agent(Character):
     name = 'Fatui Pyro Agent'
     name_ch = '愚人众·火之债务处理人'
@@ -164,7 +164,7 @@ class Fatui_Pyro_Agent(Character):
     max_health_point: int = 9
     skill_list = [Thrust, Prowl, Blade_Ablastion]
     max_power = 2
-    
+
     def init_state(self, game: 'GeniusGame'):
         assert self.character_zone.has_entity(Stealth) is None
         status = Stealth(game, self.from_player, self)
