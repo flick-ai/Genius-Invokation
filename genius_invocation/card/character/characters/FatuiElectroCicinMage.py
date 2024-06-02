@@ -90,7 +90,7 @@ class ThunderingShield(ElementalBurst):
         }
     ]
 
-    energy_cost: int = 3
+    energy_cost: int = 2
     energy_gain: int = 0
 
     def __init__(self, from_character: 'Character'):
@@ -115,9 +115,9 @@ class SurgingThunder(ElementalBurst):
     name = "Surging Thunder"
     name_ch = "霆电迸发"
     id = 22034
-    type = SkillType.ELEMENTAL_SKILL
+    type = SkillType.ELEMENTAL_BURST
 
-    damage_type: SkillType = SkillType.ELEMENTAL_SKILL
+    damage_type: SkillType = SkillType.ELEMENTAL_BURST
     main_damage_element = ElementType.ELECTRO
     main_damage: int = 2
     piercing_damage: int = 0

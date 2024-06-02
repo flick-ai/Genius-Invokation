@@ -3,7 +3,7 @@ from genius_invocation.card.character.characters.AbyssHeraldWickedTorrents impor
 
 class SurgingUndercurrent(TalentCard):
     id: int = 222031
-    name: str = "Kanten Senmyou Blessing"
+    name: str = "Surging Undercurrent"
     name_ch = "暗流涌动"
     is_action = False
     cost = [{'cost_num': 1, 'cost_type': 1}]
