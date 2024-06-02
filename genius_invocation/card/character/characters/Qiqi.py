@@ -46,7 +46,7 @@ class Adeptus_Art_Herald_of_Frost(ElementalSkill):
 
     # damage
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
-    main_damage_element: ElementType = ElementType.CRYO
+    main_damage_element: ElementType = None
     main_damage: int = 0
     piercing_damage: int = 0
 
@@ -148,10 +148,10 @@ class Herald_of_Frost(Summon):
     name_ch = "寒病鬼差"
     element = ElementType.CRYO
     removable = True
-    
+
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character:'Character'=None):
         super().__init__(game, from_player, from_character)
-        self.current_usage = 3    
+        self.current_usage = 3
         self.usage = 3
 
     def update(self):

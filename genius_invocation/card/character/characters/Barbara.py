@@ -51,7 +51,7 @@ class MelodyLoop(Summon):
         self.talent_max_usage = 1
         self.talent_usage = 0
         self.talent_round = -1
-    
+
     def update(self, game: 'GeniusGame'):
         self.current_usage = max(self.current_usage,self.usage)
 
@@ -73,7 +73,7 @@ class MelodyLoop(Summon):
         if self.from_character.talent:
             self.listeners.append((EventType.CALCULATE_DICE, ZoneType.SUMMON_ZONE, self.on_calculate_dice))
             self.listeners.append((EventType.ON_CHANGE_CHARACTER, ZoneType.SUMMON_ZONE, self.on_switch))
-    
+
     def on_calculate_dice(self, game: 'GeniusGame'):
         if game.round != self.talent_round:
             self.talent_round = game.round
@@ -89,14 +89,14 @@ class MelodyLoop(Summon):
     def on_switch(self, game: 'GeniusGame'):
         if self.on_calculate_dice(game):
             self.talent_usage -= 1
-    
+
 class ShiningMiracle(ElementalBurst):
     id: int = 12013
     name = "Shining Miracle♪"
     name_ch = "闪耀奇迹♪"
     type: SkillType = SkillType.ELEMENTAL_BURST
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
-    main_damage_element: ElementType = ElementType.HYDRO
+    main_damage_element: ElementType = None
     main_damage: int = 0
     piercing_damage: int = 0
     cost = [{'cost_num':3, 'cost_type':CostType.HYDRO}]
@@ -131,7 +131,7 @@ class Barbara(Character):
 
     def listen_talent_events(self, game: 'GeniusGame'):
         status = self.from_player.summon_zone.has_entity(MelodyLoop)
-        if status != None: 
+        if status != None:
             status.listen_event(game, EventType.CALCULATE_DICE, ZoneType.SUMMON_ZONE, status.on_calculate_dice)
             status.listen_event(game, EventType.ON_CHANGE_CHARACTER, ZoneType.SUMMON_ZONE, status.on_switch)
-          
+

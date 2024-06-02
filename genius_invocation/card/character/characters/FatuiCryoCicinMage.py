@@ -69,12 +69,8 @@ class Misty_Summons(ElementalSkill):
 
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
-        # 处理伤害
-        self.resolve_damage(game)
         self.generate_summon(game, Cryo_Cicins)
-        # 获得能量
         self.gain_energy(game)
-        # after skill
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 
@@ -114,6 +110,7 @@ class Blizzard(ElementalBurst):
         self.add_combat_shield(game, Flowing_Cicin_Shield)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
+
 class Cryo_Cicins(Summon):
     name = 'Cryo Cicins'
     name_ch = '冰萤'
@@ -124,7 +121,7 @@ class Cryo_Cicins(Summon):
         self.usage = 2
         self.max_usage = 3
         self.current_usage = self.usage
-    
+
     def update(self, game:'GeniusGame'):
         use = self.current_usage + self.usage
         if use > self.max_usage:
@@ -143,7 +140,7 @@ class Cryo_Cicins(Summon):
                 game.resolve_damage()
         else:
             self.current_usage = use
-    
+
     def add_one_usage(self, game:'GeniusGame'):
         if self.current_usage >= self.max_usage:
             if self.from_character.talent:
@@ -160,7 +157,7 @@ class Cryo_Cicins(Summon):
                 game.resolve_damage()
         else:
             self.current_usage += 1
-    
+
     def on_end_phase(self, game:'GeniusGame'):
         if game.active_player == self.from_player:
             dmg = Damage.create_damage(
@@ -183,13 +180,13 @@ class Cryo_Cicins(Summon):
                 self.current_usage -= 1
                 if self.current_usage <=0:
                     self.on_destroy(game)
-    
+
     def update_listener_list(self):
         self.listeners = [
             (EventType.END_PHASE, ZoneType.SUMMON_ZONE, self.on_end_phase),
             (EventType.DAMAGE_ADD_AFTER_REACTION, ZoneType.SUMMON_ZONE, self.on_reaction),
         ]
-    
+
 class Flowing_Cicin_Shield(Combat_Shield):
     name = 'Flowing Cicin Shield'
     name_ch = '流萤护罩'
@@ -201,7 +198,7 @@ class Flowing_Cicin_Shield(Combat_Shield):
             self.current_usage = self.usage + min(cicin.current_usage,3)
         else:
             self.current_usage = self.usage
-    
+
     def update(self):
         cicin = self.from_player.summon_zone.has_entity(Cryo_Cicins)
         if cicin is not None:
@@ -226,4 +223,5 @@ class FatuiCryoCicinMage(Character):
         self.power = 0
         self.talent = talent
         self.talent_skill = self.skills[1]
+
 

@@ -46,7 +46,7 @@ class MeowteorKick(ElementalSkill):
 
     # No damage
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
-    main_damage_element: ElementType = ElementType.DENDRO
+    main_damage_element: ElementType = None
     main_damage: int = 0
     piercing_damage: int = 0
 

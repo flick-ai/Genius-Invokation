@@ -119,7 +119,7 @@ class Dandelion_Breeze(ElementalBurst):
     name_ch = "蒲公英之风"
     type: SkillType = SkillType.ELEMENTAL_BURST
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
-    main_damage_element: ElementType = ElementType.ANEMO
+    main_damage_element: ElementType = None
     main_damage: int = 0
     piercing_damage: int = 0
 

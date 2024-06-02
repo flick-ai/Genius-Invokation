@@ -332,10 +332,13 @@ class SummonZone:
         return len(self.space) == MAX_SUMMON
 
     def add_entity(self, entity: 'Summon'):
-        if not self.check_full():
-            self.space.append(entity)
+        if self.has_entity(entity.__class__) is None:
+            if not self.check_full():
+                self.space.append(entity)
+            else:
+                entity.on_destroy(self.game)
         else:
-            entity.on_destroy(self.game)
+            self.has_entity(entity.__class__).update()
 
     def num(self):
         return len(self.space)
@@ -352,6 +355,12 @@ class SupportZone:
     def check_full(self):
         return len(self.space) == MAX_SUPPORT
 
+    def has_entity(self, entity: 'Support'):
+        for support in self.space:
+            if isinstance(support, entity):
+                return support
+        return None
+
     def destroy(self, entity: 'Support'):
         idx = self.space.index(entity)
         self.space.pop(idx)
@@ -362,10 +371,13 @@ class SupportZone:
         self.space[idx].on_destroy(self.game)
 
     def add_entity(self, entity, idx):
-        if self.check_full():
-            # 如果支援区已经满了
-            self.space[idx].on_destroy(self.game)
-        self.space.append(entity)
+        if self.has_entity(entity.__class__) is None:
+            if self.check_full():
+                # 如果支援区已经满了
+                self.space[idx].on_destroy(self.game)
+            self.space.append(entity)
+        else:
+            self.has_entity(entity.__class__).update()
 
     def num(self):
         return len(self.space)
@@ -397,10 +409,10 @@ class CharacterZone:
         return None
 
     def add_entity(self, entity: 'Status'):
-        if self.has_entity(entity) is not None:
+        if self.has_entity(entity.__class__) is not None:
             self.has_entity(entity).update()
         else:
-            self.status_list.append(entity)
+            self.status_list.append(entity.__class__)
 
     def clear(self, game:'GeniusGame'):
         if self.weapon_card is not None:
@@ -459,15 +471,15 @@ class ActiveZone:
     def add_entity(self, entity: 'Entity'):
         # When using add_entity, please make sure that the same kind of entity is not exisits in the list.
         if isinstance(entity, Combat_Shield):
-            if self.has_shield(entity) is None:
+            if self.has_shield(entity.__class__) is None:
                 self.shield.append(entity)
             else:
-                self.has_shield(entity).update()
+                self.has_shield(entity.__class__).update()
         else:
-            if self.has_status(entity) is None:
+            if self.has_status(entity.__class__) is None:
                 self.space.append(entity)
             else:
-                self.has_status(entity).update()
+                self.has_status(entity.__class__).update()
 
 class HandZone:
     '''

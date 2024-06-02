@@ -24,7 +24,7 @@ class RaphanusSkyCluster(ElementalSkill):
     name_ch = "云台团团降芦菔"
     type: SkillType = SkillType.ELEMENTAL_SKILL
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
-    main_damage_element: ElementType = ElementType.DENDRO
+    main_damage_element: ElementType = None
     main_damage: int = 0
     piercing_damage: int = 0
     cost = [{'cost_num':3, 'cost_type':CostType.DENDRO}]
@@ -77,7 +77,7 @@ class Yuegui(Summon):
                     max_idx = idx
             target = self.from_player.character_list[max_idx]
             target.heal(heal=heal, game=game)
-            
+
             self.current_usage -= 1
             if(self.current_usage <= 0):
                 self.on_destroy(game)
@@ -107,7 +107,7 @@ class MoonjadeDescent(ElementalBurst):
         self.add_combat_status(game,AdeptalLegacy )
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
-    
+
 class AdeptalLegacy(Combat_Status):
     name = "Adeptal Legacy"
     name_ch = "桂子仙机"
@@ -138,7 +138,7 @@ class AdeptalLegacy(Combat_Status):
 
             target = get_my_active_character(game)
             target.heal(heal=heal, game=game)
-            
+
             self.current_usage -= 1
             if(self.current_usage <= 0):
                 self.on_destroy(game)

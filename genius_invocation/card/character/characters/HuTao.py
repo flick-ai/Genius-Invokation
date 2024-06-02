@@ -46,7 +46,7 @@ class Guide_to_Afterlife(ElementalSkill):
 
     type: SkillType = SkillType.ELEMENTAL_SKILL
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
-    main_damage_element: ElementType = ElementType.PYRO
+    main_damage_element: ElementType = None
     main_damage: int = 0
     piercing_damage: int = 0
 
@@ -102,7 +102,7 @@ class Spirit_Soother(ElementalBurst):
         else:
             self.resolve_damage(game)
             self.from_character.heal(2, game)
-       
+
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 
@@ -113,7 +113,7 @@ class Paramita_Papilio(Status):
         super().__init__(game, from_player, from_character)
         self.usage = 2
         self.current_usage = 2
-    
+
     def update(self):
         self.current_usage = max(self.current_usage, self.usage)
 
@@ -151,7 +151,7 @@ class Blood_Blossom(Status):
     def end_phase(self, game:'GeniusGame'):
         if game.active_player == self.from_player:
             dmg = Damage.create_damage(
-                game, 
+                game,
                 damage_type=SkillType.OTHER,
                 main_damage=1,
                 main_damage_element=ElementType.PYRO,
@@ -188,13 +188,13 @@ class HuTao(Character):
         self.talent_skill = self.skills[1]
         if self.talent:
             self.listen_talent_events(game)
-    
+
     def dmg_add(self, game:'GeniusGame'):
         if game.current_damage.damage_from == self:
             if game.current_damage.main_damage_element == ElementType.PYRO:
                 if self.health_point<=6:
                     game.current_damage += 1
-    
+
     def listen_talent_events(self, game: 'GeniusGame'):
         self.listen_event(game, EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, self.dmg_add)
 

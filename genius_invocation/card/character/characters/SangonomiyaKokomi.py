@@ -26,7 +26,7 @@ class Kurages_Oath(ElementalSkill):
     id = 12052
     type: SkillType = SkillType.ELEMENTAL_SKILL
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
-    main_damage_element: ElementType = ElementType.HYDRO
+    main_damage_element: ElementType = None
     main_damage: int = 0
     piercing_damage: int = 0
     cost = [{'cost_num':3, 'cost_type':CostType.HYDRO}]

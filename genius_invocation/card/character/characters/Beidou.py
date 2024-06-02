@@ -25,7 +25,7 @@ class Tidecaller(ElementalSkill):
     name = "Tidecaller"
     name_ch = "捉浪"
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
-    main_damage_element: ElementType = ElementType.ELECTRO
+    main_damage_element: ElementType = None
     main_damage: int = 0
     piercing_damage: int = 0
     cost = [{'cost_num': 3,'cost_type': CostType.ELECTRO}]

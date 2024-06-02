@@ -26,7 +26,7 @@ class Abiogenesis(ElementalSkill):
     name_ch = "创生法·拟造阳华"
     type: SkillType = SkillType.ELEMENTAL_SKILL
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
-    main_damage_element: ElementType = ElementType.GEO
+    main_damage_element: ElementType = None
     main_damage: int = 0
     piercing_damage: int = 0
     cost = [{'cost_num':3, 'cost_type':CostType.GEO}]

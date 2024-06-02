@@ -252,7 +252,7 @@ class Oceanid_Mimic_Summoning(ElementalSkill):
 
     # damage
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
-    main_damage_element: ElementType = ElementType.HYDRO
+    main_damage_element: ElementType = None
     main_damage: int = 0
     piercing_damage: int = 0
 
@@ -286,7 +286,7 @@ class The_Myriad_Wilds(ElementalSkill):
 
     # damage
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
-    main_damage_element: ElementType = ElementType.HYDRO
+    main_damage_element: ElementType = None
     main_damage: int = 0
     piercing_damage: int = 0
 

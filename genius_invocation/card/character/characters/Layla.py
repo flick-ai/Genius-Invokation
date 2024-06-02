@@ -50,7 +50,7 @@ class Nights_of_Formal_Focus(ElementalSkill):
 
     # No damage
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
-    main_damage_element: ElementType = ElementType.PHYSICAL
+    main_damage_element: ElementType = None
     main_damage: int = 0
     piercing_damage: int = 0
 
@@ -116,11 +116,11 @@ class Shooting_Star(Combat_Status):
             self.current_usage -= self.usage
             if self.from_character.talent:
                 self.from_player.get_card(1)
-        
+
 
     def update(self):
         self.gain_night_star(2)
-        
+
 
     def after_skill(self, game: 'GeniusGame'):
         if game.current_skill.from_character.from_player == self.from_player:
@@ -204,7 +204,7 @@ class Celestial_Dreamsphere(Summon):
 
             if self.current_usage <= 0:
                 self.on_destroy(game)
-    
+
 
     def update_listener_list(self):
         self.listeners = [

@@ -82,11 +82,11 @@ class PulsingClarity(Combat_Status):
         super().__init__(game, from_player, from_character)
         self.usage = 2
         self.current_usage = self.usage
-    
+
     def on_begin(self, game: 'GeniusGame'):
         if game.active_player == self.from_player:
             shield = self.from_player.team_combat_status.has_shield(SeamlessShield)
-            if shield is None: 
+            if shield is None:
                 self.from_player.team_combat_status.add_entity(SeamlessShield(
                     game, self.from_player, self.from_character
                 ))
@@ -95,7 +95,7 @@ class PulsingClarity(Combat_Status):
             self.current_usage -= 1
             if self.current_usage <=0:
                 self.on_destroy(game)
-    
+
     def update_listener_list(self):
         self.listeners = [
             (EventType.BEGIN_ACTION_PHASE, ZoneType.ACTIVE_ZONE, self.on_begin),
@@ -144,7 +144,7 @@ class HolisticRevivification(ElementalBurst):
     name_ch = "愈气全形论"
     type: SkillType = SkillType.ELEMENTAL_BURST
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
-    main_damage_element: ElementType = ElementType.DENDRO
+    main_damage_element: ElementType = None
     main_damage: int = 0
     piercing_damage: int = 0
     cost = [{'cost_num':4, 'cost_type':CostType.DENDRO}]

@@ -27,7 +27,7 @@ class ExplosivePuppet(ElementalSkill):
     name_ch = "爆弹玩偶"
     type: SkillType = SkillType.ELEMENTAL_SKILL
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
-    main_damage_element: ElementType = ElementType.PYRO
+    main_damage_element: ElementType = None
     main_damage: int = 0
     piercing_damage: int = 0
     cost = [{'cost_num':3, 'cost_type':CostType.PYRO}]
