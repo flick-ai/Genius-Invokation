@@ -36,7 +36,7 @@ class Strictly_Prohibited(Combat_Status):
         ]
 class Fortress_of_Meropide_Entity(Support):
     id: int = 322018
-    name = 'Fortress_of_Meropide'
+    name = 'Fortress of Meropide'
     name_ch = '梅洛彼得堡'
     max_usage = -1
     max_count = 4
@@ -73,7 +73,7 @@ class Fortress_of_Meropide_Entity(Support):
 
 class Fortress_of_Meropide(SupportCard):
     id: int = 321018
-    name: str = 'Fortress_of_Meropide'
+    name: str = 'Fortress of Meropide'
     name_ch = '梅洛彼得堡'
     cost_num = 1
     cost_type = CostType.WHITE

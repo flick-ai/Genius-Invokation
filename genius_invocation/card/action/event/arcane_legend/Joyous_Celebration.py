@@ -9,7 +9,7 @@ class Joyous_Celebration(ActionCard):
     id: int = 330003
     name = "Joyous Celebration"
     name_ch = "愉舞欢游"
-    cost_num = 1
+    cost_num = 0
     cost_type = CostType.WHITE
     card_type = ActionCardType.EVENT_ARCANE_LEGEND
     def __init__(self) -> None:

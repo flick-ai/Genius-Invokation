@@ -13,6 +13,7 @@ class ActionCard:
     cost_num: int
     cost_type: CostType
     card_type: ActionCardType
+    can_tune: bool = True
 
     def on_played(self, game: 'GeniusGame') -> None:
         '''

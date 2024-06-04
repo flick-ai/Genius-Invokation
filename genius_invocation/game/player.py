@@ -56,6 +56,9 @@ class GeniusPlayer:
         self.is_pass: bool
         self.play_arcane_legend: bool = False
 
+        # 回合打出手牌数量
+        self.round_play_cards = 0
+
         # 切换角色基本信息
         self.is_after_change: bool
         self.is_quick_change: bool
@@ -131,9 +134,7 @@ class GeniusPlayer:
         '''
         get_cards = self.card_zone.get_card(num=num)
         self.hand_zone.add(get_cards)
-        self.game.get_card_num = num
-        self.game.manager.invoke(EventType.ON_GET_CARD, self.game)
-        self.game.get_card_num = 0
+
 
     def change_to_id(self, idx: int):
         '''
@@ -315,7 +316,7 @@ class GeniusPlayer:
                                                      from_character=None,
                                                      use_type=SwitchType.ELEMENTAL_RESONANCE,
                                                      cost = [{'cost_num':1, 'cost_type':active_dice}]))
-            if can_tune:
+            if can_tune and action_card.can_tune:
                 self.action_mask[idx][13][0] = 1
                 self.action_mask[idx][13][1] = 1
                 self.action_mask[idx][13][2] = - (active_dice.value)
@@ -388,6 +389,7 @@ class GeniusPlayer:
         self.is_after_change = False
         self.is_quick_change = False
         self.change_num = 0
+        self.round_play_cards = 0
 
         # 事件
         game.manager.invoke(EventType.BEGIN_ACTION_PHASE, game)
@@ -398,7 +400,7 @@ class GeniusPlayer:
         '''
         # 事件
         game.manager.invoke(EventType.END_PHASE, game)
-        self.roll_time = 2
+        # self.roll_time = 2
         self.get_card(num=2)
 
 

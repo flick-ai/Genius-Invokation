@@ -16,6 +16,13 @@ if TYPE_CHECKING:
 
     from genius_invocation.entity.character import Character
 
+class GetCard:
+    '''
+        获取牌的维护类
+    '''
+    def __init__(self, from_player, num) -> None:
+        self.from_player = from_player
+        self.num = num
 
 class Dice:
     '''
@@ -239,7 +246,16 @@ class CardZone:
         self.card_num = len(self.card)
         # 随机固定牌序
         self.game = game
+        self.player = player
         game.random.shuffle(self.card)
+
+    def invoke_get_card(self, num):
+        '''
+            触发获取牌事件
+        '''
+        self.game.current_get_card = GetCard(from_player=self.player, num=num)
+        self.game.manager.invoke(EventType.ON_GET_CARD, self.game)
+        self.game.current_get_card = None
 
     def find_card(self, card_type: 'ActionCardType', num=1):
         '''
@@ -256,8 +272,10 @@ class CardZone:
                         break
         for idx in idx_list:
             self.card.pop(idx)
+
+        self.invoke_get_card(num)
         return get_list
-    
+
     def random_find_card(self, card_type: 'ActionCardType', num=1):
         '''
             随机检索并获取特定类型的牌
@@ -270,6 +288,8 @@ class CardZone:
         get_idx = random.sample(idx_list, num)
         for idx in get_idx:
             get_list.append(self.card.pop(idx))
+
+        self.invoke_get_card(num)
         return get_list
 
     def get_card(self, num):
@@ -280,6 +300,8 @@ class CardZone:
         for i in range(num):
             get_list.append(self.card.pop())
         self.card_num = len(self.card)
+
+        self.invoke_get_card(num)
         return get_list
 
     def return_card(self, card_list: List):
@@ -303,13 +325,13 @@ class CardZone:
         '''
             将牌随机放回牌堆
         '''
-        result = evenly_insert(self.card, card_list)
+        result = random_insert(self.card, card_list)
         self.card = result
         self.card_num = len(self.card)
 
     def insert_randomly(self, card, num=-1):
         '''
-            从牌堆顶随机插入单张牌
+            从牌堆顶的指定数量牌中随机插入单张牌
         '''
         num = self.card_num if num == -1 else num
         idx = random.randint(0, num)
@@ -566,5 +588,6 @@ class HandZone:
         '''
             舍弃牌
         '''
-        pass
+        card: ActionCard = self.pop(idx)
+        card.on_discard(self.game)
         self.game.invoke(EventType.ON_DISCARD_CARD, self.game)

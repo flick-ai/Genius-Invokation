@@ -8,7 +8,7 @@ from genius_invocation.game.player import GeniusPlayer
 from genius_invocation.event.events import EventManager
 from genius_invocation.card.character.base import Damage
 from genius_invocation.card.action.base import ActionCard
-from genius_invocation.game.zone import Dice
+from genius_invocation.game.zone import Dice, GetCard
 from genius_invocation.event.heal import Heal
 from loguru import logger
 from rich.console import Console
@@ -59,6 +59,7 @@ class GeniusGame:
         self.current_skill: CharacterSkill = None
         self.current_card: ActionCard = None
         self.current_remove_from: Character = None
+        self.current_get_card: GetCard = None
         self.damage_list: List[Damage] = []
         self.is_change_player: bool = False
         self.current_attach_reaction: ElementalReactionType = None # Save the reaction type when attachment (no dmg). Will be reset after the invoking of the event. keep None.
@@ -66,7 +67,6 @@ class GeniusGame:
         self.is_end: bool = False
         self.is_overload:GeniusPlayer = None
         self.can_play_card = True
-        self.get_card_num = 0
 
         self.init_game()
 
