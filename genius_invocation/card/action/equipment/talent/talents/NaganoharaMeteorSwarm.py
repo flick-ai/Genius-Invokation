@@ -6,7 +6,8 @@ class NaganoharaMeteorSwarm(TalentCard):
     name: str = "Naganohara Meteor Swarm"
     name_ch = "长野原龙势流星群"
     is_action = True
-    cost = [{'cost_num': 2, 'cost_type': 2}]
+    # 4.7平衡性调整：费用2变为1
+    cost = [{'cost_num': 1, 'cost_type': 2}]
     cost_power = 0
     character = Yoimiya
     def __init__(self) -> None:

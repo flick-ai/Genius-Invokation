@@ -229,8 +229,13 @@ class CardZone:
             牌堆结构为一个随机过的固定顺序列表
         '''
         self.card = []
+        self.card_name = []
+        self.card_type = []
         for card_name in card:
             self.card.append(eval(card_name)())
+            if card_name not in self.card_name:
+                self.card_name.append(card_name)
+                self.card_type.append(self.card[-1].card_type)
         self.card_num = len(self.card)
         # 随机固定牌序
         self.game = game
@@ -251,6 +256,20 @@ class CardZone:
                         break
         for idx in idx_list:
             self.card.pop(idx)
+        return get_list
+    
+    def random_find_card(self, card_type: 'ActionCardType', num=1):
+        '''
+            随机检索并获取特定类型的牌
+        '''
+        get_list = []
+        idx_list = []
+        for idx, card in enumerate(self.card):
+            if card.card_type == card_type:
+                idx_list.append(idx)
+        get_idx = random.sample(idx_list, num)
+        for idx in get_idx:
+            get_list.append(self.card.pop(idx))
         return get_list
 
     def get_card(self, num):

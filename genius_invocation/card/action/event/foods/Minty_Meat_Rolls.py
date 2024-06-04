@@ -17,10 +17,11 @@ class Minty_Meat_Rolls_Entity(Status):
 
     def on_calculate(self, game: 'GeniusGame'):
         if game.active_player_index == self.from_player.index:
-            if game.current_dice.use_type == SkillType.NORMAL_ATTACK:
-                if game.current_dice.cost[1]['cost_num'] > 0:
-                    game.current_dice.cost[1]['cost_num'] -= 1
-                    return True
+            if game.current_dice.from_character == self.from_character:
+                if game.current_dice.use_type == SkillType.NORMAL_ATTACK:
+                    if game.current_dice.cost[1]['cost_num'] > 0:
+                        game.current_dice.cost[1]['cost_num'] -= 1
+                        return True
         return False
 
     def on_skill(self, game: 'GeniusGame'):

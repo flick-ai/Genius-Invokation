@@ -118,7 +118,8 @@ class Takimeguri_Kanka(Status):
             if game.current_damage.damage_type == SkillType.NORMAL_ATTACK:
                 game.current_damage.main_damage += 1
                 if self.from_character.talent and game.current_damage.damage_to.health_point<=6:
-                    game.current_damage.main_damage += 1
+                    # 4.7平衡性调整：额外造成1点伤害变为额外造成2点伤害
+                    game.current_damage.main_damage += 2
                 self.current_usage -= 1
                 if self.current_usage<=0:
                     self.on_destroy(game)

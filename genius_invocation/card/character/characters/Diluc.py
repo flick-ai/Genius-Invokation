@@ -116,7 +116,8 @@ class Diluc(Character):
     def on_calculate_dice(self, game:'GeniusGame'):
         if game.current_dice.from_character == self:
             if game.current_dice.use_type == SkillType.ELEMENTAL_SKILL:
-                if self.use_element_skill == 1:
+                # 4.7平衡性调整: 逆焰之刃由第2次触发减骰效果改为第2、3次均会触发减骰效果
+                if self.use_element_skill == 1 or self.use_element_skill == 2:
                     if game.current_dice.cost[0]['cost_num'] > 0:
                         game.current_dice.cost[0]['cost_num'] -= 1
 

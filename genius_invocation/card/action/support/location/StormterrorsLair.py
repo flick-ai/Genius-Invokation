@@ -15,6 +15,8 @@ class StormterrorsLairEntity(Support):
     max_count = -1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
+        card = self.from_player.card_zone.random_find_card(card_type=ActionCardType.EQUIPMENT_TALENT, num=1)
+        self.from_player.hand_zone.add(card)
         self.usage_round = -1
         self.usage = 1
 

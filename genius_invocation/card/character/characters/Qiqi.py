@@ -153,6 +153,8 @@ class Herald_of_Frost(Summon):
         super().__init__(game, from_player, from_character)
         self.current_usage = 3
         self.usage = 3
+        # 4.7平衡性调整: 增加每回合一次对出战角色的治疗
+        self.heal_usage_round = -1
 
     def update(self):
         self.current_usage = max(self.current_usage, self.usage)
@@ -194,6 +196,11 @@ class Herald_of_Frost(Summon):
                         max_dmg_taken = dmg_taken
                         max_taken_char = char
                 max_taken_char.heal(1,game=game)
+
+                # 4.7平衡性调整: 增加每回合一次对出战角色的治疗
+                if self.heal_usage_round != game.round:
+                    self.heal_usage_round = game.round
+                    get_my_active_character(game).heal(1, game=game)
 
     def update_listener_list(self):
         self.listeners = [

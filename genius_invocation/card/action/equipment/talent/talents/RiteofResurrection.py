@@ -6,7 +6,8 @@ class RiteofResurrection(TalentCard):
     name: str = "Rite of Resurrection"
     name_ch = "起死回骸"
     is_action = True
-    cost = [{'cost_num': 5, 'cost_type': 0}]
+    # 4.7平衡性调整：费用5变为4
+    cost = [{'cost_num': 5, 'cost_type': CostType.CRYO.value}]
     cost_power = 3
     character = Qiqi
     def __init__(self) -> None:

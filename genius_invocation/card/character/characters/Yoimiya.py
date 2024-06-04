@@ -150,9 +150,10 @@ class Niwabi_Enshou(Status):
     name_ch = "庭火焰硝"
     def __init__(self, game, from_player: 'GeniusPlayer', from_character: Character=None):
         super().__init__(game, from_player, from_character)
-        self.usage = 2
-        self.max_usage = 2
-        self.current_usage = 2
+        # 4.7平衡性调整：可用次数2变为3
+        self.usage = 3
+        self.max_usage = 3
+        self.current_usage = 3
         self.is_use = False
 
     def infuse(self, game: 'GeniusGame'):

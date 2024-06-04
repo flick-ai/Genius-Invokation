@@ -7,32 +7,33 @@ if TYPE_CHECKING:
     from genius_invocation.game.game import GeniusGame
 
 
-class CashflowSupervisionWeapon(Weapon):
-    name: str = "Cashflow Supervision"
-    name_ch = "金流监督"
-    max_count = 2
+class SplendorofTranquilWatersWeapon(Weapon):
+    name: str = "Splendor of Tranquil Waters"
+    name_ch = "静水流涌之辉"
+    max_usage = 12
+    max_count = 1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, weapon_card = None):
         super().__init__(game, from_player, from_character, weapon_card)
-        self.usage = 0
         self.count = 0
+        self.lakelight = 0 
         self.is_use = False
-
+    
     def on_calculate_dice(self, game: 'GeniusGame'):
         if game.active_player_index == self.from_player.index:
             if game.current_dice.from_character == self.from_character:
                 if game.current_dice.use_type == SkillType.NORMAL_ATTACK:
-                    if self.usage > 0:
+                    if self.lakelight >= self.max_usage and self.count < self.max_count:
                         if game.current_dice.cost[1]['cost_num'] > 0:
-                            game.current_dice.cost[1]['cost_num'] -= 1
+                            game.current_dice.cost[1]['cost_num'] = max(0, game.current_dice.cost[1]['cost_num'] - 2)
                             return True
         return False
 
     def on_skill(self, game: 'GeniusGame'):
         if self.on_calculate_dice(game):
-            self.usage -= 0
+            self.lakelight -= self.max_usage
             self.count += 1
             self.is_use = True
-
+    
     def after_skill(self, game: 'GeniusGame'):
         if self.is_use:
             self.is_use = False
@@ -42,21 +43,18 @@ class CashflowSupervisionWeapon(Weapon):
             if game.current_damage.main_damage_element is not ElementType.PIERCING:
                 if game.current_damage.damage_type == SkillType.NORMAL_ATTACK:
                     if self.is_use:
-                        game.current_damage.main_damage += 1  
+                        game.current_damage.main_damage += 1
                         self.is_use = False
 
     def after_damage(self, game:'GeniusGame'):
-        if self.usage == 0 and self.count < self.max_count:
-            if game.current_damage.damage_to == self.from_character:
-                self.usage += 1
+        if game.current_damage.damage_to.from_player == self.from_player:
+            self.lakelight += 1
 
     def after_heal(self, game:'GeniusGame'):
-        if self.usage == 0 and self.count < self.max_count:
-            if game.current_heal.heal_to_character == self.from_character:
-                self.usage += 1
+        if game.current_heal.heal_to_character.from_player == self.from_player:
+            self.lakelight += 1
 
     def on_end(self, game: 'GeniusGame'):
-        self.usage = 0
         self.count = 0
 
     def update_listener_list(self):
@@ -71,19 +69,17 @@ class CashflowSupervisionWeapon(Weapon):
         ]
 
 
-
-class CashflowSupervision(WeaponCard):
-    id: int = 311109
-    name: str = "Cashflow Supervision"
-    name_ch = "金流监督"
-    weapon_type: WeaponType = WeaponType.CATALYST
+class SplendorofTranquilWaters(WeaponCard):
+    id: int = 311508
+    name: str = "Splendor of Tranquil Waters"
+    name_ch = "静水流涌之辉"
+    weapon_type: WeaponType = WeaponType.SWORD
     cost_num: int = 2
     cost_type: CostType = CostType.WHITE
 
     def __init__(self) -> None:
         super().__init__()
-        self.equipment_entity = CashflowSupervisionWeapon
+        self.equipment_entity = SplendorofTranquilWatersWeapon
 
     def on_played(self, game: 'GeniusGame') -> None:
         super().on_played(game)
-

@@ -133,6 +133,7 @@ class GeniusPlayer:
         self.hand_zone.add(get_cards)
         self.game.get_card_num = num
         self.game.manager.invoke(EventType.ON_GET_CARD, self.game)
+        self.game.get_card_num = 0
 
     def change_to_id(self, idx: int):
         '''
