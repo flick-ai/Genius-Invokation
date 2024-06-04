@@ -32,3 +32,9 @@ class ActionCard:
         '''
         active_dice = ElementToDice[get_my_active_character(game).element].value
         game.active_player.dice_zone.add([active_dice])
+
+    def on_discard(self, game: 'GeniusGame'):
+        '''
+            弃牌函数
+        '''
+        pass

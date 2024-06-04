@@ -159,23 +159,29 @@ class EventType(Enum):
     FINAL_END = 27
     # 装备弃置
     ON_EQUIP_REMOVE = 28
+    # 调和手牌
+    ON_TUNE_CARD = 29
+    # 舍弃牌
+    ON_DISCARD_CARD = 30
+    # 获得牌
+    ON_GET_CARD = 31
 
 class SwitchType(Enum):
     CHANGE_CHARACTER = 0
     ELEMENTAL_RESONANCE = 1
 
 class ElementalReactionType(Enum):
-    Frozen = 0
-    Melt = 1
-    Superconduct = 2
-    Vaporize = 3
-    Electro_Charged = 4
-    Bloom = 5
-    Overloaded = 6
-    Burning = 7
-    Quicken = 8
-    Swirl = 9
-    Crystallize = 10
+    Frozen = 0 # 冰冻
+    Melt = 1 # 融化
+    Superconduct = 2 # 超导
+    Vaporize = 3 # 蒸发
+    Electro_Charged = 4 # 感电
+    Bloom = 5 # 绽放
+    Overloaded = 6 # 超载
+    Burning = 7 # 燃烧
+    Quicken = 8 # 激化
+    Swirl = 9 # 扩散
+    Crystallize = 10 # 结晶
 
 DiceToElement = {
     DiceType(i+1): ElementType(i) for i in range(7)

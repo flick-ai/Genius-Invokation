@@ -61,7 +61,7 @@ class Sunyata_Flower(ActionCard):
         target = game.current_action.target_idx
         game.active_player.support_zone.destroy_by_idx(target)
         card_name = random.choice(self.cards)
-        self.from_player.hand_zone.add_card_by_name(card_name)
+        game.active_player.hand_zone.add_card_by_name(card_name)
 
     def find_target(self, game: 'GeniusGame'):
         if game.active_player.support_zone.num() > 0:

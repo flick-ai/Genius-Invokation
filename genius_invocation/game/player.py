@@ -131,6 +131,8 @@ class GeniusPlayer:
         '''
         get_cards = self.card_zone.get_card(num=num)
         self.hand_zone.add(get_cards)
+        self.game.get_card_num = num
+        self.game.manager.invoke(EventType.ON_GET_CARD, self.game)
 
     def change_to_id(self, idx: int):
         '''
@@ -189,6 +191,7 @@ class GeniusPlayer:
         game.current_card = card
         if game.current_action.target_type == ActionTarget.DICE_REGION:
             card.on_tuning(game)
+            game.manager.invoke(EventType.ON_TUNE_CARD, game)
         else:
             if card.name not in self.played_cards:
                 self.played_cards.append(card.name)

@@ -66,6 +66,7 @@ class GeniusGame:
         self.is_end: bool = False
         self.is_overload:GeniusPlayer = None
         self.can_play_card = True
+        self.get_card_num = 0
 
         self.init_game()
 

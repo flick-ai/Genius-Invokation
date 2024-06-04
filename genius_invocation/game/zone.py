@@ -288,14 +288,21 @@ class CardZone:
         self.card = result
         self.card_num = len(self.card)
 
-    def insert_randomly(self, card, num=0):
+    def insert_randomly(self, card, num=-1):
         '''
-            随机插入单张牌
+            从牌堆顶随机插入单张牌
         '''
-        num = self.card_num if num == 0 else num
-        idx = random.randint(self.card_num+1-num, self.card_num+1)
+        num = self.card_num if num == -1 else num
+        idx = random.randint(0, num)
         self.card.insert(idx, card)
         self.card_num = len(self.card)
+
+
+    def discard_card(self, idx):
+        '''
+            舍弃牌
+        '''
+        self.game.invoke(EventType.ON_DISCARD_CARD, self.game)
 
     def num(self):
         return len(self.card)
@@ -388,6 +395,7 @@ class CharacterZone:
         单个角色状态区, 包括角色牌、装备区、角色状态
     '''
     def __init__(self, game: 'GeniusGame', player: 'GeniusPlayer') -> None:
+        self.game = game
         self.weapon_card: Weapon = None
         self.artifact_card: Artifact = None
         self.talent_card: TalentCard = None
@@ -430,6 +438,7 @@ class ActiveZone:
         全队战斗状态区
     '''
     def __init__(self, game: 'GeniusGame', player: 'GeniusPlayer') -> None:
+        self.game = game
         self.player = player
         self.space: List[Combat_Status] = []
         self.shield: List[Combat_Shield] = []
@@ -487,6 +496,8 @@ class HandZone:
     '''
     def __init__(self, game: 'GeniusGame', player: 'GeniusPlayer') -> None:
         self.card = []
+        self.game = game
+        self.from_player = player
 
     def remove(self, idx: List):
         if idx == []:
@@ -531,3 +542,10 @@ class HandZone:
                 self.card.pop(id)
             else:
                 id += 1
+
+    def discard_card(self, idx):
+        '''
+            舍弃牌
+        '''
+        pass
+        self.game.invoke(EventType.ON_DISCARD_CARD, self.game)
