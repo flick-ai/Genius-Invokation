@@ -1,5 +1,5 @@
 from genius_invocation.card.action.equipment.talent.import_head import *
-from genius_invocation.card.character.characters.Tartaglia import * 
+from genius_invocation.card.character.characters.Tartaglia import *
 
 class AbyssalMayhemHydrospout(TalentCard):
     id: int = 212041
@@ -11,4 +11,3 @@ class AbyssalMayhemHydrospout(TalentCard):
     character = Tartaglia
     def __init__(self) -> None:
         super().__init__()
-        

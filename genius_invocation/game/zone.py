@@ -347,6 +347,8 @@ class CardZone:
         '''
         card: ActionCard = self.card.pop(idx)
         card.on_discard(self.game)
+
+        self.player.round_discard_cards += 1
         self.game.invoke(EventType.ON_DISCARD_CARD, self.game)
         return card
 
@@ -595,5 +597,7 @@ class HandZone:
         '''
         card: ActionCard = self.card.pop(idx)
         card.on_discard(self.game)
+
+        self.from_player.round_discard_cards += 1
         self.game.invoke(EventType.ON_DISCARD_CARD, self.game)
         return card

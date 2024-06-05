@@ -85,7 +85,7 @@ class CharacterSkill:
         # Here STATUS is the "class" of Combat_Status, is not an instance of status
         status = self.from_character.from_player.team_combat_status.has_status(STATUS)
         if status is None:
-            status = STATUS(game, self.from_character.from_player, self.from_character)
+            status = STATUS(game, self.from_character.from_player, self.from_character, **kwargs)
             self.from_character.from_player.team_combat_status.add_entity(status)
         else:
             try:

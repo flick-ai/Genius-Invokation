@@ -56,8 +56,10 @@ class GeniusPlayer:
         self.is_pass: bool
         self.play_arcane_legend: bool = False
 
-        # 回合打出手牌数量
+        # 回合打出、调和、舍弃手牌数量
         self.round_play_cards = 0
+        self.round_tune_cards = 0
+        self.round_discard_cards = 0
 
         # 切换角色基本信息
         self.is_after_change: bool
@@ -193,6 +195,7 @@ class GeniusPlayer:
         game.current_card = card
         if game.current_action.target_type == ActionTarget.DICE_REGION:
             card.on_tuning(game)
+            self.round_tune_cards += 1
             game.manager.invoke(EventType.ON_TUNE_CARD, game)
         else:
             if card.name not in self.played_cards:
@@ -209,6 +212,8 @@ class GeniusPlayer:
                                     use_type=card.card_type,
                                     name = card.name,
                                     cost = [{'cost_num':card.cost_num, 'cost_type':card.cost_type}])
+
+            self.round_play_cards += 1
             game.manager.invoke(EventType.ON_PLAY_CARD, game)
 
             if game.can_play_card:
@@ -390,6 +395,8 @@ class GeniusPlayer:
         self.is_quick_change = False
         self.change_num = 0
         self.round_play_cards = 0
+        self.round_tune_cards = 0
+        self.round_discard_cards = 0
 
         # 事件
         game.manager.invoke(EventType.BEGIN_ACTION_PHASE, game)

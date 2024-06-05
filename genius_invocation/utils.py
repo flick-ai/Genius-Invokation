@@ -120,6 +120,10 @@ class ZoneType(Enum):
     SUMMON_ZONE = 3
     SUPPORT_ZONE = 4
 
+class CardZoneType(Enum):
+    CARD_ZONE = 0
+    HAND_ZONE = 1
+
 class EventType(Enum):
     BEGIN_ROLL_PHASE = 0
     BEGIN_ACTION_PHASE = 1
