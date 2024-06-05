@@ -214,6 +214,11 @@ class Dendro_Core(Combat_Status):
     def add_one_usage(self):
         self.current_usage = self.current_usage+1
 
+    def lose_one_usage(self, game):
+        self.current_usage = self.current_usage-1
+        if self.current_usage <= 0:
+            self.on_destroy(game)
+
     def on_damage_add(self, game: 'GeniusGame'):
         if game.current_damage.damage_from is None: return
         if game.current_damage.damage_from.from_player == self.from_player:

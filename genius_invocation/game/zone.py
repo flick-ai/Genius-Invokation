@@ -345,7 +345,10 @@ class CardZone:
         '''
             舍弃牌
         '''
+        card: ActionCard = self.card.pop(idx)
+        card.on_discard(self.game)
         self.game.invoke(EventType.ON_DISCARD_CARD, self.game)
+        return card
 
     def num(self):
         return len(self.card)
@@ -590,6 +593,7 @@ class HandZone:
         '''
             舍弃牌
         '''
-        card: ActionCard = self.pop(idx)
+        card: ActionCard = self.card.pop(idx)
         card.on_discard(self.game)
         self.game.invoke(EventType.ON_DISCARD_CARD, self.game)
+        return card

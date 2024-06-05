@@ -140,7 +140,7 @@ class SecretArtSurpriseDispatch(ElementalBurst):
     cost = [
         {
             'cost_num': 3,
-            'cost_type': CostType.CRYO
+            'cost_type': CostType.DENDRO
         },
     ]
     energy_cost: int = 2

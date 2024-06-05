@@ -97,7 +97,12 @@ class BountifulCore(Summon):
 
     def update(self):
         self.current_usage = max(self.current_usage, min(self.max_usage, self.current_usage + 1))
-    
+
+    def lose_one_usage(self, game: 'GeniusGame'):
+        self.current_usage -= 1
+        if self.current_usage <= 0:
+            self.on_destroy(game)
+
     def check_nilou(self):
         status = self.from_player.team_combat_status.has_status(GoldenChalice)
         assert status is not None

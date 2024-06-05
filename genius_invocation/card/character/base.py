@@ -80,7 +80,7 @@ class CharacterSkill:
             except:
                 shield.update()
 
-    def add_combat_status(self, game: 'GeniusGame', STATUS):
+    def add_combat_status(self, game: 'GeniusGame', STATUS, **kwargs):
         # Add a combat status in active zone of current player
         # Here STATUS is the "class" of Combat_Status, is not an instance of status
         status = self.from_character.from_player.team_combat_status.has_status(STATUS)
@@ -89,9 +89,9 @@ class CharacterSkill:
             self.from_character.from_player.team_combat_status.add_entity(status)
         else:
             try:
-                status.update(game)
+                status.update(game, **kwargs)
             except:
-                status.update()
+                status.update(**kwargs)
 
     def generate_summon(self, game: 'GeniusGame', SUMMON):
         # Add a summon in summons zone of current player
