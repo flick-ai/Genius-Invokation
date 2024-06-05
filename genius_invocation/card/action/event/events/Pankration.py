@@ -9,12 +9,12 @@ class Pankration_Entity(Combat_Status):
     name_ch = '拳力斗技！'
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
-        self.current_usage = 1
-    
+
     def on_after_any(self, game:'GeniusGame'):
         if game.active_player.is_pass and not get_opponent(game).is_pass:
             self.from_player.get_card(num=2)
-        
+            self.on_destroy(game)
+
     def update_listener_list(self):
         self.listeners = [
             (EventType.AFTER_ANY_ACTION, ZoneType.ACTIVE_ZONE, self.on_after_any),
@@ -35,7 +35,7 @@ class Pankration(ActionCard):
         zone = game.active_player.team_combat_status
         if not zone.has_status(Pankration_Entity):
             zone.add_entity(Pankration_Entity(game, game.active_player, None))
-    
+
     def find_target(self, game:'GeniusGame'):
         if game.active_player.dice_zone.num() >= 8 and not get_opponent(game).is_pass:
             return [1]

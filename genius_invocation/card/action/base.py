@@ -15,7 +15,7 @@ class ActionCard:
     card_type: ActionCardType
     can_tune: bool = True
 
-    def calculate_dice(self, game: 'GeniusGame') -> int:
+    def calculate_dice(self) -> int:
         if self.cost_type == ActionCardType.EQUIPMENT_TALENT:
             count = sum([i['cost_num'] for i in self.cost])
         else:
