@@ -276,15 +276,36 @@ class CardZone:
             self.invoke_get_card(num)
         return get_list
 
+    def find_card_by_name(self, card_name: str, num=1, invoke=True):
+        '''
+            检索并获取特定名称的牌
+        '''
+        get_list = []
+        idx_list = []
+        for idx, card in enumerate(reversed(self.card)):
+            if card.name == card_name:
+                get_list.append(card)
+                idx_list.append(len(self.card) - idx -1)
+                if len(get_list) == num:
+                    break
+        for idx in idx_list:
+            self.card.pop(idx)
+
+        if invoke:
+            self.invoke_get_card(num)
+        return get_list
+
+
     def random_find_card(self, card_type: 'ActionCardType', num=1):
         '''
             随机检索并获取特定类型的牌
         '''
         get_list = []
         idx_list = []
-        for idx, card in enumerate(self.card):
+        for idx, card in enumerate(reversed(self.card)):
             if card.card_type == card_type:
-                idx_list.append(idx)
+                get_list.append(card)
+                idx_list.append(len(self.card) - idx -1)
         get_idx = random.sample(idx_list, num)
         for idx in get_idx:
             get_list.append(self.card.pop(idx))

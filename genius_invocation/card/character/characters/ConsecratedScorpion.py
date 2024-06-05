@@ -129,6 +129,8 @@ class ConsecratedScorpion(Character):
         self.talent_skill = None
         self.passive_skill = ImmortalRemnantsElectro(self)
         self.listen_event(game, EventType.END_PHASE, ZoneType.CHARACTER_ZONE, self.on_end)
+        if self.talent:
+            self.listen_talent_events(game)
 
     def on_end(self, game: 'GeniusGame'):
         if game.active_player_index == self.from_player.index:
