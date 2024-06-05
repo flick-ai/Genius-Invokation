@@ -146,5 +146,5 @@ class Xinyan(Character):
                     game.current_damage.main_damage += 2
                     self.use_talent_round = game.round
 
-    def listen_talent_events(self, game: GeniusGame):
+    def listen_talent_events(self, game: 'GeniusGame'):
         self.listen_event(game, EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, self.damage_add)

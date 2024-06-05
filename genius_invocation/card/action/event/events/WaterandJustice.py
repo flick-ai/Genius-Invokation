@@ -10,6 +10,7 @@ class WaterandJustice(ActionCard):
     name_ch = "水与正义"
     cost_num = 2
     cost_type = CostType.BLACK
+    country = CountryType.FONTAINE
     card_type = ActionCardType.EVENT_COUNTRY
 
     def __init__(self) -> None:
@@ -20,7 +21,7 @@ class WaterandJustice(ActionCard):
         need_character = len(max_points)
         target_point = [0 for i in range(need_character)]
         target_idx = [i for i in range(need_character)]
-        
+
         while sum_point > 0:
             for idx in target_idx:
                 target_point[idx] += 1
@@ -29,7 +30,7 @@ class WaterandJustice(ActionCard):
                     break
                 if max_points[idx] == target_point[idx]:
                     target_idx.remove(idx)
-        
+
         return target_point
 
 

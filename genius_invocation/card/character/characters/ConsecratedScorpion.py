@@ -1,4 +1,5 @@
 from genius_invocation.card.character.import_head import *
+from genius_invocation.card.action.base import ActionCard
 
 class ScorpionStrike(NormalAttack):
     id: int = 24051
