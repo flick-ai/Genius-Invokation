@@ -43,7 +43,7 @@ class Machine_Assembly_Line_Entity(Status):
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.FINAL_EXECUTE, ZoneType.ACTIVE_ZONE, self.on_damage),
+            (EventType.EXECUTE_DAMAGE, ZoneType.ACTIVE_ZONE, self.on_damage),
             (EventType.AFTER_HEAL, ZoneType.ACTIVE_ZONE, self.on_heal),
             (EventType.CALCULATE_DICE, ZoneType.ACTIVE_ZONE, self.on_calculate),
             (EventType.ON_PLAY_CARD, ZoneType.ACTIVE_ZONE, self.on_use),

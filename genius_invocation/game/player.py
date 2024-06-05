@@ -42,8 +42,8 @@ class GeniusPlayer:
         # 初始化牌库、起始5张手牌、骰子区
         self.card_zone: CardZone = CardZone(game, self, deck['action_card']) # 牌库区
         self.hand_zone: HandZone = HandZone(game, self) # 手牌区
-        arcanes = self.card_zone.find_card(ActionCardType.EVENT_ARCANE_LEGEND, num=-1)
-        self.hand_zone.add(self.card_zone.get_card(num=5-len(arcanes))+arcanes)
+        arcanes = self.card_zone.find_card(ActionCardType.EVENT_ARCANE_LEGEND, num=-1, invoke=False)
+        self.hand_zone.add(self.card_zone.get_card(num=5-len(arcanes), invoke=False)+arcanes)
         self.dice_zone: DiceZone = DiceZone(game, self)
 
         # 环境中的基本状态

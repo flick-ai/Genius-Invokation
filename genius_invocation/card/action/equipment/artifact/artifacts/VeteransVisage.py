@@ -14,6 +14,7 @@ class VeteransVisageEntity(Artifact):
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, artifact_card = None):
         super().__init__(game, from_player, from_character, artifact_card)
         self.round_usage = 0
+        self.is_excute = False
 
     def excute(self, game):
         if self.round_usage == 0:
@@ -25,10 +26,16 @@ class VeteransVisageEntity(Artifact):
             self.round_usage += 1
             self.from_player.get_card(num=1)
             return
+        
+    def on_excute(self, game):
+        if self.is_excute:
+            if self.from_character.is_alive:
+                self.is_excute = False
+                self.excute(game)
 
     def after_damage(self, game:'GeniusGame'):
         if game.current_damage.damage_to == self.from_character:
-            self.excute(game)
+            self.is_excute = True
 
     def after_heal(self, game:'GeniusGame'):
         if game.current_heal.heal_to_character == self.from_character:
@@ -39,9 +46,10 @@ class VeteransVisageEntity(Artifact):
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.FINAL_EXECUTE, ZoneType.CHARACTER_ZONE, self.after_damage),
+            (EventType.EXECUTE_DAMAGE, ZoneType.CHARACTER_ZONE, self.after_damage),
             (EventType.AFTER_HEAL, ZoneType.CHARACTER_ZONE, self.after_heal),
-            (EventType.FINAL_END, ZoneType.CHARACTER_ZONE, self.on_end)
+            (EventType.FINAL_END, ZoneType.CHARACTER_ZONE, self.on_end),
+            (EventType.FINAL_EXECUTE, ZoneType.CHARACTER_ZONE, self.on_excute),
         ]
 
 

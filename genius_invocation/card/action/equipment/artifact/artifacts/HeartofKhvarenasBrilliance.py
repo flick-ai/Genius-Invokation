@@ -14,17 +14,23 @@ class HeartofKhvarenasBrillianceEntity(Artifact):
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, artifact_card = None):
         super().__init__(game, from_player, from_character, artifact_card)
         self.usage_round = -1
+        self.is_excute = False
 
     def after_damage(self, game:'GeniusGame'):
         if self.usage_round != game.round:
             if game.current_damage.damage_to == self.from_character:
-                if self.from_character.is_active:
-                    self.from_player.get_card(num=1)
-                    self.usage_round = game.round
+                self.is_excute = True
+    
+    def on_excute(self, game: 'GeniusGame'):
+        if self.is_excute:
+            if self.from_character.is_active and self.from_character.is_alive:
+                self.from_player.get_card(num=1)
+                self.is_excute = False
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.FINAL_EXECUTE, ZoneType.CHARACTER_ZONE, self.after_damage),
+            (EventType.EXECUTE_DAMAGE, ZoneType.CHARACTER_ZONE, self.after_damage),
+            (EventType.FINAL_EXECUTE, ZoneType.CHARACTER_ZONE, self.on_excute)
         ]
 
 

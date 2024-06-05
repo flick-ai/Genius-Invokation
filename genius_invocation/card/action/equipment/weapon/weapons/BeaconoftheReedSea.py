@@ -55,7 +55,7 @@ class BeaconoftheReedSeaWeapon(Weapon):
         self.listeners = [
             (EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, self.on_damage_add),
             (EventType.AFTER_USE_SKILL, ZoneType.CHARACTER_ZONE, self.on_after_skill),
-            (EventType.FINAL_EXECUTE, ZoneType.CHARACTER_ZONE, self.after_damage),
+            (EventType.EXECUTE_DAMAGE, ZoneType.CHARACTER_ZONE, self.after_damage),
         ]
 
 

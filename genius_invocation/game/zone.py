@@ -257,7 +257,7 @@ class CardZone:
         self.game.manager.invoke(EventType.ON_GET_CARD, self.game)
         self.game.current_get_card = None
 
-    def find_card(self, card_type: 'ActionCardType', num=1):
+    def find_card(self, card_type: 'ActionCardType', num=1, invoke=True):
         '''
             检索并获取特定类型的牌
         '''
@@ -273,7 +273,8 @@ class CardZone:
         for idx in idx_list:
             self.card.pop(idx)
 
-        self.invoke_get_card(num)
+        if invoke:
+            self.invoke_get_card(num)
         return get_list
 
     def random_find_card(self, card_type: 'ActionCardType', num=1):
@@ -292,7 +293,7 @@ class CardZone:
         self.invoke_get_card(num)
         return get_list
 
-    def get_card(self, num):
+    def get_card(self, num, invoke=True):
         '''
             随机获取牌
         '''
@@ -301,7 +302,8 @@ class CardZone:
             get_list.append(self.card.pop())
         self.card_num = len(self.card)
 
-        self.invoke_get_card(num)
+        if invoke:
+            self.invoke_get_card(num)
         return get_list
 
     def return_card(self, card_list: List):

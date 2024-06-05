@@ -32,7 +32,7 @@ class AmethystCrownEntity(Artifact):
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.FINAL_EXECUTE, ZoneType.CHARACTER_ZONE, self.on_damage),
+            (EventType.EXECUTE_DAMAGE, ZoneType.CHARACTER_ZONE, self.on_damage),
             (EventType.FINAL_END, ZoneType.CHARACTER_ZONE, self.on_end)
         ]
 

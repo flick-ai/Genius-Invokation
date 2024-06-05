@@ -17,30 +17,26 @@ class KusavaEntity(Support):
         self.memories_and_dreams = 0
 
     def get_max_count_card(self, game: 'GeniusGame'):
-        max_count = 0
-        max_idx = []
+        card_list = []
         for idx, action_card in enumerate(self.from_player.hand_zone.card):
             if action_card.card_type == ActionCardType.EQUIPMENT_TALENT:
                 count = sum([i['cost_num'] for i in action_card.cost])
             else:
                 count = action_card.cost_num
 
-            if count > max_count:
-                max_idx = []
-                max_count = count
-                max_idx.append(idx)
-            if count == max_count:
-                max_idx.append(idx)
-        return idx
+            card_list.append((idx, count))
+        max_count_card = sorted(card_list, key=lambda x:x[-1])
+        if len(max_count_card) == 0:
+            return []
+        elif len(max_count_card) == 1:
+            return [max_count_card[0]]
+        else:
+            max_count_idx = [i[0] for i in max_count_card[0:2]]
+            return max_count_idx
 
     def on_begin(self, game:'GeniusGame'):
         if game.active_player_index == self.from_player.index:
             max_count_idx = self.get_max_count_card(game)
-            if len(max_count_idx) == 0:
-                return
-            if len(max_count_idx) > 2:
-                max_count_idx = max_count_idx[0:2]
-
             for idx in max_count_idx:
                 self.from_player.hand_zone.discard_card(idx)
                 self.memories_and_dreams = min(self.max_count, self.memories_and_dreams + 1)

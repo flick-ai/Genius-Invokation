@@ -53,7 +53,7 @@ class TomeoftheEternalFlowWeapon(Weapon):
         self.listeners = [
             (EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, self.on_damage_add),
             (EventType.FINAL_END, ZoneType.CHARACTER_ZONE, self.on_end),
-            (EventType.FINAL_EXECUTE, ZoneType.CHARACTER_ZONE, self.after_damage),
+            (EventType.EXECUTE_DAMAGE, ZoneType.CHARACTER_ZONE, self.after_damage),
             (EventType.AFTER_HEAL, ZoneType.CHARACTER_ZONE, self.after_heal),
         ]
 

@@ -16,16 +16,23 @@ class Rainbow_Macarons_Entity(Status):
         super().__init__(game, from_player, from_character)
         self.from_character.heal(heal=1,game=game)
         self.current_usage = 3
+        self.is_heal = False
 
-    def on_damage(self, game: 'GeniusGame'):
-        if game.current_damage.damage_to == self.from_character:
+    def on_excute(self, game: 'GeniusGame'):
+        if self.is_heal:
+            self.is_heal = False
             self.from_character.heal(heal=1, game=game)
             self.current_usage -= 1
             if self.current_usage <=0:
                 self.on_destroy(game)
 
+    def on_damage(self, game: 'GeniusGame'):
+        if game.current_damage.damage_to == self.from_character:
+            self.is_heal = True
+
     def update_listener_list(self):
         self.listeners = [
+            (EventType.EXECUTE_DAMAGE, ZoneType.CHARACTER_ZONE, self.on_damage),
             (EventType.FINAL_EXECUTE, ZoneType.CHARACTER_ZONE, self.on_damage),
         ]
 

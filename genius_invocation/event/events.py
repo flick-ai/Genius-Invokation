@@ -51,7 +51,7 @@ class ListenerCircle(object):
 
 
     def append_action(self, action, character_index=None) -> ListenerNode:
-        if character_index:
+        if character_index is not None:
             node = ListenerNode(action, self.character_tails[character_index].before, self.character_tails[character_index])
             self.character_tails[character_index].before.next = node
             self.character_tails[character_index].before = node
@@ -63,7 +63,7 @@ class ListenerCircle(object):
             return node
 
     def __call__(self, game: 'GeniusGame', character_index=None) -> None:
-        if not character_index:
+        if character_index is None:
             listener = self.head.next
             tail_before = self.tail.before
             while listener != self.tail:

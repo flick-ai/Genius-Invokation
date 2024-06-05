@@ -4,6 +4,7 @@ from typing import TYPE_CHECKING
 from genius_invocation.entity.support import Support
 from genius_invocation.entity.status import Combat_Status
 from genius_invocation.event.damage import Damage
+from genius_invocation.card.action.base import ActionCard
 
 
 if TYPE_CHECKING:
