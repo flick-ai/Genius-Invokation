@@ -19,7 +19,8 @@ class CountryType(Enum):
     HILICHURL = 8 # 丘丘人
     MONSTER = 9 # 怪物
     EREMITES = 10 # 镀金旅团
-    OTHER = 11 # 其他
+    CONSECRATED_BEAST = 11 # 圣骸兽
+    OTHER = 12 # 其他
 
 class WeaponType(Enum):
     SWORD = 0 # 单手剑
@@ -376,3 +377,15 @@ def name_to_code(name, maps, checksum=0):
     uint = [(x + checksum) % 256 for x in uint]
     res = base64.b64encode(bytes(uint)).decode()
     return res
+
+import random
+def max_count_card(cards: List['ActionCard']) -> int:
+    '''
+        随机选取一张费用最高的卡的索引
+    '''
+    max_count = sorted(cards, key=lambda x: x.calculate_dice(), reverse=True)[0].calculate_dice()
+    max_idx = []
+    for idx, card in enumerate(cards):
+        if card.calculate_dice() == max_count:
+            max_idx.append(idx)
+    return random.choice(max_idx)

@@ -88,7 +88,7 @@ class OverwhelmingIce(Status):
 
     def update(self):
         self.current_usage = max(self.usage, self.current_usage)
-    
+
     def dmg_add(self, game:'GeniusGame'):
         if game.current_damage.damage_from == self.from_character:
             if game.current_damage.damage_type == SkillType.NORMAL_ATTACK:
@@ -246,7 +246,7 @@ class Sheer_Cold(Status):
             game.add_damage(dmg)
             game.resolve_damage()
             self.on_destroy(game)
-    
+
     def update_listener_list(self):
         self.listeners = [
             (EventType.END_PHASE, ZoneType.CHARACTER_ZONE, self.on_end_phase)
@@ -280,13 +280,14 @@ class CryoHypostasis(Character):
     def __init__(self, game: 'GeniusGame', zone: 'CharacterZone', from_player: 'GeniusPlayer', index: int, from_character=None, talent=False):
         super().__init__(game, zone, from_player, index, from_character)
         self.talent = talent
-    
-    def equip_talent(self, game: 'GeniusGame', is_action=False):
+
+    def equip_talent(self, game:'GeniusGame', is_action=True, talent_card=None):
         self.talent = True
+        # self.character_zone.talent_card = talent_card
         if self.character_zone.has_entity(CryoCrystalCore) is None:
             cryo_crystal_core = CryoCrystalCore(game=game,
                                                   from_player=self.from_player,
                                                   from_character=self)
             self.character_zone.add_entity(cryo_crystal_core)
         game.is_change_player = is_action
-        
+

@@ -63,7 +63,7 @@ class KamisatoArt_Hyouka(ElementalSkill):
     def __init__(self, from_character: 'Character'):
         super().__init__(from_character)
         self.heal_round = -1
-    
+
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         # 处理伤害
@@ -108,7 +108,7 @@ class Frostflake_Seki_no_To(Summon):
     name_ch = '霜见雪关扉'
     removable = True
     element = ElementType.CRYO
-    
+
     def on_end_phase(self, game: 'GeniusGame'):
         '''
             结束阶段: 造成2点冰元素伤害
@@ -227,11 +227,11 @@ class KamisatoAyaka(Character):
                 if game.current_dice.cost[0]['cost_num']>0:
                     game.current_dice.cost[0]['cost_num']-=1
                     return True
-    
+
     def on_switch(self, game:'GeniusGame'):
         if self.calculation_dice(game):
             self.save_switch_dice_round = game.round
-    
+
     def listen_talent_events(self, game: 'GeniusGame'):
         self.listen_event(game, EventType.CALCULATE_DICE, ZoneType.CHARACTER_ZONE, self.calculation_dice)
         self.listen_event(game, EventType.ON_CHANGE_CHARACTER, ZoneType.CHARACTER_ZONE, self.on_switch)
@@ -239,6 +239,7 @@ class KamisatoAyaka(Character):
         if status is not None:
             status.listen_event(game, EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, status.on_dmg_add)
 
-    def equip_talent(self, game: 'GeniusGame', is_action=False):
+    def equip_talent(self, game:'GeniusGame', is_action=True, talent_card=None):
         self.talent = True
+        self.character_zone.talent_card = talent_card
         game.is_change_player = is_action

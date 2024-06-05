@@ -1,10 +1,4 @@
 from genius_invocation.card.character.import_head import *
-import random
-
-from genius_invocation.event.Elemental_Reaction import GeniusGame
-from genius_invocation.game.game import GeniusGame
-from genius_invocation.utils import GeniusGame
-
 
 class DanceonFire(NormalAttack):
     id: int = 13121
@@ -39,19 +33,11 @@ class SweepingFervor(ElementalSkill):
     energy_cost: int = 0
     energy_gain: int = 1
 
-    def max_count_card(self, cards: List['ActionCard']) -> int:
-        max_count = sorted(cards, key=lambda x: x.calculate_dice(), reverse=True)[0].calculate_dice()
-        max_idx = []
-        for idx, card in enumerate(cards):
-            if card.calculate_dice() == max_count:
-                max_idx.append(idx)
-        return random.choice(max_idx)
-
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         self.resolve_damage(game)
 
-        max_idx = self.max_count_card(self.from_character.from_player.hand_zone.card)
+        max_idx = max_count_card(self.from_character.from_player.hand_zone.card)
         self.from_character.from_player.hand_zone.discard_card(max_idx)
 
         self.add_combat_shield(game, ShieldofPassion)

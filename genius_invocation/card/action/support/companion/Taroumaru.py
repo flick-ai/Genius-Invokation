@@ -64,7 +64,7 @@ class Taroumaru_Entity(Support):
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.savings = [Taroumarus_Savings() for _ in range(4)]
-        self.from_player.card_zone.place_evenly(self.savings)
+        self.from_player.card_zone.insert_evenly(self.savings)
         self.savings_num = 0
 
     def on_play_card(self, game: 'GeniusGame') -> None:

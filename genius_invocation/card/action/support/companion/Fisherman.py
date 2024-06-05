@@ -62,7 +62,7 @@ class Fisherman_Entity(Support):
 
     def on_end(self, game: 'GeniusGame'):
         if game.active_player_index == self.from_player.index:
-            self.from_player.card_zone.insert_randomly(Cleanup(), 5)
+            self.from_player.card_zone.insert_randomly([Cleanup()], 5)
             self.usage -= 1
             if self.usage == 1:
                 self.from_player.get_card(num=1)

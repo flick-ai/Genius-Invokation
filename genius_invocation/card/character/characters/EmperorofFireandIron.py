@@ -231,6 +231,7 @@ class EmperorofFireandIron(Character):
             (EventType.AFTER_ANY_ACTION, ZoneType.CHARACTER_ZONE, self.after_any_action)
         ]
 
-    def equip_talent(self, game: 'GeniusGame'):
+    def equip_talent(self, game:'GeniusGame', is_action=True, talent_card=None):
         self.talent = True
+        self.character_zone.talent_card = talent_card
         self.elemental_attach(game, ElementType.PYRO)

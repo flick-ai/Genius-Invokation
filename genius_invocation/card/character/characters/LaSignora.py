@@ -69,7 +69,7 @@ class Sheer_Cold(Status):
             game.add_damage(dmg)
             game.resolve_damage()
             self.on_destroy(game)
-    
+
     def update_listener_list(self):
         self.listeners = [
             (EventType.END_PHASE, ZoneType.CHARACTER_ZONE, self.on_end_phase)
@@ -103,7 +103,7 @@ class Blazing_Heat(Status):
             game.add_damage(dmg)
             game.resolve_damage()
             self.on_destroy(game)
-    
+
     def update_listener_list(self):
         self.listeners = [
             (EventType.END_PHASE, ZoneType.CHARACTER_ZONE, self.on_end_phase)
@@ -131,7 +131,7 @@ class Carmine_Chrysalis(ElementalBurst):
         assert status is not None
         status.on_destroy(game)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
-        
+
 
 class LaSignora(Character):
     id: int = 2102
@@ -149,11 +149,12 @@ class LaSignora(Character):
         rebirth = IceSealed_Crimson_Witch_of_Embers(game, self.from_player, self)
         self.character_zone.add_entity(rebirth)
 
-    def equip_talent(self, game: 'GeniusGame', is_action=False):
+    def equip_talent(self, game:'GeniusGame', is_action=True, talent_card=None):
         self.from_player.dice_zone.add([DiceType.CRYO.value]*3)
         if not self.talent:
             self.listen_talent_events(game)
             self.talent = True
+            self.character_zone.talent_card = talent_card
         self.talent_round = -1
         game.is_change_player = False
 
@@ -165,11 +166,11 @@ class LaSignora(Character):
         self.talent_round = -1
         if self.talent:
             self.listen_talent_events(game)
-        
+
 
     def listen_talent_events(self, game: 'GeniusGame'):
         self.listen_event(game, EventType.EXECUTE_DAMAGE, ZoneType.CHARACTER_ZONE, self.on_execute_dmg)
-    
+
     def on_execute_dmg(self, game: 'GeniusGame'):
         if game.current_damage.damage_to == self:
             if game.current_damage.main_damage >= 3 and self.talent_round!=game.round:
@@ -183,7 +184,7 @@ class LaSignora(Character):
                 else:
                     opponent.character_zone.add_entity(Sheer_Cold(game, from_player=opponent_player, from_character=opponent))
 
-    
+
 
     def change_to_Crimson_Witch_of_Ember(self, game:'GeniusGame'):
         # Create new character, move everything in the character Zone into the new character.
@@ -206,13 +207,13 @@ class LaSignora(Character):
 
         for status in self.character_zone.status_list:
             status.from_character = new_char
-        
+
         self.from_player.character_list[self.index] = new_char
         self.from_player.update_element_list()
 
         # Only remove the events.
         for action in self.registered_events:
-            action.remove()         
+            action.remove()
 
 class IceSealed_Crimson_Witch_of_Embers(Status):
     name = "Ice-Sealed Crimson Witch of Embers"
@@ -220,7 +221,7 @@ class IceSealed_Crimson_Witch_of_Embers(Status):
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.current_usage = 1
-    
+
     def on_character_die(self, game: 'GeniusGame'):
         '''
             角色死亡时
@@ -231,12 +232,12 @@ class IceSealed_Crimson_Witch_of_Embers(Status):
             self.from_character.heal(1, game)
             #TODO: check whether this operation is belongs to heal?
             self.on_destroy(game)
-    
+
     def on_begin_phase(self, game:'GeniusGame'):
         if game.active_player == self.from_player:
             if self.from_character.health_point <=4:
                 self.on_destroy(game)
-    
+
     def on_destroy(self, game:'GeniusGame'):
         super().on_destroy(game)
         self.from_character.change_to_Crimson_Witch_of_Ember(game)
@@ -340,16 +341,18 @@ class Crimson_Witch_of_Embers(Character):
             self.listen_talent_events(game)
 
 
-    def equip_talent(self, game: 'GeniusGame', is_action=False):
+    def equip_talent(self, game:'GeniusGame', is_action=True, talent_card=None):
         self.from_player.dice_zone.add([DiceType.PYRO.value]*3)
         if not self.talent:
             self.listen_talent_events(game)
             self.talent = True
+            self.character_zone.talent_card = talent_card
         self.talent_round = -1
         game.is_change_player = False
+
     def listen_talent_events(self, game: 'GeniusGame'):
         self.listen_event(game, EventType.EXECUTE_DAMAGE, ZoneType.CHARACTER_ZONE, self.on_execute_dmg)
-    
+
     def on_execute_dmg(self, game: 'GeniusGame'):
         if game.current_damage.damage_to == self:
             if game.current_damage.main_damage >= 3 and self.talent_round!=game.round:
@@ -363,4 +366,3 @@ class Crimson_Witch_of_Embers(Character):
                 else:
                     opponent.character_zone.add_entity(Blazing_Heat(game, from_player=opponent_player, from_character=opponent))
 
-    

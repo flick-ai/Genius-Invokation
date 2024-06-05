@@ -240,8 +240,9 @@ class AbyssHeraldWickedTorrents(Character):
         self.listen_event(game, EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, self.on_dmg_add)
         self.listen_event(game, EventType.INFUSION, ZoneType.CHARACTER_ZONE, self.infusion)
 
-    def equip_talent(self, game: 'GeniusGame'):
+    def equip_talent(self, game:'GeniusGame', is_action=True, talent_card=None):
         self.talent = True
+        self.character_zone.talent_card = talent_card
         if self.character_zone.has_entity(WateryRebirth) is None:
             target_zone = get_opponent(game).team_combat_status
             target_zone.add_entity(CurseoftheUndercurrent(game, from_player=get_opponent(game), from_character=None))

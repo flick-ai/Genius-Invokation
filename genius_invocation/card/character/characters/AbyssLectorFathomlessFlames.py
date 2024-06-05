@@ -85,7 +85,7 @@ class Darkfire_Furnace(Summon):
             self.current_usage -= 1
             if self.current_usage <= 0:
                 self.on_destroy(game)
-    
+
     def update_listener_list(self):
         self.listeners = [
             (EventType.END_PHASE, ZoneType.SUMMON_ZONE, self.end_phase)
@@ -98,7 +98,7 @@ class Fiery_Rebirth(Status):
         super().__init__(game, from_player, from_character)
         self.current_usage = 1
         self.set_talent = False
-    
+
     def on_character_die(self, game: 'GeniusGame'):
         '''
             角色死亡时
@@ -117,7 +117,7 @@ class Fiery_Rebirth(Status):
         self.listeners = [
             (EventType.CHARACTER_WILL_DIE, ZoneType.CHARACTER_ZONE, self.on_character_die)
         ]
-    
+
 class Aegis_of_Abyssal_Flame(Shield):
     name = "Aegis of Abyssal Flame"
     name_ch = "渊火加护"
@@ -155,8 +155,11 @@ class AbyssLectorFathomlessFlames(Character):
         self.talent = talent
         if self.talent:
             self.character_zone.has_entity(Fiery_Rebirth).set_talent = True
-    
-    def equip_talent(self, game: 'GeniusGame', is_action=True):
+
+    def equip_talent(self, game:'GeniusGame', is_action=True, talent_card=None):
+        self.talent = True
+        self.character_zone.talent_card = talent_card
+        
         rebirth = self.character_zone.has_entity(Fiery_Rebirth)
         if rebirth is not None:
             rebirth.set_talent = True

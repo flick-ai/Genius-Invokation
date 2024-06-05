@@ -30,7 +30,7 @@ class CountdowntotheShow3(ActionCard):
     def on_discard(self, game: 'GeniusGame'):
         target_card_name = self.base_name + str(self.cost_num - 1)
         target_card = eval(target_card_name)()
-        game.active_player.card_zone.insert_randomly(target_card, num=0)
+        game.active_player.card_zone.insert_randomly([target_card], num=0)
 
 class CountdowntotheShow2(CountdowntotheShow3):
     name: str = 'Countdown to the Show: 2'

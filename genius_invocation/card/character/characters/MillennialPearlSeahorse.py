@@ -31,7 +31,7 @@ class TailSweep(NormalAttack):
 
     def __init__(self, from_character: 'Character'):
         super().__init__(from_character)
-    
+
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         # 处理伤害
@@ -124,7 +124,7 @@ class FontemerHoarthunder(ElementalBurst):
         # 召唤共鸣珊瑚珠
         self.generate_summon(game, ResonantCoralOrb)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
-        
+
 
 class PearlArmor(Status):
     name = "Pearl Armor"
@@ -143,7 +143,7 @@ class PearlArmor(Status):
     def update(self):
         self.summon_used_this_round = 0
         self.current_usage = self.usage
-    
+
     def on_execute_dmg(self, game: 'GeniusGame'):
         if game.current_damage.damage_to == self.from_character:
             if game.current_damage.main_damage_element != ElementType.PIERCING:
@@ -194,7 +194,7 @@ class ResonantCoralOrb(Summon):
         super().__init__(game, from_player, from_character)
         self.usage = 2
         self.current_usage = 2
-    
+
     def on_end_phase(self, game: 'GeniusGame'):
         '''
             结束阶段: 造成1点雷元素伤害
@@ -257,9 +257,10 @@ class MillennialPearlSeahorse(Character):
         super().on_begin(game)
         self.skill_list[1].add_usage_this_round = 0
 
-    def equip_talent(self, game: 'GeniusGame', is_action=False):
+    def equip_talent(self, game:'GeniusGame', is_action=True, talent_card=None):
         # 重载装备天赋函数
         self.talent = True
+        self.character_zone.talent_card = talent_card
         pearl_armor = self.character_zone.has_entity(PearlArmor)
         if pearl_armor:
             pearl_armor.usage += 1

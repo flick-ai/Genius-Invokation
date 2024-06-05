@@ -213,7 +213,9 @@ class Azhdaha(Character):
         self.talent_skill = None
         self.absorbed_element = []
 
-    def equip_talent(self, game: 'GeniusGame', is_action=True):
+    def equip_talent(self, game:'GeniusGame', is_action=True, talent_card=None):
+        # self.talent = True
+        # self.character_zone.talent_card = talent_card
         self.add_status(game, StoneFacetsElementalCrystallization)
         dices = []
         for element in self.from_player.element_set:

@@ -37,6 +37,7 @@ class ForbiddenKnowledge(ActionCard):
         super().__init__()
 
     def on_played(self, game: 'GeniusGame') -> None:
+        game.active_player.team_combat_status.add_entity(HasForbiddenKnowledge(game, game.active_player))
         dmg = Damage.create_damage(
             game,
             damage_type=SkillType.OTHER,
@@ -68,7 +69,7 @@ class TheMausoleumofKingDeshretStatus(Combat_Status):
 
     def on_get_card(self, game: 'GeniusGame'):
         if game.current_get_card.from_player == self.from_player:
-            self.from_player.card_zone.place_randomly([ForbiddenKnowledge()])
+            self.from_player.card_zone.insert_randomly([ForbiddenKnowledge()], num=-1)
 
     def on_end(self, game:'GeniusGame'):
         self.on_destroy(game)

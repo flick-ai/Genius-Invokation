@@ -31,4 +31,4 @@ class Underwater_Treasure_Hunt(ActionCard):
 
     def on_played(self, game: 'GeniusGame'):
         cards = [Undersea_Treasure() for _ in range(6)]
-        game.active_player.card_zone.place_randomly(cards)
+        game.active_player.card_zone.insert_randomly(cards, num=-1)

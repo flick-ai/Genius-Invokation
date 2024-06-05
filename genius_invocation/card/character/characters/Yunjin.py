@@ -162,11 +162,7 @@ class Yunjin(Character):
     country: CountryType = CountryType.LIYUE
     init_health_point: int = 10
     max_health_point: int = 10
-    skill_list: List = [
-        RippingFangFletching,
-        InuzakaAllRoundDefense,
-        JuugaForwardUntoVictory
-    ]
+    skill_list: List = [CloudGrazingStrike, OpeningFlourish, CliffbreakersBanner]
     max_power: int = 2
 
     def __init__(self, game: 'GeniusGame', zone: 'CharacterZone', from_player: 'GeniusPlayer', index: int, from_character=None, talent=False):
@@ -174,3 +170,4 @@ class Yunjin(Character):
         self.power = 0
         self.talent = talent
         self.talent_skill = self.skills[2]
+        self.next_skill = SpearFlourish(self)

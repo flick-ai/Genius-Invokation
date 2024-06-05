@@ -243,7 +243,6 @@ class CardZone:
             if card_name not in self.card_name:
                 self.card_name.append(card_name)
                 self.card_type.append(self.card[-1].card_type)
-        self.card_num = len(self.card)
         # 随机固定牌序
         self.game = game
         self.player = player
@@ -300,7 +299,6 @@ class CardZone:
         get_list = []
         for i in range(num):
             get_list.append(self.card.pop())
-        self.card_num = len(self.card)
 
         if invoke:
             self.invoke_get_card(num)
@@ -311,35 +309,29 @@ class CardZone:
             将牌放回牌堆
         '''
         for card in card_list:
-            idx = self.game.random.randint(0, self.card_num+1)
+            idx = self.game.random.randint(0, self.num()+1)
             self.card.insert(idx, card)
-            self.card_num = len(self.card)
 
-    def place_evenly(self, card_list: List):
+    def insert_evenly(self, card_list: List):
         '''
             将牌平均放回牌堆
         '''
         result = evenly_insert(self.card, card_list)
         self.card = result
-        self.card_num = len(self.card)
 
-    def place_randomly(self, card_list: List):
-        '''
-            将牌随机放回牌堆
-        '''
-        result = random_insert(self.card, card_list)
-        self.card = result
-        self.card_num = len(self.card)
 
-    def insert_randomly(self, card, num=-1):
+    def insert_randomly(self, card_list: List, num=-1):
         '''
-            从牌堆顶的指定数量牌中随机插入单张牌
+            从牌堆顶的指定数量牌中随机插入牌
         '''
-        num = self.card_num if num == -1 else num
-        idx = random.randint(0, num)
-        self.card.insert(idx, card)
-        self.card_num = len(self.card)
+        num = self.num() if num == -1 else num
+        if type(card_list) != List:
+            card_list = [card_list]
 
+        insert_indices = random.sample(range(0, num+len(card_list)), len(card_list))
+        insert_indices.sort()
+        for index in insert_indices:
+            self.card.insert(index, card_list.pop())
 
     def discard_card(self, idx):
         '''
@@ -601,3 +593,15 @@ class HandZone:
         self.from_player.round_discard_cards += 1
         self.game.invoke(EventType.ON_DISCARD_CARD, self.game)
         return card
+
+    def discard_card_by_name(self, name, max_num):
+        '''
+            通过名称舍弃牌
+        '''
+        cards = []
+        for idx, card in enumerate(self.card):
+            if card.name == name:
+                cards.append(self.discard_card(idx))
+                if len(cards) == max_num:
+                    break
+        return cards
