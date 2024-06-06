@@ -186,10 +186,12 @@ class GeniusGame:
             else:
                 self.first_player = self.active_player_index
 
-        if self.extra_round > 0:
-            self.extra_round -= 1
-        else:
-            if self.is_change_player and (not opponent_player.is_pass):
+
+        if self.is_change_player and (not opponent_player.is_pass):
+            # 本次行动结束，切换到对手行动
+            if self.extra_round > 0:
+                self.extra_round -= 1
+            else:
                 self.change_active_player()
 
         opponent_player = self.players[1 - self.active_player_index]
