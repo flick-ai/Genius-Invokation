@@ -113,7 +113,7 @@ class Wriothesley(Character):
         super().__init__(game, zone, from_player, index, from_character)
         self.talent = talent
         self.power = 0
-        self.talent_skill = self.skills[1]
+        self.talent_skill = self.skills[0]
 
         self.round_heal = 0
         self.round_damage = 0
@@ -121,22 +121,22 @@ class Wriothesley(Character):
 
         self.listen_event(game, EventType.AFTER_HEAL, ZoneType.CHARACTER_ZONE, self.on_heal)
         self.listen_event(game, EventType.EXECUTE_DAMAGE, ZoneType.CHARACTER_ZONE, self.on_damage)
-        self.listen_event(game, EventType.CALCULATE_DICE, ZoneType.CHARACTER_ZONE, self.on_calculate_dice)  
+        self.listen_event(game, EventType.CALCULATE_DICE, ZoneType.CHARACTER_ZONE, self.on_calculate_dice)
         self.listen_event(game, EventType.ON_USE_SKILL, ZoneType.CHARACTER_ZONE, self.on_skill)
         if self.talent:
             self.listen_talent_events(game)
-    
+
     def on_begin(self, game: 'GeniusGame'):
         super().on_begin(game)
         self.round_damage = 0
         self.round_heal = 0
-    
+
     def on_heal(self, game: 'GeniusGame'):
         if game.current_heal.heal_to_character == self:
             self.round_heal += 1
             if self.talent:
                 self.penalty += 1
-    
+
     def on_damage(self, game: 'GeniusGame'):
         if game.current_damage.damage_to == self:
             self.round_damage += 1
