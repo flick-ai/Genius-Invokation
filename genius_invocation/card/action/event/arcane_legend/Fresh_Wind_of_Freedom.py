@@ -12,11 +12,10 @@ class Fresh_Wind_of_Freedom_Entity(Combat_Status):
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
 
-    # 更新：大鹤归
-    def on_after_skill(self, game:'GeniusGame'):
+    def on_die(self, game:'GeniusGame'):
         if game.active_player_index == self.from_player.index:
-            if game.current_skill.from_character == self.from_character:
-                self.from_player.change_to_next_character()
+           game.is_change_player = False
+           self.on_destroy(game)
 
     def on_end(self, game:'GeniusGame'):
         if game.active_player_index == self.from_player.index:
@@ -24,10 +23,9 @@ class Fresh_Wind_of_Freedom_Entity(Combat_Status):
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.AFTER_USE_SKILL, ZoneType.ACTIVE_ZONE, self.on_after_skill),
+            (EventType.CHARACTER_DIE, ZoneType.ACTIVE_ZONE, self.on_die),
             (EventType.END_PHASE, ZoneType.ACTIVE_ZONE, self.on_end),
         ]
-
 
 class Fresh_Wind_of_Freedom(ActionCard):
     id: int = 330004
@@ -45,7 +43,7 @@ class Fresh_Wind_of_Freedom(ActionCard):
             from_player=game.active_player,
             from_character=None
         ))
-    
+
     def find_target(self, game: 'GeniusGame'):
         if game.active_player.play_arcane_legend:
             return []

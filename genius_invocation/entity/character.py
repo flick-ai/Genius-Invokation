@@ -20,6 +20,7 @@ class Character(Entity):
     element: ElementType
     weapon_type: WeaponType
     country: CountryType
+    arkhen: ArkhenType
     init_health_point: int
     # health_point: int
     max_health_point: int

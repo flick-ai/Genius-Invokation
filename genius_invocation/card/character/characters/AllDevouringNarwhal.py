@@ -60,8 +60,9 @@ class StarfallShower(ElementalSkill):
 
         max_idx = max_count_card(self.from_character.from_player.hand_zone.card)
         card = self.from_character.from_player.hand_zone.discard_card(max_idx)
-        if self.from_character.talent and self.talent_round != game.round:
+        if self.from_character.talent and self.from_character.talent_round != game.round:
             self.from_character.heal(card.calculate_dice(), game)
+            self.from_character.talent_round = game.round
         # after skill
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
@@ -74,12 +75,12 @@ class RavagingDevourer(ElementalBurst):
 
     # damage
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
-    main_damage_element: ElementType = ElementType.DENDRO
+    main_damage_element: ElementType = ElementType.HYDRO
     main_damage: int = 1
     piercing_damage: int = 1
 
     # cost
-    cost = [{'cost_num': 3, 'cost_type': CostType.DENDRO}]
+    cost = [{'cost_num': 3, 'cost_type': CostType.HYDRO}]
 
     energy_cost: int = 3
     energy_gain: int = 0
@@ -196,7 +197,7 @@ class DarkShadow(Summon):
                 if len(self.from_player.hand_zone.card) <= 1:
                     damage = Damage.create_damage(
                         game=game,
-                        damage_type=SkillType.OTHER,
+                        damage_type=SkillType.SUMMON,
                         main_damage_element=ElementType.ELECTRO,
                         main_damage=self.damage,
                         piercing_damage=0,
@@ -215,7 +216,7 @@ class DarkShadow(Summon):
                 game,
                 damage_type=SkillType.SUMMON,
                 main_damage=self.damage,
-                main_damage_element=self.element,
+                main_damage_element=ElementType.ELECTRO,
                 piercing_damage=0,
                 damage_from=self,
                 damage_to=get_opponent_active_character(game),

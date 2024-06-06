@@ -30,6 +30,11 @@ class WeaponType(Enum):
     POLEARM = 4 # 长柄武器
     OTHER = 5 # 其他武器
 
+class ArkhenType(Enum):
+    PNEUMA = 0 # 荒
+    OUSIA = 1 # 芒
+
+
 class CostType(Enum):
     CRYO = 0 # 冰
     HYDRO = 1 # 水
