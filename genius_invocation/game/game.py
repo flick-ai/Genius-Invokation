@@ -62,6 +62,8 @@ class GeniusGame:
         self.current_get_card: GetCard = None
         self.damage_list: List[Damage] = []
         self.is_change_player: bool = False
+        # 额外回合
+        self.extra_round: int = 0
         self.current_attach_reaction: ElementalReactionType = None # Save the reaction type when attachment (no dmg). Will be reset after the invoking of the event. keep None.
         #TODO: CHECK THE INITIALIZE OF IS_CHANGE_PLAYER
         self.is_end: bool = False
@@ -184,8 +186,11 @@ class GeniusGame:
             else:
                 self.first_player = self.active_player_index
 
-        if self.is_change_player and (not opponent_player.is_pass):
-            self.change_active_player()
+        if self.extra_round > 0:
+            self.extra_round -= 1
+        else:
+            if self.is_change_player and (not opponent_player.is_pass):
+                self.change_active_player()
 
         opponent_player = self.players[1 - self.active_player_index]
         self.manager.invoke(EventType.BEFORE_ANY_ACTION, self)

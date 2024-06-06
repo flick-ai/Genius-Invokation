@@ -14,8 +14,10 @@ class Fresh_Wind_of_Freedom_Entity(Combat_Status):
 
     def on_die(self, game:'GeniusGame'):
         if game.active_player_index == self.from_player.index:
-           game.is_change_player = False
-           self.on_destroy(game)
+            # game.is_change_player = False
+            # BUG修复：增加额外变量回合的概念，和是否切换玩家变量同时生效
+            game.extra_round += 1
+            self.on_destroy(game)
 
     def on_end(self, game:'GeniusGame'):
         if game.active_player_index == self.from_player.index:
