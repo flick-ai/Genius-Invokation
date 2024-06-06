@@ -23,6 +23,8 @@ if TYPE_CHECKING:
 class GeniusPlayer:
     def __init__(self, game: 'GeniusGame', deck, idx) -> None:
         # 初始化角色状态区
+        self.init_define()
+        
         self.index: int = idx
         self.active_idx: int = -1
         self.character_list: List[Character] = []
@@ -55,7 +57,8 @@ class GeniusPlayer:
         self.game = game
         self.is_pass: bool
         self.play_arcane_legend: bool = False
-
+    
+    def init_define(self):
         # 回合打出、调和、舍弃手牌数量
         self.round_play_cards = 0
         self.round_tune_cards = 0
@@ -82,6 +85,7 @@ class GeniusPlayer:
 
         # Play cards
         self.played_cards = []
+        self.tunr_or_discard_cards = []
 
     def update_element_list(self):
         ''' Only For La Signora right now. Refresh the element list, which may be used by some skills and talents.'''
@@ -194,6 +198,7 @@ class GeniusPlayer:
         card: ActionCard = self.hand_zone.use(idx)
         game.current_card = card
         if game.current_action.target_type == ActionTarget.DICE_REGION:
+            self.tune_or_discard_cards.append(card)
             card.on_tuning(game)
             self.round_tune_cards += 1
             game.manager.invoke(EventType.ON_TUNE_CARD, game)
