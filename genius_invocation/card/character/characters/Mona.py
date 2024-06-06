@@ -222,7 +222,7 @@ class Illusory_Bubble(Combat_Status):
     def on_dealing_damage(self, game: 'GeniusGame'):
         if isinstance(game.current_damage.damage_from, Character):
             if game.current_damage.damage_from.from_player == self.from_player:
-                game.current_damage.main_damage *= 2
+                game.current_damage.damage_multiply += 1
                 self.on_destroy(game)
 
     def update_listener_list(self):
@@ -264,7 +264,7 @@ class Mona(Character):
     def on_dmg_after_reation(self, game:'GeniusGame'):
         if self.talent:
             if game.current_damage.damage_from.from_player == self.from_player:
-                if game.current_damage.reaction in [ElementalReactionType.Frozen, 
+                if game.current_damage.reaction in [ElementalReactionType.Frozen,
                                                 ElementalReactionType.Vaporize,
                                                 ElementalReactionType.Bloom,
                                                 ElementalReactionType.Electro_Charged] \

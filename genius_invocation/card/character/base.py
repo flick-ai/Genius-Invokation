@@ -43,13 +43,14 @@ class CharacterSkill:
         assert self.from_character.power >= self.energy_cost
         self.from_character.power -= self.energy_cost
 
-    def resolve_damage(self, game: 'GeniusGame', add_main_damage:int = 0, add_piercing_damage:int = 0):
+    def resolve_damage(self, game: 'GeniusGame', add_main_damage:int = 0, add_piercing_damage:int = 0, damage_multiply:int=1):
         game.add_damage(Damage.create_damage(game, self.damage_type, self.main_damage_element,
                               self.main_damage + add_main_damage,
                               self.piercing_damage + add_piercing_damage,
                               self.from_character, get_opponent_active_character(game),
-                              self.is_plunging_attack, self.is_charged_attack))
+                              self.is_plunging_attack, self.is_charged_attack, damage_multiply))
         game.resolve_damage()
+
     def gain_energy(self, game: 'GeniusGame'):
         self.from_character.power += self.energy_gain
         self.from_character.power = min(self.from_character.power, self.from_character.max_power)

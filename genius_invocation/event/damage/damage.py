@@ -11,11 +11,14 @@ class Damage:
     def __init__(self, damage_type: 'SkillType', main_damage_element: 'ElementType',
                  main_damage: int, piercing_damage: int,
                  damage_from: 'Entity', damage_to: 'Character',
-                 is_plunging_attack: bool=False, is_charged_attack: bool=False) -> None:
+                 is_plunging_attack: bool=False, is_charged_attack: bool=False,
+                 damage_multiply: int=1) -> None:
         self.damage_type: SkillType = damage_type
         self.main_damage_element: ElementType = main_damage_element
         self.main_damage: int = main_damage
         self.piercing_damage: int = piercing_damage
+
+        self.damage_multiply = damage_multiply
 
         self.damage_from: Entity = damage_from
         self.damage_to: Character = damage_to
@@ -32,8 +35,9 @@ class Damage:
                       damage_type: 'SkillType', main_damage_element: 'ElementType',
                       main_damage: int, piercing_damage: int,
                       damage_from: 'Entity', damage_to: 'Entity',
-                      is_plunging_attack: bool=False, is_charged_attack: bool=False):
-        dmg = cls(damage_type, main_damage_element, main_damage, piercing_damage, damage_from, damage_to, is_plunging_attack, is_charged_attack)
+                      is_plunging_attack: bool=False, is_charged_attack: bool=False,
+                      damage_multiply: int=1):
+        dmg = cls(damage_type, main_damage_element, main_damage, piercing_damage, damage_from, damage_to, is_plunging_attack, is_charged_attack, damage_multiply)
         return dmg
 
     # @staticmethod
@@ -76,6 +80,7 @@ class Damage:
         logger.debug(f"After Damage Add: {game.current_damage.main_damage}")
     def damage_dealing(self, game: 'GeniusGame'):
         game.manager.invoke(EventType.DEALING_DAMAGE, game)
+        self.main_damage = self.main_damage * self.damage_multiply
     def damage_divide(self, game: 'GeniusGame'):
         game.manager.invoke(EventType.DIVIDE_DAMAGE, game)
     def damage_execute(self, game: 'GeniusGame'):

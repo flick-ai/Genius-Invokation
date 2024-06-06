@@ -68,9 +68,8 @@ class ScattershotVortex(ElementalBurst):
         super().on_call(game)
         self.consume_energy(game)
         cards = self.from_character.from_player.hand_zone.discard_card_by_name(BonecrunchersEnergyBlock.name, max_num=MAX_HANDCARD)
-        sum_damage = self.main_damage * (len(cards) // 2)
-        add_damage = sum_damage - self.main_damage
-        self.resolve_damage(game, add_main_damage=add_damage)
+        multiply_num = 2 * (len(cards) // 2)
+        self.resolve_damage(game, damage_multiply=multiply_num)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class ImmortalRemnantsAnemo(CharacterSkill):
