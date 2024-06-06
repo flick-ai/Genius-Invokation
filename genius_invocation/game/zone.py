@@ -399,8 +399,8 @@ class SummonZone:
     def check_full(self):
         return len(self.space) == MAX_SUMMON
 
-    def add_entity(self, entity: 'Summon', **kwargs):
-        if self.has_entity(entity.__class__) is None:
+    def add_entity(self, entity: 'Summon', independent=False, **kwargs):
+        if independent or self.has_entity(entity.__class__) is None:
             if not self.check_full():
                 self.space.append(entity)
             else:

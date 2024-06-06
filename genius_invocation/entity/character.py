@@ -58,6 +58,13 @@ class Character(Entity):
             被切换到时调用
         '''
         self.from_player.is_after_change = True
+
+    def on_play_talent(self, game: 'GeniusGame'):
+        '''
+            使用天赋时调用
+        '''
+        pass
+
     def refresh_talent(self, game:'GeniusGame'):
         pass #Maybe some talent can refresh some state repeatly.
         # Should be implement in subclass.
@@ -69,6 +76,7 @@ class Character(Entity):
 
     def equip_talent(self, game:'GeniusGame', is_action = True, talent_card:'TalentCard' = None):
         # TODO 是不是应该先执行动作再listen？有些状态还没生成
+        self.on_play_talent(game)
         if self.talent:
             self.refresh_talent(game)
             if is_action:
