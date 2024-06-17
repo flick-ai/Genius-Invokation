@@ -7,7 +7,7 @@ class GeniusInvocationEnv(gym.Env):
         Environment for Genius Invocation with the standard gym API.
     '''
 
-    def __init__(
+    def __init__( 
         self,
         deck1: str,
         deck2: str,
@@ -29,7 +29,7 @@ class GeniusInvocationEnv(gym.Env):
         # encode support
 
         # encode dice
-        
+        pass
 
 
 

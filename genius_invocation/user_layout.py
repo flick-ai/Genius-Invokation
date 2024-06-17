@@ -72,6 +72,8 @@ def get_character(player: 'GeniusPlayer', idx: int):
     sponsor_message = Table.grid()
     sponsor_message.add_column(no_wrap=False, justify="medium")
     character_list = player.character_list
+    if idx >= len(character_list):
+        return
     if character_list[idx].is_active:
         color = 'red'
     else:
