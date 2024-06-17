@@ -51,11 +51,11 @@ class ListenerCircle(object):
 
 
     def append_action(self, action, character_index=None) -> ListenerNode:
-        if character_index is not None:
-            node = ListenerNode(action, self.character_tails[character_index].before, self.character_tails[character_index])
-            self.character_tails[character_index].before.next = node
-            self.character_tails[character_index].before = node
-            return node
+        if self.need_character and character_index is not None:
+                node = ListenerNode(action, self.character_tails[character_index].before, self.character_tails[character_index])
+                self.character_tails[character_index].before.next = node
+                self.character_tails[character_index].before = node
+                return node
         else:
             node = ListenerNode(action, self.tail.before, self.tail)
             self.tail.before.next = node

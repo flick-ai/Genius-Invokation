@@ -133,6 +133,9 @@ class TestAmber(TestBase, unittest.TestCase):
         self.assertEqual(self.game.players[0].character_list[0].health_point, 8)
         self.assertEqual(self.game.players[0].character_list[0].elemental_application, [])
 
+        self.game.active_player_index = 0
+        self.game.manager.invoke(event_type=EventType.END_PHASE, game=self.game)
+
         # 回合1节末伤害检测
         #TODO END_PHASE 没有完整执行
         self.check_health(1, [90, 6, 6]) # 仅受到兔兔伯爵爆炸
@@ -141,7 +144,7 @@ class TestAmber(TestBase, unittest.TestCase):
     def check_health(self, player, health):
         for i in range(len(health)):
             self.assertEqual(self.game.players[player].character_list[i].health_point, health[i])
-
+            
     def check_elemental_application(self, player, element):
         for i in range(len(element)):
             self.assertEqual(self.game.players[player].character_list[i].elemental_application, element[i])
