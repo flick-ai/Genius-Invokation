@@ -23,16 +23,19 @@ class GeniusGame:
     '''
     主游戏
     '''
-    def __init__(self, player0_deck, player1_deck, seed=None, is_omni=False) -> None:
+    def __init__(self, player0_deck, player1_deck, seed=None, is_omni=False, is_read=False) -> None:
         self.manager = EventManager()
 
         self.is_omni = is_omni
-        self.num_players = 3
+        self.num_players = 2
+        self.is_read = is_read
+
         if seed:
             self.random = np.random.RandomState(seed)
         else:
             seed = int(time())
             self.random = np.random.RandomState(seed)
+
         self.root_game: GeniusGame = self
         self.incoming_action_list: list[Action] = []
         self.incoming_action_list_index: int = 0
@@ -69,8 +72,9 @@ class GeniusGame:
         self.is_end: bool = False
         self.is_overload:GeniusPlayer = None
         self.can_play_card = True
-
-        self.init_game()
+        
+        if not self.is_read:
+            self.init_game()
 
     def copy_game(self):
         '''
@@ -120,10 +124,6 @@ class GeniusGame:
         '''
             前进一步
         '''
-
-
-
-
 
     def planning(self, action, die_action=None):
         self.die_action = die_action
@@ -438,6 +438,23 @@ class GeniusGame:
     def change_active_player(self):
         self.active_player_index = 1 - self.active_player_index
         self.active_player = self.players[self.active_player_index]
+
+    @staticmethod
+    def read_game(message):
+
+        game = GeniusGame(
+            player0_deck=[c.name for c in message.players[0].characters],
+            player1_deck=[c.name for c in message.players[1].characters],
+            is_read=True,
+        )
+
+        game.active_player_index = message.active
+        game.active_player = game.players[game.active_player_index]
+        game.first_player = message.first
+        game.game_phase = message.phase
+        game.round = message.round
+
+        return game
 
 
 

@@ -73,7 +73,14 @@ def get_character(player: 'GeniusPlayer', idx: int):
     sponsor_message.add_column(no_wrap=False, justify="medium")
     character_list = player.character_list
     if idx >= len(character_list):
-        return
+        message_panel = Panel(
+        Align.center(
+            Group(" ",Align.center(sponsor_message)),
+            vertical="middle",
+        ),
+        title="Character",
+        )
+        return message_panel
     if character_list[idx].is_active:
         color = 'red'
     else:

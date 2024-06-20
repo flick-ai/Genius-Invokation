@@ -169,7 +169,7 @@ if __name__=="__main__":
     if args.code:
         test_code()
     deck1 = {
-    'character': ['Rhodeia_of_Loch', 'Yae_Miko' ,'Fatui_Pyro_Agent'],
+    'character': ['Rhodeia_of_Loch'],
     'action_card': ['Fresh_Wind_of_Freedom','Dunyarzad','Dunyarzad','Chef_Mao','Chef_Mao','Paimon','Paimon',
                     'Rana','Rana','Liben','Liben','Mushroom_Pizza','Mushroom_Pizza','Adeptus_Temptation',
                     'Adeptus_Temptation','Teyvat_Fried_Egg','Sweet_Madame','Sweet_Madame','Mondstadt_Hash_Brown',
@@ -214,7 +214,7 @@ if __name__=="__main__":
                 print(game.incoming_state.encode_message())
             else:
                 print(game.encode_message())
-            print(game)
+            # print(game)
             action = Action.from_input(game, log, mode='w', jump=False)
             game.step(action)
             # save log

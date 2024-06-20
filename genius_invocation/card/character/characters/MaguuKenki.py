@@ -194,6 +194,9 @@ class MaguuKenki(Character):
     skill_list: List = [Ichimonji, BlusteringBlade, FrostyAssault, PseudoTenguSweeper]
     max_power: int = 3
 
+    def get_element(self):
+        return [self.element, ElementType.CRYO]
+
     def __init__(self, game: 'GeniusGame', zone: 'CharacterZone', from_player: 'GeniusPlayer', index: int, from_character=None, talent=False):
         super().__init__(game, zone, from_player, index, from_character)
         self.power = 0

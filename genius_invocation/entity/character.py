@@ -36,6 +36,9 @@ class Character(Entity):
     max_power: int
     talent_skill: 'CharacterSkill'
     # init_state: list() # 初始状态
+    def get_element(self, game: 'GeniusGame'):
+        return [self.element]
+    
     def init_state(self, game: 'GeniusGame'):
         '''
             游戏开始时的被动技能
