@@ -37,6 +37,7 @@ class AuraofMajesty(ElementalSkill):
         self.resolve_damage(game)
         if game.current_damage.reaction == ElementalReactionType.Crystallize:
             absorb_element = game.current_damage.swirl_crystallize_type
+            self.from_character.now_element = absorb_element
             if absorb_element not in self.from_character.absorbed_element:
                 self.from_character.from_player.dice_zone.add([ElementToDice(absorb_element)])
                 self.from_character.absorbed_element.append(absorb_element)
@@ -174,6 +175,7 @@ class StoneFacetsElementalCrystallization(Status):
             absorb_element = game.current_damage.damage_type
             remove = False
             if absorb_element in [ElementType.PYRO, ElementType.CRYO, ElementType.HYDRO, ElementType.ELECTRO]:
+                self.from_character.now_element = absorb_element
                 if absorb_element not in self.from_character.absorbed_element:
                     self.from_character.from_player.dice_zone.add([ElementToDice(absorb_element)])
                     self.from_character.absorbed_element.append(absorb_element)
@@ -206,12 +208,20 @@ class Azhdaha(Character):
     skill_list: List = [SunderingCharge, AuraofMajesty, DecimatingRockfall]
     max_power: int = 2
 
+    def get_element(self):
+        if self.now_element is not None:
+            return [self.now_element, self.element]
+        else:
+            return [self.element]
+
+
     def __init__(self, game: 'GeniusGame', zone: 'CharacterZone', from_player: 'GeniusPlayer', index: int, from_character=None, talent=False):
         super().__init__(game, zone, from_player, index, from_character)
         self.power = 0
         self.talent = talent
         self.talent_skill = None
         self.absorbed_element = []
+        self.now_element = None
 
     def equip_talent(self, game:'GeniusGame', is_action=True, talent_card=None):
         # self.talent = True

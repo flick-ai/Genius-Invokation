@@ -161,6 +161,8 @@ class DeepDevourersDomain(Combat_Status):
 
         self.from_character.max_health_point += addtional_max_health
         self.from_character.addtional_max_health += addtional_max_health
+        for i in range(4-len(cost_dict)):
+            self.from_character.heal(num=1, game=game)
 
     def on_tune(self, game: 'GeniusGame'):
         if len(self.cards)>0 and len(self.cards) % 3 == 0:

@@ -4,7 +4,7 @@
 
 # Genius-Invokation
 A simulator of the Genius Invokation TCG in Genshin impact
-一个用于自定义卡牌、训练强化学习AI的原神七圣召唤卡牌模拟器
+一个用于自定义卡牌、训练强化学习AI的原神七圣召唤卡牌模拟器(更新进度：4.7)
 
 <a href='https://flick-ai.github.io/Genius-Invokation-Website/'>
     <img src='https://img.shields.io/badge/网站-DEMO-red?style=flat&logo=Google%20chrome&logoColor=red'

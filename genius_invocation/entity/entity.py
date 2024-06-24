@@ -24,6 +24,7 @@ class Entity:
 
     def listen_all(self, game: 'GeniusGame'):
         player_index = self.from_player.index
+        from genius_invocation.entity.character import Character
         if isinstance(self, Character):
             character_index = self.index
         else:
@@ -33,6 +34,7 @@ class Entity:
 
     def listen_event(self, game:'GeniusGame', event_name: EventType, event_type: ZoneType, action: 'Action'):
         player_index = self.from_player.index
+        from genius_invocation.entity.character import Character
         if isinstance(self, Character):
             character_index = self.index
         else:

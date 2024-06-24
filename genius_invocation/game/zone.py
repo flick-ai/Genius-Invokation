@@ -61,10 +61,12 @@ class DiceZone:
         # 有效骰子优先
         for character in self.player.character_list:
             if character.is_alive:
-                sort_map[ElementToDice[character.element].value] += 200
-                if character.id == 2501:
-                    # 剑鬼特判
-                    sort_map[DiceType.CRYO.value] += 200
+                for element in character.get_element():
+                    sort_map[ElementToDice[element].value] += 200
+                # sort_map[ElementToDice[character.element].value] += 200
+                # if character.id == 2501:
+                #     # 剑鬼特判
+                #     sort_map[DiceType.CRYO.value] += 200
 
         # 数量多优先
         sum_dice = self.space.sum(axis=0)[:-1]
