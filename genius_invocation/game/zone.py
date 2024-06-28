@@ -118,7 +118,7 @@ class DiceZone:
         for dice in range(self.dice_num):
             self.delete(dice)
             self.dice_num -= 1
-        self.sort_dice()
+
 
     def calculate_dice(self, dice: Dice):
         '''
@@ -237,7 +237,7 @@ class CardZone:
         '''
             牌堆结构为一个随机过的固定顺序列表
         '''
-        self.card = []
+        self.card: List['ActionCard'] = []
         self.card_name = []
         self.card_type = []
         for card_name in card:
@@ -442,13 +442,11 @@ class SupportZone:
         self.space[idx].on_destroy(self.game)
 
     def add_entity(self, entity, idx, **kwargs):
-        if self.has_entity(entity.__class__) is None:
-            if self.check_full():
-                # 如果支援区已经满了
-                self.space[idx].on_destroy(self.game)
-            self.space.append(entity)
-        else:
-            self.has_entity(entity.__class__).update(**kwargs)
+        if self.check_full():
+            # 如果支援区已经满了
+            self.space[idx].on_destroy(self.game)
+        self.space.append(entity)
+
 
     def num(self):
         return len(self.space)
@@ -480,11 +478,11 @@ class CharacterZone:
                 return status
         return None
 
-    def add_entity(self, entity: 'Status', **kwargs):
-        if self.has_entity(entity.__class__) is not None:
-            self.has_entity(entity.__class__).update(**kwargs)
+    def add_entity(self, entity: 'Status', independent=False, **kwargs):
+        if independent or self.has_entity(entity.__class__) is None:
+            self.space.append(entity)
         else:
-            self.status_list.append(entity)
+            self.has_entity(entity.__class__).update(**kwargs)
 
     def clear(self, game:'GeniusGame'):
         if self.weapon_card is not None:
@@ -541,15 +539,15 @@ class ActiveZone:
                 return exist
         return None
 
-    def add_entity(self, entity: 'Entity', **kwargs):
+    def add_entity(self, entity: 'Entity', independent=False, **kwargs):
         # When using add_entity, please make sure that the same kind of entity is not exisits in the list.
         if isinstance(entity, Combat_Shield):
-            if self.has_shield(entity.__class__) is None:
+            if self.has_shield(entity.__class__) is None or independent:
                 self.shield.append(entity)
             else:
                 self.has_shield(entity.__class__).update(**kwargs)
         else:
-            if self.has_status(entity.__class__) is None:
+            if self.has_status(entity.__class__) is None or independent:
                 self.space.append(entity)
             else:
                 self.has_status(entity.__class__).update(**kwargs)
