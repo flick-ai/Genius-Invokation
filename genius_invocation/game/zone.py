@@ -51,6 +51,7 @@ class DiceZone:
         for i in range(MAX_DICE):
             self.space[i][-1] = -1
         self.sort_map = self.get_sort_map()
+        self.gmae = game
 
 
     def get_sort_map(self):
