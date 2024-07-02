@@ -47,6 +47,7 @@ class DiceZone:
             我们用一个[16, 9]的数组来维护骰子
         '''
         self.dice_num = 0
+        self.game = game
         self.space = np.zeros((MAX_DICE, DICENUM+1)).astype(np.int16)
         for i in range(MAX_DICE):
             self.space[i][-1] = -1
