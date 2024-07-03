@@ -136,7 +136,7 @@ class DeepDevourersDomain(Combat_Status):
     name_ch = "深噬之域"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
-        self.cards: List['ActionCard'] = self.from_player.tunr_or_discard_cards
+        self.cards: List['ActionCard'] = self.from_player.tune_or_discard_cards
 
     def calculate_max_cost(self):
         max_count = max([card.calculate_dice() for card in self.cards])

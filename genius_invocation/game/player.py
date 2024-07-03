@@ -88,7 +88,7 @@ class GeniusPlayer:
 
         # Play cards
         self.played_cards = []
-        self.tunr_or_discard_cards = []
+        self.tune_or_discard_cards = []
 
     def update_element_list(self):
         ''' Only For La Signora right now. Refresh the element list, which may be used by some skills and talents.'''
