@@ -12,6 +12,7 @@ class Sangonomiya_Shrine_Entity(Support):
     id: int = 321009
     name = 'Sangonomiya Shrine'
     name_ch = '珊瑚宫'
+    time = 3.7
     max_usage = 2
     max_count = -1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):

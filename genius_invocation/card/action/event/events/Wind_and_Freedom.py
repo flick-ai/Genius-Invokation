@@ -35,6 +35,7 @@ class Wind_and_Freedom(ActionCard):
     id: int = 331801
     name: str = 'Wind and Freedom'
     name_ch = '风与自由'
+    time = 3.7
     country = CountryType.MONDSTADT
     cost_num = 1
     cost_type = CostType.BLACK

@@ -228,6 +228,7 @@ class Venti(Character):
     id: int = 1503
     name: str = "Venti"
     name_ch = "温迪"
+    time = 3.7
     element: ElementType = ElementType.ANEMO
     weapon_type: WeaponType = WeaponType.BOW
     country: CountryType = CountryType.MONDSTADT

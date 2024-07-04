@@ -7,6 +7,7 @@ class Plunging_Strike(ActionCard):
     id: int = 332017
     name: str = 'Plunging Strike'
     name_ch = '下落斩'
+    time = 3.7
     cost_num = 3
     cost_type = CostType.WHITE
     card_type = ActionCardType.EVENT

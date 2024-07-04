@@ -5,6 +5,7 @@ class ConquerorofEvilGuardianYaksha(TalentCard):
     id: int = 215041
     name: str = "Conqueror of Evil: Guardian Yaksha"
     name_ch = "降魔·护法夜叉"
+    time = 3.7
     is_action = True
     cost = [{'cost_num': 3, 'cost_type': 4}]
     cost_power = 2

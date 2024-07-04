@@ -58,6 +58,7 @@ class TheBell(WeaponCard):
     id = 311305
     name = "The Bell"
     name_ch = "钟剑"
+    time = 3.7
     weapon_type = WeaponType.CLAYMORE
     cost_num = 3
     cost_type = CostType.WHITE

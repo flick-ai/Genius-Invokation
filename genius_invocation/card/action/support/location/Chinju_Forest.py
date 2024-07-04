@@ -42,6 +42,7 @@ class Chinju_Forest(SupportCard):
     id: int = 321013
     name: str = 'Chinju Forest'
     name_ch = '镇守之森'
+    time = 3.7
     cost_num = 1
     cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_LOCATION

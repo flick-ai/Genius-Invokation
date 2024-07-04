@@ -454,6 +454,7 @@ class Tartaglia(Character):
     id: int = 1204
     name: str = 'Tartaglia'
     name_ch = "达达利亚"
+    time = 3.7
     element: ElementType = ElementType.HYDRO
     weapon_type: WeaponType = WeaponType.BOW
     country: CountryType = CountryType.FATUI

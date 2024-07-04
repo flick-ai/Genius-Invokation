@@ -39,6 +39,7 @@ class SkywardBlade(WeaponCard):
     id: int = 311504
     name: str = "Skyward Blade"
     name_ch = "天空之刃"
+    time = 3.7
     weapon_type: WeaponType = WeaponType.SWORD
     cost_num: int = 3
     cost_type: CostType = CostType.WHITE

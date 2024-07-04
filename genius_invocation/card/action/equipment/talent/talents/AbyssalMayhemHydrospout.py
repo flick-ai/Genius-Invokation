@@ -5,6 +5,7 @@ class AbyssalMayhemHydrospout(TalentCard):
     id: int = 212041
     name: str = "Abyssal Mayhem: Hydrospout"
     name_ch = "深渊之灾·凝水盛放"
+    time = 3.7
     is_action = True
     cost = [{'cost_num': 3, 'cost_type': 1}]
     cost_power = 0

@@ -172,6 +172,7 @@ class Zhongli(Character):
     id: int = 1603
     name: str = "Zhongli"
     name_ch = "钟离"
+    time = 3.7
     element: ElementType = ElementType.GEO
     weapon_type: WeaponType = WeaponType.POLEARM
     country: CountryType = CountryType.LIYUE

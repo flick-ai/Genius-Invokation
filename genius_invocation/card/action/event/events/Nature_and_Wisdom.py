@@ -8,6 +8,7 @@ class Nature_and_Wisdom(ActionCard):
     id: int = 331804
     name: str = 'Nature and Wisdom'
     name_ch = '草与智慧'
+    time = 3.7
     country = CountryType.SUMERU
     cost_num = 1
     cost_type = CostType.WHITE

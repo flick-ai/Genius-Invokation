@@ -12,6 +12,7 @@ class Tenshukaku_Entity(Support):
     id: int = 321007
     name = 'Tenshukaku'
     name_ch = '天守阁'
+    time = 3.7
     max_usage = -1
     max_count = -1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):

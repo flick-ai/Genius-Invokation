@@ -63,6 +63,7 @@ class Dunyarzad(SupportCard):
     id: int = 322016
     name: str = 'Dunyarzad'
     name_ch = '迪娜泽黛'
+    time = 3.7
     cost_num = 1
     cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_COMPANION

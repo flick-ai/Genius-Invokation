@@ -49,6 +49,7 @@ class VortexVanquisher(WeaponCard):
     id: int = 311404
     name: str = "Vortex Vanquisher"
     name_ch = "贯虹之槊"
+    time = 3.7
     weapon_type: WeaponType = WeaponType.POLEARM
     cost_num: int = 3
     cost_type: CostType = CostType.WHITE

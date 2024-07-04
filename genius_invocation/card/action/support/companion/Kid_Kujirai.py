@@ -44,6 +44,7 @@ class Kid_Kujirai(SupportCard):
     id: int = 322014
     name: str = 'Kid Kujirai'
     name_ch = '鲸井小弟'
+    time = 3.7
     cost_num = 0
     cost_type = None
     card_type = ActionCardType.SUPPORT_COMPANION

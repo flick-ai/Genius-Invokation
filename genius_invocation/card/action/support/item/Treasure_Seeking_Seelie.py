@@ -39,6 +39,7 @@ class Treasure_Seeking_Seelie(SupportCard):
     id: int = 323004
     name: str = 'Treasure-Seeking Seelie'
     name_ch = '寻宝仙灵'
+    time = 3.7
     cost_num = 1
     cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_ITEM

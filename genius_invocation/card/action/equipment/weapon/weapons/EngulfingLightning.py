@@ -51,6 +51,7 @@ class EngulfingLightning(WeaponCard):
     id: int = 311405
     name: str = "Engulfing Lightning"
     name_ch = "薙草之稻光"
+    time = 3.7
     weapon_type: WeaponType = WeaponType.POLEARM
     cost_num: int = 3
     cost_type: CostType = CostType.WHITE

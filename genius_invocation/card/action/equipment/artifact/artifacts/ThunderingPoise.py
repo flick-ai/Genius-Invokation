@@ -64,6 +64,7 @@ class ThunderingPoise(ArtifactCard):
     id: int = 312011
     name: str = "Thundering Poise"
     name_ch = "虺雷之姿"
+    time = 3.7
     cost_num: int = 2
     cost_type: CostType = CostType.BLACK
 

@@ -5,7 +5,9 @@ class AbsorbingPrism(TalentCard):
     id: int = 224011
     name: str = "Absorbing Prism"
     name_ch = "汲能棱晶"
+    time = 3.7
     is_action = True
+    card_type = ActionCardType.EVENT
     # 4.2更新
     cost = [{'cost_num': 2, 'cost_type': 3}]
     cost_power = 0

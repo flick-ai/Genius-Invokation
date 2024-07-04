@@ -5,6 +5,7 @@ class TheShrinesSacredShade(TalentCard):
     id: int = 214081
     name: str = "The Shrine's Sacred Shade"
     name_ch = "神篱之御荫"
+    time = 3.7
     is_action = True
     cost = [{'cost_num': 3, 'cost_type': 3}]
     cost_power = 2

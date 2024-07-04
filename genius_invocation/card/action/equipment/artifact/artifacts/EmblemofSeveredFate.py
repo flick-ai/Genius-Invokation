@@ -40,6 +40,7 @@ class EmblemofSeveredFate(ArtifactCard):
     id: int = 312008
     name: str = "Emblem of Severed Fate"
     name_ch = "绝缘之旗印"
+    time = 3.7
     cost_num: int = 2
     cost_type: CostType = CostType.WHITE
 

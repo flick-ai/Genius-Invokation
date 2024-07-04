@@ -30,6 +30,7 @@ class Stone_and_Contracts(ActionCard):
     id: int = 331802
     name: str = 'Stone and Contracts'
     name_ch = '岩与契约'
+    time = 3.7
     country = CountryType.LIYUE
     cost_num = 3
     cost_type = CostType.BLACK

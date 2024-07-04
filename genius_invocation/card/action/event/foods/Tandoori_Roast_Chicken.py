@@ -37,6 +37,7 @@ class Tandoori_Roast_Chicken(FoodCard):
     id: int = 333011
     name: str = "Tandoori Roast Chicken"
     name_ch = "唐杜尔烤鸡"
+    time = 3.7
     cost_num = 2
     cost_type = CostType.BLACK
 

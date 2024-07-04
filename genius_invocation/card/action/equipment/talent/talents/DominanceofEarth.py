@@ -5,6 +5,7 @@ class DominanceofEarth(TalentCard):
     id: int = 216031
     name: str = "Dominance of Earth"
     name_ch = "炊金馔玉"
+    time = 3.7
     is_action = True
     cost = [{'cost_num': 5, 'cost_type': 5}]
     cost_power = 0

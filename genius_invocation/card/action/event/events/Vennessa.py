@@ -7,6 +7,7 @@ class Vennessa(ActionCard):
     id: int = 332019
     name: str = 'The Legend of Vennessa'
     name_ch = "温妮莎传奇"
+    time = 3.7
     cost_num = 3
     cost_type = CostType.WHITE
     card_type = ActionCardType.EVENT

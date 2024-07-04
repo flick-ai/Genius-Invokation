@@ -71,6 +71,7 @@ class ShimenawasReminiscence(ArtifactCard):
     id: int = 312014
     name: str = "Shimenawa's Reminiscence"
     name_ch = "追忆之注连"
+    time = 3.7
     cost_num: int = 3
     cost_type: CostType = CostType.BLACK
 

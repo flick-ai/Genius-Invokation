@@ -178,6 +178,7 @@ class Amber(Character):
     id: int = 1304
     name: str = "Amber"
     name_ch = "安柏"
+    time = 3.7
     element: ElementType = ElementType.PYRO
     weapon_type: WeaponType = WeaponType.BOW
     country: CountryType = CountryType.MONDSTADT

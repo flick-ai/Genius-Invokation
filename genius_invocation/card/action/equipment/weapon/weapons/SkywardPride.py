@@ -39,6 +39,7 @@ class SkywardPride(WeaponCard):
     id: int = 311304
     name: str = "Skyward Pride"
     name_ch = "天空之傲"
+    time = 3.7
     weapon_type: WeaponType = WeaponType.CLAYMORE
     cost_num: int = 3
     cost_type: CostType = CostType.WHITE

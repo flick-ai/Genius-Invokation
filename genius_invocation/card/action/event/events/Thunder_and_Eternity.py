@@ -8,6 +8,7 @@ class Thunder_and_Eternity(ActionCard):
     id: int = 331803
     name: str = 'Thunder and Eternity'
     name_ch = '雷与永恒'
+    time = 3.7
     country = CountryType.INAZUMA
     cost_num = 0
     cost_type = None

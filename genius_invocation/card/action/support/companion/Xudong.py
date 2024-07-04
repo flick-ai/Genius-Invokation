@@ -54,6 +54,7 @@ class Xudong(SupportCard):
     id: int = 322015
     name: str = 'Xudong'
     name_ch = '旭东'
+    time = 3.7
     cost_num = 2
     cost_type = CostType.BLACK
     card_type = ActionCardType.SUPPORT_COMPANION

@@ -173,6 +173,7 @@ class HuTao(Character):
     id: int = 1307
     name: str = "Hu Tao"
     name_ch = "胡桃"
+    time = 3.7
     element: ElementType = ElementType.PYRO
     weapon_type: WeaponType = WeaponType.POLEARM
     country: CountryType = CountryType.LIYUE

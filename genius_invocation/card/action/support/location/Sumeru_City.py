@@ -71,6 +71,7 @@ class Sumeru_City(SupportCard):
     id: int = 321010
     name: str = 'Sumeru City'
     name_ch = '须弥城'
+    time = 3.7
     cost_num = 2
     cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_LOCATION

@@ -52,6 +52,7 @@ class Hanachirusato(SupportCard):
     id: int = 322013
     name: str = 'Hanachirusato'
     name_ch = '花散里'
+    time = 3.7
     cost_num = 0
     cost_type = None
     card_type = ActionCardType.SUPPORT_COMPANION

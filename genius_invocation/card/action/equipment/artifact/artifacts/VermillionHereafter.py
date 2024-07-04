@@ -78,6 +78,7 @@ class VermillionHereafter(ArtifactCard):
     id: int = 312012
     name: str = "Vermillion Hereafter"
     name_ch = "辰砂往生录"
+    time = 3.7
     cost_num: int = 3
     cost_type: CostType = CostType.BLACK
 

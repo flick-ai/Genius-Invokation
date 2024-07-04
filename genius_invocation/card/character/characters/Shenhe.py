@@ -113,6 +113,7 @@ class Shenhe(Character):
     id: int = 1107
     name = "Shenhe"
     name_ch = "申鹤"
+    time = 3.7
     element = ElementType.CRYO
     weapon_type: WeaponType = WeaponType.POLEARM
     country: CountryType = CountryType.LIYUE

@@ -27,6 +27,7 @@ class Teyvat_Fried_Egg(FoodCard):
     id: int = 333009
     name: str = "Teyvat Fried Egg"
     name_ch = "提瓦特煎蛋"
+    time = 3.7
     cost_num = 2
     cost_type = CostType.WHITE
 

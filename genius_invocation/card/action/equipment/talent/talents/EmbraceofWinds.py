@@ -5,6 +5,7 @@ class EmbraceofWinds(TalentCard):
     id: int = 215031
     name: str = "Embrace of Winds"
     name_ch = "绪风之拥"
+    time = 3.7
     is_action = True
     cost = [{'cost_num': 3, 'cost_type': 4}]
     cost_power = 0

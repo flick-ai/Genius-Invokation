@@ -53,6 +53,7 @@ class Rana(SupportCard):
     id: int = 322017
     name: str = 'Rana'
     name_ch = '拉娜'
+    time = 3.7
     cost_num = 2
     cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_COMPANION

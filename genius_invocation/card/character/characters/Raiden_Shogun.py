@@ -119,6 +119,7 @@ class Raiden_Shogun(Character):
     id: int = 1407
     name: str = "Raiden Shogun"
     name_ch = "雷电将军"
+    time = 3.7
     element: ElementType = ElementType.ELECTRO
     weapon_type: WeaponType = WeaponType.POLEARM
     country: CountryType = CountryType.INAZUMA

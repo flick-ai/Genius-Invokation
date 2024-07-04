@@ -334,6 +334,7 @@ class ElectroHypostasis(Character):
     id: int = 2401
     name: str = 'Electro Hypostasis'
     name_ch = '无相之雷'
+    time = 3.7
     element: ElementType = ElementType.ELECTRO
     weapon_type: WeaponType = WeaponType.OTHER
     country: CountryType = CountryType.MONSTER

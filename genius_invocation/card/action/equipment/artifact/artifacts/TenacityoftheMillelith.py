@@ -64,6 +64,7 @@ class TenacityoftheMillelith(ArtifactCard):
     id: int = 312010
     name: str = "Tenacity of the Millelith"
     name_ch = "千岩牢固"
+    time = 3.7
     cost_num: int = 3
     cost_type: CostType = CostType.WHITE
 

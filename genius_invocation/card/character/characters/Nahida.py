@@ -208,6 +208,7 @@ class Nahida(Character):
     id: int = 1703
     name: str = 'Nahida'
     name_ch = "纳西妲"
+    time = 3.7
     element: ElementType = ElementType.DENDRO
     weapon_type: WeaponType = WeaponType.CATALYST
     country: CountryType = CountryType.SUMERU

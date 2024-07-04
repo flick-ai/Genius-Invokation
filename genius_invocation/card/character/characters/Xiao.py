@@ -173,6 +173,7 @@ class Xiao(Character):
     id: int = 1504
     name: str = "Xiao"
     name_ch = "魈"
+    time = 3.7
     element: ElementType = ElementType.ANEMO
     weapon_type: WeaponType = WeaponType.POLEARM
     country: CountryType = CountryType.LIYUE

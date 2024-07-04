@@ -39,6 +39,7 @@ class Butter_Crab(FoodCard):
     id: int = 333012
     name: str = "Butter_Crab"
     name_ch = "黄油蟹蟹"
+    time = 3.7
     cost_num = 2
     cost_type = CostType.BLACK
 

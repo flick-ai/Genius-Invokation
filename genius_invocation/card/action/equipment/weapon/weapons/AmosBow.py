@@ -42,6 +42,7 @@ class AmosBow(WeaponCard):
     id: int = 311204
     name: str = "Amos' Bow"
     name_ch = "阿莫斯之弓"
+    time = 3.7
     weapon_type: WeaponType = WeaponType.BOW
     cost_num: int = 3
     cost_type: CostType = CostType.WHITE

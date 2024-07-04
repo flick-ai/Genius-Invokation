@@ -72,6 +72,7 @@ class Fatui_Conspiracy(ActionCard):
     id: int = 332016
     name: str = 'Fatui Conspiracy'
     name_ch = '愚人众的阴谋'
+    time = 3.7
     country = CountryType.FATUI
     cost_num = 2
     cost_type = CostType.WHITE

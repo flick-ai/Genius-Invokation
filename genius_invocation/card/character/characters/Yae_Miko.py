@@ -111,6 +111,7 @@ class Yae_Miko(Character):
     id = 1408
     name = 'Yae Miko'
     name_ch = "八重神子"
+    time = 3.7
     element = ElementType.ELECTRO
     weapon_type = WeaponType.CATALYST
     country = CountryType.INAZUMA

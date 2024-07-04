@@ -137,6 +137,7 @@ class AbyssLectorFathomlessFlames(Character):
     id: int = 2302
     name: str = "Abyss Lector: Fathomless Flames"
     name_ch = "深渊咏者·渊火"
+    time = 3.7
     element: ElementType = ElementType.PYRO
     weapon_type: WeaponType = WeaponType.OTHER
     country: CountryType = CountryType.MONSTER

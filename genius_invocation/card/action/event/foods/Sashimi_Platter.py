@@ -34,6 +34,7 @@ class Sashimi_Platter(FoodCard):
     id: int = 333010
     name: str = 'Sashimi Platter'
     name_ch = '刺身拼盘'
+    time = 3.7
     cost_num = 1
     cost_type = CostType.WHITE
 

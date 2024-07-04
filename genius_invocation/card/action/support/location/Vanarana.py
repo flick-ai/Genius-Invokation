@@ -65,6 +65,7 @@ class Vanarana(SupportCard):
     id: int = 321011
     name: str = 'Vanarana'
     name_ch = '桓那兰那'
+    time = 3.7
     cost_num = 0
     cost_type = None
     card_type = ActionCardType.SUPPORT_LOCATION

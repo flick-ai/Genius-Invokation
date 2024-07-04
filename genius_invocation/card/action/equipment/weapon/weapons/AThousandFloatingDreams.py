@@ -37,6 +37,7 @@ class AThousandFloatingDreams(WeaponCard):
     id: int = 311104
     name: str = "A Thousand Floating Dreams"
     name_ch = "千夜浮梦"
+    time = 3.7
     weapon_type: WeaponType = WeaponType.CATALYST
     cost_num: int = 3
     cost_type: CostType = CostType.WHITE

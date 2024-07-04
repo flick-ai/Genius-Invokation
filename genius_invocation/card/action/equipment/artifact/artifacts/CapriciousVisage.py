@@ -65,6 +65,7 @@ class CapriciousVisage(ArtifactCard):
     id: int = 312013
     name: str = "Capricious Visage"
     name_ch = "无常之面"
+    time = 3.7
     cost_num: int = 2
     cost_type: CostType = CostType.BLACK
 

@@ -57,6 +57,7 @@ class Red_Feather_Fan(SupportCard):
     id: int = 323003
     name: str = 'Red Feather Fan'
     name_ch = '红羽团扇'
+    time = 3.7
     cost_num = 2
     cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_ITEM

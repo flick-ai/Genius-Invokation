@@ -5,6 +5,7 @@ class CicinsColdGlare(TalentCard):
     id: int = 221011
     name: str = "Cicin's Cold Glare"
     name_ch = "冰萤寒光"
+    time = 3.7
     is_action = True
     cost = [{'cost_num': 3, 'cost_type': 0}]
     cost_power = 0

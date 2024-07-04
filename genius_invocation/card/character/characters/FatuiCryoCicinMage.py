@@ -210,6 +210,7 @@ class FatuiCryoCicinMage(Character):
     id: int = 2101
     name: str = "Fatui Cryo Cicin Mage"
     name_ch = "愚人众·冰萤术士"
+    time = 3.7
     element: ElementType = ElementType.CRYO
     weapon_type: WeaponType = WeaponType.OTHER
     country: CountryType = CountryType.FATUI
