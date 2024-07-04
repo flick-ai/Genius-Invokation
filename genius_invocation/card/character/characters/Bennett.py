@@ -128,7 +128,7 @@ class Inspiration_Field(Combat_Status):
     def update_listener_list(self):
         self.listeners = [
             (EventType.DAMAGE_ADD, ZoneType.ACTIVE_ZONE, self.add_dmg),
-            (EventType.AFTER_ANY_ACTION, ZoneType.ACTIVE_ZONE, self.heal),
+            (EventType.AFTER_USE_SKILL, ZoneType.ACTIVE_ZONE, self.heal),
             (EventType.BEGIN_ACTION_PHASE, ZoneType.ACTIVE_ZONE, self.on_begin)
         ]
 class Bennett(Character):
