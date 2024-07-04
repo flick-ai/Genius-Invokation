@@ -54,3 +54,9 @@ class GildedDreams(ArtifactCard):
     def on_played(self, game: 'GeniusGame') -> None:
         super().on_played(game)
 
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[4.5] = "调整了装备牌「饰金之梦」所需元素骰和效果：所需元素骰由3个任意元素骰调整为3个相同元素骰；效果“入场时：生成1个所附属角色类型的元素骰。如果我方队伍中存在3种不同元素类型的角色，则额外生成1个万能元素。”调整为：“入场时：生成1个所附属角色类型的元素骰。如果我方队伍中存在3种不同元素类型的角色，则改为生成2个。”"
+        return log
+

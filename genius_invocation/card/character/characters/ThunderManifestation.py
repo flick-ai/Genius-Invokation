@@ -241,6 +241,12 @@ class ThunderManifestation(Character):
         for action in self.registered_events:
             if action.action == self.before_action:
                 action.remove()
+
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[4.4] = "调整了角色牌「雷音权现」状态「雷鸣探知」的效果：效果“此状态存在期间，可以触发1次：所附属角色受到雷音权现及其召唤物造成的伤害+1”，调整为“所附属角色受到雷音权现及其召唤物造成的伤害时：移除此状态，使此伤害+1”"
+        return log
     
     
     

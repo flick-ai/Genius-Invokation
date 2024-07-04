@@ -71,3 +71,9 @@ class Yayoi_Nanatsuki(SupportCard):
     def on_played(self, game: 'GeniusGame') -> None:
         self.entity = Yayoi_Nanatsuki_Entity(game, from_player=game.active_player)
         super().on_played(game)
+    
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[4.6] = "调整了支援牌「弥生七月」的效果：”如果我方场上每有一个已装备「圣遗物」的角色，就额外少花费1个元素骰。”调整为“如果我方场上已有2个已装备「圣遗物」的角色，就额外少花费1个元素骰。””"
+        return log

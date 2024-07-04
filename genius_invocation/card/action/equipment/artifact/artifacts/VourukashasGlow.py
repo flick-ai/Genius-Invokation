@@ -57,3 +57,9 @@ class VourukashasGlow(ArtifactCard):
     def on_played(self, game: 'GeniusGame') -> None:
         super().on_played(game)
 
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[4.4] = "调整了装备牌「花海甘露之光」的效果：现在其“治疗所附属角色1点”的效果，仅会在触发了其“抓1张牌”效果的回合触发"
+        return log
+

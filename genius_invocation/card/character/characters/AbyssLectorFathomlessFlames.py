@@ -146,6 +146,12 @@ class AbyssLectorFathomlessFlames(Character):
     skill_list: List = [Flame_of_Salvation, Searing_Precept, Ominous_Star]
     max_power: int = 2
 
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[4.6] = "调整了角色牌「深渊咏者·渊火」「火之新生」状态的效果：调整为“所附属角色被击倒时：移除此效果，使角色免于被击倒，并治疗该角色到4点生命值。此效果触发后，此角色造成的火元素伤害+1"
+        return log
+
     def init_state(self, game: 'GeniusGame'):
         rebirth = Fiery_Rebirth(game, self.from_player, self)
         self.character_zone.add_entity(rebirth)

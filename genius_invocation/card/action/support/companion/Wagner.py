@@ -70,3 +70,9 @@ class Wagner(SupportCard):
     def on_played(self, game: 'GeniusGame') -> None:
         self.entity = Wagner_Entity(game, from_player=game.active_player)
         super().on_played(game)
+
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[4.3] = "支援牌「瓦格纳」新增效果：“入场时：如果我方牌组中初始包含至少3种「武器」，则从牌组中随机抽取1张「武器」牌”"
+        return log

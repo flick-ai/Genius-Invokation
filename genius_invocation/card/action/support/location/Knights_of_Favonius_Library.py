@@ -55,3 +55,9 @@ class Knights_of_Favonius_Library(SupportCard):
     def on_finished(self, game: 'GeniusGame'):
         game.game_phase = self.now_phase
         game.special_phase = None
+    
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[4.5] = "调整了支援牌「骑士团图书馆」所需元素骰：所需元素骰由1个调整为0个"
+        return log

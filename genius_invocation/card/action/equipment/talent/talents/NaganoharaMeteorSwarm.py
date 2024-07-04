@@ -12,3 +12,9 @@ class NaganoharaMeteorSwarm(TalentCard):
     character = Yoimiya
     def __init__(self) -> None:
         super().__init__()
+
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[4.7] = "调整了角色牌「宵宫」天赋牌「长野原龙势流星群」所需元素骰和效果：所需元素骰由2个火元素骰调整为1个；装备此牌不会再给宵宫生成的「庭火焰硝」状态初始可用次数+1"
+        return log

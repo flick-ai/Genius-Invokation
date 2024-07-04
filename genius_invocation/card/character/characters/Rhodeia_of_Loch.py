@@ -377,6 +377,12 @@ class Rhodeia_of_Loch(Character):
         self.talent = talent
         self.talent_skill = self.skills[3]
 
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[4.3] = "调整了角色牌「纯水精灵·洛蒂娅」召唤物的效果：现在其召唤的「纯水幻形」最多只能在场上同时存在2种；「纯水幻形·蛙」抵挡出战角色受到伤害的可用次数由2次调整为1次"
+        return log
+
 
 class Shield_from_Frog(Combat_Status):
     name="Shield from Frog"

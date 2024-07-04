@@ -31,3 +31,9 @@ class Joyous_Celebration(ActionCard):
             return [1]
         else:
             return []
+        
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[4.3] = "调整了事件牌「愉舞欢游」所需元素骰：所需元素骰由1个元素骰调整为0个"
+        return log

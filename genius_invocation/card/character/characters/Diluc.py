@@ -127,9 +127,3 @@ class Diluc(Character):
     def listen_talent_events(self, game: 'GeniusGame'):
         self.listen_event(game, EventType.CALCULATE_DICE, ZoneType.CHARACTER_ZONE, self.on_calculate_dice)
         self.listen_event(game, EventType.ON_USE_SKILL, ZoneType.CHARACTER_ZONE, self.on_use_skill)
-
-    @staticmethod
-    def balance_adjustment():
-        log = {}
-        log[4.7] = "调整了角色牌「迪卢克」天赋牌「流火焦灼」的效果：现在装备此牌的迪卢克，每回合第2次、第3次使用「逆焰之刃」时都会受到“少花费1个火元素骰”的效果（原仅限“每回合第2次使用「逆焰之刃」”） 作者：原神 https://www.bilibili.com/read/cv35072949/?spm_id_from=333.999.0.0 出处：bilibili"
-        

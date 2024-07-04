@@ -61,3 +61,9 @@ class OceanHuedClam(ArtifactCard):
     def on_played(self, game: 'GeniusGame') -> None:
         super().on_played(game)
 
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[4.3] = "调整了装备牌「海染砗磲」的效果：入场时，治疗所附属角色3点调整为2点"
+        return log
+
