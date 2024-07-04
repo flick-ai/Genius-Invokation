@@ -5,6 +5,7 @@ class TamakushiCasket(TalentCard):
     id: int = 212051
     name: str = "Tamakushi Casket"
     name_ch = "匣中玉栉"
+    time = 3.5
     is_action = True
     cost = [{'cost_num': 3, 'cost_type': 1}]
     cost_power = 2

@@ -5,6 +5,7 @@ class SinofPride(TalentCard):
     id: int = 214061
     name: str = "Sin of Pride"
     name_ch = "我界"
+    time = 3.5
     is_action = True
     # 4.2更新
     cost = [{'cost_num': 3, 'cost_type': 3}]

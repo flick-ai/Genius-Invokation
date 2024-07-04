@@ -5,6 +5,7 @@ class WellspringofWarLust(TalentCard):
     id: int = 211061
     name: str = "Wellspring of War-Lust"
     name_ch = "战欲涌现"
+    time = 3.5
     is_action = True
     cost = [{'cost_num': 3, 'cost_type': 0}]
     cost_power = 2
