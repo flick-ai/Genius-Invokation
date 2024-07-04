@@ -259,9 +259,11 @@ class CardZone:
         self.game.manager.invoke(EventType.ON_GET_CARD, self.game)
         self.game.current_get_card = None
 
-    def find_card(self, card_type: 'ActionCardType', num=1, invoke=True):
+    def find_card(self, card_type: 'ActionCardType', num=1, invoke=True, random_choice=False):
         '''
             检索并获取特定类型的牌
+            默认取自顶向下前几张符合条件的牌
+            若random_choice=True, 则为随机选取。
         '''
         get_list = []
         idx_list = []
@@ -269,12 +271,19 @@ class CardZone:
             if card.card_type == card_type:
                 get_list.append(card)
                 idx_list.append(len(self.card) - idx -1)
-                if num > 0:
+                if num > 0 and not random_choice:
                     if len(get_list) == num:
                         break
-        for idx in idx_list:
-            self.card.pop(idx)
-
+        if not random_choice:
+            for idx in idx_list:
+                self.card.pop(idx)
+        else:
+            index_of_condidates = self.game.random.choice(len(idx_list), num, replace=False)
+            # idx_choice = self.game.random.choice(idx_list, num, replace=False)
+            idx_choice = np.array(idx_list)[index_of_condidates].tolist()
+            get_list = np.array(get_list)[index_of_condidates].tolist()
+            for idx in idx_choice:
+                self.card.pop(idx)
         if invoke:
             self.invoke_get_card(num)
         return get_list
