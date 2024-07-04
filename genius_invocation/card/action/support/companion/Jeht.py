@@ -106,3 +106,9 @@ class Jeht(SupportCard):
     def on_played(self, game: 'GeniusGame') -> None:
         self.entity = Jeht_Entity(game, from_player=game.active_player)
         super().on_played(game)
+    
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[4.6] = "调整了支援牌「婕德」所需元素骰和效果：所需元素骰由2个任意元素骰调整为1个元素骰；效果“如果「阅历」至少为5，则弃置此牌，生成「阅历」-2数量的万能元素。”调整为“如果「阅历」至少为6，则弃置此牌，对我方出战角色附属沙与梦。”（「沙与梦」效果为：“对角色打出「天赋」或角色使用技能时：少花费3个元素骰”）"
+        return log

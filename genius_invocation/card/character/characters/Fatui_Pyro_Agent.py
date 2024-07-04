@@ -180,3 +180,9 @@ class Fatui_Pyro_Agent(Character):
         status = self.character_zone.has_entity(Stealth)
         if status is not None:
             status.listen_event(game, EventType.INFUSION, ZoneType.CHARACTER_ZONE, status.infusion)
+    
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[4.3] = "整了角色牌「愚人众·火之债务处理人」的生命值：由10点调整为9点"
+        return log

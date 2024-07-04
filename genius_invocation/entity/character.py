@@ -42,6 +42,7 @@ class Character(Entity):
     @staticmethod
     def balance_adjustment():
         log = {}
+        return log
         
     def get_element(self):
         return [self.element]

@@ -12,3 +12,9 @@ class KyoukaFuushi(TalentCard):
     character = KamisatoAyato
     def __init__(self) -> None:
         super().__init__()
+    
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[4.7] = "调整了角色牌「神里绫人」天赋牌「镜华风姿」的效果：“对于生命值不多于6的敌人”的“伤害额外+1”效果改为“伤害额外+2”"
+        return log

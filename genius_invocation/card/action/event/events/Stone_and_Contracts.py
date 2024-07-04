@@ -48,3 +48,9 @@ class Stone_and_Contracts(ActionCard):
                 from_player=game.active_player,
                 from_character=None
             ))
+
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[4.3] = "事件牌「岩与契约」新增效果：“下回合行动阶段开始时：抓1张牌”"
+        return log

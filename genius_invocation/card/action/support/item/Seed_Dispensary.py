@@ -59,3 +59,9 @@ class Seed_Dispensary(SupportCard):
     def on_played(self, game: 'GeniusGame') -> None:
         self.entity = Seed_Dispensary_Entity(game, from_player=game.active_player)
         super().on_played(game)
+
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[4.6] = "调整了支援牌「化种匣」效果的触发条件：触发条件“我方打出原本元素骰费用为1的装备或支援牌时：…”调整为”我方打出原本元素骰费用至少为2的支援牌时：…”"
+        return log

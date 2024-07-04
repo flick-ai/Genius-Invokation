@@ -72,3 +72,9 @@ class Timaeus(SupportCard):
     def on_played(self, game: 'GeniusGame') -> None:
         self.entity = Timaeus_Entity(game, from_player=game.active_player)
         super().on_played(game)
+
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[4.3] = "支援牌「蒂玛乌斯」新增效果：“入场时：如果我方牌组中初始包含至少6张「圣遗物」，则从牌组中随机抽取1张「圣遗物」牌”"
+        return log

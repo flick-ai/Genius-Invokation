@@ -139,11 +139,18 @@ class Yoimiya(Character):
         self.talent = talent
         self.power = 0
         self.talent_skill = self.skills[1]
+
     def listen_talent_events(self, game:'GeniusGame'):
         status = self.character_zone.has_entity(Niwabi_Enshou)
         if status is not None:
             status.listen_event(game, EventType.AFTER_USE_SKILL, ZoneType.CHARACTER_ZONE, status.after_skill)
 
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[4.7] = "调整了角色牌「宵宫」元素战技的效果：元素战技生成的「庭火焰硝」状态，可用次数由2调整为3"
+        return log
+      
 
 class Niwabi_Enshou(Status):
     name = "Niwabi Enshou"

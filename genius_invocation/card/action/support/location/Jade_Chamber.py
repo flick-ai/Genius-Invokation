@@ -48,3 +48,9 @@ class Jade_Chamber(SupportCard):
     def on_played(self, game: 'GeniusGame') -> None:
         self.entity = Jade_Chamber_Entity(game, from_player=game.active_player)
         super().on_played(game)
+
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[4.5] = "支援牌「群玉阁」增加了新的效果：“行动阶段开始时：如果我方手牌数量不多于3，则弃置此牌，生成1个万能元素骰。”"
+        return log

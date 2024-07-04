@@ -144,6 +144,12 @@ class Qiqi(Character):
         self.use_revive = 0
         self.talent_skill = self.skills[2]
 
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[4.7] = "调整了角色牌「七七」元素战技召唤的召唤物「寒病鬼差」的效果；其治疗相关效果调整为“此召唤物在场时，七七使用「普通攻击」后：治疗受伤最多的我方角色1点；每回合1次：再治疗我方出战角色1点。”（增加了额外的治疗效果）"
+        return log
+
 class Herald_of_Frost(Summon):
     name = 'Herald of Frost'
     name_ch = "寒病鬼差"

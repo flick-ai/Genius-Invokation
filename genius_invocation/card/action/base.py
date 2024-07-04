@@ -51,3 +51,4 @@ class ActionCard:
     @staticmethod
     def balance_adjustment():
         log = {}
+        return log
