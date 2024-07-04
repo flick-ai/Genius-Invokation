@@ -31,6 +31,7 @@ class Moonpiercer(WeaponCard):
     id: int = 311406
     name: str = "Moonpiercer"
     name_ch = "贯月矢"
+    time = 4.1
     weapon_type: WeaponType = WeaponType.POLEARM
     cost_num: int = 3
     cost_type: CostType = CostType.WHITE

@@ -5,6 +5,7 @@ class GalesofReverie(TalentCard):
     id: int = 215061
     name: str = "Gales of Reverie"
     name_ch = "梦迹一风"
+    time = 4.1
     is_action = True
     cost = [{'cost_num': 4, 'cost_type': 4}]
     cost_power = 0

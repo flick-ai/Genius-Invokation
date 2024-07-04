@@ -59,6 +59,7 @@ class Yayoi_Nanatsuki(SupportCard):
     id: int = 322020
     name: str = 'Yayoi Nanatsuki'
     name_ch = '弥生七月'
+    time = 4.1
     cost_num = 1
     cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_COMPANION

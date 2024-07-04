@@ -52,6 +52,7 @@ class CrownofWatatsumi(ArtifactCard):
     id: int = 312015
     name: str = "Crown of Watatsumi"
     name_ch = "海祇之冠"
+    time = 4.1
     cost_num: int = 1
     cost_type: CostType = CostType.WHITE
 

@@ -154,6 +154,7 @@ class Yaoyao(Character):
     id: int = 1704
     name: str = "Yaoyao"
     name_ch = "瑶瑶"
+    time = 4.1
     element: ElementType = ElementType.DENDRO
     weapon_type: WeaponType = WeaponType.POLEARM
     country: CountryType = CountryType.LIYUE

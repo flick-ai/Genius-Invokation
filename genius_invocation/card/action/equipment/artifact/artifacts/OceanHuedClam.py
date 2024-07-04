@@ -50,6 +50,7 @@ class OceanHuedClam(ArtifactCard):
     id: int = 312016
     name: str = "Ocean-Hued Clam"
     name_ch = "海染砗磲"
+    time = 4.2
     cost_num: int = 3
     cost_type: CostType = CostType.BLACK
 

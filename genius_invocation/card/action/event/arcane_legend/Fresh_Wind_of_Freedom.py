@@ -33,6 +33,7 @@ class Fresh_Wind_of_Freedom(ActionCard):
     id: int = 330004
     name = "Fresh Wind of Freedom"
     name_ch = "自由的新风"
+    time = 4.1
     cost_num = 0
     cost_type = None
     card_type = ActionCardType.EVENT_ARCANE_LEGEND

@@ -24,6 +24,7 @@ class Pankration(ActionCard):
     id: int = 332023
     name: str = 'Pankration!'
     name_ch = '拳力斗技！'
+    time = 4.1
     cost_num = 0
     cost_type = None
     card_type = ActionCardType.EVENT

@@ -5,6 +5,7 @@ class RiteofResurrection(TalentCard):
     id: int = 211081
     name: str = "Rite of Resurrection"
     name_ch = "起死回骸"
+    time = 4.0
     is_action = True
     # 4.7平衡性调整：费用5变为4
     cost = [{'cost_num': 5, 'cost_type': CostType.CRYO.value}]

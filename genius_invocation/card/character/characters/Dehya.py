@@ -240,6 +240,7 @@ class Dehya(Character):
     id = 1309
     name = "Dehya"
     name_ch = "迪希雅"
+    time = 4.1
     element: ElementType = ElementType.PYRO
     weapon_type: WeaponType = WeaponType.CLAYMORE
     country: CountryType = CountryType.SUMERU

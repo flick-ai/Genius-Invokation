@@ -33,6 +33,7 @@ class Lyresong(ActionCard):
     id: int = 332024
     name: str = 'Lyresong'
     name_ch = '琴音之诗'
+    time = 4.2
     cost_num = 0
     cost_type = None
     card_type = ActionCardType.EVENT

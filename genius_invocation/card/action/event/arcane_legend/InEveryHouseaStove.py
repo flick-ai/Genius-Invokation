@@ -9,6 +9,7 @@ class InEveryHouseaStove(ActionCard):
     id: int = 330005
     name = "In Every House a Stove"
     name_ch = "万家灶火"
+    time = 4.2
     cost_num = 0
     cost_type = None
     card_type = ActionCardType.EVENT_ARCANE_LEGEND

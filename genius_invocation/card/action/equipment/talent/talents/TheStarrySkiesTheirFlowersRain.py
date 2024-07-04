@@ -5,6 +5,7 @@ class TheStarrySkiesTheirFlowersRain(TalentCard):
     id: int = 212081
     name: str = "The Starry Skies Their Flowers Rain"
     name_ch = "星天的花雨"
+    time = 4.2
     is_action = True
     cost = [{'cost_num': 3, 'cost_type': 1}]
     cost_power = 0

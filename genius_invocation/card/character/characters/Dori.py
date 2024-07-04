@@ -129,6 +129,7 @@ class Dori(Character):
     id: int = 1410
     name: str = "Dori"
     name_ch = "多莉"
+    time = 4.2
     element: ElementType = ElementType.ELECTRO
     weapon_type: WeaponType = WeaponType.CLAYMORE
     country: CountryType = CountryType.SUMERU

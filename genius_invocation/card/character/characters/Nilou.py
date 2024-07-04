@@ -103,6 +103,7 @@ class Nilou(Character):
     id: int = 1208
     name: str = "Nilou"
     name_ch = "妮露"
+    time = 4.2
     element: ElementType = ElementType.HYDRO
     weapon_type: WeaponType = WeaponType.SWORD
     country: CountryType = CountryType.SUMERU

@@ -101,6 +101,7 @@ class Wanderer(Character):
     id = 1506
     name = "Wanderer"
     name_ch = "流浪者"
+    time = 4.1
     element = ElementType.ANEMO
     weapon_type: WeaponType = WeaponType.CATALYST
     country: CountryType = CountryType.OTHER

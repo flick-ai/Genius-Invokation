@@ -5,6 +5,7 @@ class DescentofDivinity(TalentCard):
     id: int = 216041
     name: str = "Descent of Divinity"
     name_ch = "神性之陨"
+    time = 4.0
     is_action = True
     cost = [{'cost_num': 3, 'cost_type': 5}]
     cost_power = 0

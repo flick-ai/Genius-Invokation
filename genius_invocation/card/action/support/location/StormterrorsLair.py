@@ -65,6 +65,7 @@ class StormterrorsLair(SupportCard):
     id: int = 321015
     name: str = "Stormterror's Lair"
     name_ch = '风龙废墟'
+    time = 4.2
     cost_num = 2
     cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_LOCATION

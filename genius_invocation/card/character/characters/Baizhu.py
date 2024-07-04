@@ -162,6 +162,7 @@ class Baizhu(Character):
     id: int = 1705
     name: str = "Baizhu"
     name_ch = "白术"
+    time = 4.2
     element: ElementType = ElementType.DENDRO
     weapon_type: WeaponType = WeaponType.CATALYST
     country: CountryType = CountryType.LIYUE

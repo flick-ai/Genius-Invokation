@@ -35,6 +35,7 @@ class ShadowoftheSandKing(ArtifactCard):
     id: int = 312017
     name: str = "Shadow of the Sand King"
     name_ch = "沙王的投影"
+    time = 4.2
     cost_num: int = 1
     cost_type: CostType = CostType.WHITE
 
