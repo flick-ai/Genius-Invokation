@@ -35,6 +35,7 @@ class Matsutake_Meat_Rolls(FoodCard):
     cost_num = 2
     cost_type = CostType.WHITE
     name_ch = "松茸酿肉卷"
+    time = 4.4
 
     def __init__(self) -> None:
         super().__init__()

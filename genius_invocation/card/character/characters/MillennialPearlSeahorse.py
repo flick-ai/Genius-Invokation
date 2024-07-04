@@ -232,6 +232,7 @@ class MillennialPearlSeahorse(Character):
     id: int = 2403
     name: str = 'Millennial Pearl Seahorse'
     name_ch = '千年珍珠骏麟'
+    time = 4.4
     element: ElementType = ElementType.ELECTRO
     weapon_type: WeaponType = WeaponType.OTHER
     country: CountryType = CountryType.MONSTER

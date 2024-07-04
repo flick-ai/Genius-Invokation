@@ -259,6 +259,7 @@ class CryoHypostasis(Character):
     id: int = 2103
     name: str = 'Cryo Hypostasis'
     name_ch = '无相之冰'
+    time = 4.4
     element: ElementType = ElementType.CRYO
     weapon_type: WeaponType = WeaponType.OTHER
     country: CountryType = CountryType.MONSTER

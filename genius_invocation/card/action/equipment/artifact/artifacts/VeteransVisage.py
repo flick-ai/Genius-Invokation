@@ -58,6 +58,7 @@ class VeteransVisage(ArtifactCard):
     id: int = 312023
     name: str = "Veteran's Visage"
     name_ch = "老兵的容颜"
+    time = 4.4
     cost_num: int = 2
     cost_type: CostType = CostType.BLACK
 

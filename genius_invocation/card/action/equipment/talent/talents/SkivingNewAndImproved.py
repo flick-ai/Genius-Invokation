@@ -5,6 +5,7 @@ class SkivingNewAndImproved(TalentCard):
     id: int = 215071
     name: str = "Skiving: New and Improved"
     name_ch = "偷懒的新方法"
+    time = 4.4
     is_action = True
     cost = [{'cost_num': 3, 'cost_type': 4}]
     cost_power = 0

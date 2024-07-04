@@ -94,6 +94,7 @@ class Jeht(SupportCard):
     id: int = 322022
     name: str = 'Jeht'
     name_ch = '婕德'
+    time = 4.4
     cost_num = 1
     cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_COMPANION

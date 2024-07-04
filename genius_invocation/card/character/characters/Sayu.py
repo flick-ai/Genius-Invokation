@@ -200,6 +200,7 @@ class Sayu(Character):
     id: int = 1507
     name: str = "Sayu"
     name_ch = "早柚"
+    time = 4.4
     element: ElementType = ElementType.ANEMO
     weapon_type: WeaponType = WeaponType.CLAYMORE
     country: CountryType = CountryType.INAZUMA

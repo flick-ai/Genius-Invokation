@@ -41,6 +41,7 @@ class Silver_and_Melus(SupportCard):
     id: int = 322023
     name: str = 'Silver and Melus'
     name_ch = '西尔弗和迈勒斯'
+    time = 4.4
     cost_num = 1
     cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_COMPANION

@@ -54,6 +54,7 @@ class Machine_Assembly_Line(ActionCard):
     id: int = 332028
     name: str = 'Machine Assembly Line'
     name_ch = '机关铸成之链'
+    time = 4.4
     cost_num = 0
     cost_type = None
     card_type = ActionCardType.EVENT

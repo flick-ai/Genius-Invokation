@@ -127,6 +127,7 @@ class Thoma(Character):
     id: int = 1311
     name: str = "Thoma"
     name_ch = "托马"
+    time = 4.4
     element: ElementType = ElementType.PYRO
     weapon_type: WeaponType = WeaponType.POLEARM
     country: CountryType = CountryType.INAZUMA

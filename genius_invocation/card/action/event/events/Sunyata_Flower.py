@@ -43,6 +43,7 @@ class Sunyata_Flower(ActionCard):
     id: int = 332029
     name: str = 'Sunyata Flower'
     name_ch = '净觉花'
+    time = 4.4
     cost_num = 0
     cost_type = None
     card_type = ActionCardType.EVENT

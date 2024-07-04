@@ -54,6 +54,7 @@ class SapwoodBlade(WeaponCard):
     id: int = 311507
     name: str = "Sapwood Blade"
     name_ch = "原木刀"
+    time = 4.4
     weapon_type: WeaponType = WeaponType.SWORD
     cost_num: int = 3
     cost_type: CostType = CostType.BLACK
