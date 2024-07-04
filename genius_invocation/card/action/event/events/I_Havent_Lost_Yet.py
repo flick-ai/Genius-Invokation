@@ -29,6 +29,12 @@ class I_Havent_Lost_Yet(ActionCard):
                 return [1]
         return []
 
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[4.0] = "调整了事件牌「本大爷还没有输」的效果：现在该事件牌每回合限制使用1次"
+        return log
+
 class Not_Loss(Combat_Status):
     name = 'No Loss AGAIN!'
     name_ch = '本大爷不能再输了!'

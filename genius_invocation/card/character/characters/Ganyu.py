@@ -235,3 +235,10 @@ class Ganyu(Character):
         self.power = 0
         self.usage_frostflake_arrow = 0
         self.talent_skill = self.skills[2]
+
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[3.7] = ["调整了「七圣召唤」中，角色牌「甘雨」的天赋牌「唯此一心」的效果：甘雨装备此牌后不会再获得冰元素伤害+1的效果",
+                    "调整了「七圣召唤」中，角色牌「甘雨」施放元素爆发所需的充能和元素爆发造成的伤害：元素爆发所需的充能由2点调整为3点；造成1点冰元素伤害调整为造成2点冰元素伤害；其余效果不变"]
+        return log

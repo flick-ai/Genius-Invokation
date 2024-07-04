@@ -162,3 +162,9 @@ class Yanfei(Character):
         self.power = 0
         self.talent = talent
         self.talent_skill = self.skills[0]
+    
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[4.3] = "调整了角色牌「烟绯」的状态「丹火印」的效果：现在丹火印最多叠加到2次"
+        return log

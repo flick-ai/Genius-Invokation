@@ -182,3 +182,9 @@ class Xiangling(Character):
         self.power = 0
         self.talent = talent
         self.talent_skill = self.skills[1]
+    
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[3.8] = "调整了「七圣召唤」中，角色牌「香菱」元素爆发伤害：造成2点火元素伤害调整为造成3点火元素伤害"
+        return log

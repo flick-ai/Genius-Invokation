@@ -14,4 +14,10 @@ class AbsorbingPrism(TalentCard):
     character = ElectroHypostasis
     def __init__(self) -> None:
         super().__init__()
+    
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[4.2] = "调整了角色牌「雷电法则」的天赋牌「汲能棱晶」所需元素骰：所需元素骰由3个雷元素骰子调整为2个"
+        return log
 

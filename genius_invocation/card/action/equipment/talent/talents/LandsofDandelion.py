@@ -11,3 +11,9 @@ class LandsofDandelion(TalentCard):
     character = Jean
     def __init__(self) -> None:
         super().__init__()
+    
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[4.2] = "调整了角色牌「琴」的天赋牌「蒲公英的国土」所需充能：所需充能由3调整为2"
+        return log

@@ -52,3 +52,9 @@ class Teyvat_Fried_Egg(FoodCard):
                 if not character.is_alive:
                     target_list.append(idx+2)
         return target_list
+
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[4.1] = "调整了事件牌「提瓦特煎蛋」所需元素骰费用：所需元素骰调整为2个相同元素骰"
+        return log

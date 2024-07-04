@@ -54,5 +54,6 @@ class Wind_and_Freedom(ActionCard):
     @staticmethod
     def balance_adjustment():
         log = {}
+        log[4.1] = "调整了事件牌「风与自由」的效果，调整后为：本回合中，我方角色使用技能后：将下一个我方后台角色切换到场上"
         log[4.3] = "调整了事件牌「风与自由」所需元素骰：所需元素骰由1个调整为0个"
         return log

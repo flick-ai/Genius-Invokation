@@ -22,3 +22,10 @@ class Send_Off(ActionCard):
         for i in range(get_opponent(game).summon_zone.num()):
             target.append(i+5)
         return target
+
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[3.7] = ["调整了「七圣召唤」中，事件牌「送你一程」的效果：由“选择一个敌方「召唤物」，将其消灭”改为“选择一个敌方「召唤物」，使其「可用次数」-2”",
+                    "调整了「七圣召唤」中，事件牌「送你一程」的所需元素骰费用：所需元素骰费用由2个任意元素骰调整为2个相同元素骰；"]
+        return log

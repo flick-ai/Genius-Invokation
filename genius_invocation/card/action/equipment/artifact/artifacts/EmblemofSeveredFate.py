@@ -50,4 +50,11 @@ class EmblemofSeveredFate(ArtifactCard):
 
     def on_played(self, game: 'GeniusGame') -> None:
         super().on_played(game)
+    
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[4.0] = "调整了装备牌「绝缘之旗印」所需元素骰费用：所需元素骰费用由3个任意元素骰调整为2个元素骰"
+        log[4.1] = "调整了装备牌「绝缘之旗印」的效果：现在该牌的效果每回合至多触发1次"
+        return log
 

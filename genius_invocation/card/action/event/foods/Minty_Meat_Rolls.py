@@ -55,3 +55,9 @@ class Minty_Meat_Rolls(FoodCard):
     def on_played(self, game: 'GeniusGame'):
         super().on_played(game)
 
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[3.4] = "调整了「七圣召唤」中事件牌「兽肉薄荷卷」的效果：现在其效果最多能触发3次”"
+        return log
+

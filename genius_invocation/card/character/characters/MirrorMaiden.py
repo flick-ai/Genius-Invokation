@@ -145,3 +145,9 @@ class MirrorMaiden(Character):
             status = self.refraction_target.character_zone.has_entity(Refraction)
             status.listen_event(game, EventType.CALCULATE_DICE, ZoneType.CHARACTER_ZONE, status.on_calculate_dice)
             status.listen_event(game, EventType.ON_CHANGE_CHARACTER, ZoneType.CHARACTER_ZONE, status.on_switch)
+
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[3.7] = "调整了「七圣召唤」中，角色牌「愚人众·藏镜仕女」元素战技造成的水元素伤害：造成3水元素伤害改为造成2水元素伤害"
+        return log

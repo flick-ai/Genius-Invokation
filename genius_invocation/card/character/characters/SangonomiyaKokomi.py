@@ -154,3 +154,9 @@ class SangonomiyaKokomi(Character):
         self.power = 0
         self.talent = talent
         self.talent_skill = self.skills[2]
+
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[3.6] = "调整了「七圣召唤」中，角色牌「珊瑚宫心海」元素爆发「海人化羽」的效果：原效果为：“造成3点水元素伤害，本角色附属仪来羽衣“；调整后为：造成2点水元素伤害，治疗所有我方角色1点，本角色附属仪来羽衣"
+        return log

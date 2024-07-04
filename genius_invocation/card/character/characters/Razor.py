@@ -122,3 +122,9 @@ class Razor(Character):
         self.talent_skill = self.skills[1]
         # 4.2更新
         self.use_round = -1
+
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[4.2] = "调整了「七圣召唤」中，角色牌「雷泽」元素爆发所需的充能和伤害：元素爆发所需的充能由3点调整为2点，造成5点雷元素伤害调整为造成3点雷元素伤害"
+        return log

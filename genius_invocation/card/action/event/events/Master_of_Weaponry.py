@@ -59,4 +59,10 @@ class Master_of_Weaponry(ActionCard):
                 target.append(idx+2)
         return target
 
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[4.1] = "事件牌「诸武精通」「神宝迁宫祝词」增加了额外的效果：在转移武器或圣遗物后，还会重置对应武器或圣遗物效果每回合的触发限制"
+        return log
+
 

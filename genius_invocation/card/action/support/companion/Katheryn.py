@@ -59,3 +59,9 @@ class Katheryn(SupportCard):
     def on_played(self, game: 'GeniusGame') -> None:
         self.entity = Katheryn_Entity(game, from_player=game.active_player)
         super().on_played(game)
+
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[3.6] = "调整了「七圣召唤」中，事件牌「凯瑟琳」所需元素骰子数量：所需骰子数量由2个任意元素骰子调整为1个骰子"
+        return log

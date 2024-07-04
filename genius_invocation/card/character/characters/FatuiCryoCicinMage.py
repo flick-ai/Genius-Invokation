@@ -225,4 +225,10 @@ class FatuiCryoCicinMage(Character):
         self.talent = talent
         self.talent_skill = self.skills[1]
 
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[4.1] = "调整了角色牌「冰萤术士」召唤的「冰萤」的效果：当冰萤术士受到发生元素反应的伤害后，此牌可用次数-1"
+        return log
+
 

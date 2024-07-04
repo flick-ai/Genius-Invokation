@@ -12,3 +12,9 @@ class AbyssalMayhemHydrospout(TalentCard):
     character = Tartaglia
     def __init__(self) -> None:
         super().__init__()
+
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[4.1] = "调整了角色牌「达达利亚」天赋牌「深渊之灾·凝水盛放」所需元素骰费用和效果：所需元素骰调整为3个水元素骰；结束阶段现在会对附属有「断流」的出战角色造成1点穿透伤害"
+        return log

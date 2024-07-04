@@ -44,3 +44,9 @@ class GamblersEarrings(ArtifactCard):
     def on_played(self, game: 'GeniusGame') -> None:
         super().on_played(game)
 
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[3.8] = "调整了「七圣召唤」中，装备牌「赌徒的耳环」效果：现在该装备牌的效果整场牌局限制3次"
+        return log
+

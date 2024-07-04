@@ -12,3 +12,9 @@ class RightofFinalInterpretation(TalentCard):
     character = Yanfei
     def __init__(self) -> None:
         super().__init__()
+    
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[4.2] = "调整了角色牌「烟绯」的天赋牌「最终解释权」的效果，调整为：“装备有此牌的烟绯进行重击时：对生命值不多于6的敌人造成的伤害+1；如果触发了丹火印，则在技能结算后抓一张牌”"
+        return log

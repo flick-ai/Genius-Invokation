@@ -486,3 +486,9 @@ class Tartaglia(Character):
         super().revive(game)
         self.init_state(game)
         self.is_melee_stance = False
+    
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[4.1] = "调整了角色牌「达达利亚」的技能：现在元素战技也会为目标角色附属「断流」；「断流」状态的持续回合调整为无限；远程状态·魔弹一闪造成的水元素伤害调整为5点"
+        

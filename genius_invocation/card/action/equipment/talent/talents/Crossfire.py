@@ -12,3 +12,9 @@ class Crossfire(TalentCard):
     character = Xiangling
     def __init__(self) -> None:
         super().__init__()
+
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[4.2] = "调整了角色牌「香菱」的天赋牌「交叉火力」所需元素骰：所需元素骰由4个火元素骰子调整为3个"
+        return log

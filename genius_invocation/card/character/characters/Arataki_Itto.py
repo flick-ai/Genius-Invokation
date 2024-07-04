@@ -114,6 +114,13 @@ class Arataki_Itto(Character):
         self.talent = talent
         self.talent_skill = self.skills[0]
 
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[3.7] = "调整了「七圣召唤」中，角色牌「荒泷一斗」召唤的召唤物「阿丑」的效果和描述，原效果为：“我方出战角色受到伤害后，为荒泷一斗附属乱神之怪力”；调整后为：“我方角色受到伤害后，为荒泷一斗附属乱神之怪力”"
+        log[4.2] = "调整了角色牌「荒泷一斗」的元素爆发效果：元素爆发造成的5点岩元素伤害调整为4点；怒目鬼王状态对附属角色普通攻击造成的伤害由+2调整为+1"
+        return log
+
 class Ushi(Summon):
     '''阿丑'''
     name = 'Ushi'

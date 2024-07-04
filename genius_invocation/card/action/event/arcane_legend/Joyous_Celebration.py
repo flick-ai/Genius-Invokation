@@ -35,5 +35,6 @@ class Joyous_Celebration(ActionCard):
     @staticmethod
     def balance_adjustment():
         log = {}
+        log[4.2] = "调整了事件牌「愉舞欢游」的效果，打出后的效果调整为：对我方所有具有元素附着的角色，附着我方出战角色类型的元素"
         log[4.3] = "调整了事件牌「愉舞欢游」所需元素骰：所需元素骰由1个元素骰调整为0个"
         return log

@@ -31,3 +31,9 @@ class SmallCRYO(ArtifactCard):
     def on_played(self, game: 'GeniusGame') -> None:
         super().on_played(game)
 
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[4.0] = "调整了装备牌「破冰踏雪的回音」、「酒渍船帽」、「焦灼的魔女帽」、「唤雷的头冠」、「翠绿的猎人之冠」、「不动玄石之相」、「月桂的宝冠」、「无常之面」、「虺雷之姿」所需元素骰费用：所需元素骰费用由2个相同元素骰调整为2个任意元素骰"
+        return log
+

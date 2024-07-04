@@ -46,3 +46,9 @@ class OrnateKabuto(ArtifactCard):
     def on_played(self, game: 'GeniusGame') -> None:
         super().on_played(game)
 
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[4.0] = "调整了装备牌「华饰之兜」所需元素骰费用：所需元素骰费用由2个任意元素骰调整为1个元素骰"
+        return log
+

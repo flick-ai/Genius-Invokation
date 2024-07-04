@@ -27,3 +27,9 @@ class Thunder_and_Eternity(ActionCard):
             return [1]
         else:
             return []
+    
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[4.0] = "调整了事件牌「雷与永恒」的效果：现在该事件牌可以将我方所有元素骰转换为万能元素"
+        return log

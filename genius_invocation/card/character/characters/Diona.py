@@ -168,3 +168,9 @@ class Diona(Character):
         self.power = 0
         self.talent = talent
         self.talent_skill = self.skills[1]
+    
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[4.1] = "调整了角色牌「迪奥娜」天赋牌「猫爪冰摇」所需元素骰费用：所需元素骰调整为3个冰元素骰"
+        return log

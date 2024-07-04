@@ -63,5 +63,11 @@ class LithicSpear(WeaponCard):
         else:
             new_shield = LithicSpearShield(shields, game, game.active_player, target_character)
             target_character.character_zone.add_entity(new_shield)
+    
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[3.7] = " 调整了「七圣召唤」中，装备牌「千岩长枪」的效果：现在已被击倒的角色也会被计算在内"
+        return log
         
         

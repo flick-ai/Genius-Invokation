@@ -203,3 +203,10 @@ class Xingqiu(Character):
         self.talent = talent
         self.power = 0
         self.talent_skill = self.skills[1]
+    
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[3.6] = "调整了「七圣召唤」中，角色牌「行秋」生成的出战状态「虹剑势」造成的伤害：造成的水元素伤害由2点调整为1点；"
+        log[4.1] = "调整了角色牌「行秋」元素爆发伤害：造成的水元素伤害调整为2"
+        return log

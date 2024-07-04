@@ -29,4 +29,11 @@ class BigCRYO(ArtifactCard):
 
     def on_played(self, game: 'GeniusGame') -> None:
         super().on_played(game)
+    
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[3.6] = "调整了「七圣召唤」中，装备牌「冰风迷途的勇士」「沉沦之心」「炽烈的炎之魔女」「如雷的盛怒」「翠绿之影」「悠古的磐岩」「深林的记忆」所需的元素骰子：所需骰子由3个同元素骰子调整为3个任意元素骰子"
+        log[4.0] = "调整了装备牌「冰风迷途的勇士」、「沉沦之心」、「炽烈的炎之魔女」、「如雷的盛怒」、「翠绿之影」、「悠古的磐岩」、「深林的记忆」所需元素骰费用：所需元素骰费用由3个任意元素骰调整为2个相同元素骰"
+        return log
 

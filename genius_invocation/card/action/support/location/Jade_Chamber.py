@@ -52,5 +52,6 @@ class Jade_Chamber(SupportCard):
     @staticmethod
     def balance_adjustment():
         log = {}
+        log[4.0] = "调整了支援牌「群玉阁」所需元素骰费用：所需元素骰费用由1个元素骰调整为0个元素骰"
         log[4.5] = "支援牌「群玉阁」增加了新的效果：“行动阶段开始时：如果我方手牌数量不多于3，则弃置此牌，生成1个万能元素骰。”"
         return log

@@ -201,3 +201,9 @@ class Beidou(Character):
     def listen_talent_events(self, game: 'GeniusGame'):
         self.listen_event(game, EventType.CALCULATE_DICE, ZoneType.CHARACTER_ZONE, self.on_calculate)
         self.listen_event(game, EventType.ON_USE_SKILL, ZoneType.CHARACTER_ZONE, self.on_skill)
+
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[3.8] = "调整了「七圣召唤」中，角色牌「北斗」元素战技伤害，元素爆发所需元素骰和伤害：元素战技的踏潮，造成2点雷元素伤害调整为造成3点雷元素伤害；元素爆发所需元素骰由4个雷元素骰调整为3个雷元素骰，造成3点雷元素伤害调整为造成2点雷元素伤害"
+        return log

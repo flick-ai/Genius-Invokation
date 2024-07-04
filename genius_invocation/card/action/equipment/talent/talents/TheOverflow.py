@@ -13,3 +13,9 @@ class TheOverflow(TalentCard):
     character = Candace
     def __init__(self) -> None:
         super().__init__()
+    
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[4.2] = "调整了角色牌「坎蒂丝」的天赋牌「衍溢的汐潮」所需元素骰和效果：所需元素骰由4个水元素骰子调整为3个"
+        return log

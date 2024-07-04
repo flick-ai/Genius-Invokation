@@ -12,3 +12,9 @@ class SteadyBreathing(TalentCard):
     character = Chongyun
     def __init__(self) -> None:
         super().__init__()
+    
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[4.2] = "调整了角色牌「重云」的天赋牌「吐纳真定」所需元素骰和效果：所需元素骰由4个冰元素骰子调整为3个，并移除了使重华叠霜领域“初始持续回合+1”的效果"
+        return log

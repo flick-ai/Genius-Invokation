@@ -202,3 +202,10 @@ class MaguuKenki(Character):
         self.power = 0
         self.talent = talent
         self.talent_skill = self.skills[1]
+
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[3.3] = "调整了「七圣召唤」中角色牌「魔偶剑鬼」元素爆发造成的伤害：由“造成6点风元素伤害…”调整为“造成4点风元素伤害…”"
+        log[3.4] = "调整了「七圣召唤」中角色牌「魔偶剑鬼」元素战技「孤风刀势」和「霜驰影突」造成的伤害：这两个元素战技将不再造成伤害，仅分别召唤剑影·孤风和剑影·霜驰"
+        return log

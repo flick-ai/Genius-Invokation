@@ -88,4 +88,10 @@ class VermillionHereafter(ArtifactCard):
 
     def on_played(self, game: 'GeniusGame') -> None:
         super().on_played(game)
+    
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[4.0] = "调整了装备牌「辰砂往生录」、「追忆之注连」所需元素骰费用：所需元素骰费用由3个相同元素骰调整为3个任意元素骰"
+        return log
 

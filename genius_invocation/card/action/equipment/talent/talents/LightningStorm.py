@@ -12,3 +12,9 @@ class LightningStorm(TalentCard):
     character = Beidou
     def __init__(self) -> None:
         super().__init__()
+
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[4.4] = "调整了角色牌「北斗」的天赋牌「霹雳连霄」的效果：现在不再要求角色在准备技能期间受过伤害，即可使北斗本回合内「普通攻击」少花费1个无色元素"
+        return log

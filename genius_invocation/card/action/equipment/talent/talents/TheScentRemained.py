@@ -12,3 +12,9 @@ class TheScentRemained(TalentCard):
     character = Xingqiu
     def __init__(self) -> None:
         super().__init__()
+    
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[4.2] = "调整了角色牌「行秋」的天赋牌「重帘留香」所需元素骰和效果：所需元素骰由4个水元素骰子调整为3个；装备该天赋牌后，雨帘剑会在我方出战角色受到至少为2的伤害时抵消伤害"
+        return log

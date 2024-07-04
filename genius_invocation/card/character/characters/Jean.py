@@ -176,3 +176,9 @@ class Jean(Character):
     def update_listener_list(self):
         super().update_listener_list()
         self.listeners.append((EventType.SPECIAL_SWITCH, ZoneType.CHARACTER_ZONE, self.special_switch))
+    
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[4.2] = "调整了角色牌「琴」的元素爆发所需充能和效果：元素爆发所需充能由3调整为2；元素爆发召唤的蒲公英领域造成的2点风元素伤害调整为1点"
+        return log

@@ -62,3 +62,9 @@ class NRE(SupportCard):
     def on_played(self, game: 'GeniusGame') -> None:
         self.entity = NRE_Entity(game, from_player=game.active_player)
         super().on_played(game)
+
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[4.1] = "调整了支援牌「便携营养袋」所需元素骰费用：所需元素骰调整为1个元素骰"
+        return log

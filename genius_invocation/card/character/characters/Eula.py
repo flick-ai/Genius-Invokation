@@ -187,3 +187,9 @@ class Eula(Character):
         self.power = 0
         self.talent = talent
         self.talent_skill = self.skills[1]
+
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[3.8] = "调整了「七圣召唤」中，角色牌「优菈」元素战技伤害，元素爆发伤害：元素战技的冷酷之心，”使本次伤害+2“效果调整为”使本次伤害+3“；元素爆发的光降之剑，”结束阶段：弃置此牌，造成2点物理伤害“调整为”结束阶段：弃置此牌，造成3点物理伤害“"
+        return log

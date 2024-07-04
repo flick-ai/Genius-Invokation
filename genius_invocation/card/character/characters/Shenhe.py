@@ -129,6 +129,12 @@ class Shenhe(Character):
         self.talent = talent
         self.power = 0
         self.talent_skill = self.skills[1]
+    
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[4.2] = "调整了角色牌「申鹤」的元素战技效果：元素战技生成的冰翎的可用次数由3调整为2"
+        return log
 
 class Icy_Quill(Combat_Status):
     id: int = -1

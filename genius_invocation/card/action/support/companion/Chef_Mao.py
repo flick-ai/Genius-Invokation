@@ -62,3 +62,8 @@ class Chef_Mao(SupportCard):
     def on_played(self, game: 'GeniusGame') -> None:
         self.entity = Chef_Mao_Entity(game, from_player=game.active_player)
         super().on_played(game)
+
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[4.1] = "支援牌「卯师傅」增加了额外的效果：首次触发效果后，还会从牌组中随机抽取一张「料理」事件牌"
