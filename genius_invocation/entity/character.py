@@ -16,6 +16,8 @@ class Character(Entity):
     # 角色基本类
     id: int #Identity document, 卡牌的编号，可能用来喂给state for RL。
     name: str
+    name_ch: str
+    time: float = 3.3 # 用于记录卡牌上线的时间
     tags: List[any] # Including element, weapon type, country, etc. #TODO: Add tags to every card if necessary, instead of element, weapon type, country.
     element: ElementType
     weapon_type: WeaponType

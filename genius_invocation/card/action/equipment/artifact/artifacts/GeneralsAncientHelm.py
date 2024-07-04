@@ -34,6 +34,7 @@ class GeneralsAncientHelm(ArtifactCard):
     id: int = 312009
     name: str = "General's Ancient Helm"
     name_ch = "将帅兜鍪"
+    time = 3.5
     cost_num: int = 2
     cost_type: CostType = CostType.WHITE
 

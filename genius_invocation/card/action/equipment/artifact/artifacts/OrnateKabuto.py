@@ -35,6 +35,7 @@ class OrnateKabuto(ArtifactCard):
     id: int = 312007
     name: str = "Ornate Kabuto"
     name_ch = "华饰之兜"
+    time = 3.5
     cost_num: int = 1
     cost_type: CostType = CostType.WHITE
 

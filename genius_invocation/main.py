@@ -46,14 +46,14 @@ def get_card():
     available_character_name = [f[:-3] for f in os.listdir(package_dir) if f.endswith(".py") and f != "__init__.py" and f != "import_head.py"]
     available_character = []
     for name in available_character_name:
-        available_character.append((name, eval("chars."+name).name_ch, eval("chars."+name).id))
+        available_character.append((name, eval("chars."+name).name_ch, eval("chars."+name).id), eval("chars."+name).time)
     available_card = []
     ignore = [action.ActionCard, action.EquipmentCard, action.WeaponCard, action.TalentCard, action.ArtifactCard, action.SupportCard, action.FoodCard]
     for name, obj in inspect.getmembers(action):
         if inspect.isclass(obj) and obj not in ignore:
-            available_card.append((name, obj.name_ch, obj.id))
+            available_card.append((name, obj.name_ch, obj.id, obj.time))
     card = available_character + available_card
-    card = sorted(card, key=lambda x:x[-1])
+    card = sorted(card, key=lambda x:(x[3], x[2]))
     return card
 
 def test_select():

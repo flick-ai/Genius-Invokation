@@ -140,6 +140,7 @@ class SangonomiyaKokomi(Character):
     id: int = 1205
     name: str = "Sangonomiya Kokomi"
     name_ch = "珊瑚宫心海"
+    time: float = 3.5
     element: ElementType = ElementType.HYDRO
     weapon_type: WeaponType = WeaponType.CATALYST
     country: CountryType = CountryType.INAZUMA

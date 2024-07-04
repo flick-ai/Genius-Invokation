@@ -170,6 +170,7 @@ class KujouSara(Character):
     id: int = 1406
     name: str = "Kujou Sara"
     name_ch = "九条裟罗"
+    time: float = 3.5
     element: ElementType = ElementType.ELECTRO
     weapon_type: WeaponType = WeaponType.BOW
     country: CountryType = CountryType.INAZUMA

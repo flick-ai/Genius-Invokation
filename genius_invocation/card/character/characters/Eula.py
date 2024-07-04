@@ -173,6 +173,7 @@ class Eula(Character):
     id: int = 1106
     name: str = "Eula"
     name_ch = "优菈"
+    time = 3.5
     element: ElementType = ElementType.CRYO
     weapon_type: WeaponType = WeaponType.CLAYMORE
     country: CountryType = CountryType.MONDSTADT

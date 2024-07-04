@@ -10,6 +10,7 @@ class ActionCard:
     id: int
     name: str
     name_ch: str = ""
+    time: float = 3.3
     cost_num: int
     cost_type: CostType
     card_type: ActionCardType
