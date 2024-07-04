@@ -178,7 +178,7 @@ if __name__=="__main__":
                     'PaidinFull','PaidinFull','Send_Off','Starsigns','Starsigns']
     }
     deck2 = {
-    'character': ['Neuvillette', 'Lisa', 'Qiqi'],
+    'character': ['Neuvillette', 'Bennett', 'Qiqi'],
     'action_card': ['VourukashasGlow' for i in range(30)]
     }
     # deck2 = {

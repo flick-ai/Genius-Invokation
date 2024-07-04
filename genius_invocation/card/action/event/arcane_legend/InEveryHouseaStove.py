@@ -50,3 +50,9 @@ class InEveryHouseaStove(ActionCard):
                 else: 
                     return []
             return [1]
+        
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        log[4.7] = "调整了事件牌「万家灶火」的效果：效果调整为“第1回合打出此牌时：如果我方牌组中初始包含至少2张不同的「天赋」牌，则抓1张「天赋」牌。第2回合及以后打出此牌时：我方抓当前的回合数-1数量的牌。（最多抓4张）” 作者：原神 https://www.bilibili.com/read/cv35072949/?spm_id_from=333.999.0.0 出处：bilibili"
+        

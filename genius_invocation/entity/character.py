@@ -38,6 +38,11 @@ class Character(Entity):
     max_power: int
     talent_skill: 'CharacterSkill'
     # init_state: list() # 初始状态
+
+    @staticmethod
+    def balance_adjustment():
+        log = {}
+        
     def get_element(self):
         return [self.element]
     

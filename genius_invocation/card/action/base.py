@@ -47,3 +47,7 @@ class ActionCard:
             弃牌函数
         '''
         pass
+
+    @staticmethod
+    def balance_adjustment():
+        log = {}
