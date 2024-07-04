@@ -49,6 +49,7 @@ class Lumenstone_Adjuvant(SupportCard):
     id: int = 323007
     name: str = 'Lumenstone Adjuvant'
     name_ch = '流明石触媒'
+    time = 4.5
     cost_num = 2
     cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_ITEM

@@ -5,6 +5,7 @@ class CountlessSightstoSee(TalentCard):
     id: int = 217071
     name: str = "Countless Sights to See"
     name_ch = "沿途百景会心"
+    time = 4.5
     is_action = True
     cost = [{'cost_num': 3, 'cost_type': CostType.DENDRO.value}]
     cost_power = 0

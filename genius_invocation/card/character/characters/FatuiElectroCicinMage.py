@@ -250,6 +250,7 @@ class FatuiElectroCicinMage(Character):
     id: int = 2404
     name: str = "Fatui Electro Cicin Mage"
     name_ch = "愚人众·雷萤术士"
+    time: float = 4.5
     element: ElementType = ElementType.ELECTRO
     weapon_type: WeaponType = WeaponType.OTHER
     country: CountryType = CountryType.FATUI

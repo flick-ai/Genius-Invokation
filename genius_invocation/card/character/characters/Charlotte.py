@@ -125,6 +125,7 @@ class Charlotte(Character):
     id = 1110
     name = 'Charlotte'
     name_ch = "夏洛蒂"
+    time = 4.5
     element = ElementType.CRYO
     weapon_type = WeaponType.CATALYST
     country = CountryType.FONTAINE

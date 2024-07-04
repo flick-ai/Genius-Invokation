@@ -205,6 +205,7 @@ class Kirara(Character):
     id: int = 1707
     name: str = 'Kirara'
     name_ch = "绮良良"
+    time = 4.5
     element: ElementType = ElementType.DENDRO
     weapon_type: WeaponType = WeaponType.SWORD
     country: CountryType = CountryType.INAZUMA

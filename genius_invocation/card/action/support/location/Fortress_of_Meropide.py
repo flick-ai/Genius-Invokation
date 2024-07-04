@@ -75,6 +75,7 @@ class Fortress_of_Meropide(SupportCard):
     id: int = 321018
     name: str = 'Fortress of Meropide'
     name_ch = '梅洛彼得堡'
+    time = 4.5
     cost_num = 1
     cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_LOCATION

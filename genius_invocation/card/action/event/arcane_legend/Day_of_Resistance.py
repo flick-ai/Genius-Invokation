@@ -39,6 +39,7 @@ class Day_of_Resistance(ActionCard):
     id: int = 330006
     name = "Day of Resistance: Moment of Shattered Dreams"
     name_ch = "抗争之日·碎梦之时"
+    time = 4.5
     cost_num = 1
     cost_type = CostType.WHITE
     card_type = ActionCardType.EVENT_ARCANE_LEGEND

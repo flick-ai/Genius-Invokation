@@ -156,6 +156,7 @@ class Neuvillette(Character):
     id: int = 1210
     name: str = "Neuvillette"
     name_ch = "那维莱特"
+    time = 4.5
     element: ElementType = ElementType.HYDRO
     weapon_type: WeaponType = WeaponType.CATALYST
     country: CountryType = CountryType.FONTAINE

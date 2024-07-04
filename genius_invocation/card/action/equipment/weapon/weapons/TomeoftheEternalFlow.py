@@ -63,6 +63,7 @@ class TomeoftheEternalFlow(WeaponCard):
     id: int = 311108
     name: str = "Tome of the Eternal Flow"
     name_ch = "万世流涌大典"
+    time = 4.5
     weapon_type: WeaponType = WeaponType.CATALYST
     cost_num: int = 3
     cost_type: CostType = CostType.WHITE

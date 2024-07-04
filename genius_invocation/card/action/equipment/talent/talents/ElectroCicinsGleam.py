@@ -5,6 +5,7 @@ class ElectroCicinsGleam(TalentCard):
     id: int = 24041
     name: str = "Electro Cicins Gleam"
     name_ch = "雷萤浮闪"
+    time = 4.5
     is_action = True
     cost = [{'cost_num': 3, 'cost_type': CostType.ELECTRO.value}]
     cost_power = 0

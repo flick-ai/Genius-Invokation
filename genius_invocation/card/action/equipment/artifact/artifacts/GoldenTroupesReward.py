@@ -72,6 +72,7 @@ class GoldenTroupesReward(ArtifactCard):
     id: int = 312025
     name: str = "Golden Troupe's Reward"
     name_ch = "黄金剧团的奖赏"
+    time = 4.5
     cost_num: int = 0
     cost_type: CostType = None
 

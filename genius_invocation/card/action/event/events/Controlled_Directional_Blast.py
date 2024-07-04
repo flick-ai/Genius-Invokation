@@ -9,6 +9,7 @@ class Controlled_Directional_Blast(ActionCard):
     id: int = 332030
     name: str = 'Controlled Directional Blast'
     name_ch = '可控性去危害化式定向爆破'
+    time = 4.5
     cost_num = 1
     cost_type = CostType.WHITE
     card_type = ActionCardType.EVENT
