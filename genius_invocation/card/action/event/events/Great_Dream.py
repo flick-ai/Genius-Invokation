@@ -33,6 +33,7 @@ class Great_Dream(ActionCard):
     id: int = 332021
     name: str = 'Rhythm of the Great Dream'
     name_ch = '大梦的曲调'
+    time = 3.8
     cost_num = 0
     cost_type = None
     card_type = ActionCardType.EVENT

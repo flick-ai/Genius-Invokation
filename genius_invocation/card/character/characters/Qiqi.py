@@ -123,6 +123,7 @@ class Qiqi(Character):
     id = 1108
     name = 'Qiqi'
     name_ch = "七七"
+    time = 4.0
     element = ElementType.CRYO
     weapon_type = WeaponType.SWORD
     country = CountryType.LIYUE

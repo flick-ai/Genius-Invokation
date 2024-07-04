@@ -33,6 +33,7 @@ class Unseen_Razor(ActionCard):
     id: int = 332022
     name: str = 'Where Is the Unseen Razor?'
     name_ch = '藏锋何处'
+    time = 4.0
     cost_num = 0
     cost_type = None
     card_type = ActionCardType.EVENT

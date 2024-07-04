@@ -55,6 +55,7 @@ class Golden_House(SupportCard):
     id: int = 321013
     name: str = 'Golden House'
     name_ch = '黄金屋'
+    time = 4.0
     cost_num = 0
     cost_type = None
     card_type = ActionCardType.SUPPORT_LOCATION

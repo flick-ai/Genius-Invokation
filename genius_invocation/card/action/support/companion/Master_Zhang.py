@@ -59,6 +59,7 @@ class Master_Zhang(SupportCard):
     id: int = 322018
     name: str = 'Master Zhang'
     name_ch = '老章'
+    time = 3.8
     cost_num = 1
     cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_COMPANION

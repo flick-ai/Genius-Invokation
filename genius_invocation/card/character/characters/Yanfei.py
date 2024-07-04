@@ -148,6 +148,7 @@ class Yanfei(Character):
     id: int = 1308
     name: str = "Yanfei"
     name_ch = "烟绯"
+    time = 3.8
     element: ElementType = ElementType.PYRO
     weapon_type: WeaponType = WeaponType.CATALYST
     country: CountryType = CountryType.LIYUE

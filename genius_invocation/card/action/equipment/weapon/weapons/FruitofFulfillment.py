@@ -31,6 +31,7 @@ class FruitofFulfillment(WeaponCard):
     id: int = 311105
     name: str = "Fruit of Fulfillment"
     name_ch = "盈满之实"
+    time = 3.8
     weapon_type: WeaponType = WeaponType.CATALYST
     cost_num: int = 3
     cost_type: CostType = CostType.BLACK

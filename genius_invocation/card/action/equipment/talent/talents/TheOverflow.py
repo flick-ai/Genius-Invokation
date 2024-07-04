@@ -5,6 +5,7 @@ class TheOverflow(TalentCard):
     id: int = 212071
     name: str = "The Overflow"
     name_ch = "衍溢的汐潮"
+    time = 3.8
     is_action = True
     # 4.2更新
     cost = [{'cost_num': 3, 'cost_type': 1}]

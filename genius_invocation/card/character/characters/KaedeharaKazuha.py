@@ -230,6 +230,7 @@ class KaedeharaKazuha(Character):
     id: int = 1505
     name: str = "Kaedehara Kazuha"
     name_ch = "枫原万叶"
+    time = 3.8
     element: ElementType = ElementType.ANEMO
     weapon_type: WeaponType = WeaponType.SWORD
     country: CountryType = CountryType.INAZUMA

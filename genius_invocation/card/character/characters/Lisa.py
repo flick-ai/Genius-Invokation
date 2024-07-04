@@ -192,6 +192,7 @@ class Lisa(Character):
     id: int = 1409
     name: str = "Lisa"
     name_ch = "丽莎"
+    time = 4.0
     element: ElementType = ElementType.ELECTRO
     weapon_type: WeaponType = WeaponType.CATALYST
     country: CountryType = CountryType.MONDSTADT

@@ -9,6 +9,7 @@ class Covenant_of_Rock(ActionCard):
     id: int = 330002
     name = "Covenant of Rock"
     name_ch = "磐岩盟契"
+    time = 3.8
     cost_num = 0
     cost_type = None
     card_type = ActionCardType.EVENT_ARCANE_LEGEND

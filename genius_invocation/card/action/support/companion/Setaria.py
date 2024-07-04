@@ -41,6 +41,7 @@ class Setaria(SupportCard):
     id: int = 322019
     name: str = 'Setaria'
     name_ch = '塞塔蕾'
+    time = 4.0
     cost_num = 1
     cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_COMPANION

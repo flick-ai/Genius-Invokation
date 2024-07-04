@@ -29,6 +29,7 @@ class Ancient_Courtyard(ActionCard):
     id: int = 330001
     name = "Ancien Courtyard"
     name_ch = "旧时庭园"
+    time = 3.8
     cost_num = 0
     cost_type = None
     card_type = ActionCardType.EVENT_ARCANE_LEGEND

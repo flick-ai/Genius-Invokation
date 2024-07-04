@@ -118,6 +118,7 @@ class Candace(Character):
     id = 1207
     name = "Candace"
     name_ch = "坎蒂丝"
+    time = 3.8
     element = ElementType.HYDRO
     weapon_type = WeaponType.POLEARM
     country = CountryType.SUMERU

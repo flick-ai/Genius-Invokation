@@ -133,6 +133,7 @@ class Albedo(Character):
     id: int = 1604
     name: str = "Albedo"
     name_ch = "阿贝多"
+    time = 4.0
     element: ElementType = ElementType.GEO
     weapon_type: WeaponType = WeaponType.SWORD
     country: CountryType = CountryType.MONDSTADT
