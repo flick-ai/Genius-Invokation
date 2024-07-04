@@ -39,6 +39,7 @@ class HeartofKhvarenasBrilliance(ArtifactCard):
     id: int = 312021
     name: str = "Heart of Khvarena's Brilliance"
     name_ch = "灵光明烁之心"
+    time = 4.3
     cost_num: int = 0
     cost_type: CostType = None
 

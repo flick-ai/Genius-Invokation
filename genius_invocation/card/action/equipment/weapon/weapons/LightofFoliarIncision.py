@@ -43,6 +43,7 @@ class LightofFoliarIncision(WeaponCard):
     id: int = 311506
     name: str = "Light of Foliar Incision"
     name_ch = "裁叶萃光"
+    time = 4.3
     weapon_type: WeaponType = WeaponType.SWORD
     cost_num: int = 3
     cost_type: CostType = CostType.WHITE

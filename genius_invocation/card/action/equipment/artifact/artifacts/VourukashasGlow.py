@@ -46,6 +46,7 @@ class VourukashasGlow(ArtifactCard):
     id: int = 312022
     name: str = "Vourukasha's Glow"
     name_ch = "花海甘露之光"
+    time = 4.3
     cost_num: int = 1
     cost_type: CostType = CostType.WHITE
 

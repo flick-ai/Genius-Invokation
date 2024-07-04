@@ -134,6 +134,7 @@ class Yelan(Character):
     id: int = 1209
     name: str = "Yelan"
     name_ch = "夜兰"
+    time = 4.3
     element: ElementType = ElementType.HYDRO
     weapon_type: WeaponType = WeaponType.BOW
     country: CountryType = CountryType.LIYUE

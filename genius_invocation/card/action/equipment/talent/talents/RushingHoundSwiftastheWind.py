@@ -5,6 +5,7 @@ class RushingHoundSwiftastheWind(TalentCard):
     id: int = 216061
     name: str = "Rushing Hound, Swift as the Wind"
     name_ch = "犬奔·疾如风"
+    time = 4.3
     is_action = True
     cost = [{'cost_num': 3, 'cost_type': 0}]
     cost_power = 0

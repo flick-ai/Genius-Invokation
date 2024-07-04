@@ -5,6 +5,7 @@ class RendingVortex(TalentCard):
     id: int = 225021
     name: str = "Rending Vortex"
     name_ch = "毁裂风涡"
+    time = 4.3
     is_action = False
     cost = [{'cost_num': 3, 'cost_type': 4}]
     cost_power = 0

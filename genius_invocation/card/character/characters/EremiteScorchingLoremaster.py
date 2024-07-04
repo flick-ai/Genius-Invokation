@@ -189,6 +189,7 @@ class EremiteScorchingLoremaster(Character):
     id: int = 2303
     name: str = "Eremite Scorching Loremaster"
     name_ch = "镀金旅团·炽沙叙事人"
+    time = 4.3
     element: ElementType = ElementType.PYRO
     weapon_type: WeaponType = WeaponType.OTHER
     country: CountryType = CountryType.EREMITES

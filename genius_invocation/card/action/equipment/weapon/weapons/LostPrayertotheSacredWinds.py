@@ -35,6 +35,7 @@ class LostPrayertotheSacredWinds(WeaponCard):
     id: int = 311106
     name: str = "Lost Prayer to the Sacred Winds"
     name_ch = "四风原典"
+    time = 4.3
     weapon_type: WeaponType = WeaponType.CATALYST
     cost_num: int = 3
     cost_type: CostType = CostType.WHITE

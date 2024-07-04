@@ -25,6 +25,7 @@ class FourLeaf(ActionCard):
     id: int = 332027
     name: str = 'Flickering Four-Leaf Sigil'
     name_ch = '浮烁的四叶印'
+    time = 4.3
     cost_num = 0
     cost_type = None
     card_type = ActionCardType.EVENT

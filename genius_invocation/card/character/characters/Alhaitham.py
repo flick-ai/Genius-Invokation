@@ -120,6 +120,7 @@ class Alhaitham(Character):
     id: int = 1706
     name: str = "Alhaitham"
     name_ch = "艾尔海森"
+    time = 4.3
     element: ElementType = ElementType.DENDRO
     weapon_type: WeaponType = WeaponType.SWORD
     country: CountryType = CountryType.SUMERU

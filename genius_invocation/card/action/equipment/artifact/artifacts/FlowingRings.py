@@ -33,6 +33,7 @@ class FlowingRings(ArtifactCard):
     id: int = 312019
     name: str = "Flowing Rings"
     name_ch = "浮溯之珏"
+    time = 4.3
     cost_num: int = 0
     cost_type: CostType = None
 

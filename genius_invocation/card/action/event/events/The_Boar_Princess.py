@@ -38,6 +38,7 @@ class The_Boar_Princess(ActionCard):
     id: int = 332025
     name: str = 'The Boar Princess'
     name_ch = '野猪公主'
+    time = 4.3
     cost_num = 0
     cost_type = None
     card_type = ActionCardType.EVENT

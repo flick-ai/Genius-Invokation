@@ -135,6 +135,7 @@ class Gorou(Character):
     id: int = 1606
     name: str = "Gorou"
     name_ch = "五郎"
+    time = 4.3 
     element: ElementType = ElementType.GEO
     weapon_type: WeaponType = WeaponType.BOW
     country: CountryType = CountryType.INAZUMA

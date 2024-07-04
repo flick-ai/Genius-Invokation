@@ -210,6 +210,7 @@ class ThunderManifestation(Character):
     id: int = 2402
     name: str = "Thunder Manifestation"
     name_ch = "雷音权现"
+    time = 4.3
     element: ElementType = ElementType.ELECTRO
     weapon_type: WeaponType = WeaponType.OTHER
     country: CountryType = CountryType.MONSTER

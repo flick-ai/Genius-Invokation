@@ -54,6 +54,7 @@ class Opera_Epiclese(SupportCard):
     id: int = 321017
     name: str = 'Opera Epiclese'
     name_ch = '欧庇克莱歌剧院'
+    time = 4.3
     cost_num = 1
     cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_LOCATION

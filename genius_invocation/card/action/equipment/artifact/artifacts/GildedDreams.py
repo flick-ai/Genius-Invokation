@@ -43,6 +43,7 @@ class GildedDreams(ArtifactCard):
     id: int = 312018
     name: str = "Gilded Dreams"
     name_ch = "饰金之梦"
+    time = 4.3
     cost_num: int = 3
     cost_type: CostType = CostType.WHITE
 

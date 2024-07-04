@@ -53,6 +53,7 @@ class TulaytullahsRemembrance(WeaponCard):
     id: int = 311107
     name: str = "Tulaytullah's Remembrance"
     name_ch = "图莱杜拉的回忆"
+    time = 4.3
     weapon_type: WeaponType = WeaponType.CATALYST
     cost_num: int = 3
     cost_type: CostType = CostType.WHITE

@@ -46,6 +46,7 @@ class Fish_and_Chips(FoodCard):
     id: int = 333013
     name: str = "Fish and Chips"
     name_ch = "炸鱼薯条"
+    time = 4.3
     cost_num = 2
     cost_type = CostType.BLACK
 

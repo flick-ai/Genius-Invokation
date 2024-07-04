@@ -63,6 +63,7 @@ class BeaconoftheReedSea(WeaponCard):
     id: int = 311306
     name: str = "Beacon of the Reed Sea"
     name_ch = "苇海信标"
+    time = 4.3
     weapon_type: WeaponType = WeaponType.CLAYMORE
     cost_num: int = 3
     cost_type: CostType = CostType.WHITE

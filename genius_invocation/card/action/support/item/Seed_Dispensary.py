@@ -47,6 +47,7 @@ class Seed_Dispensary(SupportCard):
     id: int = 323005
     name: str = 'Seed Dispensary'
     name_ch = '化种匣'
+    time = 4.3
     cost_num = 0
     cost_type = None
     card_type = ActionCardType.SUPPORT_ITEM

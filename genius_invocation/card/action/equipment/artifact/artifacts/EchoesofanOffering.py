@@ -40,6 +40,7 @@ class EchoesofanOffering(ArtifactCard):
     id: int = 312020
     name: str = "Echoes of an Offering"
     name_ch = "来歆余响"
+    time = 4.3
     cost_num: int = 2
     cost_type: CostType = CostType.WHITE
 

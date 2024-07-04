@@ -50,6 +50,7 @@ class Memento_Lens(SupportCard):
     id: int = 323006
     name: str = 'Memento Lens'
     name_ch = '留念镜'
+    time = 4.3
     cost_num = 1
     cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_ITEM

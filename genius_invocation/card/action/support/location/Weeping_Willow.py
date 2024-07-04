@@ -37,6 +37,7 @@ class Weeping_Willow_Wharf(SupportCard):
     id: int = 321016
     name: str = 'Weeping Willow of the Lake'
     name_ch = '湖中垂柳'
+    time = 4.3
     cost_num = 1
     cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_LOCATION

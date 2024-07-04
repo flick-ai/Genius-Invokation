@@ -4,7 +4,8 @@ from genius_invocation.card.character.characters.EremiteScorchingLoremaster impo
 class Scorpocalypse(TalentCard):
     id: int = 223031
     name: str = "Scorpocalypsen"
-    name_ch = "苦痛奉还"
+    name_ch = "魔蝎烈祸"
+    time = 4.3
     is_action = True
     cost = [{'cost_num': 3, 'cost_type': 2}]
     cost_power = 2

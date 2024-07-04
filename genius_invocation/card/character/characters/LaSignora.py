@@ -137,6 +137,7 @@ class LaSignora(Character):
     id: int = 2102
     name: str = "La Signora"
     name_ch = "「女士」"
+    time = 4.3
     element: ElementType = ElementType.CRYO
     weapon_type: WeaponType = WeaponType.OTHER
     country: CountryType = CountryType.FATUI

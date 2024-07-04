@@ -5,6 +5,7 @@ class aColdBladeLikeaShadow(TalentCard):
     id: int = 215081
     name: str = "A Cold Blade Like a Shadow"
     name_ch = "如影流露的冷刃"
+    time = 4.3
     is_action = True
     cost = [{'cost_num': 3, 'cost_type': 4}]
     cost_power = 0

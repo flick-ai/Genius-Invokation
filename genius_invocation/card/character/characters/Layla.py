@@ -216,6 +216,7 @@ class Layla(Character):
     id: int = 1109
     name: str = 'Layla'
     name_ch = "莱依拉"
+    time = 4.3
     element: ElementType = ElementType.CRYO
     weapon_type: WeaponType = WeaponType.SWORD
     country: CountryType = CountryType.SUMERU

@@ -58,6 +58,7 @@ class Mamere(SupportCard):
     id: int = 322021
     name: str = 'Mamere'
     name_ch = '玛梅赫'
+    time = 4.3
     cost_num = 0
     cost_type = None
     card_type = ActionCardType.SUPPORT_COMPANION

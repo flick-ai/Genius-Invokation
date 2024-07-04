@@ -38,6 +38,7 @@ class Passing_of_Judgment(ActionCard):
     id: int = 330005
     name = "Passing of Judgment"
     name_ch = "裁定之时"
+    time = 4.3
     cost_num = 1
     cost_type = CostType.WHITE
     card_type = ActionCardType.EVENT_ARCANE_LEGEND

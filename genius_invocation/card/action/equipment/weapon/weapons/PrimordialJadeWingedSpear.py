@@ -38,6 +38,7 @@ class PrimordialJadeWingedSpear(WeaponCard):
     id: int = 311407
     name: str = "Primordial Jade Winged Spear"
     name_ch = "和璞鸢"
+    time = 4.3
     weapon_type: WeaponType = WeaponType.POLEARM
     cost_num: int = 3
     cost_type: CostType = CostType.WHITE

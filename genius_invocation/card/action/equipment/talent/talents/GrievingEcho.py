@@ -5,6 +5,7 @@ class GrievingEcho(TalentCard):
     id: int = 224021
     name: str = "Grieving Echo"
     name_ch = "悲号回唱"
+    time = 4.3
     is_action = True
     cost = [{'cost_num': 3, 'cost_type': 3}]
     cost_power = 0

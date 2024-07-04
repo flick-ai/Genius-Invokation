@@ -247,6 +247,7 @@ class Dvalin(Character):
     id: int = 2502
     name: str = "Dvalin"
     name_ch = "特瓦林"
+    time = 4.3
     element: ElementType = ElementType.ANEMO
     weapon_type: WeaponType = WeaponType.OTHER
     country: CountryType = CountryType.MONSTER

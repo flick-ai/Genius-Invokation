@@ -232,6 +232,7 @@ class Lynette(Character):
     id: int = 1508
     name: str = "Lynette"
     name_ch = "琳妮特"
+    time = 4.3
     element: ElementType = ElementType.ANEMO
     weapon_type: WeaponType = WeaponType.SWORD
     country: CountryType = CountryType.FONTAINE

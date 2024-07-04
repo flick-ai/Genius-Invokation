@@ -28,6 +28,7 @@ class Falls_and_Fortune(ActionCard):
     id: int = 332026
     name: str = 'Falls and Fortune'
     name_ch = '坍陷与契机'
+    time = 4.3
     cost_num = 0
     cost_type = None
     card_type = ActionCardType.EVENT

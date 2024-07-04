@@ -211,6 +211,7 @@ class Lyney(Character):
     id = 1310
     name = "Lyney"
     name_ch = "林尼"
+    time = 4.3
     element: ElementType = ElementType.PYRO
     weapon_type: WeaponType = WeaponType.BOW
     country: CountryType = CountryType.FONTAINE
