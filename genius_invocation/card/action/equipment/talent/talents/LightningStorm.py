@@ -5,6 +5,7 @@ class LightningStorm(TalentCard):
     id: int = 214051
     name: str = "Lightning Storm"
     name_ch = "霹雳连霄"
+    time = 3.4
     is_action = True
     cost = [{'cost_num': 3, 'cost_type': 3}]
     cost_power = 0
