@@ -207,6 +207,7 @@ class AbyssHeraldWickedTorrents(Character):
     id: int = 2203
     name: str = "Abyss Herald: Wicked Torrents"
     name_ch = "深渊使徒·激流"
+    time = 4.6
     element: ElementType = ElementType.HYDRO
     weapon_type: WeaponType = WeaponType.OTHER
     country: CountryType = CountryType.MONSTER

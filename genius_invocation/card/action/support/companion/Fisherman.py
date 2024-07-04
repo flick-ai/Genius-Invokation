@@ -78,6 +78,7 @@ class Fisherman(SupportCard):
     id: int = 322025
     name: str = 'The White Glove and the Fisherman'
     name_ch = '白手套和渔夫'
+    time = 4.6
     cost_num = 0
     cost_type = None
     card_type = ActionCardType.SUPPORT_COMPANION

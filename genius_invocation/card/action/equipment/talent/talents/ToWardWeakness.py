@@ -5,6 +5,7 @@ class ToWardWeakness(TalentCard):
     id: int = 214111
     name: str = "割舍软弱之心"
     name_ch = "梦迹一风"
+    time = 4.6
     is_action = True
     cost = [{'cost_num': 3, 'cost_type': 3}]
     cost_power = 2

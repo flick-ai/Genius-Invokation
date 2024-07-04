@@ -80,6 +80,7 @@ class Taroumaru(SupportCard):
     id: int = 322024
     name: str = 'Taroumaru'
     name_ch = '太郎丸'
+    time = 4.6
     cost_num = 2
     cost_type = CostType.BLACK
     card_type = ActionCardType.SUPPORT_COMPANION

@@ -5,6 +5,7 @@ class MoltenMail(TalentCard):
     id: int = 223041
     name: str = "Molten Mail"
     name_ch = "熔火铁甲"
+    time = 4.6
     is_action = False
     cost = [{'cost_num': 1, 'cost_type': CostType.PYRO.value}]
     cost_power = 0

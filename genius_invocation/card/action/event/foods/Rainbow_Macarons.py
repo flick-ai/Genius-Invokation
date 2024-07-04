@@ -42,6 +42,7 @@ class Rainbow_Macarons(FoodCard):
     cost_num = 2
     cost_type = CostType.BLACK
     name_ch = "缤纷马卡龙"
+    time = 4.6
 
     def __init__(self) -> None:
         super().__init__()

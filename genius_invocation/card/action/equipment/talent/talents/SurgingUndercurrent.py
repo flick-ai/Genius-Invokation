@@ -5,6 +5,7 @@ class SurgingUndercurrent(TalentCard):
     id: int = 222031
     name: str = "Surging Undercurrent"
     name_ch = "暗流涌动"
+    time = 4.6
     is_action = False
     cost = [{'cost_num': 1, 'cost_type': 1}]
     cost_power = 0

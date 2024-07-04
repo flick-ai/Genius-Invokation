@@ -21,6 +21,7 @@ class Underwater_Treasure_Hunt(ActionCard):
     id: int = 332031
     name: str = 'Underwater Treasure Hunt'
     name_ch = '海中寻宝'
+    time = 4.6
     cost_num = 2
     cost_type = CostType.WHITE
     card_type = ActionCardType.EVENT

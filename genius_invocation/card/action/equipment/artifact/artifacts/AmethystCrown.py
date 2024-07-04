@@ -42,6 +42,7 @@ class AmethystCrown(ArtifactCard):
     id: int = 312027
     name: str = "Amethyst Crown"
     name_ch = "紫晶的花冠"
+    time = 4.6
     cost_num: int = 1
     cost_type: CostType = CostType.WHITE
 

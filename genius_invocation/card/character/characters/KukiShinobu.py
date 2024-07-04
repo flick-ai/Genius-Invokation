@@ -118,6 +118,7 @@ class KukiShinobu(Character):
     id: int = 1411
     name = "Kuki Shinobu"
     name_ch = "久岐忍"
+    time = 4.6
     element = ElementType.ELECTRO
     weapon_type: WeaponType = WeaponType.SWORD
     country: CountryType = CountryType.INAZUMA

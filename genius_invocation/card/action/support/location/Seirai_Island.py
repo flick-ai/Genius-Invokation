@@ -67,6 +67,7 @@ class Seirai_Island(SupportCard):
     id: int = 321019
     name: str = 'Seirai Island'
     name_ch = '清籁岛'
+    time = 4.6
     cost_num = 2
     cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_LOCATION

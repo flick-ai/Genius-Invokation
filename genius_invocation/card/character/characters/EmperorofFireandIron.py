@@ -184,6 +184,7 @@ class EmperorofFireandIron(Character):
     id: int = 2304
     name: str = "Emperor of Fire and Iron"
     name_ch = "铁甲熔火帝皇"
+    time = 4.6
     element: ElementType = ElementType.PYRO
     weapon_type: WeaponType = WeaponType.OTHER
     country: CountryType = CountryType.MONSTER

@@ -5,6 +5,7 @@ class TheWondrousPathofTruth(TalentCard):
     id: int = 215091
     name: str = "The Wondrous Path of Truth"
     name_ch = "妙道合真"
+    time = 4.6
     is_action = True
     cost = [{'cost_num': 3, 'cost_type': 4}]
     cost_power = 2

@@ -46,6 +46,7 @@ class RightfulReward(WeaponCard):
     id: int = 311408
     name: str = "Rightful Reward"
     name_ch = "公义的酬报"
+    time = 4.6
     weapon_type: WeaponType = WeaponType.POLEARM
     cost_num: int = 2
     cost_type: CostType = CostType.WHITE

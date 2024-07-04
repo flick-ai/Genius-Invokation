@@ -102,6 +102,7 @@ class Faruzan(Character):
     id = 1509
     name = "Faruzan"
     name_ch = "珐露珊"
+    time = 4.6
     element = ElementType.ANEMO
     weapon_type: WeaponType = WeaponType.BOW
     country: CountryType = CountryType.SUMERU
