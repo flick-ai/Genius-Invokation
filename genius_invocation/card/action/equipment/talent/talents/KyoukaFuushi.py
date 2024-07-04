@@ -5,6 +5,7 @@ class KyoukaFuushi(TalentCard):
     id: int = 212061
     name: str = "Kyouka Fuushi"
     name_ch = "镜华风姿"
+    time = 3.6
     is_action = True
     cost = [{'cost_num': 3, 'cost_type': 1}]
     cost_power = 0

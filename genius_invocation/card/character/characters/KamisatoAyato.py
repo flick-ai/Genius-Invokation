@@ -169,6 +169,7 @@ class KamisatoAyato(Character):
     id: int = 1206
     name: str = "Kamisato Ayato"
     name_ch = "神里绫人"
+    time = 3.6
     element: ElementType = ElementType.HYDRO
     weapon_type: WeaponType = WeaponType.SWORD
     country: CountryType = CountryType.INAZUMA

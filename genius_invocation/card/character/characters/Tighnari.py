@@ -160,6 +160,7 @@ class Tighnari(Character):
     id: int = 1702
     name: str = "Tighnari"
     name_ch = "提纳里"
+    time = 3.6
     element: ElementType = ElementType.DENDRO
     weapon_type: WeaponType = WeaponType.BOW
     country: CountryType = CountryType.SUMERU

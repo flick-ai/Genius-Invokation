@@ -5,6 +5,7 @@ class KeenSight(TalentCard):
     id: int = 217021
     name: str = "Keen Sight"
     name_ch = "眼识殊明"
+    time = 3.6
     is_action = True
     cost = [{'cost_num': 4, 'cost_type': 6}]
     cost_power = 0

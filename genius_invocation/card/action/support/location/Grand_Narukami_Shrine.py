@@ -41,6 +41,7 @@ class Grand_Narukami_Shrine(SupportCard):
     id: int = 321008
     name: str = 'Grand Narukami Shrine'
     name_ch = '鸣神大社'
+    time = 3.6
     cost_num = 2
     cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_LOCATION

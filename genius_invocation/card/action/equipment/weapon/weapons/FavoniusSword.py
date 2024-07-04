@@ -42,6 +42,7 @@ class FavoniusSword(WeaponCard):
     id: int = 311505
     name: str = "Favonius Sword"
     name_ch = "西风剑"
+    time = 3.6
     weapon_type: WeaponType = WeaponType.SWORD
     cost_num: int = 3
     cost_type: CostType = CostType.WHITE

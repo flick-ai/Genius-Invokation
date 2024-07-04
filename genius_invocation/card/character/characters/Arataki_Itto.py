@@ -95,6 +95,7 @@ class Arataki_Itto(Character):
     id: int = 1605
     name: str = 'Arataki Itto'
     name_ch = '荒泷一斗'
+    time = 3.6
     element: ElementType = ElementType.GEO
     weapon_type: WeaponType = WeaponType.CLAYMORE
     country: CountryType = CountryType.INAZUMA
