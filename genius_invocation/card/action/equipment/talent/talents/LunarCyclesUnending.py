@@ -5,6 +5,7 @@ class LunarCyclesUnending(TalentCard):
     id: int = 226022
     name: str = "Lunar Cycles Unending"
     name_ch = "晦朔千引"
+    time = 4.3
     card_type = ActionCardType.EVENT
     is_action = True
     is_equip = False

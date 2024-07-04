@@ -46,6 +46,7 @@ class EndoftheLine(WeaponCard):
     id: int = 311207
     name: str = "End of the Line"
     name_ch = "竭泽"
+    time = 4.7
     weapon_type: WeaponType = WeaponType.BOW
     cost_num: int = 2
     cost_type: CostType = CostType.WHITE

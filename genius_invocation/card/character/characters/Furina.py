@@ -100,6 +100,7 @@ class Furina(Character):
     id = 1211
     name = "Furina"
     name_ch = "芙宁娜"
+    time = 4.7
     element = ElementType.HYDRO
     weapon_type = WeaponType.SWORD
     country = CountryType.MONSTER

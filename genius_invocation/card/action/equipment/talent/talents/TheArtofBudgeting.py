@@ -9,5 +9,6 @@ class TheArtofBudgeting(TalentCard):
     cost = [{'cost_num': 3, 'cost_type': CostType.DENDRO.value}]
     cost_power = 0
     character = Kaveh
+    time = 4.7
     def __init__(self) -> None:
         super().__init__()

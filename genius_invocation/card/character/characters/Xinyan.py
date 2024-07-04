@@ -121,6 +121,7 @@ class Xinyan(Character):
     id: int = 1312
     name: str = "Xinyan"
     name_ch = "辛焱"
+    time = 4.7
     element: ElementType = ElementType.PYRO
     weapon_type: WeaponType = WeaponType.CLAYMORE
     country: CountryType = CountryType.LIYUE

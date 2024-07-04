@@ -30,7 +30,7 @@ def get_parser():
     return args
 
 def test_code():
-    code = 'ASAA4gsPAwAQ8UwPBBDA9MIPDEAg9cYPDGBg/MkPDMGQC9EQDbEQDt4QDuEQEeERDjAA'
+    code = 'FhHRgm4YFiHxg3YYFzFhhHcYF0FxhXgYF1GBhn4YF2Hhh38YF3HxioAYGKEBfYEXGNAA'
     card = get_card()
     name = code_to_name(code, card)
     character_card = name[0:3]
@@ -46,14 +46,15 @@ def get_card():
     available_character_name = [f[:-3] for f in os.listdir(package_dir) if f.endswith(".py") and f != "__init__.py" and f != "import_head.py"]
     available_character = []
     for name in available_character_name:
-        available_character.append((name, eval("chars."+name).name_ch, eval("chars."+name).id), eval("chars."+name).time)
+        available_character.append((name, eval("chars."+name).name_ch, eval("chars."+name).id, eval("chars."+name).time))
     available_card = []
     ignore = [action.ActionCard, action.EquipmentCard, action.WeaponCard, action.TalentCard, action.ArtifactCard, action.SupportCard, action.FoodCard]
-    for name, obj in inspect.getmembers(action):
+    for names, obj in inspect.getmembers(action):
         if inspect.isclass(obj) and obj not in ignore:
-            available_card.append((name, obj.name_ch, obj.id, obj.time))
+            available_card.append((names, obj.name_ch, obj.id, obj.time))
     card = available_character + available_card
-    card = sorted(card, key=lambda x:(x[3], x[2]))
+    card = sorted(card, key=lambda x:(x[3] if x[3]>4.2 else 3.3, x[2]))
+    print([c[1] for c in card])
     return card
 
 def test_select():

@@ -76,6 +76,7 @@ class CashflowSupervision(WeaponCard):
     id: int = 311109
     name: str = "Cashflow Supervision"
     name_ch = "金流监督"
+    time = 4.7
     weapon_type: WeaponType = WeaponType.CATALYST
     cost_num: int = 2
     cost_type: CostType = CostType.WHITE

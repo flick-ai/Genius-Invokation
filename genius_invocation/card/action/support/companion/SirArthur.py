@@ -44,6 +44,7 @@ class SirArthur(SupportCard):
     id: int = 322026
     name: str = 'Sir Arthur'
     name_ch = '亚瑟先生'
+    time = 4.7
     cost_num = 0
     cost_type = None
     card_type = ActionCardType.SUPPORT_COMPANION

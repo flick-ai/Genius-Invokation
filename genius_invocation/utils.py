@@ -360,7 +360,9 @@ def code_to_name(code, maps):
     for i in range(0, len(res), 12):
         decode.append(int(res[i:i+12], 2))
     res = decode[:-1]
-    print([maps[x-1][1] for x in res])
+    print(res)
+    result = [maps[x-1] for x in res]
+    print([x[1] for x in sorted(result, key=lambda x: x[2])])
     return [maps[x-1][0] for x in res]
 
 def name_to_code(name, maps, checksum=0):

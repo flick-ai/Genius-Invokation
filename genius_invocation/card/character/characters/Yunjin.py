@@ -157,6 +157,7 @@ class Yunjin(Character):
     id: int = 1607
     name: str = "Yun jin"
     name_ch = "云堇"
+    time = 4.7
     element: ElementType = ElementType.GEO
     weapon_type: WeaponType = WeaponType.POLEARM
     country: CountryType = CountryType.LIYUE

@@ -84,6 +84,7 @@ class ConsecratedFlyingSerpent(Character):
     id: int = 2503
     name: str = "Consecrated Flying Serpent"
     name_ch = "圣骸飞蛇"
+    time = 4.7
     element: ElementType = ElementType.ANEMO
     weapon_type: WeaponType = WeaponType.OTHER
     country: CountryType = CountryType.MONSTER

@@ -8,6 +8,7 @@ class ViciousAncientBattle(ActionCard):
     id: int = 330008
     name = "Vicious Ancient Battle"
     name_ch = "旧日鏖战"
+    time = 4.7
     cost_num = 1
     cost_type = CostType.WHITE
     card_type = ActionCardType.EVENT_ARCANE_LEGEND

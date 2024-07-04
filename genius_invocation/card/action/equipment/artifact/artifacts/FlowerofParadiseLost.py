@@ -45,6 +45,7 @@ class FlowerofParadiseLost(ArtifactCard):
     id: int = 312028
     name: str =  "Flower of Paradise Lost"
     name_ch = "乐园遗落之花"
+    time = 4.7
     cost_num: int = 1
     cost_type: CostType = CostType.WHITE
 

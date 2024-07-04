@@ -5,6 +5,7 @@ class AThousandYoung(TalentCard):
     id: int = 227021
     name: str = "A Thousand Young"
     name_ch = "万千子嗣"
+    time = 4.7
     is_action = False
     cost = [{'cost_num': 1, 'cost_type': CostType.DENDRO.value}]
     cost_power = 0

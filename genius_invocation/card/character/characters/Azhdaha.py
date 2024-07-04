@@ -200,6 +200,7 @@ class Azhdaha(Character):
     id: int = 2602
     name: str = "Azhdaha"
     name_ch = "若陀龙王"
+    time = 4.25
     element: ElementType = ElementType.GEO
     weapon_type: WeaponType = WeaponType.OTHER
     country: CountryType = CountryType.MONSTER

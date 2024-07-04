@@ -108,9 +108,10 @@ class TheMausoleumofKingDeshretEntity(Support):
         return str(self.count)
 
 class TheMausoleumofKingDeshret(SupportCard):
-    id: int = 321018
+    id: int = 321020
     name: str = 'The Mausoleum of King Deshret'
     name_ch = '赤王陵'
+    time = 4.7
     cost_num = 1
     cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_LOCATION

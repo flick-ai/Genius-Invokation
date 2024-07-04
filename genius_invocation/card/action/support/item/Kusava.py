@@ -72,6 +72,7 @@ class Kusava(SupportCard):
     id: int = 323008
     name: str = 'Kusava'
     name_ch = '苦舍桓'
+    time = 4.7
     cost_num = 0
     cost_type = None
     card_type = ActionCardType.SUPPORT_ITEM

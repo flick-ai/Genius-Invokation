@@ -96,6 +96,7 @@ class Wriothesley(Character):
     id = 1111
     name = 'Wriothesley'
     name_ch = "莱欧斯利"
+    time = 4.7
     element = ElementType.CRYO
     weapon_type = WeaponType.CATALYST
     country = CountryType.FONTAINE

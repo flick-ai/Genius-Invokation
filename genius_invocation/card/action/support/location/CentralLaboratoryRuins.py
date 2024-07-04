@@ -42,9 +42,10 @@ class CentralLaboratoryRuinsEntity(Support):
         return str(self.usage)
 
 class CentralLaboratoryRuins(SupportCard):
-    id: int = 321017
+    id: int = 321021
     name = 'Central Laboratory Ruins'
     name_ch = '中央实验室遗址'
+    time = 4.7
     cost_num = 1
     cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_LOCATION

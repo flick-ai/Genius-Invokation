@@ -8,6 +8,7 @@ class CountdowntotheShow3(ActionCard):
     base_name: str = 'Countdown to the Show: '
     name: str = 'Countdown to the Show: 3'
     name_ch = "幻戏倒计时: 3"
+    time = 4.7
     cost_num = 3
     cost_type = CostType.WHITE
     card_type = ActionCardType.EVENT

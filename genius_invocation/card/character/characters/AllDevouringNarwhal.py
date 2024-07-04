@@ -103,6 +103,7 @@ class AllDevouringNarwhal(Character):
     id = 2204
     name = "All-Devouring Narwhal"
     name_ch = "吞星之鲸"
+    time = 4.7
     element = ElementType.HYDRO
     weapon_type = WeaponType.OTHER
     country = CountryType.MONSTER

@@ -5,6 +5,7 @@ class DeathlyCyclone(TalentCard):
     id: int = 225031
     name: str = "Deathly Cyclone"
     name_ch = "亡风啸卷"
+    time = 4.7
     is_action = False
     cost = [{'cost_num': 1, 'cost_type': CostType.ANEMO.value}]
     cost_power = 0

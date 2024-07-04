@@ -8,6 +8,7 @@ class WaterandJustice(ActionCard):
     id: int = 331805
     name: str = 'Water and Justice'
     name_ch = "水与正义"
+    time = 4.7
     cost_num = 2
     cost_type = CostType.BLACK
     country = CountryType.FONTAINE

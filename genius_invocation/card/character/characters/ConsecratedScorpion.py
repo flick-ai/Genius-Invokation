@@ -114,6 +114,7 @@ class ConsecratedScorpion(Character):
     id: int = 2405
     name: str = "Consecrated Scorpion"
     name_ch = "圣骸毒蝎"
+    time = 4.7
     element: ElementType = ElementType.ELECTRO
     weapon_type: WeaponType = WeaponType.OTHER
     country: CountryType = CountryType.MONSTER

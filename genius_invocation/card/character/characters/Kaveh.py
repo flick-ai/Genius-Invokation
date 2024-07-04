@@ -228,6 +228,7 @@ class Kaveh(Character):
     id: int = 1708
     name: str = 'Kaveh'
     name_ch = "卡维"
+    time = 4.7
     element: ElementType = ElementType.DENDRO
     weapon_type: WeaponType = WeaponType.CLAYMORE
     country: CountryType = CountryType.SUMERU

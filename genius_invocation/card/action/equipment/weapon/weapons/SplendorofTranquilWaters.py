@@ -73,6 +73,7 @@ class SplendorofTranquilWaters(WeaponCard):
     id: int = 311508
     name: str = "Splendor of Tranquil Waters"
     name_ch = "静水流涌之辉"
+    time = 4.7
     weapon_type: WeaponType = WeaponType.SWORD
     cost_num: int = 2
     cost_type: CostType = CostType.WHITE

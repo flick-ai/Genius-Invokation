@@ -104,6 +104,7 @@ class GuardianofApepsOasis(Character):
     id = 2702
     name = "Guardian of Apep's Oasis"
     name_ch = "阿佩普的绿洲守望者"
+    time = 4.7
     element = ElementType.DENDRO
     weapon_type = WeaponType.OTHER
     country = CountryType.MONSTER

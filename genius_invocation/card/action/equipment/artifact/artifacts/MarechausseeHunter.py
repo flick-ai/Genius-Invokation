@@ -58,6 +58,7 @@ class MarechausseeHunter(ArtifactCard):
     id: int = 312024
     name: str = "Marechaussee Hunter"
     name_ch = "逐影猎人"
+    time = 4.7
     cost_num: int = 3
     cost_type: CostType = CostType.BLACK
 

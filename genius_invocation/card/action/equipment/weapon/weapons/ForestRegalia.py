@@ -54,6 +54,7 @@ class ForestRegalia(WeaponCard):
     id: int = 311307
     name: str = "Forest Regalia"
     name_ch = "森林王器"
+    time = 4.7
     weapon_type: WeaponType = WeaponType.CLAYMORE
     cost_num: int = 3
     cost_type: CostType = CostType.BLACK
