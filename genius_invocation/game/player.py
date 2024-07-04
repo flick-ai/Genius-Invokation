@@ -129,8 +129,8 @@ class GeniusPlayer:
         '''
         if is_basic:
                 if is_different:
-                    return self.game.random.choice(DICENUM-1, num, replace=False).tolist()
-                return self.game.random.randint(0, DICENUM-1, num).tolist()
+                    return (self.game.random.choice(DICENUM-1, num, replace=False) + 1).tolist()
+                return self.game.random.randint(1, DICENUM, num).tolist()
         if self.game.is_omni:
             return  [DiceType.OMNI.value for i in range(num)]
         else:
@@ -229,6 +229,7 @@ class GeniusPlayer:
             else:
                 game.can_play_card = True
         game.current_card = None #Finish use the card.
+        game.manager.invoke(EventType.AFTER_PLAY_CARD, game)
 
     def change_character(self, game: 'GeniusGame'):
         '''

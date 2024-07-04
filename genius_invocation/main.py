@@ -179,7 +179,7 @@ if __name__=="__main__":
     }
     deck2 = {
     'character': ['Neuvillette', 'Bennett', 'Qiqi'],
-    'action_card': ['VourukashasGlow' for i in range(30)]
+    'action_card': ['Chef_Mao' for i in range(15)] +  ['Sweet_Madame' for _ in range(15)]
     }
     # deck2 = {
     # 'character': ['Arataki_Itto', 'Dehya', 'Noelle'],

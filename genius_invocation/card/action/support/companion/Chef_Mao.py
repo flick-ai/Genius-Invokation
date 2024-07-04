@@ -26,7 +26,8 @@ class Chef_Mao_Entity(Support):
                     self.from_player.dice_zone.add(self.from_player.roll_dice(num=1, is_basic=True))
                 if self.usage_game > 0:
                     card = self.from_player.card_zone.find_card(card_type=ActionCardType.EVENT_FOOD)
-                    self.from_player.hand_zone.add([card])
+                    self.from_player.hand_zone.add(card)
+                    self.usage_game = 0 # only once per support
 
     def on_begin(self, game:'GeniusGame'):
         if game.active_player_index == self.from_player.index:

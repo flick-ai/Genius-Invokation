@@ -60,7 +60,7 @@ class TulaytullahsRemembrance(WeaponCard):
 
     def __init__(self) -> None:
         super().__init__()
-        self.equipment_entity = TomeoftheEternalFlowWeapon
+        self.equipment_entity = TulaytullahsRemembrance
 
     def on_played(self, game: 'GeniusGame') -> None:
         super().on_played(game)

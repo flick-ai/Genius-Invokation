@@ -481,7 +481,7 @@ class CharacterZone:
 
     def add_entity(self, entity: 'Status', independent=False, **kwargs):
         if independent or self.has_entity(entity.__class__) is None:
-            self.space.append(entity)
+            self.status_list.append(entity)
         else:
             self.has_entity(entity.__class__).update(**kwargs)
 

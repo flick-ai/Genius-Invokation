@@ -101,6 +101,8 @@ class Test():
     
 
 if __name__ == '__main__':
+
+    
     base_dir = './Test'
     package_dirs = ["./card/character/characters","./card/action/support/companion",
                     "./card/action/support/item","./card/action/support/location",
