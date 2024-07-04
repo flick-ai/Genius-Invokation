@@ -162,6 +162,7 @@ class Beidou(Character):
     id: int = 1405
     name: str = "Beidou"
     name_ch = "北斗"
+    time = 3.4
     element: ElementType = ElementType.ELECTRO
     weapon_type: WeaponType = WeaponType.CLAYMORE
     country: CountryType = CountryType.LIYUE

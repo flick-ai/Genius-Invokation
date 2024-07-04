@@ -153,6 +153,7 @@ class Klee(Character):
     id: int = 1306
     name: str = "Klee"
     name_ch = "可莉"
+    time = 3.4
     element: ElementType = ElementType.PYRO
     weapon_type: WeaponType = WeaponType.CATALYST
     country: CountryType = CountryType.MONDSTADT
