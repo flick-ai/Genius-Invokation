@@ -455,6 +455,17 @@ class GeniusGame:
         game.round = message.round
 
         return game
+    
+    '''
+    TODO: code for encoding states
+    思路
+    卡片可以根据id和文本描述编码，id的好处是编码成本低，文本的好处是可扩展性强
+
+    支援区/召唤物区
+    '''
+
+    def encode_sentences(self):
+        pass
 
 
 

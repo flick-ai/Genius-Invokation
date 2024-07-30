@@ -7,7 +7,7 @@ from genius_invocation.utils import *
 
 class GeniusInvocationEnv:
     '''
-        Environment for Genius Invocation with the standard gym API.
+        Environment for Genius Invocation.
     '''
 
     def __init__( 
