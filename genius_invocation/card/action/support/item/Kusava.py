@@ -73,8 +73,8 @@ class Kusava(SupportCard):
     name: str = 'Kusava'
     name_ch = '苦舍桓'
     time = 4.7
-    cost_num = 0
-    cost_type = None
+    cost_num = 1
+    cost_type = CostType.WHITE
     card_type = ActionCardType.SUPPORT_ITEM
 
     def __init__(self) -> None:
@@ -84,3 +84,9 @@ class Kusava(SupportCard):
     def on_played(self, game: 'GeniusGame') -> None:
         self.entity = KusavaEntity(game, from_player=game.active_player)
         super().on_played(game)
+
+    def balance_adjustment():
+        log = {
+            4.8:"支调整了支援牌「苦舍桓」所需元素骰：由0个元素骰调整为1个元素骰"
+        }
+        return log

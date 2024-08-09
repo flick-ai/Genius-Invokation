@@ -185,13 +185,18 @@ class BonecrunchersEnergyBlock(ActionCard):
         element_dice = ElementToDice[get_my_active_character(game).element]
         game.active_player.dice_zone.add([element_dice.value])
 
-        character = get_my_active_character(game)
-        if hasattr(character, 'country_list'):
-            if CountryType.CONSECRATED_BEAST in character.country_list:
-                character.get_power(power=1)
+        # character = get_my_active_character(game)
+        # if hasattr(character, 'country_list'):
+        #     if CountryType.CONSECRATED_BEAST in character.country_list:
+        #         character.get_power(power=1)
 
     def find_target(self, game: 'GeniusGame'):
         if game.active_player.last_die_round == game.round :
             if game.active_player.team_combat_status.has_status(HasBonecrunchersEnergyBlock) is None:
                 return [1]
         return []
+
+    def balance_adjustment():
+        log = {}
+        log[4.8] = "调整了「圣骸兽」角色的事件牌「噬骸能量块」的效果：移除了效果“如果我方出战角色是「圣骸兽」角色，则使其获得1点充能。”"
+        return log

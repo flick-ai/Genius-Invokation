@@ -50,8 +50,8 @@ class Lumenstone_Adjuvant(SupportCard):
     name: str = 'Lumenstone Adjuvant'
     name_ch = '流明石触媒'
     time = 4.5
-    cost_num = 2
-    cost_type = CostType.WHITE
+    cost_num = 3
+    cost_type = CostType.BLACK
     card_type = ActionCardType.SUPPORT_ITEM
 
     def __init__(self) -> None:
@@ -61,3 +61,9 @@ class Lumenstone_Adjuvant(SupportCard):
     def on_played(self, game: 'GeniusGame') -> None:
         self.entity = Lumenstone_Adjuvant_Entity(game, from_player=game.active_player)
         super().on_played(game)
+
+    def balance_adjustment():
+        log = {
+            4.8:"调整了支援牌「流明石触媒」所需元素骰：由2个相同元素骰调整为3个任意元素骰",
+        }
+        return log

@@ -44,7 +44,7 @@ class Chihayaburu(ElementalSkill):
 
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
     main_damage_element: ElementType = ElementType.ANEMO
-    main_damage: int = 3
+    main_damage: int = 1
     piercing_damage = 0
 
     cost = [
@@ -61,7 +61,7 @@ class Chihayaburu(ElementalSkill):
 
     def add_status(self, game: 'GeniusGame'):
         assert self.from_character.character_zone.has_entity(Midare_Ranzan) is None
-        status = Midare_Ranzan(game, self.from_character.from_player, self.from_character, self.from_character.last_swirl)
+        status = Midare_Ranzan(game, self.from_character.from_player, self.from_character, ElementType.ANEMO)
         self.from_character.character_zone.add_entity(status)
 
     def on_call(self, game: 'GeniusGame'):
@@ -81,7 +81,7 @@ class Kazuha_Slash(ElementalBurst):
 
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
     main_damage_element: ElementType = ElementType.ANEMO
-    main_damage: int = 3
+    main_damage: int = 1
     piercing_damage = 0
 
     cost = [
@@ -117,21 +117,26 @@ class Midare_Ranzan(Status):
             self.element = element
         self.usage = 1
         self.current_usage = 1
-    
+
+    def on_change_character(self, game:'GeniusGame'):
+        if game.current_switch["to"] == self.from_character:
+            self.from_player.is_quick_change == True
+
     def infusion(self, game:'GeniusGame'):
         if game.current_damage.damage_from == self.from_character:
             if game.current_damage.is_plunging_attack:
                 game.current_damage.main_damage_element = self.element
-    
-    def on_dmg_add(self, game:'GeniusGame'):
-        if game.current_damage.damage_from == self.from_character:
-            if game.current_damage.is_plunging_attack:
-                game.current_damage.main_damage += 1
+
+    def before_any_action(self, game:'GeniusGame'):
+        if self.from_character.is_active:
+            skill = self.from_character.skills[0]
+            skill.before_use_skill(game)
+            self.character_list[self.active_idx].skill(0, game)
             self.on_destroy(game)
-    
+
     def update_listener_list(self):
         self.listeners = [
-            (EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, self.on_dmg_add),
+            (EventType.BEFORE_ANY_ACTION, ZoneType.CHARACTER_ZONE, self.before_any_action),
             (EventType.INFUSION, ZoneType.CHARACTER_ZONE, self.infusion)
         ]
 
@@ -173,7 +178,7 @@ class Autumn_Whirlwind(Summon):
             self.current_usage -= 1
             if self.current_usage <=0:
                 self.on_destroy(game)
-    
+
     def update_listener_list(self):
         self.listeners = [
             (EventType.EXECUTE_DAMAGE, ZoneType.SUMMON_ZONE, self.on_reaction),
@@ -189,7 +194,7 @@ class Enhance_by_Swirl(Combat_Status):
         super().__init__(game, from_player, from_character)
         self.usage = 2
         self.current_usage = 2
-    
+
     def update(self):
         self.current_usage = max(self.current_usage, self.usage)
 
@@ -204,7 +209,7 @@ class Enhance_by_Swirl(Combat_Status):
         self.listeners = [
             (EventType.DAMAGE_ADD, ZoneType.ACTIVE_ZONE, self.on_dmg_add)
         ]
-                      
+
 class Enhance_CRYO_by_Swirl(Enhance_by_Swirl):
     element: ElementType = ElementType.CRYO
     name = "Enhance_CRYO_by_Swirl"
@@ -264,7 +269,7 @@ class KaedeharaKazuha(Character):
                 self.last_swirl = game.current_damage.swirl_crystallize_type
             else:
                 self.last_swirl = None
-                
+
     def after_skill(self, game: "GeniusGame"):
         if game.current_skill.from_character == self:
             if self.last_swirl is not None:
@@ -288,3 +293,10 @@ class KaedeharaKazuha(Character):
 
     def listen_talent_events(self, game: 'GeniusGame'):
         self.listen_event(game, EventType.AFTER_USE_SKILL, ZoneType.CHARACTER_ZONE, self.after_skill)
+
+    def balance_adjustment():
+        log = {}
+        log[4.8] = ["调整了角色牌「枫原万叶」元素爆发的伤害：由3点风元素伤害调整为1点；",
+                    "调整了角色牌「枫原万叶」元素战技的伤害：由3点风元素伤害调整为1点；",
+                    "调整了角色牌「枫原万叶」状态「乱岚拨止」的效果：效果调整为“我方下次通过「切换角色」行动切换到所附属角色时：将此次切换视为「快速行动」而非「战斗行动」。我方选择行动前：如果所附属角色为「出战角色」，则直接使用「普通攻击」；本次「普通攻击」造成的物理伤害变为风元素伤害，结算后移除此效果。”"]
+        return log

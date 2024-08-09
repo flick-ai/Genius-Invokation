@@ -8,12 +8,12 @@ class Pactsworn_Pathclearer(Status):
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.current_usage = 0
-        self.max_usage = 5
+        self.max_usage = 8
 
     def increase_level(self, level):
         self.current_usage += level
-        if self.current_usage > self.max_usage:
-            self.current_usage -= 4
+        if self.current_usage >= self.max_usage:
+            self.current_usage -= 6
 
     def on_end_phase(self, game:'GeniusGame'):
         if game.active_player == self.from_player:
@@ -117,12 +117,13 @@ class Secret_Rite_Chasmic_Soulfarer(ElementalSkill):
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         # 处理伤害
-        if self.from_character.talent and self.from_character.character_zone.has_entity(Pactsworn_Pathclearer).current_usage in [3,5]:
-            self.resolve_damage(game, add_main_damage=1)
+        if self.from_character.talent and self.from_character.character_zone.has_entity(Pactsworn_Pathclearer).current_usage >= 2:
+            self.resolve_damage(game, add_main_damage=2)
         else:
             self.resolve_damage(game)
         # 获得能量
         self.gain_energy(game)
+        self.from_character.character_zone.has_entity(Pactsworn_Pathclearer).increase_level(1)
         # after skill
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
@@ -189,3 +190,11 @@ class Cyno(Character):
     def revive(self, game: 'GeniusGame'):
         super().revive(game)
         self.init_state(game)
+
+    def balance_adjustment():
+        log = {}
+        log[4.8] = [
+            "调整了角色牌「赛诺」状态「启途誓使」的效果：移除了效果“大于等于6级时：「凭依」级数-4”，并增加效果“结束阶段：如果「凭依」级数至少为8，则「凭依」级数-6。",
+            "调整了角色牌「赛诺」元素战技的效果：增加效果“启途誓使的「凭依」级数+1”"
+        ]
+        return log

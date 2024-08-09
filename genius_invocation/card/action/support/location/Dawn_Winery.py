@@ -12,7 +12,7 @@ class Dawn_Winery_Entity(Support):
     id: int = 321004
     name = 'Dawn Wineryr'
     name_ch = '晨曦酒庄'
-    max_usage = 1
+    max_usage = 2
     max_count = -1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
@@ -41,7 +41,7 @@ class Dawn_Winery_Entity(Support):
             (EventType.BEGIN_ACTION_PHASE, ZoneType.SUPPORT_ZONE, self.on_begin),
             (EventType.ON_CHANGE_CHARACTER, ZoneType.SUPPORT_ZONE, self.on_use),
         ]
-        
+
     def show(self):
         if self.usage>0:
             return '┬─┬┬─┬'
@@ -67,3 +67,9 @@ class Dawn_Winery(SupportCard):
     def on_played(self, game: 'GeniusGame') -> None:
         self.entity = Dawn_Winery_Entity(game, from_player=game.active_player)
         super().on_played(game)
+
+    def balance_adjustment():
+        log = {
+            4.8:"调整了支援牌「晨曦酒庄」的效果：效果触发的限制“每回1次”调整为“每回合至多2次”",
+        }
+        return log

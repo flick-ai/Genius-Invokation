@@ -49,8 +49,6 @@ class SolarIsotoma(Summon):
         self.usage: int = 3
         self.current_usage: int = 3
         self.round = -1
-        self.round_usage = 1
-        self.round_max_usage = 1
 
     def update(self):
         self.current_usage = self.usage
@@ -74,21 +72,22 @@ class SolarIsotoma(Summon):
                     self.on_destroy(game)
 
     def on_calculate_dice(self, game:'GeniusGame'):
-        if game.round != self.round:
-            self.round = game.round
-            self.round_usage = self.round_max_usage
         if game.active_player == self.from_player:
-            if self.round_usage > 0:
-                if game.current_dice.use_type == SkillType.NORMAL_ATTACK:
-                    if self.from_player.is_after_change:
-                        if game.current_dice.cost[1]['cost_num'] > 0:
-                            game.current_dice.cost[1]['cost_num'] -= 1
-                            return True
+            if game.current_dice.use_type == SkillType.NORMAL_ATTACK:
+                if self.from_player.is_after_change:
+                    if game.current_dice.cost[1]['cost_num'] > 0:
+                        game.current_dice.cost[1]['cost_num'] -= 1
+                        return True
         return False
 
     def on_use_skill(self, game:'GeniusGame'):
-        if self.on_calculate_dice(game):
-            self.round_usage -= 1
+        self.on_calculate_dice(game)
+
+    def on_change(self, game:'GeniusGame'):
+        if game.active_player_index == self.from_player.index:
+            if self.round != game.round:
+                self.round = game.round
+                self.from_player.is_quick_change == True
 
     def on_add_damage(self, game:'GeniusGame'):
         if game.active_player == self.from_player:
@@ -100,12 +99,12 @@ class SolarIsotoma(Summon):
     def update_listener_list(self):
         self.listeners = [
             (EventType.END_PHASE, ZoneType.SUMMON_ZONE, self.on_end),
-            (EventType.CALCULATE_DICE, ZoneType.SUMMON_ZONE, self.on_calculate_dice),
-            (EventType.ON_USE_SKILL, ZoneType.SUMMON_ZONE, self.on_use_skill),
+            (EventType.ON_CHANGE_CHARACTER, ZoneType.SUMMON_ZONE, self.on_change),
         ]
         if self.from_character.talent:
             self.listeners.append((EventType.DAMAGE_ADD, ZoneType.SUMMON_ZONE, self.on_add_damage))
-
+            self.listeners.append((EventType.CALCULATE_DICE, ZoneType.SUMMON_ZONE, self.on_calculate_dice))
+            self.listeners.append((EventType.ON_USE_SKILL, ZoneType.SUMMON_ZONE, self.on_use_skill))
 
 class RiteofProgeniture(ElementalBurst):
     id: int = 16043
@@ -152,3 +151,10 @@ class Albedo(Character):
         status = self.from_player.summon_zone.has_entity(SolarIsotoma)
         if status != None:
             status.listen_event(game, EventType.DAMAGE_ADD, ZoneType.SUMMON_ZONE, status.on_add_damage)
+            status.listen_event(game, EventType.CALCULATE_DICE, ZoneType.SUMMON_ZONE, status.on_calculate_dice)
+            status.listen_event(game, EventType.ON_USE_SKILL, ZoneType.SUMMON_ZONE, status.on_use_skill)
+
+    def balance_adjustment():
+        log = {}
+        log[4.8] = "调整了角色牌「阿贝多」召唤「阳华」的效果：效果“此召唤物在场时：我方角色进行下落攻击时少花费一个无色元素”调整为“此召唤物在场，我方执行「切换角色」行动时：将此次切换视为「快速行动」而非「战斗行动」”"
+        return log

@@ -185,7 +185,7 @@ class BurstScan(Combat_Status):
             game=game,
             damage_type=SkillType.OTHER,
             main_damage_element=ElementType.DENDRO,
-            main_damage=card.calculate_dice(game)+1,
+            main_damage=card.calculate_dice(game),
             piercing_damage=0,
             damage_from=self,
             damage_to=get_active_character(game, 1-self.from_player.index)
@@ -249,3 +249,8 @@ class Kaveh(Character):
         if status is not None:
             status.listen_event(game, EventType.CALCULATE_DICE, ZoneType.ACTIVE_ZONE, status.on_calculate_dice)
             status.listen_event(game, EventType.ON_PLAY_CARD, ZoneType.ACTIVE_ZONE, status.on_play_card)
+
+    def balance_adjustment():
+        log = {}
+        log[4.8] = "调整了角色牌「卡维」出战状态「迸发扫描」的效果：“造成所舍弃卡牌原本元素骰费用+1的草元素伤害”调整为“造成所舍弃卡牌原本元素骰费用的草元素伤害”"
+        return log

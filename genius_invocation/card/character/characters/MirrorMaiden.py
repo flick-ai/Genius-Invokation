@@ -94,12 +94,12 @@ class Refraction(Status):
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, self.on_add_damage),
-            (EventType.BEGIN_ACTION_PHASE, ZoneType.CHARACTER_ZONE, self.on_begin)
+            (EventType.CALCULATE_DICE, ZoneType.CHARACTER_ZONE, self.on_calculate_dice),
+            (EventType.ON_CHANGE_CHARACTER, ZoneType.CHARACTER_ZONE, self.on_switch),
+            (EventType.FINAL_END, ZoneType.CHARACTER_ZONE, self.on_begin)
         ]
         if self.from_character.talent:
-            self.listeners.append(EventType.CALCULATE_DICE, ZoneType.CHARACTER_ZONE, self.on_calculate_dice)
-            self.listeners.append(EventType.ON_CHANGE_CHARACTER, ZoneType.CHARACTER_ZONE, self.on_switch)
+            self.listeners.append((EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, self.on_add_damage))
 
 
 class RippledReflection(ElementalBurst):
@@ -143,11 +143,11 @@ class MirrorMaiden(Character):
     def listen_talent_events(self, game: 'GeniusGame'):
         if self.refraction_target != None:
             status = self.refraction_target.character_zone.has_entity(Refraction)
-            status.listen_event(game, EventType.CALCULATE_DICE, ZoneType.CHARACTER_ZONE, status.on_calculate_dice)
-            status.listen_event(game, EventType.ON_CHANGE_CHARACTER, ZoneType.CHARACTER_ZONE, status.on_switch)
+            status.listen_event(game, EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, status.on_add_damage)
 
     @staticmethod
     def balance_adjustment():
         log = {}
         log[3.7] = "调整了「七圣召唤」中，角色牌「愚人众·藏镜仕女」元素战技造成的水元素伤害：造成3水元素伤害改为造成2水元素伤害"
+        log[4.8] = "调整了角色牌「藏镜仕女」状态「水光破镜」的效果：效果“附属角色受到的水元素伤害+1。”调整为“所附属角色切换到其他角色时：需要多花费1个元素骰。”"
         return log

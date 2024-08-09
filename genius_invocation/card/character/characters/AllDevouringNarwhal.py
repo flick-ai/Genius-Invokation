@@ -53,7 +53,7 @@ class StarfallShower(ElementalSkill):
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         # 处理伤害
-        add_damage = min(5, self.from_character.addtional_max_health//3)
+        add_damage = min(4, self.from_character.addtional_max_health//3)
         self.resolve_damage(game, add_damage=add_damage)
         # 获得能量
         self.gain_energy(game)
@@ -129,6 +129,11 @@ class AllDevouringNarwhal(Character):
     def init_state(self, game: 'GeniusGame'):
         self.domain = DeepDevourersDomain(game, self.from_player, self)
         self.from_player.team_combat_status.add_entity(self.domain)
+
+    def balance_adjustment():
+        log = {}
+        log[4.8] = "调整了角色牌「吞星之鲸」元素战技的效果：效果“造成1点水元素伤害，此角色每有3点无尽食欲提供的额外最大生命，此伤害+1（最多+5）”中，“最多+5”调整为“最多+4”"
+        return log
 
 
 

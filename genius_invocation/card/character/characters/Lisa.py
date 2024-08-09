@@ -17,14 +17,14 @@ class Conductive(Status):
         if from_character is None:
             from_character = get_opponent_active_character(game)
         return from_character.character_zone.has_entity(Conductive)
-        
+
 
     @staticmethod
     def add_status(game: 'GeniusGame', from_character: 'Character'=None, status: 'Status'=None):
         if status is not None:
             status.update()
             return
-        
+
         # if status is not provided
         status = Conductive.check_status(game, from_character)
         if from_character is None:
@@ -34,7 +34,7 @@ class Conductive(Status):
             from_character.character_zone.add_entity(status)
         else:
             status.update()
-    
+
     def update(self):
         self.current_usage = min(self.current_usage+1, self.max_usage)
 
@@ -134,7 +134,7 @@ class Lightning_Rose_Summon(Summon):
         super().__init__(game, from_player, from_character)
         self.usage = 2
         self.current_usage = self.usage
-    
+
     def on_end_phase(self, game: 'GeniusGame'):
         if game.active_player == self.from_player:
             dmg = Damage.create_damage(
@@ -155,7 +155,7 @@ class Lightning_Rose_Summon(Summon):
 
     def update(self):
         self.current_usage = max(self.usage, self.current_usage)
-    
+
     def update_listener_list(self):
         self.listeners = [
             (EventType.END_PHASE, ZoneType.SUMMON_ZONE, self.on_end_phase)
@@ -183,7 +183,10 @@ class Lightning_Rose(ElementalBurst):
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         self.consume_energy(game)
+        status = Conductive.check_status(game)
         self.resolve_damage(game)
+        if status is None:
+            Conductive.add_status(game)
         self.generate_summon(game, Lightning_Rose_Summon)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
@@ -212,7 +215,7 @@ class Lisa(Character):
             if self.talent_on:
                 self.talent_on -= 1
                 Conductive.add_status(self.from_player.game)
-    
+
     def on_begin(self, game: 'GeniusGame'):
         super().on_begin(game)
         if self.talent:

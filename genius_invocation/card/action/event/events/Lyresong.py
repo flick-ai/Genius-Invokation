@@ -15,7 +15,11 @@ class LyresongStatus(Combat_Status):
         if game.active_player_index == self.from_player.index:
             if game.current_dice.use_type == ActionCardType.EQUIPMENT_ARTIFACT:
                 if game.current_dice.cost[0]['cost_num']>0:
-                    game.current_dice.cost[0]['cost_num'] = max(game.current_dice.cost[0]['cost_num']-2, 0)
+                    if self.from_player.round_play_cards == 0:
+                        count = 2
+                    else:
+                        count = 1
+                    game.current_dice.cost[0]['cost_num'] = max(game.current_dice.cost[0]['cost_num']-count, 0)
                     return True
         return False
 
@@ -58,3 +62,9 @@ class Lyresong(ActionCard):
             if character.character_zone.artifact_card != None:
                 target.append(idx+2)
         return target
+
+    def balance_adjustment():
+        log = {
+            4.8:"本回合中，我方下次打出「圣遗物」手牌时会触发的效果改为：“少花费1个元素骰。如果打出此牌前我方未打出过其他行动牌，则改为少花费2个元素骰”。"
+        }
+        return log

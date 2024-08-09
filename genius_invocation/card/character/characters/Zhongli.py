@@ -75,11 +75,6 @@ class  StoneStele(Summon):
     def on_end_phase(self, game: 'GeniusGame'):
         if game.active_player == self.from_player:
             damage = 1
-
-            if self.from_character.talent:
-                if self.from_player.team_combat_status.has_shield(Combat_Shield) or self.from_character.character_zone.has_entity(Shield):
-                    damage += 1
-
             dmg = Damage.create_damage(
                 game,
                 damage_type=SkillType.SUMMON,
@@ -186,3 +181,15 @@ class Zhongli(Character):
         self.power = 0
         self.talent = talent
         self.talent_skill = self.skills[2]
+
+    def listen_talent_events(self, game: 'GeniusGame'):
+        self.listen_event(game, EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, self.on_damage_add)
+
+    def on_damage_add(self, game: 'GeniusGame'):
+        if game.active_player == self.from_player:
+            if self.talent and self.power >= 7:
+                if game.current_damage.damage_from.from_player == self.from_player:
+                    if game.current_damage.main_damage_element == ElementType.GEO:
+                        game.current_damage.main_damage += 1
+                if game.current_damage.damage_from == self:
+                    game.current_damage.main_damage += 1

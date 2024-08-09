@@ -113,23 +113,42 @@ class FlyingCloudFlagFormation(Combat_Status):
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, usage=1):
         super().__init__(game, from_player, from_character)
         self.current_usage = usage
+        self.is_use = False
 
     def update(self, usage=1):
         self.current_usage = min(self.max_usage, self.current_usage + usage)
 
+    def after_any_action(self, game: 'GeniusGame'):
+        self.is_use = False
+
+    def on_calculate_dice(self, game:'GeniusGame'):
+        if game.active_player == self.from_player:
+            if game.current_dice.use_type == SkillType.NORMAL_ATTACK:
+                if self.from_player.is_after_change:
+                    if game.current_dice.cost[1]['cost_num'] > 0:
+                        game.current_dice.cost[1]['cost_num'] -= 1
+                        return True
+        return False
+
+    def on_use_skill(self, game:'GeniusGame'):
+        if self.on_calculate_dice(game):
+            self.current_usage -= 1
+
     def on_add_damage(self, game:'GeniusGame'):
         if game.current_damage.damage_from.from_player == self.from_player:
             if game.current_damage.damage_type == SkillType.NORMAL_ATTACK:
-                game.current_damage.main_damage += 1
-                if self.from_character.talent and self.from_player.hand_zone.num()==0:
-                    game.current_damage.main_damage += 1
-                self.current_usage -= 1
+                if self.is_use:
+                    if self.from_character.talent and self.from_player.hand_zone.num()==0:
+                        game.current_damage.main_damage += 2
                 if self.current_usage == 0:
                     self.on_destroy(game)
 
     def update_listener_list(self):
         self.listeners = [
             (EventType.DAMAGE_ADD, ZoneType.ACTIVE_ZONE, self.on_add_damage),
+            (EventType.CALCULATE_DICE, ZoneType.ACTIVE_ZONE, self.on_calculate_dice),
+            (EventType.ON_USE_SKILL, ZoneType.ACTIVE_ZONE, self.on_use_skill),
+            (EventType.AFTER_ANY_ACTION, ZoneType.ACTIVE_ZONE, self.after_any_action),
         ]
 
 class CliffbreakersBanner(ElementalBurst):
@@ -172,3 +191,8 @@ class Yunjin(Character):
         self.talent = talent
         self.talent_skill = self.skills[2]
         self.next_skill = SpearFlourish(self)
+
+    def balance_adjustment():
+        log = {}
+        log[4.8] = "调整了角色牌「云堇」出战状态「飞云旗阵」的效果：移除了效果“造成的伤害+1”"
+        return log

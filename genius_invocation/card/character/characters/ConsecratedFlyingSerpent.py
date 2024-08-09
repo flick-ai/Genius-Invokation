@@ -44,10 +44,10 @@ class SwirlingSquall(ElementalSkill):
         super().on_call(game)
         self.resolve_damage(game)
         self.gain_energy(game)
-        self.from_character.from_player.card_zone.find_card_by_name(BonecrunchersEnergyBlock.name, num=1)
-        num = min(self.from_character.round_get_cards, self.calculate_card_num(game))
-        self.from_character.round_get_cards = max(0, self.from_character.round_get_cards - num)
-        self.from_character.from_player.get_card(num=num)
+        # self.from_character.from_player.card_zone.find_card_by_name(BonecrunchersEnergyBlock.name, num=1)
+        # num = min(self.from_character.round_get_cards, self.calculate_card_num(game))
+        # self.from_character.round_get_cards = max(0, self.from_character.round_get_cards - num)
+        self.from_character.from_player.get_card(num=1)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class ScattershotVortex(ElementalBurst):
@@ -134,3 +134,8 @@ class ConsecratedFlyingSerpent(Character):
     def listen_talent_events(self, game: 'GeniusGame'):
         self.listen_event(game, EventType.AFTER_PLAY_CARD, ZoneType.CHARACTER_ZONE, self.after_play_card)
         self.listen_event(game, EventType.AFTER_CHANGE_CHARACTER, ZoneType.CHARACTER_ZONE, self.after_change)
+
+    def balance_adjustment():
+        log = {}
+        log[4.8] = "调整了角色牌「圣骸飞蛇」元素战技的效果：效果调整为“造成3点风元素伤害，抓1张牌”"
+        return log
