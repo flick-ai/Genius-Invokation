@@ -123,7 +123,8 @@ class Midare_Ranzan(Status):
 
     def on_change_character(self, game:'GeniusGame'):
         if game.current_switch["to"] == self.from_character:
-            self.from_player.is_quick_change == True
+            self.from_player.is_quick_change = True
+
 
     def infusion(self, game:'GeniusGame'):
         if game.current_damage.damage_from == self.from_character:
@@ -134,14 +135,16 @@ class Midare_Ranzan(Status):
         if self.from_character.is_active:
             skill = self.from_character.skills[0]
             skill.before_use_skill(game)
-            self.character_list[self.active_idx].skill(0, game)
+            skill.on_call(game)
+            if not get_opponent(game).is_pass:
+                game.change_active_player()
             self.on_destroy(game)
 
     def update_listener_list(self):
         self.listeners = [
             (EventType.BEFORE_ANY_ACTION, ZoneType.CHARACTER_ZONE, self.before_any_action),
             (EventType.INFUSION, ZoneType.CHARACTER_ZONE, self.infusion),
-            (EventType.ON_CHANGE_CHARACTER, ZoneType.CHARACTER_ZONE, self.on_change_character)
+            (EventType.AFTER_CHANGE_CHARACTER, ZoneType.CHARACTER_ZONE, self.on_change_character)
         ]
 
 class Autumn_Whirlwind(Summon):
@@ -274,10 +277,11 @@ class KaedeharaKazuha(Character):
 
     def on_excute_dmg(self, game:'GeniusGame'):
         if game.current_damage.damage_from == self:
-            if game.current_damage.reaction == ElementalReactionType.Swirl:
-                self.last_swirl = game.current_damage.swirl_crystallize_type
-            else:
-                self.last_swirl = None
+            if game.current_damage.main_damage_element == ElementType.ANEMO:
+                if game.current_damage.reaction == ElementalReactionType.Swirl:
+                    self.last_swirl = game.current_damage.swirl_crystallize_type
+                else:
+                    self.last_swirl = None
 
     def after_skill(self, game: "GeniusGame"):
         if game.current_skill.from_character == self:

@@ -24,7 +24,7 @@ class GeniusPlayer:
     def __init__(self, game: 'GeniusGame', deck, idx, is_read=False) -> None:
         # 初始化角色状态区
         self.init_define()
-        
+
         self.index: int = idx
         self.active_idx: int = -1
         self.character_list: List[Character] = []
@@ -49,7 +49,7 @@ class GeniusPlayer:
         if not game.is_read:
             arcanes = self.card_zone.find_card(ActionCardType.EVENT_ARCANE_LEGEND, num=-1, invoke=False)
             self.hand_zone.add(self.card_zone.get_card(num=5-len(arcanes), invoke=False)+arcanes)
-        
+
 
         # 环境中的基本状态
         self.support_zone: SupportZone = SupportZone(game, self)
@@ -60,7 +60,7 @@ class GeniusPlayer:
         self.game = game
         self.is_pass: bool
         self.play_arcane_legend: bool = False
-    
+
     def init_define(self):
         # 回合打出、调和、舍弃手牌数量
         self.round_play_cards = 0
@@ -185,12 +185,14 @@ class GeniusPlayer:
         idx = game.current_action.choice_idx
         skill = self.character_list[self.active_idx].skills[idx]
         skill.before_use_skill(game)
+        game.current_skill = skill
         self.use_dice(game)
         game.current_dice = Dice(from_player=self,
                                  from_character=self.character_list[self.active_idx],
                                  use_type=skill.type,
                                  cost=deepcopy(skill.cost))
         self.character_list[self.active_idx].skill(idx, game)
+        game.current_skill = None
 
     def play_card(self, game: 'GeniusGame'):
         '''

@@ -145,6 +145,8 @@ class Wriothesley(Character):
                 self.penalty += 1
 
     def on_calculate_dice(self, game: 'GeniusGame'):
+        if game.current_dice == None:
+            return False
         if game.current_dice.from_character == self:
             if game.current_dice.use_type == SkillType.ELEMENTAL_BURST:
                 count = self.from_character.round_damage + self.from_character.round_heal
