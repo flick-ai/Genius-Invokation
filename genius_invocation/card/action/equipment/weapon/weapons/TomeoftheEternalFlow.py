@@ -13,6 +13,7 @@ class TomeoftheEternalFlowWeapon(Weapon):
     min_add = 0
     max_usage = 1
     max_count = 2
+    id = 31110881
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, weapon_card = None):
         super().__init__(game, from_player, from_character, weapon_card)
         self.damage_add = self.min_add

@@ -3,7 +3,7 @@ from genius_invocation.card.character.import_head import *
 class KamisatoArt_Marobashi(NormalAttack):
     name = 'Kamisato Art: Marobashi'
     name_ch = "神里流·转"
-    id = 12061
+    id = 120601
     type: SkillType = SkillType.NORMAL_ATTACK
 
     # damage
@@ -34,7 +34,7 @@ class KamisatoArt_Marobashi(NormalAttack):
 
 
 class KamisatoArt_Kyouka(ElementalSkill):
-    id = 12062
+    id = 120602
     name = 'Kamisato Art: Kyouka'
     name_ch = "神里流·镜花"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -72,7 +72,7 @@ class KamisatoArt_Kyouka(ElementalSkill):
 class KamisatoArt_Suiyuu(ElementalBurst):
     name = 'Kamisato Art: Suiyuu'
     name_ch = '神里流·水囿'
-    id = 12063
+    id = 120603
     type: SkillType = SkillType.ELEMENTAL_BURST
 
     # damage
@@ -104,6 +104,7 @@ class KamisatoArt_Suiyuu(ElementalBurst):
 class Takimeguri_Kanka(Status):
     name = 'Takimeguri_Kanka'
     name_ch = '泷廻鉴花'
+    id = 120621
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.current_usage = 2
@@ -133,7 +134,7 @@ class Garden_of_Purity(Summon):
     name_ch = "清净之园囿"
     element = ElementType.HYDRO
     removable = True
-
+    id = 120611
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character' = None):
         super().__init__(game, from_player, from_character)
         self.usage = 2

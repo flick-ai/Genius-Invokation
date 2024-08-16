@@ -5,7 +5,7 @@ if TYPE_CHECKING:
     from genius_invocation.game.game import GeniusGame
 
 class Switch_Entity(Combat_Status):
-    id: int = 332006
+    id: int = 33200631
     name = 'Leave it to me!'
     name_ch = '交给我吧！'
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):

@@ -1,7 +1,7 @@
 from genius_invocation.card.character.import_head import *
 
 class Dawnstar_Piercer(NormalAttack):
-    id: int = 11071
+    id: int = 110701
     type: SkillType = SkillType.NORMAL_ATTACK
     name = "Dawnstar Piercer"
     name_ch = "踏辰摄斗"
@@ -39,7 +39,7 @@ class Dawnstar_Piercer(NormalAttack):
 
 
 class Spring_Spirit_Summoning(ElementalSkill):
-    id: int = 11072
+    id: int = 110702
     name = "Spring Spirit Summoning"
     name_ch = "仰灵威召将役咒"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -75,7 +75,7 @@ class Spring_Spirit_Summoning(ElementalSkill):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Divine_Maidens_Deliverance(ElementalBurst):
-    id = 11073
+    id = 110703
     name = "Divine Maiden's Deliverance"
     name_ch = "神女遣灵真诀"
     type: SkillType = SkillType.ELEMENTAL_BURST
@@ -137,7 +137,7 @@ class Shenhe(Character):
         return log
 
 class Icy_Quill(Combat_Status):
-    id: int = -1
+    id: int = 110731
     name: str = "Icy Quill"
     name_ch = "冰翎"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
@@ -173,7 +173,7 @@ class Talisman_Spirit(Summon):
     name_ch = "箓灵"
     element: ElementType = ElementType.CRYO
     removable = True
-
+    id = 110711
     def on_end_phase(self, game: 'GeniusGame'):
         if game.active_player == self.from_player:
             dmg = Damage.create_damage(

@@ -14,6 +14,7 @@ class MillennialMovementFarewellSong(Combat_Status):
     '''
     usage: int = 2
     max_usage: int = 2
+    id = 31120531
     name = "MillennialMovementFarewellSong"
     name_ch = "千年的大乐章·别离之歌"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
@@ -44,7 +45,7 @@ class MillennialMovementFarewellSong(Combat_Status):
 # weapon
 class ElegyForTheEndWeapon(Weapon):
     '''终末嗟叹之诗'''
-    id: int = 311205
+    id: int = 31120581
     name: str = 'Elegy for the End'
     name_ch = "终末嗟叹之诗"
     def on_damage_add(self, game: 'GeniusGame'):

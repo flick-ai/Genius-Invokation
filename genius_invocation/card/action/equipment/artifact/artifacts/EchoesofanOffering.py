@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 class EchoesofanOfferingEntity(Artifact):
     name: str =  "Echoes of an Offering"
     name_ch = "来歆余响"
+    id = 31202091
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, artifact_card = None):
         super().__init__(game, from_player, from_character, artifact_card)
         self.usage_round = -1

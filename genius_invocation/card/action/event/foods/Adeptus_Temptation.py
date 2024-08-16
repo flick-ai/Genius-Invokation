@@ -7,7 +7,7 @@ if TYPE_CHECKING:
     from genius_invocation.game.player import GeniusPlayer
 
 class Adeptus_Temptation_Entity(Status):
-    id: int = 333002
+    id: int = 33300221
     name: str = "Adeptus' Temptation"
     name_ch: str = "仙跳墙"
 

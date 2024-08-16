@@ -13,6 +13,7 @@ class Cleanup_Entity(Combat_Status):
     name: str = 'Called In For Cleanup'
     name_ch = '清洁工作'
     max_usage = 2
+    id = 32202531
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.add_num = 1
@@ -34,6 +35,7 @@ class Cleanup_Entity(Combat_Status):
 class Cleanup(ActionCard):
     name = "Called In For Cleanup"
     name_ch = "清洁工作"
+    id = 32202571
     cost_num = 0
     cost_type = None
     card_type = ActionCardType.EVENT
@@ -51,7 +53,7 @@ class Cleanup(ActionCard):
                 entity.update()
 
 class Fisherman_Entity(Support):
-    id: int = 322025
+    id: int = 32202561
     name: str = 'The White Glove and the Fisherman'
     name_ch = '白手套和渔夫'
     max_usage = 2

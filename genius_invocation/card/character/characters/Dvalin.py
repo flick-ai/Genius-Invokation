@@ -1,7 +1,7 @@
 from genius_invocation.card.character.import_head import *
 
 class LaceratingSlash(NormalAttack):
-    id: int = 25021
+    id: int = 250201
     name = "Lacerating Slash"
     name_ch = "裂爪横击"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -19,7 +19,7 @@ class LaceratingSlash(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class TempestuousBarrage(ElementalSkill):
-    id: int = 25022
+    id: int = 250202
     name = "Tempestuous Barrage"
     name_ch = "暴风轰击"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -45,6 +45,7 @@ class TempestuousBarrage(ElementalSkill):
 class TotalCollapse(Status):
     name = "Total Collapse"
     name_ch = "坍毁"
+    id = 250221
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, dvalin: 'Dvalin' = None):
         super().__init__(game, from_player, from_character)
         self.usage = 1
@@ -82,7 +83,7 @@ class TotalCollapse(Status):
 
 
 class DvalinsCleansing(ElementalSkill):
-    id: int = 25023
+    id: int = 250203
     name = "Dvalin's Cleansing"
     name_ch = "风龙涤流"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -104,7 +105,7 @@ class DvalinsCleansing(ElementalSkill):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class PerpetualCleansing(ElementalSkill):
-    id = 250231
+    id = 250205
     name = 'Perpetual Cleansing'
     name_ch = '长延涤流'
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -141,6 +142,7 @@ class PerpetualCleansing(ElementalSkill):
 class Prepare_PerpetualCleansing(Status):
     name = "Prepare for Perpetual Cleansing"
     name_ch = "准备技能: 长延涤流"
+    id = 250222
     current_usage = 1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
@@ -163,7 +165,7 @@ class Prepare_PerpetualCleansing(Status):
         return super().on_destroy(game)
 
 class UltimateCleansing(ElementalSkill):
-    id = 250232
+    id = 250206
     name = "Ultimate Cleansing"
     name_ch = "终幕涤流"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -196,6 +198,7 @@ class Prepare_UltimateCleansing(Status):
     name = "Prepare for Ultimate Cleansing"
     name_ch = '准备技能：终幕涤流'
     current_usage = 1
+    id = 250223
 
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
@@ -219,7 +222,7 @@ class Prepare_UltimateCleansing(Status):
 
 
 class CaelestinumFinaleTermini(ElementalBurst):
-    id: int = 25024
+    id: int = 250204
     name = "Caelestinum Finale Termini"
     name_ch = "终天闭幕曲"
     type: SkillType = SkillType.ELEMENTAL_BURST

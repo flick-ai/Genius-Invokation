@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 class Weeping_Willow_Entity(Support):
-    id: int = 322016
+    id: int = 32201661
     name = 'Weeping Willow of the Lake'
     name_ch = '湖中垂柳'
     max_usage = 2

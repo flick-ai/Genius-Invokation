@@ -12,7 +12,7 @@ if TYPE_CHECKING:
     from genius_invocation.game.player import GeniusPlayer
 
 class Mamere_Entity(Support):
-    id: int = 322021
+    id: int = 32202161
     name: str = 'Mamere'
     name_ch = '玛梅赫'
     max_usage = 3

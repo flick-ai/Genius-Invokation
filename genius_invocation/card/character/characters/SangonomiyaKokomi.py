@@ -3,7 +3,7 @@ from genius_invocation.card.character.import_head import *
 class The_Shape_of_Water(NormalAttack):
     name = 'The Shape of Water'
     name_ch = '水有常形'
-    id = 12051
+    id = 120501
     type: SkillType = SkillType.NORMAL_ATTACK
     damage_type: SkillType = SkillType.NORMAL_ATTACK
     main_damage_element: ElementType = ElementType.HYDRO
@@ -23,7 +23,7 @@ class The_Shape_of_Water(NormalAttack):
 class Kurages_Oath(ElementalSkill):
     name = "Kurage's Oath"
     name_ch = "海月之誓"
-    id = 12052
+    id = 120502
     type: SkillType = SkillType.ELEMENTAL_SKILL
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
     main_damage_element: ElementType = None
@@ -44,7 +44,7 @@ class Kurages_Oath(ElementalSkill):
 class Nereids_Ascension(ElementalBurst):
     name = "Nereid's Ascension"
     name_ch = "海人化羽"
-    id = 12053
+    id = 120503
     type: SkillType = SkillType.ELEMENTAL_BURST
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
     main_damage_element: ElementType = ElementType.HYDRO
@@ -79,6 +79,7 @@ class Bake_Kurage(Summon):
     name_ch = '化海月'
     element = ElementType.HYDRO
     removable = True
+    id = 120511
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None, usage=2):
         super().__init__(game, from_player, from_character)
         self.usage: int = usage
@@ -110,6 +111,7 @@ class Bake_Kurage(Summon):
 class Ceremonial_Garment(Status):
     name = 'Ceremonial Garment'
     name_ch = '仪来羽衣'
+    id = 120521
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.usage: int = 2

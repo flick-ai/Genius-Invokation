@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 class Liben_Entity(Support):
-    id: int = 322008
+    id: int = 32200861
     name = 'Liben'
     name_ch = '立本'
     max_usage = -1

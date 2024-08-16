@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 class Xudong_Entity(Support):
-    id: int = 322015
+    id: int = 32201561
     name = 'Xudong'
     name_ch = '旭东'
     max_usage = 1

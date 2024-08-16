@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 class VourukashasGlowEntity(Artifact):
     name: str =  "Vourukasha's Glow"
     name_ch = "花海甘露之光"
+    id = 31202291
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, artifact_card = None):
         super().__init__(game, from_player, from_character, artifact_card)
         self.usage_round = -1

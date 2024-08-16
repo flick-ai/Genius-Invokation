@@ -7,6 +7,7 @@ if TYPE_CHECKING:
 class Pankration_Entity(Combat_Status):
     name: str = 'Pankration!'
     name_ch = '拳力斗技！'
+    id = 33202331
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
 

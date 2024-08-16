@@ -7,7 +7,7 @@ if TYPE_CHECKING:
     from genius_invocation.game.game import GeniusGame
 
 class Sprawling_Greenery_Entity(Combat_Status):
-    id: int = 331702
+    id: int = 33170231
     name: str = "Sprawling_Greenery"
     name_ch = "蔓生之草"
 

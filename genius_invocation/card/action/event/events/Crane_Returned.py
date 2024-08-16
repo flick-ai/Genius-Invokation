@@ -5,7 +5,7 @@ if TYPE_CHECKING:
     from genius_invocation.game.game import GeniusGame
 
 class Crane_Returned_Entity(Combat_Status):
-    id: int = 332007
+    id: int = 33200731
     name: str = 'When the Crane Returned'
     name_ch = '鹤归之时'
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):

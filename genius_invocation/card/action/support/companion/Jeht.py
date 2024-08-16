@@ -9,6 +9,9 @@ if TYPE_CHECKING:
     from genius_invocation.game.player import GeniusPlayer
 
 class Sand_and_Dreams(Status):
+    name = "Sand and Dreams"
+    name_ch = "沙之梦"
+    id = 32202221
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.usage = 1
@@ -60,7 +63,7 @@ class Sand_and_Dreams(Status):
 
 
 class Jeht_Entity(Support):
-    id: int = 322022
+    id: int = 32202261
     name: str = 'Jeht'
     name_ch = '婕德'
     max_usage = -1

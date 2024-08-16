@@ -4,7 +4,7 @@ class Ripple_of_Fate(NormalAttack):
 # 因果点破
     name = 'Ripple of Fate'
     name_ch = '因果点破'
-    id = 12031
+    id = 120301
     type: SkillType = SkillType.NORMAL_ATTACK
 
     # damage
@@ -44,7 +44,7 @@ class Mirror_Reflection_of_Doom(ElementalSkill):
 # 水中幻愿
     name = 'Mirror Reflection of Doom'
     name_ch = '水中幻愿'
-    id = 12032
+    id = 120302
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
     # damage
@@ -80,7 +80,7 @@ class Stellaris_Phantasm(ElementalBurst):
 # 星命定轨
     name = 'Stellaris Phantasm'
     name_ch = '星命定轨'
-    id = 12033
+    id = 120303
     type: SkillType = SkillType.ELEMENTAL_BURST
 
     # damage
@@ -116,6 +116,7 @@ class Reflection(Summon):
     name_ch = '虚影'
     element = ElementType.HYDRO
     removable = False
+    id = 120311
 
     def on_end_phase(self, game: 'GeniusGame'):
         if game.active_player == self.from_player:
@@ -183,6 +184,7 @@ class Reflection(Summon):
 class Shield_from_Refrection(Combat_Status):
     name = 'Shield from Refrection'
     name_ch = '虚影之盾'
+    id = 120331
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, from_summon:'Summon' = None):
         super().__init__(game, from_player, from_character)
         # USAGE SHOULD ALWAYS SAME WITH SUMMON
@@ -214,6 +216,7 @@ class Illusory_Bubble(Combat_Status):
     # 泡影
     name = 'Illusory Bubble'
     name_ch = '泡影'
+    id = 120332
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None):
         super().__init__(game, from_player, from_character)
         self.current_usage = 1

@@ -11,6 +11,7 @@ class TulaytullahsRemembrance(WeaponCard):
     name = "Tulaytullah's Remembrance"
     name_ch =  "图莱杜拉的回忆"
     max_usage = 2
+    id = 31110781
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, weapon_card = None):
         super().__init__(game, from_player, from_character, weapon_card)
         self.usage = self.max_usage

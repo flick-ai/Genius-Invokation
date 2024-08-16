@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 class MarechausseeHunterEntity(Artifact):
     name: str =  "Marechaussee Hunter"
     name_ch = "逐影猎人"
+    id = 31202491
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, artifact_card = None):
         super().__init__(game, from_player, from_character, artifact_card)
         self.round_usage = 0

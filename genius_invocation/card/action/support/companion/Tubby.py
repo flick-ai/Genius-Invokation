@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 class Tubby_Entity(Support):
-    id: int = 322006
+    id: int = 32200661
     name = 'Tubby'
     name_ch = '阿圆'
     max_usage = 1

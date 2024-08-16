@@ -5,7 +5,7 @@ class Squirrel(Summon):
     '''
         花鼠
     '''
-    id: int = 0
+    id: int = 220111
     name: str = 'Squirrel'
     name_ch = "花鼠"
     element: ElementType = ElementType.HYDRO
@@ -57,7 +57,7 @@ class Raptor(Summon):
     '''
         飞鸢
     '''
-    id: int = 1
+    id: int = 220112
     name: str = 'Raptor'
     name_ch = "飞鸢"
     element: ElementType = ElementType.HYDRO
@@ -108,7 +108,7 @@ class Frog(Summon):
     '''
         蛙
     '''
-    id: int = 2
+    id: int = 220113
     name: str = 'Frog'
     name_ch = "蛙"
     element: ElementType = ElementType.HYDRO
@@ -186,7 +186,7 @@ class Surge(NormalAttack):
     '''
         至尊翻涌！
     '''
-    id = 22011
+    id = 220101
     name = "Surge"
     name_ch = "翻涌"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -245,7 +245,7 @@ class Oceanid_Mimic_Summoning(ElementalSkill):
     '''
         小e
     '''
-    id = 22012
+    id = 220102
     name = "Oceanid Mimic Summoning"
     name_ch = "纯水幻造"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -279,7 +279,7 @@ class The_Myriad_Wilds(ElementalSkill):
     '''
         大e
     '''
-    id = 22013
+    id = 220103
     name = "The Myriad Wilds"
     name_ch = "林野百态"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -312,7 +312,7 @@ class The_Myriad_Wilds(ElementalSkill):
 
 
 class Tide_and_Torrent(ElementalBurst):
-    id = 22014
+    id = 220104
     name = "Tide and Torrent"
     name_ch = "潮涌与激流"
     type: SkillType = SkillType.ELEMENTAL_BURST
@@ -388,6 +388,7 @@ class Rhodeia_of_Loch(Character):
 class Shield_from_Frog(Combat_Status):
     name="Shield from Frog"
     name_ch = "蛙之盾"
+    id = 220131
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, from_summon:'Summon' = None):
         super().__init__(game, from_player, from_character)
         # USAGE SHOULD ALWAYS SAME WITH SUMMON

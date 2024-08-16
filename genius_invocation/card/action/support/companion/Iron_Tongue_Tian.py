@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 class Iron_Tongue_Tian_Entity(Support):
-    id: int = 322011
+    id: int = 32201161
     name = 'Iron_Tongue_Tian'
     name_ch = '田铁嘴'
     max_usage = 2

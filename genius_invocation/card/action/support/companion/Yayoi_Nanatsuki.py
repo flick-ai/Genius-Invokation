@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 class Yayoi_Nanatsuki_Entity(Support):
-    id: int = 322020
+    id: int = 32202061
     name = 'Yayoi_Nanatsuki'
     name_ch = '弥生七月'
     max_usage = 1

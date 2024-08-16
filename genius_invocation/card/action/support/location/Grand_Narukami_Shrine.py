@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 class Grand_Narukami_Shrine_Entity(Support):
-    id: int = 321008
+    id: int = 32100861
     name = 'Grand Narukami Shrine'
     name_ch = '鸣神大社'
     max_usage = 3

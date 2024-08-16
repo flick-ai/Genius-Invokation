@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 class Tenshukaku_Entity(Support):
-    id: int = 321007
+    id: int = 32100761
     name = 'Tenshukaku'
     name_ch = '天守阁'
     time = 3.7

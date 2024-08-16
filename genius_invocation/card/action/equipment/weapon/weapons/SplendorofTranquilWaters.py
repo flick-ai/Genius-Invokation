@@ -12,6 +12,7 @@ class SplendorofTranquilWatersWeapon(Weapon):
     name_ch = "静水流涌之辉"
     max_usage = 12
     max_count = 1
+    id = 31150881
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, weapon_card = None):
         super().__init__(game, from_player, from_character, weapon_card)
         self.count = 0

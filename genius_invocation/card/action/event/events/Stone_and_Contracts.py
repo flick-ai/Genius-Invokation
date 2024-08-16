@@ -8,7 +8,7 @@ if TYPE_CHECKING:
 
 
 class  Stone_and_Contracts_Entity(Combat_Status):
-    id: int = 331802
+    id: int = 33180231
     name: str = 'Stone and Contracts'
     name_ch = '岩与契约'
     def __init__(self, game:'GeniusGame', from_player: 'GeniusPlayer', from_character=None):

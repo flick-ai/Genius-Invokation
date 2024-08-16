@@ -13,6 +13,7 @@ class GeneralsAncientHelmEntity(Artifact):
     name: str = "General's Ancient Helm"
     name_ch = "将帅兜鍪"
     max_usage = -1
+    id = 31200991
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, artifact_card = None):
         super().__init__(game, from_player, from_character, artifact_card)
 

@@ -12,6 +12,7 @@ class TravelingDoctorsHandkerchiefEntity(Artifact):
     name: str = "Traveling Doctor's Handkerchief"
     name_ch = "游医的方巾"
     max_usage = 1
+    id = 31200391
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, artifact_card = None):
         super().__init__(game, from_player, from_character, artifact_card)
         self.usage = self.max_usage

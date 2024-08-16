@@ -1,7 +1,7 @@
 from genius_invocation.card.character.import_head import *
 
 class Parthian_Shot(NormalAttack):
-    id: int = 15091
+    id: int = 150901
     name = "Parthian Shot"
     name_ch = "迴身箭术"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -37,7 +37,7 @@ class Parthian_Shot(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Wind_Realm_of_Nasamjnin(ElementalSkill):
-    id = 15092
+    id = 150902
     name = "Wind Realm of Nasamjnin"
     name_ch = "非想风天"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -67,7 +67,7 @@ class Wind_Realm_of_Nasamjnin(ElementalSkill):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class The_Winds_Secret_Ways(ElementalBurst):
-    id = 15093
+    id = 150903
     name = "The Wind's Secret Ways"
     name_ch = "抟风秘道"
     type: SkillType = SkillType.ELEMENTAL_BURST
@@ -122,6 +122,7 @@ class Faruzan(Character):
 class Manifest_Gale(Status):
     name = "Manifest Gale"
     name_ch = "疾风示现"
+    id = 150921
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character') -> None:
         super().__init__(game, from_player, from_character)
         self.usage = 1
@@ -172,6 +173,7 @@ class Manifest_Gale(Status):
 class Pressurized_Collapse(Status):
     name = "Pressurized Collapse"
     name_ch = '风压坍陷'
+    id = 150922
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character') -> None:
         super().__init__(game, from_player, from_character)
         self.usage = 1
@@ -193,6 +195,7 @@ class Dazzling_Polyhedron(Summon):
     name_ch = "赫耀多方面体"
     element: ElementType = ElementType.ANEMO
     removable = True
+    id = 150911
 
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)

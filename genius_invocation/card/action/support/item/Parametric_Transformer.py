@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 class Parametric_Transformer_Entity(Support):
-    id: int = 323001
+    id: int = 32300161
     name = 'Parametric Transformer'
     name_ch = '参量质变仪'
     max_usage = -1

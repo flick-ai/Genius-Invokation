@@ -5,7 +5,7 @@ class TailSweep(NormalAttack):
     '''
         旋尾扇击
     '''
-    id: int = 24031
+    id: int = 240301
     type: SkillType = SkillType.NORMAL_ATTACK
     name: str = "Tail Sweep"
     name_ch = "旋尾扇击"
@@ -45,7 +45,7 @@ class SwirlingSchoolOfFish(ElementalSkill):
     '''
         霰舞鱼群
     '''
-    id: int = 24032
+    id: int = 240302
     type: SkillType = SkillType.ELEMENTAL_SKILL
     name: str = "Swirling School of Fish"
     name_ch = "霰舞鱼群"
@@ -94,7 +94,7 @@ class FontemerHoarthunder(ElementalBurst):
         原海古雷
         造成1点雷元素伤害，本角色附属原海明珠，召唤共鸣珊瑚珠
     '''
-    id: int = 24033
+    id: int = 240303
     type: SkillType = SkillType.ELEMENTAL_BURST
     name: str = "Fontemer Hoarthunder"
     name_ch = "原海古雷"
@@ -129,7 +129,7 @@ class FontemerHoarthunder(ElementalBurst):
 class PearlArmor(Status):
     name = "Pearl Armor"
     name_ch = "原海明珠"
-
+    id = 240321
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None, equip_talent=False):
         super().__init__(game, from_player, from_character)
         self.max_usage = 10000
@@ -189,6 +189,7 @@ class ResonantCoralOrb(Summon):
     name_ch = "共鸣珊瑚珠"
     element: ElementType = ElementType.ELECTRO
     removable: bool = True
+    id = 240311
 
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)

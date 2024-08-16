@@ -1,7 +1,7 @@
 from genius_invocation.card.character.import_head import *
 
 class Gleaming_Spear_Guardian_Stance(NormalAttack):
-    id: int = 12071
+    id: int = 120701
     name = "Gleaming Spear: Guardian Stance"
     name_ch = "流耀枪术·守势"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -33,7 +33,7 @@ class Gleaming_Spear_Guardian_Stance(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Sacred_Rite_Herons_Sanctum(ElementalSkill):
-    id: int = 12072
+    id: int = 120702
     type: SkillType = SkillType.ELEMENTAL_SKILL
     name = "Sacred Rite: Heron's Sanctum"
     name_ch = "圣仪·苍鹭庇卫"
@@ -58,8 +58,8 @@ class Sacred_Rite_Herons_Sanctum(ElementalSkill):
         super().on_call(game)
         self.gain_energy(game)
         Next_Skill = self.from_character.next_skill # The Skill instance now is stored in character, somewhere else maybe better?
-        prepare_status = Heron_Shield(game, self.from_character.from_player, self.from_character, Next_Skill)
-        assert self.from_character.character_zone.has_entity(Heron_Shield) is None
+        prepare_status = Prepare_For_Heron_Strike(game, self.from_character.from_player, self.from_character, Next_Skill)
+        assert self.from_character.character_zone.has_entity(Prepare_For_Heron_Strike) is None
         self.from_character.character_zone.add_entity(prepare_status)
         self.from_character.from_player.prepared_skill = prepare_status
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
@@ -67,7 +67,7 @@ class Sacred_Rite_Herons_Sanctum(ElementalSkill):
 class Heron_Strike(ElementalSkill):
     name = 'Heron Strike'
     name_ch = '苍鹭震击'
-    id = 12074
+    id = 120704
     type = SkillType.ELEMENTAL_SKILL
 
     damage_type= SkillType.ELEMENTAL_SKILL
@@ -90,7 +90,7 @@ class Heron_Strike(ElementalSkill):
 class Sacred_Rite_Wagtails_Tide(ElementalBurst):
     name = "Sacred Rite: Wagtail's Tide"
     name_ch = "圣仪·灰鸰衒潮"
-    id = 12073
+    id = 120703
     type = SkillType.ELEMENTAL_BURST
 
     damage_type= SkillType.ELEMENTAL_SKILL
@@ -141,41 +141,50 @@ class Candace(Character):
 
 class Heron_Shield(Shield):
     name = "Heron Shield"
+    id = 120741
     name_ch = "苍鹭护盾"
+    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character', from_prepare_status: 'Status'):
+        super().__init__(game, from_player, from_character)
+        self.from_prepare_status = from_prepare_status
+        self.current_usage = 2
+
+class Prepare_For_Heron_Strike(Status):
+    name = "Prepare For Heron Strike "
+    id = 120721
+    name_ch = "准备技能：苍鹭震击"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character', Next_Skill: 'CharacterSkill'):
+        assert self.from_character.character_zone.has_entity(Heron_Shield) is None
+        shield = Heron_Shield(game, from_player, from_character, self)
+        self.from_character.character_zone.add_entity(shield)
         super().__init__(game, from_player, from_character)
         self.skill = Next_Skill
-        self.current_usage = 2
+
 
     def on_call(self, game: 'GeniusGame'):
         self.skill.on_call(game)
         self.on_destroy(game)
-        #Check when the shield disappear. Answer: the same point of damage, even the shield is 0.
-        #In this implement, the prepare_status is destroy after the stage of after_skill in the process of on_call.
+    # Since Version 4.6, The previous conclusion has NO LONGER HOLD! We fix this bug at 4.8.
+
     def after_change(self,game:'GeniusGame'):
         if game.current_switch["from"] == self.from_character:
             self.from_character.from_player.prepared_skill = None
             self.on_destroy(game)
 
-    def on_execute_dmg(self, game:'GeniusGame'):
-        if game.current_damage.damage_to == self.from_character:
-            if game.current_damage.main_damage_element != ElementType.PIERCING:
-                if game.current_damage.main_damage >= self.current_usage:
-                    game.current_damage.main_damage -= self.current_usage
-                    self.current_usage = 0
-                else:
-                    self.current_usage -= game.current_damage.main_damage
-                    game.current_damage.main_damage = 0
-
     def update_listener_list(self):
         self.listeners = [
-            (EventType.EXECUTE_DAMAGE, ZoneType.CHARACTER_ZONE, self.on_execute_dmg),
             (EventType.AFTER_CHANGE_CHARACTER, ZoneType.CHARACTER_ZONE, self.after_change)
         ]
+
+    def on_destroy(self, game: 'GeniusGame'):
+        shield = self.from_character.character_zone.has_entity(Heron_Shield)
+        if shield is not None:
+            shield.on_destroy(game)
+        super().on_destroy(game)
 
 class Prayer_of_the_Crimson_Crown(Combat_Status):
     name = "Prayer of the Crimson Crown"
     name_ch = "赤冕祝祷"
+    id = 120731
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.usage = 2

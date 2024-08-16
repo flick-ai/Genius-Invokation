@@ -8,7 +8,7 @@ if TYPE_CHECKING:
 
 
 class Matsutake_Meat_Rolls_Entity(Status):
-    id: int = 333014
+    id: int = 33301421
     name: str = "Matsutake Meat Rolls"
     name_ch = "松茸酿肉卷"
 

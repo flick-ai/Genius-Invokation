@@ -12,6 +12,7 @@ class ThunderingPoiseEntity(Artifact):
     name: str = "Thundering Poise"
     name_ch = "虺雷之姿"
     max_usage = 1
+    id = 31201191
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, artifact_card = None):
         super().__init__(game, from_player, from_character, artifact_card)
         self.usage = self.max_usage

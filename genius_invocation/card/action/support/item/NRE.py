@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 class NRE_Entity(Support):
-    id: int = 323002
+    id: int = 32300261
     name = 'NRE'
     name_ch = '便携营养袋'
     max_usage = 1

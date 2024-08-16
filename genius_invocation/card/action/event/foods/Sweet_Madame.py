@@ -7,7 +7,7 @@ if TYPE_CHECKING:
     from genius_invocation.game.player import GeniusPlayer
 
 class Sweet_Madame(FoodCard):
-    id: int = 333005
+    id: int = 33300521
     name: str = "Sweet Madame"
     name_ch = "甜甜花酿鸡"
     cost_num = 0

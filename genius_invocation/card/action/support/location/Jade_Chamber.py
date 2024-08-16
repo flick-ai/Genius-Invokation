@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 class Jade_Chamber_Entity(Support):
-    id: int = 321003
+    id: int = 32100361
     name = 'Jade Chamber'
     name_ch = '群玉阁'
     max_usage = -1

@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 class Chinju_Forest_Entity(Support):
-    id: int = 321012
+    id: int = 32101261
     name = 'Chinju Forest'
     name_ch = '镇守之森'
     max_usage = 3

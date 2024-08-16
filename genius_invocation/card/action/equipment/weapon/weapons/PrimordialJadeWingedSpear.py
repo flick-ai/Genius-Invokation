@@ -11,6 +11,7 @@ class PrimordialJadeWingedSpearWeapon(Weapon):
     name: str = "Primordial Jade Winged Spear"
     name_ch = "和璞鸢"
     min_usage = 1
+    id = 31140781
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, weapon_card = None):
         super().__init__(game, from_player, from_character, weapon_card)
         self.round = -1

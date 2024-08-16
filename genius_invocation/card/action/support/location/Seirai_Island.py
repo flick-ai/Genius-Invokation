@@ -12,6 +12,7 @@ if TYPE_CHECKING:
 class Distant_Storm(Status):
     name = 'Distant Storm'
     name_ch = '悠远雷暴'
+    id = 32101921
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.usage = 1
@@ -35,7 +36,7 @@ class Distant_Storm(Status):
         ]
 
 class Seirai_Island_Entity(Support):
-    id: int = 322019
+    id: int = 32201961
     name = 'Seirai Island'
     name_ch = '清籁岛'
     max_usage = 2

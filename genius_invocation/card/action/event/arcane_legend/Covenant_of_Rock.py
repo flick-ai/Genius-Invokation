@@ -1,6 +1,5 @@
 from genius_invocation.card.action.base import ActionCard
 from genius_invocation.utils import *
-from genius_invocation.entity.status import Status
 if TYPE_CHECKING:
     from genius_invocation.game.game import GeniusGame
     from genius_invocation.game.player import GeniusPlayer

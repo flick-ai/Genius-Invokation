@@ -4,7 +4,7 @@ from genius_invocation.card.action.base import ActionCard
 class SoloistsSolicitation(NormalAttack):
     name = "Soloist's Solicitation"
     name_ch = "独舞之邀"
-    id: int = 12111
+    id: int = 121101
     type: SkillType = SkillType.NORMAL_ATTACK
 
     # damage
@@ -28,14 +28,14 @@ class SoloistsSolicitation(NormalAttack):
         # 获得能量
         self.gain_energy(game)
         if self.from_character.card_round != game.round:
-            if self.from_character.from_player.hand_zone.has_card(SeatsSacredandSecular):
+            if not self.from_character.from_player.hand_zone.has_card(SeatsSacredandSecular):
                 self.from_character.from_player.hand_zone.add([SeatsSacredandSecular()])
                 self.from_character.card_round = game.round
         # after skill
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class SalonSolitaire(ElementalSkill):
-    id = 12112
+    id = 121102
     name = 'Salon Solitaire'
     name_ch = "孤心沙龙"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -66,7 +66,7 @@ class SalonSolitaire(ElementalSkill):
 
 
 class LetthePeopleRejoice(ElementalBurst):
-    id = 12113
+    id = 121103
     name = 'Let the People Rejoice'
     name_ch = "万众狂欢"
     type: SkillType = SkillType.ELEMENTAL_BURST
@@ -143,6 +143,7 @@ class LetthePeopleRejoice(Combat_Status):
     name = "Let the People Rejoice"
     name_ch = "普世欢腾"
     max_usage = 2
+    id = 121131
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.current_usage = self.max_usage
@@ -172,6 +173,7 @@ class LetthePeopleRejoice(Combat_Status):
 class Revelry(Combat_Status):
     name = "Revelry"
     name_ch = "狂欢值"
+    id = 121132
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.current_usage = 1
@@ -197,6 +199,7 @@ class FurinaSummon(Summon):
     name_ch = "沙龙成员"
     removable = True
     max_usage = 4
+    id = 121111
 
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character' = None, usage=2):
         super().__init__(game, from_player, from_character)
@@ -331,6 +334,7 @@ class FurinaSummon(Summon):
 class SeatsSacredandSecular(ActionCard):
     name = "Seats Sacred and Secular"
     name_ch = "圣俗杂座"
+    id = 121171
     cost_num = 0
     cost_type = None
     card_type = ActionCardType.EVENT
@@ -353,6 +357,7 @@ class SeatsSacredandSecular(ActionCard):
 class CenterofAttention(Status):
     name = "Center of Attention"
     name_ch = "万众瞩目"
+    id = 121121
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.current_usage = 1

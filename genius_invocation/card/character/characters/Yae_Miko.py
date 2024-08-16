@@ -1,7 +1,7 @@
 from genius_invocation.card.character.import_head import *
 
 class Spiritfox_SinEater(NormalAttack):
-    id = 14081
+    id = 140801
     type = SkillType.NORMAL_ATTACK
     name = "Spiritfox Sin-Eater"
     name_ch = "狐灵食罪式"
@@ -38,7 +38,7 @@ class Spiritfox_SinEater(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Yakan_Evocation_Sesshou_Sakura(ElementalSkill):
-    id = 14082
+    id = 140802
     name = "Yakan Evocation: Sesshou Sakura"
     name_ch = "野干役咒·杀生樱"
     type = SkillType.ELEMENTAL_SKILL
@@ -72,7 +72,7 @@ class Yakan_Evocation_Sesshou_Sakura(ElementalSkill):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Great_Secret_Art_Tenko_Kenshin(ElementalBurst):
-    id = 14083
+    id = 140803
     name = "Great Secret Art: Tenko Kenshin"
     name_ch = "大密法·天狐显真"
     type = SkillType.ELEMENTAL_BURST
@@ -130,6 +130,7 @@ class Sesshou_Sakura(Summon):
     name = "Sesshou Sakura"
     name_ch = "杀生樱"
     removable = True
+    id = 140811
     element = ElementType.ELECTRO
 
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character:'Character'=None):
@@ -182,6 +183,7 @@ class Sesshou_Sakura(Summon):
 class Tenko_Thunderbolts(Combat_Status):
     name = "Tenko Thunderbolts"
     name_ch = "天狐霆雷"
+    id = 140831
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character:'Character'=None):
         super().__init__(game, from_player, from_character)
         self.current_usage = 1
@@ -211,6 +213,7 @@ class Tenko_Thunderbolts(Combat_Status):
 class SaveDice_Sakura(Status):
     name = "Save Dice for Sakura"
     name_ch = "神篱之御荫-效果"
+    id = 140821
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character:'Character'=None):
         super().__init__(game, from_player, from_character)
         self.usage = 1

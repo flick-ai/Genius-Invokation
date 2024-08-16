@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 class SmallELECTRO_Entity(SmallElement):
     name: str = "Thunder Summoner's Crown"
     name_ch = "唤雷的头冠"
+    id = 31240191
     element_type = CostType.ELECTRO
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, artifact_card = None):
         super().__init__(game, from_player, from_character, artifact_card)

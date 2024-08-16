@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 class Setaria_Entity(Support):
-    id: int = 322019
+    id: int = 32201961
     name = 'Setaria'
     name_ch = '塞塔蕾'
     max_usage = 3

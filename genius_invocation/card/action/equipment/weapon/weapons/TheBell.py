@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 class TheBellWeapon(Weapon):
     '''钟剑'''
-    id = 311305
+    id = 31130581
     name = "The Bell"
     name_ch = "钟剑"
     def on_damage_add(self, game: 'GeniusGame'):
@@ -40,7 +40,7 @@ class TheBellWeapon(Weapon):
         ]
 
 class Shield_of_Bell(Combat_Shield):
-    id = 123456
+    id = 31130551
     name = "Shield of Bell"
     name_ch = "钟剑之盾"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):

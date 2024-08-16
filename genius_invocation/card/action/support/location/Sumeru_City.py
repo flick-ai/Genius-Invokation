@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 class Sumeru_City_Entity(Support):
-    id: int = 321010
+    id: int = 32101061
     name = 'Sumeru City'
     name_ch = '须弥城'
     max_usage = 1

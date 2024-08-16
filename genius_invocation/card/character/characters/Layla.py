@@ -1,7 +1,7 @@
 from genius_invocation.card.character.import_head import *
 
 class Sward_of_the_Radiant_Path(NormalAttack):
-    id: int = 11091
+    id: int = 110901
     name = "Sward of the Radiant Path"
     name_ch = "熠辉轨度剑"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -43,7 +43,7 @@ class Nights_of_Formal_Focus(ElementalSkill):
         垂裳端凝之夜
         元素战技
     '''
-    id: int = 11092
+    id: int = 110902
     name="Nights of Formal Focus"
     name_ch = "垂裳端凝之夜"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -74,7 +74,6 @@ class Nights_of_Formal_Focus(ElementalSkill):
         # 召唤物/状态生成
         self.add_combat_status(game, Shooting_Star)
         self.add_combat_shield(game, Curtain_of_Slumber)
-        # 获得能量 gain 不了一点！
         self.gain_energy(game)
 
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
@@ -82,6 +81,7 @@ class Nights_of_Formal_Focus(ElementalSkill):
 class Curtain_of_Slumber(Combat_Shield):
     name = "Curtain of Slumber Shield"
     name_ch = "安眠帷幕护盾"
+    id = 110951
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character' = None):
         super().__init__(game, from_player, from_character)
         self.usage = 2
@@ -94,6 +94,7 @@ class Curtain_of_Slumber(Combat_Shield):
 class Shooting_Star(Combat_Status):
     name = "Shooting Stars"
     name_ch = "飞星"
+    id = 110931
     def __init__(self, game, from_player: 'GeniusPlayer', from_character: 'Character'=None):
         super().__init__(game, from_player, from_character)
         self.usage = 4
@@ -136,7 +137,7 @@ class Dream_of_the_StarStream_Shaker(ElementalBurst):
         星流摇床之梦
         元素爆发
     '''
-    id: int = 11093
+    id: int = 110903
     name = " Dream of the Star-Stream Shaker"
     name_ch = "星流摇床之梦"
     type: SkillType = SkillType.ELEMENTAL_BURST
@@ -171,8 +172,8 @@ class Dream_of_the_StarStream_Shaker(ElementalBurst):
 
 class Celestial_Dreamsphere(Summon):
     name = "Celestial Dreamsphere"
-    name_ch = "PASS"
-    id:int = 11094
+    name_ch = "饰梦天球"
+    id:int = 110911
     element: ElementType = ElementType.ELECTRO
     removable: bool = True
 

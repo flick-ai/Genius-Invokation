@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 class SmallCRYO_Entity(SmallElement):
     name: str = "Broken Rime's Echo"
     name_ch = "破冰踏雪的回音"
+    id = 31210191
     element_type = CostType.CRYO
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, artifact_card = None):
         super().__init__(game, from_player, from_character, artifact_card)

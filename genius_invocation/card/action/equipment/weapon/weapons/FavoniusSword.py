@@ -10,6 +10,7 @@ if TYPE_CHECKING:
 class FavoniusSwordWeapon(Weapon):
     name: str = "Favonius Sword"
     name_ch = "西风剑"
+    id = 31150581
     max_usage = 1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, weapon_card = None):
         super().__init__(game, from_player, from_character, weapon_card)

@@ -11,6 +11,7 @@ class SacrificialGreatswordWeapon(Weapon):
     name: str = "Sacrificial Greatsword"
     name_ch = "祭礼大剑"
     max_usage = 1
+    id = 31130281
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, weapon_card = None):
         super().__init__(game, from_player, from_character, weapon_card)
         self.usage = self.max_usage

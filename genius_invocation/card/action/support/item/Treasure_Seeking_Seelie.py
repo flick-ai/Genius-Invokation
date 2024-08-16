@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 class Treasure_Seeking_Seelie_Entity(Support):
-    id: int = 323004
+    id: int = 32300461
     name = 'Treasure-Seeking Seelie'
     name_ch = '寻宝仙灵'
     max_usage = -1

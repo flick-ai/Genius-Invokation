@@ -3,6 +3,7 @@ from genius_invocation.card.character.import_head import *
 class Conductive(Status):
     name: str = "Conductive"
     name_ch: str = "引雷"
+    id = 140921
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         '''
         from_player: the player this status is attached to
@@ -59,7 +60,7 @@ class Conductive(Status):
 
 
 class Lightning_Touch(NormalAttack):
-    id: int = 14091
+    id: int = 140901
     name = "Lightning Touch"
     name_ch = "指尖风暴"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -97,7 +98,7 @@ class Lightning_Touch(NormalAttack):
 
 
 class Violet_Arc(ElementalSkill):
-    id: int = 14092
+    id: int = 140902
     name = "Violet Arc"
     name_ch = "苍雷"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -128,6 +129,7 @@ class Lightning_Rose_Summon(Summon):
     name: str = "Lightning Rose"
     name_ch: str = "蔷薇雷光"
     main_damage: int = 2
+    id = 140911
     element: ElementType = ElementType.ELECTRO
     removable: bool = True
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
@@ -163,7 +165,7 @@ class Lightning_Rose_Summon(Summon):
 
 
 class Lightning_Rose(ElementalBurst):
-    id: int = 14093
+    id: int = 140903
     name = "Lightning Rose"
     name_ch = "蔷薇的雷光"
     type: SkillType = SkillType.ELEMENTAL_BURST

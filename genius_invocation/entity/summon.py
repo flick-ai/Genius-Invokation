@@ -50,6 +50,7 @@ class Burning_Flame(Summon):
     name = 'Burning Flame'
     name_ch = "燃烧烈焰"
     removable = True
+    id = 11
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character:'Character'=None):
         super().__init__(game, from_player, from_character)
         self.element = ElementType.PYRO
@@ -88,6 +89,7 @@ class BountifulCore(Summon):
     name = "Bountiful Core"
     name_ch = "丰穰之核"
     removable = True
+    id = 120811
     element = ElementType.DENDRO
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character:'Character'=None):
         super().__init__(game, from_player, from_character)

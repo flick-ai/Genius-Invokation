@@ -8,7 +8,7 @@ if TYPE_CHECKING:
 
 
 class Rainbow_Macarons_Entity(Status):
-    id: int = 333015
+    id: int = 33301521
     name: str = "Rainbow Macarons"
     name_ch = "缤纷马卡龙"
 

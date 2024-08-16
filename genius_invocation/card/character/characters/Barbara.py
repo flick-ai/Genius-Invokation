@@ -1,7 +1,7 @@
 from genius_invocation.card.character.import_head import *
 
 class WhisperofWater(NormalAttack):
-    id: int = 12011
+    id: int = 120101
     name = "Whisper of Water"
     name_ch = "水之浅唱"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -20,7 +20,7 @@ class WhisperofWater(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class LettheShowBegin(ElementalSkill):
-    id: int = 12012
+    id: int = 120102
     name = "Let the Show Begin♪"
     name_ch = "演唱，开始♪"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -44,6 +44,7 @@ class MelodyLoop(Summon):
     name_ch = "歌声之环"
     element: ElementType = ElementType.HYDRO
     removable = True
+    id = 120111
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.usage: int = 2
@@ -91,7 +92,7 @@ class MelodyLoop(Summon):
             self.talent_usage -= 1
 
 class ShiningMiracle(ElementalBurst):
-    id: int = 12013
+    id: int = 120103
     name = "Shining Miracle♪"
     name_ch = "闪耀奇迹♪"
     type: SkillType = SkillType.ELEMENTAL_BURST

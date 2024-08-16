@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 class Katheryn_Entity(Support):
-    id: int = 322002
+    id: int = 32200261
     name = 'Katheryn'
     name_ch = '凯瑟琳'
     max_usage = 1

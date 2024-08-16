@@ -6,7 +6,7 @@ if TYPE_CHECKING:
     from genius_invocation.game.game import GeniusGame
 
 class Shattering_Ice_Entity(Status):
-    id: int = 331102
+    id: int = 33110221
     name: str = "Shattering_Ice"
     name_ch = "粉碎之冰"
 

@@ -2,7 +2,7 @@ from genius_invocation.card.character.import_head import *
 
 
 class TheClassicsofAcupuncture(NormalAttack):
-    id: int = 17051
+    id: int = 170501
     name = "The Classics of Acupuncture"
     name_ch = "金匮针解"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -20,7 +20,7 @@ class TheClassicsofAcupuncture(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class UniversalDiagnosis(ElementalSkill):
-    id: int = 17052
+    id: int = 170502
     name = "Universal Diagnosis"
     name_ch = "太素诊要"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -42,6 +42,7 @@ class GossamerSprite(Summon):
     name = "Gossamer Sprite"
     name_ch = "游丝徵灵"
     removable = True
+    id = 170511
     element = ElementType.DENDRO
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character:'Character'=None):
         super().__init__(game, from_player, from_character)
@@ -78,6 +79,7 @@ class GossamerSprite(Summon):
 class PulsingClarity(Combat_Status):
     name = "Pulsing Clarity"
     name_ch = "脉摄宣明"
+    id = 170531
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.usage = 2
@@ -104,6 +106,7 @@ class PulsingClarity(Combat_Status):
 class SeamlessShield(Combat_Shield):
     name = "Seamless Shield"
     name_ch = "无郤气护盾"
+    id = 170551
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.current_usage = 1
@@ -139,7 +142,7 @@ class SeamlessShield(Combat_Shield):
         ]
 
 class HolisticRevivification(ElementalBurst):
-    id: int = 17053
+    id: int = 170503
     name = "Holistic Revivification"
     name_ch = "愈气全形论"
     type: SkillType = SkillType.ELEMENTAL_BURST

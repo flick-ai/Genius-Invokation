@@ -1,7 +1,7 @@
 from genius_invocation.card.character.import_head import *
 
 class Majestic_Dance(NormalAttack):
-    id: int = 27011
+    id: int = 270101
     name = "Majestic Dance"
     name_ch = "菌王舞步"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -33,7 +33,7 @@ class Majestic_Dance(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Volatile_Spore_Cloud(ElementalSkill):
-    id = 27012
+    id = 270102
     name = "Volatile Spore Cloud"
     name_ch = "不稳定孢子云"
     type = SkillType.ELEMENTAL_SKILL
@@ -64,7 +64,7 @@ class Volatile_Spore_Cloud(ElementalSkill):
 class Feather_Spreading(ElementalBurst):
     name = "Feather Spreading"
     name_ch = "尾羽豪放"
-    id = 27013
+    id = 270103
     type = SkillType.ELEMENTAL_BURST
 
     damage_type = SkillType.ELEMENTAL_BURST
@@ -124,6 +124,7 @@ class Jadeplume_Terrorshroom(Character):
 class Radical_Vitality(Status):
     name = "Radical Vitality"
     name_ch = "活化激能"
+    id = 270121
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.max_usage = 3

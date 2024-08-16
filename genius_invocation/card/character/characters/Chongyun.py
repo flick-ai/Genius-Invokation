@@ -1,7 +1,7 @@
 from genius_invocation.card.character.import_head import *
 
 class Demonbane(NormalAttack):
-    id: int = 11041
+    id: int = 110401
     name = "Demonbane"
     name_ch = "灭邪四式"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -20,7 +20,7 @@ class Demonbane(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class LayeredFrost(ElementalSkill):
-    id: int = 11042
+    id: int = 110402
     name = "Chonghua's Layered Frost"
     name_ch = "重华叠霜"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -42,6 +42,7 @@ class LayeredFrost(ElementalSkill):
 class FrostField(Combat_Status):
     name = "Chonghua's Layered Frost"
     name_ch = "重华叠霜"
+    id = 110431
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None):
         super().__init__(game, from_player, from_character)
         self.max_usage = 2
@@ -84,7 +85,7 @@ class FrostField(Combat_Status):
             self.listeners.append(EventType.DAMAGE_ADD, ZoneType.ACTIVE_ZONE, self.on_add_damage)
 
 class CloudPartingStar(ElementalBurst):
-    id: int = 11043
+    id: int = 110403
     name = "Cloud-Parting Star"
     name_ch = "云开星落"
     type: SkillType = SkillType.ELEMENTAL_BURST

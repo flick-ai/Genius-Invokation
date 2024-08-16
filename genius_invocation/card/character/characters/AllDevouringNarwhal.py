@@ -4,7 +4,7 @@ from genius_invocation.card.action.base import ActionCard
 class ShatteringWaves(NormalAttack):
     name = 'Shattering Waves'
     name_ch = "碎涛旋跃"
-    id: int = 22041
+    id: int = 220401
     type: SkillType = SkillType.NORMAL_ATTACK
 
     # damage
@@ -31,7 +31,7 @@ class ShatteringWaves(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class StarfallShower(ElementalSkill):
-    id = 22042
+    id = 220402
     name = 'Starfall Shower'
     name_ch = "迸落星雨"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -68,7 +68,7 @@ class StarfallShower(ElementalSkill):
 
 
 class RavagingDevourer(ElementalBurst):
-    id = 22043
+    id = 220403
     name = 'Ravaging Devourer'
     name_ch = "横噬鲸吞"
     type: SkillType = SkillType.ELEMENTAL_BURST
@@ -140,6 +140,7 @@ class AllDevouringNarwhal(Character):
 class DeepDevourersDomain(Combat_Status):
     name = "Deep Devourers Domain"
     name_ch = "深噬之域"
+    id = 220431
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.cards: List['ActionCard'] = self.from_player.tune_or_discard_cards
@@ -189,7 +190,7 @@ class DarkShadow(Summon):
     name = "Dark Shadow"
     name_ch = "黑色幻影"
     removable = True
-
+    id = 220411
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character' = None, usage=0, damage=0):
         super().__init__(game, from_player, from_character)
         self.current_usage = usage

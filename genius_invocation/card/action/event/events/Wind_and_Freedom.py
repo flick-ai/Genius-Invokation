@@ -8,7 +8,7 @@ if TYPE_CHECKING:
 
 
 class  Wind_and_Freedom_Entity(Combat_Status):
-    id: int = 331801
+    id: int = 33180131
     name: str = 'Wind and Freedom'
     name_ch = '风与自由'
     def __init__(self, game:'GeniusGame', from_player: 'GeniusPlayer', from_character=None):

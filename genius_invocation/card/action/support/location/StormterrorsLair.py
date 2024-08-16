@@ -10,6 +10,7 @@ if TYPE_CHECKING:
 
 class StormterrorsLairEntity(Support):
     name: str = "Stormterror's Lair"
+    id = 32101561
     name_ch = '风龙废墟'
     max_usage = 1
     max_count = -1

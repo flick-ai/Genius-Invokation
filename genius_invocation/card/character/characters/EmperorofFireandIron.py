@@ -3,7 +3,7 @@ from genius_invocation.card.character.import_head import *
 class ShatterclampStrike(NormalAttack):
     name = 'Shatterclamp Strike'
     name_ch = "重钳碎击"
-    id = 23041
+    id = 230401
     type: SkillType = SkillType.NORMAL_ATTACK
 
     # damage
@@ -41,7 +41,7 @@ class ShatterclampStrike(NormalAttack):
 class BusterBlaze(ElementalSkill):
     name = 'Buster Blaze'
     name_ch = '烈焰燃绽'
-    id = 23042
+    id = 230402
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
     # damage
@@ -77,7 +77,7 @@ class BusterBlaze(ElementalSkill):
 class BattleLineDetonation(ElementalBurst):
     name = "Battle-Line Detonation"
     name_ch = "战阵爆轰"
-    id = 24043
+    id = 230403
     type: SkillType = SkillType.ELEMENTAL_BURST
 
     # damage
@@ -114,7 +114,7 @@ class BattleLineDetonation(ElementalBurst):
 class SearingBlast(ElementalBurst):
     name = "Searing Blast"
     name_ch = "炽烈轰破"
-    id = 24044
+    id = 230404
     type = SkillType.ELEMENTAL_BURST
 
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
@@ -137,6 +137,7 @@ class SearingBlast(ElementalBurst):
 class PrepareSearingBlast(Status):
     name = "Prepare Searing Blast"
     name_ch = "准备技能: 炽烈轰破"
+    id = 230421
     def __init__(self, game:'GeniusGame', from_player:'GeniusPlayer', from_character:'Character', next_skill: 'CharacterSkill'):
         super().__init__(game, from_player, from_character)
         self.next_skill = next_skill
@@ -159,6 +160,7 @@ class PrepareSearingBlast(Status):
 class ArmoredCrabCarapace(Shield):
     name = 'Armored Crab Carapace'
     name_ch = '重甲蟹壳'
+    id = 230441
     def __init__(self, game:'GeniusGame', from_player: 'GeniusPlayer', from_character=None, usage=2):
         super().__init__(game, from_player, from_character)
         self.current_usage = usage
@@ -215,7 +217,7 @@ class EmperorofFireandIron(Character):
             #检查Character Zone
             for character in self.from_player.character_list:
                 for status in character.character_zone.status_list:
-                    if isinstance(status, Shield):
+                    if isinstance(status, Shield) and not isinstance(status, ArmoredCrabCarapace):
                         add_usage += 1
                         status.on_destroy(game)
             # 检查天赋

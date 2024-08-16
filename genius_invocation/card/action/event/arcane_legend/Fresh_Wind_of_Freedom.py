@@ -6,7 +6,7 @@ if TYPE_CHECKING:
     from genius_invocation.game.player import GeniusPlayer
 
 class Fresh_Wind_of_Freedom_Entity(Combat_Status):
-    id: int = 330004
+    id: int = 33000431
     name = "Fresh Wind of Freedom"
     name_ch = "自由的新风"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):

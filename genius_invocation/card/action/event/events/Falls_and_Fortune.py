@@ -7,6 +7,7 @@ if TYPE_CHECKING:
 class Falls_and_Fortune_Entity(Combat_Status):
     name: str = 'Falls and Fortune'
     name_ch = '坍陷与契机'
+    id = 33202631
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.current_usage = 1

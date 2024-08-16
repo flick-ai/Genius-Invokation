@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 
 
 class Favonius_Cathedral_Entity(Support):
-    id: int = 321006
+    id: int = 32100661
     name = 'Favonius Cathedral'
     name_ch = '西风大教堂'
     max_usage = 2

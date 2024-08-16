@@ -7,7 +7,7 @@ from genius_invocation.card.character.import_head import *
 class Wind_Spirit_Creation(NormalAttack):
     name = "Wind Spirit Creation"
     name_ch = "简式风灵作成"
-    id = 15011
+    id = 150101
     type: SkillType = SkillType.NORMAL_ATTACK
     damage_type: SkillType = SkillType.NORMAL_ATTACK
     main_damage_element: ElementType = ElementType.ANEMO
@@ -42,7 +42,7 @@ class Wind_Spirit_Creation(NormalAttack):
 class Astable_Anemohypostasis_Creation_6308(ElementalSkill):
     name = "Astable Anemohypostasis Creation - 6308"
     name_ch = "风灵作成·陆叁零捌"
-    id = 15012
+    id = 150102
     type: SkillType = SkillType.ELEMENTAL_SKILL
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
     main_damage_element: ElementType = ElementType.ANEMO
@@ -76,6 +76,7 @@ class Large_Wind_Spirit(Summon):
     name_ch = "大型风灵"
     removable = True
     element = ElementType.ANEMO
+    id = 150111
 
     def __init__(self, game:'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character' =None):
         super().__init__(game, from_player, from_character)
@@ -127,7 +128,7 @@ class Large_Wind_Spirit(Summon):
 class Forbidden_Creation_Isomer_75_Type_II(ElementalBurst):
     name = "Forbidden Creation - Isomer 75 / Type II"
     name_ch = "禁·风灵作成·柒伍同构贰型"
-    id = 15013
+    id = 150103
     type: SkillType = SkillType.ELEMENTAL_BURST
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
     main_damage_element: ElementType = ElementType.ANEMO

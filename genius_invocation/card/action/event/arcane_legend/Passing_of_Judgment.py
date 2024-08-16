@@ -6,7 +6,7 @@ if TYPE_CHECKING:
     from genius_invocation.game.player import GeniusPlayer
 
 class Passing_of_Judgment_Entity(Combat_Status):
-    id: int = 330005
+    id: int = 33000531
     name = "Passing of Judgment"
     name_ch = "裁定之时"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):

@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 class WolfsGravestoneWeapon(Weapon):
     name: str = "Wolf's Gravestone"
     name_ch = "狼的末路"
-
+    id = 31130381
     def on_add_damage(self, game:'GeniusGame'):
         if game.current_damage.damage_from == self.from_character:
             if game.current_damage.main_damage_element is not ElementType.PIERCING:

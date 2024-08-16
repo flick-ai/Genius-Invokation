@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 class Wagner_Entity(Support):
-    id: int = 322004
+    id: int = 32200461
     name = 'Wagner'
     name_ch = '瓦格纳'
     max_usage = 1

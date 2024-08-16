@@ -10,6 +10,7 @@ class The_Boar_Princess_Entity(Combat_Status):
     name: str = 'The Boar Princess'
     name_ch = '野猪公主'
     max_usage = 2
+    id = 33202531
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.usage = self.max_usage

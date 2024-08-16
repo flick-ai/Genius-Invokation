@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 class Strictly_Prohibited(Combat_Status):
     name = 'Strictly Prohibited'
     name_ch = '严格禁令'
+    id = 32101831
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.usage = 1
@@ -35,7 +36,7 @@ class Strictly_Prohibited(Combat_Status):
             (EventType.END_PHASE, ZoneType.ACTIVE_ZONE, self.on_end),
         ]
 class Fortress_of_Meropide_Entity(Support):
-    id: int = 322018
+    id: int = 32201861
     name = 'Fortress of Meropide'
     name_ch = '梅洛彼得堡'
     max_usage = -1

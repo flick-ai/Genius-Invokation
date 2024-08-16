@@ -5,7 +5,7 @@ class Firework_FlareUp(NormalAttack):
         烟火打扬
         普通攻击
     '''
-    id: int = 13051
+    id: int = 130501
     name = "Firework Flare-Up"
     name_ch = "烟火打扬"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -47,7 +47,7 @@ class Niwabi_FireDance(ElementalSkill):
         焰硝庭火舞
         元素战技
     '''
-    id: int = 13052
+    id: int = 130502
     name="Niwabi Fire-Dance"
     name_ch = "焰硝庭火舞"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -87,7 +87,7 @@ class Ryuukin_Saxifrage(ElementalBurst):
         琉金云间草
         元素爆发
     '''
-    id: int = 13053
+    id: int = 130503
     name = "Ryuukin Saxifrage"
     name_ch = "琉金云间草"
     type: SkillType = SkillType.ELEMENTAL_BURST
@@ -157,6 +157,7 @@ class Yoimiya(Character):
 class Niwabi_Enshou(Status):
     name = "Niwabi Enshou"
     name_ch = "庭火焰硝"
+    id = 130521
     def __init__(self, game, from_player: 'GeniusPlayer', from_character: Character=None):
         super().__init__(game, from_player, from_character)
         # 4.7平衡性调整：可用次数2变为3
@@ -220,6 +221,7 @@ class Niwabi_Enshou(Status):
 class Aurous_Blaze(Combat_Status):
     name = "Aurous Blaze"
     name_ch = "琉金火光"
+    id = 130531
     def __init__(self, game, from_player: 'GeniusPlayer', from_character: 'Character'=None):
         super().__init__(game, from_player, from_character)
         self.usage = 2

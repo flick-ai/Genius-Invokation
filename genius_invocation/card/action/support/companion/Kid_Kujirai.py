@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 class Kid_Kujirai_Entity(Support):
-    id: int = 322014
+    id: int = 32201461
     name = 'Kid Kujirai'
     name_ch = '鲸井小弟'
     max_usage = -1

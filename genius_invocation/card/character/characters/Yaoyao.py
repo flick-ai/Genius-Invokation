@@ -1,7 +1,7 @@
 from genius_invocation.card.character.import_head import *
 
 class TurnSpear(NormalAttack):
-    id: int = 17041
+    id: int = 170401
     name: str = "Toss 'N' Turn Spear"
     name_ch = "颠扑连环枪"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -19,7 +19,7 @@ class TurnSpear(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class RaphanusSkyCluster(ElementalSkill):
-    id: int = 17042
+    id: int = 170402
     name: str = "Raphanus Sky Cluster"
     name_ch = "云台团团降芦菔"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -40,6 +40,7 @@ class Yuegui(Summon):
     name: str = "Yuegui: Throwing Mode"
     name_ch = "月桂·抛掷型"
     removable = True
+    id = 170411
     element = ElementType.DENDRO
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character:'Character'=None):
         super().__init__(game, from_player, from_character)
@@ -89,7 +90,7 @@ class Yuegui(Summon):
 
 
 class MoonjadeDescent(ElementalBurst):
-    id: int = 17043
+    id: int = 170403
     name: str = "Moonjade Descent"
     name_ch = "玉颗珊珊月中落"
     type: SkillType = SkillType.ELEMENTAL_BURST
@@ -111,6 +112,7 @@ class MoonjadeDescent(ElementalBurst):
 class AdeptalLegacy(Combat_Status):
     name = "Adeptal Legacy"
     name_ch = "桂子仙机"
+    id = 170431
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character:'Character'=None):
         super().__init__(game, from_player, from_character)
         self.usage = 3

@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 # weapons
 class RavenBowWeapon(Weapon):
-    id: int = 311201
+    id: int = 31120181
     name: str = 'Raven Bow'
     name_ch = '鸦羽弓'
     def on_damage_add(self, game: 'GeniusGame'):

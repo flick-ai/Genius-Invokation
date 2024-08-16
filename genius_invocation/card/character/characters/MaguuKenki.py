@@ -2,7 +2,7 @@ from genius_invocation.card.character.import_head import *
 
 
 class Ichimonji(NormalAttack):
-    id: int = 25011
+    id: int = 250101
     name = "Ichimonji"
     name_ch = "一文字"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -20,7 +20,7 @@ class Ichimonji(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class BlusteringBlade(ElementalSkill):
-    id: int = 25012
+    id: int = 250102
     name = "Blustering Blade"
     name_ch = "孤风刀势"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -44,6 +44,7 @@ class ShadowswordLoneGale(Summon):
     name_ch = "剑影·孤风"
     removable = True
     element = ElementType.ANEMO
+    id = 250111
 
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character:'Character'=None):
         super().__init__(game, from_player, from_character)
@@ -95,6 +96,7 @@ class ShadowswordGallopingFrost(Summon):
     name_ch = "剑影·霜驰"
     removable = True
     element = ElementType.CRYO
+    id = 250112
 
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character:'Character'=None):
         super().__init__(game, from_player, from_character)
@@ -142,7 +144,7 @@ class ShadowswordGallopingFrost(Summon):
         ]
 
 class FrostyAssault(ElementalSkill):
-    id: int = 25013
+    id: int = 250103
     name = "Frosty Assault"
     name_ch = "霜驰影突"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -162,7 +164,7 @@ class FrostyAssault(ElementalSkill):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class PseudoTenguSweeper(ElementalBurst):
-    id: int = 25014
+    id: int = 250104
     name = "Pseudo Tengu Sweeper"
     name_ch = "机巧伪天狗抄"
     type: SkillType = SkillType.ELEMENTAL_BURST

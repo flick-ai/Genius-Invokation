@@ -1,7 +1,7 @@
 from genius_invocation.card.character.import_head import *
 
 class Supplicants_Bowmanship(NormalAttack):
-    id = 17011
+    id = 170101
     name = "Supplicant's Bowmanship"
     name_ch = "祈颂射艺"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -34,7 +34,7 @@ class Supplicants_Bowmanship(NormalAttack):
 
 
 class Floral_Brush(ElementalSkill):
-    id = 17012
+    id = 170102
     name = "Floral Brush"
     name_ch = "拂花偈叶"
     type = SkillType.ELEMENTAL_SKILL
@@ -69,7 +69,7 @@ class Floral_Brush(ElementalSkill):
 class TrumpCard_Kitty(ElementalBurst):
     name = 'Trump-Card Kitty'
     name_ch = "猫猫秘宝"
-    id = 17013
+    id = 170103
     type = SkillType.ELEMENTAL_BURST
 
     damage_type = SkillType.ELEMENTAL_BURST
@@ -99,6 +99,7 @@ class Cuilein_Anbar(Summon):
     name_ch = "柯里安巴"
     element = ElementType.DENDRO
     removable = True
+    id = 170111
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.usage = 2
@@ -129,6 +130,7 @@ class Cuilein_Anbar(Summon):
 class Sprout(Combat_Status):
     name_ch = "新叶"
     name = "Sprout"
+    id = 170131
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.max_usage = 1

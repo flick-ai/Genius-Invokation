@@ -5,7 +5,7 @@ from genius_invocation.card.character.import_head import *
 class Whirlwind_Thrust(NormalAttack):
     name = "Whirlwind Thrust"
     name_ch = "卷积微尘"
-    id = 15041
+    id = 150401
     type: SkillType = SkillType.NORMAL_ATTACK
     damage_type: SkillType = SkillType.NORMAL_ATTACK
     main_damage_element: ElementType = ElementType.PHYSICAL
@@ -41,7 +41,7 @@ class Whirlwind_Thrust(NormalAttack):
 class Lemniscatic_Wind_Cycling(ElementalSkill):
     name = "Lemniscatic Wind Cycling"
     name_ch = "风轮两立"
-    id = 15042
+    id = 150402
     type: SkillType = SkillType.ELEMENTAL_SKILL
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
     main_damage_element: ElementType = ElementType.ANEMO
@@ -74,7 +74,7 @@ class Lemniscatic_Wind_Cycling(ElementalSkill):
 class Yaksha_s_Mask(Status):
     name = "Yaksha's Mask"
     name_ch = "夜叉傩面"
-    
+    id = 150421
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.usage = 2
@@ -139,7 +139,7 @@ class Yaksha_s_Mask(Status):
 class Bane_of_All_Evil(ElementalBurst):
     name = "Bane of All Evil"
     name_ch = "靖妖傩舞"
-    id = 15043
+    id = 150403
     type: SkillType = SkillType.ELEMENTAL_BURST
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
     main_damage_element: ElementType = ElementType.ANEMO

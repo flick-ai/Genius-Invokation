@@ -3,7 +3,7 @@ from genius_invocation.card.character.import_head import *
 
 
 class Favonius_ladework(NormalAttack):
-    id = 15021
+    id = 150201
     name = "Favonius ladework"
     name_ch = "西风剑术"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -37,7 +37,7 @@ class Favonius_ladework(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Gale_Blade(ElementalSkill):
-    id = 15022
+    id = 150202
     name = "Gale Blade"
     name_ch = "风压剑"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -74,7 +74,7 @@ class Dandelion_Field(Summon):
     name_ch = "蒲公英领域"
     removable = True
     element = ElementType.ANEMO
-
+    id = 150211
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character' = None):
         super().__init__(game, from_player, from_character)
         self.usage = 2
@@ -114,7 +114,7 @@ class Dandelion_Field(Summon):
         ]
 
 class Dandelion_Breeze(ElementalBurst):
-    id = 15023
+    id = 150203
     name = "Dandelion Breeze"
     name_ch = "蒲公英之风"
     type: SkillType = SkillType.ELEMENTAL_BURST

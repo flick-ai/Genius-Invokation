@@ -1,7 +1,7 @@
 from genius_invocation.card.character.import_head import *
 
 class ThunderousWingslash(NormalAttack):
-    id: int = 24021
+    id: int = 240201
     name = "Thunderous Wingslash"
     name_ch = "轰霆翼斩"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -37,6 +37,7 @@ class ThunderousWingslash(NormalAttack):
 class LightningStrikeProbe(Combat_Status):
     name = "Lightning Strike Probe"
     name_ch = "雷霆探知"
+    id = 240231
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character', thunder: 'Character'): 
         # from_character here is None
         super().__init__(game, from_player, from_character)
@@ -69,6 +70,7 @@ class LightningStrikeProbe(Combat_Status):
 class Lightning_Rod(Status):
     name = "Lightning Rod"
     name_ch = "雷鸣探知"
+    id = 240221
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character', thunder: 'Character'):
         super().__init__(game, from_player, from_character)
         self.thunder = thunder # The Thunder Manifestation who generate this Probe
@@ -99,7 +101,7 @@ class Lightning_Rod(Status):
         ]
 
 class StrifefulLightning(ElementalSkill):
-    id: int = 24022
+    id: int = 240202
     name = "Strifeful Lightning"
     name_ch = "雷墙倾轧"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -137,6 +139,7 @@ class Thundering_Shackles(Summon):
     main_damage: int = 3
     element: ElementType = ElementType.ELECTRO
     removable: bool = True
+    id = 240211
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.usage = 1
@@ -181,7 +184,7 @@ class Thundering_Shackles(Summon):
 
 
 class ThunderingShackles(ElementalBurst):
-    id: int = 24023
+    id: int = 240203
     name = "Thundering Shackles"
     name_ch = "轰雷禁锢"
     type: SkillType = SkillType.ELEMENTAL_BURST

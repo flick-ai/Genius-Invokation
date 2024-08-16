@@ -2,7 +2,7 @@ from genius_invocation.card.character.import_head import *
 
 
 class KhandaBarrierBuster(NormalAttack):
-    id: int = 17021
+    id: int = 170201
     name = "Khanda Barrier-Buster"
     name_ch = "藏蕴破障"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -20,7 +20,7 @@ class KhandaBarrierBuster(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class VijnanaPhalaMine(ElementalSkill):
-    id: int = 17022
+    id: int = 170202
     name = "Vijnana-Phala Mine"
     name_ch = "识果种雷"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -41,6 +41,7 @@ class VijnanaPhalaMine(ElementalSkill):
 class VijnanaSuffusion(Status):
     name = "Vijnana Suffusion"
     name_ch = "通塞识"
+    id = 170221
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None):
         super().__init__(game, from_player, from_character)
         self.usage = 2
@@ -104,6 +105,7 @@ class ClusterbloomArrow(Summon):
     name = "Clusterbloom Arrow"
     name_ch = "藏蕴花矢"
     removable = True
+    id = 170211
     element = ElementType.DENDRO
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character:'Character'=None):
         super().__init__(game, from_player, from_character)
@@ -139,7 +141,7 @@ class ClusterbloomArrow(Summon):
         ]
 
 class FashionersTanglevineShaft(ElementalBurst):
-    id: int = 17023
+    id: int = 170203
     name = "Fashioner's Tanglevine Shaft"
     name_ch = "造生缠藤箭"
     type: SkillType = SkillType.ELEMENTAL_BURST

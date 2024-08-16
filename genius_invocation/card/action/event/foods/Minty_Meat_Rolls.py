@@ -7,7 +7,7 @@ if TYPE_CHECKING:
     from genius_invocation.game.player import GeniusPlayer
 
 class Minty_Meat_Rolls_Entity(Status):
-    id: int = 333008
+    id: int = 33300821
     name: str = "Minty Meat Rolls"
     name_ch = "兽肉薄荷卷"
 

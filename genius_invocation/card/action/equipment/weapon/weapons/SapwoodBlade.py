@@ -9,6 +9,7 @@ if TYPE_CHECKING:
 class SapwoodBladeStatus(Status):
     name: str = "Sapwood Blade"
     name_ch = "原木刀"
+    id = 31150721
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None):
         super().__init__(game, from_player, from_character)
 
@@ -32,6 +33,7 @@ class SapwoodBladeStatus(Status):
 class SapwoodBladeWeapon(Weapon):
     name: str = "Sapwood Blade"
     name_ch = "原木刀"
+    id = 31150781
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, weapon_card = None):
         super().__init__(game, from_player, from_character, weapon_card)
         entity = self.from_character.character_zone.has_entity(SapwoodBladeStatus)

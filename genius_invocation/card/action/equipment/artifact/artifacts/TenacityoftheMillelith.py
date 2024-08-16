@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 class UnmovableMountain(Shield):
     name = "Unmovable Mountain"
     name_ch = "重嶂不移"
+    id = 31201041
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.current_usage = 2
@@ -22,6 +23,7 @@ class TenacityoftheMillelithEntity(Artifact):
     name: str = "Tenacity of the Millelith"
     name_ch = "千岩牢固"
     max_usage = 1
+    id = 31201091
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, artifact_card = None):
         super().__init__(game, from_player, from_character, artifact_card)
         self.round = -1

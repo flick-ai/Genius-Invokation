@@ -6,7 +6,7 @@ if TYPE_CHECKING:
     from genius_invocation.game.player import GeniusPlayer
 
 class Ancient_Courtyard_Entity(Status):
-    id: int = 330001
+    id: int = 33000121
     name = "Ancien Courtyard"
     name_ch = "旧时庭园"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):

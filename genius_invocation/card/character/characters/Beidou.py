@@ -2,7 +2,7 @@ from genius_invocation.card.character.import_head import *
 
 
 class Oceanborne(NormalAttack):
-    id: int = 14051
+    id: int = 140501
     name = "Oceanborne"
     name_ch = "征涛"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -20,7 +20,7 @@ class Oceanborne(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Tidecaller(ElementalSkill):
-    id = 14052
+    id = 140502
     type: SkillType = SkillType.ELEMENTAL_SKILL
     name = "Tidecaller"
     name_ch = "捉浪"
@@ -44,6 +44,7 @@ class Tidecaller(ElementalSkill):
 class Wavestrider(ElementalSkill):
     name = 'Wavestrider'
     name_ch = '踏潮'
+    id = 140504
     type = SkillType.ELEMENTAL_SKILL
     damage_type= SkillType.ELEMENTAL_SKILL
     main_damage_element = ElementType.ELECTRO
@@ -59,13 +60,27 @@ class Wavestrider(ElementalSkill):
         # game.manager.invoke(EventType.AFTER_USE_SKILL, game)
         self.from_character.from_player.prepared_skill = None
 
-class TidecallerSurfEmbrace(Shield):
+class ShieldTidecallerSurfEmbrace(Shield):
+    name = "Shield of  Tidecaller: Surf Embrace"
+    name_ch = "捉浪·涛拥之守的盾"
+    id = 140541
+    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character', from_prepare_status: 'Status'):
+        super().__init__(game, from_player, from_character)
+        self.current_usage = 2
+        self.from_prepare_status = from_prepare_status
+
+class TidecallerSurfEmbrace(Status):
     name = "Tidecaller: Surf Embrace"
     name_ch = "捉浪·涛拥之守"
+    id = 140521
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character', Next_Skill: 'CharacterSkill'):
+        assert self.from_character.character_zone.has_entity(ShieldTidecallerSurfEmbrace) is None
+        shield = ShieldTidecallerSurfEmbrace(game, from_player, from_character, self)
+        self.from_character.character_zone.add_entity(shield) # add shield before the status
+
         super().__init__(game, from_player, from_character)
         self.skill = Next_Skill
-        self.current_usage = 2
+        
 
     def on_call(self, game: 'GeniusGame'):
         self.skill.on_call(game)
@@ -76,28 +91,21 @@ class TidecallerSurfEmbrace(Shield):
             self.from_character.from_player.prepared_skill = None
             self.on_destroy(game)
 
-    def on_execute_dmg(self, game:'GeniusGame'):
-        if game.current_damage.damage_to == self.from_character:
-            if game.current_damage.main_damage_element != ElementType.PIERCING:
-                if game.current_damage.main_damage >= self.current_usage:
-                    game.current_damage.main_damage -= self.current_usage
-                    self.current_usage = 0
-                else:
-                    self.current_usage -= game.current_damage.main_damage
-                    game.current_damage.main_damage = 0
-                # if self.from_character.talent:
-                #     self.from_character.execute_dmg = 1
-
     def update_listener_list(self):
         self.listeners = [
-            (EventType.EXECUTE_DAMAGE, ZoneType.CHARACTER_ZONE, self.on_execute_dmg),
             (EventType.AFTER_CHANGE_CHARACTER, ZoneType.CHARACTER_ZONE, self.after_change)
         ]
+    
+    def on_destroy(self, game: 'GeniusGame'):
+        shield = self.from_character.character_zone.has_entity(ShieldTidecallerSurfEmbrace)
+        if shield is not None:
+            shield.on_destroy(game)
+        super().on_destroy(game)
 
 class Stormbreaker(ElementalBurst):
     name = "Stormbreaker"
     name_ch = "斫雷"
-    id = 14053
+    id = 140503
     type = SkillType.ELEMENTAL_BURST
     damage_type= SkillType.ELEMENTAL_SKILL
     main_damage_element = ElementType.ELECTRO
@@ -117,6 +125,7 @@ class Stormbreaker(ElementalBurst):
 class ThunderbeastsTarge(Combat_Status):
     name = "Thunderbeast's Targe"
     name_ch =  "雷兽之盾"
+    id = 140531
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.usage = 2
@@ -168,7 +177,7 @@ class Beidou(Character):
     country: CountryType = CountryType.LIYUE
     init_health_point: int = 10
     max_health_point: int = 10
-    skill_list: List = []
+    skill_list: List = [Oceanborne, Tidecaller, Stormbreaker]
     max_power: int = 3
     def __init__(self, game: 'GeniusGame', zone: 'CharacterZone', from_player: 'GeniusPlayer', index: int, from_character=None, talent=False):
         super().__init__(game, zone, from_player, index, from_character)

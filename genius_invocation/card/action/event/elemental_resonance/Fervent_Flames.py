@@ -6,7 +6,7 @@ if TYPE_CHECKING:
     from genius_invocation.game.game import GeniusGame
 
 class Fervent_Flames_Entity(Combat_Status):
-    id: int = 331302
+    id: int = 33130231
     name: str = "Fervent_Flames"
     name_ch = "热诚之火"
 

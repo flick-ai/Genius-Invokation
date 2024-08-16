@@ -6,6 +6,9 @@ if TYPE_CHECKING:
 
 
 class Treasure_Heal(Status):
+    name = "Has been healed!"
+    name_ch = "海底宝藏已使用!"
+    id = 33203121
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.current_usage = 1
@@ -21,6 +24,7 @@ class Treasure_Heal(Status):
 class Undersea_Treasure(ActionCard):
     name: str = 'Underwater Treasure'
     name_ch = '海底宝藏'
+    id = 33203171
     cost_num = 0
     cost_type = None
     def __init__(self) -> None:

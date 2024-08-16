@@ -3,7 +3,7 @@ from genius_invocation.card.character.import_head import *
 class HurtlingBolts(NormalAttack):
     name = 'Hurtling Bolts'
     name_ch = "轰闪落雷"
-    id = 24041
+    id = 240401
     type: SkillType = SkillType.NORMAL_ATTACK
 
     # damage
@@ -41,7 +41,7 @@ class HurtlingBolts(NormalAttack):
 class MistyCall(ElementalSkill):
     name = 'Misty Call'
     name_ch = '雾虚之召'
-    id = 24042
+    id = 240402
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
     # damage
@@ -73,7 +73,7 @@ class MistyCall(ElementalSkill):
 class ThunderingShield(ElementalBurst):
     name = 'Thundering Shield'
     name_ch = '霆雷之护'
-    id = 24043
+    id = 240403
     type: SkillType = SkillType.ELEMENTAL_BURST
 
     # damage
@@ -114,7 +114,7 @@ class ThunderingShield(ElementalBurst):
 class SurgingThunder(ElementalBurst):
     name = "Surging Thunder"
     name_ch = "霆电迸发"
-    id = 22034
+    id = 240404
     type = SkillType.ELEMENTAL_BURST
 
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
@@ -137,6 +137,7 @@ class SurgingThunder(ElementalBurst):
 class PrepareSurgingThunder(Status):
     name = "Prepare Surging Thunder"
     name_ch = "准备技能: 霆电迸发"
+    id = 240421
     def __init__(self, game:'GeniusGame', from_player:'GeniusPlayer', from_character:'Character', next_skill: 'CharacterSkill'):
         super().__init__(game, from_player, from_character)
         self.next_skill = next_skill
@@ -163,6 +164,7 @@ class ElectroCicin(Summon):
     removable = True
     element = ElementType.ELECTRO
     max_usage = 3
+    id = 240411
     def __init__(self, game:'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.current_usage = self.max_usage
@@ -230,6 +232,7 @@ class ElectroCicin(Summon):
 class ElectroCicinShield(Combat_Shield):
     name = 'Electro Cicin Shield'
     name_ch = '雷萤护罩'
+    id = 240451
     def __init__(self, game:'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.usage = 1

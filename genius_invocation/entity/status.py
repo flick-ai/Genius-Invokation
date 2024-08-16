@@ -152,6 +152,7 @@ class Artifact(Equipment):
         self.from_character.character_zone.artifact_card = None
 
     def get_artifact_card(self, game: 'GeniusGame'):
+        '''Get the artifact card from the character to hands.'''
         self.on_destroy(game)
         return self.artifact_card
 
@@ -165,6 +166,7 @@ class Artifact(Equipment):
 class Frozen_Status(Status):
     name = 'Frozen'
     name_ch = "冻结"
+    id = 22
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.usage = 1
@@ -202,6 +204,7 @@ class Frozen_Status(Status):
 class Dendro_Core(Combat_Status):
     name = 'Dendro Core'
     name_ch = "草原核"
+    id = 31
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.usage = 1
@@ -236,6 +239,7 @@ class Dendro_Core(Combat_Status):
 class Catalyzing_Feild(Combat_Status):
     name = 'Catalyzing Feild'
     name_ch = "激化领域"
+    id = 32
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.usage = 2
@@ -261,7 +265,7 @@ class Catalyzing_Feild(Combat_Status):
             (EventType.DAMAGE_ADD, ZoneType.ACTIVE_ZONE, self.on_damage_add)
         ]
 class Crystallize_Shield(Combat_Shield):
-    id = 12345
+    id = 51
     name = "Crystallize Shield"
     name_ch = "结晶盾"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
@@ -277,6 +281,7 @@ class Crystallize_Shield(Combat_Shield):
 class Satisfy_Statue(Status):
     name = "Satisfy"
     name_ch = "饱腹"
+    id = 21
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.current_usage = 1
@@ -303,6 +308,7 @@ class Satisfy_Statue(Status):
 class GoldenChalice(Combat_Status):
     name = "Golden Chalice's Bounty"
     name_ch = "金杯的丰馈"
+    id = 120831
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.usage = MAX_ROUND

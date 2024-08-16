@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 class Opera_Epiclese_Entity(Support):
-    id: int = 322017
+    id: int = 32201761
     name = 'Opera Epiclese'
     name_ch = '欧庇克莱歌剧院'
     max_usage = 3

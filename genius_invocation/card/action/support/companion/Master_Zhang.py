@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 class Master_Zhang_Entity(Support):
-    id: int = 322018
+    id: int = 32201861
     name = 'Master Zhang'
     name_ch = '老章'
     max_usage = 1

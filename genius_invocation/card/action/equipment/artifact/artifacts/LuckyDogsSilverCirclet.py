@@ -12,6 +12,7 @@ class LuckyDogsSilverCircletEntity(Artifact):
     name: str = "Lucky Dog's Silver Circlet"
     name_ch = "幸运儿银冠"
     max_usage = 1
+    id = 31200291
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, artifact_card = None):
         super().__init__(game, from_player, from_character, artifact_card)
         self.usage = self.max_usage

@@ -7,7 +7,7 @@ if TYPE_CHECKING:
     from genius_invocation.game.player import GeniusPlayer
 
 class Mondstadt_Hash_Brown(FoodCard):
-    id: int = 333006
+    id: int = 33300621
     name: str = "Mondstadt Hash Brown"
     name_ch = "蒙德土豆饼"
     cost_num = 1

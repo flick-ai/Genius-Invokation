@@ -12,6 +12,7 @@ class AdventurersBandanaEntity(Artifact):
     name: str = "Adventurer's Bandana"
     name_ch = "冒险家头带"
     max_usage = 3
+    id = 31200191
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, artifact_card = None):
         super().__init__(game, from_player, from_character, artifact_card)
         self.usage = self.max_usage

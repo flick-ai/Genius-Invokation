@@ -1,7 +1,7 @@
 from genius_invocation.card.character.import_head import *
 
 class Fight_Club_Legend(NormalAttack):
-    id: int = 16051
+    id: int = 160501
     name = "Bolts of Downfall"
     name_ch = "喧哗屋传说"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -33,7 +33,7 @@ class Fight_Club_Legend(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Masatsu_Zetsugi_Akaushi_Burst(ElementalSkill):
-    id = 16052
+    id = 160502
     name = "Masatsu Zetsugi: Akaushi Burst"
     name_ch = "魔杀绝技·赤牛发破!"
     type = SkillType.ELEMENTAL_SKILL
@@ -66,7 +66,7 @@ class Masatsu_Zetsugi_Akaushi_Burst(ElementalSkill):
 class Royal_Descent_Behold_Itto_the_Evil(ElementalBurst):
     name = 'Royal Descent: Behold, Itto the Evil!'
     name_ch = '最恶鬼王·一斗轰临!!'
-    id = 16053
+    id = 160503
     type = SkillType.ELEMENTAL_BURST
 
     damage_type = SkillType.ELEMENTAL_BURST
@@ -127,7 +127,7 @@ class Ushi(Summon):
     name_ch = '阿丑'
     element = ElementType.GEO
     removable = False
-
+    id = 160511
     def on_end_phase(self, game: 'GeniusGame'):
         if game.active_player == self.from_player:
             dmg = Damage.create_damage(
@@ -209,6 +209,7 @@ class Ushi(Summon):
 class Shield_from_Ushi(Combat_Status):
     name = 'Shield from Ushi'
     name_ch = '阿丑之盾'
+    id = 160531
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, from_summon:'Summon' = None):
         super().__init__(game, from_player, from_character)
         # USAGE SHOULD ALWAYS SAME WITH SUMMON
@@ -239,6 +240,7 @@ class Raging_Oni_King(Status):
     '''怒目鬼王'''
     name = "Raging Oni King"
     name_ch = "怒目鬼王"
+    id = 160521
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.usage = 2
@@ -290,6 +292,7 @@ class Superlative_Superstrength(Status):
     '''乱神之怪力'''
     name = "Superlative Superstrength"
     name_ch = "乱神之怪力"
+    id = 160522
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.max_usage = 3

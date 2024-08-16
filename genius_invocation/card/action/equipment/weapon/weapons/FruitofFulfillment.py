@@ -10,6 +10,7 @@ if TYPE_CHECKING:
 class FruitofFulfillmentWeapon(Weapon):
     name: str = "Fruit of Fulfillment"
     name_ch = "盈满之实"
+    id = 31110581
     max_usage = 1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, weapon_card = None):
         super().__init__(game, from_player, from_character, weapon_card)

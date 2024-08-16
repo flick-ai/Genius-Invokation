@@ -2,7 +2,7 @@ from genius_invocation.card.character.import_head import *
 
 class Thrust(NormalAttack):
 # 突刺
-    id = 23011
+    id = 230101
     name = 'Thrust'
     name_ch = '突刺'
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -44,7 +44,7 @@ class Prowl(ElementalSkill):
     #伺机而动
     name = 'Prowl'
     name_ch = '伺机而动'
-    id = 23012
+    id = 230102
 
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
@@ -79,7 +79,7 @@ class Blade_Ablastion(ElementalBurst):
     #焚毁之风
     name = 'Blade Ablastion'
     name_ch = '焚毁之风'
-    id = 23013
+    id = 230103
     type = SkillType.ELEMENTAL_BURST
 
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
@@ -105,7 +105,7 @@ class Stealth(Status):
     #潜行
     name = 'Stealth'
     name_ch = '潜行'
-
+    id = 230121
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.max_usage = 2

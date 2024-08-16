@@ -6,7 +6,7 @@ class ElectroCrystalProjection(NormalAttack):
     '''
         雷晶投射
     '''
-    id: int = 24011
+    id: int = 240101
     type: SkillType = SkillType.NORMAL_ATTACK
     name = "Electro Crystal Projection"
     name_ch = "雷晶投射"
@@ -50,6 +50,7 @@ class RockPaperScissorsCombo_Paper(ElementalSkill):
     name = 'Rock-Paper-Scissors Combo: Paper'
     name_ch = '猜拳三连击·布'
     type: SkillType = SkillType.ELEMENTAL_SKILL
+    id = 240105
 
     # damage
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -78,6 +79,7 @@ class PreparePaper(Status):
     name = 'Prepare for Paper'
     name_ch = '准备技能: 猜拳三连击·布'
     current_usage = 1
+    id = 240121
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.skill = RockPaperScissorsCombo_Paper(from_character=from_character)
@@ -106,7 +108,7 @@ class RockPaperScissorsCombo_Scissors(ElementalSkill):
     name = 'Rock-Paper-Scissors Combo: Scissors'
     name_ch = '猜拳三连击·剪刀'
     type: SkillType = SkillType.ELEMENTAL_SKILL
-
+    id = 240104
     # damage
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
     main_damage_element: ElementType = ElementType.ELECTRO
@@ -136,6 +138,7 @@ class PrepareScissors(Status):
     name = 'Prepare for Scissors'
     name_ch = '准备技能: 猜拳三连击·剪刀'
     current_usage = 1
+    id = 240122
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.skill = RockPaperScissorsCombo_Scissors(from_character=from_character)
@@ -163,7 +166,7 @@ class RockPaperScissorsCambo(ElementalSkill):
     '''
         猜拳三连击
     '''
-    id: int = 24012
+    id: int = 240102
     type: SkillType = SkillType.ELEMENTAL_SKILL
     name = 'Rock-Paper-Scissors Combo'
     name_ch = '猜拳三连击'
@@ -205,6 +208,7 @@ class ChainsOfWardingThunder(Summon):
     name_ch = '雷锁镇域'
     element: ElementType = ElementType.ELECTRO
     removable = True
+    id = 240111
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.usage = 2
@@ -262,7 +266,7 @@ class LightningLockdown(ElementalBurst):
         元素爆发
         雳霆镇锁
     '''
-    id: int = 24013
+    id: int = 240103
     type: SkillType = SkillType.ELEMENTAL_BURST
     name = 'Lightning Lockdown'
     name_ch = '雳霆镇锁'
@@ -299,6 +303,7 @@ class ElectroCrystalCore(Status):
     name = 'Electro Crystal Core'
     name_ch = '雷晶核心'
     current_usage = 1
+    id = 240123
     def on_character_die(self, game: 'GeniusGame'):
         '''
             角色死亡时

@@ -2,7 +2,7 @@ from genius_invocation.card.character.import_head import *
 
 
 class Stealthy_Bowshot(NormalAttack):
-    id: int = 12091
+    id: int = 120901
     name = "Stealthy Bowshot"
     name_ch = "潜形隐曜弓"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -31,7 +31,7 @@ class Stealthy_Bowshot(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Lingering_Lifeline(ElementalSkill):
-    id: int = 12092
+    id: int = 120902
     name = "Lingering Lifeline"
     name_ch = "萦络纵命索"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -52,6 +52,7 @@ class Lingering_Lifeline(ElementalSkill):
 class Breakthrough(Status):
     name = "Breakthrough"
     name_ch = "破局"
+    id = 120921
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'=None):
         super().__init__(game, from_player, from_character)
         self.current_usage = 0
@@ -71,7 +72,7 @@ class Breakthrough(Status):
 
 
 class DepthClarion_Dice(ElementalBurst):
-    id: int = 12093
+    id: int = 120903
     name = "Depth-Clarion Dice"
     name_ch = "渊图玲珑骰"
     type: SkillType = SkillType.ELEMENTAL_BURST
@@ -91,8 +92,8 @@ class DepthClarion_Dice(ElementalBurst):
 
 class Exquisite_Throw(Combat_Status):
     name = "Exquisite Throw"
-    name_ch = "adsfasd"
-
+    name_ch = "玄掷玲珑"
+    id = 120931
     def __init__(self, game, from_player: 'GeniusPlayer', from_character: 'Character'=None):
         super().__init__(game, from_player, from_character)
         self.usage = 2

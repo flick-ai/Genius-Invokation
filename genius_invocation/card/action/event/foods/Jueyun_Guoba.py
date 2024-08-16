@@ -7,7 +7,7 @@ if TYPE_CHECKING:
     from genius_invocation.game.player import GeniusPlayer
 
 class Jueyun_Guoba_Entity(Status):
-    id: int = 333001
+    id: int = 33300121
     name: str = 'Jueyun Guoba'
     name_ch =  "绝云锅巴"
 

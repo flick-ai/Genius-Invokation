@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 class Chang_the_Ninth_Entity(Support):
-    id: int = 322009
+    id: int = 32200961
     name = 'Chang the Ninth'
     name_ch = '常九爷'
     max_usage = -1

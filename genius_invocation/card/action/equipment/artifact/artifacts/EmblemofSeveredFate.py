@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 class EmblemofSeveredFateEntity(Artifact):
     name: str = "Emblem of Severed Fate"
     name_ch = "绝缘之旗印"
+    id = 31200891
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, artifact_card = None):
         super().__init__(game, from_player, from_character, artifact_card)
 

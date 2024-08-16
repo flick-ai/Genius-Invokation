@@ -2,7 +2,7 @@ from genius_invocation.card.character.import_head import *
 from genius_invocation.card.action.base import ActionCard
 
 class ScorpionStrike(NormalAttack):
-    id: int = 24051
+    id: int = 240501
     name = "Scorpion Strike"
     name_ch = "蝎爪钳击"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -21,7 +21,7 @@ class ScorpionStrike(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class StingingSpine(ElementalSkill):
-    id: int = 24052
+    id: int = 240502
     name = "Stinging Spine"
     name_ch = "蝎尾锥刺"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -41,7 +41,7 @@ class StingingSpine(ElementalSkill):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class ThunderboreBlast(ElementalBurst):
-    id: int = 24053
+    id: int = 240503
     name = "Thunderbore Blast"
     name_ch = "雷锥散射"
     type: SkillType = SkillType.ELEMENTAL_BURST
@@ -72,6 +72,7 @@ class ThunderboreTrap(Combat_Status):
     name = "Thunderbore Trap"
     name_ch = "雷锥陷阱"
     max_usage = 3
+    id = 240531
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, usage=1):
         super().__init__(game, from_player, from_character)
         self.current_usage = usage
@@ -102,6 +103,7 @@ class ThunderboreTrap(Combat_Status):
         ]
 
 class ImmortalRemnantsElectro(CharacterSkill):
+    id = 240504
     name = "Immortal Remnants: Electro"
     name_ch = "不朽遗骸:雷"
     def on_call(self, game: 'GeniusGame'):
@@ -155,8 +157,9 @@ class ConsecratedScorpion(Character):
 
 
 class HasBonecrunchersEnergyBlock(Combat_Status):
-    name: str = "Bonecruncher's Energy Block"
-    name_ch = '噬骸能量块'
+    name: str = "Have had Bonecruncher's Energy Block"
+    name_ch = '已用噬骸能量块'
+    id  = 240532
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
 
@@ -173,6 +176,7 @@ class BonecrunchersEnergyBlock(ActionCard):
     name_ch = "噬骸能量块"
     cost_num = 0
     cost_type = None
+    id = 240571
     card_type = ActionCardType.EVENT
     def __init__(self) -> None:
         super().__init__()

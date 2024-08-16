@@ -4,7 +4,7 @@ from genius_invocation.card.action.base import ActionCard
 class StrikeoftheDispossessed(NormalAttack):
     name = 'Strike of the Dispossessed'
     name_ch = "失乡重击"
-    id: int = 27021
+    id: int = 270201
     type: SkillType = SkillType.NORMAL_ATTACK
 
     # damage
@@ -31,7 +31,7 @@ class StrikeoftheDispossessed(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class LifeStream(ElementalSkill):
-    id = 27022
+    id = 270202
     name = 'Life Stream'
     name_ch = "生命流束"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -67,7 +67,7 @@ class LifeStream(ElementalSkill):
 
 
 class TheEndFalls(ElementalBurst):
-    id = 27023
+    id = 270203
     name = 'The End Falls'
     name_ch = "终景迸落"
     type: SkillType = SkillType.ELEMENTAL_BURST
@@ -152,6 +152,7 @@ class GuardianofApepsOasis(Character):
 class ReignitedHeartofOasis(Status):
     name = 'Reignited Heart of Oasis'
     name_ch = "重燃的绿洲之心"
+    id = 270221
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
 
@@ -180,6 +181,7 @@ class OasisNourishment(Combat_Status):
     name = 'Oasis Nourishment'
     name_ch = "绿洲之滋养"
     max_usage = 3
+    id = 270231
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character:'Character'=None, usage=1):
         super().__init__(game, from_player, from_character)
         self.current_usage = usage
@@ -213,6 +215,7 @@ class ProliferatedOrganism(Summon):
     name_ch = "增殖生命体"
     removable = True
     element = ElementType.DENDRO
+    id = 270211
 
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character' = None):
         super().__init__(game, from_player, from_character)
@@ -251,6 +254,7 @@ class AwakenMyKindred(ActionCard):
     name = "Awaken, My Kindred"
     name_ch = "唤醒眷属"
     cost_num = 2
+    id = 270271
     cost_type = CostType.DENDRO
     card_type = ActionCardType.EVENT
     def __init__(self) -> None:
@@ -278,6 +282,9 @@ class AwakenMyKindred(ActionCard):
         return [1]
     
 class ThisShield(Shield):
+    name = "Shield When Reignited"
+    name_ch = "重燃之盾"
+    id = 270241
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.current_usage = 2

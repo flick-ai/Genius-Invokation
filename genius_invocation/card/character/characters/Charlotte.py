@@ -3,7 +3,7 @@ from genius_invocation.card.character.import_head import *
 class Cool_Color_Capture(NormalAttack):
     name = 'Cool-Color Capture'
     name_ch = "冷色摄影律"
-    id: int = 11101
+    id: int = 111001
     type: SkillType = SkillType.NORMAL_ATTACK
 
     # damage
@@ -39,7 +39,7 @@ class Cool_Color_Capture(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Framing_Freezing_Point_Composition(ElementalSkill):
-    id = 11102
+    id = 111002
     name = 'Framing: Freezing Point Composition'
     name_ch = "取景·冰点构图法"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -85,7 +85,7 @@ class Framing_Freezing_Point_Composition(ElementalSkill):
 
 
 class Still_Photo_Comprehensive_Confirmation(ElementalBurst):
-    id = 11103
+    id = 111003
     name = 'Still Photo: Comprehensive Confirmation'
     name_ch = "定格·全方位确证"
     type: SkillType = SkillType.ELEMENTAL_BURST
@@ -148,7 +148,7 @@ class Charlotte(Character):
 class Snappy_Silhouette(Status):
     name = 'Snappy Silhouette'
     name_ch = '瞬时剪影'
-    id = 111000
+    id = 111021
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character', talent = False):
         super().__init__(game, from_player, from_character)
         self.usage = 2
@@ -199,7 +199,7 @@ class Newsflash_Field(Summon):
     name_ch = "临场视域"
     removable = True
     element = ElementType.CRYO
-
+    id = 111011
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character' = None):
         super().__init__(game, from_player, from_character)
         self.usage = 2

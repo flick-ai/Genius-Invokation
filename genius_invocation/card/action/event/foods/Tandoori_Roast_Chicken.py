@@ -7,7 +7,7 @@ if TYPE_CHECKING:
     from genius_invocation.game.player import GeniusPlayer
 
 class Tandoori_Roast_Chicken_Entity(Status):
-    id: int = 333011
+    id: int = 33301121
     name: str = "Tandoori Roast Chicken"
     name_ch = "唐杜尔烤鸡"
 

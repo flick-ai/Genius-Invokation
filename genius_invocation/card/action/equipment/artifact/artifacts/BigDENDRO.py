@@ -12,6 +12,7 @@ class BigDENDRO_Entity(BigElement):
     name: str = "Deepwood Memories"
     name_ch = "深林的记忆"
     element_type = CostType.DENDRO
+    id = 31270291
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, artifact_card = None):
         super().__init__(game, from_player, from_character, artifact_card)
 

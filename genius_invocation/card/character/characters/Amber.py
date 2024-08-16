@@ -2,7 +2,7 @@ from genius_invocation.card.character.import_head import *
 
 
 class Sharpshooter(NormalAttack):
-    id: int = 13041
+    id: int = 130401
     name = "Sharpshooter"
     name_ch = "神射手"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -22,7 +22,7 @@ class Sharpshooter(NormalAttack):
 
 
 class ExplosivePuppet(ElementalSkill):
-    id: int = 13042
+    id: int = 130402
     name = "Explosive Puppet"
     name_ch = "爆弹玩偶"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -46,6 +46,7 @@ class BaronBunny(Summon):
     name_ch = '兔兔伯爵'
     element = ElementType.PYRO
     removable = False
+    id = 130411
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.usage = 1
@@ -126,6 +127,7 @@ class BaronBunny(Summon):
 class ShieldfromBaron(Combat_Status):
     name="Shield from Baron"
     name_ch = "兔之盾"
+    id = 130431
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, from_summon:'Summon' = None):
         super().__init__(game, from_player, from_character)
         self.from_summon = from_summon
@@ -155,7 +157,7 @@ class ShieldfromBaron(Combat_Status):
 
 
 class FieryRain(ElementalBurst):
-    id: int = 13043
+    id: int = 130403
     name = "Fiery Rain"
     name_ch = "箭雨"
     type: SkillType = SkillType.ELEMENTAL_BURST

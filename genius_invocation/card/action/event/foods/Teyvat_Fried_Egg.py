@@ -1,13 +1,13 @@
 from genius_invocation.card.action.base import ActionCard
 from genius_invocation.utils import *
 from genius_invocation.card.action.event.base import FoodCard
-from genius_invocation.entity.status import Status, Satisfy_Statue
+from genius_invocation.entity.status import Combat_Status, Satisfy_Statue
 if TYPE_CHECKING:
     from genius_invocation.game.game import GeniusGame
     from genius_invocation.game.player import GeniusPlayer
 
-class NoRevie(Status):
-    id: int = 333009
+class NoRevie(Combat_Status):
+    id: int = 33300931
     name: str = "No Revive"
     name_ch = "不能复活"
 

@@ -3,7 +3,7 @@ from genius_invocation.card.character.import_head import *
 class Flame_of_Salvation(NormalAttack):
     name = "Flame of Salvation"
     name_ch = "振救之焰"
-    id = 23021
+    id = 230201
     type: SkillType = SkillType.NORMAL_ATTACK
     damage_type: SkillType = SkillType.NORMAL_ATTACK
     main_damage_element: ElementType = ElementType.PYRO
@@ -23,7 +23,7 @@ class Flame_of_Salvation(NormalAttack):
 class Searing_Precept(ElementalSkill):
     name = "Searing Precept"
     name_ch = "炽烈箴言"
-    id = 23022
+    id = 230202
     type: SkillType = SkillType.ELEMENTAL_SKILL
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
     main_damage_element: ElementType = ElementType.PYRO
@@ -42,7 +42,7 @@ class Searing_Precept(ElementalSkill):
 class Ominous_Star(ElementalBurst):
     name = "Ominous Star"
     name_ch = "天陨预兆"
-    id = 23023
+    id = 230203
     type: SkillType = SkillType.ELEMENTAL_BURST
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
     main_damage_element: ElementType = ElementType.PYRO
@@ -64,6 +64,7 @@ class Darkfire_Furnace(Summon):
     name = "Darkfire Furnace"
     name_ch = "渊火熔炉"
     removable = True
+    id = 230211
     element  = ElementType.PYRO
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
@@ -94,6 +95,7 @@ class Darkfire_Furnace(Summon):
 class Fiery_Rebirth(Status):
     name = "Fiery Rebirth"
     name_ch = "火之新生"
+    id = 230221
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.current_usage = 1
@@ -121,6 +123,7 @@ class Fiery_Rebirth(Status):
 class Aegis_of_Abyssal_Flame(Shield):
     name = "Aegis of Abyssal Flame"
     name_ch = "渊火加护"
+    id = 230241
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.current_usage = 3
