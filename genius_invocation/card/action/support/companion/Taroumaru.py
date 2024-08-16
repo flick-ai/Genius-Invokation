@@ -15,6 +15,7 @@ class Taroumaru_Enraged(Summon):
     name: str = 'Taroumaru Enraged'
     name_ch = '愤怒的太郎丸'
     element = ElementType.PHYSICAL
+    id = 32202411
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None):
         super().__init__(game, from_player, from_character)
         self.current_usage = 2
@@ -46,8 +47,10 @@ class Taroumarus_Savings(ActionCard):
     name = "Taroumaru's Savings"
     name_ch = "太郎丸的存款"
     cost_num = 0
+    id = 32202471
     cost_type = None
     card_type = ActionCardType.EVENT
+    id = 32202471
     def __init__(self) -> None:
         super().__init__()
 
@@ -56,7 +59,7 @@ class Taroumarus_Savings(ActionCard):
 
 
 class Taroumaru_Entity(Support):
-    id: int = 322024
+    id: int = 32202461
     name: str = 'Taroumaru'
     name_ch = '太郎丸'
     max_usage = 4

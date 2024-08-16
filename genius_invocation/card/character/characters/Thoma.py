@@ -2,7 +2,7 @@ from genius_invocation.card.character.import_head import *
 
 
 class Swiftshatter_Spear(NormalAttack):
-    id: int = 13111
+    id: int = 131101
     name = "Swiftshatter Spear"
     name_ch = "迅破枪势"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -22,7 +22,7 @@ class Swiftshatter_Spear(NormalAttack):
 
 
 class Blazing_Blessing(ElementalSkill):
-    id: int = 13112
+    id: int = 131102
     name = "Blazing Blessing"
     name_ch = "烈烧佑命之侍护"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -44,6 +44,7 @@ class Blazing_Blessing(ElementalSkill):
 class Blazing_Barrier(Combat_Shield):
     name = "Blazing Barrier"
     name_ch = "烈烧佑命护盾" 
+    id = 131151
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character' = None):
         super().__init__(game, from_player, from_character)
         self.usage = 3
@@ -55,7 +56,7 @@ class Blazing_Barrier(Combat_Shield):
 
 
 class Crimson_Ooyoroi(ElementalBurst):
-    id: int = 13113
+    id: int = 131103
     name = "Crimson Ooyoroi"
     name_ch = "真红炽火之大铠"
     type: SkillType = SkillType.ELEMENTAL_BURST
@@ -78,7 +79,7 @@ class Crimson_Ooyoroi(ElementalBurst):
 class Scorching_Ooyoroi(Combat_Status):
     name = "Scorching Ooyoroi"
     name_ch = "炽火大铠"
-
+    id = 131131
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         if self.from_character.talent:

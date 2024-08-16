@@ -7,6 +7,7 @@ if TYPE_CHECKING:
 class LyresongStatus(Combat_Status):
     name: str = 'Lyresong'
     name_ch = '琴音之诗'
+    id = 33202431
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.current_usage = 1

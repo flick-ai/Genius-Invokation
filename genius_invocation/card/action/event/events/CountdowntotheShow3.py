@@ -36,16 +36,19 @@ class CountdowntotheShow3(ActionCard):
 class CountdowntotheShow2(CountdowntotheShow3):
     name: str = 'Countdown to the Show: 2'
     name_ch = "幻戏倒计时: 2"
+    id = 33203271
     cost_num = 2
 
 class CountdowntotheShow1(CountdowntotheShow3):
     name: str = 'Countdown to the Show: 1'
     name_ch = "幻戏倒计时: 1"
+    id = 33203272
     cost_num = 1
 
 class CountdowntotheShow0(CountdowntotheShow3):
     name: str = 'Countdown to the Show: 0'
     name_ch = "幻戏倒计时: 0"
+    id = 33203273
     cost_num = 0
 
 

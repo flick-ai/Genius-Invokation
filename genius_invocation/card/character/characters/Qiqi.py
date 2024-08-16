@@ -3,7 +3,7 @@ from genius_invocation.card.character.import_head import *
 class Ancient_Sword_Art(NormalAttack):
     name = 'Ancient Sword Art'
     name_ch = "云来古剑法"
-    id: int = 11081
+    id: int = 110801
     type: SkillType = SkillType.NORMAL_ATTACK
 
     # damage
@@ -39,7 +39,7 @@ class Ancient_Sword_Art(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Adeptus_Art_Herald_of_Frost(ElementalSkill):
-    id = 11082
+    id = 110802
     name = 'Adeptus Art: Herald of Frost'
     name_ch = "仙法·寒病鬼差"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -74,7 +74,7 @@ class Adeptus_Art_Herald_of_Frost(ElementalSkill):
 
 
 class Adeptus_Art_Preserver_of_Fortune(ElementalBurst):
-    id = 11083
+    id = 110803
     name = 'Adeptus Art: Preserver of Fortune'
     name_ch = "仙法·救苦度厄"
     type: SkillType = SkillType.ELEMENTAL_BURST
@@ -155,6 +155,7 @@ class Herald_of_Frost(Summon):
     name_ch = "寒病鬼差"
     element = ElementType.CRYO
     removable = True
+    id = 110811
 
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character:'Character'=None):
         super().__init__(game, from_player, from_character)
@@ -218,7 +219,7 @@ class Herald_of_Frost(Summon):
 class Fortune_Preserving_Talisman(Combat_Status):
     name = 'Fortune-Preserving Talisman'
     name_ch = "度厄真符"
-    id = 1
+    id = 110831
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.current_usage = 3

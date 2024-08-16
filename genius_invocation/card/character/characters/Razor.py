@@ -3,7 +3,7 @@ from genius_invocation.card.character.import_head import *
 
 
 class SteelFang(NormalAttack):
-    id: int = 14021
+    id: int = 140201
     name = "Steel Fang"
     name_ch = "钢脊"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -21,7 +21,7 @@ class SteelFang(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class ClawandThundert(ElementalSkill):
-    id: int = 14022
+    id: int = 140202
     name = "Claw and Thunder"
     name_ch = "利爪与苍雷"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -48,6 +48,7 @@ class ClawandThundert(ElementalSkill):
 class TheWolfWithin(Status):
     name = "The Wolf Within"
     name_ch = "雷狼"
+    id = 140221
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None):
         super().__init__(game, from_player, from_character)
         self.max_usage = 2
@@ -84,7 +85,7 @@ class TheWolfWithin(Status):
         ]
 
 class LightningFang(ElementalBurst):
-    id: int = 14023
+    id: int = 140203
     name = "Lightning Fang"
     name_ch = "雷牙"
     type: SkillType = SkillType.ELEMENTAL_BURST

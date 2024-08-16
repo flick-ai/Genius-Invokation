@@ -24,6 +24,7 @@ class Status_of_Heavy_Strike(Status):
     name = 'Heavy Strike'
     name_ch = '重攻击'
     time = 3.7
+    id = 33201821
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.current_usage = 1

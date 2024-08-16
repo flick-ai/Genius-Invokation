@@ -41,21 +41,25 @@ class Cryo_Hilichurl(Abyssal_Summons_Summmon):
     name = "Cryo Hilichurl Shooter"
     name_ch = '冰箭丘丘人'
     element = ElementType.CRYO
+    id = 33201511
 
 class Hydeo_Hilichurl(Abyssal_Summons_Summmon):
     name = "Hydro Samachurl"
     name_ch = '水丘丘萨满'
     element = ElementType.HYDRO
+    id = 33201512
 
 class Pyro_Hilichurl(Abyssal_Summons_Summmon):
     name = "Hilichurl Berserker"
     name_ch = '冲锋丘丘人'
     element = ElementType.PYRO
+    id = 33201513
 
 class Electro_Hilichurl(Abyssal_Summons_Summmon):
     name = "Electro Hilichurl Shooter"
     name_ch = '雷箭丘丘人'
     element = ElementType.ELECTRO
+    id = 33201514
 
 def choose_one_summon(game: 'GeniusGame'):
     un_summon_list = []

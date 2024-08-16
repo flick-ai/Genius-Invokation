@@ -10,6 +10,7 @@ if TYPE_CHECKING:
 class Fatui_Conspiracy_State(Combat_Status):
     name: str = 'Fatui Conspiracy'
     name_ch = '愚人众的阴谋'
+    id = 33201630
     element: ElementType
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None):
         super().__init__(game, from_player, from_character)
@@ -41,21 +42,25 @@ class Cryo_Cicin_Mage(Fatui_Conspiracy_State):
     name = "Cryo Cicin Mage"
     name_ch = '冰萤术士'
     element = ElementType.CRYO
+    id = 33201631
 
 class Mirror_Maiden(Fatui_Conspiracy_State):
     name = "Mirror_Maiden"
     name_ch = '藏镜仕女'
     element = ElementType.HYDRO
+    id = 33201632
 
 class Pyroslinger_Bracer(Fatui_Conspiracy_State):
     name = "Pyroslinger Bracer"
     name_ch = '火铳游击兵'
     element = ElementType.PYRO
+    id = 33201633
 
 class Electrohammer_Vanguard(Fatui_Conspiracy_State):
     name = "Electrohammer Vanguard"
     name_ch = '雷锤前锋军'
     element = ElementType.ELECTRO
+    id = 33201634
 
 def choose_one_status(game: 'GeniusGame'):
     opponent = get_opponent(game)

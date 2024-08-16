@@ -1,7 +1,7 @@
 from genius_invocation.card.character.import_head import *
 
 class RainofStone(NormalAttack):
-    id: int = 16031
+    id: int = 160301
     name: str = "Rain of Stone"
     name_ch = "岩雨"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -19,7 +19,7 @@ class RainofStone(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class DominusLapidis(ElementalSkill):
-    id: int = 16032
+    id: int = 160302
     name: str = "Dominus Lapidis"
     name_ch = "地心"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -39,7 +39,7 @@ class DominusLapidis(ElementalSkill):
 
 
 class DominusLapidisStrikong(ElementalSkill):
-    id: int = 16033
+    id: int = 160303
     name: str = "Dominus Lapidis: Striking Stone"
     name_ch = "地心·磐礴"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -63,6 +63,7 @@ class  StoneStele(Summon):
     name = " Stone Stele"
     name_ch = "岩脊"
     removable = True
+    id = 160311
     element = ElementType.GEO
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character:'Character'=None):
         super().__init__(game, from_player, from_character)
@@ -100,6 +101,7 @@ class  StoneStele(Summon):
 class JadeShield(Combat_Shield):
     name = "Jade Shield"
     name_ch = "玉璋护盾"
+    id = 160351
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.current_usage = 2
@@ -109,7 +111,7 @@ class JadeShield(Combat_Shield):
 
 
 class PlanetBefall(ElementalBurst):
-    id: int = 16034
+    id: int = 160304
     name: str = "Planet Befall"
     name_ch = "天星"
     type: SkillType = SkillType.ELEMENTAL_BURST
@@ -139,6 +141,7 @@ class PlanetBefall(ElementalBurst):
 class Petrification(Status):
     name = 'Petrification'
     name_ch = "石化"
+    id = 160321
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.usage = 1

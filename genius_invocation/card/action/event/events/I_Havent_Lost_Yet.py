@@ -38,6 +38,7 @@ class I_Havent_Lost_Yet(ActionCard):
 class Not_Loss(Combat_Status):
     name = 'No Loss AGAIN!'
     name_ch = '本大爷不能再输了!'
+    id = 33200531
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
     

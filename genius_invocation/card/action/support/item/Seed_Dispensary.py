@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 class Seed_Dispensary_Entity(Support):
-    id: int = 323005
+    id: int = 32300561
     name = 'Seed Dispensary'
     name_ch = '化种匣'
     max_usage = 2

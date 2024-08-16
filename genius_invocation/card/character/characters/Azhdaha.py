@@ -1,7 +1,7 @@
 from genius_invocation.card.character.import_head import *
 
 class SunderingCharge(NormalAttack):
-    id: int = 26021
+    id: int = 260201
     name = "SunderingCharge"
     name_ch = "碎岩冲撞"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -20,7 +20,7 @@ class SunderingCharge(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class AuraofMajesty(ElementalSkill):
-    id: int = 26022
+    id: int = 260202
     name = "Aura of Majesty"
     name_ch = "磅礴之气"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -42,19 +42,20 @@ class AuraofMajesty(ElementalSkill):
                 self.from_character.from_player.dice_zone.add([ElementToDice(absorb_element)])
                 self.from_character.absorbed_element.append(absorb_element)
             if absorb_element == ElementType.PYRO:
-                self.from_character.skills.append(FrostspikeWave(self.from_character))
+                self.from_character.update_skills(BlazingRebuke(self.from_character))
             elif absorb_element == ElementType.CRYO:
-                self.from_character.skills.append(FrostspikeWave(self.from_character))
+                self.from_character.update_skills(FrostspikeWave(self.from_character))
             elif absorb_element == ElementType.HYDRO:
-                self.from_character.skills.append(TorrentialRebuke(self.from_character))
+                self.from_character.update_skills(TorrentialRebuke(self.from_character))
             else:
-                self.from_character.skills.append(ThunderstormWave(self.from_character))
+                self.from_character.update_skills(ThunderstormWave(self.from_character))
         else:
             self.add_status(game, StoneFacetsElementalCrystallization)
         self.gain_energy(game)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class FrostspikeWave(ElementalSkill):
+    id = 260204
     name = "Frostspike Wave"
     name_ch = "霜刺破袭"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -72,33 +73,17 @@ class FrostspikeWave(ElementalSkill):
         self.gain_energy(game)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
-class FrostspikeWave(ElementalSkill):
-    name = "Frostspike Wave"
-    name_ch = "霜刺破袭"
-    type: SkillType = SkillType.ELEMENTAL_SKILL
-    damage_type: SkillType = SkillType.ELEMENTAL_SKILL
-    main_damage_element: ElementType = ElementType.CRYO
-    main_damage: int = 3
-    piercing_damage: int = 0
-    cost = [{'cost_num':3, 'cost_type':CostType.CRYO}]
-    energy_cost: int = 0
-    energy_gain: int = 1
 
-    def on_call(self, game: 'GeniusGame'):
-        super().on_call(game)
-        self.resolve_damage(game)
-        self.gain_energy(game)
-        game.manager.invoke(EventType.AFTER_USE_SKILL, game)
-
-class FrostspikeWave(ElementalSkill):
-    name = "Frostspike Wave"
+class BlazingRebuke(ElementalSkill):
+    id = 260205
+    name = "Blazing Rebuke"
     name_ch = "炽焰重斥"
     type: SkillType = SkillType.ELEMENTAL_SKILL
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
-    main_damage_element: ElementType = ElementType.CRYO
+    main_damage_element: ElementType = ElementType.PYRO
     main_damage: int = 3
     piercing_damage: int = 0
-    cost = [{'cost_num':3, 'cost_type':CostType.CRYO}]
+    cost = [{'cost_num':3, 'cost_type':CostType.PYRO}]
     energy_cost: int = 0
     energy_gain: int = 1
 
@@ -109,7 +94,8 @@ class FrostspikeWave(ElementalSkill):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class TorrentialRebuke(ElementalSkill):
-    name = "TorrentialRebuke"
+    id = 260206
+    name = "Torrential Rebuke"
     name_ch = "洪流重斥"
     type: SkillType = SkillType.ELEMENTAL_SKILL
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -129,6 +115,7 @@ class TorrentialRebuke(ElementalSkill):
 class ThunderstormWave(ElementalSkill):
     name = "Thunderstorm Wave"
     name_ch = "霆雷破袭"
+    id = 260207
     type: SkillType = SkillType.ELEMENTAL_SKILL
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
     main_damage_element: ElementType = ElementType.ELECTRO
@@ -146,7 +133,7 @@ class ThunderstormWave(ElementalSkill):
 
 
 class DecimatingRockfall(ElementalBurst):
-    id: int = 26023
+    id: int = 260203
     name = "Decimating Rockfall"
     name_ch = "山崩毁阵"
     type: SkillType = SkillType.ELEMENTAL_BURST
@@ -167,6 +154,7 @@ class DecimatingRockfall(ElementalBurst):
 class StoneFacetsElementalCrystallization(Status):
     name = "Stone Facets: Elemental Crystallization"
     name_ch = "磐岩百相·元素凝晶"
+    id = 260221
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
 
@@ -181,13 +169,14 @@ class StoneFacetsElementalCrystallization(Status):
                     self.from_character.absorbed_element.append(absorb_element)
                     remove = True
                 if absorb_element == ElementType.PYRO:
-                    self.from_character.skills.append(FrostspikeWave(self.from_character))
+                    self.from_character.update_skills(BlazingRebuke(self.from_character))
                 elif absorb_element == ElementType.CRYO:
-                    self.from_character.skills.append(FrostspikeWave(self.from_character))
+                    self.from_character.update_skills(FrostspikeWave(self.from_character))
                 elif absorb_element == ElementType.HYDRO:
-                    self.from_character.skills.append(TorrentialRebuke(self.from_character))
+                    self.from_character.update_skills(TorrentialRebuke(self.from_character))
                 else:
-                    self.from_character.skills.append(ThunderstormWave(self.from_character))
+                    self.from_character.update_skills(ThunderstormWave(self.from_character))
+
         if remove:
             self.on_destroy(game)
 
@@ -244,3 +233,9 @@ class Azhdaha(Character):
                 status.update(game)
             except:
                 status.update()
+    
+    def update_skills(self, skill: 'ElementalSkill'):
+        if len(self.skills) == 3:
+            self.skills.insert(2, skill)
+        else:
+            self.skills[2] = skill

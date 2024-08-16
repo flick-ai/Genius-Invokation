@@ -1,12 +1,12 @@
 from genius_invocation.card.character.import_head import *
 # from genius_invocation.card.character.base import Skill
-
+from .LaSignora import Sheer_Cold
 
 class Icespike_Shot(NormalAttack):
     '''
         冰锥迸射
     '''
-    id: int = 21031
+    id: int = 210301
     type: SkillType = SkillType.NORMAL_ATTACK
     name = "Icespike Shot"
     name_ch = "冰锥迸射"
@@ -49,7 +49,7 @@ class IceRingWaltz(ElementalSkill):
     '''
     name = 'Ice Ring Waltz'
     name_ch = '圆舞冰环'
-    id = 21032
+    id = 210302
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
     # damage
@@ -80,7 +80,7 @@ class IceRingWaltz(ElementalSkill):
 class OverwhelmingIce(Status):
     name = "Overwhelming Ice"
     name_ch = "四迸冰锥"
-
+    id = 210321
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None):
         super().__init__(game, from_player, from_character)
         self.usage = 1
@@ -107,6 +107,7 @@ class PiercingIceridge(Summon):
     name_ch = '刺击冰棱'
     element: ElementType = ElementType.CRYO
     removable = True
+    id = 210311
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.usage = 2
@@ -159,7 +160,7 @@ class PlungingIceShards(ElementalBurst):
         元素爆发
         冰棱轰坠
     '''
-    id: int = 21033
+    id: int = 210303
     type: SkillType = SkillType.ELEMENTAL_BURST
     name = 'PlungingIceShards'
     name_ch = '冰棱轰坠'
@@ -196,6 +197,7 @@ class CryoCrystalCore(Status):
     name = 'Cryo Crystal Core'
     name_ch = '冰晶核心'
     current_usage = 1
+    id = 210322
     def on_character_die(self, game: 'GeniusGame'):
         '''
             角色死亡时
@@ -219,37 +221,6 @@ class CryoCrystalCore(Status):
     def update_listener_list(self):
         self.listeners = [
             (EventType.CHARACTER_WILL_DIE, ZoneType.CHARACTER_ZONE, self.on_character_die)
-        ]
-
-class Sheer_Cold(Status):
-    name = "Sheer Cold"
-    name_ch = "严寒"
-    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None):
-        super().__init__(game, from_player, from_character)
-        self.usage = 1
-        self.current_usage = 1
-
-    def update(self):
-        self.current_usage = self.usage
-
-    def on_end_phase(self, game:'GeniusGame'):
-        if game.active_player == self.from_player:
-            dmg = Damage.create_damage(
-                game,
-                SkillType.OTHER,
-                ElementType.CRYO,
-                1,
-                0,
-                self,
-                self.from_character
-            )
-            game.add_damage(dmg)
-            game.resolve_damage()
-            self.on_destroy(game)
-
-    def update_listener_list(self):
-        self.listeners = [
-            (EventType.END_PHASE, ZoneType.CHARACTER_ZONE, self.on_end_phase)
         ]
 
 class CryoHypostasis(Character):

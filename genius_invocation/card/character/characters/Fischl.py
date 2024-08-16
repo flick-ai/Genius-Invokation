@@ -3,7 +3,7 @@ from genius_invocation.card.character.import_head import *
 
 class Oz(Summon):
     '''奥兹'''
-    id: int = 0
+    id: int = 140111
     name: str = 'Oz'
     name_ch = "奥兹"
     element: ElementType = ElementType.ELECTRO
@@ -55,7 +55,7 @@ class BoltsOfDownfall(NormalAttack):
         普通攻击
         罪灭之矢
     '''
-    id: int = 14011
+    id: int = 140101
     name = "Bolts of Downfall"
     name_ch = "罪灭之矢"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -109,7 +109,7 @@ class Nightrider(ElementalSkill):
         元素战技
         夜巡影翼
     '''
-    id: int = 14012
+    id: int = 140102
     name = "Nightrider"
     name_ch = "夜巡影翼"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -145,7 +145,7 @@ class MidnightPhantasmagoria(ElementalBurst):
         元素爆发
         至夜幻现
     '''
-    id: int = 14013
+    id: int = 140103
     type: SkillType = SkillType.ELEMENTAL_BURST
     name = "Midnight Phantasmagoria"
     name_ch = "至夜幻现"

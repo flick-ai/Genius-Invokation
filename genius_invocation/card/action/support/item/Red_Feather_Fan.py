@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 class Red_Feather_Fan_Entity(Support):
-    id: int = 323003
+    id: int = 32300361
     name = 'Red Feather Fan'
     name_ch = '红羽团扇'
     max_usage = 1

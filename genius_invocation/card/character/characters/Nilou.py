@@ -3,7 +3,7 @@ from genius_invocation.entity.status import GoldenChalice
 from genius_invocation.entity.summon import BountifulCore
 
 class DanceofSamser(NormalAttack):
-    id: int = 12081
+    id: int = 120801
     name = "Dance of Samser"
     name_ch = "弦月舞步"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -21,7 +21,7 @@ class DanceofSamser(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class DanceofHaftkarsvar(ElementalSkill):
-    id: int = 12082
+    id: int = 120802
     name = "Dance of Haftkarsvar"
     name_ch = "七域舞步"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -42,7 +42,7 @@ class DanceofHaftkarsvar(ElementalSkill):
 
 
 class DanceofAbzendegi(ElementalBurst):
-    id: int = 12083
+    id: int = 120803
     name = "Dance of Abzendegi: Distant Dreams, Listening Spring"
     name_ch = "浮莲舞步·远梦聆泉"
     type: SkillType = SkillType.ELEMENTAL_BURST
@@ -70,6 +70,7 @@ class DanceofAbzendegi(ElementalBurst):
 class LingeringAeon(Status):
     name = "Lingering Aeon"
     name_ch = "永世流沔"
+    id = 120821
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.usage = 1

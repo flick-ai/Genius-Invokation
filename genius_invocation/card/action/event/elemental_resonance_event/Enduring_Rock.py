@@ -6,7 +6,7 @@ if TYPE_CHECKING:
     from genius_invocation.game.game import GeniusGame
 
 class Enduring_Rock_Entity(Combat_Status):
-    id: int = 331602
+    id: int = 33160231
     name: str = "Enduring_Rock"
     name_ch = "坚定之岩"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):

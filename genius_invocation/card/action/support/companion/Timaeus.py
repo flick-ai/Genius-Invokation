@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 class Timaeus_Entity(Support):
-    id: int = 322003
+    id: int = 32200361
     name = 'Timaeus'
     name_ch = '蒂玛乌斯'
     max_usage = 1

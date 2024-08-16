@@ -6,7 +6,7 @@ class Yunlai_Swordsmanship(NormalAttack):
     刻晴
     普通攻击
     '''
-    id: int = 14031
+    id: int = 140301
     type: SkillType = SkillType.NORMAL_ATTACK
     name = "Yunlai Swordsmanship"
     name_ch = "云来剑法"
@@ -47,7 +47,7 @@ class StellarRestoration(ElementalSkill):
     刻晴
     元素战技
     '''
-    id: int = 14032
+    id: int = 140302
     name = "Stellar Restoration"
     name_ch = "星斗归位"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -93,7 +93,7 @@ class StellarRestoration(ElementalSkill):
         if isinstance(game.current_card, Lightning_Stiletto) \
                 or self.from_character.from_player.hand_zone.has_card(Lightning_Stiletto) is not None:
             self.add_status(game)
-            self.from_character.from_player.hand_zone.remove_name(Lightning_Stiletto)
+            self.from_character.from_player.hand_zone.discard_card_by_name("Lightning Stiletto")
         else:
             self.from_character.from_player.hand_zone.add([Lightning_Stiletto()])
         # after skill
@@ -103,7 +103,7 @@ class StarwardSword(ElementalBurst):
     刻晴
     天街巡游!
     '''
-    id = 14033
+    id = 140303
     name="Starward Sword"
     name_ch = "天街巡游"
     type: SkillType = SkillType.ELEMENTAL_BURST
@@ -160,7 +160,7 @@ class Keqing(Character):
             status.listen_event(game, EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, status.on_dmg_add)
 
 class Lightning_Stiletto(TalentCard):
-    id: int = -1 #TODO: CHECK THE ID
+    id: int = 140371
     name: str = 'Lightning Stiletto'
     name_ch = "雷楔"
     cost_num = 3
@@ -205,6 +205,7 @@ class Electro_Elemental_Infusion(Status):
 
     name = "Electro Infusion"
     name_ch = "雷元素附魔"
+    id = 140321
 
     def __init__(self, game, from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)

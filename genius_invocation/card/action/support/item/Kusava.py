@@ -12,6 +12,7 @@ class KusavaEntity(Support):
     name: str = 'Kusava'
     name_ch = '苦舍桓'
     max_count = 2
+    id = 32300861
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.memories_and_dreams = 0

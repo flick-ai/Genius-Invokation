@@ -1,9 +1,10 @@
 from genius_invocation.card.character.import_head import *
+from typing import Optional
 
 class Garyuu_Bladework(NormalAttack):
     name = 'Garyuu Bladework'
     name_ch = "我流剑术"
-    id = 15051
+    id = 150501
     type: SkillType = SkillType.NORMAL_ATTACK
     damage_type: SkillType = SkillType.NORMAL_ATTACK
     main_damage_element: ElementType = ElementType.PHYSICAL
@@ -39,7 +40,7 @@ class Garyuu_Bladework(NormalAttack):
 class Chihayaburu(ElementalSkill):
     name = 'Chihayaburu'
     name_ch = "千早振る"
-    id = 15052
+    id = 150502
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -61,7 +62,7 @@ class Chihayaburu(ElementalSkill):
 
     def add_status(self, game: 'GeniusGame'):
         assert self.from_character.character_zone.has_entity(Midare_Ranzan) is None
-        status = Midare_Ranzan(game, self.from_character.from_player, self.from_character, ElementType.ANEMO)
+        status = Midare_Ranzan(game, self.from_character.from_player, self.from_character, self.from_character.last_swirl)
         self.from_character.character_zone.add_entity(status)
 
     def on_call(self, game: 'GeniusGame'):
@@ -71,12 +72,13 @@ class Chihayaburu(ElementalSkill):
         self.add_status(game)
 
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
+        self.from_character.from_player.change_to_next_character()
 
 
 class Kazuha_Slash(ElementalBurst):
     name = 'Kazuha Slash'
     name_ch = "万叶之一刀"
-    id = 15053
+    id = 150503
     type: SkillType = SkillType.ELEMENTAL_BURST
 
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
@@ -109,7 +111,8 @@ class Kazuha_Slash(ElementalBurst):
 class Midare_Ranzan(Status):
     name = "Midare Ranzan"
     name_ch = "乱岚拨止"
-    def __init__(self, game:'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character' =None, element: ElementType = None):
+    id = 150521
+    def __init__(self, game:'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character' =None, element: Optional[ElementType] = None):
         super().__init__(game, from_player, from_character)
         if element is None:
             self.element = ElementType.ANEMO
@@ -137,7 +140,8 @@ class Midare_Ranzan(Status):
     def update_listener_list(self):
         self.listeners = [
             (EventType.BEFORE_ANY_ACTION, ZoneType.CHARACTER_ZONE, self.before_any_action),
-            (EventType.INFUSION, ZoneType.CHARACTER_ZONE, self.infusion)
+            (EventType.INFUSION, ZoneType.CHARACTER_ZONE, self.infusion),
+            (EventType.ON_CHANGE_CHARACTER, ZoneType.CHARACTER_ZONE, self.on_change_character)
         ]
 
 class Autumn_Whirlwind(Summon):
@@ -145,7 +149,7 @@ class Autumn_Whirlwind(Summon):
     name_ch = "流风秋野"
     removable = True
     element = ElementType.ANEMO
-
+    id = 150511
     def __init__(self, game:'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character' =None):
         super().__init__(game, from_player, from_character)
         self.usage = 3
@@ -189,6 +193,7 @@ class Autumn_Whirlwind(Summon):
 class Enhance_by_Swirl(Combat_Status):
     element: ElementType
     name = "Enhance_by_Swirl"
+    id = 150530
     name_ch = "扩散触发元素增伤(基类)，如果看到这句话就寄了"
     def __init__(self, game:'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character' =None):
         super().__init__(game, from_player, from_character)
@@ -214,21 +219,25 @@ class Enhance_CRYO_by_Swirl(Enhance_by_Swirl):
     element: ElementType = ElementType.CRYO
     name = "Enhance_CRYO_by_Swirl"
     name_ch = "扩散触发冰元素增伤"
+    id = 150531
 
 class Enhance_PYRO_by_Swirl(Enhance_by_Swirl):
     element: ElementType = ElementType.PYRO
     name = "Enhance_PYRO_by_Swirl"
     name_ch = "扩散触发火元素增伤"
+    id = 150532
 
 class Enhance_HYDRO_by_Swirl(Enhance_by_Swirl):
     element: ElementType = ElementType.HYDRO
     name = "Enhance_HYDRO_by_Swirl"
     name_ch = "扩散触发水元素增伤"
+    id = 150533
 
 class Enhance_ELECTRO_by_Swirl(Enhance_by_Swirl):
     element: ElementType = ElementType.ELECTRO
     name = "Enhance_ELECTRO_by_Swirl"
     name_ch = "扩散触发雷元素增伤"
+    id = 150534
 
 
 class KaedeharaKazuha(Character):

@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 class Gandharva_Ville_Entity(Support):
-    id: int = 321014
+    id: int = 32101461
     name = 'Gandharva Ville'
     name_ch = '化城郭'
     max_usage = 3

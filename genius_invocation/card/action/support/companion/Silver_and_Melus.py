@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 class Silver_and_Melus_Entity(Support):
-    id: int = 322023
+    id: int = 32202361
     name: str = 'Silver and Melus'
     name_ch = '西尔弗和迈勒斯'
     max_usage = 4

@@ -3,7 +3,7 @@ from genius_invocation.card.character.import_head import *
 class Katzlein_Style(NormalAttack):
     name = "Kätzlein Style"
     name_ch = '猎人射术'
-    id: int = 11021
+    id: int = 110201
     type: SkillType = SkillType.NORMAL_ATTACK
 
     # damage
@@ -42,7 +42,7 @@ class Katzlein_Style(NormalAttack):
 class Icy_Paws(ElementalSkill):
     name = "Icy Paws"
     name_ch = '猫爪冻冻'
-    id = 11022
+    id = 110202
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
     # damage
@@ -78,7 +78,7 @@ class Icy_Paws(ElementalSkill):
 class Signature_Mix(ElementalBurst):
     name = "Signature Mix"
     name_ch = '最烈特调'
-    id = 11023
+    id = 110203
     type = SkillType.ELEMENTAL_BURST
 
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
@@ -108,6 +108,7 @@ class Signature_Mix(ElementalBurst):
 class Cat_Claw_Shield(Combat_Shield):
     name = "Cat-Claw Shield"
     name_ch = "猫爪护盾"
+    id = 110251
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character' = None):
         super().__init__(game, from_player, from_character)
         self.usage = 1
@@ -125,6 +126,7 @@ class Drunken_Mist(Summon):
     name_ch = "酒雾领域"
     removable = True
     element = ElementType.CRYO
+    id = 110211
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character' = None):
         super().__init__(game, from_player, from_character)
         self.usage = 2

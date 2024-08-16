@@ -6,7 +6,7 @@ if TYPE_CHECKING:
     from genius_invocation.game.player import GeniusPlayer
 
 class Day_of_Resistance_Entity(Status):
-    id: int = 330006
+    id: int = 33000621
     name = "Day of Resistance: Moment of Shattered Dreams"
     name_ch = "抗争之日·碎梦之时"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):

@@ -1,7 +1,7 @@
 from genius_invocation.card.character.import_head import *
 
 class Frostblade_Hailstorm(NormalAttack):
-    id: int = 21021
+    id: int = 210201
     name = "Frostblade Hailstorm"
     name_ch = "霜锋霰舞"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -20,7 +20,7 @@ class Frostblade_Hailstorm(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Biting_Shards(ElementalSkill):
-    id: int = 21022
+    id: int = 210202
     name = "Biting Shards"
     name_ch = "凛冽之刺"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -47,6 +47,7 @@ class Biting_Shards(ElementalSkill):
 class Sheer_Cold(Status):
     name = "Sheer Cold"
     name_ch = "严寒"
+    id = 210221
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None):
         super().__init__(game, from_player, from_character)
         self.usage = 1
@@ -78,6 +79,7 @@ class Sheer_Cold(Status):
 class Blazing_Heat(Status):
     name = "Blazing Heat"
     name_ch = "炽热"
+    id = 210222
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None):
         super().__init__(game, from_player, from_character)
         status = self.from_character.character_zone.has_entity(Sheer_Cold)
@@ -110,7 +112,7 @@ class Blazing_Heat(Status):
         ]
 
 class Carmine_Chrysalis(ElementalBurst):
-    id: int = 21023
+    id: int = 210203
     name = "Carmine Chrysalis"
     name_ch = "红莲冰茧"
     type: SkillType = SkillType.ELEMENTAL_BURST
@@ -219,6 +221,7 @@ class LaSignora(Character):
 class IceSealed_Crimson_Witch_of_Embers(Status):
     name = "Ice-Sealed Crimson Witch of Embers"
     name_ch = "冰封的炽炎魔女"
+    id = 210223
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.current_usage = 1
@@ -252,7 +255,7 @@ class IceSealed_Crimson_Witch_of_Embers(Status):
 
 
 class Crimson_Lotus_Moth(NormalAttack):
-    id: int = 21024
+    id: int = 210204
     name = "Crimson Lotus Moth"
     name_ch = "红莲之蛾"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -271,7 +274,7 @@ class Crimson_Lotus_Moth(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Decimating_Lash(ElementalSkill):
-    id: int = 21025
+    id: int = 210205
     name = "Decimating Lash"
     name_ch = "烬灭之鞭"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -296,7 +299,7 @@ class Decimating_Lash(ElementalSkill):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Whirling_Blaze(ElementalBurst):
-    id: int = 21026
+    id: int = 210206
     name = "Whirling Blaze"
     name_ch = "燃焰旋织"
     type: SkillType = SkillType.ELEMENTAL_BURST

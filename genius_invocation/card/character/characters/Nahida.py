@@ -5,7 +5,7 @@ class Akara(NormalAttack):
         纳西妲
         普通攻击
     '''
-    id: int = 17031
+    id: int = 170301
     type: SkillType = SkillType.NORMAL_ATTACK
     name = "Akara"
     name_ch = "行相"
@@ -46,7 +46,7 @@ class All_Schemes_to_Know(ElementalSkill):
         纳西妲
         元素战技 1 小e
     '''
-    id: int = 17032
+    id: int = 170302
     name='All Schemes to Know'
     name_ch = "所闻遍计"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -107,7 +107,7 @@ class All_Schemes_to_Know_Tathata(ElementalSkill):
         纳西妲
         元素战技 2 大e
     '''
-    id: int = 17033
+    id: int = 170303
     name='All Schemes to Know: Tathata'
     name_ch = "所闻遍计·真如"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -170,7 +170,7 @@ class Illusory_Heart(ElementalBurst):
         纳西妲
         元素爆发
     '''
-    id: int = 3
+    id: int = 170304
     name='Illusory Heart'
     name_ch = "心景幻成"
     type: SkillType = SkillType.ELEMENTAL_BURST
@@ -228,6 +228,7 @@ class Nahida(Character):
 class Shrine_of_Maya(Combat_Status):
     name = "Shrine of Maya"
     name_ch = "摩耶之殿"
+    id = 170331
     def __init__(self, game, from_player: 'GeniusPlayer', from_character: Character=None):
         super().__init__(game, from_player, from_character)
         self.usage = 2
@@ -290,6 +291,7 @@ class Shrine_of_Maya(Combat_Status):
 class Seed_of_Skandha(Status):
     name = "Seed of Skandha"
     name_ch = "蕴种印"
+    id = 170321
     # 蕴种印， from_player: 附属一方， from_character: 附属的角色
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character', nahida: 'Character'):
         super().__init__(game, from_player, from_character)

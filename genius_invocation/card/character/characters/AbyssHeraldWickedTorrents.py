@@ -4,7 +4,7 @@ from genius_invocation.card.character.import_head import *
 class RipplingSlash(NormalAttack):
     name = "Rippling Slash"
     name_ch = "波刃锋斩"
-    id = 22031
+    id = 220301
     type: SkillType = SkillType.NORMAL_ATTACK
     damage_type: SkillType = SkillType.NORMAL_ATTACK
     main_damage_element: ElementType = ElementType.PHYSICAL
@@ -37,7 +37,7 @@ class RipplingSlash(NormalAttack):
 class VortexEdge(ElementalSkill):
     name = "Vortex Edge"
     name_ch = "洄涡锋刃"
-    id = 22032
+    id = 220302
     type: SkillType = SkillType.ELEMENTAL_SKILL
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
     main_damage_element: ElementType = ElementType.HYDRO
@@ -71,7 +71,7 @@ class VortexEdge(ElementalSkill):
 class RipplingBlades(ElementalSkill):
     name = "Rippling Blades"
     name_ch = "涟锋旋刃"
-    id = 22034
+    id = 220304
     type = SkillType.ELEMENTAL_SKILL
 
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -95,6 +95,7 @@ class RipplingBlades(ElementalSkill):
 class PrepareRipplingBlades(Status):
     name = "Prepare Rippling Blades"
     name_ch = "准备技能: 涟锋旋刃"
+    id = 220322
     def __init__(self, game:'GeniusGame', from_player:'GeniusPlayer', from_character:'Character', next_skill: 'CharacterSkill'):
         super().__init__(game, from_player, from_character)
         self.next_skill = next_skill
@@ -118,7 +119,7 @@ class PrepareRipplingBlades(Status):
 class TorrentialShock(ElementalBurst):
     name = "Torrential Shock"
     name_ch = "激流强震"
-    id = 22033
+    id = 220303
     type: SkillType = SkillType.ELEMENTAL_BURST
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
     main_damage_element: ElementType = ElementType.HYDRO
@@ -153,6 +154,7 @@ class CurseoftheUndercurrent(Combat_Status):
     name = "Curse of the Undercurrent"
     name_ch = "暗流的诅咒"
     max_usage = 2
+    id = 220331
     def __init__(self, game, from_player: 'GeniusPlayer', from_character: 'Character'=None):
         super().__init__(game, from_player, from_character)
         self.current_usage = self.max_usage
@@ -183,6 +185,7 @@ class CurseoftheUndercurrent(Combat_Status):
 class WateryRebirth(Status):
     name = "Watery Rebirth"
     name_ch = "水之新生"
+    id = 220321
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.current_usage = 1

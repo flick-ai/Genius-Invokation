@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 class BigELECTRO_Entity(BigElement):
     name: str = "Thundering Fury"
     name_ch = "如雷的盛怒"
+    id = 31240291
     element_type = CostType.ELECTRO
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, artifact_card = None):
         super().__init__(game, from_player, from_character, artifact_card)

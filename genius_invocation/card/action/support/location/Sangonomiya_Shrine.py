@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 class Sangonomiya_Shrine_Entity(Support):
-    id: int = 321009
+    id: int = 32100961
     name = 'Sangonomiya Shrine'
     name_ch = '珊瑚宫'
     time = 3.7

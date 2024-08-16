@@ -3,7 +3,7 @@ from genius_invocation.card.character.import_head import *
 class Cicin_Icicle(NormalAttack):
     name = 'Cicin Icicle'
     name_ch = "冰萤棱锥"
-    id = 21011
+    id = 210101
     type: SkillType = SkillType.NORMAL_ATTACK
 
     # damage
@@ -45,7 +45,7 @@ class Cicin_Icicle(NormalAttack):
 class Misty_Summons(ElementalSkill):
     name = 'Misty Summons'
     name_ch = '雾虚摇唤'
-    id = 21012
+    id = 210102
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
     # damage
@@ -77,7 +77,7 @@ class Misty_Summons(ElementalSkill):
 class Blizzard(ElementalBurst):
     name = 'Blizzard'
     name_ch = '冰枝白花'
-    id = 21013
+    id = 210103
     type: SkillType = SkillType.ELEMENTAL_BURST
 
     # damage
@@ -116,6 +116,7 @@ class Cryo_Cicins(Summon):
     name_ch = '冰萤'
     removable = True
     element = ElementType.CRYO
+    id = 210111
     def __init__(self, game:'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.usage = 2
@@ -190,6 +191,7 @@ class Cryo_Cicins(Summon):
 class Flowing_Cicin_Shield(Combat_Shield):
     name = 'Flowing Cicin Shield'
     name_ch = '流萤护罩'
+    id  = 210151
     def __init__(self, game:'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.usage = 1

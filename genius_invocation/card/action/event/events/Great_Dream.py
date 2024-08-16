@@ -7,6 +7,7 @@ if TYPE_CHECKING:
 class Dream(Combat_Status):
     name: str = 'Rhythm of the Great Dream'
     name_ch = '大梦的曲调'
+    id = 33202131
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.current_usage = 1

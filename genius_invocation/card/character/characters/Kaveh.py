@@ -4,7 +4,7 @@ from genius_invocation.entity.summon import BountifulCore
 from copy import deepcopy
 
 class SchematicSetup(NormalAttack):
-    id: int = 17081
+    id: int = 170801
     name = "Schematic Setup"
     name_ch = "旋规设矩"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -42,7 +42,7 @@ class SchematicSetup(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class ArtisticIngenuity(ElementalSkill):
-    id: int = 17082
+    id: int = 170802
     name = "Artistic Ingenuity"
     name_ch = "画则巧施"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -74,7 +74,7 @@ class ArtisticIngenuity(ElementalSkill):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class PaintedDome(ElementalBurst):
-    id: int = 17083
+    id: int = 170803
     name = "Painted Dome"
     name_ch = "繁绘隅穹"
     type: SkillType = SkillType.ELEMENTAL_BURST
@@ -112,6 +112,7 @@ class MehraksAssistance(Status):
     name = "Mehrak's Assistance"
     name_ch = "梅赫拉克的助力"
     max_usage = 2
+    id = 170821
     def __init__(self, game, from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.current_usage = self.max_usage
@@ -155,6 +156,7 @@ class BurstScan(Combat_Status):
     name = "Burst Scan"
     name_ch = "迸发扫描"
     max_usage = 3
+    id = 170831
     def __init__(self, game, from_player: 'GeniusPlayer', from_character: 'Character'=None):
         super().__init__(game, from_player, from_character)
         self.current_usage = 1

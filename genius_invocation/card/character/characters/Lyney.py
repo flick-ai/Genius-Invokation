@@ -1,7 +1,7 @@
 from genius_invocation.card.character.import_head import *
 
 class Card_Force_Translocation(NormalAttack):
-    id: int = 13101
+    id: int = 131001
     name="Card Force Translocation"
     name_ch = "迫牌易位式"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -39,7 +39,7 @@ class Card_Force_Translocation(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Prop_Arrow(NormalAttack):
-    id: int = 13102
+    id: int = 131002
     name="Prop Arrow"
     name_ch = "隐具魔术箭"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -81,7 +81,7 @@ class Prop_Arrow(NormalAttack):
         self.gain_energy(game)
 
 class GrinMalkin_Hat(Summon):
-    id: int = 13105
+    id: int = 131011
     name="GrinMalkin Hat"
     name_ch = "怪笑猫猫帽"
     element: ElementType = ElementType.PYRO
@@ -121,7 +121,7 @@ class GrinMalkin_Hat(Summon):
 class Prop_Surplus(Status):
     name = "Prop Surplus"
     name_ch = "隐具余数"
-
+    id = 131021
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.current_usage = 1
@@ -141,7 +141,7 @@ class Prop_Surplus(Status):
         ]
 
 class Bewildering_Lights(ElementalSkill):
-    id: int = 13103
+    id: int = 131003
     name="Bewildering Lights"
     name_ch = "眩惑光戏法"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -176,7 +176,7 @@ class Bewildering_Lights(ElementalSkill):
 
 
 class Wondrous_Trick_Miracle_Parade(ElementalBurst):
-    id: int = 13104
+    id: int = 131004
     name = "Wondrous Trick: Miracle Parade"
     name_ch = "大魔术·灵迹巡游"
     type: SkillType = SkillType.ELEMENTAL_BURST

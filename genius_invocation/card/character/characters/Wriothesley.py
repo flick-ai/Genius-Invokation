@@ -3,7 +3,7 @@ from genius_invocation.card.character.import_head import *
 class ForcefulFistsofFrost(NormalAttack):
     name = 'Forceful Fists of Frost'
     name_ch = "迅烈倾霜拳"
-    id: int = 11111
+    id: int = 111101
     type: SkillType = SkillType.NORMAL_ATTACK
 
     # damage
@@ -30,7 +30,7 @@ class ForcefulFistsofFrost(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class IcefangRush(ElementalSkill):
-    id = 11112
+    id = 111102
     name = 'Icefang Rush'
     name_ch = "冰牙突驰"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -62,7 +62,7 @@ class IcefangRush(ElementalSkill):
 
 
 class DarkgoldWolfbite(ElementalBurst):
-    id = 11113
+    id = 111103
     name = 'Darkgold Wolfbite'
     name_ch = "黑金狼噬"
     type: SkillType = SkillType.ELEMENTAL_BURST
@@ -174,6 +174,7 @@ class Wriothesley(Character):
 class ChillingPenalty(Status):
     name = 'Chilling Penalty'
     name_ch = "寒烈的惩裁"
+    id = 111121
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character', talent = False):
         super().__init__(game, from_player, from_character)
         self.current_usage = 2
@@ -230,6 +231,7 @@ class ChillingPenalty(Status):
 class LingeringIcicles(Combat_Status):
     name = 'Lingering Icicles'
     name_ch = "余威冰锥"
+    id = 111131
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character:'Character'=None):
         super().__init__(game, from_player, from_character)
         self.current_usage = 1

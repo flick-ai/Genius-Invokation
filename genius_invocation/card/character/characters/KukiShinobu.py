@@ -1,7 +1,7 @@
 from genius_invocation.card.character.import_head import *
 
 class Shinobus_Shadowsword(NormalAttack):
-    id: int = 14111
+    id: int = 141101
     type: SkillType = SkillType.NORMAL_ATTACK
     name = "Shinobu's Shadowsword"
     name_ch = "忍流飞刃斩"
@@ -38,7 +38,7 @@ class Shinobus_Shadowsword(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Sanctifying_Ring(ElementalSkill):
-    id: int = 14112
+    id: int = 141102
     name = "Sanctifying Ring"
     name_ch = "越祓雷草之轮"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -81,7 +81,7 @@ class Sanctifying_Ring(ElementalSkill):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Gyoei_Narukami_Kariyama_Rite(ElementalBurst):
-    id = 14113
+    id = 141103
     name="Gyoei Narukami Kariyama Rite"
     name_ch = "御咏鸣神刈山祭"
     type: SkillType = SkillType.ELEMENTAL_BURST
@@ -154,6 +154,7 @@ class KukiShinobu(Character):
 class Grass_Ring_of_Sanctification(Combat_Status):
     name = "Grass Ring of Sanctification"
     name_ch = "雷草之轮"
+    id = 141131
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character:'Character'=None):
         super().__init__(game, from_player, from_character)
         self.usage = 3

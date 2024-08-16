@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 class Hanachirusato_Entity(Support):
-    id: int = 322013
+    id: int = 32201361
     name = 'Hanachirusato'
     name_ch = '花散里'
     max_usage = -1

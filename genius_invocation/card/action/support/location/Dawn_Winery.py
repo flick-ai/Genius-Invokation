@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 class Dawn_Winery_Entity(Support):
-    id: int = 321004
+    id: int = 32100461
     name = 'Dawn Wineryr'
     name_ch = '晨曦酒庄'
     max_usage = 2

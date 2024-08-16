@@ -7,6 +7,7 @@ if TYPE_CHECKING:
 class FourLeaf_Sigil(Status):
     name: str = 'Four-Leaf Sigil'
     name_ch = '四叶印'
+    id = 33202721
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
 

@@ -3,7 +3,7 @@ from genius_invocation.card.character.import_head import *
 class Ceremonial_Bladework(NormalAttack):
     name = 'Ceremonial Bladework'
     name_ch = "仪典剑术"
-    id: int = 11031
+    id: int = 110301
     type: SkillType = SkillType.NORMAL_ATTACK
 
     # damage
@@ -39,7 +39,7 @@ class Ceremonial_Bladework(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Frostgnaw(ElementalSkill):
-    id = 11032
+    id = 110302
     name = "Frostgnaw"
     name_ch = "霜袭"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -82,7 +82,7 @@ class Frostgnaw(ElementalSkill):
 class Glacial_Waltz(ElementalBurst):
     name = "Glacial Waltz"
     name_ch = "凛冽轮舞"
-    id: int = 11033
+    id: int = 110303
     type = SkillType.ELEMENTAL_BURST
 
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
@@ -111,6 +111,7 @@ class Glacial_Waltz(ElementalBurst):
 class Icicle(Combat_Status):
     name = "Icicle"
     name_ch = "寒冰之棱"
+    id = 110331
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character' = None):
         super().__init__(game, from_player, from_character)
         self.usage = 3

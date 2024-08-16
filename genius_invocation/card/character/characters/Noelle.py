@@ -1,7 +1,7 @@
 from genius_invocation.card.character.import_head import *
 
 class Favonius_Bladework_Maid(NormalAttack):
-    id = 16021
+    id = 160201
     name = 'Favonius Bladework - Maid'
     name_ch = "西风剑术·女仆"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -34,7 +34,7 @@ class Favonius_Bladework_Maid(NormalAttack):
 
 
 class Breastplate(ElementalSkill):
-    id = 16022
+    id = 160202
     name = 'Breastplate'
     name_ch = "护心铠"
     type = SkillType.ELEMENTAL_SKILL
@@ -66,7 +66,7 @@ class Breastplate(ElementalSkill):
 class Sweeping_Time(ElementalBurst):
     name = 'Sweeping Time'
     name_ch = "大扫除"
-    id = 16023
+    id = 160203
     type = SkillType.ELEMENTAL_BURST
 
     damage_type = SkillType.ELEMENTAL_BURST
@@ -121,7 +121,7 @@ class Noelle(Character):
 class Full_Plate(Combat_Shield):
     name = "Full Plate"
     name_ch = "护体岩铠"
-    id = 0
+    id = 160251
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None):
         super().__init__(game, from_player, from_character)
         self.usage = 2
@@ -170,6 +170,7 @@ class Full_Plate(Combat_Shield):
 class Sweeping_Time_Status(Status):
     name = 'Sweeping Time'
     name_ch = "大扫除-效果"
+    id = 160221
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.max_usage = 2

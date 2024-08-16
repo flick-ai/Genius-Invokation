@@ -10,6 +10,7 @@ if TYPE_CHECKING:
 class EndoftheLineWeapon(Weapon):
     name: str = "End of the Line"
     name_ch = "竭泽"
+    id = 31120781
     max_catch = 2
     max_count = 1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, weapon_card = None):

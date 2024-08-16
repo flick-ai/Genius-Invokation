@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 class SmallPYRO_Entity(SmallElement):
     name: str = "Witch's Scorching Hat"
     name_ch = "焦灼的魔女帽"
+    id = 31230191
     element_type = CostType.PYRO
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, artifact_card = None):
         super().__init__(game, from_player, from_character, artifact_card)

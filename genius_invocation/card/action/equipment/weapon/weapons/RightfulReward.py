@@ -10,6 +10,7 @@ if TYPE_CHECKING:
 class RightfulRewardWeapon(Weapon):
     name: str = "Rightful Reward"
     name_ch = "公义的酬报"
+    id = 31140881
     max_count = 3
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, weapon_card = None):
         super().__init__(game, from_player, from_character, weapon_card)

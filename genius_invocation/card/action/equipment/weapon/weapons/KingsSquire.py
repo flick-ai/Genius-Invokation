@@ -10,6 +10,7 @@ if TYPE_CHECKING:
 class StatusOfSummeru(Status):
     name = "Status Of Summeru's Weapon"
     name_ch = '须弥武器状态'
+    id = 31120621
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.current_usage = 1
@@ -48,6 +49,7 @@ class StatusOfSummeru(Status):
 class KingsSquire(Weapon):
     name: str = "King's Squire"
     name_ch = "王下近侍"
+    id = 31120681
     def on_damage_add(self, game: 'GeniusGame'):
         if game.current_damage.damage_from == self.from_character:
             if game.current_damage.main_damage_element is not ElementType.PIERCING:

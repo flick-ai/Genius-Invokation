@@ -4,7 +4,7 @@ from genius_invocation.card.character.import_head import *
 class Origin(NormalAttack):
     name = 'Origin'
     name_ch = '源流'
-    id: int = 14071
+    id: int = 140701
     type: SkillType = SkillType.NORMAL_ATTACK
 
     # damage
@@ -40,7 +40,7 @@ class Origin(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Transcendence_Baleful_Omen(ElementalSkill):
-    id = 14072
+    id = 140702
     name = "Transcendence: Baleful Omen"
     name_ch = "神变·恶曜开眼"
     type = SkillType.ELEMENTAL_SKILL
@@ -74,7 +74,7 @@ class Transcendence_Baleful_Omen(ElementalSkill):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Secret_Art_Musou_Shinsetsu(ElementalBurst):
-    id = 14073
+    id = 140703
     name="Secret Art: Musou Shinsetsu"
     name_ch = "奥义·梦想真说"
     type: SkillType = SkillType.ELEMENTAL_BURST
@@ -149,6 +149,7 @@ class Eye_of_Stormy_Judgement(Summon):
     name_ch = "雷罚恶曜之眼"
     removable = True
     element = ElementType.ELECTRO
+    id = 140711
 
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character:'Character'=None):
         super().__init__(game, from_player, from_character)
@@ -191,6 +192,7 @@ class Eye_of_Stormy_Judgement(Summon):
 class Chakra_Desiderata(Status):
     name = "Chakra Desiderata"
     name_ch = "诸愿百眼之轮"
+    id = 140721
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character:'Character'=None):
         super().__init__(game, from_player, from_character)
         self.current_usage = 0

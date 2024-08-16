@@ -3,7 +3,7 @@ from genius_invocation.card.character.import_head import *
 class Secret_Spear_of_Wangsheng(NormalAttack):
     name = 'Secret Spear of Wangsheng'
     name_ch = '往生秘传枪法'
-    id = 13071
+    id = 130701
     type: SkillType = SkillType.NORMAL_ATTACK
 
     # damage
@@ -42,7 +42,7 @@ class Secret_Spear_of_Wangsheng(NormalAttack):
 class Guide_to_Afterlife(ElementalSkill):
     name = 'Guide to Afterlife'
     name_ch = '蝶引来生'
-    id = 13072
+    id = 130702
 
     type: SkillType = SkillType.ELEMENTAL_SKILL
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -74,7 +74,7 @@ class Guide_to_Afterlife(ElementalSkill):
 class Spirit_Soother(ElementalBurst):
     name = 'Spirit Soother'
     name_ch = '安神秘法'
-    id = 13073
+    id = 130703
     type: SkillType = SkillType.ELEMENTAL_BURST
 
     # damage
@@ -109,6 +109,7 @@ class Spirit_Soother(ElementalBurst):
 class Paramita_Papilio(Status):
     name = 'Paramita Papilio'
     name_ch = '彼岸蝶舞'
+    id = 130721
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.usage = 2
@@ -144,6 +145,7 @@ class Paramita_Papilio(Status):
 class Blood_Blossom(Status):
     name = 'Blood Blossom'
     name_ch = '血梅香'
+    id = 130722
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.usage = 1

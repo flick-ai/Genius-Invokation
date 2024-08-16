@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 class Liyue_Harbor_Wharf_Entity(Support):
-    id: int = 322001
+    id: int = 32200161
     name = 'Liyue Haroboe Wharf'
     name_ch = '璃月港口'
     max_usage = 2

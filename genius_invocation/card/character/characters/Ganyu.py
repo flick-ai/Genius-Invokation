@@ -3,7 +3,7 @@ from genius_invocation.card.character.import_head import *
 class Liutian_Archery(NormalAttack):
     name = 'Liutian Archery'
     name_ch = "流天射术"
-    id: int = 11011
+    id: int = 110101
     type: SkillType = SkillType.NORMAL_ATTACK
 
     # damage
@@ -40,7 +40,7 @@ class Liutian_Archery(NormalAttack):
 
 
 class Trail_of_the_Qilin(ElementalSkill):
-    id = 11012
+    id = 110102
     name = 'Trail of the Qilin'
     name_ch = "山泽麟迹"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -78,7 +78,7 @@ class Trail_of_the_Qilin(ElementalSkill):
 class Frostflake_Arrow(NormalAttack):
     name = 'Frostflake Arrow'
     name_ch = "霜华矢"
-    id: int = 11013
+    id: int = 110103
     type: SkillType = SkillType.NORMAL_ATTACK
 
     # damage
@@ -115,7 +115,7 @@ class Frostflake_Arrow(NormalAttack):
 
 
 class Celestial_Shower(ElementalBurst):
-    id = 11014
+    id = 110104
     name = 'Celestial Shower'
     name_ch = "降众天华"
     type = SkillType.ELEMENTAL_BURST
@@ -145,6 +145,7 @@ class Celestial_Shower(ElementalBurst):
 class Ice_Lotus(Combat_Status):
     name = 'Ice Lotus'
     name_ch = "冰莲"
+    id = 110131
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character' = None):
         super().__init__(game, from_player, from_character)
         self.usage = 2
@@ -174,6 +175,7 @@ class Sacred_Cryo_Pearl(Summon):
     name_ch = "冰灵珠"
     element = ElementType.CRYO
     removable = True
+    id = 110111
 
     def on_end_phase(self, game: 'GeniusGame'):
         '''

@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 class SmallDENDRO_Entity(SmallElement):
     name: str = "Laurel Coronet"
     name_ch = "月桂的宝冠"
+    id = 31270191
     element_type = CostType.DENDRO
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, artifact_card = None):
         super().__init__(game, from_player, from_character, artifact_card)

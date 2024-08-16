@@ -2,7 +2,7 @@ from genius_invocation.card.character.import_head import *
 from genius_invocation.card.character.characters.ConsecratedScorpion import BonecrunchersEnergyBlock
 
 class WhirlingTail(NormalAttack):
-    id: int = 25031
+    id: int = 250301
     name = "Whirling Tail"
     name_ch = "旋尾迅击"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -21,7 +21,7 @@ class WhirlingTail(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class SwirlingSquall(ElementalSkill):
-    id: int = 25032
+    id: int = 250302
     name = "Swirling Squall"
     name_ch = "盘绕风引"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -51,7 +51,7 @@ class SwirlingSquall(ElementalSkill):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class ScattershotVortex(ElementalBurst):
-    id: int = 25033
+    id: int = 250303
     name = "Scattershot Vortex"
     name_ch = "错落风涡"
     type: SkillType = SkillType.ELEMENTAL_BURST

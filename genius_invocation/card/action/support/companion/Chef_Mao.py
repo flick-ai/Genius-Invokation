@@ -24,6 +24,7 @@ class Chef_Mao_Entity(Support):
             if game.current_dice.use_type == ActionCardType.EVENT_FOOD:
                 if self.usage_round > 0:
                     self.from_player.dice_zone.add(self.from_player.roll_dice(num=1, is_basic=True))
+                    self.usage_round -= 1
                 if self.usage_game > 0:
                     card = self.from_player.card_zone.find_card(card_type=ActionCardType.EVENT_FOOD, random_choice=True)
                     self.from_player.hand_zone.add(card)

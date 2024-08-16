@@ -2,7 +2,7 @@ from genius_invocation.card.character.import_head import *
 
 
 class WaterBall(NormalAttack):
-    id: int = 22021
+    id: int = 220201
     name = "Water Ball"
     name_ch = "水弹"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -21,7 +21,7 @@ class WaterBall(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class InfluxBlast(ElementalSkill):
-    id: int = 22022
+    id: int = 220202
     name = "Influx Blast"
     name_ch = "潋波绽破"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -55,6 +55,7 @@ class InfluxBlast(ElementalSkill):
 class Refraction(Status):
     name = "Refraction"
     name_ch = "水光破镜"
+    id = 220221
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character:'Character', belong_to:'Character'):
         super().__init__(game, from_player, from_character)
         self.belong_to = belong_to
@@ -103,7 +104,7 @@ class Refraction(Status):
 
 
 class RippledReflection(ElementalBurst):
-    id: int = 22023
+    id: int = 220203
     name = "Rippled Reflection"
     name_ch = "粼镜折光"
     type: SkillType = SkillType.ELEMENTAL_BURST

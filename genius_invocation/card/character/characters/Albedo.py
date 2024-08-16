@@ -1,7 +1,7 @@
 from genius_invocation.card.character.import_head import *
 
 class Weiss(NormalAttack):
-    id: int = 16041
+    id: int = 160401
     name = "Favonius Bladework - Weiss"
     name_ch = "西风剑术·白"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -21,7 +21,7 @@ class Weiss(NormalAttack):
 
 
 class Abiogenesis(ElementalSkill):
-    id: int = 16042
+    id: int = 160402
     name = "Abiogenesis: Solar Isotoma"
     name_ch = "创生法·拟造阳华"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -42,6 +42,7 @@ class Abiogenesis(ElementalSkill):
 class SolarIsotoma(Summon):
     name: str = 'Solar Isotoma'
     name_ch = "阳华"
+    id = 160411
     element: ElementType = ElementType.GEO
     removable = True
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character:'Character'):
@@ -107,7 +108,7 @@ class SolarIsotoma(Summon):
             self.listeners.append((EventType.ON_USE_SKILL, ZoneType.SUMMON_ZONE, self.on_use_skill))
 
 class RiteofProgeniture(ElementalBurst):
-    id: int = 16043
+    id: int = 160403
     name = "Rite of Progeniture: Tectonic Tide"
     name_ch = "诞生式·大地之潮"
     type: SkillType = SkillType.ELEMENTAL_BURST

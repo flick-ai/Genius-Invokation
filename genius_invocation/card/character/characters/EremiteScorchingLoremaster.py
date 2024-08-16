@@ -3,7 +3,7 @@ from genius_invocation.card.character.import_head import *
 class SearingGlare(NormalAttack):
     name = "Searing Glare"
     name_ch = "烧蚀之光"
-    id = 23031
+    id = 230301
     type: SkillType = SkillType.NORMAL_ATTACK
     damage_type: SkillType = SkillType.NORMAL_ATTACK
     main_damage_element: ElementType = ElementType.PYRO
@@ -23,7 +23,7 @@ class SearingGlare(NormalAttack):
 class BlazingStrike(ElementalSkill):
     name = "Blazing Strike"
     name_ch = "炎晶迸击"
-    id = 23032
+    id = 230302
     type: SkillType = SkillType.ELEMENTAL_SKILL
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
     main_damage_element: ElementType = ElementType.PYRO
@@ -42,7 +42,7 @@ class BlazingStrike(ElementalSkill):
 class Spirit_of_Omens_Awakening_Pyro_Scorpion(ElementalBurst):
     name = "Spirit of Omen's Awakening: Pyro Scorpion"
     name_ch = "厄灵苏醒·炎之魔蝎"
-    id = 23033
+    id = 230303
     type: SkillType = SkillType.ELEMENTAL_BURST
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
     main_damage_element: ElementType = ElementType.PYRO
@@ -65,6 +65,7 @@ class Spirit_of_Omen_Pyro_Scorpion(Summon):
     name_ch = "厄灵·炎之魔蝎"
     removable = True
     element  = ElementType.PYRO
+    id = 230311
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.current_usage = 2
@@ -131,7 +132,7 @@ class Spirit_of_Omen_Pyro_Scorpion(Summon):
 class Pyro_Scorpion_Guardian_Stance(Status):
     name = 'Pyro Scorpion: Guardian Stance'
     nane_ch = '炎之魔蝎·守势'
-
+    id = 230321
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, from_summon:'Summon' = None):
         super().__init__(game, from_player, from_character)
         # USAGE SHOULD ALWAYS 1
@@ -168,6 +169,7 @@ class Pyro_Scorpion_Guardian_Stance(Status):
 class Spirit_of_Omens_Power(Status):
     name = "Spirit of Omen's Power"
     name_ch = "厄灵之能"
+    id = 230322
 
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None):
         super().__init__(game, from_player, from_character)

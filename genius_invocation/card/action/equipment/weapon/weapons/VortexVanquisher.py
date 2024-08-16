@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 class VortexVanquisherWeapon(Weapon):
     name: str = "Vortex Vanquisher"
     name_ch = "贯虹之槊"
+    id = 31140481
     max_usage = 1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'= None, weapon_card = None):
         super().__init__(game, from_player, from_character, weapon_card)

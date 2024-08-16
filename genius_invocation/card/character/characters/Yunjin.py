@@ -2,7 +2,7 @@ from genius_invocation.card.character.import_head import *
 from genius_invocation.entity.status import Crystallize_Shield
 
 class CloudGrazingStrike(NormalAttack):
-    id: int = 16071
+    id: int = 160701
     name = "Cloud-Grazing Strike"
     name_ch = "拂云出手"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -21,7 +21,7 @@ class CloudGrazingStrike(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class OpeningFlourish(ElementalSkill):
-    id: int = 16072
+    id: int = 160702
     name = "Opening Flourish"
     name_ch = "旋云开相"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -39,8 +39,8 @@ class OpeningFlourish(ElementalSkill):
         self.add_combat_status(game, FlyingCloudFlagFormation, usage=1)
 
         Next_Skill = self.from_character.next_skill
-        prepare_status = ShieldofSwirlingClouds(game, self.from_character.from_player, self.from_character, Next_Skill)
-        assert self.from_character.character_zone.has_entity(ShieldofSwirlingClouds) is None
+        prepare_status = PrepareSpearFlourish(game, self.from_character.from_player, self.from_character, Next_Skill)
+        assert self.from_character.character_zone.has_entity(PrepareSpearFlourish) is None
         self.from_character.character_zone.add_entity(prepare_status)
         self.from_character.from_player.prepared_skill = prepare_status
 
@@ -50,39 +50,48 @@ class OpeningFlourish(ElementalSkill):
 class ShieldofSwirlingClouds(Shield):
     name = "Shield of Swirling Clouds"
     name_ch = "旋云护盾"
+    id = 160741
+    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character', from_prepare_status: 'Status'):
+        super().__init__(game, from_player, from_character)
+        self.from_prepare_status = from_prepare_status
+        self.current_usage = 2
+
+
+
+class PrepareSpearFlourish(Status):
+    name = "Prepare For Spear Flourish"
+    name_ch = "准备技能：长枪开相"
+    id = 160721
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character', Next_Skill: 'CharacterSkill'):
+        assert self.from_character.character_zone.has_entity(ShieldofSwirlingClouds) is None
+        shield = ShieldofSwirlingClouds(game, self.from_player, self.from_character, self)
+        self.from_character.character_zone.add_entity(shield)
         super().__init__(game, from_player, from_character)
         self.skill = Next_Skill
-        self.current_usage = 2
+        
 
     def on_call(self, game: 'GeniusGame'):
         self.skill.on_call(game)
         self.on_destroy(game)
-        #Check when the shield disappear. Answer: the same point of damage, even the shield is 0.
-        #In this implement, the prepare_status is destroy after the stage of after_skill in the process of on_call.
+
     def after_change(self,game:'GeniusGame'):
         if game.current_switch["from"] == self.from_character:
             self.from_character.from_player.prepared_skill = None
             self.on_destroy(game)
 
-    def on_execute_dmg(self, game:'GeniusGame'):
-        if game.current_damage.damage_to == self.from_character:
-            if game.current_damage.main_damage_element != ElementType.PIERCING:
-                if game.current_damage.main_damage >= self.current_usage:
-                    game.current_damage.main_damage -= self.current_usage
-                    self.current_usage = 0
-                else:
-                    self.current_usage -= game.current_damage.main_damage
-                    game.current_damage.main_damage = 0
-
     def update_listener_list(self):
         self.listeners = [
-            (EventType.EXECUTE_DAMAGE, ZoneType.CHARACTER_ZONE, self.on_execute_dmg),
             (EventType.AFTER_CHANGE_CHARACTER, ZoneType.CHARACTER_ZONE, self.after_change)
         ]
+    
+    def on_destroy(self, game: 'GeniusGame'):
+        shield = self.from_character.character_zone.has_entity(ShieldofSwirlingClouds)
+        if shield is not None:
+            shield.on_destroy(game)
+        super().on_destroy(game)
 
 class SpearFlourish(ElementalSkill):
-    id = 16074
+    id = 160704
     name = 'Spear Flourish'
     name_ch = '长枪开相'
     type = SkillType.ELEMENTAL_SKILL
@@ -110,6 +119,7 @@ class FlyingCloudFlagFormation(Combat_Status):
     name = "Flying Cloud Flag Formation"
     name_ch = "飞云旗阵"
     max_usage = 4
+    id = 160731
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, usage=1):
         super().__init__(game, from_player, from_character)
         self.current_usage = usage
@@ -152,7 +162,7 @@ class FlyingCloudFlagFormation(Combat_Status):
         ]
 
 class CliffbreakersBanner(ElementalBurst):
-    id: int = 16073
+    id: int = 160703
     name = "Cliffbreaker's Banner"
     name_ch = "破嶂见旌仪"
     type: SkillType = SkillType.ELEMENTAL_BURST

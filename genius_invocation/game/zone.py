@@ -1,4 +1,4 @@
-from typing import List, TYPE_CHECKING, Dict, Union
+from typing import List, TYPE_CHECKING, Dict, Union, Optional
 import numpy as np
 from genius_invocation.utils import *
 from copy import deepcopy
@@ -389,6 +389,9 @@ class CardZone:
 
     def num(self):
         return len(self.card)
+    
+    def show(self)->List[ActionCard]:
+        return self.card
 
 class SummonZone:
     '''
@@ -432,7 +435,9 @@ class SummonZone:
 
     def num(self):
         return len(self.space)
-
+    
+    def show(self)->List[Summon]:
+        return self.space
 class SupportZone:
     '''
         支援区
@@ -473,6 +478,9 @@ class SupportZone:
 
     def num(self):
         return len(self.space)
+    
+    def show(self)->List[Support]:
+        return self.space
 
 
 class CharacterZone:
@@ -518,6 +526,22 @@ class CharacterZone:
             status.on_destroy(game)
             # del(status)
         self.status_list = []
+    
+    def show_equip_card(self)->Dict[str, Optional[EquipmentCard]]:
+        '''
+        Return a dict to show THE CARD of equipments, None for no such an equipment
+        {
+            'weapon_card': WEAPON_CARD,
+            'artifact_card': ARTIFACT_CARD,
+            'talent_card': TALENT_CARD
+        }
+        '''
+        return {
+            'weapon_card': self.weapon_card.weapon_card if self.weapon_card is not None else None,
+            'artifact_card': self.artifact_card.artifact_card if self.artifact_card is not None else None,
+            'talent_card': self.talent_card
+        }
+
 class ActiveZone:
     '''
         全队战斗状态区
@@ -574,6 +598,19 @@ class ActiveZone:
                 self.space.append(entity)
             else:
                 self.has_status(entity.__class__).update(**kwargs)
+    
+    def show(self)-> Dict[str, List[Entity]]:
+        '''
+        Return a dict to show combat status and shield:
+        {
+            'Combat_Status': [],
+            'Combat_Shield': []
+        }
+        '''
+        return {
+            'Combat_Status': self.space,
+            'Combat_Shield': self.shield
+        }
 
 class HandZone:
     '''
@@ -652,7 +689,7 @@ class HandZone:
         self.game.invoke(EventType.ON_DISCARD_CARD, self.game)
         return card
 
-    def discard_card_by_name(self, name, max_num):
+    def discard_card_by_name(self, name, max_num=100):
         '''
             通过名称舍弃牌
         '''
@@ -663,3 +700,7 @@ class HandZone:
                 if len(cards) == max_num:
                     break
         return cards
+
+    def show(self)->List: 
+        '''Return the List of Hand Cards'''
+        return self.card

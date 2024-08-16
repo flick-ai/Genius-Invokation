@@ -1,7 +1,7 @@
 from genius_invocation.card.character.import_head import *
 
 class TemperedSword(NormalAttack):
-    id: int = 13011
+    id: int = 130101
     name = "Tempered Sword"
     name_ch = "淬炼之剑"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -20,7 +20,7 @@ class TemperedSword(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class SearingOnslaught(ElementalSkill):
-    id: int = 13012
+    id: int = 130102
     name = "Searing Onslaught"
     name_ch = "逆焰之刃"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -43,7 +43,7 @@ class SearingOnslaught(ElementalSkill):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Dawn(ElementalBurst):
-    d: int = 13013
+    d: int = 130103
     name = "Dawn"
     name_ch = "黎明"
     type: SkillType = SkillType.ELEMENTAL_BURST
@@ -62,9 +62,10 @@ class Dawn(ElementalBurst):
         self.resolve_damage(game)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
-class PYROElementalInfusion(Combat_Status):
+class PYROElementalInfusion(Status):
     name = "PYRO Elemental Infusion"
     name_ch = "火元素附魔"
+    id = 130121
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None):
         super().__init__(game, from_player, from_character)
         self.max_usage = 2

@@ -9,6 +9,7 @@ if TYPE_CHECKING:
 
 
 class SmallANEMO_Entity(SmallElement):
+    id = 31250191
     name: str = "Viridescent Venerer's Diadem"
     name_ch = "翠绿的猎人之冠"
     element_type = CostType.ANEMO

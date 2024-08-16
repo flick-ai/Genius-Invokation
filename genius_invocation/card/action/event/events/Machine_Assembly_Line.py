@@ -8,6 +8,7 @@ class Machine_Assembly_Line_Entity(Status):
     name: str = 'Machine Assembly Line'
     name_ch = '机关铸成之链'
     max_count = 2
+    id = 33202821
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.battlereadiness = 0

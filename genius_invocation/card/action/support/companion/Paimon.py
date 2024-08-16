@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 class Paimon_Entity(Support):
-    id: int = 322001
+    id: int = 32200161
     name = 'Paimon'
     name_ch = '派蒙'
     max_usage = 2

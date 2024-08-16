@@ -1,6 +1,6 @@
 from genius_invocation.card.character.import_head import *
 class PlamaLawa(NormalAttack):
-    id: int = 26011
+    id: int = 260101
     name = "Plama Lawa"
     name_ch = "Plama Lawa"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -18,7 +18,7 @@ class PlamaLawa(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class MovoLawa(ElementalSkill):
-    id: int = 26012
+    id: int = 260102
     name = "Movo Lawa"
     name_ch = "Movo Lawa"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -36,7 +36,7 @@ class MovoLawa(ElementalSkill):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class UpaShato(ElementalBurst):
-    id: int = 26013
+    id: int = 260103
     name = "Upa Shato"
     name_ch = "Upa Shato"
     type: SkillType = SkillType.ELEMENTAL_BURST
@@ -56,6 +56,7 @@ class UpaShato(ElementalBurst):
 class InfusedStonehide(Combat_Status):
     name = "Infused Stonehide"
     name_ch = "魔化：岩盔"
+    id = 260131
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None):
         super().__init__(game, from_player, from_character)
         self.usage = 3

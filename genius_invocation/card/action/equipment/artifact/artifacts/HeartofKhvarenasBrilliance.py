@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 class HeartofKhvarenasBrillianceEntity(Artifact):
     name: str =  "Heart of Khvarena's Brilliance"
     name_ch = "灵光明烁之心"
+    id = 31202191
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, artifact_card = None):
         super().__init__(game, from_player, from_character, artifact_card)
         self.usage_round = -1

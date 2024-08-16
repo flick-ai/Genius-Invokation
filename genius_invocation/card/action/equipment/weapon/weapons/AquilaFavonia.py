@@ -11,6 +11,7 @@ class AquilaFavoniaWeapon(Weapon):
     name: str = "Aquila Favonia"
     name_ch = "风鹰剑"
     max_usage = 2
+    id = 31150381
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, weapon_card = None):
         super().__init__(game, from_player, from_character, weapon_card)
         self.usage = self.max_usage

@@ -1,7 +1,7 @@
 from genius_invocation.card.character.import_head import *
 
 class Yuuban_Meigen(NormalAttack):
-    id: int = 15061
+    id: int = 150601
     name = "Yuuban Meigen"
     name_ch = "行幡鸣弦"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -37,7 +37,7 @@ class Yuuban_Meigen(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Hanega_Song_of_the_Wind(ElementalSkill):
-    id = 15062
+    id = 150602
     name = "Hanega: Song of the Wind"
     name_ch = "羽画·风姿华歌"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -67,7 +67,7 @@ class Hanega_Song_of_the_Wind(ElementalSkill):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Kyougen_Five_Ceremonial_Plays(ElementalBurst):
-    id = 15063
+    id = 150603
     name = "Kyougen: Five Ceremonial Plays"
     name_ch = "狂言·式乐五番"
     type: SkillType = SkillType.ELEMENTAL_BURST
@@ -124,6 +124,7 @@ class Windfavored(Status):
     '''
     name = "Windfavored"
     name_ch = "优风倾姿"
+    id = 150621
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character') -> None:
         super().__init__(game, from_player, from_character)
         self.usage = 2
@@ -173,6 +174,7 @@ class Switch(Status):
     #TODO: Check whether passive switch triggers this status?
     name = "Switch_From_Wanderer"
     name_ch = "梦迹一风-效果"
+    id = 150622
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character') -> None:
         super().__init__(game, from_player, from_character)
         self.usage = 1

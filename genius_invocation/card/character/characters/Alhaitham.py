@@ -2,7 +2,7 @@ from genius_invocation.card.character.import_head import *
 
 
 class AbductiveReasoning(NormalAttack):
-    id: int = 17061
+    id: int = 170601
     name = "Abductive Reasoning"
     name_ch = "溯因反绎法"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -20,7 +20,7 @@ class AbductiveReasoning(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Universality_An_Elaboration_on_Form(ElementalSkill):
-    id: int = 17062
+    id: int = 170602
     name = "Universality: An Elaboration on Form"
     name_ch = "共相·理式摹写"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -41,6 +41,7 @@ class Universality_An_Elaboration_on_Form(ElementalSkill):
 class ChiselLight_Mirror(Status):
     name = "Chisel-Light Mirror"
     name_ch = "琢光镜"
+    id = 170621
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None):
         super().__init__(game, from_player, from_character)
         self.usage = 3
@@ -85,7 +86,7 @@ class ChiselLight_Mirror(Status):
         ]
 
 class Particular_Field_Fetters_of_Phenomena(ElementalBurst):
-    id: int = 17063
+    id: int = 170603
     name = "Particular Field: Fetters of Phenomena"
     name_ch = "殊境·显象缚结"
     type: SkillType = SkillType.ELEMENTAL_BURST

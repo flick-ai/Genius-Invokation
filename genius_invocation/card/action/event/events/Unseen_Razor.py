@@ -7,6 +7,7 @@ if TYPE_CHECKING:
 class Razor(Combat_Status):
     name: str = 'Where Is the Unseen Razor?'
     name_ch = '藏锋何处'
+    id = 33202231
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.current_usage = 1

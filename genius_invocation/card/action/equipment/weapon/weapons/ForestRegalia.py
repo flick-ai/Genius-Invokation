@@ -9,6 +9,7 @@ if TYPE_CHECKING:
 class ForestRegaliaStatus(Status):
     name: str = "Forest Regalia"
     name_ch = "森林王器"
+    id = 31130721
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None):
         super().__init__(game, from_player, from_character)
 
@@ -32,6 +33,7 @@ class ForestRegaliaStatus(Status):
 class ForestRegaliaWeapon(Weapon):
     name: str = "Forest Regalia"
     name_ch = "森林王器"
+    id = 31130781
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, weapon_card = None):
         super().__init__(game, from_player, from_character, weapon_card)
         entity = self.from_character.character_zone.has_entity(ForestRegaliaStatus)

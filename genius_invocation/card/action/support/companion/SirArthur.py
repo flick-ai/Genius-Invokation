@@ -13,6 +13,7 @@ if TYPE_CHECKING:
 class SirArthurEntity(Support):
     name: str = 'Sir Arthur'
     name_ch = '亚瑟先生'
+    id = 32202661
     max_count = 2
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)

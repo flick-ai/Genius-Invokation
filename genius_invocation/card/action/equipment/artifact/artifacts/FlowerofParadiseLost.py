@@ -12,6 +12,7 @@ class FlowerofParadiseLostEntity(Artifact):
     name: str =  "Flower of Paradise Lost"
     name_ch = "乐园遗落之花"
     max_usage = 2
+    id = 31202891
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, artifact_card = None):
         super().__init__(game, from_player, from_character, artifact_card)
         self.crowning_crystal = 0

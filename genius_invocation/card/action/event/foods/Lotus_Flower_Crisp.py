@@ -7,7 +7,7 @@ if TYPE_CHECKING:
     from genius_invocation.game.player import GeniusPlayer
 
 class Lotus_Flower_Crisp_Entity(Status):
-    id: int = 333003
+    id: int = 33300321
     name: str = "Lotus Flower Crisp"
     name_ch = "莲花酥"
 

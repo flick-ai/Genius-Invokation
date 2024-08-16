@@ -12,6 +12,7 @@ if TYPE_CHECKING:
 class Sunyata_Flower_Entity(Combat_Status):
     name: str = 'Sunyata Flower'
     name_ch = '净觉花'
+    id = 33202931
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
 

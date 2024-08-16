@@ -3,7 +3,7 @@ from genius_invocation.card.character.import_head import *
 class KamisatoArt_Kabuki(NormalAttack):
     name = 'Kamisato Art: Kabuki'
     name_ch = '神里流·倾'
-    id = 11051
+    id = 110501
     type: SkillType = SkillType.NORMAL_ATTACK
 
     # damage
@@ -41,7 +41,7 @@ class KamisatoArt_Kabuki(NormalAttack):
 class KamisatoArt_Hyouka(ElementalSkill):
     name = 'Kamisato Art: Hyouka'
     name_ch = '神里流·冰华'
-    id = 11052
+    id = 110502
     type: SkillType = SkillType.ELEMENTAL_SKILL
 
     # damage
@@ -76,7 +76,7 @@ class KamisatoArt_Hyouka(ElementalSkill):
 class KamisatoArt_Soumetsu(ElementalBurst):
     name = 'Kamisato Art: Soumetsu'
     name_ch = '神里流·霜灭'
-    id = 11053
+    id = 110503
     type = SkillType.ELEMENTAL_BURST
 
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
@@ -108,7 +108,7 @@ class Frostflake_Seki_no_To(Summon):
     name_ch = '霜见雪关扉'
     removable = True
     element = ElementType.CRYO
-
+    id = 110511
     def on_end_phase(self, game: 'GeniusGame'):
         '''
             结束阶段: 造成2点冰元素伤害
@@ -152,13 +152,14 @@ class Frostflake_Seki_no_To(Summon):
 class KamisatoArt_Senho(CharacterSkill): # passive skill
     name = 'Kamisato Art: Senho'
     name_ch = '神里流·霰步'
+    id = 110504
     def on_call(self, game:'GeniusGame'):
         self.add_status(game, Cryo_Elemental_Infusion)
 
 class Cryo_Elemental_Infusion(Status):
     name = 'Cryo Elemental Infusion'
     name_ch = '冰元素附魔'
-
+    id = 110521
     def __init__(self, game, from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.usage = 1

@@ -3,7 +3,7 @@ from genius_invocation.card.character.import_head import *
 class As_Water_Seeks_Equilibrium(NormalAttack):
     name = 'As Water Seeks Equilibrium'
     name_ch = '如水从平'
-    id = 12101
+    id = 121001
     type: SkillType = SkillType.NORMAL_ATTACK
     damage_type: SkillType = SkillType.NORMAL_ATTACK
     main_damage_element: ElementType = ElementType.HYDRO
@@ -23,7 +23,7 @@ class As_Water_Seeks_Equilibrium(NormalAttack):
 class O_Tears_I_Shall_Repay(ElementalSkill):
     name = "O Tears, I Shall Repay"
     name_ch = "泪水啊, 我必偿还"
-    id = 12102
+    id = 121002
     type: SkillType = SkillType.ELEMENTAL_SKILL
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
     main_damage_element: ElementType = ElementType.HYDRO
@@ -44,7 +44,7 @@ class O_Tears_I_Shall_Repay(ElementalSkill):
 class O_Tides_I_Have_Returned(ElementalBurst):
     name = "O Tides, I Have Returned"
     name_ch = "潮水啊, 我已归来"
-    id = 12103
+    id = 121003
     type: SkillType = SkillType.ELEMENTAL_BURST
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
     main_damage_element: ElementType = ElementType.HYDRO
@@ -67,6 +67,7 @@ class O_Tides_I_Have_Returned(ElementalBurst):
 class Sourcewater_Dropout(Combat_Status):
     name = "Sourcewater Dropout"
     name_ch = "源水之滴"
+    id = 121031
 
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
@@ -95,7 +96,7 @@ class Sourcewater_Dropout(Combat_Status):
 class Equitable_Judgement(NormalAttack):
     name = "Equitable Judgement"
     name_ch = "平推裁断"
-    id = 12104
+    id = 121004
     type: SkillType = SkillType.NORMAL_ATTACK
     damage_type: SkillType = SkillType.NORMAL_ATTACK
     main_damage_element: ElementType = ElementType.HYDRO
@@ -128,6 +129,7 @@ class Equitable_Judgement(NormalAttack):
 class Prepare_Equitable_Judgement(Status):
     name = "Prepare Equitable Judgement"
     name_ch = "准备技能: 平推裁断"
+    id = 121021
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.usage: int = 1
@@ -207,6 +209,7 @@ class Neuvillette(Character):
 class Past_Draconic_Glories(Status):
     name = "Past Draconic Glories"
     name_ch = "遗龙之荣"
+    id = 121022
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.usage: int = 2

@@ -3,7 +3,7 @@ from genius_invocation.card.character.import_head import *
 
 
 class Rapid_Ritesword(NormalAttack):
-    id = 15081
+    id = 150801
     name = "Rapid Ritesword"
     name_ch = "迅捷礼刺剑"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -37,7 +37,7 @@ class Rapid_Ritesword(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Enigmatic_Feint(ElementalSkill):
-    id = 15082
+    id = 150802
     name = "Enigmatic Feint"
     name_ch = "谜影障身法"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -79,7 +79,7 @@ class Enigmatic_Feint(ElementalSkill):
 class Overawing_Assault(Status):
     name = "Overawing Assault"
     name_ch = "攻袭余威"
-
+    id = 150821
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character' = None):
         super().__init__(game, from_player, from_character)
         self.current_usage = 1
@@ -109,6 +109,7 @@ class Bogglecat_Box(Summon):
     name_ch = "惊奇猫猫盒"
     removable = True
     element = ElementType.ANEMO
+    id = 150811
 
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character' = None):
         super().__init__(game, from_player, from_character)
@@ -172,7 +173,7 @@ class Bogglecat_Box(Summon):
 class Shield_from_Booglecat_Box(Combat_Status):
     name = 'Shield from Booglecat Box'
     name_ch = '猫猫盒之盾'
-
+    id = 150831
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, from_summon:'Summon' = None):
         super().__init__(game, from_player, from_character)
         # USAGE SHOULD ALWAYS 1
@@ -196,7 +197,7 @@ class Shield_from_Booglecat_Box(Combat_Status):
         self.current_usage = 1
 
 class Magic_Trick_Astonishing_Shift(ElementalBurst):
-    id = 15083
+    id = 150803
     name = "Magic Trick: Astonishing Shift"
     name_ch = "魔术·运变惊奇"
     type: SkillType = SkillType.ELEMENTAL_BURST

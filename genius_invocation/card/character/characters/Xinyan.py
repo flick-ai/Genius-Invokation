@@ -1,7 +1,7 @@
 from genius_invocation.card.character.import_head import *
 
 class DanceonFire(NormalAttack):
-    id: int = 13121
+    id: int = 131201
     name = "Dance on Fire"
     name_ch = "炎舞"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -21,7 +21,7 @@ class DanceonFire(NormalAttack):
 
 
 class SweepingFervor(ElementalSkill):
-    id: int = 13122
+    id: int = 131202
     name = "Sweeping Fervor"
     name_ch = "热情拂扫"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -47,6 +47,7 @@ class SweepingFervor(ElementalSkill):
 class ShieldofPassion(Combat_Shield):
     name = "Shield of Passion"
     name_ch = "热情护盾"
+    id = 131251
     max_usage = 2
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character' = None):
         super().__init__(game, from_player, from_character)
@@ -58,7 +59,7 @@ class ShieldofPassion(Combat_Shield):
 
 
 class RiffRevolution(ElementalBurst):
-    id: int = 13123
+    id: int = 131203
     name = "Riff Revolution"
     name_ch = "叛逆刮弦"
     type: SkillType = SkillType.ELEMENTAL_BURST
@@ -85,6 +86,7 @@ class FestiveFires(Combat_Status):
     name = "Festive Fires"
     name_ch = "氛围烈焰"
     max_usage = 2
+    id = 131231
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.current_usage = self.max_usage

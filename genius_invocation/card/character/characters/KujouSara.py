@@ -2,7 +2,7 @@ from genius_invocation.card.character.import_head import *
 
 
 class TenguBowmanship(NormalAttack):
-    id: int = 14061
+    id: int = 140601
     name = "Tengu Bowmanship"
     name_ch = "天狗传弓术"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -20,7 +20,7 @@ class TenguBowmanship(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class TenguStormcall(ElementalSkill):
-    id: int = 14062
+    id: int = 140602
     name = "Tengu Stormcall"
     name_ch = "鸦羽天狗霆雷召咒"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -42,6 +42,7 @@ class TenguJuuraiAmbush(Summon):
     name_ch = "天狗咒雷·伏"
     removable = True
     element = ElementType.ELECTRO
+    id = 140611
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character:'Character'=None):
         super().__init__(game, from_player, from_character)
         self.usage = 1
@@ -83,6 +84,7 @@ class TenguJuuraiStormcluster(Summon):
     name_ch = "天狗咒雷·雷砾"
     removable = True
     element = ElementType.ELECTRO
+    id = 140612
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character:'Character'=None):
         super().__init__(game, from_player, from_character)
         self.usage = 2
@@ -122,6 +124,7 @@ class TenguJuuraiStormcluster(Summon):
 class CrowfeatherCover(Status):
     name = "Crowfeather Cover"
     name_ch = "鸣煌护持"
+    id = 140621
     def __init__(self, game: 'GeniusGame', from_player:'GeniusPlayer', from_character=None, belong_to=None):
         super().__init__(game, from_player, from_character)
         self.belong_to = belong_to
@@ -148,7 +151,7 @@ class CrowfeatherCover(Status):
 
 
 class SubjugationKoukouSendou(ElementalBurst):
-    id: int = 14063
+    id: int = 140603
     name = "Subjugation: Koukou Sendou"
     name_ch = "煌煌千道镇式"
     type: SkillType = SkillType.ELEMENTAL_BURST

@@ -2,7 +2,7 @@ from genius_invocation.card.character.import_head import *
 
 
 class MarvelousSwordDance(NormalAttack):
-    id: int = 14101
+    id: int = 141001
     name = "Marvelous Sword-Dance (Modified)"
     name_ch = "妙显剑舞·改"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -20,7 +20,7 @@ class MarvelousSwordDance(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class TroubleshooterCannon(ElementalSkill):
-    id: int = 14102
+    id: int = 141002
     name = "Spirit-Warding Lamp: Troubleshooter Cannon"
     name_ch = "镇灵之灯·烦恼解决炮"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -41,6 +41,7 @@ class AfterSales(Summon):
     name = "After-Sales Service Rounds"
     name_ch = "售后服务弹"
     removable = True
+    id = 141011
     element = ElementType.ELECTRO
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character:'Character'=None):
         super().__init__(game, from_player, from_character)
@@ -77,6 +78,7 @@ class Jinni(Summon):
     name_ch = "灯中幽精"
     removable = True
     element = ElementType.ELECTRO
+    id = 141012
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character:'Character'=None):
         super().__init__(game, from_player, from_character)
         self.usage = 2
@@ -106,7 +108,7 @@ class Jinni(Summon):
         ]
 
 class Alcazarzaray(ElementalBurst):
-    id: int = 14103
+    id: int = 141003
     name = "Alcazarzaray's Exactitude"
     name_ch = "卡萨扎莱宫的无微不至"
     type: SkillType = SkillType.ELEMENTAL_BURST

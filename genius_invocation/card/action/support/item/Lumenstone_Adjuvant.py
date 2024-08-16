@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 class Lumenstone_Adjuvant_Entity(Support):
-    id: int = 323007
+    id: int = 32300761
     name: str = 'Lumenstone Adjuvant'
     name_ch = '流明石触媒'
     max_usage = 3

@@ -1,7 +1,7 @@
 from genius_invocation.card.character.import_head import *
 
 class Boxcutter(NormalAttack):
-    id: int = 17071
+    id: int = 170701
     name = "Boxcutter"
     name_ch = "箱纸切削术"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -39,7 +39,7 @@ class Boxcutter(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class MeowteorKick(ElementalSkill):
-    id: int = 17072
+    id: int = 170702
     name = "Meowteor Kick"
     name_ch = "呜喵町飞足"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -77,6 +77,7 @@ class MeowteorKick(ElementalSkill):
 class ShieldofSafeTransport(Combat_Shield):
     name = "Shield of Safe Transport"
     name_ch = "安全运输护盾"
+    id = 170751
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character' = None):
         super().__init__(game, from_player, from_character)
         self.usage = 2
@@ -89,6 +90,7 @@ class ShieldofSafeTransport(Combat_Shield):
 class UrgentNekoParcel(Combat_Status):
     name = "Urgent Neko Parcel"
     name_ch = "猫箱急件"
+    id = 170731
     max_usage = 2
     def __init__(self, game, from_player: 'GeniusPlayer', from_character: 'Character'=None):
         super().__init__(game, from_player, from_character)
@@ -125,7 +127,7 @@ class UrgentNekoParcel(Combat_Status):
         ]
 
 class SecretArtSurpriseDispatch(ElementalBurst):
-    id: int = 17073
+    id: int = 170703
     name = "Secret Art: Surprise Dispatch"
     name_ch = "秘法·惊喜特派"
     type: SkillType = SkillType.ELEMENTAL_BURST
@@ -163,6 +165,7 @@ class SecretArtSurpriseDispatch(ElementalBurst):
 class CatGrassCardamom(Combat_Status):
     name = "Cat Grass Cardamom"
     name_ch = "猫草豆蔻"
+    id = 170732
     max_usage = 2
     max_count = 2
     def __init__(self, game, from_player: 'GeniusPlayer', from_character: 'Character'=None):

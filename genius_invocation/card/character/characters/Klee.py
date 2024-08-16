@@ -2,7 +2,7 @@ from genius_invocation.card.character.import_head import *
 
 
 class Kaboom(NormalAttack):
-    id: int = 13061
+    id: int = 130601
     name = "Kaboom!"
     name_ch = "砰砰"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -21,7 +21,7 @@ class Kaboom(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class JumpyDumpty(ElementalSkill):
-    id: int = 13062
+    id: int = 130602
     name = "Jumpy Dumpty"
     name_ch = "蹦蹦炸弹"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -43,6 +43,7 @@ class JumpyDumpty(ElementalSkill):
 class ExplosiveSpark(Status):
     name = "Explosive Spark"
     name_ch = "爆裂火花"
+    id = 130621
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character:'Character'):
         super().__init__(game, from_player, from_character)
         self.usage = 1
@@ -90,7 +91,7 @@ class ExplosiveSpark(Status):
         ]
 
 class SparksnSplash(ElementalBurst):
-    id: int = 13063
+    id: int = 130603
     name = "Sparks 'n' Splash"
     name_ch = "轰轰火花"
     type: SkillType = SkillType.ELEMENTAL_BURST
@@ -118,6 +119,7 @@ class SparksnSplash(ElementalBurst):
 class SparksnSplashStatus(Combat_Status):
     name = "Sparks 'n' Splash"
     name_ch = "轰轰火花"
+    id = 130631
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None):
         super().__init__(game, from_player, from_character)
         self.usage = 2

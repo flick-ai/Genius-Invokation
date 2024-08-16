@@ -2,7 +2,7 @@ from genius_invocation.card.character.import_head import *
 from genius_invocation.entity.status import Crystallize_Shield
 
 class RippingFangFletching(NormalAttack):
-    id: int = 16061
+    id: int = 160601
     name = "Ripping Fangs Fletching"
     name_ch = "呲牙裂扇箭"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -21,7 +21,7 @@ class RippingFangFletching(NormalAttack):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class InuzakaAllRoundDefense(ElementalSkill):
-    id: int = 16062
+    id: int = 160602
     name = "Inuzaka All-Round Defense"
     name_ch = "犬坂吠吠方圆阵"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -45,6 +45,7 @@ class FGeneralsWarBanner(Combat_Status):
     name_ch = "大将旗指物"
     max_usage = 3
     init_usage = 2
+    id = 160631
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None):
         super().__init__(game, from_player, from_character)
         self.damage_add = 1
@@ -74,7 +75,7 @@ class FGeneralsWarBanner(Combat_Status):
         ]
 
 class JuugaForwardUntoVictory(ElementalBurst):
-    id: int = 16063
+    id: int = 160603
     name = "Juuga Forward, Unto Victory"
     name_ch = "兽牙逐突形胜战法"
     type: SkillType = SkillType.ELEMENTAL_BURST
@@ -101,6 +102,7 @@ class GeneralsGlory(Summon):
     removable = True
     element = ElementType.GEO
     max_usage = 2
+    id = 160611
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character:'Character'=None):
         super().__init__(game, from_player, from_character)
         self.current_usage = self.max_usage

@@ -5,6 +5,7 @@ class Pactsworn_Pathclearer(Status):
     '''赛诺 被动状态'''
     name = "Pactsworn Pathclearer"
     name_ch = "启途誓使"
+    id = 140421
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.current_usage = 0
@@ -47,7 +48,7 @@ class Invokers_Spear(NormalAttack):
     赛诺
     普通攻击
     '''
-    id: int = 14041
+    id: int = 140401
     type: SkillType = SkillType.NORMAL_ATTACK
     name = "Invokers Spear"
     name_ch = "七圣枪术"
@@ -89,7 +90,7 @@ class Secret_Rite_Chasmic_Soulfarer(ElementalSkill):
     赛诺
     元素战技
     '''
-    id: int = 14042
+    id: int = 140402
     name = "Secret Rite: Chasmic Soulfarer"
     name_ch = "秘仪·律渊渡魂"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -132,7 +133,7 @@ class Sacred_Rite_Wolfs_Swiftness(ElementalBurst):
     赛诺
     元素爆发
     '''
-    id = 14043
+    id = 140403
     name="Sacred Rite: Wolf's Swiftness"
     name_ch = "圣仪·煟煌随狼行"
     type: SkillType = SkillType.ELEMENTAL_BURST

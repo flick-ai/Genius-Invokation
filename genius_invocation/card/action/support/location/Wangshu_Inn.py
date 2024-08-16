@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 
 
 class Wangshu_Inn_Entity(Support):
-    id: int = 321005
+    id: int = 32100561
     name = 'Wangshu Inn'
     name_ch = '望舒客栈'
     max_usage = 2

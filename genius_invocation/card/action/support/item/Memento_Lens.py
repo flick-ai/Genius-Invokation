@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 class Memento_Lens_Entity(Support):
-    id: int = 323006
+    id: int = 32300661
     name: str = 'Memento Lens'
     name_ch = '留念镜'
     max_usage = 2

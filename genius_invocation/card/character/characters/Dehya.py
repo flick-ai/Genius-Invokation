@@ -1,7 +1,7 @@
 from genius_invocation.card.character.import_head import *
 
 class Sandstorm_Assault(NormalAttack):
-    id: int = 13091
+    id: int = 130901
     name="Sandstorm Assault"
     name_ch = "拂金剑斗术"
     type: SkillType = SkillType.NORMAL_ATTACK
@@ -40,7 +40,7 @@ class Sandstorm_Assault(NormalAttack):
 
 
 class Molten_Inferno(ElementalSkill):
-    id: int = 13092
+    id: int = 130902
     name="Monlten Inferno"
     name_ch = "熔铁流狱"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -77,7 +77,7 @@ class Molten_Inferno(ElementalSkill):
 
 
 class Leonine_Bite(ElementalBurst):
-    id: int = 13093
+    id: int = 130903
     name = "Leonine Bite"
     name_ch = "炎啸狮子咬"
     type: SkillType = SkillType.ELEMENTAL_BURST
@@ -113,7 +113,7 @@ class Leonine_Bite(ElementalBurst):
 class Incineration_Drive(ElementalBurst):
     name = "Incineration Drive"
     name_ch = "焚落踢"
-    id = 13094
+    id = 130904
     type = SkillType.ELEMENTAL_BURST
 
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
@@ -139,6 +139,7 @@ class Fiery_Sanctum_Field(Summon):
     name_ch = "净焰剑狱领域"
     element = ElementType.PYRO
     removable = True
+    id = 130911
 
     def begin_round(self, game: 'GeniusGame'):
         if self.from_player.team_combat_status.has_status(Shield_from_Fiery_Sanctum) is None:
@@ -201,6 +202,7 @@ class Shield_from_Fiery_Sanctum(Combat_Status):
     '''The from_character of this shield should always be Dehya'''
     name = "Shield from Fiery Sanctum"
     name_ch = "净焰剑狱领域护盾"
+    id = 130931
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, from_summon:'Summon' = None):
         super().__init__(game, from_player, from_character)
         # USAGE SHOULD ALWAYS 1
@@ -271,6 +273,7 @@ class Dehya(Character):
 class Prepare_Incineration_Drive(Status):
     name = "Prepare Incineration Drive"
     name_ch = "准备技能: 焚落踢"
+    id = 130921
     def __init__(self, game:'GeniusGame', from_player:'GeniusPlayer', from_character:'Character', next_skill: 'CharacterSkill'):
         super().__init__(game, from_player, from_character)
         self.next_skill = next_skill

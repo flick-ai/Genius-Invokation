@@ -10,6 +10,7 @@ if TYPE_CHECKING:
 class CashflowSupervisionWeapon(Weapon):
     name: str = "Cashflow Supervision"
     name_ch = "金流监督"
+    id = 31110981
     max_count = 2
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, weapon_card = None):
         super().__init__(game, from_player, from_character, weapon_card)

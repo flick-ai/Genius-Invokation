@@ -3,7 +3,7 @@ from genius_invocation.card.character.import_head import *
 class Strike_of_Fortune(NormalAttack):
     name = 'Strike of Fortune'
     name_ch = '好运剑术'
-    id = 13031
+    id = 130301
     type: SkillType = SkillType.NORMAL_ATTACK
 
     # damage
@@ -42,7 +42,7 @@ class Strike_of_Fortune(NormalAttack):
 class Passion_Overload(ElementalSkill):
     name = 'Passion Overload'
     name_ch = '热情过载'
-    id = 13032
+    id = 130302
     type: SkillType = SkillType.ELEMENTAL_SKILL
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
     main_damage_element: ElementType = ElementType.PYRO
@@ -72,7 +72,7 @@ class Passion_Overload(ElementalSkill):
 class Fantastic_Voyage(ElementalBurst):
     name = 'Fantastic Voyage'
     name_ch = '美妙旅程'
-    id = 13033
+    id = 130303
     type: SkillType = SkillType.ELEMENTAL_BURST
     # damage
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
@@ -100,6 +100,7 @@ class Fantastic_Voyage(ElementalBurst):
 class Inspiration_Field(Combat_Status):
     name = 'Inspiration Field'
     name_ch = '鼓舞领域'
+    id = 130331
     def __init__(self, game:'GeniusGame', from_player:'GeniusPlayer', from_character:'Character'):
         super().__init__(game, from_player, from_character)
         self.current_usage = 2

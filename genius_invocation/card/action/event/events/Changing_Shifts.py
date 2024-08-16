@@ -5,7 +5,7 @@ if TYPE_CHECKING:
     from genius_invocation.game.game import GeniusGame
 
 class Changing_Shifts_Entity(Combat_Status):
-    id: int = 332002
+    id: int = 33200231
     name: str = 'Changing Shifts'
     name_ch = '换班时间'
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):

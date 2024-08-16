@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 class AmethystCrownEntity(Artifact):
     name: str =  "Amethyst Crown"
     name_ch = "紫晶的花冠"
+    id = 31202791
     max_usage = 2
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, artifact_card = None):
         super().__init__(game, from_player, from_character, artifact_card)

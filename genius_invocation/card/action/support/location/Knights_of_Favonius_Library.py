@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 class Knights_of_Favonius_Library_Entity(Support):
-    id: int = 321002
+    id: int = 32100261
     name = 'Knights of Favonius Library'
     name_ch = '骑士团图书馆'
     max_usage = -1

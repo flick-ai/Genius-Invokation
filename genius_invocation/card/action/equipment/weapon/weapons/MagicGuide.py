@@ -11,6 +11,7 @@ class MagicGuideWeapon(Weapon):
     name: str = "Magic Guide"
     name_ch = "魔导绪论"
     max_usage = 1
+    id = 31110181
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, weapon_card = None):
         super().__init__(game, from_player, from_character, weapon_card)
         self.usage = self.max_usage

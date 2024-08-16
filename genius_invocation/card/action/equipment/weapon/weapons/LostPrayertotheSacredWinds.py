@@ -10,6 +10,7 @@ if TYPE_CHECKING:
 class LostPrayertotheSacredWindsWeapon(Weapon):
     name: str = "Lost Prayer to the Sacred Winds"
     name_ch =  "四风原典"
+    id = 31110681
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, weapon_card = None):
         super().__init__(game, from_player, from_character, weapon_card)
         self.bonus_DMG = 0

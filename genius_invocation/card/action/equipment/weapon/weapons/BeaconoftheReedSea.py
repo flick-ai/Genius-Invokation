@@ -10,6 +10,7 @@ if TYPE_CHECKING:
 class BeaconoftheReedSeaWeapon(Weapon):
     name: str = "Beacon of the Reed Sea"
     name_ch = "苇海信标"
+    id = 31130681
     max_usage = 1
     max_count = 1
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, weapon_card = None):

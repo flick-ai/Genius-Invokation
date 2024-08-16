@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 class BigHYDRO_Entity(BigElement):
     name: str = "Heart of Depth"
     name_ch = "沉沦之心"
+    id = 31220291
     element_type = CostType.HYDRO
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, artifact_card = None):
         super().__init__(game, from_player, from_character, artifact_card)

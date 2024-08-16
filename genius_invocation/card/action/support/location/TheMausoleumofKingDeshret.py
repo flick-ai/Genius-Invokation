@@ -15,6 +15,7 @@ if TYPE_CHECKING:
 class HasForbiddenKnowledge(Combat_Status):
     name: str = 'Forbidden Knowledge'
     name_ch = '禁忌知识'
+    id = 32102031
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
 
@@ -84,6 +85,7 @@ class TheMausoleumofKingDeshretStatus(Combat_Status):
 class TheMausoleumofKingDeshretEntity(Support):
     name: str = 'The Mausoleum of King Deshret'
     name_ch = '赤王陵'
+    id = 32102061
     max_count = 4
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)

@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 class SmallGEO_Entity(SmallElement):
     name: str = "Mask of Solitude Basalt"
     name_ch = "不动玄石之相"
+    id = 31260191
     element_type = CostType.GEO
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, artifact_card = None):
         super().__init__(game, from_player, from_character, artifact_card)

@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 class Golden_House_Entity(Support):
-    id: int = 321013
+    id: int = 32101361
     name = 'Golden House'
     name_ch = '黄金屋'
     max_usage = 2

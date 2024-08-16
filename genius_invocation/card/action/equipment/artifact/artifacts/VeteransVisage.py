@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 class VeteransVisageEntity(Artifact):
     name: str =  "Veteran's Visage"
     name_ch = "老兵的容颜"
+    id = 31202391
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, artifact_card = None):
         super().__init__(game, from_player, from_character, artifact_card)
         self.round_usage = 0

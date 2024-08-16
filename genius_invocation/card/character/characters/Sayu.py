@@ -4,7 +4,7 @@ from genius_invocation.card.character.import_head import *
 class Shuumatsuban_Ninja_Blade(NormalAttack):
     name = "Shuumatsuban Ninja Blade"
     name_ch = "忍刀·终末番"
-    id = 15071
+    id = 150701
     type: SkillType = SkillType.NORMAL_ATTACK
     damage_type: SkillType = SkillType.NORMAL_ATTACK
     main_damage_element: ElementType = ElementType.PHYSICAL
@@ -37,7 +37,7 @@ class Shuumatsuban_Ninja_Blade(NormalAttack):
 class Yoohoo_Art_Fuuin_Dash(ElementalSkill):
     name = "Yoohoo Art: Fuuin Dash"
     name_ch = "呜呼流·风隐急进"
-    id = 15072
+    id = 150702
     type: SkillType = SkillType.ELEMENTAL_SKILL
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
     main_damage_element: ElementType = ElementType.ANEMO
@@ -71,7 +71,7 @@ class Yoohoo_Art_Fuuin_Dash(ElementalSkill):
 class Fuufuu_Whirlwind_Kick(ElementalSkill):
     name = "Fuufuu Whirlwind Kick"
     name_ch = "风风轮舞踢"
-    id = 15074
+    id = 150703
     type = SkillType.ELEMENTAL_SKILL
 
     damage_type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -99,6 +99,7 @@ class Fuufuu_Whirlwind_Kick(ElementalSkill):
 class Prepare_Fuufuu_Whirlwind_Kick(Status):
     name = "Prepare Prepare_Fuufuu_Whirlwind_Kick"
     name_ch = "准备技能: 风风轮舞踢"
+    id = 150721
     def __init__(self, game:'GeniusGame', from_player:'GeniusPlayer', from_character:'Character', next_skill: 'CharacterSkill'):
         super().__init__(game, from_player, from_character)
         self.next_skill = next_skill
@@ -122,7 +123,7 @@ class Prepare_Fuufuu_Whirlwind_Kick(Status):
 class Yoohoo_Art_Mujina_Flurry(ElementalBurst):
     name = "Yoohoo Art: Mujina Flurry"
     name_ch = "呜呼流·影貉缭乱"
-    id = 15073
+    id = 150704
     type: SkillType = SkillType.ELEMENTAL_BURST
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
     main_damage_element: ElementType = ElementType.ANEMO
@@ -156,6 +157,7 @@ class Muji_Muji_Daruma(Summon):
     name_ch = "不倒貉貉"
     removable = True
     element = ElementType.ANEMO
+    id = 150711
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character:'Character'=None):
         super().__init__(game, from_player, from_character)
         self.usage = 2

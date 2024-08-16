@@ -3,7 +3,7 @@ from genius_invocation.card.character.import_head import *
 class Seal_of_Approval(NormalAttack):
     name = "Seal of Approval"
     name_ch = "火漆制印"
-    id = 13081
+    id = 130801
     type: SkillType = SkillType.NORMAL_ATTACK
     damage_type: SkillType = SkillType.NORMAL_ATTACK
     main_damage_element: ElementType = ElementType.PYRO
@@ -28,7 +28,7 @@ class Seal_of_Approval(NormalAttack):
 
 
 class Signed_Edict(ElementalSkill):
-    id = 13082
+    id = 130802
     name = "Signed Edict"
     name_ch = "丹书立约"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -51,7 +51,7 @@ class Signed_Edict(ElementalSkill):
 class Done_Deal(ElementalBurst):
     name = "Done Deal"
     name_ch = "凭此结契"
-    id = 13083
+    id = 130803
     type: SkillType = SkillType.ELEMENTAL_BURST
     damage_type: SkillType = SkillType.ELEMENTAL_BURST
     main_damage_element: ElementType = ElementType.PYRO
@@ -72,6 +72,7 @@ class Done_Deal(ElementalBurst):
 class Scarlet_Seal(Status):
     name = "Scarlet Seal"
     name_ch = '丹火印'
+    id = 130821
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character:'Character'):
         super().__init__(game, from_player, from_character)
         self.usage = 2
@@ -104,6 +105,7 @@ class Scarlet_Seal(Status):
 class Brilliance(Status):
     name = 'Brilliance'
     name_ch = '灼灼'
+    id = 130822
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character:'Character'):
         super().__init__(game, from_player, from_character)
         self.usage = 2

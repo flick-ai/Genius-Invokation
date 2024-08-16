@@ -7,7 +7,7 @@ if TYPE_CHECKING:
     from genius_invocation.game.player import GeniusPlayer
 
 class Sashimi_Platter_Entity(Status):
-    id: int = 333010
+    id: int = 33301021
     name: str = 'Sashimi Platter'
     name_ch = '刺身拼盘'
 

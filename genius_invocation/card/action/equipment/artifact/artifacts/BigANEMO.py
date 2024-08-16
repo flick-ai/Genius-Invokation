@@ -12,6 +12,7 @@ class BigANEMO_Entity(BigElement):
     name: str = "Viridescent Venerer"
     name_ch = "翠绿之影"
     element_type = CostType.ANEMO
+    id = 31250291
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, artifact_card = None):
         super().__init__(game, from_player, from_character, artifact_card)
 

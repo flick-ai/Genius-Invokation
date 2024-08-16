@@ -12,6 +12,7 @@ class GildedDreamsEntity(Artifact):
     name: str = "Gilded Dreams"
     name_ch = "饰金之梦"
     max_usage = 2
+    id = 31201891
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, artifact_card = None):
         super().__init__(game, from_player, from_character, artifact_card)
         num = 1

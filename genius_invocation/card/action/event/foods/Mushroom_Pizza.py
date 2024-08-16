@@ -8,7 +8,7 @@ if TYPE_CHECKING:
 
 
 class Mushroom_Pizza_Entity(Status):
-    id: int = 333007
+    id: int = 33300721
     name: str = "Mushroom Pizza"
     name_ch = "烤蘑菇披萨"
 

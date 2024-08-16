@@ -4,7 +4,7 @@ from genius_invocation.card.character.import_head import *
 class Favonius_Bladework_Edel(NormalAttack):
     name = 'Favonius Bladework-Edel'
     name_ch = "西风剑术·宗室"
-    id: int = 11061
+    id: int = 110601
     type: SkillType = SkillType.NORMAL_ATTACK
 
     # damage
@@ -45,7 +45,7 @@ class Favonius_Bladework_Edel(NormalAttack):
 
 
 class Icetide_Veortex(ElementalSkill):
-    id = 11062
+    id = 110602
     name = "Icetide Vortex"
     name_ch = "冰潮的涡旋"
     type: SkillType = SkillType.ELEMENTAL_SKILL
@@ -92,7 +92,7 @@ class Icetide_Veortex(ElementalSkill):
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Glacial_Illumination(ElementalBurst):
-    id = 11063
+    id = 110603
     name = 'Glacial Illumination'
     name_ch = "凝浪之光剑"
     type: SkillType = SkillType.ELEMENTAL_BURST
@@ -130,6 +130,7 @@ class Glacial_Illumination(ElementalBurst):
 class Grimheart(Status):
     name = "Grimheart"
     name_ch = "冷酷之心"
+    id = 110621
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.current_usage = 1
@@ -140,6 +141,7 @@ class Lightfall_Sword(Summon):
     name_ch = "光降之剑"
     element = ElementType.PHYSICAL
     removable = False
+    id = 110611
 
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
