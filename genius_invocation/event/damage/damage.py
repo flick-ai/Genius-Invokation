@@ -16,6 +16,7 @@ class Damage:
         self.damage_type: SkillType = damage_type
         self.main_damage_element: ElementType = main_damage_element
         self.main_damage: int = main_damage
+        self.max_main_damage: int = main_damage # 愚人众·霜役人被动结算
         self.piercing_damage: int = piercing_damage
 
         self.damage_multiply = damage_multiply
@@ -81,6 +82,7 @@ class Damage:
     def damage_dealing(self, game: 'GeniusGame'):
         game.manager.invoke(EventType.DEALING_DAMAGE, game)
         self.main_damage = self.main_damage * self.damage_multiply
+        self.max_main_damage = self.main_damage
     def damage_divide(self, game: 'GeniusGame'):
         game.manager.invoke(EventType.DIVIDE_DAMAGE, game)
     def damage_execute(self, game: 'GeniusGame'):

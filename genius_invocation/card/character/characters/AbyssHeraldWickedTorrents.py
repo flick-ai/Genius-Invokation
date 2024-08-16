@@ -194,7 +194,7 @@ class WateryRebirth(Status):
         if not self.from_character.is_alive:
             self.from_character.is_alive = True
             self.from_character.health_point = 0
-            self.from_character.heal(4, game)
+            self.from_character.heal(4, game, heal_type=HealType.REVIVE)
             self.from_character.revive_event(game)
             if self.from_character.talent:
                 target_zone = get_opponent(game).team_combat_status

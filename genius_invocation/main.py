@@ -82,7 +82,10 @@ def test_select():
     package_dirs = ["./card/character/characters","./card/action/support/companion",
                     "./card/action/support/item","./card/action/support/location",
                     "./card/action/event/events","./card/action/event/foods",
-                    "./card/action/event/elemental_resonance", "./card/action/event/arcane_legend",
+                    "./card/action/event/elemental_resonance_dice",
+                    "./card/action/event/elemental_resonance_event",
+                    "./card/action/event/country_resonance",
+                    "./card/action/event/arcane_legend",
                     "./card/action/equipment/artifact/artifacts",
                     "./card/action/equipment/talent/talents",
                     "./card/action/equipment/weapon/weapons"]

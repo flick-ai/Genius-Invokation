@@ -233,7 +233,7 @@ class IceSealed_Crimson_Witch_of_Embers(Status):
         if not self.from_character.is_alive:
             self.from_character.is_alive = True
             self.from_character.health_point = 0
-            self.from_character.heal(1, game)
+            self.from_character.heal(1, game, heal_type=HealType.REVIVE)
             #TODO: check whether this operation is belongs to heal?
             self.on_destroy(game)
 

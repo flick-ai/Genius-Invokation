@@ -47,7 +47,7 @@ class WaterandJustice(ActionCard):
         # 进行对应操作
         for idx, character in enumerate(character_list):
             if target_point > character.health_point:
-                character.heal(heal=target_point[idx]-character.health_point, game=game)
+                character.heal(heal=target_point[idx]-character.health_point, game=game, heal_type=HealType.HEALTH_ASSIGNMENT)
             elif target_point < character.health_point:
                 damage = Damage.create_damage(
                     game=game,

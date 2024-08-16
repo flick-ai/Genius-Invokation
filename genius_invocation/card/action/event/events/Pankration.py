@@ -16,9 +16,13 @@ class Pankration_Entity(Combat_Status):
             self.from_player.get_card(num=2)
             self.on_destroy(game)
 
+    def on_end(self, game:'GeniusGame'):
+        self.on_destroy(game)
+
     def update_listener_list(self):
         self.listeners = [
             (EventType.AFTER_ANY_ACTION, ZoneType.ACTIVE_ZONE, self.on_after_any),
+            (EventType.FINAL_END, ZoneType.ACTIVE_ZONE, self.on_end),
         ]
 
 class Pankration(ActionCard):

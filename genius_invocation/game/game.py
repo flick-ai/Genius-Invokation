@@ -56,6 +56,7 @@ class GeniusGame:
         self.current_die: Character = None
         self.current_heal: Heal = None
         self.current_dice: Dice = None
+        self.current_player: GeniusPlayer = None
         self.current_action: Action = None
         self.current_damage: Damage = None
         self.current_switch: Dict[str, Character] = {"from": None, "to": None}
@@ -72,7 +73,7 @@ class GeniusGame:
         self.is_end: bool = False
         self.is_overload:GeniusPlayer = None
         self.can_play_card = True
-        
+
         if not self.is_read:
             self.init_game()
 
@@ -455,7 +456,7 @@ class GeniusGame:
         game.round = message.round
 
         return game
-    
+
     '''
     TODO: code for encoding states
     思路

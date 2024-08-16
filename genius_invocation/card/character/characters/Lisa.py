@@ -228,3 +228,8 @@ class Lisa(Character):
         self.power = 0
         self.talent = talent
         self.talent_on = 1
+
+    def balance_adjustment():
+        log = {}
+        log[4.8] = "调整了角色牌「丽莎」元素爆发的效果：增加了效果“使敌方出战角色附属引雷”"
+        return log
