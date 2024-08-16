@@ -173,7 +173,7 @@ if __name__=="__main__":
     if args.code:
         test_code()
     deck1 = {
-    'character': ['Rhodeia_of_Loch'],
+    'character': ['Xingqiu', 'Xingqiu', 'Xingqiu'],
     'action_card': ['Fresh_Wind_of_Freedom','Dunyarzad','Dunyarzad','Chef_Mao','Chef_Mao','Paimon','Paimon',
                     'Rana','Rana','Liben','Liben','Mushroom_Pizza','Mushroom_Pizza','Adeptus_Temptation',
                     'Adeptus_Temptation','Teyvat_Fried_Egg','Sweet_Madame','Sweet_Madame','Mondstadt_Hash_Brown',
@@ -181,7 +181,7 @@ if __name__=="__main__":
                     'PaidinFull','PaidinFull','Send_Off','Starsigns','Starsigns']
     }
     deck2 = {
-    'character': ['Neuvillette', 'Bennett', 'Qiqi'],
+    'character': ['Azhdaha', 'Klee', 'Wriothesley'],
     'action_card': ['Chef_Mao' for i in range(15)] +  ['Sweet_Madame' for _ in range(15)]
     }
     # deck2 = {

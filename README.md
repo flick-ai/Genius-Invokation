@@ -4,7 +4,7 @@
 
 # Genius-Invokation
 A simulator of the Genius Invokation TCG in Genshin impact
-一个用于自定义卡牌、训练强化学习AI的原神七圣召唤卡牌模拟器(更新进度：4.7)
+一个用于自定义卡牌、训练强化学习AI的原神七圣召唤卡牌模拟器(更新进度：4.8)
 
 <a href='https://flick-ai.github.io/Genius-Invokation-Website/'>
     <img src='https://img.shields.io/badge/网站-DEMO-red?style=flat&logo=Google%20chrome&logoColor=red'
@@ -42,17 +42,20 @@ A simulator of the Genius Invokation TCG in Genshin impact
 - [x] 完成了骰子计算系统的实现
 - [x] 完成了本地终端的调试接口
 - [x] 全部卡片的书写
-    - [x] 角色卡片进度:30/57
+    - [x] 角色卡片进度:95/95
     - [x] 行动卡片进度:
-        - [x] 天赋进度:57/57
-        - [x] 装备牌进度:56/56
-        - [x] 支援牌进度:38/38
-        - [x] 事件牌进度:57/57
+        - [x] 天赋进度:95/95
+        - [x] 装备牌进度:84/84
+        - [x] 支援牌进度:56/56
+        - [x] 事件牌进度:76/76
 - [ ] 完成了网页端的调试接口
     - [x] 实现了在网页端的输入调试
     - [x] 实现了在网页端的交互式调试
     - [ ] 丰富和美化网页端的功能
 - [ ] 完成了强化学习算法的实习和训练
+
+## 版本更新特色
+4.8版本：为所有内容维护了id信息编码。
 
 
 ## 本地运行
@@ -66,11 +69,11 @@ A simulator of the Genius Invokation TCG in Genshin impact
 
 ### Fix deck
 
-    在 genius_invocation/main.py 中修改 deck1 和 deck2 来确定两位 player 的出战牌组。 
+    在 genius_invocation/main.py 中修改 deck1 和 deck2 来确定两位 player 的出战牌组。
     目前您可以任意组合您的手牌选择。您可以在：
 
-        genius_invocation/card/character/characters 下找到您可以使用的角色牌。 
-        genius_invocation/card/action 下的各个子目录找到您可以使用的行动牌。 
+        genius_invocation/card/character/characters 下找到您可以使用的角色牌。
+        genius_invocation/card/action 下的各个子目录找到您可以使用的行动牌。
 
 ### Play game
 
@@ -87,7 +90,7 @@ A simulator of the Genius Invokation TCG in Genshin impact
 ### Define game
 
     我们目前为您默认进行一些便于Debug的配置。如果您想体验完整的游戏环节，请修改一下配置：
-        
+
         不跳过了重新投掷骰子和选择手牌的环节： genius_invocation/main.py Line 23， jump=False
         角色不默认装备天赋：genius_invocation/game/player.py Line37， talent=False
         每回合初始8个骰子非默认万能：genius_invocation/game/player.py Line102，is_omni=False
