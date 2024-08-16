@@ -35,21 +35,7 @@ class AuraofMajesty(ElementalSkill):
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         self.resolve_damage(game)
-        if game.current_damage.reaction == ElementalReactionType.Crystallize:
-            absorb_element = game.current_damage.swirl_crystallize_type
-            self.from_character.now_element = absorb_element
-            if absorb_element not in self.from_character.absorbed_element:
-                self.from_character.from_player.dice_zone.add([ElementToDice(absorb_element)])
-                self.from_character.absorbed_element.append(absorb_element)
-            if absorb_element == ElementType.PYRO:
-                self.from_character.update_skills(BlazingRebuke(self.from_character))
-            elif absorb_element == ElementType.CRYO:
-                self.from_character.update_skills(FrostspikeWave(self.from_character))
-            elif absorb_element == ElementType.HYDRO:
-                self.from_character.update_skills(TorrentialRebuke(self.from_character))
-            else:
-                self.from_character.update_skills(ThunderstormWave(self.from_character))
-        else:
+        if self.from_character.now_element == None:
             self.add_status(game, StoneFacetsElementalCrystallization)
         self.gain_energy(game)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
@@ -160,12 +146,12 @@ class StoneFacetsElementalCrystallization(Status):
 
     def on_after_damage(self, game:'GeniusGame'):
         if game.current_damage.damage_to == self.from_character:
-            absorb_element = game.current_damage.damage_type
+            absorb_element = game.current_damage.main_damage_element
             remove = False
             if absorb_element in [ElementType.PYRO, ElementType.CRYO, ElementType.HYDRO, ElementType.ELECTRO]:
                 self.from_character.now_element = absorb_element
                 if absorb_element not in self.from_character.absorbed_element:
-                    self.from_character.from_player.dice_zone.add([ElementToDice(absorb_element)])
+                    self.from_character.from_player.dice_zone.add([ElementToDice[absorb_element].value])
                     self.from_character.absorbed_element.append(absorb_element)
                     remove = True
                 if absorb_element == ElementType.PYRO:
@@ -233,9 +219,26 @@ class Azhdaha(Character):
                 status.update(game)
             except:
                 status.update()
-    
+
     def update_skills(self, skill: 'ElementalSkill'):
         if len(self.skills) == 3:
             self.skills.insert(2, skill)
         else:
             self.skills[2] = skill
+
+    def on_excute_damage(self, game: 'GeniusGame'):
+        if game.current_damage.damage_from == self:
+            if game.current_damage.reaction == ElementalReactionType.Crystallize:
+                absorb_element = game.current_damage.swirl_crystallize_type
+                self.now_element = absorb_element
+                if absorb_element not in self.from_character.absorbed_element:
+                    self.from_player.dice_zone.add([ElementToDice[absorb_element].value])
+                    self.absorbed_element.append(absorb_element)
+                if absorb_element == ElementType.PYRO:
+                    self.update_skills(BlazingRebuke(self.from_character))
+                elif absorb_element == ElementType.CRYO:
+                    self.update_skills(FrostspikeWave(self.from_character))
+                elif absorb_element == ElementType.HYDRO:
+                    self.update_skills(TorrentialRebuke(self.from_character))
+                else:
+                    self.update_skills(ThunderstormWave(self.from_character))

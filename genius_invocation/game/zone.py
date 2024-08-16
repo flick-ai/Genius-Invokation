@@ -389,7 +389,7 @@ class CardZone:
 
     def num(self):
         return len(self.card)
-    
+
     def show(self)->List[ActionCard]:
         return self.card
 
@@ -399,7 +399,7 @@ class SummonZone:
     '''
     def __init__(self, game: 'GeniusGame', player: 'GeniusPlayer') -> None:
         self.game = game
-        self.space: List[Summon] = []
+        self.space: List['Summon'] = []
 
     def remove(self, entity):
         idx = self.space.index(entity)
@@ -435,8 +435,8 @@ class SummonZone:
 
     def num(self):
         return len(self.space)
-    
-    def show(self)->List[Summon]:
+
+    def show(self)->List['Summon']:
         return self.space
 class SupportZone:
     '''
@@ -445,7 +445,7 @@ class SupportZone:
     def __init__(self, game: 'GeniusGame', player: 'GeniusPlayer') -> None:
         self.game = game
         self.from_player = player
-        self.space: List[Support] = []
+        self.space: List['Support'] = []
         self.distroy_count = 0
 
     def check_full(self):
@@ -478,8 +478,8 @@ class SupportZone:
 
     def num(self):
         return len(self.space)
-    
-    def show(self)->List[Support]:
+
+    def show(self)->List['Support']:
         return self.space
 
 
@@ -526,7 +526,7 @@ class CharacterZone:
             status.on_destroy(game)
             # del(status)
         self.status_list = []
-    
+
     def show_equip_card(self)->Dict[str, Optional[EquipmentCard]]:
         '''
         Return a dict to show THE CARD of equipments, None for no such an equipment
@@ -598,8 +598,8 @@ class ActiveZone:
                 self.space.append(entity)
             else:
                 self.has_status(entity.__class__).update(**kwargs)
-    
-    def show(self)-> Dict[str, List[Entity]]:
+
+    def show(self)-> Dict[str, List['Entity']]:
         '''
         Return a dict to show combat status and shield:
         {
@@ -701,6 +701,6 @@ class HandZone:
                     break
         return cards
 
-    def show(self)->List: 
+    def show(self)->List:
         '''Return the List of Hand Cards'''
         return self.card
