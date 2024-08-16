@@ -140,7 +140,7 @@ class KukiShinobu(Character):
         if (not self.from_character.is_alive or self.from_character.health_point<=0) and self.talent_round != game.round:
             self.from_character.is_alive = True
             self.from_character.health_point = 0
-            self.from_character.heal(1, game)
+            self.from_character.heal(1, game, heal_type=HealType.REVIVE)
             self.talent_round = game.round
 
     def dmg_add(self, game:'GeniusGame'):

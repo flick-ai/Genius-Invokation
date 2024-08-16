@@ -120,7 +120,7 @@ class AdeptalLegacy(Combat_Status):
         self.current_usage = max(self.current_usage, self.usage)
 
     def on_swich(self, game: 'GeniusGame'):
-        if game.active_player == self.from_player:
+        if game.current_switch['from'].from_player == self.from_player:
             damage = 1
             heal = 1
 

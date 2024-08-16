@@ -43,10 +43,10 @@ class Character(Entity):
     def balance_adjustment():
         log = {}
         return log
-        
+
     def get_element(self):
         return [self.element]
-    
+
     def init_state(self, game: 'GeniusGame'):
         '''
             游戏开始时的被动技能
@@ -128,13 +128,15 @@ class Character(Entity):
         super().__init__(game, from_player, from_character)
         self.init_state(game)
 
-    def heal(self, heal: int, game:'GeniusGame'):
+    def heal(self, heal: int, game:'GeniusGame', heal_type=HealType.HEAL):
         if self.is_alive:
+            game.current_heal = Heal(heal=heal, target_character=self, heal_type=heal_type)
+            game.manager.invoke(EventType.ON_HEAL, game)
             self.health_point += heal
             if self.health_point > self.max_health_point:
                 heal = heal + self.health_point - self.max_health_point
                 self.health_point = self.max_health_point
-            game.current_heal = Heal(heal=heal, target_character=self)
+            game.current_heal.heal_num = heal
             game.manager.invoke(EventType.AFTER_HEAL, game)
 
     def get_power(self, power:int):
@@ -165,7 +167,7 @@ class Character(Entity):
         # Basic revive.
         assert self.is_alive == False
         self.is_alive = True
-        self.health_point = 1
+        self.health_point = 0
 
     def show(self):
         return str(self.health_point)

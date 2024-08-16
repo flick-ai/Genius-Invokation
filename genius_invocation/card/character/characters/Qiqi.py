@@ -115,7 +115,7 @@ class Adeptus_Art_Preserver_of_Fortune(ElementalBurst):
                     char = self.from_character.from_player.character_list[i]
                     if not char.is_alive:
                         char.revive(game)
-                        char.health_point = 2
+                        char.heal(heal=2, game=game)
 
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 

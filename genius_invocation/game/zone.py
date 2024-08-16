@@ -42,7 +42,7 @@ class DiceZone:
         骰子区
     '''
     def __init__(self, game: 'GeniusGame', player: 'GeniusPlayer') -> None:
-        self.player = player
+        self.from_player = player
         '''
             我们用一个[16, 9]的数组来维护骰子
         '''
@@ -60,7 +60,7 @@ class DiceZone:
         sort_map[DiceType.OMNI.value] = 4000 # 万能最优先
 
         # 有效骰子优先
-        for character in self.player.character_list:
+        for character in self.from_player.character_list:
             if character.is_alive:
                 for element in character.get_element():
                     sort_map[ElementToDice[element].value] += 200
@@ -81,6 +81,11 @@ class DiceZone:
         '''
         if dices == []:
             return
+        for i in range(len(dices)):
+            self.game.current_player = self.from_player
+            self.game.manager.invoke(EventType.ON_GET_DICE, self.game)
+            self.game.current_player = None
+
         dices = sorted(dices, key=lambda x:self.sort_map[x], reverse=True)
         for idx, dice in enumerate(dices):
             if dice != DiceType.OMNI.value:
@@ -248,14 +253,14 @@ class CardZone:
                 self.card_type.append(self.card[-1].card_type)
         # 随机固定牌序
         self.game = game
-        self.player = player
+        self.from_player = player
         game.random.shuffle(self.card)
 
     def invoke_get_card(self, num):
         '''
             触发获取牌事件
         '''
-        self.game.current_get_card = GetCard(from_player=self.player, num=num)
+        self.game.current_get_card = GetCard(from_player=self.from_player, num=num)
         self.game.manager.invoke(EventType.ON_GET_CARD, self.game)
         self.game.current_get_card = None
 
@@ -343,6 +348,7 @@ class CardZone:
         '''
         for card in card_list:
             idx = self.game.random.randint(0, self.num()+1)
+            card.zone = self
             self.card.insert(idx, card)
 
     def insert_evenly(self, card_list: List):
@@ -364,7 +370,9 @@ class CardZone:
         insert_indices = random.sample(range(0, num+len(card_list)), len(card_list))
         insert_indices.sort()
         for index in insert_indices:
-            self.card.insert(index, card_list.pop())
+            card = card_list.pop()
+            card.zone = self
+            self.card.insert(index, card)
 
     def discard_card(self, idx):
         '''
@@ -372,9 +380,10 @@ class CardZone:
         '''
         card: ActionCard = self.card.pop(idx)
         card.on_discard(self.game)
+        card.zone = None
 
-        self.player.tune_or_discard_cards.append(card)
-        self.player.round_discard_cards += 1
+        self.from_player.tune_or_discard_cards.append(card)
+        self.from_player.round_discard_cards += 1
         self.game.invoke(EventType.ON_DISCARD_CARD, self.game)
         return card
 
@@ -430,6 +439,7 @@ class SupportZone:
     '''
     def __init__(self, game: 'GeniusGame', player: 'GeniusPlayer') -> None:
         self.game = game
+        self.from_player = player
         self.space: List[Support] = []
         self.distroy_count = 0
 
@@ -457,6 +467,9 @@ class SupportZone:
             self.space[idx].on_destroy(self.game)
         self.space.append(entity)
 
+    def add_entity_by_name(self, entity_name, idx, **kwargs):
+        entity = eval(entity_name)().entity(self.game, self.from_player)
+        self.add_entity(entity, self.num(), **kwargs)
 
     def num(self):
         return len(self.space)
@@ -577,10 +590,18 @@ class HandZone:
         if type(idx) == int:
             idx = [idx]
         idx.sort(reverse=True)
-        return [self.card.pop(i) for i in idx]
+
+        remove_list = []
+        for i in idx:
+            card = self.card.pop(i)
+            card.zone = None
+            remove_list.append(card)
+        return remove_list
 
     def use(self, idx: int):
-        return self.card.pop(idx)
+        card = self.card.pop(idx)
+        card.zone = None
+        return card
 
     def add(self, cards: List['ActionCard']):
         if cards == []:
@@ -589,6 +610,7 @@ class HandZone:
             if len(self.card)>= MAX_HANDCARD:
                 break
             self.card.append(card)
+            card.zone = self
             self.card = sorted(self.card, key=lambda card: card.id)
 
     def add_card_by_name(self, card_names):
@@ -619,7 +641,10 @@ class HandZone:
         '''
             舍弃牌
         '''
+        if idx == None:
+            return None
         card: ActionCard = self.card.pop(idx)
+        card.zone = None
         card.on_discard(self.game)
 
         self.from_player.tune_or_discard_cards.append(card)

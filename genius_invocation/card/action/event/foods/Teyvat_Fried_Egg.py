@@ -39,6 +39,7 @@ class Teyvat_Fried_Egg(FoodCard):
         target = game.current_action.target_idx
         target_character = game.active_player.character_list[target]
         target_character.revive(game)
+        target_character.heal(1, game=game)
         Satisfy_Statue(game, from_player=game.active_player, from_character=target_character)
         target_character.character_zone.add_entity(Satisfy_Statue)
 

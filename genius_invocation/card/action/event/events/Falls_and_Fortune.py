@@ -18,10 +18,14 @@ class Falls_and_Fortune_Entity(Combat_Status):
     def on_change(self, game:'GeniusGame'):
         self.on_calculate(game)
 
+    def on_end(self, game:'GeniusGame'):
+        self.on_destroy(game)
+
     def update_listener_list(self):
         self.listeners = [
             (EventType.CALCULATE_DICE, ZoneType.ACTIVE_ZONE, self.on_calculate),
-            (EventType.ON_CHANGE_CHARACTER, ZoneType.ACTIVE_ZONE, self.on_change)
+            (EventType.ON_CHANGE_CHARACTER, ZoneType.ACTIVE_ZONE, self.on_change),
+            (EventType.FINAL_END, ZoneType.ACTIVE_ZONE, self.on_end),
         ]
 
 class Falls_and_Fortune(ActionCard):

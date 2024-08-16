@@ -63,7 +63,7 @@ class Frostgnaw(ElementalSkill):
     def __init__(self, from_character: 'Character'):
         super().__init__(from_character)
         self.heal_round = -1
-    
+
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         # 处理伤害
@@ -117,7 +117,7 @@ class Icicle(Combat_Status):
         self.current_usage = self.usage
 
     def on_switch(self, game: 'GeniusGame'):
-        if game.active_player != self.from_player: return
+        if game.current_switch['from'].from_player != self.from_player: return
         dmg = Damage.create_damage(
             game,
             damage_type=SkillType.OTHER,

@@ -106,8 +106,8 @@ class Fiery_Rebirth(Status):
         if not self.from_character.is_alive:
             self.from_character.is_alive = True
             self.from_character.health_point = 0
-            self.from_character.heal(3, game)
-            #TODO: check whether this operation is belongs to heal?
+            self.from_character.heal(4, game, heal_type=HealType.REVIVE)
+            self.from_character.revive_event(game)
             if self.set_talent:
                 shield = Aegis_of_Abyssal_Flame(game, self.from_player, self.from_character)
                 self.from_character.character_zone.add_entity(shield)
@@ -163,10 +163,24 @@ class AbyssLectorFathomlessFlames(Character):
         if self.talent:
             self.character_zone.has_entity(Fiery_Rebirth).set_talent = True
 
+    def on_dmg_add(self, game: 'GeniusGame'):
+        if game.current_damage.damage_from == self:
+            if game.current_damage.main_damage_element == ElementType.HYDRO:
+                game.current_damage.main_damage += 1
+
+    def infusion(self, game:'GeniusGame'):
+        if self.from_character == game.current_damage.damage_from:
+            if game.current_damage.main_damage_element == ElementType.PHYSICAL:
+                game.current_damage.main_damage_element = ElementType.HYDRO
+
+    def revive_event(self, game: 'GeniusGame'):
+        self.listen_event(game, EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, self.on_dmg_add)
+        self.listen_event(game, EventType.INFUSION, ZoneType.CHARACTER_ZONE, self.infusion)
+
     def equip_talent(self, game:'GeniusGame', is_action=True, talent_card=None):
         self.talent = True
         self.character_zone.talent_card = talent_card
-        
+
         rebirth = self.character_zone.has_entity(Fiery_Rebirth)
         if rebirth is not None:
             rebirth.set_talent = True

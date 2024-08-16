@@ -175,6 +175,17 @@ class EventType(Enum):
     ON_DISCARD_CARD = 30
     # 获得牌
     ON_GET_CARD = 31
+    # 获得骰子
+    ON_GET_DICE = 32
+    # 治疗时
+    ON_HEAL = 33
+
+class HealType(Enum):
+    HEAL = 0
+    REVIVE = 1
+    MAX_HEALTH = 2
+    HEALTH_ASSIGNMENT = 3
+
 
 class SwitchType(Enum):
     CHANGE_CHARACTER = 0
@@ -395,4 +406,44 @@ def max_count_card(cards: List['ActionCard']) -> int:
     for idx, card in enumerate(cards):
         if card.calculate_dice() == max_count:
             max_idx.append(idx)
+    if len(max_idx) == 0:
+        return None
     return random.choice(max_idx)
+
+def max_dmg_taken(from_player: 'GeniusPlayer'):
+    max_dmg_taken = -1
+    max_taken_char = None
+    ls: List[int] = []
+    id = from_player.active_idx
+    for i in range(from_player.character_num):
+        ls.append(id)
+        id += 1
+        if id >= from_player.character_num:
+            id = 0
+
+    for i in ls:
+        char = from_player.character_list[i]
+        dmg_taken = char.max_health_point - char.health_point
+        if dmg_taken > max_dmg_taken:
+            max_dmg_taken = dmg_taken
+            max_taken_char = char
+    return max_taken_char
+
+def min_dmg_taken(from_player: 'GeniusPlayer'):
+    min_dmg_taken = 10000
+    min_taken_char = None
+    ls: List[int] = []
+    id = from_player.active_idx
+    for i in range(from_player.character_num):
+        ls.append(id)
+        id += 1
+        if id >= from_player.character_num:
+            id = 0
+
+    for i in ls:
+        char = from_player.character_list[i]
+        dmg_taken = char.max_health_point - char.health_point
+        if dmg_taken < min_dmg_taken:
+            min_dmg_taken = dmg_taken
+            min_taken_char = char
+    return min_taken_char

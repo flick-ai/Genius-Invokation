@@ -203,7 +203,7 @@ class CryoCrystalCore(Status):
         if not self.from_character.is_alive or self.from_character.health_point<=0:
             self.from_character.is_alive = True
             self.from_character.health_point = 0
-            self.from_character.heal(1, game)
+            self.from_character.heal(1, game, heal_type=HealType.REVIVE)
 
             if self.talent:
                 opponent_player = game.players[1-self.from_player.index]

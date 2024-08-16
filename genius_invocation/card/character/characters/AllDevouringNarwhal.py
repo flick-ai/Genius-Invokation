@@ -59,10 +59,11 @@ class StarfallShower(ElementalSkill):
         self.gain_energy(game)
 
         max_idx = max_count_card(self.from_character.from_player.hand_zone.card)
-        card = self.from_character.from_player.hand_zone.discard_card(max_idx)
-        if self.from_character.talent and self.from_character.talent_round != game.round:
-            self.from_character.heal(card.calculate_dice(), game)
-            self.from_character.talent_round = game.round
+        if max_idx != None:
+            card = self.from_character.from_player.hand_zone.discard_card(max_idx)
+            if self.from_character.talent and self.from_character.talent_round != game.round:
+                self.from_character.heal(card.calculate_dice(), game)
+                self.from_character.talent_round = game.round
         # after skill
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
@@ -168,7 +169,7 @@ class DeepDevourersDomain(Combat_Status):
         self.from_character.max_health_point += addtional_max_health
         self.from_character.addtional_max_health += addtional_max_health
         for i in range(4-len(cost_dict)):
-            self.from_character.heal(num=1, game=game)
+            self.from_character.heal(num=1, game=game, heal_type=HealType.MAX_HEALTH)
 
     def on_tune(self, game: 'GeniusGame'):
         if len(self.cards)>0 and len(self.cards) % 3 == 0:
