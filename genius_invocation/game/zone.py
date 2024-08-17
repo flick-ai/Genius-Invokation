@@ -524,9 +524,9 @@ class CharacterZone:
             self.has_entity(entity.__class__).update(**kwargs)
             if replace_update:
                 old_entity = self.has_entity(entity.__class__)
-                new_entity = copy.deepcopy(old_entity)
+                new_entity = old_entity.copy(self.game)
                 old_entity.on_destroy(self.game)
-                self.status_list.appendd(new_entity)
+                self.status_list.append(new_entity)
 
 
     def clear(self, game:'GeniusGame'):

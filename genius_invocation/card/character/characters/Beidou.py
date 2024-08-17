@@ -74,13 +74,13 @@ class TidecallerSurfEmbrace(Status):
     name_ch = "捉浪·涛拥之守"
     id = 140521
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character', Next_Skill: 'CharacterSkill'):
-        assert self.from_character.character_zone.has_entity(ShieldTidecallerSurfEmbrace) is None
+        assert from_character.character_zone.has_entity(ShieldTidecallerSurfEmbrace) is None
         shield = ShieldTidecallerSurfEmbrace(game, from_player, from_character, self)
-        self.from_character.character_zone.add_entity(shield) # add shield before the status
+        from_character.character_zone.add_entity(shield) # add shield before the status
 
         super().__init__(game, from_player, from_character)
         self.skill = Next_Skill
-        
+
 
     def on_call(self, game: 'GeniusGame'):
         self.skill.on_call(game)
@@ -95,7 +95,7 @@ class TidecallerSurfEmbrace(Status):
         self.listeners = [
             (EventType.AFTER_CHANGE_CHARACTER, ZoneType.CHARACTER_ZONE, self.after_change)
         ]
-    
+
     def on_destroy(self, game: 'GeniusGame'):
         shield = self.from_character.character_zone.has_entity(ShieldTidecallerSurfEmbrace)
         if shield is not None:

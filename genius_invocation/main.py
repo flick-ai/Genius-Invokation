@@ -181,8 +181,8 @@ if __name__=="__main__":
                     'PaidinFull','PaidinFull','Send_Off','Starsigns','Starsigns']
     }
     deck2 = {
-    'character': ['KaedeharaKazuha', 'Xingqiu', 'EmperorofFireandIron'],
-    'action_card': ['Chef_Mao' for i in range(15)] +  ['Sweet_Madame' for _ in range(15)]
+    'character': ['EmperorofFireandIron', 'Beidou', 'Xingqiu'],
+    'action_card': ['Lotus_Flower_Crisp' for i in range(30)]
     }
     # deck2 = {
     # 'character': ['Arataki_Itto', 'Dehya', 'Noelle'],

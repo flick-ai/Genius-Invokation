@@ -165,6 +165,9 @@ class ArmoredCrabCarapace(Shield):
         super().__init__(game, from_player, from_character)
         self.current_usage = usage
 
+    def copy(self, game: 'GeniusGame'):
+        return ArmoredCrabCarapace(game, self.from_player, self.from_character, self.current_usage)
+
     def update(self, add_usage=2):
         self.current_usage += add_usage
 
@@ -221,14 +224,20 @@ class EmperorofFireandIron(Character):
                     if isinstance(status, Shield) and not isinstance(status, ArmoredCrabCarapace):
                         add_usage += 1
                         status.on_destroy(game)
+                    # 方案二: 使用将螃蟹盾移除并继承可用次数
+                    if isinstance(status, Shield) and isinstance(status, ArmoredCrabCarapace):
+                        add_usage += status.current_usage
+                        status.on_destroy(game)
             # 检查天赋
             if self.talent and add_usage>0:
                 if self.talent_usage_round != game.round:
                     self.talent_usage_round = game.round
                     add_usage += 2
             # 更新状态：重置盾的结算顺序至最后
-            self.from_character.character_zone.add_entity(
-                ArmoredCrabCarapace(game, self.from_player, self, add_usage), replace_update=True, add_usage=add_usage
+            # 方案一: 使用replace_update=True
+            # 方案二: 使用将螃蟹盾移除并继承可用次数
+            self.character_zone.add_entity(
+                ArmoredCrabCarapace(game, self.from_player, self, add_usage), replace_update=False, add_usage=add_usage
             )
 
     def update_listener_list(self):
