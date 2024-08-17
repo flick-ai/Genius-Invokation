@@ -7,6 +7,7 @@ from genius_invocation.entity.status import Status, Shield, Combat_Shield, Weapo
 from genius_invocation.card.character.characters.Keqing import Lightning_Stiletto
 
 import random
+import copy
 
 if TYPE_CHECKING:
     from genius_invocation.entity.entity import Entity
@@ -400,6 +401,7 @@ class SummonZone:
     def __init__(self, game: 'GeniusGame', player: 'GeniusPlayer') -> None:
         self.game = game
         self.space: List['Summon'] = []
+        self.from_player=player
 
     def remove(self, entity):
         idx = self.space.index(entity)
@@ -424,7 +426,7 @@ class SummonZone:
     def check_full(self):
         return len(self.space) == MAX_SUMMON
 
-    def add_entity(self, entity: 'Summon', independent=False, **kwargs):
+    def add_entity(self, entity: 'Summon', independent=False, replace_update=False, **kwargs):
         if independent or self.has_entity(entity.__class__) is None:
             if not self.check_full():
                 self.space.append(entity)
@@ -432,6 +434,11 @@ class SummonZone:
                 entity.on_destroy(self.game)
         else:
             self.has_entity(entity.__class__).update(**kwargs)
+            if replace_update:
+                old_entity = self.has_entity(entity.__class__)
+                new_entity = copy.deepcopy(old_entity)
+                old_entity.on_destroy(self.game)
+                self.space.appendd(new_entity)
 
     def num(self):
         return len(self.space)
@@ -509,11 +516,18 @@ class CharacterZone:
                 return status
         return None
 
-    def add_entity(self, entity: 'Status', independent=False, **kwargs):
+    def add_entity(self, entity: 'Status', independent=False, replace_update=False, **kwargs):
+        # If replace_update is True, the entity will be copy after update, and the origin entity will be destroy and add the new entity at the end of the status list.
         if independent or self.has_entity(entity.__class__) is None:
             self.status_list.append(entity)
         else:
             self.has_entity(entity.__class__).update(**kwargs)
+            if replace_update:
+                old_entity = self.has_entity(entity.__class__)
+                new_entity = copy.deepcopy(old_entity)
+                old_entity.on_destroy(self.game)
+                self.status_list.appendd(new_entity)
+
 
     def clear(self, game:'GeniusGame'):
         if self.weapon_card is not None:
@@ -586,18 +600,28 @@ class ActiveZone:
                 return exist
         return None
 
-    def add_entity(self, entity: 'Entity', independent=False, **kwargs):
+    def add_entity(self, entity: 'Entity', independent=False, replace_update=False, **kwargs):
         # When using add_entity, please make sure that the same kind of entity is not exisits in the list.
         if isinstance(entity, Combat_Shield):
             if self.has_shield(entity.__class__) is None or independent:
                 self.shield.append(entity)
             else:
                 self.has_shield(entity.__class__).update(**kwargs)
+                if replace_update:
+                    old_entity = self.has_shield(entity.__class__)
+                    new_entity = copy.deepcopy(old_entity)
+                    old_entity.on_destroy(self.game)
+                    self.shield.appendd(new_entity)
         else:
             if self.has_status(entity.__class__) is None or independent:
                 self.space.append(entity)
             else:
                 self.has_status(entity.__class__).update(**kwargs)
+                if replace_update:
+                    old_entity = self.has_status(entity.__class__)
+                    new_entity = copy.deepcopy(old_entity)
+                    old_entity.on_destroy(self.game)
+                    self.space.appendd(new_entity)
 
     def show(self)-> Dict[str, List['Entity']]:
         '''

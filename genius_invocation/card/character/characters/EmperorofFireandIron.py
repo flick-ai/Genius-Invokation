@@ -127,7 +127,7 @@ class SearingBlast(ElementalBurst):
     energy_cost = 0
     energy_gain = 0
     def __init__(self, from_character: 'Character') -> None:
-        super().on_call(from_character)
+        super().__init__(from_character)
 
     def on_call(self, game:'GeniusGame'):
         super().on_call(game)
@@ -177,7 +177,8 @@ class ArmoredCrabCarapace(Shield):
                     game.current_damage.main_damage += 1
 
     def update_listener_list(self):
-        self.listeners = [
+        super().update_listener_list()
+        self.listeners += [
             (EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, self.on_add_damage)
         ]
 
@@ -214,19 +215,20 @@ class EmperorofFireandIron(Character):
             for shield in self.from_player.team_combat_status.shield:
                 add_usage += 1
                 shield.on_destroy(game)
-            #检查Character Zone
+            #检查Character Zone (其余角色盾)
             for character in self.from_player.character_list:
                 for status in character.character_zone.status_list:
                     if isinstance(status, Shield) and not isinstance(status, ArmoredCrabCarapace):
                         add_usage += 1
                         status.on_destroy(game)
             # 检查天赋
-            if self.talent:
+            if self.talent and add_usage>0:
                 if self.talent_usage_round != game.round:
                     self.talent_usage_round = game.round
                     add_usage += 2
+            # 更新状态：重置盾的结算顺序至最后
             self.from_character.character_zone.add_entity(
-                ArmoredCrabCarapace(game, self.from_player, self, add_usage), add_usage=add_usage
+                ArmoredCrabCarapace(game, self.from_player, self, add_usage), replace_update=True, add_usage=add_usage
             )
 
     def update_listener_list(self):

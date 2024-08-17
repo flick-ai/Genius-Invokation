@@ -17,17 +17,35 @@ class Parametric_Transformer_Entity(Support):
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.qualitative_progress = 0
+        self.is_calculate = False
 
     def on_after(self, game:'GeniusGame'):
-        self.qualitative_progress += 1
-        if self.qualitative_progress == self.max_count:
-            self.from_player.dice_zone.add(self.from_player.roll_dice(num=3, is_basic=True, is_different=True))
-            self.on_destroy(game)
+        if self.is_calculate:
+            self.qualitative_progress += 1
+            if self.qualitative_progress == self.max_count:
+                self.from_player.dice_zone.add(self.from_player.roll_dice(num=3, is_basic=True, is_different=True))
+                self.on_destroy(game)
+            self.is_calculate = False
+
+    def on_damage(self, game:'GeniusGame'):
+        damage = game.current_damage
+        if damage.main_damage_element not in [ElementType.PHYSICAL, ElementType.PIERCING]:
+            self.is_calculate = True
+
+    def on_begin(self, game:'GeniusGame'):
+        self.is_calculate = False
+
+    def on_skill(self, game:'GeniusGame'):
+        self.is_calculate = False
 
     def update_listener_list(self):
         self.listeners = [
             (EventType.AFTER_USE_SKILL, ZoneType.SUPPORT_ZONE, self.on_after),
+            (EventType.BEGIN_ACTION_PHASE, ZoneType.SUPPORT_ZONE, self.on_begin),
+            (EventType.EXECUTE_DAMAGE, ZoneType.SUPPORT_ZONE, self.on_damage),
+            (EventType.BEFORE_ANY_ACTION, ZoneType.SUPPORT_ZONE, self.on_skill)
         ]
+
     def show(self):
         return str(self.qualitative_progress)
 
