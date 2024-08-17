@@ -286,26 +286,28 @@ class KaedeharaKazuha(Character):
     def after_skill(self, game: "GeniusGame"):
         if game.current_skill.from_character == self:
             if self.last_swirl is not None:
-                match self.last_swirl:
-                    case ElementType.CRYO:
-                        self.add_combat_status(game, Enhance_CRYO_by_Swirl)
-                    case ElementType.PYRO:
-                        self.add_combat_status(game, Enhance_PYRO_by_Swirl)
-                    case ElementType.HYDRO:
-                        self.add_combat_status(game, Enhance_HYDRO_by_Swirl)
-                    case ElementType.ELECTRO:
-                        self.add_combat_status(game, Enhance_ELECTRO_by_Swirl)
+                if self.talent:
+                    match self.last_swirl:
+                        case ElementType.CRYO:
+                            self.add_combat_status(game, Enhance_CRYO_by_Swirl)
+                        case ElementType.PYRO:
+                            self.add_combat_status(game, Enhance_PYRO_by_Swirl)
+                        case ElementType.HYDRO:
+                            self.add_combat_status(game, Enhance_HYDRO_by_Swirl)
+                        case ElementType.ELECTRO:
+                            self.add_combat_status(game, Enhance_ELECTRO_by_Swirl)
                 self.last_swirl = None
 
     def update_listener_list(self):
         super().update_listener_list()
         self.listeners += [
-            (EventType.EXECUTE_DAMAGE, ZoneType.CHARACTER_ZONE, self.on_excute_dmg)
+            (EventType.EXECUTE_DAMAGE, ZoneType.CHARACTER_ZONE, self.on_excute_dmg),
+            (EventType.AFTER_USE_SKILL, ZoneType.CHARACTER_ZONE, self.after_skill)
         ]
 
 
-    def listen_talent_events(self, game: 'GeniusGame'):
-        self.listen_event(game, EventType.AFTER_USE_SKILL, ZoneType.CHARACTER_ZONE, self.after_skill)
+    # def listen_talent_events(self, game: 'GeniusGame'):
+        # self.listen_event(game, EventType.AFTER_USE_SKILL, ZoneType.CHARACTER_ZONE, self.after_skill)
 
     def balance_adjustment():
         log = {}
