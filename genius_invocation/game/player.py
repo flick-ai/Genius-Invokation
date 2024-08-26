@@ -149,11 +149,17 @@ class GeniusPlayer:
         '''
             基本行动: 切换到指定人
         '''
-        assert self.active_idx in range(self.character_num)
-        self.game.current_switch = Switch(from_player=self.character_list[self.active_idx],
-                                          to_player=self.character_list[idx],
-                                          swicth_type=type)
-        self.game.manager.invoke(EventType.ON_CHANGE_CHARACTER, self.game)
+        if self.active_idx in range(self.character_num):
+            self.game.current_switch = Switch(from_character=self.character_list[self.active_idx],
+                                            to_character=self.character_list[idx],
+                                            swicth_type=type)
+            self.game.manager.invoke(EventType.ON_CHANGE_CHARACTER, self.game)
+        else:
+            self.game.current_switch = Switch(from_character=None,
+                                            to_character=self.character_list[idx],
+                                            swicth_type=type)
+            self.game.manager.invoke(EventType.ON_CHANGE_CHARACTER, self.game)
+
 
         if self.game.current_switch != None:
             if self.active_idx >= 0:

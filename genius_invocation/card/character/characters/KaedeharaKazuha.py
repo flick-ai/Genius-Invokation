@@ -29,12 +29,14 @@ class Garyuu_Bladework(NormalAttack):
 
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
-
-
         self.resolve_damage(game)
-
         self.gain_energy(game)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
+
+class SpecialAttack(Garyuu_Bladework):
+    def on_call(self, game: 'GeniusGame'):
+        super().on_call(game)
+        self.from_character.from_player.prepared_skill = None
 
 
 class Chihayaburu(ElementalSkill):
@@ -64,6 +66,7 @@ class Chihayaburu(ElementalSkill):
         assert self.from_character.character_zone.has_entity(Midare_Ranzan) is None
         status = Midare_Ranzan(game, self.from_character.from_player, self.from_character, self.from_character.last_swirl)
         self.from_character.character_zone.add_entity(status)
+        self.from_character.from_player.prepared_skill = status
 
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
@@ -118,6 +121,7 @@ class Midare_Ranzan(Status):
             self.element = ElementType.ANEMO
         else:
             self.element = element
+        self.prepared_skill = SpecialAttack(from_character)
         self.usage = 1
         self.current_usage = 1
 
@@ -128,21 +132,25 @@ class Midare_Ranzan(Status):
 
     def infusion(self, game:'GeniusGame'):
         if game.current_damage.damage_from == self.from_character:
-            if game.current_damage.is_plunging_attack:
+            if game.current_damage.damage_type == SkillType.NORMAL_ATTACK:
                 game.current_damage.main_damage_element = self.element
 
-    def before_any_action(self, game:'GeniusGame'):
-        if self.from_character.is_active:
-            skill = self.from_character.skills[0]
-            skill.before_use_skill(game)
-            skill.on_call(game)
-            if not get_opponent(game).is_pass:
-                game.change_active_player()
-            self.on_destroy(game)
+    # def before_any_action(self, game:'GeniusGame'):
+    #     if self.from_character.is_active:
+    #         skill = self.from_character.skills[0]
+    #         skill.before_use_skill(game)
+    #         skill.on_call(game)
+    #         if not get_opponent(game).is_pass:
+    #             game.change_active_player()
+    #         self.on_destroy(game)
+
+    def on_call(self, game:'GeniusGame'):
+        self.prepared_skill.on_call(game)
+        self.on_destroy(game)
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.BEFORE_ANY_ACTION, ZoneType.CHARACTER_ZONE, self.before_any_action),
+            # (EventType.BEFORE_ANY_ACTION, ZoneType.CHARACTER_ZONE, self.before_any_action),
             (EventType.INFUSION, ZoneType.CHARACTER_ZONE, self.infusion),
             (EventType.AFTER_CHANGE_CHARACTER, ZoneType.CHARACTER_ZONE, self.on_change_character)
         ]

@@ -19,7 +19,7 @@ if TYPE_CHECKING:
 
 class Switch:
     def __init__(self, from_character, to_character, swicth_type) -> None:
-        self.from_player = from_character.from_player
+        self.from_player = to_character.from_player
         self.from_character = from_character
         self.to_character = to_character
         self.type = swicth_type

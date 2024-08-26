@@ -186,7 +186,7 @@ if __name__=="__main__":
                     'PaidinFull','PaidinFull','Send_Off','Starsigns','Starsigns']
     }
     deck2 = {
-    'character': ['Barbara', 'Beidou', 'Xingqiu'],
+    'character': ['Barbara', 'Beidou', 'KaedeharaKazuha'],
     'action_card': ['Koholasaurus' for i in range(15)] + \
                 ['Yumkasaurus' for i in range(15)]
     }
