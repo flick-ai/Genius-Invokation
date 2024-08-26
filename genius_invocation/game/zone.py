@@ -55,7 +55,6 @@ class DiceZone:
             我们用一个[16, 9]的数组来维护骰子
         '''
         self.dice_num = 0
-        self.game = game
         self.space = np.zeros((MAX_DICE, DICENUM+1)).astype(np.int16)
         for i in range(MAX_DICE):
             self.space[i][-1] = -1
@@ -90,9 +89,9 @@ class DiceZone:
         if dices == []:
             return
         for i in range(len(dices)):
-            self.game.current_player = self.from_player
-            self.game.manager.invoke(EventType.ON_GET_DICE, self.game)
-            self.game.current_player = None
+            self.from_player.game.current_player = self.from_player
+            self.from_player.game.manager.invoke(EventType.ON_GET_DICE, self.from_player.game)
+            self.from_player.game.current_player = None
 
         dices = sorted(dices, key=lambda x:self.sort_map[x], reverse=True)
         for idx, dice in enumerate(dices):
@@ -260,7 +259,6 @@ class CardZone:
                 self.card_name.append(card_name)
                 self.card_type.append(self.card[-1].card_type)
         # 随机固定牌序
-        self.game = game
         self.from_player = player
         game.random.shuffle(self.card)
 
@@ -268,9 +266,9 @@ class CardZone:
         '''
             触发获取牌事件
         '''
-        self.game.current_get_card = GetCard(from_player=self.from_player, num=num)
-        self.game.manager.invoke(EventType.ON_GET_CARD, self.game)
-        self.game.current_get_card = None
+        self.from_player.game.current_get_card = GetCard(from_player=self.from_player, num=num)
+        self.from_player.game.manager.invoke(EventType.ON_GET_CARD, self.from_player.game)
+        self.from_player.game.current_get_card = None
 
     def find_card(self, card_type: 'ActionCardType', num=1, invoke=True, random_choice=False):
         '''
@@ -291,8 +289,8 @@ class CardZone:
             for idx in idx_list:
                 self.card.pop(idx)
         else:
-            index_of_condidates = self.game.random.choice(len(idx_list), num, replace=False)
-            # idx_choice = self.game.random.choice(idx_list, num, replace=False)
+            index_of_condidates = self.from_player.game.random.choice(len(idx_list), num, replace=False)
+            # idx_choice = self.from_player.game.random.choice(idx_list, num, replace=False)
             idx_choice = np.array(idx_list)[index_of_condidates].tolist()
             get_list = np.array(get_list)[index_of_condidates].tolist()
             for idx in idx_choice:
@@ -355,7 +353,7 @@ class CardZone:
             将牌放回牌堆
         '''
         for card in card_list:
-            idx = self.game.random.randint(0, self.num()+1)
+            idx = self.from_player.game.random.randint(0, self.num()+1)
             card.zone = self
             self.card.insert(idx, card)
 
@@ -396,12 +394,12 @@ class CardZone:
             舍弃牌
         '''
         card: ActionCard = self.card.pop(idx)
-        card.on_discard(self.game)
+        card.on_discard(self.from_player.game)
         card.zone = None
 
         self.from_player.tune_or_discard_cards.append(card)
         self.from_player.round_discard_cards += 1
-        self.game.invoke(EventType.ON_DISCARD_CARD, self.game)
+        self.from_player.game.invoke(EventType.ON_DISCARD_CARD, self.from_player.game)
         return card
 
     def num(self):
@@ -415,19 +413,18 @@ class SummonZone:
         召唤物区
     '''
     def __init__(self, game: 'GeniusGame', player: 'GeniusPlayer') -> None:
-        self.game = game
         self.space: List['Summon'] = []
         self.from_player=player
 
     def remove(self, entity):
         idx = self.space.index(entity)
         self.space.pop(idx)
-        self.game.manager.invoke(EventType.ON_SUMMON_REMOVE, self.game)
+        self.from_player.game.manager.invoke(EventType.ON_SUMMON_REMOVE, self.from_player.game)
 
     def destroy(self, idx):
-        self.space[idx].on_destroy(self.game)
+        self.space[idx].on_destroy(self.from_player.game)
         self.space.pop(idx)
-        self.game.manager.invoke(EventType.ON_SUMMON_REMOVE, self.game)
+        self.from_player.game.manager.invoke(EventType.ON_SUMMON_REMOVE, self.from_player.game)
 
     def has_entity(self, entity):
         # entity here is the class, not the instace
@@ -447,13 +444,13 @@ class SummonZone:
             if not self.check_full():
                 self.space.append(entity)
             else:
-                entity.on_destroy(self.game)
+                entity.on_destroy(self.from_player.game)
         else:
             self.has_entity(entity.__class__).update(**kwargs)
             if replace_update:
                 old_entity = self.has_entity(entity.__class__)
                 new_entity = copy.deepcopy(old_entity)
-                old_entity.on_destroy(self.game)
+                old_entity.on_destroy(self.from_player.game)
                 self.space.appendd(new_entity)
 
     def num(self):
@@ -466,7 +463,6 @@ class SupportZone:
         支援区
     '''
     def __init__(self, game: 'GeniusGame', player: 'GeniusPlayer') -> None:
-        self.game = game
         self.from_player = player
         self.space: List['Support'] = []
         self.distroy_count = 0
@@ -484,19 +480,19 @@ class SupportZone:
         idx = self.space.index(entity)
         self.space.pop(idx)
         self.distroy_count += 1
-        self.game.manager.invoke(EventType.ON_SUPPORT_REMOVE, self.game)
+        self.from_player.game.manager.invoke(EventType.ON_SUPPORT_REMOVE, self.from_player.game)
 
     def destroy_by_idx(self, idx):
-        self.space[idx].on_destroy(self.game)
+        self.space[idx].on_destroy(self.from_player.game)
 
     def add_entity(self, entity, idx, **kwargs):
         if self.check_full():
             # 如果支援区已经满了
-            self.space[idx].on_destroy(self.game)
+            self.space[idx].on_destroy(self.from_player.game)
         self.space.append(entity)
 
     def add_entity_by_name(self, entity_name, idx, **kwargs):
-        entity = eval(entity_name)().entity(self.game, self.from_player)
+        entity = eval(entity_name)().entity(self.from_player.game, self.from_player)
         self.add_entity(entity, self.num(), **kwargs)
 
     def num(self):
@@ -511,7 +507,6 @@ class CharacterZone:
         单个角色状态区, 包括角色牌、装备区、角色状态
     '''
     def __init__(self, game: 'GeniusGame', player: 'GeniusPlayer') -> None:
-        self.game = game
         self.weapon_card: Weapon = None
         self.artifact_card: Artifact = None
         self.talent_card: TalentCard = None
@@ -553,8 +548,8 @@ class CharacterZone:
             self.has_entity(entity.__class__).update(**kwargs)
             if replace_update:
                 old_entity = self.has_entity(entity.__class__)
-                new_entity = old_entity.copy(self.game)
-                old_entity.on_destroy(self.game)
+                new_entity = old_entity.copy(self.from_player.game)
+                old_entity.on_destroy(self.from_player.game)
                 self.status_list.append(new_entity)
 
 
@@ -596,7 +591,6 @@ class ActiveZone:
         全队战斗状态区
     '''
     def __init__(self, game: 'GeniusGame', player: 'GeniusPlayer') -> None:
-        self.game = game
         self.player = player
         self.space: List[Combat_Status] = []
         self.shield: List[Combat_Shield] = []
@@ -645,7 +639,7 @@ class ActiveZone:
                 if replace_update:
                     old_entity = self.has_shield(entity.__class__)
                     new_entity = copy.deepcopy(old_entity)
-                    old_entity.on_destroy(self.game)
+                    old_entity.on_destroy(self.from_player.game)
                     self.shield.appendd(new_entity)
         else:
             if self.has_status(entity.__class__) is None or independent:
@@ -655,7 +649,7 @@ class ActiveZone:
                 if replace_update:
                     old_entity = self.has_status(entity.__class__)
                     new_entity = copy.deepcopy(old_entity)
-                    old_entity.on_destroy(self.game)
+                    old_entity.on_destroy(self.from_player.game)
                     self.space.appendd(new_entity)
 
     def show(self)-> Dict[str, List['Entity']]:
@@ -677,7 +671,6 @@ class HandZone:
     '''
     def __init__(self, game: 'GeniusGame', player: 'GeniusPlayer') -> None:
         self.card = []
-        self.game = game
         self.from_player = player
 
     def remove(self, idx: List):
@@ -741,11 +734,11 @@ class HandZone:
             return None
         card: ActionCard = self.card.pop(idx)
         card.zone = None
-        card.on_discard(self.game)
+        card.on_discard(self.from_player.game)
 
         self.from_player.tune_or_discard_cards.append(card)
         self.from_player.round_discard_cards += 1
-        self.game.invoke(EventType.ON_DISCARD_CARD, self.game)
+        self.from_player.game.invoke(EventType.ON_DISCARD_CARD, self.from_player.game)
         return card
 
     def discard_card_by_name(self, name, max_num=100):

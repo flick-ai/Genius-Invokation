@@ -224,7 +224,6 @@ if __name__=="__main__":
                 print(game.incoming_state.encode_message())
             else:
                 print(game.encode_message())
-            # print(game)
             action = Action.from_input(game, log, mode='w', jump=False)
             game.step(action)
             # save log

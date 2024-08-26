@@ -13,6 +13,17 @@ if TYPE_CHECKING:
     from genius_invocation.game.player import GeniusPlayer
 from genius_invocation.entity.status import Shield
 from loguru import logger
+
+dice_color_dict = {
+    DiceType.ANEMO: 'green',
+    DiceType.HYDRO: 'blue',
+    DiceType.CRYO: 'white',
+    DiceType.DENDRO: 'yellow',
+    DiceType.ELECTRO: 'purple',
+    DiceType.GEO: 'yellow',
+    DiceType.PYRO: 'red',
+    DiceType.OMNI: 'black'
+}
 def layout(game: 'GeniusGame'):
     layout = Layout()
     layout.split_column(
@@ -24,10 +35,10 @@ def layout(game: 'GeniusGame'):
     for i in range(2):
         player = "player" + str(i)
         layout[player].split_row(
-            Layout(name="card", ratio=1),
-            Layout(name="support", ratio=2),
-            Layout(name="character", ratio=5),
-            Layout(name="summon", ratio=2),
+            Layout(name="card", ratio=2),
+            Layout(name="support", ratio=3),
+            Layout(name="character", ratio=6),
+            Layout(name="summon", ratio=3),
             Layout(name="dice", ratio=1)
         )
 
@@ -152,6 +163,7 @@ def get_character(player: 'GeniusPlayer', idx: int):
             vertical="middle",
         ),
         title="Character"+str(idx),
+        style='red' if player.index == player.game.active_player_index else 'none',
     )
     return message_panel
 
@@ -167,6 +179,7 @@ def get_card(player: 'GeniusPlayer'):
             Group(" ",Align.center(sponsor_message)),
         ),
         title="CardZone",
+        style='red' if player.index == player.game.active_player_index else 'none',
     )
     return message_panel
 
@@ -176,7 +189,7 @@ def get_hand(player: 'GeniusPlayer'):
     if player.hand_zone.num() != 0:
         for card in player.hand_zone.card:
             sponsor_message.add_row(
-                card.name_ch,
+                "{}:{}".format(card.name_ch, card.calculate_dice()),
                 style='blue',
             )
     message_panel = Panel(
@@ -184,6 +197,7 @@ def get_hand(player: 'GeniusPlayer'):
             Group(" ",Align.center(sponsor_message)),
         ),
         title="HandCard"+str(player.index),
+        style='red' if player.index == player.game.active_player_index else 'none',
     )
     return message_panel
 
@@ -209,6 +223,7 @@ def get_summon(player: 'GeniusPlayer', idx):
             Group(" ",Align.center(sponsor_message)),
         ),
         title="Summon"+str(idx+1),
+        style='red' if player.index == player.game.active_player_index else 'none',
     )
     return message_panel
 
@@ -232,6 +247,7 @@ def get_support(player: 'GeniusPlayer', idx):
             Group(" ",Align.center(sponsor_message)),
         ),
         title="Support" + str(idx),
+        style='red' if player.index == player.game.active_player_index else 'none',
     )
     return message_panel
 
@@ -242,7 +258,7 @@ def get_dice(player: 'GeniusPlayer'):
         for dice in player.dice_zone.show():
             sponsor_message.add_row(
                 DiceType(dice).name,
-                style='blue',
+                style=dice_color_dict[DiceType(dice)],
             )
 
     message_panel = Panel(
@@ -250,6 +266,7 @@ def get_dice(player: 'GeniusPlayer'):
             Group(" ",Align.center(sponsor_message)),
             vertical="middle",
         ),
-        title="DiceZone"+str(player.index),
+        title="Dice"+str(player.index),
+        style='red' if player.index == player.game.active_player_index else 'none',
     )
     return message_panel

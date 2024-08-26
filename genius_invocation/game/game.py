@@ -120,6 +120,8 @@ class GeniusGame:
         self.is_overload = game.is_overload
         self.root_game = self
         self.prev_action = game.prev_action
+        for player in self.players:
+            player.game = self
 
     def forward_action_step(self, action: 'Action'):
         '''
@@ -304,7 +306,6 @@ class GeniusGame:
                 logger.info(self.incoming_action_list)
 
             game_for_plan = self.copy_game()
-            (self, game_for_plan)
             self.is_dying = False
 
             match game_for_plan.game_phase:
@@ -316,7 +317,6 @@ class GeniusGame:
                     game_for_plan.set_reroll_dice(action)
                 case GamePhase.ACTION_PHASE:
                     game_for_plan.resolve_action(action)
-
             # print(self, game_for_plan)
             logger.info(self.is_dying)
             if not self.is_dying:
