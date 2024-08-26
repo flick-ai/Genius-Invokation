@@ -63,7 +63,7 @@ class MistBubbleSlimeEntity(SpecialSkill):
         prepare_status = PrepareMistBubbleSlimeStatus(game, self.from_character.from_player, self.from_character, Next_Skill)
         self.from_character.character_zone.add_entity(prepare_status)
         self.from_character.from_player.prepared_skill = prepare_status
-        self.check_usage()
+        self.check_usage(game)
         game.manager.invoke(EventType.AFTER_USE_SPECIAL, game)
 
 class PrepareMistBubbleSlime(SpecialSkill):

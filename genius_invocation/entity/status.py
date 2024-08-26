@@ -171,10 +171,10 @@ class SpecialSkill(Equipment):
         super().__init__(game, from_player, from_character)
         self.usage = 0
 
-    def check_usage(self):
+    def check_usage(self, game):
         self.usage -= 1
         if self.usage <= 0:
-            self.on_destroy(self.game)
+            self.on_destroy(game)
 
     def update(self, usage=1):
         self.usage += usage

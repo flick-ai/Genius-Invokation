@@ -100,32 +100,32 @@ class Shooting_Star(Combat_Status):
         self.usage = 4
         self.current_usage = 0
 
-    def gain_night_star(self, num):
+    def gain_night_star(self, num, game: 'GeniusGame'):
         self.current_usage += num
         if self.current_usage>=self.usage:
             dmg = Damage.create_damage(
-                self.game,
+                game,
                 damage_type=SkillType.OTHER,
                 main_damage_element=ElementType.CRYO,
                 main_damage=1,
                 piercing_damage=0,
                 damage_from=self,
-                damage_to=get_opponent_active_character(self.game),
+                damage_to=get_opponent_active_character(game),
             )
-            self.game.add_damage(dmg)
-            self.game.resolve_damage()
+            game.add_damage(dmg)
+            game.resolve_damage()
             self.current_usage -= self.usage
             if self.from_character.talent:
                 self.from_player.get_card(1)
 
 
-    def update(self):
-        self.gain_night_star(2)
+    def update(self, game: 'GeniusGame'):
+        self.gain_night_star(2, game)
 
 
     def after_skill(self, game: 'GeniusGame'):
         if game.current_skill.from_character.from_player == self.from_player:
-            self.gain_night_star(1)
+            self.gain_night_star(1, game)
 
     def update_listener_list(self):
         self.listeners = [

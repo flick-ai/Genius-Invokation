@@ -29,7 +29,7 @@ class XenochromaticEntity(SpecialSkill):
                         )
         game.add_damage(damage)
         game.resolve_damage()
-        self.check_usage()
+        self.check_usage(game)
         game.manager.invoke(EventType.AFTER_USE_SPECIAL, game)
 
 

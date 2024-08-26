@@ -79,7 +79,7 @@ class AdeptalAssistance(SpecialSkill):
         super().on_call(game)
         self.from_character.heal(2)
         self.begin_invoke = True
-        self.check_usage()
+        self.check_usage(game)
         game.manager.invoke(EventType.AFTER_USE_SPECIAL, game)
 
     def on_use_skill(self, game: 'GeniusGame'):

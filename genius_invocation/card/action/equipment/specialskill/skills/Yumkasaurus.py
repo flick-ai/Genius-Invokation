@@ -34,7 +34,7 @@ class YumkasaurusEntity(SpecialSkill):
         card = opponent.hand_zone.card[card_id]
         opponent.hand_zone.remove(card_id)
         self.from_player.hand_zone.add([card])
-        self.check_usage()
+        self.check_usage(game)
         game.manager.invoke(EventType.AFTER_USE_SPECIAL, game)
 
     def on_calculate_dice(self, game: 'GeniusGame'):
