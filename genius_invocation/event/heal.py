@@ -30,16 +30,22 @@ class BondofLife(Status):
 
     def on_heal(self, game: 'GeniusGame'):
         if game.current_heal.heal_to_character == self.from_character:
-            target_heal = max(0, game.current_heal.heal_num - self.usage)
-            self.usage = max(0, self.usage - game.current_heal.heal_num)
-            game.current_heal.heal_num = target_heal
-            if self.usage == 0:
-                self.on_destroy(game)
+            if game.current_heal.heal_type in [HealType.HEAL, HealType.MAX_HEALTH]:
+                target_heal = max(0, game.current_heal.heal_num - self.usage)
+                self.usage = max(0, self.usage - game.current_heal.heal_num)
+                game.current_heal.heal_num = target_heal
+                if self.usage == 0:
+                    self.on_destroy(game)
 
     def update_listener_list(self):
         self.listeners = [
             (EventType.ON_HEAL, ZoneType.CHARACTER_ZONE, self.on_heal)
         ]
+
+    def balance_adjustment():
+        log = {}
+        log[5.0] = "可以抵消最大生命值治疗效果"
+        return log
 
 
 

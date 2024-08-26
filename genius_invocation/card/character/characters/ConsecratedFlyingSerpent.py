@@ -116,8 +116,6 @@ class ConsecratedFlyingSerpent(Character):
     def after_play_card(self, game: 'GeniusGame'):
         if self.talent:
             if game.current_card.name == "Bonecruncher's Energy Block":
-                self.from_player.get_card(num=1)
-                self.from_player.card_zone.insert_randomly([BonecrunchersEnergyBlock()], num=-1)
                 self.return_dice = True
 
     def after_change(self, game: 'GeniusGame'):

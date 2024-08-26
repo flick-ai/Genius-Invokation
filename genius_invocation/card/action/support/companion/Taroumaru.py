@@ -20,7 +20,7 @@ class Taroumaru_Enraged(Summon):
         super().__init__(game, from_player, from_character)
         self.current_usage = 2
 
-    def on_end(self, game:'GeniusGame'):
+    def on_end_phase(self, game:'GeniusGame'):
         if game.active_player == self.from_player:
             dmg = Damage.create_damage(
                 game,
@@ -39,7 +39,7 @@ class Taroumaru_Enraged(Summon):
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.END_PHASE, ZoneType.SUMMON_ZONE, self.on_end)
+            (EventType.END_PHASE, ZoneType.SUMMON_ZONE, self.on_end_phase)
         ]
 
 

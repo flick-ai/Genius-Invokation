@@ -53,7 +53,7 @@ class StarfallShower(ElementalSkill):
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         # 处理伤害
-        add_damage = min(4, self.from_character.addtional_max_health//3)
+        add_damage = min(3, self.from_character.addtional_max_health//3)
         self.resolve_damage(game, add_damage=add_damage)
         # 获得能量
         self.gain_energy(game)
@@ -83,7 +83,7 @@ class RavagingDevourer(ElementalBurst):
     # cost
     cost = [{'cost_num': 3, 'cost_type': CostType.HYDRO}]
 
-    energy_cost: int = 3
+    energy_cost: int = 2
     energy_gain: int = 0
 
     def __init__(self, from_character: 'Character'):
@@ -134,6 +134,7 @@ class AllDevouringNarwhal(Character):
     def balance_adjustment():
         log = {}
         log[4.8] = "调整了角色牌「吞星之鲸」元素战技的效果：效果“造成1点水元素伤害，此角色每有3点无尽食欲提供的额外最大生命，此伤害+1（最多+5）”中，“最多+5”调整为“最多+4”"
+        log[5.0] = "战技最多+3；回合末一次性回血"
         return log
 
 
@@ -145,6 +146,7 @@ class DeepDevourersDomain(Combat_Status):
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
         self.cards: List['ActionCard'] = self.from_player.tune_or_discard_cards
+        self.addtional_max_health = 0
 
     def calculate_max_cost(self):
         max_count = max([card.calculate_dice() for card in self.cards])
@@ -166,11 +168,12 @@ class DeepDevourersDomain(Combat_Status):
                 cost_dict[c] += 1
 
         addtional_max_health = addtional_max_health + 3 - len(cost_dict)
+        self.addtional_max_health += addtional_max_health
 
-        self.from_character.max_health_point += addtional_max_health
-        self.from_character.addtional_max_health += addtional_max_health
-        for i in range(4-len(cost_dict)):
-            self.from_character.heal(num=1, game=game, heal_type=HealType.MAX_HEALTH)
+        # self.from_character.max_health_point += addtional_max_health
+        # self.from_character.addtional_max_health += addtional_max_health
+        # for i in range(4-len(cost_dict)):
+        #     self.from_character.heal(num=1, game=game, heal_type=HealType.MAX_HEALTH)
 
     def on_tune(self, game: 'GeniusGame'):
         if len(self.cards)>0 and len(self.cards) % 3 == 0:
@@ -180,10 +183,17 @@ class DeepDevourersDomain(Combat_Status):
         if len(self.cards) > 0 and len(self.cards) % 3 == 0:
             self.excute(game)
 
+    def on_end(self, game: 'GeniusGame'):
+        self.from_character.max_health_point += self.addtional_max_health
+        self.from_character.addtional_max_health += self.addtional_max_health
+        self.from_character.heal(num=self.addtional_max_health, game=game, heal_type=HealType.MAX_HEALTH)
+        self.addtional_max_health = 0
+
     def update_listener_list(self):
         self.listeners = [
             (EventType.ON_TUNE_CARD, ZoneType.CARD_ZONE, self.on_tune),
-            (EventType.ON_DISCARD_CARD, ZoneType.CARD_ZONE, self.on_discard)
+            (EventType.ON_DISCARD_CARD, ZoneType.CARD_ZONE, self.on_discard),
+            (EventType.ON_END_PHASE, ZoneType.CHARACTER_ZONE, self.on_end)
         ]
 
 
@@ -220,7 +230,7 @@ class DarkShadow(Summon):
                     if self.current_usage == 0:
                         self.on_destroy(game)
 
-    def end_phase(self, game: 'GeniusGame'):
+    def on_end_phase(self, game: 'GeniusGame'):
         if game.active_player == self.from_player:
             dmg = Damage.create_damage(
                 game,
@@ -248,7 +258,7 @@ class DarkShadow(Summon):
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.END_PHASE, ZoneType.CHARACTER_ZONE, self.end_phase),
+            (EventType.END_PHASE, ZoneType.CHARACTER_ZONE, self.on_end_phase),
             (EventType.AFTER_ANY_ACTION, ZoneType.CHARACTER_ZONE, self.after_any_action),
             (EventType.EXECUTE_DAMAGE, ZoneType.CHARACTER_ZONE, self.on_damage)
         ]

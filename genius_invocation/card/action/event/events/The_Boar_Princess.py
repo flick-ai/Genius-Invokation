@@ -58,3 +58,8 @@ class The_Boar_Princess(ActionCard):
 
     def find_target(self, game: 'GeniusGame'):
         return [1]
+
+    def balance_adjustment():
+        log = {}
+        log[5.0] = "添加了特技牌弃置时的效果"
+        return log

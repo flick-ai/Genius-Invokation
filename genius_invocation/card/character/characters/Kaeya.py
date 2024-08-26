@@ -118,7 +118,7 @@ class Icicle(Combat_Status):
         self.current_usage = self.usage
 
     def on_switch(self, game: 'GeniusGame'):
-        if game.current_switch['from'].from_player != self.from_player: return
+        if game.current_switch.from_player != self.from_player: return
         dmg = Damage.create_damage(
             game,
             damage_type=SkillType.OTHER,

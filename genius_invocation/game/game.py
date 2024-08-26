@@ -8,7 +8,7 @@ from genius_invocation.game.player import GeniusPlayer
 from genius_invocation.event.events import EventManager
 from genius_invocation.card.character.base import Damage
 from genius_invocation.card.action.base import ActionCard
-from genius_invocation.game.zone import Dice, GetCard
+from genius_invocation.game.zone import Dice, GetCard, Switch
 from genius_invocation.event.heal import Heal
 from loguru import logger
 from rich.console import Console
@@ -59,7 +59,7 @@ class GeniusGame:
         self.current_player: GeniusPlayer = None
         self.current_action: Action = None
         self.current_damage: Damage = None
-        self.current_switch: Dict[str, Character] = {"from": None, "to": None}
+        self.current_switch: Switch = None
         self.current_skill: CharacterSkill = None
         self.current_card: ActionCard = None
         self.current_remove_from: Character = None
@@ -155,7 +155,7 @@ class GeniusGame:
         self.current_dice = None
         self.current_heal = None
         self.current_remove_from = None
-        self.current_switch = {"from": None, "to": None}
+        self.current_switch = None
         self.current_attach_reaction = None
 
     def resolve_action(self, action: 'Action'):

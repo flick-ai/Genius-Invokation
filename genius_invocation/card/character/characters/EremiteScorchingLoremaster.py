@@ -77,7 +77,7 @@ class Spirit_of_Omen_Pyro_Scorpion(Summon):
         else:
             status.update()
 
-    def end_phase(self, game: 'GeniusGame'):
+    def on_end_phase(self, game: 'GeniusGame'):
         if game.active_player == self.from_player:
             add_dmg = 0
             if self.from_character.talent and self.from_character.skills[0].usage_this_round + self.from_character.skills[1].usage_this_round >0:
@@ -117,7 +117,7 @@ class Spirit_of_Omen_Pyro_Scorpion(Summon):
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.END_PHASE, ZoneType.SUMMON_ZONE, self.end_phase),
+            (EventType.END_PHASE, ZoneType.SUMMON_ZONE, self.on_end_phase),
             (EventType.BEGIN_ACTION_PHASE, ZoneType.SUMMON_ZONE, self.begin_round)
         ]
 
@@ -126,7 +126,7 @@ class Spirit_of_Omen_Pyro_Scorpion(Summon):
         if status is not None:
             status.on_destroy(game)
         super().on_destroy(game)
-    
+
 
 
 class Pyro_Scorpion_Guardian_Stance(Status):
@@ -176,12 +176,12 @@ class Spirit_of_Omens_Power(Status):
         # USAGE SHOULD ALWAYS 1
         self.current_usage = 1
         self.usage = 1
-    
+
     def on_final_dmg(self, game:'GeniusGame'):
         if self.from_character.health_point<=7:
             self.from_character.get_power(1)
             self.on_destroy(game)
-    
+
     def update_listener_list(self):
         self.listeners = [
             (EventType.FINAL_EXECUTE, ZoneType.CHARACTER_ZONE, self.on_final_dmg)
@@ -211,5 +211,5 @@ class EremiteScorchingLoremaster(Character):
         self.power = 0
         self.talent = talent
         self.talent_skill = self.skills[2]
-    
-    
+
+

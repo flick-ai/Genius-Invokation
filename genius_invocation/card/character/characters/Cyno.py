@@ -119,7 +119,9 @@ class Secret_Rite_Chasmic_Soulfarer(ElementalSkill):
         super().on_call(game)
         # 处理伤害
         if self.from_character.talent and self.from_character.character_zone.has_entity(Pactsworn_Pathclearer).current_usage >= 2:
-            self.resolve_damage(game, add_main_damage=2)
+            if self.from_character.talent_usage > 0:
+                self.from_character.talent_usage -= 1
+                self.resolve_damage(game, add_main_damage=1)
         else:
             self.resolve_damage(game)
         # 获得能量
@@ -187,10 +189,18 @@ class Cyno(Character):
         self.talent = talent
         self.power = 0
         self.talent_skill = self.skills[1]
+        self.talent_max_usage = 2
+        self.talent_usage = self.talent_max_usage
 
     def revive(self, game: 'GeniusGame'):
         super().revive(game)
         self.init_state(game)
+
+    def on_end_phase(self, game: 'GeniusGame'):
+        self.talent_usage = self.talent_max_usage
+
+    def listen_talent_events(self, game: 'GeniusGame'):
+        self.listen_event(game, EventType.FINAL_END, self.on_end_phase)
 
     def balance_adjustment():
         log = {}

@@ -176,7 +176,7 @@ class BurstScan(Combat_Status):
         else:
             return
 
-        card = self.from_player.card_zone.discard_card(idx=0)
+        card = self.from_player.card_zone.discard_card(idx=-1)
         if self.from_character.talent:
             self.from_player.hand_zone.add([deepcopy(card)])
             if card.card_type == ActionCardType.SUPPORT_LOCATION:

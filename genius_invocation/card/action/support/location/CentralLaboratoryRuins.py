@@ -40,7 +40,7 @@ class CentralLaboratoryRuinsEntity(Support):
             (EventType.ON_DISCARD_CARD, ZoneType.SUPPORT_ZONE, self.on_discard_card),
         ]
     def show(self):
-        return str(self.usage)
+        return str(self.experimentalprogress)
 
 class CentralLaboratoryRuins(SupportCard):
     id: int = 321021

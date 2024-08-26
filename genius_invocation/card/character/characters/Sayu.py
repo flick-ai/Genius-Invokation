@@ -56,7 +56,7 @@ class Yoohoo_Art_Fuuin_Dash(ElementalSkill):
 
     def __init__(self, from_character: 'Character') -> None:
         super().__init__(from_character)
-        
+
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
 
@@ -86,8 +86,8 @@ class Fuufuu_Whirlwind_Kick(ElementalSkill):
     def __init__(self, from_character: 'Character') -> None:
         super().on_call(from_character)
         self.main_damage_element = ElementType.ANEMO
-        
-        
+
+
     def on_call(self, game:'GeniusGame'):
         super().on_call(game)
         self.main_damage_element = self.from_character.last_swirl if self.from_character.last_swirl is not None else ElementType.ANEMO
@@ -106,7 +106,7 @@ class Prepare_Fuufuu_Whirlwind_Kick(Status):
         self.current_usage = 1
 
     def after_change(self,game:'GeniusGame'):
-        if game.current_switch["from"] == self.from_character:
+        if game.current_switch.from_character == self.from_character:
             self.from_character.from_player.prepared_skill = None
             self.on_destroy(game)
 
@@ -142,14 +142,14 @@ class Yoohoo_Art_Mujina_Flurry(ElementalBurst):
 
     def __init__(self, from_character: 'Character') -> None:
         super().__init__(from_character)
-        
+
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
 
         self.consume_energy(game)
         self.generate_summon(game, Muji_Muji_Daruma)
         self.resolve_damage(game)
-        
+
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class Muji_Muji_Daruma(Summon):
@@ -188,7 +188,7 @@ class Muji_Muji_Daruma(Summon):
                     max_idx = idx
             target = self.from_player.character_list[max_idx]
             target.heal(heal=2, game=game)
-            
+
             self.current_usage -= 1
             if(self.current_usage <= 0):
                 self.on_destroy(game)
@@ -219,14 +219,14 @@ class Sayu(Character):
         self.next_skill = Fuufuu_Whirlwind_Kick(self)
         self.last_swirl = None
         self.talent_round = -1
-    
+
     def on_excute_dmg(self, game:'GeniusGame'):
         if game.current_damage.damage_from == self:
             if game.current_damage.reaction == ElementalReactionType.Swirl:
                 self.last_swirl = game.current_damage.swirl_crystallize_type
             else:
                 self.last_swirl = None
-        
+
         if game.current_damage.damage_from.from_player == self.from_player:
             if self.is_active and self.talent and self.talent_round != game.round:
                 self.from_player.get_card(2)

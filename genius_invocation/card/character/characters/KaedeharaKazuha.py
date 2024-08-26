@@ -122,7 +122,7 @@ class Midare_Ranzan(Status):
         self.current_usage = 1
 
     def on_change_character(self, game:'GeniusGame'):
-        if game.current_switch["to"] == self.from_character:
+        if game.current_switch.to_character == self.from_character:
             self.from_player.is_quick_change = True
 
 
@@ -169,7 +169,7 @@ class Autumn_Whirlwind(Summon):
                     if self.infuse_element == ElementType.ANEMO:
                         self.infuse_element = game.current_damage.swirl_crystallize_type
 
-    def end_phase(self, game:'GeniusGame'):
+    def on_end_phase(self, game:'GeniusGame'):
         if game.active_player == self.from_player:
             dmg = Damage.create_damage(
                 game,
@@ -189,7 +189,7 @@ class Autumn_Whirlwind(Summon):
     def update_listener_list(self):
         self.listeners = [
             (EventType.EXECUTE_DAMAGE, ZoneType.SUMMON_ZONE, self.on_reaction),
-            (EventType.END_PHASE, ZoneType.SUMMON_ZONE, self.end_phase)
+            (EventType.END_PHASE, ZoneType.SUMMON_ZONE, self.on_end_phase)
         ]
 
 

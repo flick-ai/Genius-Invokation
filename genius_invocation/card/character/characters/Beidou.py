@@ -87,7 +87,7 @@ class TidecallerSurfEmbrace(Status):
         self.on_destroy(game)
 
     def after_change(self,game:'GeniusGame'):
-        if game.current_switch["from"] == self.from_character:
+        if game.current_switch.from_character == self.from_character:
             self.from_character.from_player.prepared_skill = None
             self.on_destroy(game)
 

@@ -3,7 +3,7 @@ import numpy as np
 from genius_invocation.utils import *
 from copy import deepcopy
 from genius_invocation.card.action import *
-from genius_invocation.entity.status import Status, Shield, Combat_Shield, Weapon, Artifact, Combat_Status
+from genius_invocation.entity.status import Status, Shield, Combat_Shield, Weapon, Artifact, Combat_Status, SpecialSkill
 from genius_invocation.card.character.characters.Keqing import Lightning_Stiletto
 
 import random
@@ -16,6 +16,13 @@ if TYPE_CHECKING:
     from genius_invocation.entity.support import Support
 
     from genius_invocation.entity.character import Character
+
+class Switch:
+    def __init__(self, from_character, to_character, swicth_type) -> None:
+        self.from_player = from_character.from_player
+        self.from_character = from_character
+        self.to_character = to_character
+        self.type = swicth_type
 
 class GetCard:
     '''
@@ -364,16 +371,25 @@ class CardZone:
         '''
             从牌堆顶的指定数量牌中随机插入牌
         '''
-        num = self.num() if num == -1 else num
+        num = self.num()+len(card_list) if num == -1 else num
         if type(card_list) != List:
             card_list = [card_list]
 
-        insert_indices = random.sample(range(0, num+len(card_list)), len(card_list))
+        insert_indices = random.sample(range(self.num()+len(card_list)-num,
+                                             self.num()+len(card_list)), len(card_list))
         insert_indices.sort()
         for index in insert_indices:
             card = card_list.pop()
             card.zone = self
             self.card.insert(index, card)
+
+    def return_card_bottom(self, card_list: List):
+        '''
+            将牌放回牌堆底
+        '''
+        for card in card_list:
+            card.zone = self
+            self.card.insert(0, card)
 
     def discard_card(self, idx):
         '''
@@ -499,7 +515,9 @@ class CharacterZone:
         self.weapon_card: Weapon = None
         self.artifact_card: Artifact = None
         self.talent_card: TalentCard = None
+        self.special_skill: SpecialSkill = None
         self.status_list: List['Status'] = [] # Including status from weapon and artifact
+        self.immune_list = None
 
     def remove_entity(self, entity: 'Entity'):
         idx = self.status_list.index(entity)
@@ -516,8 +534,19 @@ class CharacterZone:
                 return status
         return None
 
+    def check_immune(self, entity: 'Status'):
+        if self.immune_list is None:
+            return False
+        for immune in self.immune_list:
+            if isinstance(entity, immune):
+                return True
+        return False
+
+
     def add_entity(self, entity: 'Status', independent=False, replace_update=False, **kwargs):
         # If replace_update is True, the entity will be copy after update, and the origin entity will be destroy and add the new entity at the end of the status list.
+        if self.check_immune(entity):
+            return
         if independent or self.has_entity(entity.__class__) is None:
             self.status_list.append(entity)
         else:
@@ -536,6 +565,12 @@ class CharacterZone:
         if self.artifact_card is not None:
             self.artifact_card.on_destroy(game)
             self.artifact_card = None
+        if self.talent_card is not None:
+            game.manager.invoke(EventType.ON_EQUIP_REMOVE, game)
+            self.talent_card = None
+        if self.special_skill is not None:
+            self.special_skill.on_destroy(game)
+            self.special_skill = None
         for status in self.status_list:
             status.on_destroy(game)
             # del(status)

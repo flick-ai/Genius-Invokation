@@ -33,6 +33,9 @@ class Summon(Entity):
     def add_usage(self, game: 'GeniusGame', count: int):
         self.current_usage += count
 
+    def on_end_phase(self, game: 'GeniusGame'):
+        pass
+
     def minus_usage(self, game: 'GeniusGame', count: int):
         self.current_usage -= count
         self.current_usage = max(0, self.current_usage)

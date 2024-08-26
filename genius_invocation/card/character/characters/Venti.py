@@ -63,7 +63,7 @@ class Stormzone(Combat_Status):
                         game.current_dice.cost[0]['cost_num'] -= 1
                         return 2
         return False
-    
+
     def on_use(self, game:'GeniusGame'):
         use_type = self.on_calculate(game)
         if use_type == 1:
@@ -73,7 +73,7 @@ class Stormzone(Combat_Status):
                 self.on_destroy(game)
         elif use_type == 2:
             self.is_triggered = False
-    
+
     def on_begin(self, game:'GeniusGame'):
         if game.active_player == self.from_player:
             self.is_triggered = False
@@ -85,7 +85,7 @@ class Stormzone(Combat_Status):
             (EventType.ON_CHANGE_CHARACTER, ZoneType.ACTIVE_ZONE, self.on_use),
             (EventType.BEGIN_ACTION_PHASE, ZoneType.ACTIVE_ZONE, self.on_begin)
         ]
-    
+
 
 
 
@@ -111,12 +111,12 @@ class Skyward_Sonnet(ElementalSkill):
 
     def __init__(self, from_character: 'Character') -> None:
         super().__init__(from_character)
-        
+
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
 
         self.resolve_damage(game)
-        
+
         self.gain_energy(game)
         self.add_combat_status(game, Stormzone)
 
@@ -163,7 +163,7 @@ class Stormeye(Summon):
             if target_idx != -1:
                 if opponent.active_idx != target_idx:
                     opponent.change_to_id(target_idx)
-    def end_phase(self, game: 'GeniusGame'):
+    def on_end_phase(self, game: 'GeniusGame'):
         if game.active_player == self.from_player:
            dmg = Damage.create_damage(
                 game,
@@ -184,11 +184,11 @@ class Stormeye(Summon):
     def update_listener_list(self):
         self.listeners = [
             (EventType.EXECUTE_DAMAGE, ZoneType.SUMMON_ZONE, self.on_reaction),
-            (EventType.END_PHASE, ZoneType.SUMMON_ZONE, self.end_phase),
+            (EventType.END_PHASE, ZoneType.SUMMON_ZONE, self.on_end_phase),
             (EventType.SPECIAL_SWITCH, ZoneType.SUMMON_ZONE, self.special_switch)
         ]
-    
-    
+
+
 
 
 
@@ -214,14 +214,14 @@ class Wind_s_Grand_Ode(ElementalBurst):
 
     def __init__(self, from_character: 'Character') -> None:
         super().__init__(from_character)
-        
+
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
 
         self.consume_energy(game)
         self.generate_summon(game, Stormeye)
         self.resolve_damage(game)
-        
+
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 

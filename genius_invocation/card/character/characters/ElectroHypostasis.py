@@ -85,7 +85,7 @@ class PreparePaper(Status):
         self.skill = RockPaperScissorsCombo_Paper(from_character=from_character)
 
     def after_change(self,game:'GeniusGame'):
-        if game.current_switch["from"] == self.from_character:
+        if game.current_switch.from_character == self.from_character:
             self.from_character.from_player.prepared_skill = None
             self.on_destroy(game)
 
@@ -144,7 +144,7 @@ class PrepareScissors(Status):
         self.skill = RockPaperScissorsCombo_Scissors(from_character=from_character)
 
     def after_change(self,game:'GeniusGame'):
-        if game.current_switch["from"] == self.from_character:
+        if game.current_switch.from_character == self.from_character:
             self.from_character.from_player.prepared_skill = None
             self.on_destroy(game)
 

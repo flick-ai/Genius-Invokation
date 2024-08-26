@@ -15,7 +15,7 @@ class Abyssal_Summons_Summmon(Summon):
         super().__init__(game, from_player, from_character)
         self.current_usage = 2
 
-    def on_end(self, game:'GeniusGame'):
+    def on_end_phase(self, game:'GeniusGame'):
         if game.active_player == self.from_player:
             dmg = Damage.create_damage(
                 game,
@@ -31,10 +31,10 @@ class Abyssal_Summons_Summmon(Summon):
             self.current_usage -= 1
         if self.current_usage <= 0:
             self.on_destroy(game)
-    
+
     def update_listener_list(self):
         self.listeners = [
-            (EventType.END_PHASE, ZoneType.SUMMON_ZONE, self.on_end)
+            (EventType.END_PHASE, ZoneType.SUMMON_ZONE, self.on_end_phase)
         ]
 
 class Cryo_Hilichurl(Abyssal_Summons_Summmon):
@@ -66,7 +66,7 @@ def choose_one_summon(game: 'GeniusGame'):
     for summon in [Cryo_Hilichurl, Hydeo_Hilichurl, Pyro_Hilichurl, Electro_Hilichurl]:
         if game.active_player.summon_zone.has_entity(summon) is None:
             un_summon_list.append(summon)
-    
+
     x = un_summon_list[game.random.randint(0,len(un_summon_list))]
     summon = x(game, game.active_player, None)
     game.active_player.summon_zone.add_entity(summon)
@@ -85,7 +85,7 @@ class Abyssal_Summons(ActionCard):
 
     def on_played(self, game: 'GeniusGame'):
         choose_one_summon(game)
-    
+
     def find_target(self, game:'GeniusGame'):
         if game.active_player.summon_zone.num() < MAX_SUMMON:
             return [1]

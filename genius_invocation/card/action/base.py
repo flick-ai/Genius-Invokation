@@ -20,7 +20,7 @@ class ActionCard:
         self.zone = None
 
     def calculate_dice(self) -> int:
-        if self.cost_type == ActionCardType.EQUIPMENT_TALENT:
+        if self.card_type == ActionCardType.EQUIPMENT_TALENT:
             count = sum([i['cost_num'] for i in self.cost])
         else:
             count = self.cost_num

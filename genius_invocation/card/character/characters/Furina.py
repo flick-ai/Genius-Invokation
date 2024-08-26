@@ -316,7 +316,7 @@ class FurinaSummon(Summon):
         if self.check_health_less(game):
             self.min_dmg_taken(game).heal(1, game)
 
-    def end_phase(self, game: 'GeniusGame'):
+    def on_end_phase(self, game: 'GeniusGame'):
         if game.active_player == self.from_player:
             if self.from_character.arkhen == ArkhenType.PNEUMA:
                 self.damage(game)
@@ -328,7 +328,7 @@ class FurinaSummon(Summon):
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.END_PHASE, ZoneType.CHARACTER_ZONE, self.end_phase),
+            (EventType.END_PHASE, ZoneType.CHARACTER_ZONE, self.on_end_phase),
         ]
 
 class SeatsSacredandSecular(ActionCard):

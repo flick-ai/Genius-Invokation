@@ -68,14 +68,14 @@ class PrepareSpearFlourish(Status):
         self.from_character.character_zone.add_entity(shield)
         super().__init__(game, from_player, from_character)
         self.skill = Next_Skill
-        
+
 
     def on_call(self, game: 'GeniusGame'):
         self.skill.on_call(game)
         self.on_destroy(game)
 
     def after_change(self,game:'GeniusGame'):
-        if game.current_switch["from"] == self.from_character:
+        if game.current_switch.from_character == self.from_character:
             self.from_character.from_player.prepared_skill = None
             self.on_destroy(game)
 
@@ -83,7 +83,7 @@ class PrepareSpearFlourish(Status):
         self.listeners = [
             (EventType.AFTER_CHANGE_CHARACTER, ZoneType.CHARACTER_ZONE, self.after_change)
         ]
-    
+
     def on_destroy(self, game: 'GeniusGame'):
         shield = self.from_character.character_zone.has_entity(ShieldofSwirlingClouds)
         if shield is not None:

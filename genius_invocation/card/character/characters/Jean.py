@@ -89,7 +89,7 @@ class Dandelion_Field(Summon):
                 if game.current_damage.main_damage_element == ElementType.ANEMO:
                     game.current_damage.main_damage += 1
 
-    def end_phase(self, game: 'GeniusGame'):
+    def on_end_phase(self, game: 'GeniusGame'):
         if game.active_player == self.from_player:
             dmg = Damage.create_damage(
                 game,
@@ -110,7 +110,7 @@ class Dandelion_Field(Summon):
     def update_listener_list(self):
         self.listeners = [
             (EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, self.damage_add),
-            (EventType.END_PHASE, ZoneType.CHARACTER_ZONE, self.end_phase)
+            (EventType.END_PHASE, ZoneType.CHARACTER_ZONE, self.on_end_phase)
         ]
 
 class Dandelion_Breeze(ElementalBurst):
@@ -176,7 +176,7 @@ class Jean(Character):
     def update_listener_list(self):
         super().update_listener_list()
         self.listeners.append((EventType.SPECIAL_SWITCH, ZoneType.CHARACTER_ZONE, self.special_switch))
-    
+
     @staticmethod
     def balance_adjustment():
         log = {}

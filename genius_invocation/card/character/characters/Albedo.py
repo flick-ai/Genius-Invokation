@@ -54,7 +54,7 @@ class SolarIsotoma(Summon):
     def update(self):
         self.current_usage = self.usage
 
-    def on_end(self, game:'GeniusGame'):
+    def on_end_phase(self, game:'GeniusGame'):
         if game.active_player == self.from_player:
             if self.current_usage > 0:
                 dmg = Damage.create_damage(
@@ -99,7 +99,7 @@ class SolarIsotoma(Summon):
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.END_PHASE, ZoneType.SUMMON_ZONE, self.on_end),
+            (EventType.END_PHASE, ZoneType.SUMMON_ZONE, self.on_end_phase),
             (EventType.ON_CHANGE_CHARACTER, ZoneType.SUMMON_ZONE, self.on_change),
         ]
         if self.from_character.talent:

@@ -1,6 +1,6 @@
 from genius_invocation.utils import *
 from typing import List, TYPE_CHECKING
-from genius_invocation.game.zone import CardZone, ActiveZone, SummonZone, SupportZone, DiceZone, CharacterZone, HandZone, Dice
+from genius_invocation.game.zone import CardZone, ActiveZone, SummonZone, SupportZone, DiceZone, CharacterZone, HandZone, Dice, Switch
 import numpy as np
 from genius_invocation.card.character import CharacterSkill
 # from genius_invocation.card.character.characters import *
@@ -111,7 +111,7 @@ class GeniusPlayer:
             非标准行动: 选择出战角色
         '''
         idx = action.target_idx
-        self.change_to_id(idx)
+        self.change_to_id(idx, SwitchType.CHANGE_CHARACTER)
 
 
     def choose_dice(self, action: 'Action'):
@@ -145,20 +145,25 @@ class GeniusPlayer:
         self.hand_zone.add(get_cards)
 
 
-    def change_to_id(self, idx: int):
+    def change_to_id(self, idx: int, type: SwitchType=SwitchType.SPECIAL_SWICH):
         '''
             基本行动: 切换到指定人
         '''
-        if self.active_idx in range(self.character_num):
-            self.game.current_switch["from"] = self.character_list[self.active_idx]
-        if self.active_idx >= 0:
-            self.character_list[self.active_idx].is_active = False
-        self.active_idx = idx
-        self.character_list[self.active_idx].is_active = True
-        self.game.current_switch["to"] = self.character_list[self.active_idx]
-        self.game.manager.invoke(EventType.AFTER_CHANGE_CHARACTER, self.game)
-        self.character_list[self.active_idx].on_switched_to()
-        self.game.current_switch = {"from": None, "to": None}
+        assert self.active_idx in range(self.character_num)
+        self.game.current_switch = Switch(from_player=self.character_list[self.active_idx],
+                                          to_player=self.character_list[idx],
+                                          swicth_type=type)
+        self.game.manager.invoke(EventType.ON_CHANGE_CHARACTER, self.game)
+
+        if self.game.current_switch != None:
+            if self.active_idx >= 0:
+                self.character_list[self.active_idx].is_active = False
+            self.active_idx = idx
+            self.character_list[self.active_idx].is_active = True
+
+            self.game.manager.invoke(EventType.AFTER_CHANGE_CHARACTER, self.game)
+            self.character_list[self.active_idx].on_switched_to()
+            self.game.current_switch = None
 
     def change_to_previous_character(self):
         '''
@@ -183,16 +188,27 @@ class GeniusPlayer:
             标准行动: 使用技能
         '''
         idx = game.current_action.choice_idx
-        skill = self.character_list[self.active_idx].skills[idx]
-        skill.before_use_skill(game)
-        game.current_skill = skill
-        self.use_dice(game)
-        game.current_dice = Dice(from_player=self,
-                                 from_character=self.character_list[self.active_idx],
-                                 use_type=skill.type,
-                                 cost=deepcopy(skill.cost))
-        self.character_list[self.active_idx].skill(idx, game)
-        game.current_skill = None
+        if idx == 18: # 判断是否为特技
+            skill = self.character_list[self.active_idx].character_zone.special_skill
+            game.current_skill = skill
+            self.use_dice(game)
+            game.current_dice = Dice(from_player=self,
+                                    from_character=self.character_list[self.active_idx],
+                                    use_type=skill.type,
+                                    cost=deepcopy(skill.cost))
+            skill.on_call(game)
+            game.current_skill = None
+        else:
+            skill = self.character_list[self.active_idx].skills[idx]
+            skill.before_use_skill(game)
+            game.current_skill = skill
+            self.use_dice(game)
+            game.current_dice = Dice(from_player=self,
+                                    from_character=self.character_list[self.active_idx],
+                                    use_type=skill.type,
+                                    cost=deepcopy(skill.cost))
+            self.character_list[self.active_idx].skill(idx, game)
+            game.current_skill = None
 
     def play_card(self, game: 'GeniusGame'):
         '''
@@ -247,8 +263,7 @@ class GeniusPlayer:
                                  to_character=target_char)
         self.change_num += 1
         self.is_quick_change = False
-        game.manager.invoke(EventType.ON_CHANGE_CHARACTER, game)
-        self.change_to_id(idx)
+        self.change_to_id(idx, SwitchType.CHANGE_CHARACTER)
         if self.is_quick_change:
             game.is_change_player = False
 
@@ -271,7 +286,7 @@ class GeniusPlayer:
         '''
 
         # print(game.game_phase, game.active_player_index, "generate_mask")
-        self.action_mask = np.zeros((18, 15, 5)).astype(np.int32)
+        self.action_mask = np.zeros((CHOICE_NUM, TARGET_NUM, 5)).astype(np.int32)
 
        # 非标准行动的 Mask
         if game.game_phase == GamePhase.ACTION_PHASE:
@@ -336,6 +351,23 @@ class GeniusPlayer:
                 self.action_mask[idx][13][0] = 1
                 self.action_mask[idx][13][1] = 1
                 self.action_mask[idx][13][2] = - (active_dice.value)
+
+        # 计算能否使用特技
+        if self.character_list[self.active_idx].character_zone.special_skill is not None:
+            skill = self.character_list[self.active_idx].character_zone.special_skill
+            has_dice = self.calculate_dice(game, Dice(from_player=self,
+                                                from_character=self.character_list[self.active_idx],
+                                                use_type=skill.type,
+                                                cost=deepcopy(skill.cost)))
+            can_use = not self.character_list[self.active_idx].is_frozen
+            has_target = skill.find_target(game)
+
+            if can_use and has_dice and has_target:
+                for target in has_target:
+                    self.action_mask[18][target][0] = 1
+                    for i, cost in enumerate(game.current_dice.cost):
+                        self.action_mask[18][target][i*2+1] = cost['cost_num']
+                        self.action_mask[18][target][i*2+2] = cost['cost_type'].value
 
 
         # 计算能否使用技能

@@ -83,7 +83,7 @@ class Overawing_Assault(Status):
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character' = None):
         super().__init__(game, from_player, from_character)
         self.current_usage = 1
-    
+
     def end_phase(self, game: 'GeniusGame'):
         if game.active_player == self.from_player:
             if self.from_character.health_point >= 6:
@@ -136,9 +136,9 @@ class Bogglecat_Box(Summon):
             if game.current_damage.damage_to.from_player == self.from_player \
                 and game.current_damage.main_damage_element in [ElementType.CRYO, ElementType.HYDRO, ElementType.PYRO, ElementType.ELECTRO]:
                 self.infuse_element = game.current_damage.main_damage_element
-                
 
-    def end_phase(self, game: 'GeniusGame'):
+
+    def on_end_phase(self, game: 'GeniusGame'):
         if game.active_player == self.from_player:
             dmg = Damage.create_damage(
                 game,
@@ -161,12 +161,12 @@ class Bogglecat_Box(Summon):
             status.on_destroy(game)
 
         super().on_destroy(game)
-    
+
 
     def update_listener_list(self):
         self.listeners = [
             (EventType.EXECUTE_DAMAGE, ZoneType.SUMMON_ZONE, self.on_execute_dmg),
-            (EventType.END_PHASE, ZoneType.SUMMON_ZONE, self.end_phase),
+            (EventType.END_PHASE, ZoneType.SUMMON_ZONE, self.on_end_phase),
             (EventType.BEGIN_ACTION_PHASE, ZoneType.SUMMON_ZONE, self.begin_round)
         ]
 

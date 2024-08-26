@@ -102,7 +102,7 @@ class UrgentNekoParcel(Combat_Status):
 
     def on_switch(self, game: 'GeniusGame'):
         if game.active_player == self.from_player:
-            if game.current_switch['from'] == self.from_character:
+            if game.current_switch.from_character == self.from_character:
                 dmg = Damage.create_damage(
                     game,
                     damage_type=SkillType.SUMMON,

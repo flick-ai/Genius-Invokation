@@ -63,8 +63,10 @@ class Combat_Status(Entity):
 
 class Shield(Status):
     # Status of shield (Only for single character)
-    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
+    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None, usage=1):
         super().__init__(game, from_player, from_character)
+        self.current_usage = usage
+
     def on_destroy(self, game):
         super().on_destroy(game)
 
@@ -162,6 +164,38 @@ class Artifact(Equipment):
     def count_cost(self):
         return self.artifact_card.cost_num
 
+class SpecialSkill(Equipment):
+    type = SkillType.SPECIAL_SKILL
+    cost = [{'cost_num': 0, 'cost_type': CostType.BLACK}]
+    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: "Character"= None):
+        super().__init__(game, from_player, from_character)
+        self.usage = 0
+
+    def check_usage(self):
+        self.usage -= 1
+        if self.usage <= 0:
+            self.on_destroy(self.game)
+
+    def update(self, usage=1):
+        self.usage += usage
+
+    def on_destroy(self, game):
+        super().on_destroy(game)
+        self.from_character.character_zone.special_skill = None
+
+    def on_call(self, game):
+        game.manager.invoke(EventType.ON_USE_SPECIAL, game)
+
+    def find_target(self, game: 'GeniusGame'):
+        return [0]
+
+    def show(self):
+        return self.name_ch
+
+    def count_cost(self):
+        return 0
+
+
 # TODO: Maybe need to move to other places in future
 class Frozen_Status(Status):
     name = 'Frozen'
@@ -196,7 +230,7 @@ class Frozen_Status(Status):
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.BEGIN_ACTION_PHASE, ZoneType.CHARACTER_ZONE, self.on_begin_phase),
+            (EventType.FINAL_END, ZoneType.CHARACTER_ZONE, self.on_begin_phase),
             (EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, self.on_add_damage)
         ]
 

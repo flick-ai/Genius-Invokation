@@ -63,7 +63,7 @@ class Icy_Paws(ElementalSkill):
 
     def __init__(self, from_character: 'Character'):
         super().__init__(from_character)
-    
+
     def on_call(self, game: 'GeniusGame'):
         super().on_call(game)
         # 处理伤害
@@ -131,7 +131,7 @@ class Drunken_Mist(Summon):
         super().__init__(game, from_player, from_character)
         self.usage = 2
         self.current_usage = self.usage
-    def end_phase(self, game:'GeniusGame'):
+    def on_end_phase(self, game:'GeniusGame'):
         if game.active_player == self.from_player:
             dmg = Damage.create_damage(
                 game,
@@ -150,7 +150,7 @@ class Drunken_Mist(Summon):
                 self.on_destroy(game)
     def update_listener_list(self):
         self.listeners = [
-            (EventType.END_PHASE, ZoneType.SUMMON_ZONE, self.end_phase)
+            (EventType.END_PHASE, ZoneType.SUMMON_ZONE, self.on_end_phase)
         ]
 
 class Diona(Character):
@@ -170,7 +170,7 @@ class Diona(Character):
         self.power = 0
         self.talent = talent
         self.talent_skill = self.skills[1]
-    
+
     @staticmethod
     def balance_adjustment():
         log = {}

@@ -166,7 +166,7 @@ class Prepare_For_Heron_Strike(Status):
     # Since Version 4.6, The previous conclusion has NO LONGER HOLD! We fix this bug at 4.8.
 
     def after_change(self,game:'GeniusGame'):
-        if game.current_switch["from"] == self.from_character:
+        if game.current_switch.from_character == self.from_character:
             self.from_character.from_player.prepared_skill = None
             self.on_destroy(game)
 

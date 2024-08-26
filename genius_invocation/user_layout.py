@@ -105,6 +105,10 @@ def get_character(player: 'GeniusPlayer', idx: int):
             str(character_list[idx].power),
             style=color,
         )
+        sponsor_message.add_row(
+            character_list[idx].character_zone.special_skill.show() if character_list[idx].character_zone.special_skill != None else "No Special Skill",
+            style=color,
+        )
 
         if character_list[idx].character_zone.weapon_card != None:
             sponsor_message.add_row(

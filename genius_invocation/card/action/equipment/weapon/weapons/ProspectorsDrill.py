@@ -13,7 +13,7 @@ class ProspectorsDrillWeapon(Weapon):
     name_ch = "勘探钻机"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, weapon_card = None):
         super().__init__(game, from_player, from_character, weapon_card)
-        self.round_usage = 2
+        self.round_usage = 1
         self.solidarity = 0
         self.add_damage = False
 
@@ -71,3 +71,8 @@ class ProspectorsDrill(WeaponCard):
 
     def on_played(self, game: 'GeniusGame') -> None:
         super().on_played(game)
+
+    def balance_adjustment():
+        log = {}
+        log[5.0] = "调整每回合可用次数为1次"
+        return log

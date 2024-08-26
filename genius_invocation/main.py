@@ -72,10 +72,14 @@ def test_select():
 
     # 输出所有行动牌
     available_card = []
-    ignore = [action.ActionCard, action.EquipmentCard, action.WeaponCard, action.TalentCard, action.ArtifactCard, action.SupportCard, action.FoodCard]
+    ignore = [action.ActionCard, action.EquipmentCard, action.WeaponCard, action.TalentCard, action.ArtifactCard, action.SupportCard, action.FoodCard, action.SpecialSkillCard]
     for name, obj in inspect.getmembers(action):
         if inspect.isclass(obj) and obj not in ignore:
-            available_card.append((name, obj.name, obj.name_ch, obj))
+            try:
+                available_card.append((name, obj.name, obj.name_ch, obj))
+            except:
+                import ipdb
+                ipdb.set_trace()
     print(len(available_card))
 
     # 输出每个类行动牌数量
@@ -88,7 +92,8 @@ def test_select():
                     "./card/action/event/arcane_legend",
                     "./card/action/equipment/artifact/artifacts",
                     "./card/action/equipment/talent/talents",
-                    "./card/action/equipment/weapon/weapons"]
+                    "./card/action/equipment/weapon/weapons",
+                    "./card/action/equipment/specialskill/skills"]
     for package_dir in package_dirs:
         available_name = [f[:-3] for f in os.listdir(package_dir) if f.endswith(".py") and f != "__init__.py" and f != "import_head.py"]
         print(package_dir, len(available_name))
@@ -181,8 +186,9 @@ if __name__=="__main__":
                     'PaidinFull','PaidinFull','Send_Off','Starsigns','Starsigns']
     }
     deck2 = {
-    'character': ['EmperorofFireandIron', 'Beidou', 'Xingqiu'],
-    'action_card': ['Lotus_Flower_Crisp' for i in range(30)]
+    'character': ['Barbara', 'Beidou', 'Xingqiu'],
+    'action_card': ['Koholasaurus' for i in range(15)] + \
+                ['Yumkasaurus' for i in range(15)]
     }
     # deck2 = {
     # 'character': ['Arataki_Itto', 'Dehya', 'Noelle'],

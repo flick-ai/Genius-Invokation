@@ -99,8 +99,8 @@ class Large_Wind_Spirit(Summon):
                 if game.current_damage.reaction == ElementalReactionType.Swirl:
                     if self.infuse_element == ElementType.ANEMO:
                         self.infuse_element = game.current_damage.swirl_crystallize_type
-                        
-    def end_phase(self, game:'GeniusGame'):
+
+    def on_end_phase(self, game:'GeniusGame'):
         if game.active_player == self.from_player:
             dmg = Damage.create_damage(
                 game,
@@ -116,11 +116,11 @@ class Large_Wind_Spirit(Summon):
             self.current_usage -= 1
             if self.current_usage <=0:
                 self.on_destroy(game)
-    
+
     def update_listener_list(self):
         self.listeners = [
             (EventType.EXECUTE_DAMAGE, ZoneType.SUMMON_ZONE, self.on_reaction),
-            (EventType.END_PHASE, ZoneType.SUMMON_ZONE, self.end_phase),
+            (EventType.END_PHASE, ZoneType.SUMMON_ZONE, self.on_end_phase),
             (EventType.DAMAGE_ADD, ZoneType.SUMMON_ZONE, self.damage_add)
         ]
 

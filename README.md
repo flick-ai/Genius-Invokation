@@ -4,7 +4,7 @@
 
 # Genius-Invokation
 A simulator of the Genius Invokation TCG in Genshin impact
-一个用于自定义卡牌、训练强化学习AI的原神七圣召唤卡牌模拟器(更新进度：4.8)
+一个用于自定义卡牌、训练强化学习AI的原神七圣召唤卡牌模拟器(更新进度：5.0)
 
 <a href='https://flick-ai.github.io/Genius-Invokation-Website/'>
     <img src='https://img.shields.io/badge/网站-DEMO-red?style=flat&logo=Google%20chrome&logoColor=red'
@@ -42,12 +42,24 @@ A simulator of the Genius Invokation TCG in Genshin impact
 - [x] 完成了骰子计算系统的实现
 - [x] 完成了本地终端的调试接口
 - [x] 全部卡片的书写
-    - [x] 角色卡片进度:95/95
-    - [x] 行动卡片进度:
-        - [x] 天赋进度:95/95
-        - [x] 装备牌进度:84/84
-        - [x] 支援牌进度:56/56
-        - [x] 事件牌进度:76/76
+    - [x] 角色卡片:98/98
+    - [x] 行动卡片:
+        - [x] 装备牌:
+            - [x] 天赋:98/98
+            - [X] 武器:41/41
+            - [X] 圣遗物:43/43
+            - [X] 特技:3/3
+        - [x] 支援牌:
+            - [X] 伙伴:28/28
+            - [X] 场地:22/22
+            - [X] 道具:8/8
+        - [x] 事件牌:
+            - [X] 事件:35/35
+            - [X] 食物:15/15
+            - [X] 元素共鸣骰子:7/7
+            - [X] 元素共鸣事件:7/7
+            - [X] 国家共鸣:5/5
+            - [X] 秘传:9/9
 - [ ] 完成了网页端的调试接口
     - [x] 实现了在网页端的输入调试
     - [x] 实现了在网页端的交互式调试
@@ -56,6 +68,7 @@ A simulator of the Genius Invokation TCG in Genshin impact
 
 ## 版本更新特色
 4.8版本：为所有内容维护了id信息编码。
+5.0版本：增加特技效果的维护；优化切换角色的代码实现
 
 
 ## 本地运行

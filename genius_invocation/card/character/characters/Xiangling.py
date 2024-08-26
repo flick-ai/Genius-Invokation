@@ -147,7 +147,7 @@ class Guoba(Summon):
     def update(self):
         self.current_usage = max(self.current_usage, self.usage)
 
-    def end_phase(self, game:'GeniusGame'):
+    def on_end_phase(self, game:'GeniusGame'):
         if game.active_player != self.from_player: return
         dmg = Damage.create_damage(
                 game,
@@ -165,7 +165,7 @@ class Guoba(Summon):
             self.on_destroy(game)
     def update_listener_list(self):
         self.listeners = [
-            (EventType.END_PHASE, ZoneType.SUMMON_ZONE, self.end_phase)
+            (EventType.END_PHASE, ZoneType.SUMMON_ZONE, self.on_end_phase)
         ]
 class Xiangling(Character):
     id: int = 1302
@@ -184,7 +184,7 @@ class Xiangling(Character):
         self.power = 0
         self.talent = talent
         self.talent_skill = self.skills[1]
-    
+
     @staticmethod
     def balance_adjustment():
         log = {}

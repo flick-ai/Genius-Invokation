@@ -58,7 +58,7 @@ class LifeStream(ElementalSkill):
         self.gain_energy(game)
 
         self.from_character.from_player.card_zone.find_card_by_name(
-            AwakenMyKindred.name, num=1, 
+            AwakenMyKindred.name, num=1,
         )
         self.add_combat_status(game, OasisNourishment, usage=1)
 
@@ -94,7 +94,7 @@ class TheEndFalls(ElementalBurst):
         self.consume_energy(game)
         self.resolve_damage(game)
         self.from_character.from_player.card_zone.find_card_by_name(
-            AwakenMyKindred.name, num=1, 
+            AwakenMyKindred.name, num=1,
         )
         self.add_combat_status(game, OasisNourishment, usage=2)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
@@ -126,7 +126,7 @@ class GuardianofApepsOasis(Character):
 
         self.proliferated_organism = 0
         self.listen_event(game, EventType.AFTER_ANY_ACTION, ZoneType.CHARACTER_ZONE, self.after_any_action)
-    
+
     def init_state(self, game: 'GeniusGame'):
         self.from_player.card_zone.insert_randomly(
             [AwakenMyKindred() for i in range(6)], num=-1
@@ -141,12 +141,12 @@ class GuardianofApepsOasis(Character):
                 self.from_character.character_zone.add_entity(
                     ThisShield(game, self.from_player, self)
                 )
-    
+
     def on_play_talent(self, game: 'GeniusGame'):
         self.from_player.card_zone.insert_randomly(
             [AwakenMyKindred() for i in range(4)], num=-1
         )
-        
+
 
 
 class ReignitedHeartofOasis(Status):
@@ -197,7 +197,7 @@ class OasisNourishment(Combat_Status):
                         game.current_dice.cost[0]['cost_num'] = max(0, game.current_dice.cost[1]['cost_num'] - 1)
                     return True
         return False
-    
+
     def on_play_card(self, game: 'GeniusGame'):
         if self.on_calculate_dice(game):
             self.current_usage -= 1
@@ -222,14 +222,14 @@ class ProliferatedOrganism(Summon):
         if self.from_character != None:
             self.from_character.roliferated_organism += 1
         self.current_usage = 1
-        
 
-    def end_phase(self, game: 'GeniusGame'):
+
+    def on_end_phase(self, game: 'GeniusGame'):
         if game.active_player == self.from_player:
             damage = 1
             if self.from_character.talent:
                 damage += 1
-            
+
             dmg = Damage.create_damage(
                 game,
                 damage_type=SkillType.SUMMON,
@@ -247,7 +247,7 @@ class ProliferatedOrganism(Summon):
 
     def update_listener_list(self):
         self.listeners = [
-            (EventType.END_PHASE, ZoneType.CHARACTER_ZONE, self.end_phase)
+            (EventType.END_PHASE, ZoneType.CHARACTER_ZONE, self.on_end_phase)
         ]
 
 class AwakenMyKindred(ActionCard):
@@ -280,7 +280,7 @@ class AwakenMyKindred(ActionCard):
 
     def find_target(self, game: 'GeniusGame'):
         return [1]
-    
+
 class ThisShield(Shield):
     name = "Shield When Reignited"
     name_ch = "重燃之盾"

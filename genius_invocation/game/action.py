@@ -15,7 +15,7 @@ from loguru import logger
     15: pass this turn
     16: dice region
     17: card region
-
+    18: special action
 '''
 # 16: none (to solve problem caused by "Toss-up" and "Nature and Wisdom" and so on)
 
@@ -73,6 +73,9 @@ class Action:
         elif self.choice == 16 or self.choice == 17:
             self.choice_type = ActionChoice.NONE
             self.choice_idx = -1
+        elif self.choice == 18:
+            self.choice_type = ActionChoice.CHARACTER_SKILL
+            self.choice_idx = self.choice
 
         if self.target == 0:
                 self.target_type = ActionTarget.OPPONENT
@@ -136,13 +139,14 @@ class Action:
                        14:'切换角色',
                        15:'结束回合',
                        16:'选择操作本方骰子',
-                       17:'选择操作本方手牌'}
+                       17:'选择操作本方手牌',
+                       18:'使用特技'}
 
         choose_prompt = f"您是{game.active_player_index}号玩家,以下是你可以选择的行动,请输入一个数字表示你的行动选择(按确认以提交或清空选择):\n"
         choose_list = []
         last_choice = -1
         mask_sum = mask.sum(axis=1)
-        for i in range(18):
+        for i in range(CHOICE_NUM):
             if mask_sum[i] >= 1:
                 choose_prompt = choose_prompt+str(i)+'.'+choice_dict[i]+'\n'
                 choose_list.append(i)
@@ -176,7 +180,7 @@ class Action:
         target_prompt = '根据您选择的行动，您可以选择以下目标\n'
         target_list = []
         last_target = -1
-        for i in range(15):
+        for i in range(TARGET_NUM):
             if mask[choice][i] == 1:
                 target_prompt = target_prompt+str(i)+'.'+target_dict[i]+'\n'
                 target_list.append(i)
@@ -225,7 +229,7 @@ class Action:
             log.append({"choice":choice, "target":target, "dice":dice})
             with open("./action.log", mode) as f:
                 json.dump(log, f, indent=4)
-        
+
         if game.incoming_state:
             game.active_player = true_active_player
             game.active_player_index = true_active_player_index

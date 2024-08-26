@@ -6,6 +6,8 @@ MAX_SUPPORT = 4
 MAX_HANDCARD = 10
 MAX_DICE = 16
 MAX_ROUND = 15
+CHOICE_NUM = 19
+TARGET_NUM = 15
 
 class CountryType(Enum):
     MONDSTADT = 0 # 蒙德
@@ -81,6 +83,7 @@ class SkillType(Enum):
     PASSIVE_SKILL = 3
     SUMMON = 4
     OTHER = 5
+    SPECIAL_SKILL = 6
 
 class GamePhase(Enum):
     SET_CARD = 0
@@ -118,6 +121,8 @@ class ActionCardType(Enum):
     EVENT_ELEMENTAL_RESONANCE = 8
     EVENT_ARCANE_LEGEND = 9
     EVENT_COUNTRY = 10
+    # 特技机制
+    EQUIPMENT_SPECIAL_SKILL = 11
 
 class ZoneType(Enum):
     CHARACTER_ZONE = 0
@@ -179,6 +184,9 @@ class EventType(Enum):
     ON_GET_DICE = 32
     # 治疗时
     ON_HEAL = 33
+    # 特技时刻
+    ON_USE_SPECIAL = 34
+    AFTER_USE_SPECIAL = 35
 
 class HealType(Enum):
     HEAL = 0
@@ -190,6 +198,7 @@ class HealType(Enum):
 class SwitchType(Enum):
     CHANGE_CHARACTER = 0
     ELEMENTAL_RESONANCE = 1
+    SPECIAL_SWICH = 2
 
 class ElementalReactionType(Enum):
     Frozen = 0 # 冰冻
@@ -409,6 +418,22 @@ def max_count_card(cards: List['ActionCard']) -> int:
     if len(max_idx) == 0:
         return None
     return random.choice(max_idx)
+
+def multi_max_count_card(cards: List['ActionCard'], num=2) -> List[int]:
+    card_list = []
+    for idx, action_card in enumerate(cards):
+        count = action_card.calculate_dice()
+        card_list.append((idx, count))
+    max_count_card = sorted(card_list, key=lambda x:x[-1])
+    if len(max_count_card) == 0:
+        return []
+    elif len(max_count_card) == 1:
+        return [max_count_card[0]]
+    else:
+        num = min(num, len(max_count_card))
+        max_count_idx = [i[0] for i in max_count_card[0:num]]
+        return max_count_idx
+
 
 def max_dmg_taken(from_player: 'GeniusPlayer'):
     max_dmg_taken = -1

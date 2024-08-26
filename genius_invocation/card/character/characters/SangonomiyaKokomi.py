@@ -85,7 +85,7 @@ class Bake_Kurage(Summon):
         self.usage: int = usage
         self.current_usage: int = usage
 
-    def end_phase(self, game:'GeniusGame'):
+    def on_end_phase(self, game:'GeniusGame'):
         if game.active_player == self.from_player:
             dmg = Damage.create_damage(
                 game,
@@ -105,7 +105,7 @@ class Bake_Kurage(Summon):
                 self.on_destroy(game)
     def update_listener_list(self):
         self.listeners = [
-            (EventType.END_PHASE, ZoneType.SUMMON_ZONE, self.end_phase)
+            (EventType.END_PHASE, ZoneType.SUMMON_ZONE, self.on_end_phase)
         ]
 
 class Ceremonial_Garment(Status):
