@@ -296,7 +296,6 @@ class GeniusGame:
         '''
         回合轮次
         '''
-
         if self.root_game == self:
             logger.info("in main game")
             if self.is_dying:
@@ -327,6 +326,10 @@ class GeniusGame:
                 self.incoming_action_list_index = 0
                 self.is_dying = False
                 self.incoming_state = None
+            # if self.game_phase == GamePhase.ACTION_PHASE:
+            #     old_message = self.encode_message()
+            #     new_message = game_for_plan.encode_message()
+            #     import ipdb; ipdb.set_trace()
             self.prev_action = action
         else:
             logger.info("in plan game")
@@ -429,12 +432,17 @@ class GeniusGame:
         # 进入下一个回合
         self.roll_phase()
 
-    def encode_message(self):
+    def encode_message(self, base=None):
         '''
             新版: 尝试将Game信息编码成table呈现给使用者
         '''
-        return layout(self)
-        # return get_dict(self)
+        return layout(self, base)
+    
+    def encoder_dict(self):
+        '''
+            旧版: 将Game信息编码成dict
+        '''
+        return get_dict(self)
 
     def change_active_player(self):
         self.active_player_index = 1 - self.active_player_index

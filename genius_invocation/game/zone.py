@@ -78,7 +78,7 @@ class DiceZone:
 
         # 数量多优先
         sum_dice = self.space.sum(axis=0)[:-1]
-        for i in range(DICENUM-1):
+        for i in range(DICENUM):
             sort_map[i] += 10 * sum_dice[i]
         return sort_map
 

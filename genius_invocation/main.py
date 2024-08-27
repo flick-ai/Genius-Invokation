@@ -25,6 +25,8 @@ def get_parser():
     parser.add_argument('--code', action='store_true', default=False)
     parser.add_argument('--save', action='store_true', default=False)
     parser.add_argument('--omni', action='store_true', default=False)
+    parser.add_argument('--jump', action='store_true', default=False)
+    parser.add_argument('--log', action='store_true', default=False)
     parser.add_argument('--seed', type=int, default=2026)
     args = parser.parse_args()
     return args
@@ -218,15 +220,24 @@ if __name__=="__main__":
             action = Action.from_input(game, log, mode='w', jump=False)
             game.step(action)
     else:
-        log = []
-        while not game.is_end:
-            if game.incoming_state:
-                print(game.incoming_state.encode_message())
-            else:
-                print(game.encode_message())
-            action = Action.from_input(game, log, mode='w', jump=False)
-            game.step(action)
-            # save log
-            if args.save:
-                with open("./action.log", "w") as f:
-                    json.dump(log, f, indent=4)
+        if args.log:
+            log = []
+            while not game.is_end:
+                if game.incoming_state:
+                    print(game.incoming_state.encode_message())
+                else:
+                    print(game.encode_message())
+                action = Action.from_input(game, log, mode='w', jump=args.jump)
+                game.step(action)
+                # save log
+                if args.save:
+                    with open("./action.log", "w") as f:
+                        json.dump(log, f, indent=4)
+        else:
+            while not game.is_end:
+                if game.incoming_state:
+                    layout = game.incoming_state.encode_message()
+                else:
+                    layout = game.encode_message()
+                action = Action.from_layout(game, layout, jump=args.jump)
+                game.step(action)

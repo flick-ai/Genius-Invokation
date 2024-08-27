@@ -334,29 +334,117 @@ def Elementals_to_str(elements: List[ElementType]):
     res = ""
     for element in elements:
         res += str(element.name)+ " "
-    if res == "":
-        res = "None"
+    # if res == "":
+    #     res = ""
     return res
-def Elements_to_color(ele: ElementType):
-    match ele:
-        case ElementType.CRYO:
-            return "rgb(153,255,255)"
-        case ElementType.HYDRO:
-            return "rgb(128,192,255)"
-        case ElementType.PYRO:
-            return "rgb(255,153,153)"
-        case ElementType.ELECTRO:
-            return "rgb(255,172,255)"
-        case ElementType.ANEMO:
-            return "rgb(128,255,215)"
-        case ElementType.GEO:
-            return "rgb(255,230,153)"
-        case ElementType.DENDRO:
-            return "rgb(126,194,54)"
-        case ElementType.PHYSICAL:
-            return "rgb(255,255,255)"
-        case ElementType.PIERCING:
-            return "rgb(255,255,255)"
+
+def SkillToChinese(skill: SkillType):
+    match skill:
+        case SkillType.NORMAL_ATTACK:
+            return "普通攻击"
+        case SkillType.ELEMENTAL_SKILL:
+            return "元素战技"
+        case SkillType.ELEMENTAL_BURST:
+            return "元素爆发"
+        case SkillType.SPECIAL_SKILL:
+            return "特技"
+        
+def CostToChinese(cost: CostType):
+    match cost:
+        case None:
+            return "消耗"
+        case CostType.CRYO:
+            return "冰骰"
+        case CostType.HYDRO:
+            return "水骰"
+        case CostType.PYRO:
+            return "火骰"
+        case CostType.ELECTRO:
+            return "雷骰"
+        case CostType.ANEMO:
+            return "风骰"
+        case CostType.GEO:
+            return "岩骰"
+        case CostType.DENDRO:
+            return "草骰"
+        case CostType.WHITE:
+            return "同色"
+        case CostType.BLACK:
+            return "杂色"
+
+def DiceToChinese(dice: DiceType):
+    match dice:
+        case DiceType.OMNI:
+            return "万能"
+        case DiceType.CRYO:
+            return "冰骰"
+        case DiceType.HYDRO:
+            return "水骰"
+        case DiceType.PYRO:
+            return "火骰"
+        case DiceType.ELECTRO:
+            return "雷骰"
+        case DiceType.ANEMO:
+            return "风骰"
+        case DiceType.GEO:
+            return "岩骰"
+        case DiceType.DENDRO:
+            return "草骰"
+        
+def CostToStr(cost):
+    chinese_cost = ""
+    for c in cost:
+        chinese_cost += str(c['cost_num']) + CostToChinese(c['cost_type'])
+    return chinese_cost
+
+def DiceToColor(dice: DiceType):
+    match dice:
+        case DiceType.ANEMO:
+            return '#2E8B57'
+        case DiceType.HYDRO:
+            return '#0000FF'
+        case DiceType.CRYO:
+            return '#00FFFF'
+        case DiceType.DENDRO:
+            return '#008000'
+        case DiceType.ELECTRO:
+            return '#800080'
+        case DiceType.GEO:
+            return '#FFFF00'
+        case DiceType.PYRO:
+            return '#FF0000'
+        case DiceType.OMNI:
+            return '#C0C0C0'
+        
+def CostToColor(cost: CostType):
+    match cost:
+        case CostType.BLACK:
+            return'#000000'
+        case CostType.WHITE:
+            return '#FFFFFF'
+    return DiceToColor(CostToDice[cost])
+        
+def ElementsToColor(ele: ElementType):
+    return DiceToColor(ElementToDice[ele])
+    # match ele:
+    #     case ElementType.CRYO:
+    #         return "rgb(153,255,255)"
+    #     case ElementType.HYDRO:
+    #         return "rgb(128,192,255)"
+    #     case ElementType.PYRO:
+    #         return "rgb(255,153,153)"
+    #     case ElementType.ELECTRO:
+    #         return "rgb(255,172,255)"
+    #     case ElementType.ANEMO:
+    #         return "rgb(128,255,215)"
+    #     case ElementType.GEO:
+    #         return "rgb(255,230,153)"
+    #     case ElementType.DENDRO:
+    #         return "rgb(126,194,54)"
+    #     case ElementType.PHYSICAL:
+    #         return "rgb(255,255,255)"
+    #     case ElementType.PIERCING:
+    #         return "rgb(255,255,255)"
 
 def decode_enum(dct):
     if "enum_type" in dct and "enum_name" in dct:

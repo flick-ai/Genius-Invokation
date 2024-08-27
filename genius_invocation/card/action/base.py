@@ -26,12 +26,12 @@ class ActionCard:
             count = self.cost_num
         return count
 
-    def get_dice(self) -> int:
+    def calculate_cost(self) -> int:
         if self.card_type == ActionCardType.EQUIPMENT_TALENT:
-            count = sum([i['cost_num'] for i in self.cost])
+            cost = self.cost
         else:
-            count = self.cost_num
-        return count
+            cost = [{'cost_num':self.cost_num, 'cost_type':self.cost_type}]
+        return cost
 
     def on_played(self, game: 'GeniusGame') -> None:
         '''
