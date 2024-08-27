@@ -342,10 +342,12 @@ class CardZone:
         '''
         get_list = []
         for i in range(num):
+            if self.num() == 0:
+                break
             get_list.append(self.card.pop())
 
-        if invoke:
-            self.invoke_get_card(num)
+        if invoke and len(get_list) > 0:
+            self.invoke_get_card(len(get_list))
         return get_list
 
     def return_card(self, card_list: List):

@@ -9,6 +9,7 @@ import sys
 import genius_invocation.card.character.characters as chars
 import genius_invocation.card.action.equipment.talent as talents
 
+from genius_invocation.user_input import get_rng_mul_sel
 from genius_invocation.utils import *
 from rich import print
 import time
@@ -20,27 +21,33 @@ import numpy as np
 
 def get_parser():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--test', action='store_true', default=False)
-    parser.add_argument('--fix', action='store_true', default=False)
-    parser.add_argument('--code', action='store_true', default=False)
-    parser.add_argument('--save', action='store_true', default=False)
-    parser.add_argument('--omni', action='store_true', default=False)
-    parser.add_argument('--jump', action='store_true', default=False)
-    parser.add_argument('--log', action='store_true', default=False)
+    # 特殊测试模块
+    parser.add_argument('--fix', action='store_true', default=False, help='是否测试选择卡函数')
+    parser.add_argument('--code', action='store_true', default=False, help='是否测试code转换')
+    parser.add_argument('--select', action='store_true', default=False, help='是否选卡')
+
+    # 不建议开启游戏参数
+    parser.add_argument('--read', action='store_true', default=False, help='是否读取log')
+    parser.add_argument('--save', action='store_true', default=False, help='是否保存log')
+    parser.add_argument('--old', action='store_true', default=False, help='采用旧输入输出格式')
+
+    # 建议开启游戏参数
+    parser.add_argument('--omni', action='store_true', default=False, help='是否开启全万能骰')
+    parser.add_argument('--jump', action='store_true', default=False, help='跳过选择手牌和骰子')
+
+    # 固定随机种子，用于复现
     parser.add_argument('--seed', type=int, default=2026)
+
     args = parser.parse_args()
     return args
 
 def test_code():
-    code = 'FhHRgm4YFiHxg3YYFzFhhHcYF0FxhXgYF1GBhn4YF2Hhh38YF3HxioAYGKEBfYEXGNAA'
+    code = 'GEGxiIwYGJHRiY4PGBDh8Y8PGEDx9JAPGWAB9pEYGaERipIZGVEhlZMZGWExlpQWGZAA'
     card = get_card()
     name = code_to_name(code, card)
     character_card = name[0:3]
     action_card = name[3:]
-    codes = []
-    for i in range(0, 3):
-        codes.append(name_to_code(name, [c[0] for c in card], i))
-    print(codes)
+    print(character_card, action_card)
     exit()
 
 def get_card():
@@ -50,39 +57,30 @@ def get_card():
     for name in available_character_name:
         available_character.append((name, eval("chars."+name).name_ch, eval("chars."+name).id, eval("chars."+name).time))
     available_card = []
-    ignore = [action.ActionCard, action.EquipmentCard, action.WeaponCard, action.TalentCard, action.ArtifactCard, action.SupportCard, action.FoodCard]
+    ignore = [action.ActionCard, action.EquipmentCard, action.WeaponCard, action.TalentCard, action.ArtifactCard, action.SupportCard, action.FoodCard, action.SpecialSkillCard]
     for names, obj in inspect.getmembers(action):
         if inspect.isclass(obj) and obj not in ignore:
             available_card.append((names, obj.name_ch, obj.id, obj.time))
     card = available_character + available_card
     card = sorted(card, key=lambda x:(x[3] if x[3]>4.2 else 3.3, x[2]))
-    print([c[1] for c in card])
+    # print([c[1] for c in card])
     return card
 
-def test_select():
+def test_fix(is_select=False):
     # 输出所有角色
     package_dir = "./card/character/characters"
     available_character_name = [f[:-3] for f in os.listdir(package_dir) if f.endswith(".py") and f != "__init__.py" and f != "import_head.py"]
     available_character = []
     for name in available_character_name:
         available_character.append((name, eval("chars."+name).name, eval("chars."+name).name_ch, eval("chars."+name).id))
-    print(len(available_character))
-
-
-    for character in sorted(available_character, key=lambda x:x[-1]):
-        print(character[2])
+    available_character = sorted(available_character, key=lambda x:x[-1])
 
     # 输出所有行动牌
     available_card = []
     ignore = [action.ActionCard, action.EquipmentCard, action.WeaponCard, action.TalentCard, action.ArtifactCard, action.SupportCard, action.FoodCard, action.SpecialSkillCard]
     for name, obj in inspect.getmembers(action):
         if inspect.isclass(obj) and obj not in ignore:
-            try:
-                available_card.append((name, obj.name, obj.name_ch, obj))
-            except:
-                import ipdb
-                ipdb.set_trace()
-    print(len(available_card))
+            available_card.append((name, obj.name, obj.name_ch, obj))
 
     # 输出每个类行动牌数量
     package_dirs = ["./card/character/characters","./card/action/support/companion",
@@ -98,7 +96,7 @@ def test_select():
                     "./card/action/equipment/specialskill/skills"]
     for package_dir in package_dirs:
         available_name = [f[:-3] for f in os.listdir(package_dir) if f.endswith(".py") and f != "__init__.py" and f != "import_head.py"]
-        print(package_dir, len(available_name))
+        # print(package_dir, len(available_name))
         # 测试天赋的归属
         if package_dir == "./card/action/equipment/talent/talents":
             all_talents = [eval('talents.'+talent).character.__name__ for talent in available_name]
@@ -110,10 +108,56 @@ def test_select():
                     print("{} not has talent".format(character))
 
     # 测试选择卡函数
-    available_card = select_card(['Ganyu', 'Keqing' ,'Lynette'], available_card)
-    exit()
+    if not is_select:
+        available_card = select_available_card(['Ganyu', 'Keqing' ,'Lynette'], available_card)
+        exit()
+    else:
+        maps = get_card()
+        # select_charcater = select_card(available_character, max_num=3)
+        selected_character = ['Ganyu', 'Keqing' ,'Lynette']
+        available_card = select_available_card(selected_character, available_card)
+        selected_action = select_card(available_card, max_num=30)
+        name = selected_character + selected_action
+        code = name_to_code(name, [c[0] for c in maps])
+        return code
 
-def select_card(characters: List['Character'], all_action_card: List['ActionCard']):
+def select_character(cards, max_num=3):
+    print("请选择3个角色")
+    print([(i,c[2]) for i,c in enumerate(cards)])
+    result = []
+    output = []
+    while len(result) < max_num:
+        input_select = get_rng_mul_sel("您已选择{}张卡：{} 请选择新的卡牌编号和对应数量，如：0 1\n".format(len(output), output),
+                                min=0, max=len(cards)-1, assert_fn=lambda x:True, dtype=int)
+        result += [cards[input_select[0]][0] for i in range(input_select[1])]
+        output += [cards[input_select[0]][2] for i in range(input_select[1])]
+    if len(result) > max_num:
+        result = result[:max_num]
+    return result
+
+def select_card(cards, max_num=30):
+    print("请选择30张卡牌")
+    keys = list(cards.keys())
+    num = 0
+    for idx,key in enumerate(cards.keys()):
+        print(idx, key)
+        print([(i,c[2]) for i,c in enumerate(cards[key])])
+        num += len(cards[key])
+
+    result = []
+    output = []
+    while len(result) < max_num:
+        input_select = get_rng_mul_sel("您已选择{}张卡：{} 请选择新的类别编号、卡牌编号和对应数量，如0 1 2\n".format(len(output), output),
+                                min=0, max=num, assert_fn=lambda x:True, dtype=int)
+        print(input_select)
+        result += [cards[keys[input_select[0]]][input_select[1]][0] for i in range(input_select[2])]
+        output += [cards[keys[input_select[0]]][input_select[1]][0] for i in range(input_select[2])]
+    if len(result) > max_num:
+        result = result[:max_num]
+    return result
+
+
+def select_available_card(characters: List['Character'], all_action_card: List['ActionCard']):
     all_weapon_type = {}
     same_country = {}
     same_element = {}
@@ -173,42 +217,39 @@ def code_to_deck(code):
     }
     return deck
 
+
 if __name__=="__main__":
     args = get_parser()
     if args.fix:
-        test_select()
+        test_fix()
     if args.code:
         test_code()
-    deck1 = {
-    'character': ['Xingqiu', 'Xingqiu', 'Xingqiu'],
-    'action_card': ['Fresh_Wind_of_Freedom','Dunyarzad','Dunyarzad','Chef_Mao','Chef_Mao','Paimon','Paimon',
-                    'Rana','Rana','Liben','Liben','Mushroom_Pizza','Mushroom_Pizza','Adeptus_Temptation',
-                    'Adeptus_Temptation','Teyvat_Fried_Egg','Sweet_Madame','Sweet_Madame','Mondstadt_Hash_Brown',
-                    'Lotus_Flower_Crisp','Lotus_Flower_Crisp','Strategize','Strategize','Leave_it_to_Me','Leave_it_to_Me',
-                    'PaidinFull','PaidinFull','Send_Off','Starsigns','Starsigns']
-    }
+
+    # 初始化卡组，直接指定或者通过代码获取
+    if args.select:
+        code = test_fix(is_select=True)
+        deck1 = code_to_deck(code)
+    else:
+        deck1 = code_to_deck('FhHRgm4YFiHxg3YYFzFhhHcYF0FxhXgYF1GBhn4YF2Hhh38YF3HxioAYGKEBfYEXGNAA')
     deck2 = {
-    'character': ['Barbara', 'Beidou', 'KaedeharaKazuha'],
-    'action_card': ['Koholasaurus' for i in range(15)] + \
-                ['Yumkasaurus' for i in range(15)]
+        'character': ['Barbara', 'Beidou', 'KaedeharaKazuha'],
+        'action_card': ['Koholasaurus', 'Xenochromatic', 'Yumkasaurus']
     }
-    # deck2 = {
-    # 'character': ['Arataki_Itto', 'Dehya', 'Noelle'],
-    # 'action_card': ['TenacityoftheMillelith','TenacityoftheMillelith','TheBell','TheBell','Paimon','Paimon',
-    #                 'Chef_Mao','Chef_Mao','Liben','Liben','Dunyarzad','Dunyarzad','Fresh_Wind_of_Freedom',
-    #                 'Woven_Stone','Woven_Stone','Enduring_Rock','Enduring_Rock','Strategize','Strategize',
-    #                 'Leave_it_to_Me','Send_Off','Heavy_Strike','Heavy_Strike','Adeptus_Temptation',
-    #                 'Lotus_Flower_Crisp','Lotus_Flower_Crisp','Sweet_Madame','Mondstadt_Hash_Brown',
-    #                 'Mushroom_Pizza','Mushroom_Pizza']
-    # }
+
+    # 初始化游戏
     game = GeniusGame(player0_deck=deck1, player1_deck=deck2, seed=args.seed, is_omni=args.omni)
-    with open("save_data.pickle", "wb+") as f:
-        pickle.dump(game, f)
 
-    with open("save_data.pickle", "rb+") as f:
-        game = pickle.load(f)
+    # 读取和保存游戏
+    if args.save:
+        with open("save_data.pickle", "wb+") as f:
+            pickle.dump(game, f)
+    if args.read:
+        with open("save_data.pickle", "rb+") as f:
+            game = pickle.load(f)
 
-    if args.test:
+
+    # 开始游戏
+    if args.read:
         with open("./action.log") as f:
             log = json.load(f)
         for i in log:
@@ -220,7 +261,7 @@ if __name__=="__main__":
             action = Action.from_input(game, log, mode='w', jump=False)
             game.step(action)
     else:
-        if args.log:
+        if args.old:
             log = []
             while not game.is_end:
                 if game.incoming_state:
@@ -234,6 +275,7 @@ if __name__=="__main__":
                     with open("./action.log", "w") as f:
                         json.dump(log, f, indent=4)
         else:
+            # 最新分支
             while not game.is_end:
                 if game.incoming_state:
                     layout = game.incoming_state.encode_message()

@@ -21,7 +21,7 @@ class TadaEntity(Combat_Status):
             (EventType.END_PHASE, ZoneType.ACTIVE_ZONE, self.on_end)
         ]
 
-class LoseMoney(ActionCard):
+class Tada(ActionCard):
     id = 332037
     name: str = "Tada!"
     name_ch = '噔噔！'

@@ -37,7 +37,7 @@ class Xenochromatic(SpecialSkillCard):
     id: int = 313001
     name: str = "Xenochromatic Hunter's Ray"
     name_ch = "异色猎刀鳐"
-    time: float = 4.0
+    time: float = 5.0
     cost_num: int = 0
     cost_type: CostType = None
 

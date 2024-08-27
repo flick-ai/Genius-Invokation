@@ -2,7 +2,7 @@
 from genius_invocation.web.game.game import GeniusGame
 from genius_invocation.web.game.action import *
 from genius_invocation.utils import *
-from genius_invocation.main import select_card
+from genius_invocation.main import select_available_card
 import genius_invocation.card.action as actioncard
 from genius_invocation.user_layout import layout
 from genius_invocation.web.utils_dict import get_dict
@@ -37,8 +37,8 @@ async def main():
         if inspect.isclass(obj) and obj not in ignore:
             available_card.append((name, obj.name, obj.name_ch, obj))
 
-    
-    
+
+
 
     # js_available_card = {available_card[i][2]: available_card[i][0] for i in range(len(available_card))}
     # js.load_action_cards(create_proxy(js_available_card))
@@ -50,7 +50,7 @@ async def main():
         if js.document.getElementById('currentselect').innerText != '':
             select.append(js.document.getElementById('currentselect').innerText.split(' '))
             js.document.getElementById('currentselect').innerText = ''
-            current_available_card = select_card(select[cur_idx], available_card)
+            current_available_card = select_available_card(select[cur_idx], available_card)
             js.load_action_cards(create_proxy(current_available_card))
         if js.document.getElementById('current_select_card').innerText != '':
             card_select.append(js.document.getElementById('current_select_card').innerText.split(' '))
@@ -65,7 +65,7 @@ async def main():
             for item in js.document.getElementsByClassName('before'):
                 item.style.display = 'none'
             break
-    
+
     print(select)
     deck1 = {
     'character': select[0],
@@ -161,7 +161,7 @@ async def main():
                 else:
                     js.document.getElementById(f'{player}_character{idx}_artifact').style.background = '#888888'
                     js.document.getElementById(f'{player}_character{idx}_artifact_inner').innerText = '圣遗物\n' + artifact_card
-                
+
                 talent = item.get('talent', None)
                 if talent is None:
                     js.document.getElementById(f'{player}_character{idx}_talent').style.background = '#DDDDDD'
@@ -191,7 +191,7 @@ async def main():
                     js.document.getElementById(f'{player}_character{idx}_group_state_inner').innerText = shield_state +'\n' + active_state
                 else:
                     js.document.getElementById(f'{player}_character{idx}_group_state').style.display = 'none'
-            
+
 
 
         action = await from_input(game)

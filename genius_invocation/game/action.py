@@ -114,7 +114,7 @@ class Action:
             (1, 1, list(n))
         '''
         return Action(action['choice'], action['target'], action['dice'])
-    
+
     @staticmethod
     def from_layout(game: 'GeniusGame', layout, jump=True):
         action = None
@@ -200,7 +200,7 @@ class Action:
                 print_prompt(layout, history, target_prompt)
                 target = user_input.get_sel('', target_list)
             history.append("您选择的目标为:"+str(target)+'.'+target_dict[target])
-            
+
             if choice == 16:
                 list_prompt = f'您需要选择重新投掷的骰子的位置,形式如0 1 2所示,数值应该在{0}-{use_dice[choice][target][0]-1}之间:'
                 dice = user_input.get_special_rng_mul_sel(list_prompt, min=0, max=use_dice[choice][target][0]-1)
@@ -222,7 +222,7 @@ class Action:
                                 else:
                                     cost_type = CostType(use_dice[choice][target][i*2+1])
                                     list_prompt = f'您需要选择使用的{cost_num}个{cost_type}骰子的位置,形式如0 1 2所示:'
-                                
+
                                 print_prompt(layout, history, list_prompt)
                                 sub_dice = user_input.get_rng_mul_sel(
                                     '', min=0, max=game.active_player.dice_zone.num()-1,
@@ -254,11 +254,18 @@ class Action:
                 copy_layout = copy_game.encode_message(base=diff_zone)
                 print_prompt(copy_layout, history, '预览效果,请按1确认进行行动')
 
-                fix_input = input()
-                fix_input = bool(int(fix_input))
-                if not fix_input:
-                    action = None
-                    history = ["重新输入行动"]
+                while True:
+                    try:
+                        fix_input = input()
+                        fix_input = bool(int(fix_input))
+                        if not fix_input:
+                            action = None
+                            history = ["重新输入行动"]
+                        break
+                    except KeyboardInterrupt:
+                        exit()
+                    except:
+                        print("输入无效请重新输入")
         return action
 
     @staticmethod

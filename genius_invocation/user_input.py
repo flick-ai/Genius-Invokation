@@ -34,18 +34,17 @@ def get_sel(prompt: str, selection: List, assert_fn=None, dtype=None):
         except:
             print("您输入的选择无效，请重新输入")
 
-def get_mul_sel(prompt: str, selection: List, assert_fn=lambda x:True):
+def get_mul_sel(prompt: str, raw_selection: List, assert_fn=lambda x:True):
     '''
     get multiple selections from list
     '''
     while True:
         try:
-
             raw_input = get_input(prompt)
             selection = raw_input.split(' ')
             assert len(selection) == len(set(selection))
             for i in selection:
-                assert i in selection
+                assert i in raw_selection
             if assert_fn is not None:
                 assert assert_fn(selection)
             return selection

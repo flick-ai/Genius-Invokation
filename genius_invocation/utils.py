@@ -348,7 +348,7 @@ def SkillToChinese(skill: SkillType):
             return "元素爆发"
         case SkillType.SPECIAL_SKILL:
             return "特技"
-        
+
 def CostToChinese(cost: CostType):
     match cost:
         case None:
@@ -390,7 +390,7 @@ def DiceToChinese(dice: DiceType):
             return "岩骰"
         case DiceType.DENDRO:
             return "草骰"
-        
+
 def CostToStr(cost):
     chinese_cost = ""
     for c in cost:
@@ -415,7 +415,7 @@ def DiceToColor(dice: DiceType):
             return '#FF0000'
         case DiceType.OMNI:
             return '#C0C0C0'
-        
+
 def CostToColor(cost: CostType):
     match cost:
         case CostType.BLACK:
@@ -423,7 +423,7 @@ def CostToColor(cost: CostType):
         case CostType.WHITE:
             return '#FFFFFF'
     return DiceToColor(CostToDice[cost])
-        
+
 def ElementsToColor(ele: ElementType):
     return DiceToColor(ElementToDice[ele])
     # match ele:
@@ -468,8 +468,9 @@ def code_to_name(code, maps):
     for i in range(0, len(res), 12):
         decode.append(int(res[i:i+12], 2))
     res = decode[:-1]
-    print(res)
+    # print(res)
     result = [maps[x-1] for x in res]
+    # print([x[1] for x in result])
     print([x[1] for x in sorted(result, key=lambda x: x[2])])
     return [maps[x-1][0] for x in res]
 
