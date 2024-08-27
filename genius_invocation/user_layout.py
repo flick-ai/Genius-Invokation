@@ -18,7 +18,9 @@ from loguru import logger
 CHANGE_STYLE = 'green'
 ACTIVE_PLAYER_STYLE = 'red'
 ACTIVE_CHARACTER_STYLE = 'red'
-OTHER_STYLE = 'white'
+OTHER_STYLE = 'blue'
+STRONG_COLOR = 'red'
+OTHER_COLOR = 'white'
 
 
 def layout(game: 'GeniusGame', base=None):
@@ -73,13 +75,14 @@ def get_game_info(game: 'GeniusGame'):
     sponsor_message.add_column(no_wrap=True)
     sponsor_message.add_row(
         f"Round:{game.round}, Round_Phase:{game.game_phase.value}, Active_player:{game.active_player_index}, First_player:{game.first_player}",
-        style='white',
+        style=OTHER_COLOR,
     )
     message_panel = Panel(
         Align.center(
             Group(" ",Align.center(sponsor_message)),
         ),
         title="Game Information",
+        style=OTHER_STYLE
     )
     return message_panel
 
@@ -90,11 +93,11 @@ def print_prompt(layout, history, string):
     for his in history:
         sponsor_message.add_row(
         his,
-        style=ACTIVE_PLAYER_STYLE,
+        style=STRONG_COLOR,
     )
     sponsor_message.add_row(
         string,
-        style=OTHER_STYLE,
+        style=OTHER_COLOR,
     )
     message_panel = Panel(
                 Align.center(
@@ -113,7 +116,7 @@ def get_skill(layout, game: 'GeniusGame'):
         sponsor_message.add_column(no_wrap=True, justify="medium")
         sponsor_message.add_row(
             "No skill can be used",
-            style='red',
+            style=STRONG_COLOR,
         )
         message_panel = Panel(
                     Align.center(
@@ -132,15 +135,15 @@ def get_skill(layout, game: 'GeniusGame'):
             sponsor_message.add_column(no_wrap=True, justify="medium")
             sponsor_message.add_row(
                 skill.name_ch,
-                style='white',
+                style=OTHER_COLOR,
             )
             sponsor_message.add_row(
                 SkillToChinese(skill.type),
-                style='white',
+                style=OTHER_COLOR,
             )
             sponsor_message.add_row(
                 CostToStr(skill.cost),
-                style='white',
+                style=OTHER_COLOR,
             )
             message_panel = Panel(
                     Align.center(
@@ -156,15 +159,15 @@ def get_skill(layout, game: 'GeniusGame'):
             sponsor_message.add_column(no_wrap=True, justify="medium")
             sponsor_message.add_row(
                 skill.name_ch,
-                style='white',
+                style=OTHER_COLOR,
             )
             sponsor_message.add_row(
                 SkillToChinese(skill.type),
-                style='white',
+                style=OTHER_COLOR,
             )
             sponsor_message.add_row(
                 CostToStr(skill.cost),
-                style='white',
+                style=OTHER_COLOR,
             )
             message_panel = Panel(
                     Align.center(
@@ -222,13 +225,14 @@ def get_character(player: 'GeniusPlayer', idx: int, base=None):
             vertical="middle",
         ),
         title="Character",
+        style=OTHER_STYLE
         )
         return message_panel        
     
     if character_list[idx].is_active:
-        color = ACTIVE_CHARACTER_STYLE
+        color = STRONG_COLOR
     else:
-        color = OTHER_STYLE
+        color = OTHER_COLOR
     if character_list[idx].is_alive:
         col = OTHER_STYLE
         if len(character_list[idx].elemental_application)>0:
@@ -314,7 +318,7 @@ def get_card(player: 'GeniusPlayer'):
     sponsor_message.add_column(no_wrap=True)
     sponsor_message.add_row(
         str(player.card_zone.num()),
-        style=OTHER_STYLE,
+        style=OTHER_COLOR,
     )
 
     if player.index == player.game.active_player_index:
@@ -337,7 +341,7 @@ def get_hand(player: 'GeniusPlayer'):
         for card in player.hand_zone.card:
             sponsor_message.add_row(
                 "{}:{}".format(CostToStr(card.calculate_cost()), card.name_ch),
-                style='white',
+                style=OTHER_COLOR,
             )
 
     if player.index == player.game.active_player_index:
@@ -396,11 +400,11 @@ def get_support(player: 'GeniusPlayer', idx, base=None):
         support = player.support_zone.space[idx]
         sponsor_message.add_row(
             support.name_ch,
-            style='blue',
+            style=OTHER_COLOR,
         )
         sponsor_message.add_row(
             support.show(),
-            style='blue',
+            style=OTHER_COLOR,
         )
 
     if player.index == player.game.active_player_index:
