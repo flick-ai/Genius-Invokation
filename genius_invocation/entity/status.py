@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     from genius_invocation.game.player import GeniusPlayer
     from genius_invocation.card.action.equipment.weapon.base import WeaponCard
     from genius_invocation.card.action.equipment.artifact.base import ArtifactCard
+    from genius_invocation.card.action.equipment.specialskill.base import SpecialSkillCard
 
 #TODO: FINISH THE ENTITIES
 
@@ -167,8 +168,9 @@ class Artifact(Equipment):
 class SpecialSkill(Equipment):
     type = SkillType.SPECIAL_SKILL
     cost = [{'cost_num': 0, 'cost_type': CostType.BLACK}]
-    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: "Character"= None):
+    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: "Character"= None, card: 'SpecialSkillCard' = None):
         super().__init__(game, from_player, from_character)
+        self.skill_card = card
         self.usage = 0
 
     def check_usage(self, game):
@@ -193,7 +195,7 @@ class SpecialSkill(Equipment):
         return self.name_ch
 
     def count_cost(self):
-        return 0
+        return self.skill_card.cost_num
 
 
 # TODO: Maybe need to move to other places in future

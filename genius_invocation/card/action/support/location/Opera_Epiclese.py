@@ -28,6 +28,8 @@ class Opera_Epiclese_Entity(Support):
                 sum_cost += character.character_zone.weapon_card.count_cost()
             if character.character_zone.talent_card != None:
                 sum_cost += character.character_zone.talent_card.count_cost()
+            if character.character_zone.special_skill != None:
+                sum_cost += character.character_zone.special_skill.count_cost()
         return sum_cost
 
     def on_begin(self, game:'GeniusGame'):

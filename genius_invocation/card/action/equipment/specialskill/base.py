@@ -18,7 +18,8 @@ class SpecialSkillCard(EquipmentCard):
         target_character = game.active_player.character_list[idx]
         entity = self.equipment_entity(game,
                                        game.active_player,
-                                       target_character)
+                                       target_character,
+                                       card=self)
         if target_character.character_zone.special_skill != None:
             target_character.character_zone.special_skill.on_destroy(game)
         target_character.character_zone.special_skill = entity
