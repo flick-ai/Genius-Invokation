@@ -27,7 +27,7 @@ class SpiritSerpentsBlessing(Combat_Status):
         self.listeners = [
             (EventType.DAMAGE_ADD, ZoneType.ACTIVE_ZONE, self.on_add_damage),
         ]
-        
+
 class VinyRazorscale(SpecialSkill):
     name: str = "Viny Razorscale"
     name_ch = "藤蔓锋鳞"
@@ -104,7 +104,7 @@ class SpiralingWhirl(ElementalSkill):
         super().on_call(game)
         self.resolve_damage(game)
         self.gain_energy(game)
-        self.add_combat_status(game, SpiritSerpentsBlessing)
+        self.add_combat_status(game, SpiritSerpentsBlessing, usage=1)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class SpiritofOmensAwakeningDendroSpiritSerpent(ElementalBurst):
@@ -125,6 +125,7 @@ class SpiritofOmensAwakeningDendroSpiritSerpent(ElementalBurst):
         self.consume_energy(game)
         self.resolve_damage(game)
         if not self.from_character.has_brust:
+            self.from_character.has_brust = True
             self.from_character.from_player.hand_zone.add([SpiritofOmenDendroSpiritSerpent()])
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 

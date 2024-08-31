@@ -98,7 +98,7 @@ class BlazingStrike(ElementalSkill):
         super().on_call(game)
         self.resolve_damage(game)
         self.gain_energy(game)
-        self.add_combat_status(game, ScorpionBlessing)
+        self.add_combat_status(game, ScorpionBlessing, usage=1)
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 class SpiritofOmensAwakeningPyroScorpion(ElementalBurst):
@@ -118,7 +118,9 @@ class SpiritofOmensAwakeningPyroScorpion(ElementalBurst):
         super().on_call(game)
         self.consume_energy(game)
         self.resolve_damage(game)
-
+        if not self.from_character.has_brust:
+            self.from_character.has_brust = True
+            self.from_character.from_player.hand_zone.add([SpiritofOmenPyroScorpion()])
         game.manager.invoke(EventType.AFTER_USE_SKILL, game)
 
 
@@ -156,6 +158,8 @@ class EremiteScorchingLoremaster(Character):
         self.talent_skill = self.skills[2]
         self.passive_skill = SpiritofOmensPower(self)
         self.passive_round_usage = 1
+        self.has_brust = False
+        self.last_skill = False
 
     def on_begin(self, game: 'GeniusGame'):
         if game.active_player_index == self.from_player.index:
@@ -164,6 +168,22 @@ class EremiteScorchingLoremaster(Character):
     def on_excute_damage(self, game: 'GeniusGame'):
         if game.current_damage.damage_to == self:
             self.passive_skill.on_call(game)
+
+    def on_die(self, game: 'GeniusGame'):
+        if game.current_die.from_player != self.from_player:
+            if self.last_skill:
+                self.from_character.from_player.hand_zone.add([SpiritofOmenPyroScorpion()])
+                self.from_player.team_combat_status.add_entity(ScorpionBlessing(game, self.from_player, self), usage=1)
+
+    def on_use_special(self, game: 'GeniusGame'):
+        if game.current_skill.from_character.from_player == self.from_player:
+            if game.current_skill.name == "Burning Assault":
+                self.last_skill = True
+
+    def listen_talent_events(self, game: 'GeniusGame'):
+        self.listen_event(game, EventType.ON_USE_SPECIAL, ZoneType.CHARACTER_ZONE, self.on_use_special)
+        self.listen_event(game, EventType.CHARACTER_DIE, ZoneType.CHARACTER_ZONE, self.on_die)
+
 
     def balance_adjustment():
         log = {}
