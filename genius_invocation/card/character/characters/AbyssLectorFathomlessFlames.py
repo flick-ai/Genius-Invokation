@@ -113,6 +113,8 @@ class Fiery_Rebirth(Status):
             if self.set_talent:
                 shield = Aegis_of_Abyssal_Flame(game, self.from_player, self.from_character)
                 self.from_character.character_zone.add_entity(shield)
+                self.from_character.talent = False
+                self.from_character.character_zone.talent_card.on_destroy(game)
             self.on_destroy(game)
 
     def update_listener_list(self):
@@ -126,15 +128,24 @@ class Aegis_of_Abyssal_Flame(Shield):
     id = 230241
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: 'Character'):
         super().__init__(game, from_player, from_character)
-        self.current_usage = 3
-        self.usage = 3
-    def dmg_add(self, game:'GeniusGame'):
-        if game.current_damage.damage_from == self.from_character:
-            assert game.current_damage.main_damage_element == ElementType.PYRO
-            game.current_damage.main_damage += 1
-    def update_listener_list(self):
-        super().update_listener_list()
-        self.listeners.append((EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, self.dmg_add))
+        self.current_usage = 2
+        self.usage = 2
+
+    def on_destroy(self, game: 'GeniusGame'):
+        oppenent = game.players[1-self.from_player.index]
+        for character in oppenent.character_list:
+            if character.is_alive:
+                dmg = Damage.create_damage(
+                    game,
+                    damage_type=SkillType.OTHER,
+                    main_damage_element=ElementType.PIERCING,
+                    main_damage=1,
+                    piercing_damage=0,
+                    damage_from=self,
+                    damage_to=character)
+                game.add_damage(dmg)
+                game.resolve_damage()
+        super().on_destroy(game)
 
 class AbyssLectorFathomlessFlames(Character):
     id: int = 2302
@@ -168,17 +179,11 @@ class AbyssLectorFathomlessFlames(Character):
 
     def on_dmg_add(self, game: 'GeniusGame'):
         if game.current_damage.damage_from == self:
-            if game.current_damage.main_damage_element == ElementType.HYDRO:
+            if game.current_damage.main_damage_element == ElementType.PYRO:
                 game.current_damage.main_damage += 1
-
-    def infusion(self, game:'GeniusGame'):
-        if self.from_character == game.current_damage.damage_from:
-            if game.current_damage.main_damage_element == ElementType.PHYSICAL:
-                game.current_damage.main_damage_element = ElementType.HYDRO
 
     def revive_event(self, game: 'GeniusGame'):
         self.listen_event(game, EventType.DAMAGE_ADD, ZoneType.CHARACTER_ZONE, self.on_dmg_add)
-        self.listen_event(game, EventType.INFUSION, ZoneType.CHARACTER_ZONE, self.infusion)
 
     def equip_talent(self, game:'GeniusGame', is_action=True, talent_card=None):
         self.talent = True

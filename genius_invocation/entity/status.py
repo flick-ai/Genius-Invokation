@@ -166,7 +166,7 @@ class Artifact(Equipment):
         return self.artifact_card.cost_num
 
 class SpecialSkill(Equipment):
-    type = SkillType.SPECIAL_SKILL
+    type = SpecialSkillType.SPECIAL_SKILL
     cost = [{'cost_num': 0, 'cost_type': CostType.BLACK}]
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character: "Character"= None, card: 'SpecialSkillCard' = None):
         super().__init__(game, from_player, from_character)

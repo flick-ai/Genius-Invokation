@@ -46,7 +46,9 @@ class VerticalForceCoordination(CharacterSkill):
     name = 'Vertical Force Coordination'
     name_ch = '纵阵武力统筹'
     def on_call(self, game:'GeniusGame'):
-        self.from_character.from_player.hand_zone.add([OverchargedBall()])
+        if self.passive_round_usage > 0:
+            self.passive_round_usage -= 1
+            self.from_character.from_player.hand_zone.add([OverchargedBall()])
 
 class LineBayonetThrustEX(NormalAttack):
     id: int = 131301
@@ -231,6 +233,7 @@ class Chevreuse(Character):
     max_power: int = 2
 
     def init_state(self, game: 'GeniusGame'):
+        self.listen_event(game, EventType.BEGIN_ACTION_PHASE, ZoneType.CHARACTER_ZONE, self.on_begin)
         self.listen_event(game, EventType.DAMAGE_ADD_AFTER_REACTION, ZoneType.CHARACTER_ZONE, self.on_reaction)
 
     def __init__(self, game: 'GeniusGame', zone: 'CharacterZone', from_player: 'GeniusPlayer', index:int, from_character = None, talent = False):
@@ -239,11 +242,16 @@ class Chevreuse(Character):
         self.power = 0
         self.talent_skill = None
         self.passive_skill = VerticalForceCoordination(self)
+        self.passive_round_usage = 1
+
+    def on_begin(self, game: 'GeniusGame'):
+        if game.active_player_index == self.from_player.index:
+            self.passive_round_usage = 1
 
     def on_reaction(self, game: 'GeniusGame'):
         if game.current_damage.damage_to.from_player.index == 1 - self.from_player.index:
             if game.current_damage.reaction == ElementalReactionType.Overloaded:
-                self.passive_skill.on_reaction(game)
+                self.passive_skill.on_call(game)
             if self.talent:
                 self.from_player.team_combat_status.add_entity(PyroQuill(game, from_player=self.from_player, from_character=self))
 

@@ -113,7 +113,7 @@ class GeniusGame:
                 self.first_player = self.active_player_index
         if self.is_change_player and (not oppenent_player.is_pass):
             self.change_active_player()
-        
+
         oppenent_player = self.players[1 - self.active_player_index]
         self.manager.invoke(EventType.BEFORE_ANY_ACTION, self)
         while self.active_player.prepared_skill is not None:

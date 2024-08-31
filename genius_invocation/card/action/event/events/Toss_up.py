@@ -25,6 +25,7 @@ class Toss_up(ActionCard):
     def on_finished(self, game: 'GeniusGame'):
         game.game_phase = self.now_phase
         game.special_phase = None
+        game.resolve_action(None)
 
     def find_target(self, game:'GeniusGame'):
         if game.active_player.dice_zone.num()>0:

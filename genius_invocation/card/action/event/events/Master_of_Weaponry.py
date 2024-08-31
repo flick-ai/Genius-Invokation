@@ -36,6 +36,7 @@ class Master_of_Weaponry(ActionCard):
 
         game.game_phase = self.now_phase
         game.special_phase = None
+        game.resolve_action(None)
 
     def find_target(self, game:'GeniusGame'):
         target = []

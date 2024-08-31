@@ -111,7 +111,40 @@ def print_prompt(layout, history, string):
     print(layout)
 
 def get_skill(layout, game: 'GeniusGame'):
-    if not game.active_player.active_idx in range(len(game.active_player.character_list)):
+    if game.game_phase == GamePhase.SELECT:
+        message_panel_list = []
+        for s in game.active_player.select_list:
+            sponsor_message = Table.grid()
+            sponsor_message.add_column(no_wrap=True, justify="medium")
+            sponsor_message.add_row(
+                s.name_ch if hasattr(s, 'name_ch') else s,
+                style=STRONG_COLOR,
+            )
+            message_panel = Panel(
+                    Align.center(
+                        Group(" ",Align.center(sponsor_message)),
+                        vertical="middle",
+                        ),
+                    title="Select"+str(len(message_panel_list)),
+                    style=OTHER_STYLE,
+            )
+            message_panel_list.append(message_panel)
+            print(s)
+        num = len(message_panel_list)
+        if num == 3:
+            layout.split_row(
+                Layout(name="Select1", ratio=1),
+                Layout(name="Select2", ratio=1),
+                Layout(name="Select3", ratio=1),
+            )
+            layout['Select1'].update(message_panel_list[0])
+            layout['Select2'].update(message_panel_list[1])
+            layout['Select3'].update(message_panel_list[2])
+        else:
+            print("Select skill number is not 3, 尚不支持显示")
+            exit()
+
+    elif not game.active_player.active_idx in range(len(game.active_player.character_list)):
         sponsor_message = Table.grid()
         sponsor_message.add_column(no_wrap=True, justify="medium")
         sponsor_message.add_row(
@@ -227,8 +260,8 @@ def get_character(player: 'GeniusPlayer', idx: int, base=None):
         title="Character",
         style=OTHER_STYLE
         )
-        return message_panel        
-    
+        return message_panel
+
     if character_list[idx].is_active:
         color = STRONG_COLOR
     else:
@@ -433,7 +466,7 @@ def get_dice(player: 'GeniusPlayer'):
                 DiceToChinese(DiceType(dice)),
                 style=DiceToColor(DiceType(dice)),
             )
-    
+
     if player.index == player.game.active_player_index:
         style = ACTIVE_PLAYER_STYLE
     else:

@@ -19,11 +19,13 @@ class Nature_and_Wisdom(ActionCard):
         self.now_phase: GamePhase
 
     def on_played(self, game: 'GeniusGame'):
+        game.active_player.get_card(num=1)
         self.now_phase = game.game_phase
         game.game_phase = GamePhase.SET_CARD
         game.special_phase = self
-        game.active_player.get_card(num=1)
+
 
     def on_finished(self, game: 'GeniusGame'):
         game.game_phase = self.now_phase
         game.special_phase = None
+        game.resolve_action(None)

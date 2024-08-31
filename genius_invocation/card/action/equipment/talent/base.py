@@ -20,12 +20,14 @@ class TalentCard(EquipmentCard):
     cost: list[dict]
     def __init__(self) -> None:
         super().__init__()
+        self.from_character = None
         for i in range(len(self.cost)):
             self.cost[i]['cost_type'] = CostType(self.cost[i]['cost_type'])
 
     def on_played(self, game: 'GeniusGame') -> None:
         target_character = game.active_player.character_list[game.current_action.target_idx]
         target_character.equip_talent(game, self.is_action, self)
+        self.from_character = target_character
 
     def find_target(self, game: 'GeniusGame'):
         if not self.is_action:
@@ -44,3 +46,9 @@ class TalentCard(EquipmentCard):
             return sum([cost['cost_num'] for cost in self.cost])
         else:
             return 0
+
+    def on_destroy(self, game):
+        game.current_remove_from = self.from_character
+        game.manager.invoke(EventType.ON_EQUIP_REMOVE, game)
+        game.current_remove_from = None
+        self.from_character.character_zone.talent_card = None

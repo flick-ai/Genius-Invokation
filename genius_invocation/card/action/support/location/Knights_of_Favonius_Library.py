@@ -55,7 +55,8 @@ class Knights_of_Favonius_Library(SupportCard):
     def on_finished(self, game: 'GeniusGame'):
         game.game_phase = self.now_phase
         game.special_phase = None
-    
+        game.resolve_action(None)
+
     @staticmethod
     def balance_adjustment():
         log = {}

@@ -20,8 +20,8 @@ if TYPE_CHECKING:
 class Switch:
     def __init__(self, from_character, to_character, swicth_type) -> None:
         self.from_player = to_character.from_player
-        self.from_character = from_character
-        self.to_character = to_character
+        self.from_character: 'Character' = from_character
+        self.to_character: 'Character' = to_character
         self.type = swicth_type
 
 class GetCard:
@@ -563,7 +563,7 @@ class CharacterZone:
             self.artifact_card.on_destroy(game)
             self.artifact_card = None
         if self.talent_card is not None:
-            game.manager.invoke(EventType.ON_EQUIP_REMOVE, game)
+            self.talent_card.on_destroy(game)
             self.talent_card = None
         if self.special_skill is not None:
             self.special_skill.on_destroy(game)
@@ -709,7 +709,7 @@ class HandZone:
             通过名字获取牌
         '''
         for card_name in card_names:
-            self.add(eval(card_name)())
+            self.add([eval(card_name)()])
 
     def num(self):
         return len(self.card)

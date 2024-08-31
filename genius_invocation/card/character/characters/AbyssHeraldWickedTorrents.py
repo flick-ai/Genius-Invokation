@@ -250,3 +250,10 @@ class AbyssHeraldWickedTorrents(Character):
         if self.character_zone.has_entity(WateryRebirth) is None:
             target_zone = get_opponent(game).team_combat_status
             target_zone.add_entity(CurseoftheUndercurrent(game, from_player=get_opponent(game), from_character=None))
+        self.listen_event(game, EventType.CHARACTER_WILL_DIE, ZoneType.CHARACTER_ZONE, self.on_character_die)
+        
+    def on_character_die(self, game: 'GeniusGame'):
+        if not self.from_character.is_alive:
+            if self.from_character.talent:
+                target_zone = get_opponent(game).team_combat_status
+                target_zone.add_entity(CurseoftheUndercurrent(game, from_player=get_opponent(game), from_character=None))

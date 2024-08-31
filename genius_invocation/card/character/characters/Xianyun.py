@@ -1,6 +1,6 @@
 from genius_invocation.card.character.import_head import *
 from genius_invocation.card.action.equipment.specialskill import SpecialSkillCard
-from genius_invocation.entity.status import Frozen_Status, SpecialSkill
+from genius_invocation.entity.status import SpecialSkill
 
 class DriftcloudWave(Status):
     name = 'Driftcloud Wave'
@@ -69,6 +69,7 @@ class AdeptalAssistance(SpecialSkill):
     name: str = "Adeptal Assistance"
     name_ch = "仙力助推"
     id = "1510s1"
+    cost = [{'cost_num': 1,'cost_type': CostType.WHITE}]
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None):
         super().__init__(game, from_player, from_character)
         self.usage = 2

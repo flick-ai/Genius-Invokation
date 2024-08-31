@@ -6,8 +6,8 @@ MAX_SUPPORT = 4
 MAX_HANDCARD = 10
 MAX_DICE = 16
 MAX_ROUND = 15
-CHOICE_NUM = 19
-TARGET_NUM = 15
+CHOICE_NUM = 20
+TARGET_NUM = 16
 
 class CountryType(Enum):
     MONDSTADT = 0 # 蒙德
@@ -83,7 +83,9 @@ class SkillType(Enum):
     PASSIVE_SKILL = 3
     SUMMON = 4
     OTHER = 5
-    SPECIAL_SKILL = 6
+
+class SpecialSkillType(Enum):
+    SPECIAL_SKILL = 0
 
 class GamePhase(Enum):
     SET_CARD = 0
@@ -91,6 +93,7 @@ class GamePhase(Enum):
     ROLL_PHASE = 2
     ACTION_PHASE = 3
     END_PHASE = 4
+    SELECT = 5
 
 class ActionChoice(Enum):
     HAND_CARD = 0
@@ -98,6 +101,7 @@ class ActionChoice(Enum):
     CHANGE_CHARACTER = 2
     PASS = 3
     NONE = 4
+    SELECT = 5
 
 class ActionTarget(Enum):
     OPPONENT = 0
@@ -107,6 +111,7 @@ class ActionTarget(Enum):
     MY_SUPPORT_REGION = 4
     DICE_REGION = 5
     CARD_REGION = 6
+    SELECT_REGION = 7
 
 
 class ActionCardType(Enum):
@@ -346,7 +351,7 @@ def SkillToChinese(skill: SkillType):
             return "元素战技"
         case SkillType.ELEMENTAL_BURST:
             return "元素爆发"
-        case SkillType.SPECIAL_SKILL:
+        case SpecialSkillType.SPECIAL_SKILL:
             return "特技"
 
 def CostToChinese(cost: CostType):

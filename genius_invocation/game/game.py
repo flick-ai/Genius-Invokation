@@ -167,19 +167,23 @@ class GeniusGame:
         self.current_action = action
         opponent_player = self.players[1 - self.active_player_index]
         active_player = self.active_player
+        
+        if action is not None:
+            if action.choice_type == ActionChoice.HAND_CARD:
+                self.is_change_player = False
+                active_player.play_card(self)
+            elif action.choice_type == ActionChoice.CHARACTER_SKILL:
+                self.is_change_player = True
+                active_player.use_skill(self)
+            elif action.choice_type == ActionChoice.CHANGE_CHARACTER:
+                self.is_change_player = True
+                active_player.change_character(self)
+            elif action.choice_type == ActionChoice.PASS:
+                self.is_change_player = True
+                active_player.is_pass = True
 
-        if action.choice_type == ActionChoice.HAND_CARD:
-            self.is_change_player = False
-            active_player.play_card(self)
-        elif action.choice_type == ActionChoice.CHARACTER_SKILL:
-            self.is_change_player = True
-            active_player.use_skill(self)
-        elif action.choice_type == ActionChoice.CHANGE_CHARACTER:
-            self.is_change_player = True
-            active_player.change_character(self)
-        elif action.choice_type == ActionChoice.PASS:
-            self.is_change_player = True
-            active_player.is_pass = True
+        if self.special_phase is not None and self.game_phase != GamePhase.ACTION_PHASE:
+            return
 
         self.manager.invoke(EventType.AFTER_ANY_ACTION, self)
         self.reset_current()
@@ -316,6 +320,8 @@ class GeniusGame:
                     game_for_plan.set_reroll_dice(action)
                 case GamePhase.ACTION_PHASE:
                     game_for_plan.resolve_action(action)
+                case GamePhase.SELECT:
+                    game_for_plan.select_phase(action)
             # print(self, game_for_plan)
             logger.info(self.is_dying)
             if not self.is_dying:
@@ -342,11 +348,18 @@ class GeniusGame:
                     self.set_reroll_dice(action)
                 case GamePhase.ACTION_PHASE:
                     self.resolve_action(action)
+                case GamePhase.SELECT:
+                    self.select_phase(action)
 
         # else:
 
-
-
+    def select_phase(self, action):
+        '''
+            5.1特殊阶段：选择阶段
+        '''
+        assert self.special_phase is not None
+        self.active_player.select_action(action)
+        self.special_phase.on_finished(self)
 
     def set_hand_card(self, action):
         '''
@@ -437,7 +450,7 @@ class GeniusGame:
             新版: 尝试将Game信息编码成table呈现给使用者
         '''
         return layout(self, base)
-    
+
     def encoder_dict(self):
         '''
             旧版: 将Game信息编码成dict

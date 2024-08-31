@@ -90,12 +90,24 @@ class GeniusPlayer:
         self.played_cards = []
         self.tune_or_discard_cards = []
 
+        # Select List
+        self.select_list = None
+        self.select_num = 0
+        self.select_result = None
+
     def update_element_list(self):
         ''' Only For La Signora right now. Refresh the element list, which may be used by some skills and talents.'''
         self.element_list = []
         for char in self.character_list:
             self.element_list.append(char.element)
         self.element_set = set(self.element_list)
+
+    def select_action(self, action: 'Action'):
+        '''
+            5.1特殊行动：选择行动
+        '''
+        assert self.select_list is not None
+        self.select_result = action.choice_list
 
     def choose_card(self, action: 'Action'):
         '''
@@ -214,7 +226,8 @@ class GeniusPlayer:
                                     use_type=skill.type,
                                     cost=deepcopy(skill.cost))
             self.character_list[self.active_idx].skill(idx, game)
-            game.current_skill = None
+            if game.special_phase is None:
+                game.current_skill = None
 
     def play_card(self, game: 'GeniusGame'):
         '''
@@ -319,6 +332,13 @@ class GeniusPlayer:
                     if character.is_alive and not character.is_active:
                         self.action_mask[14][idx+2][0] = 1
                 return
+        if game.game_phase == GamePhase.SELECT:
+            self.action_mask[19][15][0] = 1
+            self.action_mask[19][15][1] = len(self.select_list)
+            self.action_mask[19][15][2] = self.select_num
+            # 此处为特例，我们用第三维表征需要选择的数量
+            return
+
 
         # 计算能否打出手牌和烧牌
         for idx, action_card in enumerate(self.hand_zone.card):

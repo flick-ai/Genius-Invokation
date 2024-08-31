@@ -17,7 +17,8 @@ from loguru import logger
     15: pass this turn
     16: dice region
     17: card region
-    18: special action
+    18: special skill
+    19: select
 '''
 # 16: none (to solve problem caused by "Toss-up" and "Nature and Wisdom" and so on)
 
@@ -30,6 +31,7 @@ from loguru import logger
     9-12: my support region
     13: dice region
     14: card region
+    15: select region
 '''
 
 '''
@@ -78,6 +80,9 @@ class Action:
         elif self.choice == 18:
             self.choice_type = ActionChoice.CHARACTER_SKILL
             self.choice_idx = self.choice
+        elif self.choice == 19:
+            self.choice_type = ActionChoice.SELECT
+            self.choice_idx = self.choice
 
         if self.target == 0:
                 self.target_type = ActionTarget.OPPONENT
@@ -99,6 +104,9 @@ class Action:
             self.target_idx = -1
         elif self.target == 14:
             self.target_type = ActionTarget.CARD_REGION
+            self.target_idx = -1
+        elif self.target == 15:
+            self.target_type = ActionTarget.SELECT_REGION
             self.target_idx = -1
 
     @staticmethod
@@ -145,7 +153,8 @@ class Action:
                         15:'结束回合',
                         16:'选择操作本方骰子',
                         17:'选择操作本方手牌',
-                        18:'使用特技'}
+                        18:'使用特技',
+                        19:'进行选择'}
             history.append(f"您是{game.active_player_index}号玩家")
             choose_prompt = f"以下是你可以选择的行动,请输入一个数字表示你的行动选择(按确认以提交或清空选择):\n"
             choose_list = []
@@ -183,7 +192,8 @@ class Action:
                         11:'选择2号支援',
                         12:'选择3号支援',
                         13:'选择操作本方骰子',
-                        14:'选择操作本方手牌'}
+                        14:'选择操作本方手牌',
+                        15:'进行选择'}
             target_prompt = '根据您选择的行动，您可以选择以下目标\n'
             target_list = []
             last_target = -1
@@ -207,6 +217,20 @@ class Action:
             elif choice == 17:
                 list_prompt = f'您需要选择重新获取的手牌的位置,形式如0 1 2所示,数值应该在{0}-{use_dice[choice][target][0]-1}之间:'
                 dice = user_input.get_special_rng_mul_sel(list_prompt, min=0, max=use_dice[choice][target][0]-1)
+            elif choice == 19:
+                list_prompt = f'您需要选择需要的卡牌,形式如0 1 2所示,选择的数量为{use_dice[choice][target][1]}:'
+                while True:
+                    try:
+                        print_prompt(layout, history, list_prompt)
+                        dice = user_input.get_rng_mul_sel(
+                            '', min=0, max=game.active_player.dice_zone.num()-1,
+                            assert_fn=lambda x: len(x)==use_dice[choice][target][1])
+                        assert not check_duplicate_dice(dice)
+                        break
+                    except KeyboardInterrupt:
+                        exit()
+                    except:
+                        print(layout, "您选择的骰子包含重复位置,非法,请重新选择")
             elif use_dice.sum() == 0:
                 dice = []
             else:  # what is this?
@@ -244,7 +268,7 @@ class Action:
                 game.active_player_index = true_active_player_index
             action = Action(choice, target, dice)
 
-            if game.game_phase == GamePhase.ACTION_PHASE:
+            if not jump and game.game_phase == GamePhase.ACTION_PHASE:
                 copy_game = game.copy_game()
                 copy_game.step(action)
                 old_dict = game.encoder_dict()

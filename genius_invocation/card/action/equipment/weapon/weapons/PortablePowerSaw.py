@@ -7,14 +7,14 @@ if TYPE_CHECKING:
     from genius_invocation.game.game import GeniusGame
 
 
-class ProspectorsDrillWeapon(Weapon):
-    id: int = 31140981
-    name: str = "Prospector's Drill"
-    name_ch = "勘探钻机"
+class PortablePowerSawWeapon(Weapon):
+    id: int = 31130981
+    name: str = "Portable Power Saw"
+    name_ch = "便携动力锯"
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, weapon_card = None):
         super().__init__(game, from_player, from_character, weapon_card)
         self.round_usage = 1
-        self.solidarity = 0
+        self.stoicssymbol = 0
         self.add_damage = False
 
     def on_damage_execute(self, game: 'GeniusGame'):
@@ -29,7 +29,7 @@ class ProspectorsDrillWeapon(Weapon):
                     return
                 else:
                     game.current_damage.main_damage -= 1
-                self.solidarity += 1
+                self.stoicssymbol += 1
                 self.round_usage -= 1
 
     def on_add_damage(self, game:'GeniusGame'):
@@ -43,10 +43,10 @@ class ProspectorsDrillWeapon(Weapon):
 
     def on_use_skill(self, game: 'GeniusGame'):
         if game.current_skill.from_character == self.from_character:
-            if self.solidarity > 0:
+            if self.stoicssymbol > 0:
                 self.add_damage = True
-                self.from_player.get_card(num=self.solidarity)
-                self.solidarity = 0
+                self.from_player.get_card(num=self.stoicssymbol)
+                self.stoicssymbol = 0
 
     def update_listener_list(self):
         self.listeners = [
@@ -57,23 +57,18 @@ class ProspectorsDrillWeapon(Weapon):
         ]
 
 
-class ProspectorsDrill(WeaponCard):
-    id: int = 311409
-    name: str = "Prospector's Drill"
-    name_ch = "勘探钻机"
-    time = 4.8
-    weapon_type: WeaponType = WeaponType.POLEARM
+class PortablePowerSaw(WeaponCard):
+    id: int = 311309
+    name: str = "Portable Power Saw"
+    name_ch = "便携动力锯"
+    time = 5.1
+    weapon_type: WeaponType = WeaponType.CLAYMORE
     cost_num: int = 2
     cost_type: CostType = CostType.WHITE
 
     def __init__(self) -> None:
         super().__init__()
-        self.equipment_entity = ProspectorsDrillWeapon
+        self.equipment_entity = PortablePowerSawWeapon
 
     def on_played(self, game: 'GeniusGame') -> None:
         super().on_played(game)
-
-    def balance_adjustment():
-        log = {}
-        log[5.0] = "调整每回合可用次数为1次"
-        return log

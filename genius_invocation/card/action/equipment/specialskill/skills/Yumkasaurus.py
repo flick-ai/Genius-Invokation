@@ -40,7 +40,7 @@ class YumkasaurusEntity(SpecialSkill):
     def on_calculate_dice(self, game: 'GeniusGame'):
         if game.active_player_index == self.from_player.index:
             if game.current_dice.from_character == self.from_character:
-                if game.current_dice.use_type == SkillType.SPECIAL_SKILL:
+                if game.current_dice.use_type == SpecialSkillType.SPECIAL_SKILL:
                     if len(self.from_player.hand_zone.card) <= 2:
                         if game.current_dice.cost[0]['cost_num'] > 0:
                             game.current_dice.cost[0]['cost_num'] -= 1

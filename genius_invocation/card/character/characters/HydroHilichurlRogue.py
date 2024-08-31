@@ -75,7 +75,7 @@ class PrepareMistBubbleSlime(SpecialSkill):
 
     def on_call(self, game: 'GeniusGame'):
         opponent = get_opponent_active_character(game)
-        damage = Damage(damage_type=SkillType.SPECIAL_SKILL,
+        damage = Damage(damage_type=SpecialSkillType.SPECIAL_SKILL,
                         main_damage_element=ElementType.HYDRO,
                         main_damage=1,
                         piercing_damage=0,
@@ -229,7 +229,7 @@ class HydroHilichurlRogue(Character):
 
     def on_calculate(self, game:'GeniusGame'):
         if game.active_player_index == self.from_player.index:
-            if game.current_dice.use_type == SkillType.SPECIAL_SKILL:
+            if game.current_dice.use_type == SpecialSkillType.SPECIAL_SKILL:
                 if self.talent_round != game.round:
                     if game.current_dice.cost[0]['cost_num'] > 0:
                         game.current_dice.cost[0]['cost_num'] -= 1

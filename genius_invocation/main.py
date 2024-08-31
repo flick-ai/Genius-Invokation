@@ -232,8 +232,8 @@ if __name__=="__main__":
     else:
         deck1 = code_to_deck('FhHRgm4YFiHxg3YYFzFhhHcYF0FxhXgYF1GBhn4YF2Hhh38YF3HxioAYGKEBfYEXGNAA')
     deck2 = {
-        'character': ['Barbara', 'Beidou', 'KaedeharaKazuha'],
-        'action_card': ['Koholasaurus', 'Xenochromatic', 'Yumkasaurus']
+        'character': ['Chiori', 'Arataki_Itto', 'KaedeharaKazuha'],
+        'action_card': ['EremiteTeatime', 'Xenochromatic', 'Yumkasaurus']
     }
 
     # 初始化游戏

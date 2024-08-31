@@ -23,7 +23,7 @@ class AteaEntity(Support):
 
     def on_calculate(self, game:'GeniusGame'):
         if game.active_player_index == self.from_player.index:
-            if game.current_dice.use_type == SkillType.SPECIAL_SKILL:
+            if game.current_dice.use_type == SpecialSkillType.SPECIAL_SKILL:
                 if self.usage > 0:
                     if game.current_dice.cost[0]['cost_num'] > 0:
                         game.current_dice.cost[0]['cost_num'] -= 1
