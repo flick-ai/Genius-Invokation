@@ -17,7 +17,7 @@ class Dunyarzad_Entity(Support):
     def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character=None):
         super().__init__(game, from_player, from_character)
         self.usage_round = self.max_usage
-        self.usage_game = self.max_usage
+        self.usage_game = -1
 
     def on_begin(self, game:'GeniusGame'):
         if game.active_player_index == self.from_player.index:
@@ -35,7 +35,11 @@ class Dunyarzad_Entity(Support):
     def on_play(self, game:'GeniusGame'):
         if self.on_calculate(game):
             self.usage_round -= 1
+
+    def after_play(self, game:'GeniusGame'):
         if game.active_player_index == self.from_player.index:
+            if self.usage_game < 0:
+                self.usage_game = 1
             if self.usage_game > 0:
                 if game.current_dice.use_type == ActionCardType.SUPPORT_COMPANION:
                     card = self.from_player.card_zone.find_card(ActionCardType.SUPPORT_COMPANION)

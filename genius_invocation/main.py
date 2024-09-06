@@ -96,7 +96,7 @@ def test_fix(is_select=False):
                     "./card/action/equipment/specialskill/skills"]
     for package_dir in package_dirs:
         available_name = [f[:-3] for f in os.listdir(package_dir) if f.endswith(".py") and f != "__init__.py" and f != "import_head.py"]
-        # print(package_dir, len(available_name))
+        print(package_dir, len(available_name))
         # 测试天赋的归属
         if package_dir == "./card/action/equipment/talent/talents":
             all_talents = [eval('talents.'+talent).character.__name__ for talent in available_name]

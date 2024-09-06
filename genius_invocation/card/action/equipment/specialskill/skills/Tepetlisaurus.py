@@ -13,7 +13,7 @@ class TepetlisaurusEntity(SpecialSkill):
     name_ch = "特佩利龙"
     id = "313004s1"
     cost = [{'cost_num': 2, 'cost_type': CostType.BLACK}]
-    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None):
+    def __init__(self, game: 'GeniusGame', from_player: 'GeniusPlayer', from_character = None, card = None):
         super().__init__(game, from_player, from_character)
         self.usage = 2
 

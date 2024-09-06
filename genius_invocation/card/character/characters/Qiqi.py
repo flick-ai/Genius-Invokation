@@ -229,6 +229,7 @@ class Fortune_Preserving_Talisman(Combat_Status):
         self.current_usage = max(self.current_usage, self.usage)
 
     def after_skill(self, game: 'GeniusGame'):
+        if game.current_skill.from_character == self.from_character and game.current_skill.type == SkillType.ELEMENTAL_BURST: return
         if game.current_skill.from_character.from_player == self.from_player:
             if game.current_skill.from_character.health_point != game.current_skill.from_character.max_health_point:
                 game.current_skill.from_character.heal(2,game=game)
